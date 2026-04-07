@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from '../../lib/content';
+
+const articles = getCollection('articles');
+---
+
+<BaseLayout title="Articles" description="Deep reads on principles, methodology, and technology.">
+  <h1 class="text-2xl font-bold mb-6">Articles</h1>
+  <div class="space-y-6">
+    {articles.map(post => (
+      <article class="group">
+        <a href={`/articles/${post.slug}`} class="block">
+          <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
+            {post.frontmatter.title || post.slug}
+          </h3>
+          <div class="flex gap-3 text-xs text-[var(--color-muted)] mt-2">
+            <span>{post.frontmatter.created || post.frontmatter.date}</span>
+            {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.slice(0, 3).map(tag => (
+              <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+            ))}
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</BaseLayout>
