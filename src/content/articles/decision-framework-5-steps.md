@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Every decision passes through 5 steps, each with its own checklist:"
 title: "5-step decision framework: from epistemics to action"
 created: 2024-12-20
 updated: 2026-04-07

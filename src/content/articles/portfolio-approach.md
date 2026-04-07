@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Build multiple small products instead of going all-in on one. Pieter Levels: 70+ projects, 3-4 active revenue sources. John Rush: 20+ products. Danny Postma:..."
 title: "Portfolio approach — multiple small bets, not one big bet"
 created: 2026-02-11
 tags: [patterns, portfolio, barbell, risk, indie-hacker]

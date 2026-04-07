@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Principles for fighting AI agent degradation. The agent tends to drift into comfortable but unproductive patterns. Two mechanisms fight this:"
 title: "Agent self-discipline — drift detector and complexity thresholds"
 created: 2026-04-07
 tags: [agents, discipline, drift, complexity, harness, methodology]

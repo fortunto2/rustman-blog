@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "The original dream, started in 2014: help people turn everyday video moments into meaningful stories. Not just random clips — a narrative, a reflection on life."
 title: "Life2Film — turn everyday moments into meaningful montages"
 created: 2014-01-01
 tags: [project, ios, life2film, video, ai, montage, flagship]

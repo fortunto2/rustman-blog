@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Harness Engineering — designing environments where AI agents do reliable work. Humans steer, agents execute. Synthesized from three sources: OpenAI experimen..."
 title: "Harness Engineering — development in the age of agents"
 created: 2026-04-07
 tags: [harness, agents, ai-dev, context-engineering, methodology]

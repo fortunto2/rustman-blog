@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Five underserved market intersections where no competitor operates. Score: 8.1/10. 50+ evidence sources. All privacy-first, offline-first, on-device AI."
 title: "2026 validated app ideas — homeschool, family productivity, privacy-first"
 created: 2026-01-10
 tags: [opportunities, homeschool, privacy, on-device-ai, mobile, validation]

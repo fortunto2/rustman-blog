@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "993-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS,..."
 title: "Universal Development Principles — every project, any stack"
 created: 2026-04-07
 tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, baml, agents, methodology]

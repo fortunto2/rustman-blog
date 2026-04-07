@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "iOS app born from real life: wife runs a face massage coaching business, needed a timer with guided exercises. No good app existed — built one."
 title: "FaceAlarm — face massage coaching timer with AI"
 created: 2025-06-01
 tags: [project, ios, facealarm, on-device-ai, health]

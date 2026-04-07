@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "The manifesto (86 lines) establishes 6 foundational positions:"
 title: "Solo Founder Manifesto — Core Values"
 created: 2026-02-11
 tags: [manifesto, values, privacy, principles]

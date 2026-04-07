@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "The economic argument for context graphs: agent decision traces are a compounding asset. Each successful action recorded in the graph improves future ones th..."
 title: "Decision traces compound — each agent action improves future ones"
 created: 2026-04-07
 tags: [context-graphs, compound-learning, flywheel, agents]

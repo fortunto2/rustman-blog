@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "1855-line reference compiling Rinat Abdullin's Schema-Guided Reasoning (SGR) series. Core: use Pydantic/Zod schemas as the interface between LLM and code — t..."
 title: "SGR complete guide — code examples, patterns, integration with BAML"
 created: 2024-11-15
 tags: [sgr, llm, structured-output, pydantic, tool-calling, agents]

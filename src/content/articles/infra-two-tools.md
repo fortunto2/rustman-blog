@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Unified infrastructure for multiple mini-startups. Two principles: one project = one deploy config (infra lives in the repo), two tools, no more (SST + Pulumi)."
 title: "Infrastructure: two tools, serverless by default"
 created: 2026-04-07
 tags: [infra, sst, pulumi, cloudflare, hetzner, serverless, deployment]

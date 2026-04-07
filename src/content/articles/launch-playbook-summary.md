@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Operational playbook in 11 sections. Core: idea → live product with traffic in 5-9 days."
 title: "Launch Playbook — From Niche to Revenue"
 created: 2026-02-11
 tags: [launch, validation, niche, seed, metrics, playbook]

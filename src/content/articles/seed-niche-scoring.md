@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Quick filter for niche ideas before writing code. 4 dimensions:"
 title: "S.E.E.D. — niche scoring in 10 minutes"
 created: 2026-02-11
 tags: [seed, validation, niche, seo, evidence]

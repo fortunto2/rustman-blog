@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "STREAM = Scope (epistemic) · Time (temporal) · Route (action) · Exposure (stakes) · Audience (social) · Meaning (meta). Six layers arranged hierarchically — ..."
 title: "Summary: STREAM Framework — 6 Layers Decision System"
 created: 2024-12-20
 source_path: "0-principles/stream-framework.md"

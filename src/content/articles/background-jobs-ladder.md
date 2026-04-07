@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "5 tools for background jobs, ordered by complexity. Rule: start with cron, move up only when you need to."
 title: "Background jobs — cron → CF Workers → Prefect → Temporal → Trigger.dev"
 created: 2026-02-21
 tags: [infrastructure, temporal, prefect, cron, cloudflare, background-jobs, pipelines]

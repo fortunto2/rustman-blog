@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Reference catalog of 7 RAG patterns, each with when-to-use, trade-offs, and components."
 title: "RAG patterns — 7 approaches from vector to agentic"
 created: 2026-02-11
 tags: [rag, retrieval, llm, embeddings, vectors, knowledge-graph, solograph]

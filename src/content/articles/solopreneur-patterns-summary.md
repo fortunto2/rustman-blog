@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Data-driven patterns from successful indie hackers (2023-2026). Used by `/validate` for STREAM scoring and `/research` for market context."
 title: "Solopreneur success patterns — benchmarks, pricing, distribution"
 created: 2026-02-11
 tags: [patterns, benchmarks, pricing, revenue, indie-hacker, business-model]

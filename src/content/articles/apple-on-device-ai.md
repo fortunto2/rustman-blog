@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Unified on-device AI layer for all iOS products (KissMyTask, FaceAlarm, VoiceJournal, QuestSchool). Zero API cost, privacy by architecture, SGR natively via ..."
 title: "Apple Foundation Models — zero-cost on-device AI for iOS portfolio"
 created: 2026-04-07
 tags: [apple, foundation-models, ios, on-device, sgr, swift, privacy, mlx]

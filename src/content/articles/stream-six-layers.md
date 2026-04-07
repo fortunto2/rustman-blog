@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "The key difference between STREAM and typical principle collections: it's not a flat list but a 6-layer hierarchy where each layer builds on the previous one."
 title: "STREAM: principles as hierarchy, not a flat list"
 created: 2024-12-20
 updated: 2026-04-07

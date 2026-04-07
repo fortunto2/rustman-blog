@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Unified analytics for solo founder with mobile apps + web landings. Core problem: one person on landing and in app = 2 anonymous IDs. Broken attribution, bro..."
 title: "PostHog analytics: one product = one project, cross-platform identity"
 created: 2026-04-07
 tags: [posthog, analytics, ios, web, cross-platform, privacy, metrics]

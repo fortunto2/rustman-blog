@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Taleb's antifragility applied not to investments but to life design across 5 domains: income, health, relationships, skills, location. Three levels per domain:"
 title: "Antifragile life design: barbell across domains"
 created: 2024-12-20
 updated: 2026-04-07

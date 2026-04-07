@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "One of three harness engineering components. The idea: agent context is not chat history — it's a continuously improved knowledge base in the repository."
 title: "Context engineering — context as code"
 created: 2026-04-07
 tags: [context, agents, claude-md, progressive-disclosure, harness]

@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Knowledge graph of source code across all projects. Scans files, symbols (functions, classes, protocols), dependencies, imports, function calls, class inheri..."
 title: "CodeGraph — code intelligence across all projects via FalkorDB + tree-sitter"
 created: 2026-02-07
 tags: [codegraph, graph, code-intelligence, falkordb, tree-sitter, mcp, solograph]

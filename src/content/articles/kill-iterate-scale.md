@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "Hard numeric thresholds for weekly product decisions. No "let's wait and see":"
 title: "Kill / Iterate / Scale — weekly decision rules"
 created: 2026-02-11
 tags: [metrics, decisions, launch, kill-criteria]

@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "LLM agents (Claude Code, Codex, Gemini CLI) run with full filesystem access. Sandboxing via lightweight VMs solves this: agent works in isolation, sees only ..."
 title: "Agent sandboxing — safe LLM agent execution on Mac"
 created: 2026-02-11
 tags: [agents, security, sandbox, vm, macos, privacy, isolation]

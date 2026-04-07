@@ -1,5 +1,6 @@
 ---
 type: concept
+description: "iOS app for learning and playing the kubyz (Bashkir jaw harp / vargan). Digital instrument + learning tool preserving cultural heritage through technology."
 title: "KubizBeat — Bashkir kubyz instrument app"
 created: 2025-03-01
 tags: [project, ios, kubyz, music, culture, bashkir]

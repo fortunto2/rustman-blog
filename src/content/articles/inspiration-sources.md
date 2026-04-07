@@ -1,5 +1,6 @@
 ---
 type: summary
+description: "Curated list of ~60 channels/communities across 7 platforms, organized by relevance to solo founder workflow."
 title: "Inspiration sources — curated channels, communities, newsletters"
 created: 2026-02-11
 tags: [sources, youtube, twitter, reddit, telegram, newsletters, reference]
