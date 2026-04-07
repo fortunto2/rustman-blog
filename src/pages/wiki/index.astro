@@ -84,11 +84,17 @@ const summaries = pages.filter(p => p.frontmatter.type === 'summary');
       font-size: 1rem !important;
       width: 100% !important;
     }
+    #wiki-search .pagefind-ui__search-input {
+      padding-left: 1rem !important;
+    }
     #wiki-search .pagefind-ui__search-input::placeholder {
       color: #737373 !important;
     }
     #wiki-search .pagefind-ui__search-clear {
       color: #737373 !important;
+    }
+    #wiki-search .pagefind-ui__form::before {
+      display: none !important;
     }
     #wiki-search .pagefind-ui__result {
       border-top: 1px solid #2a2a2a !important;
