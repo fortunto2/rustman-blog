@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rustman.org/sitemap-index.xml
