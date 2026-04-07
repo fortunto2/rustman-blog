@@ -70,21 +70,29 @@ const summaries = pages.filter(p => p.frontmatter.type === 'summary');
       element: '#wiki-search',
       showSubResults: false,
       showImages: false,
-      resetStyles: true,
     });
   </script>
 
   <style is:global>
-    #wiki-search .pagefind-ui__search-input {
-      border: 1px solid var(--color-border) !important;
-      border-radius: 0.5rem !important;
-      padding: 0.5rem 0.75rem !important;
-      font-size: 0.875rem !important;
-      width: 100% !important;
-      background: transparent !important;
-      color: inherit !important;
+    /* Pagefind dark mode overrides */
+    #wiki-search {
+      --pagefind-ui-scale: 0.9;
+      --pagefind-ui-primary: var(--color-accent);
+      --pagefind-ui-text: var(--color-text);
+      --pagefind-ui-background: var(--color-bg);
+      --pagefind-ui-border: var(--color-border);
+      --pagefind-ui-tag: var(--color-border);
+      --pagefind-ui-border-width: 1px;
+      --pagefind-ui-border-radius: 0.5rem;
+      --pagefind-ui-font: inherit;
     }
-    #wiki-search .pagefind-ui__result-link { color: var(--color-accent) !important; }
-    #wiki-search .pagefind-ui__result-excerpt { color: var(--color-muted) !important; font-size: 0.8rem !important; }
+    @media (prefers-color-scheme: dark) {
+      #wiki-search {
+        --pagefind-ui-text: var(--color-text-dark);
+        --pagefind-ui-background: var(--color-bg-dark);
+        --pagefind-ui-border: var(--color-border-dark);
+        --pagefind-ui-tag: var(--color-border-dark);
+      }
+    }
   </style>
 </BaseLayout>
