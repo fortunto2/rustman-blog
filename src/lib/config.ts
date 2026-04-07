@@ -1,5 +1,5 @@
 export const SITE = {
-  domain: 'rustman.blog',
+  domain: 'rustman.org',
   name: 'rustman',
   title: 'rustman — build in public',
   description: 'Solo founder building products with AI. Principles, methodology, lessons learned.',

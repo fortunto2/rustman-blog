@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://rustman.blog',
+  site: 'https://rustman.org',
   output: 'static',
   integrations: [sitemap()],
   vite: {

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/config';
+---
+
+<BaseLayout title="About" description="Solo founder building products with AI.">
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body>
+    <h1>About</h1>
+
+    <p>I'm Rustam. Solo founder, CTO, AI engineer. Building products that help people reflect, create, and own their narrative.</p>
+
+    <p>Started Life2Film in 2014 — help people turn everyday moments into meaningful stories. Closed in 2021. Now building SuperDuperAI: the second chapter of the same story.</p>
+
+    <h2>What I believe</h2>
+    <ul>
+      <li><strong>Privacy is architecture, not a feature.</strong> On-device processing, local storage, no accounts when possible.</li>
+      <li><strong>One pain, one feature, launch.</strong> Not platforms. Ship in days, learn from what happens.</li>
+      <li><strong>Antifragile by design.</strong> Small bets with asymmetric upside. 90% safe + 10% experiments.</li>
+      <li><strong>Revenue is feedback.</strong> Each product is a question to the world.</li>
+    </ul>
+
+    <h2>How I work</h2>
+    <p>AI agents do the heavy lifting — summarizing, cross-referencing, coding, testing. I steer: source ideas, direct analysis, make decisions. The repository is the agent's brain (harness engineering).</p>
+
+    <p>This blog is built the same way: a wiki of synthesized knowledge, published selectively. Raw sources stay private. Compiled insights go public.</p>
+
+    <h2>Stack</h2>
+    <p>Web: Next.js + Supabase. iOS: Swift + SwiftUI. CLI: Python + uv. Performance: Rust. This blog: Astro + Cloudflare Pages.</p>
+
+    <h2>Connect</h2>
+    <ul>
+      <li><a href={SITE.social.github}>GitHub</a></li>
+      <li><a href={SITE.social.twitter}>X / Twitter</a></li>
+    </ul>
+  </article>
+</BaseLayout>
