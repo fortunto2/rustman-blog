@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "One pain → one feature → launch"
-created: 2026-04-07
+created: 2026-02-11
 tags: [manifesto, shipping, lean, focus]
 publish: true
 ---

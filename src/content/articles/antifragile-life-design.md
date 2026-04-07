@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Antifragile life design: barbell across domains"
-created: 2026-04-07
+created: 2024-12-20
 updated: 2026-04-07
 tags: [antifragility, taleb, barbell, life-design, risk]
 publish: true

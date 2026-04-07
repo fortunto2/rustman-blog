@@ -87,10 +87,12 @@ function main() {
       continue;
     }
 
-    const dest = join(CONTENT_DIR, contentType === 'articles' ? 'articles' : contentType === 'projects' ? 'projects' : 'notes', file);
+    const dirMap: Record<string, string> = { article: 'articles', articles: 'articles', project: 'projects', projects: 'projects', note: 'notes', notes: 'notes' };
+    const dir = dirMap[contentType] || 'articles';
+    const dest = join(CONTENT_DIR, dir, file);
     writeFileSync(dest, raw);
     collected++;
-    console.log(`  ${contentType}/${file}`);
+    console.log(`  ${dir}/${file}`);
   }
 
   console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${files.length}`);

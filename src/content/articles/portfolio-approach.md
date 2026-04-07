@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Portfolio approach — multiple small bets, not one big bet"
-created: 2026-04-07
+created: 2026-02-11
 tags: [patterns, portfolio, barbell, risk, indie-hacker]
 publish: true
 ---
