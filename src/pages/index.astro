@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllPosts } from '../lib/content';
+
+const posts = getAllPosts().slice(0, 20);
+---
+
+<BaseLayout>
+  <section class="mb-12">
+    <h1 class="text-3xl font-bold mb-2">rustman</h1>
+    <p class="text-[var(--color-muted)] text-lg">Solo founder building products with AI. Shipping fast, learning in public.</p>
+  </section>
+
+  <section>
+    <h2 class="text-xl font-semibold mb-6">Recent</h2>
+    <div class="space-y-6">
+      {posts.map(post => (
+        <article class="group">
+          <a href={`/${post.type}/${post.slug}`} class="block">
+            <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
+              {post.frontmatter.title || post.slug}
+            </h3>
+            {post.frontmatter.description && (
+              <p class="text-sm text-[var(--color-muted)] mt-1">{post.frontmatter.description}</p>
+            )}
+            <div class="flex gap-3 text-xs text-[var(--color-muted)] mt-2">
+              <span>{post.frontmatter.created || post.frontmatter.date}</span>
+              <span class="uppercase">{post.type.slice(0, -1)}</span>
+              {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.slice(0, 3).map(tag => (
+                <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+              ))}
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {posts.length === 0 && (
+    <p class="text-[var(--color-muted)]">No published content yet. Run <code>pnpm collect</code> to pull from wiki.</p>
+  )}
+</BaseLayout>

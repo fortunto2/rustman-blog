@@ -1,0 +1,43 @@
+{
+  "name": "rustman-blog",
+  "version": "1.0.0",
+  "description": "Personal blog — build in public, knowledge sharing",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && npx pagefind --site dist",
+    "preview": "astro preview",
+    "deploy": "pnpm build && wrangler pages deploy dist",
+    "collect": "tsx scripts/collect-content.ts"
+  },
+  "keywords": [
+    "blog",
+    "astro",
+    "build-in-public"
+  ],
+  "author": "rustman",
+  "license": "MIT",
+  "packageManager": "pnpm@10.20.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.7",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.4",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.1",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@pagefind/default-ui": "^1.5.0",
+    "@types/markdown-it": "^14.1.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,73 @@
+---
+import { SITE } from '../lib/config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+const pageTitle = title ? `${title} — ${SITE.name}` : SITE.title;
+const pageDescription = description || SITE.description;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={SITE.lang} class="antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  {ogImage && <meta property="og:image" content={ogImage} />}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDescription} />
+
+  <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" rel="stylesheet" />
+</head>
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] dark:bg-[var(--color-bg-dark)] dark:text-[var(--color-text-dark)] min-h-screen flex flex-col">
+
+  <header class="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+    <nav class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-semibold">{SITE.name}</a>
+      <div class="flex gap-4 text-sm">
+        {SITE.navigation.map(item => (
+          <a href={item.href} class="text-[var(--color-muted)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors">
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 py-8 flex-1 w-full">
+    <slot />
+  </main>
+
+  <footer class="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] mt-auto">
+    <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-[var(--color-muted)] flex justify-between">
+      <span>&copy; {new Date().getFullYear()} {SITE.name}</span>
+      <div class="flex gap-4">
+        <a href={SITE.social.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={SITE.social.twitter} target="_blank" rel="noopener">X</a>
+        <a href="/rss.xml">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
