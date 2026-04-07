@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join, basename } from 'path';
 
-const WIKI_DIR = join(import.meta.dirname, '..', '..', '..', 'solopreneur', 'wiki');
+const WIKI_DIR = join(import.meta.dirname, '..', '..', 'wiki');
 const CONTENT_DIR = join(import.meta.dirname, '..', 'src', 'content');
 
 function parseFrontmatter(raw: string): Record<string, unknown> {
