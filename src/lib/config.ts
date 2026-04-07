@@ -6,18 +6,10 @@ export const SITE = {
   lang: 'en',
   author: 'Rustam',
 
-  contentTypes: {
-    articles: { label: 'Articles', emoji: '', path: '/articles' },
-    projects: { label: 'Projects', emoji: '', path: '/projects' },
-    notes: { label: 'Notes', emoji: '', path: '/notes' },
-  },
-
   navigation: [
-    { href: '/articles', label: 'Articles' },
+    { href: '/wiki', label: 'Wiki' },
     { href: '/projects', label: 'Projects' },
-    { href: '/notes', label: 'Notes' },
     { href: '/about', label: 'About' },
-    { href: '/search', label: 'Search' },
   ],
 
   social: {
@@ -25,5 +17,3 @@ export const SITE = {
     twitter: 'https://x.com/rustman',
   },
 } as const;
-
-export type ContentType = keyof typeof SITE.contentTypes;

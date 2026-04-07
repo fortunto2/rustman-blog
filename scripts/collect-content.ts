@@ -1,17 +1,18 @@
 /**
  * Collect content from solopreneur wiki for blog publication.
- * Reads wiki/*.md, filters by `publish: true`, copies to src/content/{type}/.
+ * Reads wiki/*.md, filters by `publish: true`, routes to correct section.
  *
  * Usage: pnpm collect
  *
- * Content type mapping:
- *   - publish_as: article | project | note (explicit)
- *   - type: summary | concept → articles (default)
- *   - type: hub → skip (navigation pages, not content)
+ * Routing:
+ *   - publish_as: project → src/content/projects/
+ *   - publish_as: post → src/content/posts/ (raw thoughts, updates)
+ *   - everything else → src/content/wiki/ (knowledge base)
+ *   - type: hub → also wiki (hub pages are useful as navigation)
  */
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
-import { join, basename } from 'path';
+import { join } from 'path';
 
 const WIKI_DIR = join(import.meta.dirname, '..', '..', 'wiki');
 const CONTENT_DIR = join(import.meta.dirname, '..', 'src', 'content');
@@ -21,9 +22,7 @@ function parseFrontmatter(raw: string): Record<string, unknown> {
   if (!match) return {};
 
   const fm: Record<string, unknown> = {};
-  const lines = match[1].split('\n');
-
-  for (const line of lines) {
+  for (const line of match[1].split('\n')) {
     const idx = line.indexOf(':');
     if (idx === -1) continue;
     const key = line.slice(0, idx).trim();
@@ -41,16 +40,11 @@ function parseFrontmatter(raw: string): Record<string, unknown> {
   return fm;
 }
 
-function getContentType(fm: Record<string, unknown>): string | null {
-  // Explicit publish_as takes priority
-  if (fm.publish_as) return fm.publish_as as string;
-
-  // Type-based mapping
-  const type = fm.type as string;
-  if (type === 'hub') return null; // Skip hub pages
-  if (type === 'summary' || type === 'concept') return 'articles';
-
-  return 'articles'; // default
+function getSection(fm: Record<string, unknown>): string {
+  const publishAs = fm.publish_as as string | undefined;
+  if (publishAs === 'project' || publishAs === 'projects') return 'projects';
+  if (publishAs === 'post' || publishAs === 'posts') return 'posts';
+  return 'wiki'; // default: all wiki pages go to wiki section
 }
 
 function main() {
@@ -59,8 +53,7 @@ function main() {
     process.exit(1);
   }
 
-  // Clean content dirs
-  for (const dir of ['articles', 'projects', 'notes']) {
+  for (const dir of ['wiki', 'projects', 'posts']) {
     const path = join(CONTENT_DIR, dir);
     if (existsSync(path)) rmSync(path, { recursive: true });
     mkdirSync(path, { recursive: true });
@@ -81,18 +74,11 @@ function main() {
       continue;
     }
 
-    const contentType = getContentType(fm);
-    if (!contentType) {
-      skipped++;
-      continue;
-    }
-
-    const dirMap: Record<string, string> = { article: 'articles', articles: 'articles', project: 'projects', projects: 'projects', note: 'notes', notes: 'notes' };
-    const dir = dirMap[contentType] || 'articles';
-    const dest = join(CONTENT_DIR, dir, file);
+    const section = getSection(fm);
+    const dest = join(CONTENT_DIR, section, file);
     writeFileSync(dest, raw);
     collected++;
-    console.log(`  ${dir}/${file}`);
+    console.log(`  ${section}/${file}`);
   }
 
   console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${files.length}`);

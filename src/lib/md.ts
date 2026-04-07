@@ -71,7 +71,7 @@ export function parseFrontmatter(raw: string): { frontmatter: Frontmatter; conte
 export function processWikilinks(content: string): string {
   return content.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, slug, label) => {
     const display = label || slug;
-    const href = `/articles/${slug.toLowerCase().replace(/\s+/g, '-')}`;
+    const href = `/wiki/${slug.toLowerCase().replace(/\s+/g, '-')}`;
     return `[${display}](${href})`;
   });
 }

@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getAllPosts } from '../lib/content';
+import { getCollection, getAllContent } from '../lib/content';
 
-const posts = getAllPosts().slice(0, 20);
+const posts = getCollection('posts');
+const projects = getCollection('projects');
+const recent = getAllContent().slice(0, 30);
 ---
 
 <BaseLayout>
@@ -11,32 +13,45 @@ const posts = getAllPosts().slice(0, 20);
     <p class="text-[var(--color-muted)] text-lg">Solo founder building products with AI. Shipping fast, learning in public.</p>
   </section>
 
+  {projects.length > 0 && (
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4">Projects</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {projects.map(p => (
+          <a href={`/projects/${p.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
+            <h3 class="font-medium">{p.frontmatter.title}</h3>
+            {p.frontmatter.description && (
+              <p class="text-sm text-[var(--color-muted)] mt-1 line-clamp-2">{p.frontmatter.description}</p>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
   <section>
     <h2 class="text-xl font-semibold mb-6">Recent</h2>
-    <div class="space-y-6">
-      {posts.map(post => (
+    <div class="space-y-5">
+      {recent.map(entry => (
         <article class="group">
-          <a href={`/${post.type}/${post.slug}`} class="block">
-            <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
-              {post.frontmatter.title || post.slug}
-            </h3>
-            {post.frontmatter.description && (
-              <p class="text-sm text-[var(--color-muted)] mt-1">{post.frontmatter.description}</p>
-            )}
-            <div class="flex gap-3 text-xs text-[var(--color-muted)] mt-2">
-              <span>{post.frontmatter.created || post.frontmatter.date}</span>
-              <span class="uppercase">{post.type.slice(0, -1)}</span>
-              {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.slice(0, 3).map(tag => (
-                <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
-              ))}
+          <a href={`/${entry.section}/${entry.slug}`} class="block">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs uppercase text-[var(--color-muted)] bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{entry.section}</span>
+              <span class="text-xs text-[var(--color-muted)]">{entry.frontmatter.created || entry.frontmatter.date}</span>
             </div>
+            <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
+              {entry.frontmatter.title || entry.slug}
+            </h3>
+            {entry.frontmatter.description && (
+              <p class="text-sm text-[var(--color-muted)] mt-1 line-clamp-1">{entry.frontmatter.description}</p>
+            )}
           </a>
         </article>
       ))}
     </div>
   </section>
 
-  {posts.length === 0 && (
-    <p class="text-[var(--color-muted)]">No published content yet. Run <code>pnpm collect</code> to pull from wiki.</p>
+  {recent.length === 0 && (
+    <p class="text-[var(--color-muted)]">No content yet. Run <code>pnpm collect</code> to pull from wiki.</p>
   )}
 </BaseLayout>

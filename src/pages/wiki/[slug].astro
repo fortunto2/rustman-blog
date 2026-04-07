@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from '../../lib/content';
+import { renderMarkdown } from '../../lib/md';
+
+export function getStaticPaths() {
+  return getCollection('wiki').map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const post = renderMarkdown(entry.raw);
+---
+
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
+  <div class="mb-4">
+    <a href="/wiki" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; Wiki</a>
+  </div>
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="wiki">
+    {post.frontmatter.title && !post.hasH1 && (
+      <h1>{post.frontmatter.title}</h1>
+    )}
+    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose">
+      <span>{post.frontmatter.created || post.frontmatter.date}</span>
+      {post.frontmatter.type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{post.frontmatter.type}</span>}
+      {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
+        <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+      ))}
+    </div>
+    <Fragment set:html={post.html} />
+  </article>
+
+  {post.frontmatter.source_path && (
+    <div class="mt-6 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)]">
+      Raw source: <code>{post.frontmatter.source_path}</code>
+    </div>
+  )}
+</BaseLayout>

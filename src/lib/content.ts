@@ -2,6 +2,8 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { parseFrontmatter, type Frontmatter } from './md';
 
+export type Section = 'wiki' | 'projects' | 'posts';
+
 export interface ContentEntry {
   slug: string;
   frontmatter: Frontmatter;
@@ -10,19 +12,15 @@ export interface ContentEntry {
 
 const CONTENT_DIR = join(process.cwd(), 'src', 'content');
 
-export function getCollection(type: 'articles' | 'projects' | 'notes'): ContentEntry[] {
-  const dir = join(CONTENT_DIR, type);
+export function getCollection(section: Section): ContentEntry[] {
+  const dir = join(CONTENT_DIR, section);
   try {
     return readdirSync(dir)
       .filter(f => f.endsWith('.md'))
       .map(file => {
         const raw = readFileSync(join(dir, file), 'utf-8');
         const { frontmatter } = parseFrontmatter(raw);
-        return {
-          slug: file.replace('.md', ''),
-          frontmatter,
-          raw,
-        };
+        return { slug: file.replace('.md', ''), frontmatter, raw };
       })
       .sort((a, b) => {
         const dateA = a.frontmatter.created || a.frontmatter.date || '';
@@ -34,11 +32,11 @@ export function getCollection(type: 'articles' | 'projects' | 'notes'): ContentE
   }
 }
 
-export function getAllPosts(): (ContentEntry & { type: string })[] {
-  const articles = getCollection('articles').map(e => ({ ...e, type: 'articles' }));
-  const projects = getCollection('projects').map(e => ({ ...e, type: 'projects' }));
-  const notes = getCollection('notes').map(e => ({ ...e, type: 'notes' }));
-  return [...articles, ...projects, ...notes].sort((a, b) => {
+export function getAllContent(): (ContentEntry & { section: Section })[] {
+  const wiki = getCollection('wiki').map(e => ({ ...e, section: 'wiki' as Section }));
+  const projects = getCollection('projects').map(e => ({ ...e, section: 'projects' as Section }));
+  const posts = getCollection('posts').map(e => ({ ...e, section: 'posts' as Section }));
+  return [...wiki, ...projects, ...posts].sort((a, b) => {
     const dateA = a.frontmatter.created || a.frontmatter.date || '';
     const dateB = b.frontmatter.created || b.frontmatter.date || '';
     return dateB.localeCompare(dateA);

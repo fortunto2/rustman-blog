@@ -17,7 +17,10 @@ post.slug = entry.slug;
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
-  <article class="prose dark:prose-invert max-w-none" data-pagefind-body>
+  <div class="mb-4">
+    <a href="/projects" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; Projects</a>
+  </div>
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="project">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}

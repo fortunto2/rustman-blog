@@ -1,20 +1,21 @@
 import type { APIRoute } from 'astro';
 import { SITE } from '../lib/config';
-import { getAllPosts } from '../lib/content';
+import { getAllContent } from '../lib/content';
 
 export const GET: APIRoute = () => {
-  const posts = getAllPosts().slice(0, 20);
+  const all = getAllContent().slice(0, 30);
 
-  const items = posts.map(post => {
-    const link = `https://${SITE.domain}/${post.type}/${post.slug}`;
-    const date = post.frontmatter.created || post.frontmatter.date || '2026-01-01';
+  const items = all.map(entry => {
+    const link = `https://${SITE.domain}/${entry.section}/${entry.slug}`;
+    const date = entry.frontmatter.created || entry.frontmatter.date || '2026-01-01';
     return `
     <item>
-      <title>${escapeXml(post.frontmatter.title || post.slug)}</title>
+      <title>${escapeXml(entry.frontmatter.title || entry.slug)}</title>
       <link>${link}</link>
       <guid>${link}</guid>
       <pubDate>${new Date(date).toUTCString()}</pubDate>
-      <description>${escapeXml(post.frontmatter.description || '')}</description>
+      <description>${escapeXml(entry.frontmatter.description || '')}</description>
+      <category>${entry.section}</category>
     </item>`;
   }).join('');
 
