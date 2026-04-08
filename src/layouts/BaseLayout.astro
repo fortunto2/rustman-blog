@@ -87,19 +87,18 @@ const isArticle = !!article;
   <header class="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
     <nav class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="/" class="text-lg font-semibold font-mono">{SITE.name}<span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] animate-pulse">_</span></a>
-      <div class="flex gap-4 text-sm font-mono">
+      <div class="flex gap-4 text-sm font-mono items-center">
         {SITE.navigation.map(item => (
           <a href={item.href} class="text-[var(--color-muted)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors">
             /{item.label.toLowerCase()}
           </a>
         ))}
+        <button id="search-trigger" class="text-[var(--color-muted)] hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors cursor-pointer" title="Search (/)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
       </div>
     </nav>
   </header>
-
-  <div class="max-w-3xl mx-auto px-4 pt-4">
-    <Search section={section} />
-  </div>
 
   <main class="max-w-3xl mx-auto px-4 py-8 flex-1 w-full">
     <slot />
@@ -166,5 +165,6 @@ const isArticle = !!article;
     }
   </style>
 
+  <Search section={section} />
 </body>
 </html>

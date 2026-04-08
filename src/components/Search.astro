@@ -1,29 +1,35 @@
 ---
-/**
- * Global search with optional section filtering.
- * No section = search all. With section = scoped search.
- */
 interface Props {
   section?: string;
 }
 const { section } = Astro.props;
-const placeholder = section ? `Search ${section}...` : 'Search all...';
+const placeholder = section ? `Search ${section}...` : 'Search...';
 ---
 
-<div class="search-box" data-section={section || ''}>
-  <input
-    type="text"
-    class="search-input"
-    placeholder={placeholder}
-    autocomplete="off"
-    spellcheck="false"
-  />
-  <div class="search-results hidden"></div>
+<div id="search-modal" class="search-modal hidden" data-section={section || ''}>
+  <div class="search-overlay"></div>
+  <div class="search-container">
+    <div class="search-header">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder={placeholder}
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="search-close" class="search-close">&times;</button>
+    </div>
+    <div id="search-results" class="search-results"></div>
+    <div class="search-hint">
+      <span>esc to close</span>
+      <span>/ to open</span>
+    </div>
+  </div>
 </div>
 
 <script is:inline>
-  let pagefind = null;
-
+  var pagefind = null;
   async function loadPagefind() {
     if (pagefind) return pagefind;
     pagefind = await import('/pagefind/pagefind.js');
@@ -31,156 +37,203 @@ const placeholder = section ? `Search ${section}...` : 'Search all...';
     return pagefind;
   }
 
-  document.querySelectorAll('.search-box').forEach(box => {
-    const input = box.querySelector('.search-input');
-    const results = box.querySelector('.search-results');
-    const section = box.dataset.section;
-    let debounce;
+  var modal = document.getElementById('search-modal');
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+  var section = modal ? modal.dataset.section : '';
+  var debounce;
 
-    input.addEventListener('input', function() {
-      clearTimeout(debounce);
-      debounce = setTimeout(function() { doSearch(input.value, section, results); }, 150);
-    });
-
-    input.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        input.value = '';
-        results.classList.add('hidden');
-        results.innerHTML = '';
-      }
-    });
-  });
-
-  async function doSearch(query, section, container) {
-    if (!query || query.length < 2) {
-      container.classList.add('hidden');
-      container.innerHTML = '';
-      return;
-    }
-
-    const pf = await loadPagefind();
-    const filters = section ? { section: [section] } : {};
-    const search = await pf.search(query, { filters });
-
-    if (search.results.length === 0) {
-      container.innerHTML = '<div class="search-empty">No results</div>';
-      container.classList.remove('hidden');
-      return;
-    }
-
-    const items = await Promise.all(search.results.slice(0, 8).map(function(r) { return r.data(); }));
-
-    container.innerHTML = items.map(function(item) {
-      var title = (item.meta && item.meta.title) || item.url;
-      return '<a href="' + item.url + '" class="search-result">' +
-        '<span class="search-title">' + title + '</span>' +
-        '<span class="search-excerpt">' + (item.excerpt || '') + '</span></a>';
-    }).join('');
-
-    container.classList.remove('hidden');
+  function openSearch() {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { input.focus(); }, 50);
   }
 
-  // Close results on outside click
-  document.addEventListener('click', function(e) {
-    document.querySelectorAll('.search-box').forEach(function(box) {
-      if (!box.contains(e.target)) {
-        var r = box.querySelector('.search-results');
-        if (r) r.classList.add('hidden');
-      }
-    });
-  });
+  function closeSearch() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    input.value = '';
+    results.innerHTML = '';
+  }
 
-  // Keyboard shortcut: / to focus search
+  // Trigger from nav button
+  var btn = document.getElementById('search-trigger');
+  if (btn) btn.addEventListener('click', openSearch);
+
+  // Close button
+  document.getElementById('search-close').addEventListener('click', closeSearch);
+
+  // Click overlay to close
+  modal.querySelector('.search-overlay').addEventListener('click', closeSearch);
+
+  // Keyboard: / to open, Esc to close
   document.addEventListener('keydown', function(e) {
     if (e.key === '/' && ['INPUT', 'TEXTAREA'].indexOf(e.target.tagName) === -1) {
       e.preventDefault();
-      var el = document.querySelector('.search-input');
-      if (el) el.focus();
+      openSearch();
+    }
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeSearch();
     }
   });
+
+  // Search input
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    debounce = setTimeout(function() { doSearch(input.value); }, 150);
+  });
+
+  async function doSearch(query) {
+    if (!query || query.length < 2) {
+      results.innerHTML = '';
+      return;
+    }
+
+    var pf = await loadPagefind();
+    var filters = section ? { section: [section] } : {};
+    var search = await pf.search(query, { filters: filters });
+
+    if (search.results.length === 0) {
+      results.innerHTML = '<div class="search-empty">No results for "' + query + '"</div>';
+      return;
+    }
+
+    var items = await Promise.all(search.results.slice(0, 12).map(function(r) { return r.data(); }));
+
+    results.innerHTML = items.map(function(item) {
+      var title = (item.meta && item.meta.title) || item.url;
+      var excerpt = item.excerpt || '';
+      return '<a href="' + item.url + '" class="search-result-item">' +
+        '<span class="search-result-title">' + title + '</span>' +
+        '<span class="search-result-excerpt">' + excerpt + '</span></a>';
+    }).join('');
+  }
 </script>
 
 <style>
-  .search-box {
-    position: relative;
+  .search-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
   }
-  .search-input {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-family: 'JetBrains Mono', monospace;
-    background: var(--color-bg);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .search-input:focus {
-    border-color: var(--color-accent);
-  }
-  .search-input::placeholder {
-    color: var(--color-muted);
-  }
-  .search-results {
+  .search-modal.hidden { display: none; }
+
+  .search-overlay {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 50;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 1rem;
     background: var(--color-bg);
     border: 1px solid var(--color-border);
-    border-top: none;
-    max-height: 24rem;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
   }
-  .search-result {
+
+  .search-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    background: transparent;
+    color: var(--color-text);
+    border: none;
+    outline: none;
+  }
+  .search-input::placeholder { color: var(--color-muted); }
+
+  .search-close {
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .search-close:hover { color: var(--color-text); }
+
+  .search-results {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .search-result-item {
     display: block;
-    padding: 0.5rem 0.75rem;
+    padding: 0.625rem 1rem;
     text-decoration: none;
     border-bottom: 1px solid var(--color-border);
     transition: background 0.1s;
   }
-  .search-result:last-child { border-bottom: none; }
-  .search-result:hover { background: var(--color-border); }
-  .search-title {
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: var(--color-border); }
+
+  .search-result-title {
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
     color: var(--color-text);
   }
-  .search-excerpt {
+
+  .search-result-excerpt {
     display: block;
     font-size: 0.75rem;
     color: var(--color-muted);
-    margin-top: 0.15rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin-top: 0.2rem;
+    line-height: 1.4;
   }
+
   .search-empty {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
+    padding: 1.5rem 1rem;
+    font-size: 0.875rem;
     color: var(--color-muted);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
   }
-  .hidden { display: none; }
+
+  .search-hint {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 1rem;
+    font-size: 0.7rem;
+    color: var(--color-muted);
+    font-family: 'JetBrains Mono', monospace;
+    border-top: 1px solid var(--color-border);
+  }
 
   @media (prefers-color-scheme: dark) {
-    .search-input {
-      background: var(--color-surface-dark);
-      color: var(--color-text-dark);
+    .search-container {
+      background: var(--color-bg-dark);
       border-color: var(--color-border-dark);
     }
-    .search-input:focus { border-color: var(--color-accent-dark); }
-    .search-results {
-      background: var(--color-surface-dark);
-      border-color: var(--color-border-dark);
-    }
-    .search-result:hover { background: var(--color-border-dark); }
-    .search-result { border-color: var(--color-border-dark); }
-    .search-title { color: var(--color-text-dark); }
-    .search-excerpt mark {
-      background: rgba(0, 255, 65, 0.15);
+    .search-header { border-color: var(--color-border-dark); }
+    .search-input { color: var(--color-text-dark); }
+    .search-close:hover { color: var(--color-text-dark); }
+    .search-result-item { border-color: var(--color-border-dark); }
+    .search-result-item:hover { background: var(--color-surface-dark); }
+    .search-result-title { color: var(--color-text-dark); }
+    .search-result-excerpt mark {
+      background: rgba(0, 255, 65, 0.2);
       color: var(--color-accent-dark);
     }
+    .search-hint { border-color: var(--color-border-dark); }
   }
 </style>
