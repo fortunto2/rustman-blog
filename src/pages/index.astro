@@ -5,6 +5,26 @@ import { getCollection, getAllContent } from '../lib/content';
 const posts = getCollection('posts');
 const projects = getCollection('projects');
 const recent = getAllContent().slice(0, 30);
+
+// Split into two groups by tags
+const openSource = projects.filter(p => p.frontmatter.tags?.includes('open-source'));
+const products = projects.filter(p => !p.frontmatter.tags?.includes('open-source'));
+
+// Priority order for open source: solograph, solo-factory, rust projects first
+const osPriority = ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq'];
+openSource.sort((a, b) => {
+  const ai = osPriority.indexOf(a.slug);
+  const bi = osPriority.indexOf(b.slug);
+  return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+});
+
+// Priority order for products: SuperDuperAI first, then recent
+const prodPriority = ['project-superduperai', 'project-superstoryboard'];
+products.sort((a, b) => {
+  const ai = prodPriority.indexOf(a.slug);
+  const bi = prodPriority.indexOf(b.slug);
+  return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+});
 ---
 
 <BaseLayout>
@@ -16,11 +36,34 @@ const recent = getAllContent().slice(0, 30);
     </div>
   </section>
 
-  {projects.length > 0 && (
+  {openSource.length > 0 && (
     <section class="mb-12">
-      <h2 class="text-xl font-semibold mb-4">Projects</h2>
+      <h2 class="text-xl font-semibold mb-4">Open Source</h2>
       <div class="grid gap-4 sm:grid-cols-2">
-        {projects.map(p => (
+        {openSource.map(p => (
+          <a href={`/projects/${p.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
+            <h3 class="font-medium">{p.frontmatter.title}</h3>
+            {p.frontmatter.tags && (
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                {p.frontmatter.tags.filter(t => t !== 'project' && t !== 'open-source').slice(0, 4).map(tag => (
+                  <span class="text-xs bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+                ))}
+              </div>
+            )}
+            {p.frontmatter.description && (
+              <p class="text-sm text-[var(--color-muted)] mt-1.5 line-clamp-2">{p.frontmatter.description}</p>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {products.length > 0 && (
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4">Products</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {products.map(p => (
           <a href={`/projects/${p.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
             <h3 class="font-medium">{p.frontmatter.title}</h3>
             {p.frontmatter.description && (
