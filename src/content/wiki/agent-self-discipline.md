@@ -34,3 +34,4 @@ Principles for fighting AI agent degradation. The agent tends to drift into comf
 - [[harness-engineering-summary]] — garbage collection (component 3) fights the same entropy
 - [[context-engineering]] — 40k char budget and CLAUDE.md trimming = context engineering discipline
 - [[decision-framework-5-steps]] — three-axis reflection mirrors the 5-step framework's systematic approach
+- [[dev-principles-summary]] — self-discipline patterns come from dev principles

@@ -31,3 +31,4 @@ STREAM framework is the root document for `/solo:stream` skill and the entire de
 - How to formalize conflict between layers (e.g. Action says "do it," Stakes says "too risky")?
 - Can decisions be quantified via STREAM scoring?
 - How to integrate STREAM into automated pipeline (beyond `/solo:stream`)?
+- [[stream-six-layers]] — the 6-layer hierarchy concept extracted from this source

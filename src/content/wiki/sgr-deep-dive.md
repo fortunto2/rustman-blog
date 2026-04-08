@@ -30,3 +30,5 @@ source_path: "1-methodology/sgr/sgr-complete.md"
 - [[dev-principles-summary]] — SGR is a core section of dev principles
 - [[apple-on-device-ai]] — @Generable = native SGR in Swift
 - [[context-engineering]] — schemas ARE context: agent reads them first to understand domain
+- [[enterprise-rag-challenge]] — ERC winners validate SGR: structured outputs beat vector search
+- [[tool-calling-four-layers]] — tool calling uses the same constrained decoding as SGR structured outputs

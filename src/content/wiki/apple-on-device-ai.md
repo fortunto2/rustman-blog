@@ -26,3 +26,4 @@ Unified on-device AI layer for all iOS products (KissMyTask, FaceAlarm, VoiceJou
 - [[schema-guided-reasoning]] — Apple @Generable = native SGR implementation for iOS
 - [[antifragile-life-design]] — zero API cost = each product experiment has even lower downside in the barbell
 - [[one-pain-one-feature-launch]] — on-device AI removes the cost barrier to adding AI features in MVPs
+- [[posthog-cross-platform]] — PostHog tracks cross-platform funnels for iOS products using Apple Foundation Models

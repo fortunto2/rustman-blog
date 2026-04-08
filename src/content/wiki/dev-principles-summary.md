@@ -38,3 +38,5 @@ source_path: "1-methodology/dev-principles.md"
 - [[privacy-as-architecture]] — privacy-first section: all data local, offline-first, user controls everything
 - [[solo-methodology]] — the entire dev lifecycle (plan → build → review) lives here
 - [[one-pain-one-feature-launch]] — dev workflow supports rapid shipping via CLI-first + TDD + auto-commit
+- [[agent-self-discipline]] — agent self-discipline section extracted as concept page
+- [[enterprise-rag-challenge]] — ERC validates SGR + structured outputs patterns from dev principles

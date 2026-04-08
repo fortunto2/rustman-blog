@@ -27,3 +27,4 @@ Unified analytics for solo founder with mobile apps + web landings. Core problem
 - [[privacy-as-architecture]] — anonymous by default, EU hosting, minimal PII collection
 - [[kill-iterate-scale]] — PostHog funnels feed the weekly go/no-go thresholds directly
 - [[infra-two-tools]] — PostHog is the monitoring layer across all infra tiers
+- [[apple-on-device-ai]] — iOS products with on-device AI feed into PostHog cross-platform analytics
