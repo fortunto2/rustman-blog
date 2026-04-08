@@ -25,6 +25,7 @@ export interface Frontmatter {
   publish?: boolean;
   publish_as?: 'article' | 'project' | 'note';
   source_path?: string;
+  source_url?: string | string[];
   cover?: string;
   status?: string;
 }
