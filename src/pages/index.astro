@@ -8,9 +8,12 @@ const recent = getAllContent().slice(0, 30);
 ---
 
 <BaseLayout>
-  <section class="mb-12">
-    <h1 class="text-3xl font-bold mb-2">rustman</h1>
-    <p class="text-[var(--color-muted)] text-lg">Solo founder building products with AI. Shipping fast, learning in public.</p>
+  <section class="mb-12 flex items-center gap-5">
+    <img src="/avatar.jpg" alt="Rustam Salavatov" class="w-16 h-16 rounded-full" width="64" height="64" />
+    <div>
+      <h1 class="text-3xl font-bold mb-1">rustman</h1>
+      <p class="text-[var(--color-muted)] text-lg">Solo founder building products with AI. Shipping fast, learning in public.</p>
+    </div>
   </section>
 
   {projects.length > 0 && (
