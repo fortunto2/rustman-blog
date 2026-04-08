@@ -9,7 +9,7 @@ const recent = getAllContent().slice(0, 30);
 const openSource = projects.filter(p => p.frontmatter.tags?.includes('open-source'));
 const products = projects.filter(p => !p.frontmatter.tags?.includes('open-source'));
 
-const osPriority = ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea'];
+const osPriority = ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea', 'project-invoice-crm'];
 openSource.sort((a, b) => {
   const ai = osPriority.indexOf(a.slug);
   const bi = osPriority.indexOf(b.slug);
