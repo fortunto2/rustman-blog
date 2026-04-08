@@ -3,13 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../lib/config';
 ---
 
-<BaseLayout title="About" description="Solo founder building products with AI.">
+<BaseLayout title="About" description="Rustam Salavatov — solo founder, AI engineer. Building products with AI agents.">
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body>
     <h1>About</h1>
 
-    <p>I'm Rustam. Solo founder, CTO, AI engineer. Building products that help people reflect, create, and own their narrative.</p>
+    <p>I'm Rustam Salavatov. Solo founder, AI engineer, CTO at <a href="https://superduperai.co">SuperDuperAI</a>. Building products that help people reflect, create, and own their narrative.</p>
 
-    <p>Started Life2Film in 2014 — help people turn everyday moments into meaningful stories. Closed in 2021. Now building SuperDuperAI: the second chapter of the same story.</p>
+    <p>Started <a href="https://life2film.com">Life2Film</a> in 2014 — tools for turning everyday moments into meaningful stories. Scaled to 1M+ users. Closed in 2021. SuperDuperAI is the second chapter: AI-first products, multi-agent systems, creative tools.</p>
+
+    <p>Father of three. Trained sail yacht captain. Based between Turkey and the US.</p>
 
     <h2>What I believe</h2>
     <ul>
@@ -20,17 +22,21 @@ import { SITE } from '../lib/config';
     </ul>
 
     <h2>How I work</h2>
-    <p>AI agents do the heavy lifting — summarizing, cross-referencing, coding, testing. I steer: source ideas, direct analysis, make decisions. The repository is the agent's brain (harness engineering).</p>
+    <p>AI agents do the heavy lifting — summarizing, cross-referencing, coding, testing. I steer: source ideas, direct analysis, make decisions. The repository is the agent's brain (<a href="/wiki/harness-engineering-summary">harness engineering</a>).</p>
 
-    <p>This blog is built the same way: a wiki of synthesized knowledge, published selectively. Raw sources stay private. Compiled insights go public.</p>
+    <p>This blog is built the same way: a <a href="/wiki">wiki</a> of synthesized knowledge, published selectively. Raw sources stay private. Compiled insights go public.</p>
 
     <h2>Stack</h2>
-    <p>Web: Next.js + Supabase. iOS: Swift + SwiftUI. CLI: Python + uv. Performance: Rust. This blog: Astro + Cloudflare Pages.</p>
+    <p>Web: Next.js + Supabase. iOS: Swift + SwiftUI. CLI: Python + uv. Performance: Rust. AI: LangChain, OpenAI, RAG, multi-agent systems. This blog: Astro + Cloudflare Pages. See all <a href="/stacks">stack templates</a>.</p>
 
     <h2>Connect</h2>
     <ul>
       <li><a href={SITE.social.github}>GitHub</a></li>
-      <li><a href={SITE.social.twitter}>X / Twitter</a></li>
+      <li><a href={SITE.social.linkedin}>LinkedIn</a></li>
+      <li><a href={SITE.social.telegram}>Telegram</a></li>
+      <li><a href={SITE.social.youtube}>YouTube</a></li>
+      <li><a href={SITE.social.instagram}>Instagram</a></li>
+      <li><a href="mailto:info@superduperai.co">Email</a></li>
     </ul>
   </article>
 </BaseLayout>

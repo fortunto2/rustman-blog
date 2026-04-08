@@ -4,7 +4,7 @@ export const SITE = {
   title: 'rustman — build in public',
   description: 'Solo founder building products with AI. Principles, methodology, lessons learned.',
   lang: 'en',
-  author: 'Rustam',
+  author: 'Rustam Salavatov',
 
   navigation: [
     { href: '/wiki', label: 'Wiki' },
@@ -15,6 +15,9 @@ export const SITE = {
 
   social: {
     github: 'https://github.com/fortunto2',
-    twitter: 'https://x.com/rustman',
+    linkedin: 'https://www.linkedin.com/in/rustam-salavatov/',
+    telegram: 'https://t.me/life2film',
+    youtube: 'https://www.youtube.com/@SuperDuperStartup',
+    instagram: 'https://instagram.com/life2film',
   },
 } as const;
