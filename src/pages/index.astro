@@ -123,23 +123,14 @@ products.sort((a, b) => {
   </section>
 
   <section>
-    <h2 class="text-xl font-semibold mb-6 prompt">Recent</h2>
-    <div class="space-y-4">
+    <h2 class="text-xl font-semibold mb-4 prompt">Recent</h2>
+    <div class="space-y-0 font-mono text-sm">
       {recent.map(entry => (
-        <article class="group">
-          <a href={`/${entry.section}/${entry.slug}`} class="block">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs uppercase font-mono text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{entry.section}</span>
-              <span class="text-xs font-mono text-[var(--color-muted)]">{entry.frontmatter.created || entry.frontmatter.date}</span>
-            </div>
-            <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
-              {entry.frontmatter.title || entry.slug}
-            </h3>
-            {entry.frontmatter.description && (
-              <p class="text-sm text-[var(--color-muted)] mt-1 line-clamp-1">{entry.frontmatter.description}</p>
-            )}
-          </a>
-        </article>
+        <a href={`/${entry.section}/${entry.slug}`} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+          <span class="text-xs text-[var(--color-muted)] shrink-0 w-20">{entry.frontmatter.created || entry.frontmatter.date}</span>
+          <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-16">{entry.section}</span>
+          <span class="truncate">{entry.frontmatter.title || entry.slug}</span>
+        </a>
       ))}
     </div>
   </section>
