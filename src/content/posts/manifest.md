@@ -11,29 +11,29 @@ source_path: "0-principles/manifest.md"
 
 # Solo Founder Manifesto
 
-## Why We Build
+## Why I Build
 
-Building products is how we think. Each one is an experiment — a question asked to the world. Revenue is feedback, not the goal.
+Building products is how I think. Each one is an experiment — a question asked to the world. Revenue is feedback, not the goal.
 
-**Creativity is freedom.** The freedom to express, explore, and make something that didn't exist before. AI and agents don't replace human creativity — they remove friction so we can focus on what matters: ideas, craft, time with people we love.
+**Creativity is freedom.** The freedom to express, explore, and make something that didn't exist before. AI and agents don't replace human creativity — they remove friction so I can focus on what matters: ideas, craft, time with people I love.
 
-We should be creators, not robots. Not operators of systems. Not data sources for corporations. Creators.
+I should be a creator, not a robot. Not an operator of systems. Not a data source for corporations. A creator.
 
 ---
 
-## What We Believe
+## What I Believe
 
 ### Data is power. It should belong to people.
 
 When your data lives on someone else's servers, you're not the customer — you're the product.
 
-**Privacy isn't a feature. It's architecture.** On-device processing. Local storage. No accounts when possible. If we can't see your data, we can't leak it, sell it, or be forced to hand it over.
+**Privacy isn't a feature. It's architecture.** On-device processing. Local storage. No accounts when possible. If I can't see your data, I can't leak it, sell it, or be forced to hand it over.
 
 When cloud makes sense — users choose to share. They control what, with whom, and for how long.
 
 ### Against exploitation
 
-We won't build products that:
+I won't build products that:
 - Extract value from vulnerable people
 - Use dark patterns to manipulate behavior
 - Create addiction for engagement metrics
@@ -45,7 +45,7 @@ Software should serve people, not extract from them.
 
 Not everything needs a monthly fee. If it doesn't cost to run, it should be free. If it costs — one-time purchase or honest, transparent pricing.
 
-Build the opposite of lock-in: tools users own, data they control, payments that reflect real cost.
+I build the opposite of lock-in: tools users own, data they control, payments that reflect real cost.
 
 ---
 
@@ -55,7 +55,7 @@ Build the opposite of lock-in: tools users own, data they control, payments that
 
 **Offline-first when possible.** Independence from connectivity. Independence from servers. Your tool should work on a plane, in a village, during an outage.
 
-**One pain -> one feature -> launch.** Not platforms. Not roadmaps. One problem, one solution, shipped in days. If nobody wants it — kill it and move on.
+**One pain → one feature → launch.** Not platforms. Not roadmaps. One problem, one solution, shipped in days. If nobody wants it — kill it and move on.
 
 **Speed over perfection.** Ship, learn, iterate. The market teaches faster than planning.
 
@@ -65,7 +65,7 @@ Build the opposite of lock-in: tools users own, data they control, payments that
 
 ---
 
-## Red Flags to Cut Immediately
+## Red Flags I Cut Immediately
 
 - "Just another feature like everyone else has"
 - One client making up more than 30% of revenue
@@ -78,20 +78,20 @@ Build the opposite of lock-in: tools users own, data they control, payments that
 
 ## The Oath
 
-Build systems that grow stronger from impact.
+I build systems that grow stronger from impact.
 
-Earn before automating.
+I earn before I automate.
 
-Cut everything except value.
+I cut everything except value.
 
-Measure reality, not expectations.
+I measure reality, not expectations.
 
-Keep the right to change your mind — fast.
+I keep the right to change my mind — fast.
 
-**Information wants to be free.** Share the process, failures, learnings — not as marketing, but as principle.
+**Information wants to be free.** I share the process, failures, learnings — not as marketing, but as principle.
 
-**We should be creators, not robots.** Technology should free humans to create, to reflect, to live — not turn them into data sources or engagement metrics.
+**I should be a creator, not a robot.** Technology should free humans to create, to reflect, to live — not turn them into data sources or engagement metrics.
 
 ---
 
-`evidence-first · ship > perfect · wip = 1 · creators, not robots`
+`evidence-first · ship > perfect · wip = 1 · creator, not robot`
