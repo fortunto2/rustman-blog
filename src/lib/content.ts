@@ -42,3 +42,17 @@ export function getAllContent(): (ContentEntry & { section: Section })[] {
     return dateB.localeCompare(dateA);
   });
 }
+
+export function getAllTags(): Map<string, (ContentEntry & { section: Section })[]> {
+  const all = getAllContent();
+  const tags = new Map<string, (ContentEntry & { section: Section })[]>();
+  for (const entry of all) {
+    const t = entry.frontmatter.tags;
+    if (!t || typeof t === 'string') continue;
+    for (const tag of t) {
+      if (!tags.has(tag)) tags.set(tag, []);
+      tags.get(tag)!.push(entry);
+    }
+  }
+  return tags;
+}

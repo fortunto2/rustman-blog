@@ -27,7 +27,7 @@ post.slug = entry.slug;
     <div class="flex gap-3 text-sm text-[var(--color-muted)] mb-8">
       <time>{post.frontmatter.created || post.frontmatter.date}</time>
       {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded text-xs">{tag}</span>
+        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded text-xs hover:text-[var(--color-accent)] transition-colors">{tag}</a>
       ))}
     </div>
     <Fragment set:html={post.html} />

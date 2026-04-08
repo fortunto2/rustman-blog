@@ -34,7 +34,7 @@ const hasSources = sourceUrls.length > 0 || post.frontmatter.source_path;
       <span>{post.frontmatter.created || post.frontmatter.date}</span>
       {post.frontmatter.type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{post.frontmatter.type}</span>}
       {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded hover:text-[var(--color-accent)] transition-colors">{tag}</a>
       ))}
     </div>
     <Fragment set:html={post.html} />
