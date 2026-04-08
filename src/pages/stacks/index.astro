@@ -1,45 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
 const all = getCollection('stacks');
 const stacks = all.filter(s => s.slug !== 'libraries');
 const libraries = all.find(s => s.slug === 'libraries');
+const librariesList = libraries ? [libraries] : [];
 ---
 
 <BaseLayout title="Stacks" description="Stack templates — copy and use for your next project.">
-  <h1 class="text-2xl font-bold mb-2">Stack Templates</h1>
-  <p class="text-[var(--color-muted)] mb-8">Ready-to-use stack configs. Pick one, copy, scaffold your project.</p>
-
-  <div class="grid gap-4 sm:grid-cols-2">
-    {stacks.map(s => (
-      <a href={`/stacks/${s.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
-        <h3 class="font-medium">{s.frontmatter.title}</h3>
-        {s.frontmatter.tags && typeof s.frontmatter.tags !== 'string' && (
-          <div class="flex flex-wrap gap-1.5 mt-2">
-            {s.frontmatter.tags.filter(t => t !== 'stack' && t !== 'template').map(tag => (
-              <span class="text-xs bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
-            ))}
-          </div>
-        )}
-      </a>
-    ))}
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">Stack Templates</h1>
+    <p class="text-[var(--color-muted)]">Ready-to-use stack configs. Pick one, copy, scaffold your project.</p>
   </div>
 
+  <ContentList items={stacks} basePath="/stacks" showDate={false} showTags={true} />
+
   {libraries && (
-    <div class="mt-12">
-      <h2 class="text-xl font-bold mb-2">Libraries</h2>
-      <p class="text-[var(--color-muted)] mb-4">Curated libs by category — not part of default stacks. Pick what fits your product.</p>
-      <a href="/stacks/libraries" class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
-        <h3 class="font-medium">{libraries.frontmatter.title}</h3>
-        {libraries.frontmatter.tags && typeof libraries.frontmatter.tags !== 'string' && (
-          <div class="flex flex-wrap gap-1.5 mt-2">
-            {libraries.frontmatter.tags.filter(t => t !== 'stack' && t !== 'template').map(tag => (
-              <span class="text-xs bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
-            ))}
-          </div>
-        )}
-      </a>
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold mb-3 prompt">Libraries</h2>
+      <p class="text-[var(--color-muted)] mb-3 text-sm">Curated libs by category — not part of default stacks.</p>
+      <ContentList items={librariesList} basePath="/stacks" showDate={false} showTags={true} />
     </div>
   )}
 
