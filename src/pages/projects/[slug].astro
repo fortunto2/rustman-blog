@@ -24,10 +24,10 @@ post.slug = entry.slug;
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}
-    <div class="flex gap-3 text-sm text-[var(--color-muted)] mb-8">
+    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-8 font-mono">
       <time>{post.frontmatter.created || post.frontmatter.date}</time>
       {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded text-xs hover:text-[var(--color-accent)] transition-colors">{tag}</a>
+        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag}</a>
       ))}
     </div>
     <Fragment set:html={post.html} />

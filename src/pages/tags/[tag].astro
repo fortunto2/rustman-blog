@@ -17,7 +17,7 @@ const { tag, entries } = Astro.props;
   <div class="mb-4">
     <a href="/tags" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; All tags</a>
   </div>
-  <h1 class="text-2xl font-bold mb-6">#{tag} <span class="text-[var(--color-muted)] font-normal text-lg">({entries.length})</span></h1>
+  <h1 class="text-2xl font-bold mb-6 font-mono">#{tag} <span class="text-[var(--color-muted)] font-normal text-lg">({entries.length})</span></h1>
 
   <div class="space-y-3">
     {entries.map(entry => (

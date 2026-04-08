@@ -42,7 +42,7 @@ const isArticle = !!article;
 
   <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
 
   <!-- JSON-LD: WebSite (all pages) -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -84,11 +84,11 @@ const isArticle = !!article;
 
   <header class="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
     <nav class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="text-lg font-semibold">{SITE.name}</a>
-      <div class="flex gap-4 text-sm">
+      <a href="/" class="text-lg font-semibold font-mono">{SITE.name}<span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] animate-pulse">_</span></a>
+      <div class="flex gap-4 text-sm font-mono">
         {SITE.navigation.map(item => (
           <a href={item.href} class="text-[var(--color-muted)] hover:text-[var(--color-text)] dark:hover:text-[var(--color-text-dark)] transition-colors">
-            {item.label}
+            /{item.label.toLowerCase()}
           </a>
         ))}
       </div>
@@ -100,13 +100,13 @@ const isArticle = !!article;
   </main>
 
   <footer class="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] mt-auto">
-    <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-[var(--color-muted)] flex justify-between">
+    <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-[var(--color-muted)] font-mono flex justify-between">
       <span>&copy; {new Date().getFullYear()} {SITE.name}</span>
       <div class="flex gap-4">
-        <a href={SITE.social.github} target="_blank" rel="noopener">GitHub</a>
-        <a href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        <a href={SITE.social.telegram} target="_blank" rel="noopener">Telegram</a>
-        <a href="/rss.xml">RSS</a>
+        <a href={SITE.social.github} target="_blank" rel="noopener">github</a>
+        <a href={SITE.social.linkedin} target="_blank" rel="noopener">linkedin</a>
+        <a href={SITE.social.telegram} target="_blank" rel="noopener">telegram</a>
+        <a href="/rss.xml">rss</a>
         <a href="/llms.txt">llms.txt</a>
       </div>
     </div>
@@ -143,7 +143,8 @@ const isArticle = !!article;
       right: 0.5rem;
       padding: 0.2rem 0.5rem;
       font-size: 0.7rem;
-      border-radius: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      border-radius: 0;
       border: 1px solid var(--color-border);
       background: var(--color-bg);
       color: var(--color-muted);

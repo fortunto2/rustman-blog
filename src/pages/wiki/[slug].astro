@@ -30,11 +30,11 @@ const hasSources = sourceUrls.length > 0 || post.frontmatter.source_path;
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}
-    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose">
+    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose font-mono">
       <span>{post.frontmatter.created || post.frontmatter.date}</span>
-      {post.frontmatter.type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{post.frontmatter.type}</span>}
+      {post.frontmatter.type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{post.frontmatter.type}</span>}
       {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded hover:text-[var(--color-accent)] transition-colors">{tag}</a>
+        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag}</a>
       ))}
     </div>
     <Fragment set:html={post.html} />

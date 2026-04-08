@@ -5,14 +5,26 @@
 
 @theme {
   --color-bg: #fafafa;
-  --color-bg-dark: #0f0f0f;
+  --color-bg-dark: #0a0a0a;
   --color-text: #1a1a1a;
-  --color-text-dark: #e5e5e5;
+  --color-text-dark: #e0e0e0;
   --color-accent: #2563eb;
-  --color-accent-dark: #60a5fa;
+  --color-accent-dark: #00ff41;
+  --color-accent-dim: #4af472;
   --color-muted: #737373;
+  --color-muted-dark: #555;
   --color-border: #e5e5e5;
-  --color-border-dark: #2a2a2a;
+  --color-border-dark: #1a1a1a;
+  --color-surface-dark: #111111;
+  --color-glow: #00ff4120;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2') format('woff2');
 }
 
 html {
@@ -21,4 +33,60 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Mono font for code-like elements */
+.font-mono, code, kbd, .tag, [data-mono] {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Dark mode: green terminal glow on links */
+@media (prefers-color-scheme: dark) {
+  a:hover {
+    text-shadow: 0 0 8px var(--color-glow);
+  }
+
+  /* Card glow on hover */
+  .card-glow:hover {
+    border-color: var(--color-accent-dark) !important;
+    box-shadow: 0 0 12px var(--color-glow), inset 0 0 12px var(--color-glow);
+  }
+
+  /* Subtle scanline overlay for code blocks */
+  pre code.hljs {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.03) 2px,
+      rgba(0, 255, 65, 0.03) 4px
+    );
+  }
+
+  /* Green cursor blink for search inputs */
+  input::placeholder {
+    color: var(--color-muted-dark);
+  }
+
+  /* Section badges */
+  .section-badge {
+    color: var(--color-accent-dark);
+    border: 1px solid var(--color-border-dark);
+    text-shadow: 0 0 6px var(--color-glow);
+  }
+}
+
+/* Terminal prompt decorator */
+.prompt::before {
+  content: '>_ ';
+  color: var(--color-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prompt::before {
+    color: var(--color-accent-dark);
+    text-shadow: 0 0 8px var(--color-glow);
+  }
 }

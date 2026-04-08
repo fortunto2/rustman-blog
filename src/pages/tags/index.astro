@@ -11,7 +11,7 @@ const sorted = [...tags.entries()].sort((a, b) => b[1].length - a[1].length);
 
   <div class="flex flex-wrap gap-2">
     {sorted.map(([tag, entries]) => (
-      <a href={`/tags/${tag}`} class="inline-flex items-center gap-1 bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-2.5 py-1 rounded hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors text-sm">
+      <a href={`/tags/${tag}`} class="inline-flex items-center gap-1 font-mono bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-2.5 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors text-sm">
         {tag}
         <span class="text-xs text-[var(--color-muted)]">{entries.length}</span>
       </a>
