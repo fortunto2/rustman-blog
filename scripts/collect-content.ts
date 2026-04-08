@@ -1,12 +1,12 @@
 /**
- * Collect content from solopreneur wiki for blog publication.
- * Reads wiki/*.md, filters by `publish: true`, routes to correct section.
+ * Collect content from solopreneur wiki + raw sources for blog publication.
+ * Reads wiki/*.md and raw source dirs, filters by `publish: true`, routes to correct section.
  *
  * Usage: pnpm collect
  *
  * Routing:
  *   - publish_as: project → src/content/projects/
- *   - publish_as: post → src/content/posts/ (raw thoughts, updates)
+ *   - publish_as: post → src/content/posts/ (pillar articles from raw sources)
  *   - everything else → src/content/wiki/ (knowledge base)
  *   - type: hub → also wiki (hub pages are useful as navigation)
  */
@@ -14,8 +14,16 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { join } from 'path';
 
-const WIKI_DIR = join(import.meta.dirname, '..', '..', 'wiki');
+const ROOT_DIR = join(import.meta.dirname, '..', '..');
+const WIKI_DIR = join(ROOT_DIR, 'wiki');
 const CONTENT_DIR = join(import.meta.dirname, '..', 'src', 'content');
+
+// Raw source directories to scan for publish: true
+const RAW_DIRS = [
+  '0-principles',
+  '1-methodology',
+  '2-inspiration',
+];
 
 function parseFrontmatter(raw: string): Record<string, unknown> {
   const match = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -59,12 +67,15 @@ function main() {
     mkdirSync(path, { recursive: true });
   }
 
-  const files = readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_'));
   let collected = 0;
   let skipped = 0;
+  let total = 0;
 
-  for (const file of files) {
+  // Collect from wiki/
+  const wikiFiles = readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_'));
+  for (const file of wikiFiles) {
     if (file === 'index.md') continue;
+    total++;
 
     const raw = readFileSync(join(WIKI_DIR, file), 'utf-8');
     const fm = parseFrontmatter(raw);
@@ -81,8 +92,31 @@ function main() {
     console.log(`  ${section}/${file}`);
   }
 
-  console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${files.length}`);
+  // Collect from raw source directories
+  for (const dir of RAW_DIRS) {
+    const dirPath = join(ROOT_DIR, dir);
+    if (!existsSync(dirPath)) continue;
 
+    const files = readdirSync(dirPath).filter(f => f.endsWith('.md'));
+    for (const file of files) {
+      total++;
+      const raw = readFileSync(join(dirPath, file), 'utf-8');
+      const fm = parseFrontmatter(raw);
+
+      if (!fm.publish) {
+        skipped++;
+        continue;
+      }
+
+      const section = getSection(fm);
+      const dest = join(CONTENT_DIR, section, file);
+      writeFileSync(dest, raw);
+      collected++;
+      console.log(`  ${section}/${file} (from ${dir}/)`);
+    }
+  }
+
+  console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${total}`);
 }
 
 // Also collect stacks

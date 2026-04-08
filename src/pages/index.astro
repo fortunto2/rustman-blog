@@ -72,6 +72,22 @@ products.sort((a, b) => {
     </section>
   )}
 
+  {posts.length > 0 && (
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4 prompt">Pillars</h2>
+      <div class="space-y-3">
+        {posts.map(p => (
+          <a href={`/posts/${p.slug}`} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+            <h3 class="font-medium">{p.frontmatter.title}</h3>
+            {p.frontmatter.description && (
+              <p class="text-sm text-[var(--color-muted)] mt-1">{p.frontmatter.description}</p>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
   <section>
     <h2 class="text-xl font-semibold mb-6 prompt">Recent</h2>
     <div class="space-y-4">
