@@ -5,6 +5,7 @@ title: "Privacy is architecture, not a feature"
 created: 2026-02-11
 tags: [privacy, architecture, manifesto, on-device]
 publish: true
+source_path: "0-principles/manifest.md"
 ---
 
 Key distinction from the manifesto: privacy is not a settings checkbox but an **architectural decision** made before the first line of code.

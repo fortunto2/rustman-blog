@@ -5,6 +5,7 @@ title: "Agent mistake → fix the harness, not the prompt"
 created: 2026-04-07
 tags: [harness, agents, methodology, debugging]
 publish: true
+source_path: "1-methodology/harness-engineering.md"
 ---
 
 The single most important principle from harness engineering: when an AI agent makes a mistake, **don't fix the prompt or try a better model**. Fix the environment.

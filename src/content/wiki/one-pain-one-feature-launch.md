@@ -5,6 +5,7 @@ title: "One pain → one feature → launch"
 created: 2026-02-11
 tags: [manifesto, shipping, lean, focus]
 publish: true
+source_path: "0-principles/manifest.md"
 ---
 
 The antidote to "platform thinking": don't build a platform, don't draw a 50-feature roadmap. One pain, one solution, shipped in days.

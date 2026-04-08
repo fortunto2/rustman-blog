@@ -6,6 +6,7 @@ created: 2024-12-20
 updated: 2026-04-07
 tags: [decision-making, psychology, satisficing, happiness]
 publish: true
+source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [decision-framework-5-steps, ikigai-micro-joys]
 ---

@@ -6,6 +6,7 @@ created: 2024-12-20
 updated: 2026-04-07
 tags: [stream, principles, hierarchy, decision-making]
 publish: true
+source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [decision-framework-5-steps, antifragile-life-design]
 ---

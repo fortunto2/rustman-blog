@@ -5,6 +5,7 @@ title: "CLI-first testing — every project gets a CLI mirror"
 created: 2026-04-07
 tags: [testing, cli, integration, tdd, methodology]
 publish: true
+source_path: "1-methodology/dev-principles.md"
 ---
 
 Every project should have a **CLI utility** that mirrors the core business logic without UI. Not a separate tool — the same modules, different entry point.

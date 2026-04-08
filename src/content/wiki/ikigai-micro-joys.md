@@ -6,6 +6,7 @@ created: 2024-12-20
 updated: 2026-04-07
 tags: [ikigai, happiness, stoicism, daily-practice]
 publish: true
+source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [optimizer-syndrome]
 ---
