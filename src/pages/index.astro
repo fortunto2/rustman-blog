@@ -34,6 +34,32 @@ products.sort((a, b) => {
     </div>
   </section>
 
+  <section class="mb-12">
+    <h2 class="text-xl font-semibold mb-2 prompt">AI Solutions & Consulting</h2>
+    <p class="text-[var(--color-muted)] mb-4">From 0 to 1: fast MVP development & AI integration for businesses.</p>
+    <div class="grid gap-3 sm:grid-cols-2">
+      <a href="/wiki/rag-patterns" class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+        <h3 class="font-medium font-mono text-sm">RAG & Knowledge Systems</h3>
+        <p class="text-sm text-[var(--color-muted)] mt-1">7 production patterns — from vector search to agentic RAG</p>
+      </a>
+      <a href="/posts/harness-engineering" class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+        <h3 class="font-medium font-mono text-sm">AI Agent Development</h3>
+        <p class="text-sm text-[var(--color-muted)] mt-1">Multi-agent systems, harness engineering, reliable autonomous workflows</p>
+      </a>
+      <a href="/posts/launch-playbook" class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+        <h3 class="font-medium font-mono text-sm">Fast MVP Development</h3>
+        <p class="text-sm text-[var(--color-muted)] mt-1">0→1 in days: validate, build, launch with AI-first stack</p>
+      </a>
+      <a href="/wiki/context-engineering" class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+        <h3 class="font-medium font-mono text-sm">Team AI Training</h3>
+        <p class="text-sm text-[var(--color-muted)] mt-1">Context engineering, prompt design, agent workflows for dev teams</p>
+      </a>
+    </div>
+    <div class="mt-4">
+      <a href="https://calendar.app.google/n4GorZYpiAucGjAE6" target="_blank" rel="noopener" class="inline-block font-mono text-sm border border-[var(--color-accent)] dark:border-[var(--color-accent-dark)] text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] px-4 py-2 hover:bg-[var(--color-accent)] hover:text-white dark:hover:bg-[var(--color-accent-dark)] dark:hover:text-black transition-colors">Book a call &rarr;</a>
+    </div>
+  </section>
+
   {openSource.length > 0 && (
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Open Source</h2>
@@ -54,40 +80,6 @@ products.sort((a, b) => {
       <ContentList items={posts} basePath="/posts" showDate={true} showTags={false} />
     </section>
   )}
-
-  <section class="mb-12">
-    <h2 class="text-xl font-semibold mb-2 prompt">AI Solutions & Consulting</h2>
-    <p class="text-[var(--color-muted)] mb-4">From 0 to 1: Fast MVP Development & AI Integration</p>
-    <div class="grid gap-3 sm:grid-cols-2">
-      <div class="border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4">
-        <h3 class="font-medium font-mono text-sm">Business AI Agents</h3>
-        <p class="text-sm text-[var(--color-muted)] mt-1">Custom agents for workflow automation, customer service, and decision support</p>
-      </div>
-      <div class="border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4">
-        <h3 class="font-medium font-mono text-sm">RAG Systems</h3>
-        <p class="text-sm text-[var(--color-muted)] mt-1">Intelligent document processing and knowledge base solutions</p>
-      </div>
-      <div class="border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4">
-        <h3 class="font-medium font-mono text-sm">Fast MVP Development</h3>
-        <p class="text-sm text-[var(--color-muted)] mt-1">Rapid prototyping and 0→1 product development with AI integration</p>
-      </div>
-      <div class="border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4">
-        <h3 class="font-medium font-mono text-sm">Team AI Training</h3>
-        <p class="text-sm text-[var(--color-muted)] mt-1">Training development teams on AI implementation and best practices</p>
-      </div>
-    </div>
-    <div class="flex flex-wrap gap-2 mt-4 text-xs font-mono">
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">LangChain</span>
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">OpenAI</span>
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">RAG</span>
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">FastAPI</span>
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">Multi-Agent Systems</span>
-      <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">Vector DBs</span>
-    </div>
-    <div class="mt-4">
-      <a href="https://calendar.app.google/n4GorZYpiAucGjAE6" target="_blank" rel="noopener" class="inline-block font-mono text-sm border border-[var(--color-accent)] dark:border-[var(--color-accent-dark)] text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] px-4 py-2 hover:bg-[var(--color-accent)] hover:text-white dark:hover:bg-[var(--color-accent-dark)] dark:hover:text-black transition-colors">Book a call &rarr;</a>
-    </div>
-  </section>
 
   <section>
     <h2 class="text-xl font-semibold mb-4 prompt">Recent</h2>
