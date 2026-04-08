@@ -10,13 +10,11 @@ const summaries = pages.filter(p => p.frontmatter.type === 'summary');
 const other = pages.filter(p => !['hub', 'concept', 'summary'].includes(p.frontmatter.type));
 ---
 
-<BaseLayout title="Wiki" description="Knowledge base — compiled principles, methodology, and patterns.">
+<BaseLayout title="Wiki" description="Knowledge base — compiled principles, methodology, and patterns." section="wiki">
   <div class="mb-8">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">Wiki</h1>
     <p class="text-[var(--color-muted)]">Compiled knowledge base. Synthesized from raw sources, interlinked.</p>
   </div>
-
-  <div id="wiki-search" class="mb-8"></div>
 
   {hubs.length > 0 && (
     <section class="mb-8">
@@ -45,98 +43,4 @@ const other = pages.filter(p => !['hub', 'concept', 'summary'].includes(p.frontm
       <ContentList items={other} basePath="/wiki" showDate={true} />
     </section>
   )}
-
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-  <script>
-    import { PagefindUI } from '@pagefind/default-ui';
-    new PagefindUI({
-      element: '#wiki-search',
-      showSubResults: false,
-      showImages: false,
-    });
-  </script>
-
-  <style is:global>
-    #wiki-search .pagefind-ui__search-input {
-      background: #1a1a1a !important;
-      color: #e5e5e5 !important;
-      border: 1px solid #333 !important;
-      border-radius: 0.5rem !important;
-      padding: 0.75rem 1rem !important;
-      font-size: 1rem !important;
-      width: 100% !important;
-    }
-    #wiki-search .pagefind-ui__search-input {
-      padding-left: 1rem !important;
-    }
-    #wiki-search .pagefind-ui__search-input::placeholder {
-      color: #737373 !important;
-    }
-    #wiki-search .pagefind-ui__search-clear {
-      color: #737373 !important;
-    }
-    #wiki-search .pagefind-ui__form::before {
-      display: none !important;
-    }
-    #wiki-search .pagefind-ui__result {
-      border-top: 1px solid #2a2a2a !important;
-      padding: 1rem 0 !important;
-    }
-    #wiki-search .pagefind-ui__result-link {
-      color: #60a5fa !important;
-      font-weight: 500 !important;
-    }
-    #wiki-search .pagefind-ui__result-excerpt {
-      color: #a3a3a3 !important;
-      font-size: 0.85rem !important;
-      margin-top: 0.25rem !important;
-    }
-    #wiki-search mark {
-      background: #2563eb33 !important;
-      color: #93c5fd !important;
-      padding: 0 2px !important;
-      border-radius: 2px !important;
-    }
-    #wiki-search .pagefind-ui__result-tags {
-      display: none !important;
-    }
-    #wiki-search .pagefind-ui__message {
-      color: #737373 !important;
-      font-size: 0.85rem !important;
-      padding: 0.5rem 0 !important;
-    }
-    #wiki-search .pagefind-ui__button {
-      color: #60a5fa !important;
-      background: none !important;
-      border: 1px solid #333 !important;
-      border-radius: 0.375rem !important;
-      padding: 0.5rem 1rem !important;
-      margin-top: 0.5rem !important;
-    }
-
-    @media (prefers-color-scheme: light) {
-      #wiki-search .pagefind-ui__search-input {
-        background: #fff !important;
-        color: #1a1a1a !important;
-        border-color: #e5e5e5 !important;
-      }
-      #wiki-search .pagefind-ui__result {
-        border-color: #e5e5e5 !important;
-      }
-      #wiki-search .pagefind-ui__result-link {
-        color: #2563eb !important;
-      }
-      #wiki-search .pagefind-ui__result-excerpt {
-        color: #525252 !important;
-      }
-      #wiki-search mark {
-        background: #dbeafe !important;
-        color: #1e40af !important;
-      }
-      #wiki-search .pagefind-ui__button {
-        color: #2563eb !important;
-        border-color: #e5e5e5 !important;
-      }
-    }
-  </style>
 </BaseLayout>

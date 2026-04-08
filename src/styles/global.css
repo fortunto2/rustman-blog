@@ -90,6 +90,37 @@ body {
   }
 }
 
+/* Pagefind search */
+.pagefind-ui__search-input {
+  background: #fff !important;
+  color: #1a1a1a !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  width: 100% !important;
+}
+.pagefind-ui__search-input::placeholder { color: #737373 !important; }
+.pagefind-ui__search-clear { color: #737373 !important; }
+.pagefind-ui__form::before { display: none !important; }
+.pagefind-ui__result { border-top: 1px solid #e5e5e5 !important; padding: 0.75rem 0 !important; }
+.pagefind-ui__result-link { color: #2563eb !important; font-weight: 500 !important; font-size: 0.875rem !important; }
+.pagefind-ui__result-excerpt { color: #525252 !important; font-size: 0.8rem !important; margin-top: 0.15rem !important; }
+.pagefind-ui__result-tags { display: none !important; }
+.pagefind-ui__message { color: #737373 !important; font-size: 0.8rem !important; padding: 0.5rem 0 !important; }
+.pagefind-ui__button { color: #2563eb !important; background: none !important; border: 1px solid #e5e5e5 !important; border-radius: 0 !important; padding: 0.4rem 0.75rem !important; margin-top: 0.5rem !important; font-size: 0.8rem !important; }
+.pagefind-ui mark { background: #dbeafe !important; color: #1e40af !important; padding: 0 2px !important; border-radius: 0 !important; }
+
+@media (prefers-color-scheme: dark) {
+  .pagefind-ui__search-input { background: var(--color-surface-dark) !important; color: #e5e5e5 !important; border-color: #333 !important; }
+  .pagefind-ui__result { border-color: #2a2a2a !important; }
+  .pagefind-ui__result-link { color: var(--color-accent-dark) !important; }
+  .pagefind-ui__result-excerpt { color: #a3a3a3 !important; }
+  .pagefind-ui mark { background: #2563eb33 !important; color: #93c5fd !important; }
+  .pagefind-ui__button { color: var(--color-accent-dark) !important; border-color: #333 !important; }
+}
+
 /* Terminal prompt decorator */
 .prompt::before {
   content: '>_ ';

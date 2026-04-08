@@ -1,0 +1,186 @@
+---
+/**
+ * Global search with optional section filtering.
+ * No section = search all. With section = scoped search.
+ */
+interface Props {
+  section?: string;
+}
+const { section } = Astro.props;
+const placeholder = section ? `Search ${section}...` : 'Search all...';
+---
+
+<div class="search-box" data-section={section || ''}>
+  <input
+    type="text"
+    class="search-input"
+    placeholder={placeholder}
+    autocomplete="off"
+    spellcheck="false"
+  />
+  <div class="search-results hidden"></div>
+</div>
+
+<script is:inline>
+  let pagefind = null;
+
+  async function loadPagefind() {
+    if (pagefind) return pagefind;
+    pagefind = await import('/pagefind/pagefind.js');
+    await pagefind.init();
+    return pagefind;
+  }
+
+  document.querySelectorAll('.search-box').forEach(box => {
+    const input = box.querySelector('.search-input');
+    const results = box.querySelector('.search-results');
+    const section = box.dataset.section;
+    let debounce;
+
+    input.addEventListener('input', function() {
+      clearTimeout(debounce);
+      debounce = setTimeout(function() { doSearch(input.value, section, results); }, 150);
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        input.value = '';
+        results.classList.add('hidden');
+        results.innerHTML = '';
+      }
+    });
+  });
+
+  async function doSearch(query, section, container) {
+    if (!query || query.length < 2) {
+      container.classList.add('hidden');
+      container.innerHTML = '';
+      return;
+    }
+
+    const pf = await loadPagefind();
+    const filters = section ? { section: [section] } : {};
+    const search = await pf.search(query, { filters });
+
+    if (search.results.length === 0) {
+      container.innerHTML = '<div class="search-empty">No results</div>';
+      container.classList.remove('hidden');
+      return;
+    }
+
+    const items = await Promise.all(search.results.slice(0, 8).map(function(r) { return r.data(); }));
+
+    container.innerHTML = items.map(function(item) {
+      var title = (item.meta && item.meta.title) || item.url;
+      return '<a href="' + item.url + '" class="search-result">' +
+        '<span class="search-title">' + title + '</span>' +
+        '<span class="search-excerpt">' + (item.excerpt || '') + '</span></a>';
+    }).join('');
+
+    container.classList.remove('hidden');
+  }
+
+  // Close results on outside click
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.search-box').forEach(function(box) {
+      if (!box.contains(e.target)) {
+        var r = box.querySelector('.search-results');
+        if (r) r.classList.add('hidden');
+      }
+    });
+  });
+
+  // Keyboard shortcut: / to focus search
+  document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && ['INPUT', 'TEXTAREA'].indexOf(e.target.tagName) === -1) {
+      e.preventDefault();
+      var el = document.querySelector('.search-input');
+      if (el) el.focus();
+    }
+  });
+</script>
+
+<style>
+  .search-box {
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--color-accent);
+  }
+  .search-input::placeholder {
+    color: var(--color-muted);
+  }
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-top: none;
+    max-height: 24rem;
+    overflow-y: auto;
+  }
+  .search-result {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.1s;
+  }
+  .search-result:last-child { border-bottom: none; }
+  .search-result:hover { background: var(--color-border); }
+  .search-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .search-excerpt {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 0.15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .search-empty {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+  .hidden { display: none; }
+
+  @media (prefers-color-scheme: dark) {
+    .search-input {
+      background: var(--color-surface-dark);
+      color: var(--color-text-dark);
+      border-color: var(--color-border-dark);
+    }
+    .search-input:focus { border-color: var(--color-accent-dark); }
+    .search-results {
+      background: var(--color-surface-dark);
+      border-color: var(--color-border-dark);
+    }
+    .search-result:hover { background: var(--color-border-dark); }
+    .search-result { border-color: var(--color-border-dark); }
+    .search-title { color: var(--color-text-dark); }
+    .search-excerpt mark {
+      background: rgba(0, 255, 65, 0.15);
+      color: var(--color-accent-dark);
+    }
+  }
+</style>

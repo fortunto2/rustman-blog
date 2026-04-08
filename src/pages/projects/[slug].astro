@@ -19,7 +19,7 @@ const post = renderMarkdown(entry.raw);
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
   <BackLink href="/projects" label="Projects" />
-  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="project">
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:projects">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}

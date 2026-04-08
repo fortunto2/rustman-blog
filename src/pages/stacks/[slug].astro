@@ -18,7 +18,7 @@ const post = renderMarkdown(entry.raw);
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
   <BackLink href="/stacks" label="Stacks" />
-  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="stack">
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:stacks">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}

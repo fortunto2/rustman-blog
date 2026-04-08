@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../lib/config';
+import Search from '../components/Search.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -7,9 +8,10 @@ interface Props {
   description?: string;
   ogImage?: string;
   article?: { date?: string; tags?: string[] };
+  section?: string;
 }
 
-const { title, description, ogImage, article } = Astro.props;
+const { title, description, ogImage, article, section } = Astro.props;
 const pageTitle = title ? `${title} — ${SITE.name}` : SITE.title;
 const pageDescription = description || SITE.description;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -94,6 +96,10 @@ const isArticle = !!article;
       </div>
     </nav>
   </header>
+
+  <div class="max-w-3xl mx-auto px-4 pt-4">
+    <Search section={section} />
+  </div>
 
   <main class="max-w-3xl mx-auto px-4 py-8 flex-1 w-full">
     <slot />
