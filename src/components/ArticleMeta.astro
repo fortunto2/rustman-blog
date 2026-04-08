@@ -1,0 +1,16 @@
+---
+interface Props {
+  date?: string;
+  type?: string;
+  tags?: string[];
+}
+const { date, type, tags } = Astro.props;
+const hasTags = tags && typeof tags !== 'string';
+---
+<div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose font-mono">
+  {date && <span>{date}</span>}
+  {type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{type}</span>}
+  {hasTags && tags.map(tag => (
+    <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag}</a>
+  ))}
+</div>

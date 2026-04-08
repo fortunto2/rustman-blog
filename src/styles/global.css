@@ -76,6 +76,20 @@ body {
   }
 }
 
+/* Reusable link style */
+.link-muted {
+  color: var(--color-muted);
+  transition: color 0.15s;
+}
+.link-muted:hover {
+  color: var(--color-accent);
+}
+@media (prefers-color-scheme: dark) {
+  .link-muted:hover {
+    color: var(--color-accent-dark);
+  }
+}
+
 /* Terminal prompt decorator */
 .prompt::before {
   content: '>_ ';

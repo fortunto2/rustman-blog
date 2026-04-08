@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BackLink from '../../components/BackLink.astro';
+import ArticleMeta from '../../components/ArticleMeta.astro';
+import SourceFooter from '../../components/SourceFooter.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -12,52 +15,17 @@ export function getStaticPaths() {
 
 const { entry } = Astro.props;
 const post = renderMarkdown(entry.raw);
-
-const sourceUrls: string[] = post.frontmatter.source_url
-  ? Array.isArray(post.frontmatter.source_url)
-    ? post.frontmatter.source_url
-    : [post.frontmatter.source_url]
-  : [];
-
-const hasSources = sourceUrls.length > 0 || post.frontmatter.source_path;
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
-  <div class="mb-4">
-    <a href="/wiki" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; Wiki</a>
-  </div>
+  <BackLink href="/wiki" label="Wiki" />
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="wiki">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}
-    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose font-mono">
-      <span>{post.frontmatter.created || post.frontmatter.date}</span>
-      {post.frontmatter.type && <span class="uppercase bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{post.frontmatter.type}</span>}
-      {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag}</a>
-      ))}
-    </div>
+    <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} type={post.frontmatter.type} tags={post.frontmatter.tags as string[]} />
     <Fragment set:html={post.html} />
   </article>
 
-  {hasSources && (
-    <div class="mt-8 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm">
-      <span class="font-medium text-[var(--color-muted)]">Sources</span>
-      <ul class="mt-2 space-y-1 list-none p-0">
-        {sourceUrls.map(url => (
-          <li class="flex items-start gap-1.5">
-            <span class="text-[var(--color-accent)] mt-0.5">&#8599;</span>
-            <a href={url} target="_blank" rel="noopener" class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] hover:underline break-all">
-              {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-            </a>
-          </li>
-        ))}
-        {post.frontmatter.source_path && (
-          <li class="text-[var(--color-muted)]">
-            Raw: <code class="text-xs">{post.frontmatter.source_path}</code>
-          </li>
-        )}
-      </ul>
-    </div>
-  )}
+  <SourceFooter sourceUrls={post.frontmatter.source_url} sourcePath={post.frontmatter.source_path} />
 </BaseLayout>

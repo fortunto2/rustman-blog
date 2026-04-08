@@ -6,10 +6,10 @@ import { SITE } from '../lib/config';
 <BaseLayout title="About" description="Rustam Salavatov — solo founder, AI engineer. Building products with AI agents.">
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body>
     <div class="flex items-center gap-5 not-prose mb-6">
-      <img src="/avatar.jpg" alt="Rustam Salavatov" class="w-20 h-20 rounded-full" width="80" height="80" />
+      <img src={SITE.author.avatar} alt={SITE.author.name} class="w-20 h-20 rounded-full" width="80" height="80" />
       <div>
-        <h1 class="text-2xl font-bold">Rustam Salavatov</h1>
-        <p class="text-[var(--color-muted)]">Solo founder · AI engineer · CTO</p>
+        <h1 class="text-2xl font-bold">{SITE.author.name}</h1>
+        <p class="text-[var(--color-muted)]">{SITE.author.shortBio}</p>
       </div>
     </div>
 
@@ -70,7 +70,7 @@ import { SITE } from '../lib/config';
       <li><a href={SITE.social.telegram}>Telegram</a></li>
       <li><a href={SITE.social.youtube}>YouTube</a></li>
       <li><a href={SITE.social.instagram}>Instagram</a></li>
-      <li><a href="mailto:info@superduperai.co">info@superduperai.co</a></li>
+      <li><a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></li>
     </ul>
 
   </article>

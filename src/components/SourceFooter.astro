@@ -1,0 +1,29 @@
+---
+interface Props {
+  sourceUrls?: string | string[];
+  sourcePath?: string;
+}
+const { sourceUrls: raw, sourcePath } = Astro.props;
+const urls: string[] = raw ? (Array.isArray(raw) ? raw : [raw]) : [];
+const hasSources = urls.length > 0 || sourcePath;
+---
+{hasSources && (
+  <div class="mt-8 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm">
+    <span class="font-medium text-[var(--color-muted)]">Sources</span>
+    <ul class="mt-2 space-y-1 list-none p-0">
+      {urls.map(url => (
+        <li class="flex items-start gap-1.5">
+          <span class="text-[var(--color-accent)] mt-0.5">&#8599;</span>
+          <a href={url} target="_blank" rel="noopener" class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] hover:underline break-all">
+            {url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+          </a>
+        </li>
+      ))}
+      {sourcePath && (
+        <li class="text-[var(--color-muted)] font-mono">
+          Raw: <code class="text-xs">{sourcePath}</code>
+        </li>
+      )}
+    </ul>
+  </div>
+)}

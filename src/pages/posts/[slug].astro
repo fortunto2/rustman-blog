@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BackLink from '../../components/BackLink.astro';
+import ArticleMeta from '../../components/ArticleMeta.astro';
+import SourceFooter from '../../components/SourceFooter.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -15,25 +18,14 @@ const post = renderMarkdown(entry.raw);
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
-  <div class="mb-4">
-    <a href="/" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; Home</a>
-  </div>
+  <BackLink href="/" label="Home" />
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter-section="post">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}
-    <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mb-6 not-prose font-mono">
-      <span>{post.frontmatter.created || post.frontmatter.date}</span>
-      {post.frontmatter.tags && typeof post.frontmatter.tags !== 'string' && post.frontmatter.tags.map(tag => (
-        <a href={`/tags/${tag}`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag}</a>
-      ))}
-    </div>
+    <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} tags={post.frontmatter.tags as string[]} />
     <Fragment set:html={post.html} />
   </article>
 
-  {post.frontmatter.source_path && (
-    <div class="mt-8 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)] font-mono">
-      Source: <code>{post.frontmatter.source_path}</code>
-    </div>
-  )}
+  <SourceFooter sourceUrls={post.frontmatter.source_url} sourcePath={post.frontmatter.source_path} />
 </BaseLayout>

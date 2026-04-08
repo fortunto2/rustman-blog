@@ -53,7 +53,7 @@ const isArticle = !!article;
     "description": SITE.description,
     "author": {
       "@type": "Person",
-      "name": SITE.author,
+      "name": SITE.author.name,
       "url": SITE.social.github,
     },
   })} />
@@ -69,7 +69,7 @@ const isArticle = !!article;
       "datePublished": article.date,
       "author": {
         "@type": "Person",
-        "name": SITE.author,
+        "name": SITE.author.name,
         "url": SITE.social.github,
       },
       "publisher": {
@@ -103,11 +103,11 @@ const isArticle = !!article;
     <div class="max-w-3xl mx-auto px-4 py-6 text-sm text-[var(--color-muted)] font-mono flex justify-between">
       <span>&copy; {new Date().getFullYear()} {SITE.name}</span>
       <div class="flex gap-4">
-        <a href={SITE.social.github} target="_blank" rel="noopener">github</a>
-        <a href={SITE.social.linkedin} target="_blank" rel="noopener">linkedin</a>
-        <a href={SITE.social.telegram} target="_blank" rel="noopener">telegram</a>
-        <a href="/rss.xml">rss</a>
-        <a href="/llms.txt">llms.txt</a>
+        <a href={SITE.social.github} target="_blank" rel="noopener" class="link-muted">github</a>
+        <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="link-muted">linkedin</a>
+        <a href={SITE.social.telegram} target="_blank" rel="noopener" class="link-muted">telegram</a>
+        <a href="/rss.xml" class="link-muted">rss</a>
+        <a href="/llms.txt" class="link-muted">llms.txt</a>
       </div>
     </div>
   </footer>
