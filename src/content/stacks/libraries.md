@@ -1,16 +1,18 @@
 ---
 type: stack
-title: "libraries"
-description: "libraries stack template —  . Copy and use."
+title: "Libraries — curated libs by category"
+description: "Curated library reference — data pipelines, federation, actors, event sourcing, voice, OpenAI, canvas."
 created: 2026-02-11
-tags: [stack, , , template]
+tags: [libraries, reference, rust, typescript, python]
 publish: true
 source_path: "1-methodology/stacks/libraries.yaml"
 ---
 
-# libraries
+# Libraries
 
-**Platform:**  | **Language:** 
+Curated libs for specific product types. Not part of default stacks — pick what fits your product.
+
+**Categories:** data_pipeline, federation, actors, event_sourcing, openai, voice, openapi_codegen, canvas
 
 ```yaml
 # Libraries — curated libs for specific product types

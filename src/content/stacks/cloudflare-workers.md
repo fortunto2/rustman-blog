@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Cloudflare Workers"
-description: "Cloudflare Workers stack template — edge typescript. Copy and use."
+description: "Cloudflare Workers stack template — edge | typescript. Copy and use."
 created: 2026-02-11
-tags: [stack, edge, typescript, template]
+tags: [stack, edge, typescript, "hono, vanilla"]
 publish: true
 source_path: "1-methodology/stacks/cloudflare-workers.yaml"
 ---
 
 # Cloudflare Workers
 
-**Platform:** edge | **Language:** typescript
+**Platform:** edge | typescript
 
 ```yaml
 name: Cloudflare Workers

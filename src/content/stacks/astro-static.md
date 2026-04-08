@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Astro Static Site"
-description: "Astro Static Site stack template — web typescript. Copy and use."
+description: "Astro Static Site stack template — web | typescript. Copy and use."
 created: 2026-02-11
-tags: [stack, web, typescript, template]
+tags: [stack, web, typescript, astro]
 publish: true
 source_path: "1-methodology/stacks/astro-static.yaml"
 ---
 
 # Astro Static Site
 
-**Platform:** web | **Language:** typescript
+**Platform:** web | typescript
 
 ```yaml
 name: Astro Static Site

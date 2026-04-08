@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Android Kotlin"
-description: "Android Kotlin stack template — android kotlin. Copy and use."
+description: "Android Kotlin stack template — android | kotlin. Copy and use."
 created: 2026-02-11
-tags: [stack, android, kotlin, template]
+tags: [stack, android, kotlin]
 publish: true
 source_path: "1-methodology/stacks/kotlin-android.yaml"
 ---
 
 # Android Kotlin
 
-**Platform:** android | **Language:** kotlin
+**Platform:** android | kotlin
 
 ```yaml
 name: Android Kotlin

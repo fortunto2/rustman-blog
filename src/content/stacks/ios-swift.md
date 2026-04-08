@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "iOS Swift"
-description: "iOS Swift stack template — ios swift6. Copy and use."
+description: "iOS Swift stack template — ios | swift6. Copy and use."
 created: 2026-02-11
-tags: [stack, ios, swift6, template]
+tags: [stack, ios, swift]
 publish: true
 source_path: "1-methodology/stacks/ios-swift.yaml"
 ---
 
 # iOS Swift
 
-**Platform:** ios | **Language:** swift6
+**Platform:** ios | swift6
 
 ```yaml
 name: iOS Swift

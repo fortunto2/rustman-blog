@@ -1,16 +1,14 @@
 ---
 type: stack
 title: "Next.js CRM / Data Dashboard"
-description: "Next.js CRM / Data Dashboard stack template —  . Copy and use."
+description: "Next.js CRM / Data Dashboard stack template. Copy and use."
 created: 2026-02-11
-tags: [stack, , , template]
+tags: [stack, nextjs-supabase]
 publish: true
 source_path: "1-methodology/stacks/nextjs-crm.yaml"
 ---
 
 # Next.js CRM / Data Dashboard
-
-**Platform:**  | **Language:** 
 
 ```yaml
 name: Next.js CRM / Data Dashboard

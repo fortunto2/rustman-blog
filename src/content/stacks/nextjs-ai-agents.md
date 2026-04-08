@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Next.js AI Agents"
-description: "Next.js AI Agents stack template — web typescript. Copy and use."
+description: "Next.js AI Agents stack template — web | typescript. Copy and use."
 created: 2026-02-11
-tags: [stack, web, typescript, template]
+tags: [stack, web, typescript, nextjs, nextjs-supabase]
 publish: true
 source_path: "1-methodology/stacks/nextjs-ai-agents.yaml"
 ---
 
 # Next.js AI Agents
 
-**Platform:** web | **Language:** typescript
+**Platform:** web | typescript
 
 ```yaml
 name: Next.js AI Agents

@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Kotlin Multiplatform"
-description: "Kotlin Multiplatform stack template — ios + android kotlin. Copy and use."
+description: "Kotlin Multiplatform stack template — ios + android | kotlin. Copy and use."
 created: 2026-02-11
-tags: [stack, ios + android, kotlin, template]
+tags: [stack, ios, android, kotlin]
 publish: true
 source_path: "1-methodology/stacks/kotlin-multiplatform.yaml"
 ---
 
 # Kotlin Multiplatform
 
-**Platform:** ios + android | **Language:** kotlin
+**Platform:** ios + android | kotlin
 
 ```yaml
 name: Kotlin Multiplatform

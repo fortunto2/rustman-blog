@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Python ML/AI"
-description: "Python ML/AI stack template — local python3.13. Copy and use."
+description: "Python ML/AI stack template — local | python3.13. Copy and use."
 created: 2026-02-11
-tags: [stack, local, python3.13, template]
+tags: [stack, local, python, "fastapi"]
 publish: true
 source_path: "1-methodology/stacks/python-ml.yaml"
 ---
 
 # Python ML/AI
 
-**Platform:** local | **Language:** python3.13
+**Platform:** local | python3.13
 
 ```yaml
 name: Python ML/AI

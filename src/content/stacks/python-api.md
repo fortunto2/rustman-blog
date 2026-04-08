@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Python API"
-description: "Python API stack template — server python3.13. Copy and use."
+description: "Python API stack template — server | python3.13. Copy and use."
 created: 2026-02-11
-tags: [stack, server, python3.13, template]
+tags: [stack, server, python, fastapi]
 publish: true
 source_path: "1-methodology/stacks/python-api.yaml"
 ---
 
 # Python API
 
-**Platform:** server | **Language:** python3.13
+**Platform:** server | python3.13
 
 ```yaml
 name: Python API

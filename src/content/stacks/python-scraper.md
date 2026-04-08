@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Python Scraper (Browser Emulation)"
-description: "Python Scraper (Browser Emulation) stack template — local | server python3.13. Copy and use."
+description: "Python Scraper (Browser Emulation) stack template — local | server | python3.13. Copy and use."
 created: 2026-02-11
-tags: [stack, local | server, python3.13, template]
+tags: [stack, local, server, python, "scrapy"]
 publish: true
 source_path: "1-methodology/stacks/python-scraper.yaml"
 ---
 
 # Python Scraper (Browser Emulation)
 
-**Platform:** local | server | **Language:** python3.13
+**Platform:** local | server | python3.13
 
 ```yaml
 name: Python Scraper (Browser Emulation)

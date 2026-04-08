@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Next.js Full-Stack"
-description: "Next.js Full-Stack stack template — web typescript. Copy and use."
+description: "Next.js Full-Stack stack template — web | typescript. Copy and use."
 created: 2026-02-11
-tags: [stack, web, typescript, template]
+tags: [stack, web, typescript, nextjs]
 publish: true
 source_path: "1-methodology/stacks/nextjs-supabase.yaml"
 ---
 
 # Next.js Full-Stack
 
-**Platform:** web | **Language:** typescript
+**Platform:** web | typescript
 
 ```yaml
 name: Next.js Full-Stack

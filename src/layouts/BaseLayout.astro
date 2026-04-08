@@ -109,8 +109,13 @@ const isArticle = !!article;
   </footer>
 
   <script>
-    // Copy button on all code blocks
+    // Copy button on all code blocks — wrapper div for sticky positioning
     document.querySelectorAll('pre').forEach(pre => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-wrapper';
+      pre.parentNode!.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
       const btn = document.createElement('button');
       btn.textContent = 'Copy';
       btn.className = 'copy-btn';
@@ -121,11 +126,13 @@ const isArticle = !!article;
           setTimeout(() => btn.textContent = 'Copy', 1500);
         });
       });
-      pre.style.position = 'relative';
-      pre.appendChild(btn);
+      wrapper.appendChild(btn);
     });
   </script>
-  <style>
+  <style is:global>
+    .code-wrapper {
+      position: relative;
+    }
     .copy-btn {
       position: absolute;
       top: 0.5rem;
@@ -139,8 +146,9 @@ const isArticle = !!article;
       cursor: pointer;
       opacity: 0;
       transition: opacity 0.2s;
+      z-index: 10;
     }
-    pre:hover .copy-btn { opacity: 1; }
+    .code-wrapper:hover .copy-btn { opacity: 1; }
     .copy-btn:hover { color: var(--color-accent); border-color: var(--color-accent); }
     @media (prefers-color-scheme: dark) {
       .copy-btn { background: var(--color-bg-dark); border-color: var(--color-border-dark); }

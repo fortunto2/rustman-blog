@@ -1,16 +1,16 @@
 ---
 type: stack
 title: "Rust Native"
-description: "Rust Native stack template — local | server | embedded rust (edition 2021, MSRV 1.75+). Copy and use."
+description: "Rust Native stack template — local | server | embedded | rust (edition 2021, MSRV 1.75+). Copy and use."
 created: 2026-02-11
-tags: [stack, local | server | embedded, rust (edition 2021, MSRV 1.75+), template]
+tags: [stack, local, server, embedded, rust (edition 2021, MSRV 1.75+), "none, axum, clap, slint"]
 publish: true
 source_path: "1-methodology/stacks/rust-native.yaml"
 ---
 
 # Rust Native
 
-**Platform:** local | server | embedded | **Language:** rust (edition 2021, MSRV 1.75+)
+**Platform:** local | server | embedded | rust (edition 2021, MSRV 1.75+)
 
 ```yaml
 name: Rust Native
