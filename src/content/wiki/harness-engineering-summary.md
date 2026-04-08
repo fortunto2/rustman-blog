@@ -25,6 +25,8 @@ OpenAI numbers: 3→7 engineers, ~1M lines, ~1,500 PRs, 3.5 PR/engineer/day, 0 h
 
 Predictions: harness as new service templates, tech stack convergence toward AI-friendliness, topology convergence, two worlds (greenfield with harness vs retrofit on legacy).
 
+**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (27 skills as harness), [solograph](https://github.com/fortunto2/solograph) (code intelligence as context), [rust-code](https://github.com/fortunto2/rust-code) (agent with BAML loop).
+
 ## Connections
 
 - [[solo-methodology]] — harness engineering is the foundational methodology

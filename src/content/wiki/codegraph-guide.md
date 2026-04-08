@@ -21,6 +21,8 @@ Knowledge graph of source code across all projects. Scans files, symbols (functi
 - `project_code_search` — semantic code search within a project
 - `codegraph_stats` — graph statistics
 
+**GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, Python, FalkorDBLite, FastMCP.
+
 **Code reuse detection:** find shared packages, common patterns, functions that multiple projects import. Directly supports the portfolio approach — shared infrastructure across products.
 
 **Session tracking:** records which files each Claude Code session edited. Enables: "what did I work on last week?", "which sessions touched auth code?", "show me all context for this feature."

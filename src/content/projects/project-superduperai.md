@@ -12,6 +12,14 @@ SuperDuperAI is the umbrella: SuperDuper AI Teknoloji (Turkey, tech park with R&
 
 **Products:** FaceAlarm (face massage timer), KubizBeat (Bashkir instrument app), Life2Film (video montage, in dev), KissMyTask (todo), VoiceJournal (voice diary), QuestSchool (homeschool gamification, planned).
 
+**Open source:**
+- [solo-factory](https://github.com/fortunto2/solo-factory) — Claude Code plugin, 27 skills, 3 agents
+- [solograph](https://github.com/fortunto2/solograph) — Code intelligence MCP server
+- [openai-oxide](https://github.com/fortunto2/openai-oxide) — Idiomatic Rust client for OpenAI API
+- [rust-code](https://github.com/fortunto2/rust-code) — AI terminal coding agent in Rust
+- [supervox](https://github.com/fortunto2/supervox) — Voice pipeline toolkit (STT, VAD, TTS)
+- [airq](https://github.com/fortunto2/airq) — CLI air quality checker
+
 **Consulting:** Epiphan Video (Canada) — video capture, streaming, computer vision. Consulting funds product experiments (barbell strategy: 90% safe income + 10% product bets).
 
 **Philosophy:** privacy-first, on-device AI, one pain → one feature → launch. Each product is an experiment. Revenue is feedback, not the goal.
