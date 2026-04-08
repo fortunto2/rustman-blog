@@ -7,6 +7,7 @@ export const SITE = {
   author: 'Rustam Salavatov',
 
   navigation: [
+    { href: '/posts', label: 'Posts' },
     { href: '/wiki', label: 'Wiki' },
     { href: '/projects', label: 'Projects' },
     { href: '/stacks', label: 'Stacks' },
