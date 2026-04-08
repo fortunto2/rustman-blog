@@ -16,7 +16,7 @@ const post = renderMarkdown(entry.raw);
 post.slug = entry.slug;
 ---
 
-<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
   <div class="mb-4">
     <a href="/projects" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; Projects</a>
   </div>
