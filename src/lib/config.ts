@@ -9,6 +9,7 @@ export const SITE = {
   navigation: [
     { href: '/wiki', label: 'Wiki' },
     { href: '/projects', label: 'Projects' },
+    { href: '/stacks', label: 'Stacks' },
     { href: '/about', label: 'About' },
   ],
 

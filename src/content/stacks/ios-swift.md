@@ -1,0 +1,180 @@
+---
+type: stack
+title: "iOS Swift"
+description: "iOS Swift stack template — ios swift6. Copy and use."
+created: 2026-02-11
+tags: [stack, ios, swift6, template]
+publish: true
+source_path: "1-methodology/stacks/ios-swift.yaml"
+---
+
+# iOS Swift
+
+**Platform:** ios | **Language:** swift6
+
+```yaml
+name: iOS Swift
+platform: ios
+language: swift6
+ui_framework: swiftui
+build: xcode
+project_gen: xcodegen (project.yml → .xcodeproj, never commit .xcodeproj)
+package_manager: spm
+auth: shared-auth (SharedAuth Swift Package)
+payments: storekit2
+validation: "Codable + custom validation (protocol-based)"
+i18n: string_catalog (.xcstrings, Xcode 16 native)
+linter: swiftlint (SPM plugin or Homebrew)
+formatter: swift-format (Apple, SPM plugin)
+testing: XCTest + Swift Testing
+pre_commit: lefthook (swiftlint + swift-format hooks)
+key_packages:
+  - SwiftUI
+  - SwiftData (local persistence, NOT Core Data for new projects)
+  - CoreML
+  - Vision (face detection)
+  - StoreKit 2 (IAP)
+  - SharedAuth (shared auth)
+  - SwiftLint (linter)
+  - PostHog (analytics, posthog-ios SPM)
+optional_packages:
+  on_device_ai:
+    - "FoundationModelsKit (community tools for Apple Foundation Models — iOS 26+, @Generable, WebTool, Calendar, token mgmt) github:rudrankriyam/FoundationModelsTools"
+    - "VecturaKit (on-device vector DB — MLTensor/MLX/NaturalLanguage embedders, hybrid search, persistent storage) github:rryam/VecturaKit"
+    - "LumoKit (on-device RAG pipeline — PDF/Markdown parsing via PicoDocs + VecturaKit vectors) github:rryam/LumoKit"
+    - "MLX-Outil (tool calling via MLX Swift — Qwen 3 1.7B, WeatherKit/HealthKit/DuckDuckGo/Calendar/Contacts tools) github:rudrankriyam/MLX-Outil"
+  music:
+    - "MusadoraKit (MusicKit companion — simplified Apple Music API) github:rryam/MusadoraKit"
+  ui:
+    - "ErabiKit (customizable SwiftUI settings screen) github:rudrankriyam/ErabiKit"
+    - "LiquidGlasKit (liquid glass effects for SwiftUI) github:rudrankriyam/LiquidGlasKit"
+deploy: app_store
+asc_cli:
+  name: "App Store Connect CLI (asc)"
+  install: "brew tap rudrankriyam/tap && brew install rudrankriyam/tap/asc"
+  auth: "asc auth login --name {Name} --key-id KEY_ID --issuer-id ISSUER_ID --private-key ~/AuthKey.p8"
+  commands:
+    - "asc apps list"
+    - "asc testflight beta-groups list --app APP_ID"
+    - "asc crashes --app APP_ID"
+    - "asc versions list --app APP_ID"
+    - "asc submit --version VERSION_ID"
+    - "asc sales daily"
+    - "asc analytics report"
+  note: "If `asc` not installed, suggest: brew tap rudrankriyam/tap && brew install rudrankriyam/tap/asc"
+infra: none (native store distribution)
+ci_cd: github_actions (xcodebuild + fastlane)
+monitoring: posthog (analytics + errors, posthog-ios SPM)
+logs:
+  xcode: "Xcode → Window → Devices and Simulators → View Device Logs"
+  console: "log stream --predicate 'subsystem == \"com.{org}.{name}\"' --style compact"
+  testflight: "App Store Connect → TestFlight → Crashes"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "xcodegen generate && xcodebuild -scheme {Name} -sdk iphonesimulator build 2>&1 | tail -30"
+architecture: MVVM
+
+# Patterns learned from real projects via SoloGraph
+patterns:
+  viewmodel: |
+    @Observable @MainActor final class — NOT ObservableObject.
+    Init injection for services (DI). Use @State in views.
+    Example: @State private var viewModel = MyViewModel()
+  services: |
+    actor for heavy/ML services (thread safety for models).
+    @Observable @MainActor final class for UI-facing services (recording, audio).
+    Always create protocol: Services/Protocols/FooServiceProtocol.swift.
+    Protocol enables mocking in tests and swapping implementations.
+  models: |
+    SwiftData @Model for persistent data (NOT Core Data, NOT Codable struct).
+    Plain structs for transient data (configs, settings, API responses).
+  permissions: |
+    Always request permissions before use — never assume granted.
+    Pattern: requestPermission() async -> Bool in the service protocol.
+    Show alert with "Open Settings" button when denied.
+    Use #if os(iOS) for AVAudioSession (unavailable on macOS).
+  directory_structure: |
+    App/           — @main entry point
+    Models/        — @Model schemas (SwiftData)
+    Views/         — SwiftUI views
+    ViewModels/    — @Observable @MainActor view models
+    Services/      — Business logic (actors + @Observable classes)
+    Services/Protocols/  — Service protocols for DI
+    Extensions/    — String+, Date+, etc.
+    Resources/     — Assets.xcassets, etc.
+  concurrency: |
+    @MainActor on all ViewModels and UI-facing services.
+    actor for data/ML services (own isolation domain).
+    async/await everywhere, no Combine for new code.
+    Timer callbacks: Task { @MainActor in ... } for safety.
+
+xcodegen_required:
+  info_plist:
+    UISupportedInterfaceOrientations:
+      - UIInterfaceOrientationPortrait
+      - UIInterfaceOrientationPortraitUpsideDown
+      - UIInterfaceOrientationLandscapeLeft
+      - UIInterfaceOrientationLandscapeRight
+    UILaunchScreen: {}
+    UIApplicationSceneManifest:
+      UIApplicationSupportsMultipleScenes: true
+  bundle_id: "<org_domain>.<name>"
+  build_settings:
+    PRODUCT_BUNDLE_IDENTIFIER: "<org_domain>.<name>"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: <apple_dev_team>
+    CODE_SIGN_STYLE: Automatic
+  archive_command: |
+    xcodegen generate
+    xcodebuild archive -scheme <Name> -destination 'generic/platform=iOS' -archivePath build/<Name>.xcarchive
+    open build/<Name>.xcarchive  # → Distribute App
+
+xcode_mcp:
+  description: "Xcode 26.3+ exposes 20 MCP tools via xcrun mcpbridge — Claude Code works natively"
+  enable: "Xcode Settings → Intelligence → Enable MCP Server"
+  bridge: "xcrun mcpbridge"
+  key_tools:
+    - "BuildProject — build from CLI via MCP"
+    - "RunAllTests / RunSomeTests — run tests"
+    - "RenderPreview — render SwiftUI preview as image (visual verification!)"
+    - "DocumentationSearch — Apple docs + WWDC transcripts (MLX embeddings)"
+    - "ExecuteSnippet — Swift REPL for testing snippets"
+    - "XcodeRead / XcodeWrite / XcodeUpdate — file operations"
+    - "GetBuildLog — read build errors"
+  reference: "https://rudrank.com/exploring-xcode-using-mcp-tools-cursor-external-clients"
+
+visual_testing:
+  type: simulator
+  boot: "xcrun simctl boot 'iPhone 16' 2>/dev/null || true"
+  screenshot: "xcrun simctl io booted screenshot /tmp/sim-screenshot.png"
+  install: "xcrun simctl install booted"
+  launch: "xcrun simctl launch booted"
+  logs: "xcrun simctl spawn booted log stream --style compact --timeout 10"
+  checks:
+    - "Build and install on iOS Simulator"
+    - "Take screenshot after launch, verify main screen renders"
+    - "Check simulator logs for crashes or assertion failures"
+notes: |
+  - Prefer SwiftUI over UIKit for new views
+  - Use async/await (Swift 6 strict concurrency)
+  - Use @Observable (NOT ObservableObject) — Swift 6 pattern
+  - @MainActor on ViewModels and UI services
+  - actor for ML/data services (thread safety)
+  - Protocol for every service (DI, testability)
+  - Local-first: SwiftData (NOT Core Data, NOT Firebase)
+  - XcodeGen project.yml — never commit .xcodeproj
+  - String Catalog for i18n (Xcode 16 native, .xcstrings)
+  - SwiftLint for linting (SPM plugin or build phase)
+  - swift-format for consistent formatting
+  - lefthook for pre-commit hooks (swiftlint + swift-format, language-agnostic, no Node.js)
+  - Swift Testing (@Test) for new tests, XCTest for legacy
+  - English first, then localize
+  - StoreKit 2 for in-app purchases and subscriptions
+  - #if os(iOS) for AVAudioSession, UIApplication (macOS compat)
+  - PostHog for analytics (privacy-respecting, EU hosting)
+  - App Store Connect CLI (asc) for TestFlight, submissions, crashes, analytics — install via brew if missing
+  - VecturaKit + LumoKit for on-device RAG (privacy-first local search — add when project needs semantic search)
+  - FoundationModelsKit for Apple Foundation Models (iOS 26+ — on-device AI with tools)
+  - Xcode MCP bridge (xcrun mcpbridge) — Claude Code can build, test, render previews natively (Xcode 26.3+)
+  - Reference blog: https://rudrank.com — iOS/MLX/Foundation Models guides by Rudrank Riyam
+```

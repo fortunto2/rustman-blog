@@ -1,0 +1,75 @@
+---
+type: stack
+title: "Astro Static Site"
+description: "Astro Static Site stack template — web typescript. Copy and use."
+created: 2026-02-11
+tags: [stack, web, typescript, template]
+publish: true
+source_path: "1-methodology/stacks/astro-static.yaml"
+---
+
+# Astro Static Site
+
+**Platform:** web | **Language:** typescript
+
+```yaml
+name: Astro Static Site
+platform: web
+language: typescript
+framework: astro@5
+styling: tailwindcss@4.1
+package_manager: pnpm
+auth: "none (static site, auth via external service if needed)"
+architecture: islands_architecture
+i18n: "@astrojs/i18n or paraglide-js"
+linter: eslint (flat config v9, eslint-plugin-astro, typescript-eslint)
+formatter: prettier (prettier-plugin-astro)
+type_checker: tsc --noEmit (strict mode)
+testing: vitest
+pre_commit: husky + lint-staged (eslint + prettier + tsc)
+key_packages:
+  - astro
+  - "@astrojs/cloudflare"
+  - tailwindcss
+  - eslint + eslint-plugin-astro + prettier (code quality)
+deploy: cloudflare_pages
+infra: sst (sst.config.ts) — Tier 1
+ci_cd: github_actions
+monitoring: posthog (analytics + errors) + cloudflare_analytics
+logs:
+  cf_pages: "wrangler pages deployment tail --project-name={name}"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "pnpm build 2>&1 | tail -50"
+dev_server:
+  command: "pnpm dev"
+  port: 4321
+  ready_url: "http://localhost:4321"
+visual_testing:
+  type: browser
+  checks:
+    - "Navigate to localhost:4321, verify page loads without console errors"
+    - "Check that content collections render correctly"
+    - "Verify responsive layout at mobile viewport (375px)"
+features:
+  - content_collections
+  - static_generation
+  - islands_architecture
+agent_content:
+  markdown_for_agents: "Enable in Cloudflare dashboard → Quick Actions → Markdown for Agents"
+  llms_txt: "public/llms.txt — auto-generate from content collections (title + description + links)"
+  content_negotiation: "CF handles Accept: text/markdown automatically when enabled"
+  content_signal: "Content-Signal: ai-train=no, search=yes, ai-input=yes"
+  raw_markdown_api: "Expose /api/content/[slug].md endpoint for raw markdown access"
+notes: |
+  - pnpm as package manager
+  - ESLint flat config + eslint-plugin-astro for .astro files
+  - Prettier with prettier-plugin-astro for formatting
+  - tsc --noEmit for type-checking (strict mode)
+  - Vitest for unit tests
+  - Husky + lint-staged for pre-commit (eslint, prettier, tsc --noEmit)
+  - i18n via @astrojs/i18n or paraglide-js
+  - English first, then localize
+  - Content collections for structured content
+  - Agent-readable: enable CF Markdown for Agents + add public/llms.txt + expose raw .md via API
+  - Content stored as markdown first, HTML generated from it (not reverse)
+```

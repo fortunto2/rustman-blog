@@ -1,0 +1,62 @@
+---
+type: stack
+title: "Python ML/AI"
+description: "Python ML/AI stack template — local python3.13. Copy and use."
+created: 2026-02-11
+tags: [stack, local, python3.13, template]
+publish: true
+source_path: "1-methodology/stacks/python-ml.yaml"
+---
+
+# Python ML/AI
+
+**Platform:** local | **Language:** python3.13
+
+```yaml
+name: Python ML/AI
+platform: local
+language: python3.13
+package_manager: uv
+framework: "fastapi (optional, for API layer)"
+auth: "none (local-first, or shared-auth for API)"
+validation: pydantic
+i18n: gettext or simple dict/json
+linter: ruff (replaces flake8, isort, pyflakes)
+formatter: ruff format (replaces black)
+type_checker: ty (Astral, extremely fast, replaces mypy/pyright)
+testing: pytest + hypothesis (property-based testing)
+pre_commit: pre-commit (ruff + ruff-format + ty hooks)
+cli: typer (CLI framework) + rich (terminal output)
+key_packages:
+  - pydantic (schemas, validation — always first)
+  - fastapi (API)
+  - chromadb (vector store)
+  - sentence-transformers (embeddings)
+  - mlx (Apple Silicon ML)
+  - ruff (linter + formatter)
+  - ty (type-checker, Astral — extremely fast, replaces mypy)
+  - pytest (testing)
+  - hypothesis (property-based testing)
+  - typer (CLI framework, type-hint driven)
+  - rich (beautiful terminal output — tables, panels, progress bars)
+deploy: local | docker | hetzner
+infra: pulumi (Python) — Tier 2, or local-only
+ci_cd: github_actions
+monitoring: posthog (analytics + errors, EU hosting)
+logs:
+  local: "uv run {name} --help 2>&1"
+  local_build: "uv build 2>&1"
+  posthog: "PostHog dashboard → Error tracking (if API layer)"
+architecture: cli_first + api
+notes: |
+  - uv for all dependency management (not pip/poetry)
+  - Pydantic-first: models and validation before logic
+  - FastAPI for any HTTP API (not Flask/Django)
+  - ruff for linting AND formatting (replaces black + isort + flake8)
+  - ty for type-checking (Astral, extremely fast — replaces mypy/pyright)
+  - pytest for all tests, hypothesis for property-based testing
+  - pre-commit with ruff + ty hooks
+  - typer for CLI (type-hint driven, auto-generates --help)
+  - rich for terminal output (tables, panels, trees, progress bars)
+  - English first for CLI/API, i18n via gettext if needed
+```

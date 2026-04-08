@@ -1,0 +1,147 @@
+---
+type: stack
+title: "Next.js Full-Stack"
+description: "Next.js Full-Stack stack template — web typescript. Copy and use."
+created: 2026-02-11
+tags: [stack, web, typescript, template]
+publish: true
+source_path: "1-methodology/stacks/nextjs-supabase.yaml"
+---
+
+# Next.js Full-Stack
+
+**Platform:** web | **Language:** typescript
+
+```yaml
+name: Next.js Full-Stack
+platform: web
+language: typescript
+framework: nextjs@16.1
+ui_framework: react@19.2
+styling: tailwindcss@4.1
+component_library: shadcn-ui
+database: supabase (PostgreSQL)
+orm: drizzle-orm
+auth: shared-auth (@shared/auth + Supabase Auth)
+realtime: supabase_realtime
+payments: stripe + @stripe/stripe-js + @stripe/react-stripe-js
+validation: zod@4
+i18n: next-intl
+package_manager: pnpm
+linter: eslint (flat config v9, typescript-eslint, eslint-plugin-react, @next/eslint-plugin-next)
+formatter: prettier
+type_checker: tsc --noEmit (strict mode)
+dead_code: knip (find unused files, exports, dependencies)
+testing: vitest + @testing-library/react + @testing-library/jest-dom
+pre_commit: husky + lint-staged (eslint + prettier + tsc)
+state_management:
+  default: "React useState + useContext (Server Components reduce need for client state)"
+  when_needed: "Add ONLY when 3+ components share mutable state that can't be in Server Component or URL params"
+  zustand:
+    package: "zustand (3KB, zero boilerplate)"
+    install: "pnpm add zustand"
+    when: "Global app state (auth, theme, sidebar, notifications), persist to localStorage, devtools, team projects"
+    api: "create<Store>()(set => ({...})), useStore(s => s.field) — selector prevents re-renders"
+    middleware: "persist (localStorage), devtools, immer (immutable updates)"
+  jotai:
+    package: "jotai (8KB, atomic model)"
+    install: "pnpm add jotai"
+    when: "Many independent state pieces (filters, toggles), fine-grained reactivity (data grids, kanban), derived state chains"
+    api: "atom(default), atom(get => derived), useAtom(myAtom) — each atom = independent re-render"
+  recommendation: |
+    MVP / simple → React state (useState, useContext, URL params)
+    Global UI state (sidebar, theme, auth) → Zustand (one store, simpler mental model)
+    Data-heavy dashboards (many filters, derived state) → Jotai (fewer re-renders, atomic)
+    Both from same author (pmndrs), both TypeScript, both React 19. Can use together.
+storybook:
+  when_to_use: "15+ components, shared UI library (@repo/ui), team 2+ devs, need visual docs"
+  skip_when: "Solo MVP, < 15 components, mostly shadcn defaults"
+  setup: "npx storybook@latest init --builder vite && pnpm add -D @chromatic-com/storybook chromatic"
+  key_packages:
+    - "storybook@10 (component explorer, docs, testing)"
+    - "@chromatic-com/storybook (visual regression addon)"
+    - "chromatic (CI service — free: 5000 snapshots/month, 4 browsers in parallel)"
+  chromatic_ci: "chromaui/action@latest in GitHub Actions, needs CHROMATIC_PROJECT_TOKEN secret"
+  workflow: "write story → push → screenshots in Chrome/Firefox/Safari/Edge → PR badge → review pixel diffs → approve"
+key_packages:
+  - next
+  - react
+  - "@supabase/ssr"
+  - "@shared/auth (shared auth)"
+  - "zod (validation — import from zod/v4)"
+  - "next-intl (i18n)"
+  - "stripe + @stripe/stripe-js (payments)"
+  - "drizzle-orm + drizzle-kit (ORM, migrations)"
+  - react-hook-form
+  - "shadcn (CLI) + radix-ui"
+  - "react-email + resend (email) | emailmd (lightweight markdown-to-email alternative)"
+  - recharts (charts)
+  - tailwindcss
+  - eslint + typescript-eslint + prettier (code quality)
+  - knip (find unused files, exports, deps — run periodically)
+  - "zustand OR jotai (client state — only when needed, see state_management)"
+  - "storybook + chromatic (component docs + visual testing — for larger projects)"
+deploy: vercel | cloudflare_pages (git push → auto-deploy)
+deploy_cli:
+  - "vercel (local preview, env vars, promote)"
+  - "supabase (migrations, db reset, edge functions, secrets)"
+infra: sst (sst.config.ts) — Tier 1
+ci_cd: github_actions
+monitoring: posthog (analytics + errors, EU hosting)
+logs:
+  vercel: "vercel logs --output=short 2>&1 | tail -50"
+  vercel_functions: "vercel logs --output=short --scope=functions 2>&1 | tail -50"
+  supabase: "supabase functions logs --scroll"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "pnpm build 2>&1 | tail -50"
+dev_server:
+  command: "pnpm dev"
+  port: 3000
+  ready_url: "http://localhost:3000"
+visual_testing:
+  type: browser
+  checks:
+    - "Navigate to localhost:3000, verify page loads without console errors"
+    - "Check for hydration mismatches in browser console"
+    - "Verify responsive layout at mobile viewport (375px)"
+architecture: app_router_rsc
+monorepo:
+  tool: turborepo
+  when_to_use: |
+    YES: 2+ apps with different auth/layout/audience (landing + app + admin), web + mobile (Expo)
+    NO: single Next.js with route groups, MVP/prototype, same auth everywhere
+    RULE: same auth + same deploy = route groups. Different auth + independent deploy = turborepo.
+  workspace_structure: |
+    apps/ (web, admin, docs, api)
+    packages/ (@repo/ui, @repo/db, @repo/auth, @repo/config, @repo/email, @repo/validators)
+  config_files:
+    - "turbo.json (tasks: build, dev, lint, check-types)"
+    - "pnpm-workspace.yaml (packages: apps/*, packages/*)"
+  key_packages:
+    - turbo
+  reference_template: "next-forge (vercel/next-forge)"
+  notes: |
+    - pnpm --filter @repo/web dev — run single app
+    - turbo run build — parallel builds with caching
+    - Remote caching: npx turbo login && npx turbo link (free on Vercel)
+    - Internal packages: use "exports" field, no build step for TS
+    - Vercel: set Root Directory per app in project settings
+notes: |
+  - Drizzle ORM for database queries and migrations (not raw SQL)
+  - Use Server Components by default
+  - Zod 4 for all validation (forms, API) — import from "zod/v4"
+  - Supabase SSR for auth, shared-auth for shared login
+  - next-intl for i18n: messages/en.json + messages/ru.json
+  - Stripe Checkout + Customer Portal for subscriptions
+  - pnpm as package manager (not npm/yarn)
+  - ESLint flat config (eslint.config.mjs) + Prettier
+  - tsc --noEmit for type-checking (strict mode in tsconfig.json)
+  - knip for dead code detection (unused exports, files, dependencies)
+  - Husky + lint-staged for pre-commit (eslint, prettier, tsc --noEmit)
+  - Vitest for unit/integration tests, @testing-library/react for components
+  - Deploy via git push (main → production, PR → preview)
+  - State management: React state by default. Zustand for global UI, Jotai for data-heavy dashboards.
+  - Storybook + Chromatic: for 15+ components or shared UI library. Free 5000 snapshots/month.
+  - Agent-readable (content/blog sites): add app/llms.txt/route.ts + MDX content as raw markdown API + Content-Signal header
+  - If behind Cloudflare: enable Markdown for Agents in dashboard (auto content negotiation)
+```

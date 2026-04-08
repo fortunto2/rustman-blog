@@ -1,0 +1,119 @@
+---
+type: stack
+title: "Next.js AI Agents"
+description: "Next.js AI Agents stack template — web typescript. Copy and use."
+created: 2026-02-11
+tags: [stack, web, typescript, template]
+publish: true
+source_path: "1-methodology/stacks/nextjs-ai-agents.yaml"
+---
+
+# Next.js AI Agents
+
+**Platform:** web | **Language:** typescript
+
+```yaml
+name: Next.js AI Agents
+platform: web
+language: typescript
+framework: nextjs@16.1
+ui_framework: react@19.2
+styling: tailwindcss@4.1
+component_library: shadcn-ui
+database: supabase (PostgreSQL)
+orm: drizzle-orm
+auth: shared-auth (@shared/auth + Supabase Auth)
+realtime: supabase_realtime
+payments: stripe + @stripe/stripe-js + @stripe/react-stripe-js
+validation: zod@4
+i18n: next-intl
+package_manager: pnpm
+linter: eslint (flat config v9, typescript-eslint, eslint-plugin-react, @next/eslint-plugin-next)
+formatter: prettier
+type_checker: tsc --noEmit (strict mode)
+dead_code: knip (find unused files, exports, dependencies)
+testing: vitest + @testing-library/react + @testing-library/jest-dom
+pre_commit: husky + lint-staged (eslint + prettier + tsc)
+ai_sdk: "ai (Vercel AI SDK 6 — ToolLoopAgent, stopWhen, Output.object)"
+ai_react: "@ai-sdk/react (useChat, sendAutomaticallyWhen, addToolOutput)"
+ai_provider: "@ai-sdk/openai (default — OpenAI-compatible, works with any baseURL)"
+ai_provider_options:
+  - "OpenAI direct (default, OPENAI_API_KEY)"
+  - "OpenRouter (baseURL: https://openrouter.ai/api/v1, multi-model)"
+  - "Cloudflare AI Gateway (baseURL: https://gateway.ai.cloudflare.com/v1/{account}/{gateway}/openai)"
+  - "@ai-sdk/google (Google Gemini — native provider, GOOGLE_GENERATIVE_AI_API_KEY)"
+  - "Vercel AI Gateway (if deployed on Vercel)"
+  - "@ai-sdk/anthropic — only if Anthropic API direct needed (not OpenAI-compatible)"
+ai_mcp: "@ai-sdk/mcp (MCP client — createMCPClient, HTTP/SSE/stdio transports, stable in v6)"
+ai_agent: "ToolLoopAgent (Agent interface, stopWhen: stepCountIs(), default 20 steps, programmatic tool calling)"
+ai_chat_template: "vercel/ai-chatbot (Chat SDK — open-source Next.js chat template, not npm package)"
+key_packages:
+  - next
+  - react
+  - "ai (AI SDK 6 — ToolLoopAgent, streamText, generateText, Output.object)"
+  - "@ai-sdk/react (useChat, sendAutomaticallyWhen, addToolOutput)"
+  - "@ai-sdk/openai (default provider — OpenAI-compatible, any baseURL)"
+  - "@ai-sdk/mcp (MCP client for tool servers, stable)"
+  - "@supabase/ssr"
+  - "@shared/auth (shared auth)"
+  - "zod (validation + AI tool schemas — import from zod/v4)"
+  - "next-intl (i18n)"
+  - "stripe + @stripe/stripe-js (payments)"
+  - "drizzle-orm + drizzle-kit (ORM, migrations)"
+  - react-hook-form
+  - "shadcn (CLI) + radix-ui"
+  - "react-email + resend (email) | emailmd (lightweight markdown-to-email alternative)"
+  - recharts (charts)
+  - tailwindcss
+  - eslint + typescript-eslint + prettier (code quality)
+  - knip (find unused files, exports, deps — run periodically)
+deploy: vercel (git push → auto-deploy)
+deploy_cli:
+  - "vercel (local preview, env vars, promote)"
+  - "supabase (migrations, db reset, edge functions, secrets)"
+infra: sst (sst.config.ts) — Tier 1
+ci_cd: github_actions
+monitoring: posthog (analytics + errors, EU hosting)
+logs:
+  vercel: "vercel logs --output=short 2>&1 | tail -50"
+  vercel_functions: "vercel logs --output=short --scope=functions 2>&1 | tail -50"
+  supabase: "supabase functions logs --scroll"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "pnpm build 2>&1 | tail -50"
+dev_server:
+  command: "pnpm dev"
+  port: 3000
+  ready_url: "http://localhost:3000"
+visual_testing:
+  type: browser
+  checks:
+    - "Navigate to localhost:3000, verify page loads without console errors"
+    - "Check for hydration mismatches in browser console"
+    - "Test AI chat interface responds to user input"
+    - "Verify responsive layout at mobile viewport (375px)"
+architecture: app_router_rsc
+extends: nextjs-supabase
+notes: |
+  - Extends nextjs-supabase stack with Vercel AI SDK 6 for agent/chat applications
+  - AI SDK 6 core: streamText, generateText for LLM calls (generateObject deprecated → Output.object)
+  - ToolLoopAgent: Agent interface for reusable agents (model + instructions + tools)
+  - stopWhen: stepCountIs(N) for loop control (default 20, replaces maxSteps)
+  - Programmatic tool calling: allowedCallers for code execution environments (reduce token cost)
+  - @ai-sdk/react: useChat (chat UI), sendAutomaticallyWhen + addToolOutput for client tools
+  - @ai-sdk/mcp: stable MCP support — createMCPClient (HTTP, SSE, stdio transports)
+  - @ai-sdk/openai is the default provider — OpenAI-compatible, works with any baseURL
+  - Change baseURL via env: OPENAI_BASE_URL (OpenRouter, Cloudflare AI Gateway, self-hosted)
+  - @ai-sdk/google for Google Gemini (native provider, GOOGLE_GENERATIVE_AI_API_KEY)
+  - @ai-sdk/anthropic only if you need Anthropic API directly (not OpenAI-compatible features)
+  - Cloudflare AI Gateway: free with CF account, caching, rate limiting, analytics, logging
+  - Chat SDK (vercel/ai-chatbot) is a template to clone, not an npm package
+  - Zod 4 schemas define AI tool input/output (import from "zod/v4")
+  - Server Components by default; AI streaming in Route Handlers (app/api/)
+  - convertToModelMessages (async) replaces convertToCoreMessages
+  - toUIMessageStreamResponse() for streaming agent responses
+  - Deploy on Vercel for native AI SDK integration (streaming, edge, caching)
+  - Deploy via git push (main → production, PR → preview)
+  - Local CLI: `vercel` for preview/promote, `supabase` for migrations/edge-functions
+  - All other conventions from nextjs-supabase apply (Drizzle, pnpm, ESLint flat config, etc.)
+  - Migration codemod: npx @ai-sdk/codemod v6
+```

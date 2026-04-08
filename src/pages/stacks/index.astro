@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from '../../lib/content';
+
+const stacks = getCollection('stacks');
+---
+
+<BaseLayout title="Stacks" description="Stack templates — copy and use for your next project.">
+  <h1 class="text-2xl font-bold mb-2">Stack Templates</h1>
+  <p class="text-[var(--color-muted)] mb-8">Ready-to-use stack configs. Pick one, copy, scaffold your project.</p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {stacks.map(s => (
+      <a href={`/stacks/${s.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-4 hover:border-[var(--color-accent)] transition-colors">
+        <h3 class="font-medium">{s.frontmatter.title}</h3>
+        {s.frontmatter.tags && typeof s.frontmatter.tags !== 'string' && (
+          <div class="flex flex-wrap gap-1.5 mt-2">
+            {s.frontmatter.tags.filter(t => t !== 'stack' && t !== 'template').map(tag => (
+              <span class="text-xs bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{tag}</span>
+            ))}
+          </div>
+        )}
+      </a>
+    ))}
+  </div>
+
+  {stacks.length === 0 && <p class="text-[var(--color-muted)]">No stacks yet. Run <code>pnpm collect</code>.</p>}
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+type: stack
+title: "Cloudflare Workers"
+description: "Cloudflare Workers stack template — edge typescript. Copy and use."
+created: 2026-02-11
+tags: [stack, edge, typescript, template]
+publish: true
+source_path: "1-methodology/stacks/cloudflare-workers.yaml"
+---
+
+# Cloudflare Workers
+
+**Platform:** edge | **Language:** typescript
+
+```yaml
+name: Cloudflare Workers
+platform: edge
+language: typescript
+framework: "hono | vanilla"
+auth: "shared-auth (@shared/auth + Supabase Auth, or JWT)"
+architecture: edge_functions
+build: wrangler
+package_manager: pnpm
+validation: zod@4
+i18n: json (simple key-value, or @formatjs/intl)
+linter: eslint (flat config v9, typescript-eslint)
+formatter: prettier
+type_checker: tsc --noEmit (strict mode)
+testing: vitest + miniflare (@cloudflare/vitest-pool-workers)
+pre_commit: husky + lint-staged (eslint + prettier + tsc)
+key_packages:
+  - wrangler
+  - hono (routing)
+  - "@cloudflare/workers-types"
+  - drizzle-orm (D1 database)
+  - "zod (validation — import from zod/v4)"
+  - eslint + typescript-eslint + prettier (code quality)
+deploy: cloudflare_workers
+infra: sst (sst.config.ts) — Tier 1, wrangler for dev
+ci_cd: github_actions
+monitoring: posthog (analytics + errors) + cloudflare_analytics
+logs:
+  wrangler_tail: "wrangler tail --format=pretty 2>&1 | head -100"
+  wrangler_logs: "wrangler deployments list && wrangler deployments view"
+  d1_logs: "wrangler d1 insights {db-name}"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "pnpm build 2>&1 | tail -50"
+dev_server:
+  command: "pnpm dev"
+  port: 8787
+  ready_url: "http://localhost:8787"
+visual_testing:
+  type: browser
+  checks:
+    - "Navigate to localhost:8787, verify API responds with valid JSON"
+    - "Test key API endpoints return expected status codes"
+    - "Check browser console for CORS or fetch errors"
+storage:
+  - D1 (SQLite at edge)
+  - R2 (S3-compatible storage)
+  - KV (key-value)
+  - Durable Objects (stateful)
+agent_content:
+  markdown_for_agents: "Enable in Cloudflare dashboard → Quick Actions → Markdown for Agents (auto for all zones)"
+  content_negotiation: "For custom Workers: check req.headers.get('Accept')?.includes('text/markdown'), return markdown variant"
+  llms_txt: "Serve /llms.txt route with site map for AI agents"
+ecosystem:
+  workerd: "github.com/cloudflare/workerd — open-source Workers runtime (C++/V8). Self-host Workers locally or on own infra. Escape vendor lock-in."
+  emdash: "Serverless CMS on Workers (Astro 6.0 + D1 + R2). WordPress successor with v8 plugin sandboxing and x402 AI monetization."
+notes: |
+  - Edge-first: no Node.js APIs
+  - Use Durable Objects for realtime
+  - R2 for media storage
+  - Zod 4 for all input validation (import from "zod/v4")
+  - pnpm as package manager
+  - ESLint flat config + Prettier for code quality
+  - tsc --noEmit for type-checking (strict mode)
+  - Vitest + @cloudflare/vitest-pool-workers for Workers testing
+  - Husky + lint-staged for pre-commit (eslint, prettier, tsc --noEmit)
+  - English first for API responses, i18n via JSON if needed
+  - Agent-readable: enable CF Markdown for Agents + serve /llms.txt + content negotiation for markdown
+  - workerd: self-host Workers runtime for local dev/testing or vendor independence (github.com/cloudflare/workerd)
+  - EmDash: open-source CMS on Workers — use as boilerplate for content sites (Astro 6.0 theming, plugin sandboxing, AI-native)
+```

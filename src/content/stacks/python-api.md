@@ -1,0 +1,69 @@
+---
+type: stack
+title: "Python API"
+description: "Python API stack template — server python3.13. Copy and use."
+created: 2026-02-11
+tags: [stack, server, python3.13, template]
+publish: true
+source_path: "1-methodology/stacks/python-api.yaml"
+---
+
+# Python API
+
+**Platform:** server | **Language:** python3.13
+
+```yaml
+name: Python API
+platform: server
+language: python3.13
+package_manager: uv
+framework: fastapi
+database: postgresql
+orm: sqlalchemy
+validation: pydantic
+i18n: gettext or simple dict/json
+auth: "shared-auth (Supabase Auth backend, or JWT for API-only)"
+payments: "stripe (server-side, webhooks)"
+linter: ruff (replaces flake8, isort, pyflakes)
+formatter: ruff format (replaces black)
+type_checker: ty (Astral, extremely fast, replaces mypy/pyright)
+testing: pytest + httpx (TestClient) + pytest-asyncio + hypothesis (property-based)
+pre_commit: pre-commit (ruff + ruff-format + ty hooks)
+key_packages:
+  - fastapi (API framework)
+  - pydantic (schemas, validation — always first)
+  - sqlalchemy (ORM, async)
+  - alembic (migrations)
+  - asyncpg (PostgreSQL async driver)
+  - uvicorn (ASGI server)
+  - httpx (HTTP client)
+  - ruff (linter + formatter)
+  - ty (type-checker, Astral — extremely fast, replaces mypy)
+  - pytest + pytest-asyncio (testing)
+  - hypothesis (property-based testing for schemas/edge cases)
+deploy: docker | cloudflare_workers | hetzner
+infra: pulumi (Python, infra/__main__.py) — Tier 2, or Cloudflare Workers for MVP (Tier 1)
+ci_cd: github_actions
+monitoring: posthog (analytics + errors, EU hosting)
+logs:
+  wrangler: "wrangler tail --format=pretty 2>&1 | head -50"
+  docker: "docker logs {container} --tail=50"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "uv run uvicorn src.{name}.main:app --port 8000 2>&1 | head -20"
+architecture: layered (routers → services → repositories → models)
+notes: |
+  - uv for all dependency management (not pip/poetry)
+  - Pydantic-first: models and validation before logic
+  - FastAPI for HTTP API (not Flask/Django)
+  - SQLAlchemy 2.0 style (mapped_column, async session)
+  - Alembic for all schema migrations (never raw DDL)
+  - PostgreSQL as default database
+  - asyncpg for async, psycopg for sync fallback
+  - ruff for linting AND formatting (replaces black + isort + flake8)
+  - ty for type-checking (Astral, extremely fast — replaces mypy/pyright)
+  - pytest + httpx TestClient for API tests, pytest-asyncio for async
+  - hypothesis for property-based testing (schema validation, edge cases)
+  - pre-commit with ruff + ty hooks
+  - English first for API responses, i18n via gettext if needed
+  - Project structure: src/<name>/{routers,services,models,schemas,db}/
+```

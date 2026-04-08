@@ -1,0 +1,89 @@
+---
+type: stack
+title: "Android Kotlin"
+description: "Android Kotlin stack template — android kotlin. Copy and use."
+created: 2026-02-11
+tags: [stack, android, kotlin, template]
+publish: true
+source_path: "1-methodology/stacks/kotlin-android.yaml"
+---
+
+# Android Kotlin
+
+**Platform:** android | **Language:** kotlin
+
+```yaml
+name: Android Kotlin
+platform: android
+language: kotlin
+ui_framework: jetpack_compose
+build: gradle_kotlin_dsl
+auth: shared-auth (shared.auth Kotlin module)
+payments: google_play_billing
+validation: "kotlinx.serialization + custom validation"
+i18n: android_resources (res/values/strings.xml, res/values-ru/strings.xml)
+linter: detekt (static analysis) + ktlint (style)
+formatter: ktfmt (Google style)
+testing: junit + espresso + compose_testing
+pre_commit: lefthook (detekt + ktlint hooks)
+key_packages:
+  - Jetpack Compose
+  - Material3
+  - Room (local DB)
+  - Ktor (networking)
+  - Koin (DI)
+  - CameraX (camera)
+  - shared.auth (shared auth)
+  - kotlinx.serialization (validation, JSON)
+  - detekt + ktlint (code quality)
+deploy: play_store
+infra: none (native store distribution)
+ci_cd: github_actions (gradle + self-hosted runner)
+monitoring: posthog (analytics + errors, posthog-android)
+logs:
+  adb: "adb logcat -s {name} --format=time 2>&1 | tail -50"
+  adb_crash: "adb logcat '*:E' --format=time 2>&1 | tail -30"
+  play_console: "Google Play Console → Android vitals → Crashes & ANRs"
+  posthog: "PostHog dashboard → Error tracking"
+  local_build: "./gradlew assembleDebug 2>&1 | tail -30"
+architecture: MVVM + clean_architecture
+visual_testing:
+  type: emulator
+  boot: "emulator -avd $(emulator -list-avds | head -1) -no-window -no-audio &"
+  wait: "adb wait-for-device && adb shell getprop sys.boot_completed | grep -q 1"
+  screenshot: "adb exec-out screencap -p > /tmp/emu-screenshot.png"
+  install: "adb install -r"
+  launch: "adb shell am start"
+  logs: "adb logcat '*:E' --format=time -d 2>&1 | tail -20"
+  checks:
+    - "Build debug APK and install on emulator"
+    - "Take screenshot after launch, verify main activity renders"
+    - "Check logcat for crashes or ANRs"
+notes: |
+  - SharedAuth for Google Sign-In via Supabase
+  - Android Resources for i18n (strings.xml, values-ru/)
+  - detekt for static analysis (add Gradle plugin: io.gitlab.arturbosch.detekt)
+  - ktlint for Kotlin style (via org.jlleitschuh.gradle.ktlint plugin)
+  - ktfmt for formatting (Google style)
+  - JUnit 4 + Espresso + Compose Testing for tests
+  - lefthook for pre-commit hooks (detekt + ktlint, language-agnostic, no Node.js)
+  - English first, then localize
+  - Google Play Billing for subscriptions
+gradle_required:
+  application_id: "<org_domain>.<name>"
+  android_config:
+    namespace: "<org_domain>.<name>"
+    compileSdk: 35
+    targetSdk: 35
+    minSdk: 26
+    versionCode: 1
+    versionName: "1.0.0"
+  signing:
+    # keystore.properties (gitignored) — path, alias, passwords
+    # build.gradle.kts loads from keystore.properties for release
+    storeFile: "keystore.jks"
+    keyAlias: "release"
+  release_command: |
+    ./gradlew bundleRelease  # → app/build/outputs/bundle/release/app-release.aab
+    # Upload .aab to Google Play Console
+```

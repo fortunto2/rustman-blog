@@ -1,0 +1,111 @@
+---
+type: stack
+title: "Python Scraper (Browser Emulation)"
+description: "Python Scraper (Browser Emulation) stack template — local | server python3.13. Copy and use."
+created: 2026-02-11
+tags: [stack, local | server, python3.13, template]
+publish: true
+source_path: "1-methodology/stacks/python-scraper.yaml"
+---
+
+# Python Scraper (Browser Emulation)
+
+**Platform:** local | server | **Language:** python3.13
+
+```yaml
+name: Python Scraper (Browser Emulation)
+platform: local | server
+language: python3.13
+package_manager: uv
+framework: "scrapy (optional, for crawl pipelines)"
+database: "sqlite | postgresql (for results storage)"
+validation: pydantic
+i18n: none
+auth: none
+linter: ruff (replaces flake8, isort, pyflakes)
+formatter: ruff format (replaces black)
+type_checker: ty (Astral, extremely fast, replaces mypy/pyright)
+testing: pytest + respx (mock HTTP) + hypothesis (property-based)
+pre_commit: pre-commit (ruff + ruff-format + ty hooks)
+cli: typer (CLI framework) + rich (terminal output)
+key_packages:
+  # --- Anti-detection (уровни от лёгкого к тяжёлому) ---
+  - curl_cffi (TLS fingerprint impersonation — Chrome/Firefox/Safari, обход Cloudflare)
+  - httpx (async HTTP, для сайтов без anti-bot)
+  - playwright (headless Chromium/Firefox, для JS-rendered + Cloudflare Turnstile)
+  # --- Парсинг ---
+  - beautifulsoup4 + lxml (HTML parsing)
+  - selectolax (fast CSS selectors, Modest/Lexbor backend)
+  - parsel (XPath + CSS, как в Scrapy)
+  # --- Данные ---
+  - pydantic (schemas, validation — always first)
+  - sqlite-utils (quick SQLite storage)
+  # --- Инфра ---
+  - ruff (linter + formatter)
+  - ty (type-checker, Astral — extremely fast, replaces mypy)
+  - pytest + respx (testing, mock responses)
+  - hypothesis (property-based testing)
+  - typer (CLI framework, type-hint driven)
+  - rich (beautiful terminal output — tables, panels, progress bars)
+  - tenacity (retry logic with backoff)
+  - fake-useragent (random User-Agent rotation)
+deploy: local | docker | hetzner
+infra: docker-compose (for proxies, or local-only)
+ci_cd: github_actions
+monitoring: posthog (analytics, EU hosting) | none
+logs:
+  docker: "docker logs {container} --tail=50"
+  local: "uv run {name} --help 2>&1"
+  local_build: "uv build 2>&1"
+architecture: pipeline (fetch → parse → validate → store)
+notes: |
+  ## TLS Fingerprint Insight
+
+  Сайты с Cloudflare определяют ботов по TLS fingerprint (JA3/JA4):
+  - requests/httpx — Python/urllib3 fingerprint → 403 / challenge page
+  - curl_cffi с impersonate="chrome" — TLS fingerprint идентичен Chrome → проходит
+
+  curl_cffi — обёртка над curl-impersonate (форк curl), воспроизводит
+  TLS handshake реальных браузеров: cipher suites, ALPN, расширения.
+
+  ## Стратегия выбора (от лёгкого к тяжёлому)
+
+  1. httpx — сайты без защиты, API. Быстро, async, минимум ресурсов
+  2. curl_cffi + impersonate="chrome" — Cloudflare, anti-bot по TLS.
+     Один HTTP-запрос, ~2сек, минимум RAM. Не нужен браузер
+  3. playwright — JS-rendered страницы, Turnstile CAPTCHA, SPA.
+     ~500MB RAM, 5-10сек запуск. Последний resort
+
+  ## Когда что использовать
+
+  - GET с куками достаточно → curl_cffi (не Playwright)
+  - Нужен JS рендеринг → Playwright
+  - Простой API/RSS → httpx
+  - Массовый crawl → Scrapy + curl_cffi backend
+
+  ## Пример curl_cffi
+
+  ```python
+  from curl_cffi.requests import Session
+
+  with Session(impersonate="chrome") as s:
+      r = s.get("https://example.com", cookies={"session": "abc"})
+      # TLS fingerprint = Chrome, проходит Cloudflare
+  ```
+
+  ## Общие правила
+
+  - uv for all dependency management (not pip/poetry)
+  - Pydantic-first: схемы данных до парсинга
+  - ruff for linting AND formatting
+  - ty for type-checking (Astral, extremely fast — replaces mypy/pyright)
+  - pytest + respx для тестов (mock HTTP responses, не бить реальные сайты)
+  - hypothesis for property-based testing (schema validation, edge cases)
+  - pre-commit with ruff + ty hooks
+  - typer for CLI (type-hint driven, auto-generates --help)
+  - rich for terminal output (tables, panels, progress bars)
+  - Retry with exponential backoff (tenacity)
+  - Respect robots.txt и rate limits
+  - Rotate User-Agent (fake-useragent)
+  - Store raw HTML before parsing (debug/re-parse)
+```

@@ -82,6 +82,12 @@ function main() {
   }
 
   console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${files.length}`);
+
 }
+
+// Also collect stacks
+import { collectStacks } from './collect-stacks.ts';
+const stackCount = collectStacks();
+if (stackCount > 0) console.log(`Stacks: ${stackCount} collected`);
 
 main();
