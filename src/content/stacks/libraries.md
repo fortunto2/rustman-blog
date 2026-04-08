@@ -12,225 +12,108 @@ source_path: "1-methodology/stacks/libraries.yaml"
 
 Curated libs for specific product types. Not part of default stacks — pick what fits your product.
 
-**Categories:** data_pipeline, federation, actors, event_sourcing, openai, voice, openapi_codegen, canvas
+**Categories:** Data Pipeline · Federation · Actors · Event Sourcing · Openai · Voice · Openapi Codegen · Canvas
 
-```yaml
-# Libraries — curated libs for specific product types
-# Not part of default stacks. Pick what fits your product.
-#
-# Format:
-#   - name: package-name
-#     url: homepage
-#     stack: [typescript, react, python, swift, kotlin, rust]
-#     install: install command
-#     use_cases:
-#       - short description of use case
-#     license: MIT | Apache-2.0 | proprietary | ...
-#     notes: optional caveats
+## Data Pipeline
 
-data_pipeline:
-  - name: cocoindex
-    url: https://cocoindex.io
-    stack: [rust, python]
-    install: pip install -U cocoindex
-    use_cases:
-      - Real-time codebase indexing for coding agents
-      - Knowledge graphs from docs/meetings (auto-updating)
-      - Product recommendation engine with graph DB
-      - Academic papers / PDF / image indexing (no OCR needed)
-      - HackerNews structured extraction + sync to Postgres
-      - Image search (ColPali, CLIP, face detection)
-      - Patient/intake form extraction (BAML, DSPy)
-      - Google Drive / S3 real-time sync pipeline
-      - Trending topic detection with custom sources
-    license: Apache-2.0
-    notes: >
-      6.6k★. Rust core + Python bindings. Incremental processing (only delta).
-      Sources: Postgres, S3, Drive, local files, custom APIs.
-      Targets: pgvector, Qdrant, LanceDB, Neo4j, Postgres.
-      Requires Postgres for incremental processing metadata.
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [cocoindex](https://cocoindex.io) | rust, python | `pip install -U cocoindex` | Apache-2.0 |
 
-federation:
-  - name: tonic
-    url: https://github.com/hyperium/tonic
-    stack: [rust]
-    install: cargo add tonic tonic-build prost
-    use_cases:
-      - Node-to-node RPC (protobuf = protocol spec)
-      - Streaming gRPC for real-time events
-      - Server-to-server federation protocol
-    license: MIT
-    notes: 12k★. De facto standard for Rust gRPC. Protobuf codegen via tonic-build.
+**cocoindex:** 6.6k★. Rust core + Python bindings. Incremental processing (only delta).
+Sources: Postgres, S3, Drive, local files, custom APIs.
+Targets: pgvector, Qdrant, LanceDB, Neo4j, Postgres.
+Requires Postgres for incremental processing metadata.
 
-  - name: cloudevents-sdk
-    url: https://github.com/cloudevents/sdk-rust
-    stack: [rust]
-    install: cargo add cloudevents-sdk
-    use_cases:
-      - Standard event envelope (CNCF) for cross-service events
-      - Inter-node event format (OrderCreated, PolicyActivated)
-      - Axum/Actix/NATS/Kafka bindings
-    license: Apache-2.0
-    notes: 205★. CNCF standard. Lightweight.
 
-  - name: openraft
-    url: https://github.com/databendlabs/openraft
-    stack: [rust]
-    install: cargo add openraft
-    use_cases:
-      - Consensus for governance voting
-      - Config replication across nodes
-      - Strong consistency for distributed state
-    license: MIT
-    notes: 1.8k★. 70K writes/sec. Used by Databend.
+## Federation
 
-  - name: async-nats
-    url: https://github.com/nats-io/nats.rs
-    stack: [rust]
-    install: cargo add async-nats
-    use_cases:
-      - Event bus between services/nodes
-      - Pub/sub for real-time events
-      - JetStream for persistent exactly-once delivery
-    license: Apache-2.0
-    notes: 1.4k★. Requires NATS server.
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [tonic](https://github.com/hyperium/tonic) | rust | `cargo add tonic tonic-build prost` | MIT |
+| [cloudevents-sdk](https://github.com/cloudevents/sdk-rust) | rust | `cargo add cloudevents-sdk` | Apache-2.0 |
+| [openraft](https://github.com/databendlabs/openraft) | rust | `cargo add openraft` | MIT |
+| [async-nats](https://github.com/nats-io/nats.rs) | rust | `cargo add async-nats` | Apache-2.0 |
 
-actors:
-  - name: kameo
-    url: https://github.com/tqwewe/kameo
-    stack: [rust]
-    install: cargo add kameo
-    use_cases:
-      - Distributed actors via libp2p DHT
-      - Fault-tolerant state management per entity
-      - Actor per order/courier/node for isolation
-    license: MIT
-    notes: 1.2k★. Built-in distributed messaging. Async tokio.
+**tonic:** 12k★. De facto standard for Rust gRPC. Protobuf codegen via tonic-build.
 
-  - name: ractor
-    url: https://github.com/slawlor/ractor
-    stack: [rust]
-    install: cargo add ractor
-    use_cases:
-      - Erlang-inspired actor model
-      - Supervision trees for fault tolerance
-      - ractor_cluster for distribution (experimental)
-    license: MIT
-    notes: 2k★. Clean API. Clustering not production-ready yet.
+**cloudevents-sdk:** 205★. CNCF standard. Lightweight.
 
-event_sourcing:
-  - name: cqrs-es
-    url: https://github.com/serverlesstechnology/cqrs
-    stack: [rust]
-    install: cargo add cqrs-es postgres-es
-    use_cases:
-      - Event-sourced aggregates (Order, Restaurant, Courier)
-      - CQRS read/write separation
-      - Postgres-backed event store
-    license: Apache-2.0
-    notes: 471★. Production-ready. Serverless-friendly.
+**openraft:** 1.8k★. 70K writes/sec. Used by Databend.
 
-  - name: eventually-rs
-    url: https://github.com/get-eventually/eventually-rs
-    stack: [rust]
-    install: cargo add eventually
-    use_cases:
-      - Flexible event sourcing with traits
-      - Custom event stores
-      - Postgres backend
-    license: MIT
-    notes: 591★. Pre-1.0 but active.
+**async-nats:** 1.4k★. Requires NATS server.
 
-openai:
-  - name: async-openai
-    url: https://github.com/64bit/async-openai
-    stack: [rust]
-    install: cargo add async-openai
-    use_cases:
-      - OpenAI API client (all endpoints)
-      - Streaming SSE for chat/responses
-      - Azure OpenAI support
-      - BYOT (bring your own types)
-    license: MIT
-    notes: >
-      1.8k★. Granular feature flags. Per-request headers.
-      Dynamic dispatch (dyn Config). Webhook support.
 
-  - name: openai-oxide
-    url: https://github.com/fortunto2/openai-rust
-    stack: [rust]
-    install: cargo add openai-oxide
-    use_cases:
-      - OpenAI API client (1:1 Python SDK parity)
-      - OpenAPI spec validation tests on every commit
-      - Typed responses (zero serde_json::Value target)
-    license: MIT
-    notes: >
-      Our crate. 18 endpoints, 114 tests, 88% OpenAPI coverage.
-      Pre-commit validates against official OpenAPI spec.
+## Actors
 
-voice:
-  - name: voxkit
-    url: https://github.com/fortunto2/supervox
-    stack: [rust]
-    install: cargo add voxkit
-    use_cases:
-      - STT (OpenAI batch + realtime WebSocket)
-      - VAD (Silero ONNX + RMS fallback)
-      - TTS (OpenAI + rodio playback)
-      - Mic capture (cpal, cross-platform)
-      - macOS system audio (ScreenCaptureKit)
-    license: MIT
-    notes: >
-      Our crate. 148 tests, 10 feature-gated modules.
-      All backends optional via features.
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [kameo](https://github.com/tqwewe/kameo) | rust | `cargo add kameo` | MIT |
+| [ractor](https://github.com/slawlor/ractor) | rust | `cargo add ractor` | MIT |
 
-openapi_codegen:
-  - name: progenitor
-    url: https://github.com/oxidecomputer/progenitor
-    stack: [rust]
-    install: cargo add progenitor
-    use_cases:
-      - Full client codegen from OpenAPI 3.0 spec
-      - Also generates httpmock typed mocks
-      - Three modes (macro, build.rs, standalone crate)
-    license: MPL-2.0
-    notes: Oxide Computer. Production-grade.
+**kameo:** 1.2k★. Built-in distributed messaging. Async tokio.
 
-  - name: openapiv3
-    url: https://crates.io/crates/openapiv3
-    stack: [rust]
-    install: cargo add openapiv3
-    use_cases:
-      - Parse OpenAPI YAML/JSON into Rust structs
-      - Foundation for codegen tools
-      - Spec validation and field extraction
-    license: MIT
-    notes: Used by progenitor internally.
+**ractor:** 2k★. Clean API. Clustering not production-ready yet.
 
-  - name: utoipa
-    url: https://github.com/juhaku/utoipa
-    stack: [rust]
-    install: cargo add utoipa
-    use_cases:
-      - Generate OpenAPI docs FROM Rust code (derive macros)
-      - Swagger UI integration for axum/actix
-    license: MIT
-    notes: Opposite direction from progenitor — code → spec.
 
-canvas:
-  - name: tldraw
-    url: https://tldraw.dev
-    stack: [typescript, react]
-    install: pnpm add tldraw
-    use_cases:
-      - Whiteboard / collaborative drawing tool
-      - Diagramming & workflow builder (starter kit "Workflow")
-      - AI canvas — LLM interaction on infinite canvas (starter kit "Agent")
-      - Visual programming interface
-      - Annotation & markup over images/docs
-    license: proprietary (free dev, paid production key)
-    notes: >
-      45k+ GitHub stars. DOM-based rendering (embed YouTube, Figma, etc).
-      Multiplayer via @tldraw/sync. Starter kits: npx create-tldraw@latest.
-```
+## Event Sourcing
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [cqrs-es](https://github.com/serverlesstechnology/cqrs) | rust | `cargo add cqrs-es postgres-es` | Apache-2.0 |
+| [eventually-rs](https://github.com/get-eventually/eventually-rs) | rust | `cargo add eventually` | MIT |
+
+**cqrs-es:** 471★. Production-ready. Serverless-friendly.
+
+**eventually-rs:** 591★. Pre-1.0 but active.
+
+
+## Openai
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [async-openai](https://github.com/64bit/async-openai) | rust | `cargo add async-openai` | MIT |
+| [openai-oxide](https://github.com/fortunto2/openai-rust) | rust | `cargo add openai-oxide` | MIT |
+
+**async-openai:** 1.8k★. Granular feature flags. Per-request headers.
+Dynamic dispatch (dyn Config). Webhook support.
+
+**openai-oxide:** Our crate. 18 endpoints, 114 tests, 88% OpenAPI coverage.
+Pre-commit validates against official OpenAPI spec.
+
+
+## Voice
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [voxkit](https://github.com/fortunto2/supervox) | rust | `cargo add voxkit` | MIT |
+
+**voxkit:** Our crate. 148 tests, 10 feature-gated modules.
+All backends optional via features.
+
+
+## Openapi Codegen
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [progenitor](https://github.com/oxidecomputer/progenitor) | rust | `cargo add progenitor` | MPL-2.0 |
+| [openapiv3](https://crates.io/crates/openapiv3) | rust | `cargo add openapiv3` | MIT |
+| [utoipa](https://github.com/juhaku/utoipa) | rust | `cargo add utoipa` | MIT |
+
+**progenitor:** Oxide Computer. Production-grade.
+
+**openapiv3:** Used by progenitor internally.
+
+**utoipa:** Opposite direction from progenitor — code → spec.
+
+
+## Canvas
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [tldraw](https://tldraw.dev) | typescript, react | `pnpm add tldraw` | proprietary (free dev, paid production key) |
+
+**tldraw:** 45k+ GitHub stars. DOM-based rendering (embed YouTube, Figma, etc).
+Multiplayer via @tldraw/sync. Starter kits: npx create-tldraw@latest.
+
+

@@ -30,14 +30,92 @@ function extractTags(yaml: string, file: string): string[] {
   return [...new Set(tags.filter(t => t && t !== 'none'))];
 }
 
+interface Lib {
+  name: string;
+  url: string;
+  stack: string[];
+  install: string;
+  license: string;
+  notes: string;
+}
+
+function parseLibraries(yaml: string): Map<string, Lib[]> {
+  const categories = new Map<string, Lib[]>();
+  // Split into category blocks
+  const blocks = yaml.split(/^(?=\w+:\s*$)/m).filter(b => b.trim());
+
+  for (const block of blocks) {
+    const catMatch = block.match(/^(\w+):\s*$/m);
+    if (!catMatch) continue;
+    const category = catMatch[1];
+    const libs: Lib[] = [];
+
+    // Split into individual library entries (split removes "- name: " prefix)
+    const entries = block.split(/^\s{2}- name:\s*/m).slice(1);
+    for (const entry of entries) {
+      const firstLine = entry.split('\n')[0].trim();
+      const rest = entry.slice(entry.indexOf('\n'));
+      const get = (key: string) => {
+        const m = rest.match(new RegExp(`^\\s*${key}:\\s*(.+)`, 'm'));
+        return m?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+      };
+      const stackMatch = rest.match(/stack:\s*\[([^\]]*)\]/);
+      const stack = stackMatch ? stackMatch[1].split(',').map(s => s.trim()) : [];
+
+      // Notes can be multiline (> block or plain)
+      let notes = '';
+      const notesMatch = rest.match(/notes:\s*>?\s*\n([\s\S]*?)(?=\n\s{2}\w|\n\w|$)/);
+      if (notesMatch) {
+        notes = notesMatch[1].replace(/^\s{6}/gm, '').trim();
+      } else {
+        notes = get('notes');
+      }
+
+      libs.push({
+        name: firstLine,
+        url: get('url'),
+        stack,
+        install: get('install'),
+        license: get('license'),
+        notes,
+      });
+    }
+    if (libs.length) categories.set(category, libs);
+  }
+  return categories;
+}
+
+function formatCategory(name: string): string {
+  return name.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 function collectLibraries(yaml: string): string {
-  // Parse categories from libraries.yaml
-  const categories: string[] = [];
-  for (const m of yaml.matchAll(/^(\w+):\s*$/gm)) {
-    categories.push(m[1]);
+  const categories = parseLibraries(yaml);
+  const catNames = [...categories.keys()];
+
+  let sections = '';
+  for (const [cat, libs] of categories) {
+    sections += `## ${formatCategory(cat)}\n\n`;
+    sections += '| Library | Stack | Install | License |\n';
+    sections += '|---------|-------|---------|--------|\n';
+    for (const lib of libs) {
+      const nameCell = lib.url ? `[${lib.name}](${lib.url})` : lib.name;
+      const stackCell = lib.stack.join(', ');
+      const installCell = lib.install ? `\`${lib.install}\`` : '—';
+      sections += `| ${nameCell} | ${stackCell} | ${installCell} | ${lib.license} |\n`;
+    }
+    // Add notes as compact list below table
+    const withNotes = libs.filter(l => l.notes);
+    if (withNotes.length) {
+      sections += '\n';
+      for (const lib of withNotes) {
+        sections += `**${lib.name}:** ${lib.notes}\n\n`;
+      }
+    }
+    sections += '\n';
   }
 
-  const md = `---
+  return `---
 type: stack
 title: "Libraries — curated libs by category"
 description: "Curated library reference — data pipelines, federation, actors, event sourcing, voice, OpenAI, canvas."
@@ -51,12 +129,9 @@ source_path: "1-methodology/stacks/libraries.yaml"
 
 Curated libs for specific product types. Not part of default stacks — pick what fits your product.
 
-**Categories:** ${categories.join(', ')}
+**Categories:** ${catNames.map(formatCategory).join(' · ')}
 
-\`\`\`yaml
-${yaml}\`\`\`
-`;
-  return md;
+${sections}`;
 }
 
 export function collectStacks() {
