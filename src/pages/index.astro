@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentList from '../components/ContentList.astro';
 import { getCollection, getAllContent } from '../lib/content';
 
 const posts = getCollection('posts');
@@ -36,55 +37,21 @@ products.sort((a, b) => {
   {openSource.length > 0 && (
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Open Source</h2>
-      <div class="grid gap-3 sm:grid-cols-2">
-        {openSource.map(p => (
-          <a href={`/projects/${p.slug}`} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
-            <h3 class="font-medium font-mono text-sm">{p.frontmatter.title}</h3>
-            {p.frontmatter.tags && (
-              <div class="flex flex-wrap gap-1.5 mt-1.5">
-                {p.frontmatter.tags.filter(t => t !== 'project' && t !== 'open-source').slice(0, 4).map(tag => (
-                  <span class="text-xs font-mono bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{tag}</span>
-                ))}
-              </div>
-            )}
-            {p.frontmatter.description && (
-              <p class="text-sm text-[var(--color-muted)] mt-1.5 line-clamp-2">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+      <ContentList items={openSource} basePath="/projects" showDate={false} showTags={true} />
     </section>
   )}
 
   {products.length > 0 && (
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Products</h2>
-      <div class="grid gap-3 sm:grid-cols-2">
-        {products.map(p => (
-          <a href={`/projects/${p.slug}`} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
-            <h3 class="font-medium">{p.frontmatter.title}</h3>
-            {p.frontmatter.description && (
-              <p class="text-sm text-[var(--color-muted)] mt-1 line-clamp-2">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+      <ContentList items={products} basePath="/projects" showDate={false} showTags={true} />
     </section>
   )}
 
   {posts.length > 0 && (
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Pillars</h2>
-      <div class="space-y-3">
-        {posts.map(p => (
-          <a href={`/posts/${p.slug}`} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
-            <h3 class="font-medium">{p.frontmatter.title}</h3>
-            {p.frontmatter.description && (
-              <p class="text-sm text-[var(--color-muted)] mt-1">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+      <ContentList items={posts} basePath="/posts" showDate={true} showTags={false} />
     </section>
   )}
 
@@ -124,15 +91,7 @@ products.sort((a, b) => {
 
   <section>
     <h2 class="text-xl font-semibold mb-4 prompt">Recent</h2>
-    <div class="space-y-0 font-mono text-sm">
-      {recent.map(entry => (
-        <a href={`/${entry.section}/${entry.slug}`} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
-          <span class="text-xs text-[var(--color-muted)] shrink-0 w-20">{entry.frontmatter.created || entry.frontmatter.date}</span>
-          <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-16">{entry.section}</span>
-          <span class="truncate">{entry.frontmatter.title || entry.slug}</span>
-        </a>
-      ))}
-    </div>
+    <ContentList items={recent} showSection={true} showDate={true} />
   </section>
 
   {recent.length === 0 && (

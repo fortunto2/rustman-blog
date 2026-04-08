@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
 import { getAllTags } from '../../lib/content';
 
 export function getStaticPaths() {
@@ -15,23 +16,9 @@ const { tag, entries } = Astro.props;
 
 <BaseLayout title={`#${tag}`} description={`All pages tagged "${tag}".`}>
   <div class="mb-4">
-    <a href="/tags" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)]">&larr; All tags</a>
+    <a href="/tags" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] font-mono">&larr; All tags</a>
   </div>
   <h1 class="text-2xl font-bold mb-6 font-mono">#{tag} <span class="text-[var(--color-muted)] font-normal text-lg">({entries.length})</span></h1>
 
-  <div class="space-y-3">
-    {entries.map(entry => (
-      <a href={`/${entry.section}/${entry.slug}`} class="block group">
-        <div class="flex items-center gap-2">
-          <span class="text-xs uppercase text-[var(--color-muted)] bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5 rounded">{entry.section}</span>
-          <h3 class="font-medium group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)] transition-colors">
-            {entry.frontmatter.title || entry.slug}
-          </h3>
-        </div>
-        {entry.frontmatter.description && (
-          <p class="text-sm text-[var(--color-muted)] mt-0.5 line-clamp-1">{entry.frontmatter.description}</p>
-        )}
-      </a>
-    ))}
-  </div>
+  <ContentList items={entries} showSection={true} showDate={true} />
 </BaseLayout>

@@ -1,0 +1,69 @@
+---
+/**
+ * Unified single-line catalog component.
+ *
+ * Props:
+ *   items     — array of { slug, section?, frontmatter: { title, created?, date?, tags? } }
+ *   basePath  — optional URL prefix (e.g. "/wiki"), auto-derived from section if absent
+ *   showSection — show section badge column (default false)
+ *   showDate    — show date column (default true)
+ *   showTags    — show inline tags (default false)
+ *   limit       — max items to show
+ */
+interface Item {
+  slug: string;
+  section?: string;
+  frontmatter: Record<string, any>;
+}
+
+interface Props {
+  items: Item[];
+  basePath?: string;
+  showSection?: boolean;
+  showDate?: boolean;
+  showTags?: boolean;
+  limit?: number;
+}
+
+const {
+  items,
+  basePath,
+  showSection = false,
+  showDate = true,
+  showTags = false,
+  limit,
+} = Astro.props;
+
+const list = limit ? items.slice(0, limit) : items;
+---
+
+<div class="space-y-0 font-mono text-sm">
+  {list.map(entry => {
+    const href = basePath
+      ? `${basePath}/${entry.slug}`
+      : entry.section
+        ? `/${entry.section}/${entry.slug}`
+        : `/${entry.slug}`;
+    const date = entry.frontmatter.created || entry.frontmatter.date;
+    const tags = entry.frontmatter.tags;
+    const hasTags = showTags && tags && typeof tags !== 'string';
+    return (
+      <a href={href} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+        {showDate && date && (
+          <span class="text-xs text-[var(--color-muted)] shrink-0 w-20">{date}</span>
+        )}
+        {showSection && entry.section && (
+          <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-16">{entry.section}</span>
+        )}
+        <span class="truncate group-hover:text-[var(--color-accent)] dark:group-hover:text-[var(--color-accent-dark)]">{entry.frontmatter.title || entry.slug}</span>
+        {hasTags && (
+          <span class="hidden sm:inline-flex gap-1.5 shrink-0 ml-auto">
+            {tags.filter((t: string) => t !== 'project' && t !== 'open-source').slice(0, 3).map((tag: string) => (
+              <span class="text-xs text-[var(--color-muted)] bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1 py-0">{tag}</span>
+            ))}
+          </span>
+        )}
+      </a>
+    );
+  })}
+</div>

@@ -1,66 +1,48 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
 const pages = getCollection('wiki');
 const hubs = pages.filter(p => p.frontmatter.type === 'hub');
 const concepts = pages.filter(p => p.frontmatter.type === 'concept');
 const summaries = pages.filter(p => p.frontmatter.type === 'summary');
+const other = pages.filter(p => !['hub', 'concept', 'summary'].includes(p.frontmatter.type));
 ---
 
 <BaseLayout title="Wiki" description="Knowledge base — compiled principles, methodology, and patterns.">
   <div class="mb-8">
-    <h1 class="text-2xl font-bold mb-2">Wiki</h1>
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">Wiki</h1>
     <p class="text-[var(--color-muted)]">Compiled knowledge base. Synthesized from raw sources, interlinked.</p>
   </div>
 
   <div id="wiki-search" class="mb-8"></div>
 
   {hubs.length > 0 && (
-    <section class="mb-10">
-      <h2 class="text-lg font-semibold mb-4">Topics</h2>
-      <div class="grid gap-3 sm:grid-cols-2">
-        {hubs.map(p => (
-          <a href={`/wiki/${p.slug}`} class="block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg p-3 hover:border-[var(--color-accent)] transition-colors">
-            <h3 class="font-medium text-sm">{p.frontmatter.title}</h3>
-            {p.frontmatter.description && (
-              <p class="text-xs text-[var(--color-muted)] mt-1 line-clamp-2">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Topics</h2>
+      <ContentList items={hubs} basePath="/wiki" showDate={false} />
     </section>
   )}
 
   {concepts.length > 0 && (
-    <section class="mb-10">
-      <h2 class="text-lg font-semibold mb-4">Concepts</h2>
-      <div class="space-y-3">
-        {concepts.map(p => (
-          <a href={`/wiki/${p.slug}`} class="block group">
-            <h3 class="text-sm font-medium group-hover:text-[var(--color-accent)] transition-colors">{p.frontmatter.title}</h3>
-            {p.frontmatter.description && (
-              <p class="text-xs text-[var(--color-muted)] line-clamp-1">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Concepts</h2>
+      <ContentList items={concepts} basePath="/wiki" showDate={true} />
     </section>
   )}
 
   {summaries.length > 0 && (
-    <section class="mb-10">
-      <h2 class="text-lg font-semibold mb-4">Source Summaries</h2>
-      <div class="space-y-3">
-        {summaries.map(p => (
-          <a href={`/wiki/${p.slug}`} class="block group">
-            <h3 class="text-sm font-medium group-hover:text-[var(--color-accent)] transition-colors">{p.frontmatter.title}</h3>
-            {p.frontmatter.description && (
-              <p class="text-xs text-[var(--color-muted)] line-clamp-1">{p.frontmatter.description}</p>
-            )}
-          </a>
-        ))}
-      </div>
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Source Summaries</h2>
+      <ContentList items={summaries} basePath="/wiki" showDate={true} />
+    </section>
+  )}
+
+  {other.length > 0 && (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Other</h2>
+      <ContentList items={other} basePath="/wiki" showDate={true} />
     </section>
   )}
 

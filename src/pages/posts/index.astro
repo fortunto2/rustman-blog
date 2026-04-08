@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
 const posts = getCollection('posts');
@@ -11,24 +12,7 @@ const posts = getCollection('posts');
     <p class="text-[var(--color-muted)]">Pillar articles — principles, methodology, and frameworks in depth.</p>
   </div>
 
-  <div class="space-y-4">
-    {posts.map(p => (
-      <a href={`/posts/${p.slug}`} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
-        <h3 class="font-medium font-mono">{p.frontmatter.title}</h3>
-        {p.frontmatter.description && (
-          <p class="text-sm text-[var(--color-muted)] mt-1">{p.frontmatter.description}</p>
-        )}
-        <div class="flex flex-wrap gap-2 text-xs text-[var(--color-muted)] mt-2 font-mono">
-          <span>{p.frontmatter.created || p.frontmatter.date}</span>
-          {p.frontmatter.tags && typeof p.frontmatter.tags !== 'string' && p.frontmatter.tags.slice(0, 4).map(tag => (
-            <span class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-1.5 py-0.5">{tag}</span>
-          ))}
-        </div>
-      </a>
-    ))}
-  </div>
+  <ContentList items={posts} basePath="/posts" showDate={true} showTags={true} />
 
-  {posts.length === 0 && (
-    <p class="text-[var(--color-muted)]">No posts yet.</p>
-  )}
+  {posts.length === 0 && <p class="text-[var(--color-muted)]">No posts yet.</p>}
 </BaseLayout>
