@@ -13,7 +13,7 @@ Claude Code plugin that turns a solo founder into a startup factory. 27 skills c
 
 **What it does:** `/research` → `/validate` → `/scaffold` → `/plan` → `/build` → `/deploy` → `/launch`. Each skill is a structured workflow that guides Claude through a specific task.
 
-**GitHub:** [solo-factory](https://github.com/fortunto2/solo-factory) — 14 stars, MIT license.
+**GitHub:** [solo-factory](https://github.com/fortunto2/solo-factory) — MIT license.
 
 **Stack:** Claude Code plugin system (SKILL.md + references/ + scripts/). Skills written as markdown instructions, not code. Agents: researcher (sonnet), code-analyst (haiku), idea-validator (sonnet).
 

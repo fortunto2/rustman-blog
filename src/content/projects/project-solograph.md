@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solograph"
 
 MCP server providing code intelligence across all projects. Scans code with tree-sitter, builds a FalkorDB knowledge graph, serves 15 tools to Claude Code.
 
-**GitHub:** [solograph](https://github.com/fortunto2/solograph) — 3 stars, Python, FalkorDBLite (embedded, no Docker).
+**GitHub:** [solograph](https://github.com/fortunto2/solograph) — Python, FalkorDBLite (embedded, no Docker).
 
 **Key tools:** `codegraph_query` (Cypher), `codegraph_explain` (architecture), `project_code_search` (semantic), `session_search` (past sessions), `kb_search` (knowledge base), `web_search` (SearXNG).
 

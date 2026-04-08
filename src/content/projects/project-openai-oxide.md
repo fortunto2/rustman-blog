@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/openai-oxide"
 
 Idiomatic Rust client for OpenAI API with 1:1 parity to openai-python. Typed responses, streaming, function calling, all models.
 
-**GitHub:** [openai-oxide](https://github.com/fortunto2/openai-oxide) — 20 stars, Rust, published on crates.io.
+**GitHub:** [openai-oxide](https://github.com/fortunto2/openai-oxide) — Rust, published on crates.io.
 
 **Why Rust:** type safety for API contracts (SGR at the language level), zero-cost abstractions for streaming, compile-time guarantees that the client matches the API schema.
 

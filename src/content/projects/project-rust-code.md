@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/rust-code"
 
 AI-powered terminal coding agent written in Rust. TUI interface, BAML-based agent loop for structured tool calling, fuzzy file search, tmux background tasks, MCP support.
 
-**GitHub:** [rust-code](https://github.com/fortunto2/rust-code) — 7 stars, Rust.
+**GitHub:** [rust-code](https://github.com/fortunto2/rust-code) — Rust.
 
 **Architecture:** BAML defines the agent loop schema — structured tool dispatch, not string parsing. The agent uses the same SGR principles as the enterprise RAG challenge winners: schema first, constrained output, validation.
 
