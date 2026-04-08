@@ -6,6 +6,7 @@ export const GET: APIRoute = () => {
   const wiki = getCollection('wiki');
   const projects = getCollection('projects');
   const posts = getCollection('posts');
+  const stacks = getCollection('stacks');
 
   const format = (entries: typeof wiki, section: string) =>
     entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}): ${e.frontmatter.description || ''}`).join('\n');
@@ -18,6 +19,9 @@ ${format(wiki, 'wiki')}
 
 ## Projects
 ${format(projects, 'projects')}
+
+## Stacks (Templates)
+${format(stacks, 'stacks')}
 
 ${posts.length > 0 ? `## Posts\n${format(posts, 'posts')}` : ''}
 
