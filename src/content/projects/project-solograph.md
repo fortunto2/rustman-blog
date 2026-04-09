@@ -3,7 +3,7 @@ type: concept
 description: "Code intelligence MCP server: multi-project code graph, semantic search, session history, knowledge base, web search. 15 tools for Claude Code. FalkorDB + tree-sitter + MLX."
 title: "solograph — code intelligence MCP server"
 created: 2026-02-07
-tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter]
+tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter, python, rust]
 project_type: tool
 course_module: 6
 course_order: 4

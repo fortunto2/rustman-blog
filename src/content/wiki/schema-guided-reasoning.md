@@ -3,7 +3,7 @@ type: concept
 description: "Schema-Guided Reasoning (SGR): all projects built from schemas to logic, not the other way around. Schemas are the contract between AI agent, business logic,..."
 title: "SGR — schemas first, logic second, UI last"
 created: 2026-04-07
-tags: [sgr, schemas, ddd, pydantic, zod, methodology]
+tags: [sgr, schemas, ddd, pydantic, zod, methodology, rust]
 course_module: 4
 course_order: 2
 publish: true

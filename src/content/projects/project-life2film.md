@@ -3,7 +3,7 @@ type: concept
 description: "AI platform that turns everyday moments into meaningful montages. Rust core (video-analyzer, 11 crates), mobile-first, WASM for web. The original dream since 2014, 1M+ users."
 title: "Life2Film — turn everyday moments into meaningful montages"
 created: 2014-01-01
-tags: [project, ios, life2film, video, ai, montage, flagship]
+tags: [project, ios, life2film, video, ai, montage, flagship, rust, wasm]
 project_type: app
 course_module: 7
 course_order: 8

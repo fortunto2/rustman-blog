@@ -3,7 +3,7 @@ type: concept
 title: "Token-efficient web requests — HTTP Accept header trick for agents"
 description: "Reduce agent web request tokens by 80% using content negotiation. Accept: text/markdown header, html2text fallback, truncation strategy."
 created: 2026-04-09
-tags: [agents, tokens, web, optimization, context-engineering]
+tags: [agents, tokens, web, optimization, context-engineering, rust]
 course_module: 5
 course_order: 12
 publish: true
