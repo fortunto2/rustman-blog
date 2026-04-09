@@ -7,6 +7,7 @@ export const GET: APIRoute = () => {
   const projects = getCollection('projects');
   const posts = getCollection('posts');
   const stacks = getCollection('stacks');
+  const skills = getCollection('skills');
 
   const format = (entries: typeof wiki, section: string) =>
     entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}): ${e.frontmatter.description || ''}`).join('\n');
@@ -24,6 +25,8 @@ ${format(projects, 'projects')}
 ${format(stacks, 'stacks')}
 
 ${posts.length > 0 ? `## Posts\n${format(posts, 'posts')}` : ''}
+
+${skills.length > 0 ? `## Skills (Solo Factory)\n${format(skills, 'skills')}` : ''}
 
 ## About
 - [About](/about): Solo founder building products with AI
