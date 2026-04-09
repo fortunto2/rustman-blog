@@ -1,6 +1,6 @@
 ---
 title: "/index-youtube"
-description: "\"index YouTube\", \"add YouTube channel\", \"update video index\", \"index transcripts\", or need searchable YouTube content."
+description: "Need searchable YouTube content"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

@@ -1,6 +1,6 @@
 ---
 title: "/reddit"
-description: "\"reddit comment\", \"engage reddit\", \"build karma\", \"post to reddit\", or need to participate in Reddit threads. NOT for thread discovery (/community-outreach) or social copy (/content-gen)."
+description: "Need to participate in Reddit threads. NOT for thread discovery (/community-outreach) or social copy (/content-gen)"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

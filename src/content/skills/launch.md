@@ -1,6 +1,6 @@
 ---
 title: "/launch"
-description: "\"launch plan\", \"go-to-market\", \"GTM strategy\", \"how to launch\", \"launch checklist\", \"growth plan\", or product is built and needs distribution strategy."
+description: "Product is built and needs distribution strategy"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

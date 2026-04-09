@@ -1,6 +1,6 @@
 ---
 title: "/validate"
-description: "\"validate idea\", \"score this idea\", \"should I build this\", \"go or kill\", \"generate PRD\", \"evaluate opportunity\", or need idea scoring with PRD output."
+description: "Need idea scoring with PRD output"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

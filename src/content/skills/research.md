@@ -1,6 +1,6 @@
 ---
 title: "/research"
-description: "\"research this idea\", \"find competitors\", \"check the market\", \"domain availability\", \"market size\", \"analyze opportunity\", or need evidence before validation."
+description: "Need evidence before validation"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

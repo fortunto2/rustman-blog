@@ -1,6 +1,6 @@
 ---
 title: "/content-gen"
-description: "\"create content\", \"write LinkedIn post\", \"social media pack\", \"marketing copy\", \"promotion content\", or need social posts from PRD."
+description: "Need social posts from PRD"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

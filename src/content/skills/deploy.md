@@ -1,6 +1,6 @@
 ---
 title: "/deploy"
-description: "\"deploy it\", \"push to production\", \"set up hosting\", or after /build completes and project needs hosting."
+description: "After /build completes and project needs hosting"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

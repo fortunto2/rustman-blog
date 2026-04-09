@@ -1,6 +1,6 @@
 ---
 title: "/setup"
-description: "\"set up workflow\", \"configure TDD\", \"wire up dev workflow\", or after /scaffold before /plan to generate workflow config."
+description: "After /scaffold before /plan to generate workflow config"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

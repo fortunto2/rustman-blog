@@ -39,16 +39,21 @@ function extractDescription(content: string): string {
   let desc = match[1].trim();
   // Strip outer quotes
   desc = desc.replace(/^["']|["']$/g, '');
-  // Clean: take first sentence before "Do NOT use"
+  // Clean: take after last comma-separated trigger phrase before "or need/or ..."
+  // Pattern: Use when "x", "y", "z", or need something. Do NOT...
   const doNot = desc.indexOf('Do NOT');
   if (doNot > 0) desc = desc.slice(0, doNot).trim();
-  // Remove "Use when" prefix and trigger patterns
-  desc = desc.replace(/^Use when\s+/, '').replace(/[",]$/, '').trim();
-  // Remove escaped quotes
-  desc = desc.replace(/\\"/g, '"');
+  // Remove "Use when" + all quoted trigger phrases
+  desc = desc.replace(/^Use when\s+/, '');
+  // Remove all "quoted phrases", patterns
+  desc = desc.replace(/"[^"]*",?\s*/g, '');
+  // Clean leftover "or " at start
+  desc = desc.replace(/^or\s+/, '');
+  // Remove trailing comma/period
+  desc = desc.replace(/[,.]$/, '').trim();
   // Capitalize first letter
   if (desc) desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-  return desc;
+  return desc || 'Solo Factory skill';
 }
 
 function main() {

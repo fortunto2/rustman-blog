@@ -1,6 +1,6 @@
 ---
 title: "/factory"
-description: "\"install solo factory\", \"set up solo\", \"install all solo skills\", \"startup toolkit\", \"solo factory setup\", or first-time installation of the startup pipeline."
+description: "First-time installation of the startup pipeline"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

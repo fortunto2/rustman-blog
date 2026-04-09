@@ -1,6 +1,6 @@
 ---
 title: "/humanize"
-description: "\"humanize this\", \"make it sound human\", \"strip AI patterns\", \"clean up the copy\", or text reads like AI-generated output with em dashes and stock phrases."
+description: "Text reads like AI-generated output with em dashes and stock phrases"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

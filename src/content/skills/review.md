@@ -1,6 +1,6 @@
 ---
 title: "/review"
-description: "\"review code\", \"quality check\", \"is it ready to ship\", \"final review\", or after /build or /deploy completes."
+description: "After /build or /deploy completes"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

@@ -1,6 +1,6 @@
 ---
 title: "/scaffold"
-description: "\"scaffold project\", \"create new project\", \"start new app\", \"bootstrap project\", \"set up from PRD\", or need project from PRD + stack template."
+description: "Need project from PRD + stack template"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

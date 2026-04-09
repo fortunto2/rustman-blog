@@ -1,6 +1,6 @@
 ---
 title: "/video-promo"
-description: "\"create video\", \"promo video\", \"video script\", \"storyboard\", \"demo video\", \"product video plan\", or need video marketing material."
+description: "Need video marketing material"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

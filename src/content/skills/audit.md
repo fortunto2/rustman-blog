@@ -1,6 +1,6 @@
 ---
 title: "/audit"
-description: "\"audit KB\", \"check frontmatter\", \"find broken links\", \"tag cleanup\", \"knowledge base quality\", or docs need health check."
+description: "Docs need health check"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

@@ -1,6 +1,6 @@
 ---
 title: "/you2idea-extract"
-description: "\"extract ideas from YouTube\", \"index YouTube video\", \"find startup ideas in video\", \"analyze YouTube for ideas\", \"what ideas are in this video\", or mining video content for business opportunities."
+description: "Mining video content for business opportunities"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

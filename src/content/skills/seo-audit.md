@@ -1,6 +1,6 @@
 ---
 title: "/seo-audit"
-description: "\"check SEO\", \"audit this page\", \"SEO score\", \"check meta tags\", \"SERP position\", or need website SEO health check."
+description: "Need website SEO health check"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

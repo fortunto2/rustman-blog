@@ -1,6 +1,6 @@
 ---
 title: "/skill-audit"
-description: "\"audit skill\", \"review skill quality\", \"check skill\", \"skill score\", \"skill checklist\", \"is this skill good\", or evaluating skill against best practices."
+description: "Evaluating skill against best practices"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

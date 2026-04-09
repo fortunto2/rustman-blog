@@ -1,6 +1,6 @@
 ---
 title: "/legal"
-description: "\"privacy policy\", \"terms of service\", \"legal pages\", \"GDPR\", \"CCPA\", \"app store legal\", or project needs compliance documents."
+description: "Project needs compliance documents"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

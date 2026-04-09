@@ -1,6 +1,6 @@
 ---
 title: "/retro"
-description: "\"retro\", \"evaluate pipeline\", \"what went wrong\", \"pipeline review\", \"check pipeline logs\", or after pipeline completes and needs quality assessment."
+description: "After pipeline completes and needs quality assessment"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

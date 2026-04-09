@@ -1,6 +1,6 @@
 ---
 title: "/sgr"
-description: "\"design schemas\", \"structured output\", \"agent loop\", \"SGR\", \"constrained decoding\", \"tool dispatch\", \"Pydantic schema for LLM\", or need to design a schema-guided reasoning pipeline for an agent or API."
+description: "Need to design a schema-guided reasoning pipeline for an agent or API"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

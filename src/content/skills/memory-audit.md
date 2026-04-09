@@ -1,6 +1,6 @@
 ---
 title: "/memory-audit"
-description: "\"audit memory\", \"check CLAUDE.md\", \"memory map\", \"rules audit\", \"context budget\", \"what loads in my session\", or need to optimize agent context loading."
+description: "Need to optimize agent context loading"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

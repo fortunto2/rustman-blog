@@ -1,6 +1,6 @@
 ---
 title: "/plan"
-description: "\"plan this feature\", \"create implementation plan\", \"write a spec\", \"battle plan\", describing a feature/bug/refactor, or need task breakdown before building."
+description: "Describing a feature/bug/refactor, or need task breakdown before building"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

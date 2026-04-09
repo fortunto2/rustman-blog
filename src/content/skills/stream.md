@@ -1,6 +1,6 @@
 ---
 title: "/stream"
-description: "\"help me decide\", \"should I do this\", \"evaluate decision\", \"STREAM analysis\", \"run decision framework\", \"pros and cons\", or facing a high-stakes founder choice."
+description: "Facing a high-stakes founder choice"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

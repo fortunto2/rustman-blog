@@ -1,6 +1,6 @@
 ---
 title: "/build"
-description: "\"build it\", \"start building\", \"execute plan\", \"implement tasks\", \"ship it\", track ID referenced, or plan tasks need execution."
+description: "Track ID referenced, or plan tasks need execution"
 created: 2026-04-09
 tags: [skill, development, solo-factory]
 phase: "development"

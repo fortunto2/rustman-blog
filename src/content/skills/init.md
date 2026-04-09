@@ -1,6 +1,6 @@
 ---
 title: "/init"
-description: "\"set up solo factory\", \"initialize profile\", \"configure defaults\", \"first time setup\", \"onboard me\", or first session in solo-factory. Safe to re-run."
+description: "First session in solo-factory. Safe to re-run"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

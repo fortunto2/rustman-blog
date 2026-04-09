@@ -1,6 +1,6 @@
 ---
 title: "/swarm"
-description: "\"swarm research\", \"parallel research\", \"investigate fast\", \"3 agents\", \"team research\", or want faster multi-angle alternative to /research."
+description: "Want faster multi-angle alternative to /research"
 created: 2026-04-09
 tags: [skill, analysis, solo-factory]
 phase: "analysis"

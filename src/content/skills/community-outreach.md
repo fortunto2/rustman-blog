@@ -1,6 +1,6 @@
 ---
 title: "/community-outreach"
-description: "\"find communities\", \"draft outreach\", \"Reddit promotion\", \"ProductHunt launch\", \"community marketing\", or need to find relevant threads for launch."
+description: "Need to find relevant threads for launch"
 created: 2026-04-09
 tags: [skill, promotion, solo-factory]
 phase: "promotion"

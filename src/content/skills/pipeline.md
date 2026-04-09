@@ -1,6 +1,6 @@
 ---
 title: "/pipeline"
-description: "\"run pipeline\", \"automate research to PRD\", \"full pipeline\", \"research and validate\", \"scaffold to build\", \"loop until done\", \"chain skills\", or need multi-skill automation."
+description: "Need multi-skill automation"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"
