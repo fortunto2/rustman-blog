@@ -19,6 +19,8 @@ Benchmarks answer the question: "Does my agent actually work, or does it just lo
 |-----------|--------------|-------|------------|------|
 | **SWE-bench** | Fix real GitHub issues | 2,294 (full) / 300 (Verified) | % resolved | [swebench.com](https://www.swebench.com/) |
 | **SWE-bench ES3** | Extended real-world SWE tasks | Expanded set | % resolved | [swe-bench.github.io](https://swe-bench.github.io/) |
+| **Terminal-Bench 2.0** | Terminal agent tasks (kernel build, git servers, async debug, CTF) | 100 validated | Pass rate (k=5 trials) | [tbench.ai](https://www.tbench.ai/) |
+| **Aider Polyglot** | Code generation across 6 languages incl. Rust | 225 (Exercism) | % passing tests | [github.com/Aider-AI](https://github.com/Aider-AI/aider) |
 | **PAC-1** | Personal & trustworthy agents | 43 tasks | Score / 43 | [bitgn.com/l/pac1-dev](https://bitgn.com/l/pac1-dev) |
 | **PinchBench** | LLM as OpenClaw coding agent | 23 tasks, 8 categories | Averaged score | [pinchbench.com](https://pinchbench.com) |
 
@@ -56,6 +58,30 @@ Evaluates LLM models as OpenClaw coding agents across 8 categories:
 **Scoring:** automated grading + LLM judge (nuanced quality). 23 real-world tasks. Results on [pinchbench.com](https://pinchbench.com).
 
 **Key insight:** tests practical agent capabilities (tool usage, multi-step reasoning, ambiguous instructions), not isolated LLM knowledge.
+
+### Terminal-Bench 2.0
+
+The de-facto standard for terminal agent evaluation. 100 tasks validated by humans and LMs for solvability and realism. Tasks: kernel builds, git server setup, async debugging, COBOL modernization, security CTFs.
+
+**Harness:** [Harbor framework](https://github.com/harbor-framework/terminal-bench-2) — rewritten from scratch for reliability and parallelism. Built-in agents: Claude Code, Codex, Terminus-2, Aider, Oracle (ground truth).
+
+**Running your own agent:** `BaseInstalledAgent` (if CLI) or `BaseAgent` (full control via `perform_task()`). Custom agent wrapper is ~40 lines.
+
+**Practical notes:**
+- Apple Silicon: x86 container conflicts — use Daytona/Modal instead of local Docker
+- Some tasks run 2+ hours (COBOL modernization)
+- Leaderboard requires k=5 trials minimum (high variance: DeepAgents showed 40.4% vs 44.9% between runs)
+- ~$10-20 via Daytona for a full parallel run (32 trials/hour)
+
+### Aider Polyglot
+
+225 Exercism tasks across 6 languages (Python, Rust, Go, JS, Java, C#). Simpler than TB2 — `cargo test` / `pytest` validation, no containers needed for Mac.
+
+**Format:** 2 attempts per task. First solo, second with test feedback. Close to real agentic loop.
+
+**Why useful for agent comparison:** headless mode for all major agents — `rust-code -p`, `codex exec --full-auto`, `claude -p`. Same dataset = comparable scores. Can filter `--languages rust` for Rust-only subset (~50 tasks).
+
+**Key metrics:** pass rate attempt 1 / attempt 2, avg loop steps, token usage per task, edit accuracy (valid patch on first try).
 
 ---
 

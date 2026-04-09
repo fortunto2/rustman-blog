@@ -27,6 +27,10 @@ SGR is the technical implementation of DDD:
 
 By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data class + kotlinx.serialization (Kotlin). See SGR in practice: [openai-oxide](https://github.com/fortunto2/openai-oxide) (Rust client with typed responses), [rust-code](https://github.com/fortunto2/rust-code) (structured agent loop).
 
+**Skill:** `/sgr` in [solo-factory](https://github.com/fortunto2/solo-factory) — design and implement SGR pipelines (NextStep agent loop, analysis cascade, tool dispatch). 4 reference files incl. working 304-line demo.
+
+**Libraries:** [sgr-agent](https://github.com/fortunto2/rust-code) crate v0.6.1 (Rust core for SGR agents), [sgr-agent-core](https://github.com/vamplabAI/sgr-agent-core) (Python, 1K+ stars), [openai-oxide](https://github.com/fortunto2/openai-oxide) (typed Rust client).
+
 - [[dev-principles-summary]] — origin: SGR section
 - [[context-engineering]] — agent reading schemas first = context engineering for code
 - [[harness-engineering-summary]] — schemas as architectural constraints (component 2)

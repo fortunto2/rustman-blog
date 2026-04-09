@@ -29,3 +29,5 @@ source_path: "1-methodology/sgr/sgr-complete.md"
 - [[context-engineering]] — schemas ARE context: agent reads them first to understand domain
 - [[enterprise-rag-challenge]] — ERC winners validate SGR: structured outputs beat vector search
 - [[tool-calling-four-layers]] — tool calling uses the same constrained decoding as SGR structured outputs
+
+**Practical:** use `/sgr` skill in solo-factory to design SGR pipelines. Rust: `sgr-agent` crate. Python: [sgr-agent-core](https://github.com/vamplabAI/sgr-agent-core).
