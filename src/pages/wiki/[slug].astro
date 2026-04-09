@@ -4,6 +4,7 @@ import BackLink from '../../components/BackLink.astro';
 import ArticleMeta from '../../components/ArticleMeta.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
 import RelatedByTags from '../../components/RelatedByTags.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -20,6 +21,11 @@ const post = renderMarkdown(entry.raw);
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
   <BackLink href="/wiki" label="Wiki" />
+
+  {post.frontmatter.source_url && post.frontmatter.source_url.includes('youtu') && (
+    <YouTubeEmbed url={post.frontmatter.source_url} title={post.frontmatter.title} />
+  )}
+
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:wiki">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>

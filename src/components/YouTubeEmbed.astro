@@ -1,0 +1,45 @@
+---
+/**
+ * Auto YouTube embed from URL. Extracts video ID from various YouTube URL formats.
+ * Props:
+ *   url — any YouTube URL (watch, youtu.be, embed)
+ *   title — optional video title for accessibility
+ */
+interface Props {
+  url: string;
+  title?: string;
+}
+
+const { url, title = 'Video' } = Astro.props;
+
+function extractYouTubeId(url: string): string | null {
+  const patterns = [
+    /youtu\.be\/([^?&]+)/,
+    /youtube\.com\/watch\?v=([^?&]+)/,
+    /youtube\.com\/embed\/([^?&]+)/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+const videoId = extractYouTubeId(url);
+---
+
+{videoId && (
+  <div class="not-prose my-6">
+    <iframe
+      width="100%"
+      height="400"
+      src={`https://www.youtube.com/embed/${videoId}`}
+      title={title}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="border-radius: 8px;"
+      loading="lazy"
+    ></iframe>
+  </div>
+)}
