@@ -21,6 +21,21 @@ cargo install rust-code                  # crates.io
 rust-code doctor --fix                   # install deps (tmux, ripgrep)
 ```
 
+## Why This Exists
+
+An alternative to Claude Code, built for my workflow:
+
+1. **SGR-driven agent loop** — prompts are compiled schemas, not markdown files. Structured tool dispatch via typed Rust enums, not string parsing
+2. **Background tasks on tmux** — sessions you can monitor, detach, reattach. Why doesn't everyone do this?
+3. **Fuzzy search everywhere** — git history, file picker, skill browser, all on F1-F10 keys. Everything searchable instantly
+4. **Rust** — fast compiler, strict types, one binary. What I was forcing with Pydantic in Python is native here
+5. **Memory system built-in** — no need to install plugins, skills, config files. Everything pre-configured out of the box
+6. **Minimal dependencies** — but has everything: skills, MCP, tools, sessions
+
+> "With agents, the more typed and strict the language, the better. Python is for humans — but IDEs aren't needed anymore."
+
+Also contains **sgr-agent** crate (v0.6.1) — the core library for building any Rust SGR agent. Structured output, function calling, agent loop, 3 agent variants.
+
 ## Usage
 
 ```bash

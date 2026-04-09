@@ -105,7 +105,10 @@ Autonomous long-running execution systems. State machines, crash recovery, git i
 
 | Tool | Stars | Architecture | Platform | Key Feature |
 |------|-------|-------------|----------|-------------|
+| [Symphony](https://github.com/openai/symphony) | 15K | Isolated implementation runs | Elixir, OpenAI | Manage work, not supervise agents |
 | [GSD-2](https://github.com/gsd-build/gsd-2) | 5K | Milestone → Slice → Task | Pi SDK (20+ providers) | Autonomous multi-session execution |
+
+**Symphony** (15K stars, OpenAI) — turns project work into isolated, autonomous implementation runs. Teams manage work instead of supervising agents. Elixir-based. Each run is isolated — no context leaking between tasks. OpenAI's answer to "how to let agents work on real projects."
 
 **GSD-2 (Get Shit Done 2)** — autonomous coding agent with hierarchical project management:
 - **Milestone** → shippable version (4-10 slices)
