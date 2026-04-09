@@ -8,7 +8,7 @@
     "build": "astro build && npx pagefind --site dist",
     "preview": "astro preview",
     "deploy": "pnpm build && wrangler pages deploy dist",
-    "collect": "tsx scripts/collect-content.ts",
+    "collect": "tsx scripts/collect-content.ts && tsx scripts/collect-skills.ts",
     "links": "tsx scripts/check-links.ts"
   },
   "keywords": [

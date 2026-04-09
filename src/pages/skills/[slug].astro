@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BackLink from '../../components/BackLink.astro';
+import SourceFooter from '../../components/SourceFooter.astro';
+import { getCollection } from '../../lib/content';
+import { renderMarkdown } from '../../lib/md';
+
+export function getStaticPaths() {
+  return getCollection('skills').map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const post = renderMarkdown(entry.raw);
+---
+
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
+  <BackLink href="/skills" label="Skills" />
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:skills">
+    {post.frontmatter.title && !post.hasH1 && (
+      <h1>{post.frontmatter.title}</h1>
+    )}
+    <Fragment set:html={post.html} />
+  </article>
+
+  <SourceFooter sourceUrls={post.frontmatter.source_url} />
+</BaseLayout>

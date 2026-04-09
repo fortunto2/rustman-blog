@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
+import { getCollection } from '../../lib/content';
+
+const all = getCollection('skills');
+const phases = ['analysis', 'development', 'promotion', 'utility'];
+const grouped = phases.map(phase => ({
+  phase,
+  items: all
+    .filter(s => s.frontmatter.phase === phase)
+    .sort((a, b) => (a.frontmatter.phase_order || 99) - (b.frontmatter.phase_order || 99)),
+})).filter(g => g.items.length > 0);
+
+const ungrouped = all.filter(s => !phases.includes(s.frontmatter.phase));
+---
+
+<BaseLayout title="Skills" description="Solo Factory executable skills — 30 commands for the full startup pipeline." section="skills">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">Solo Factory Skills</h1>
+    <p class="text-[var(--color-muted)]">30 executable skills. Pipeline: research → validate → scaffold → build → deploy → launch.</p>
+    <p class="text-sm text-[var(--color-muted)] mt-1">Install: <code class="text-xs">npx skills add fortunto2/solo-factory --all</code></p>
+  </div>
+
+  {grouped.map(({ phase, items }) => (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt capitalize">{phase}</h2>
+      <ContentList items={items} basePath="/skills" showDate={false} showTags={false} />
+    </section>
+  ))}
+
+  {ungrouped.length > 0 && (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Other</h2>
+      <ContentList items={ungrouped} basePath="/skills" showDate={false} showTags={false} />
+    </section>
+  )}
+</BaseLayout>

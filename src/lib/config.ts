@@ -22,6 +22,7 @@ export const SITE = {
     { href: '/posts', label: 'Posts' },
     { href: '/wiki', label: 'Wiki' },
     { href: '/projects', label: 'Projects' },
+    { href: '/skills', label: 'Skills' },
     { href: '/stacks', label: 'Stacks' },
     { href: '/about', label: 'About' },
   ],

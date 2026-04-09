@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { parseFrontmatter, type Frontmatter } from './md';
 
-export type Section = 'wiki' | 'projects' | 'posts' | 'stacks';
+export type Section = 'wiki' | 'projects' | 'posts' | 'stacks' | 'skills';
 
 export interface ContentEntry {
   slug: string;
