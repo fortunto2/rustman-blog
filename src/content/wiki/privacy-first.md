@@ -5,6 +5,8 @@ title: "Privacy-First Architecture"
 created: 2026-04-07
 updated: 2026-04-07
 tags: [hub, privacy, architecture, offline-first]
+course_module: 4
+course_order: 5
 publish: true
 ---
 

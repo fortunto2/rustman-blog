@@ -4,6 +4,8 @@ description: "How tool calling actually works under the hood: HTTP API → Jinja
 title: "Tool calling internals — four layers from HTTP to parser"
 created: 2026-04-08
 tags: [tool-calling, llm, inference, constrained-decoding, vllm, chat-template, xgrammar]
+course_module: 5
+course_order: 13
 publish: true
 source_url: "https://t.me/neuraldeep/2047"
 ---

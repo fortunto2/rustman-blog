@@ -4,6 +4,8 @@ description: "Build multiple small products instead of going all-in on one. Piet
 title: "Portfolio approach — multiple small bets, not one big bet"
 created: 2026-02-11
 tags: [patterns, portfolio, barbell, risk, indie-hacker]
+course_module: 1
+course_order: 6
 publish: true
 source_path: "2-inspiration/patterns.md"
 ---

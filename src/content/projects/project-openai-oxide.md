@@ -4,6 +4,8 @@ description: "1:1 parity with openai-python. Typed responses, streaming, functio
 title: "openai-oxide — idiomatic Rust client for OpenAI API"
 created: 2026-03-01
 tags: [project, open-source, rust, openai, api-client, crate]
+course_module: 7
+course_order: 1
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/openai-oxide"

@@ -4,6 +4,8 @@ description: "Claude Code plugin with 27 startup skills and 3 agents. Pipeline: 
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
 tags: [project, open-source, claude-code, plugin, skills, agents]
+course_module: 6
+course_order: 1
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solo-factory"

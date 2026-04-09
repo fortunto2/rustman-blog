@@ -4,6 +4,8 @@ description: "Multi-project code graph with FalkorDB, tree-sitter AST, MLX embed
 title: "solograph — code intelligence MCP server"
 created: 2026-02-07
 tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter]
+course_module: 6
+course_order: 4
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solograph"

@@ -5,6 +5,8 @@ title: "Startup Validation"
 created: 2026-04-07
 updated: 2026-04-07
 tags: [hub, validation, ideas]
+course_module: 3
+course_order: 3
 publish: true
 ---
 

@@ -4,6 +4,8 @@ description: "Five underserved market intersections where no competitor operates
 title: "2026 validated app ideas — homeschool, family productivity, privacy-first"
 created: 2026-01-10
 tags: [opportunities, homeschool, privacy, on-device-ai, mobile, validation]
+course_module: 3
+course_order: 5
 publish: true
 source_path: "4-opportunities/2026-validated-apps.md"
 ---

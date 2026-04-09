@@ -4,6 +4,8 @@ description: "The economic argument for context graphs: agent decision traces ar
 title: "Decision traces compound — each agent action improves future ones"
 created: 2026-04-07
 tags: [context-graphs, compound-learning, flywheel, agents]
+course_module: 5
+course_order: 9
 publish: true
 source_path: "1-methodology/context-graphs.md"
 ---

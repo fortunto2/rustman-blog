@@ -4,6 +4,8 @@ description: "The single most important principle from harness engineering: when
 title: "Agent mistake → fix the harness, not the prompt"
 created: 2026-04-07
 tags: [harness, agents, methodology, debugging]
+course_module: 5
+course_order: 3
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 ---

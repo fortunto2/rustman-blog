@@ -4,6 +4,8 @@ description: "LLM agents (Claude Code, Codex, Gemini CLI) run with full filesyst
 title: "Agent sandboxing — safe LLM agent execution on Mac"
 created: 2026-02-11
 tags: [agents, security, sandbox, vm, macos, privacy, isolation]
+course_module: 5
+course_order: 5
 publish: true
 source_path: "1-methodology/agent-sandboxing.md"
 ---

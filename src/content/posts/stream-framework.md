@@ -6,6 +6,8 @@ description: "Personal decision system: Scope, Time, Route, Exposure, Audience, 
 created: 2024-12-20
 updated: 2026-02-07
 tags: [stream, decision-framework, ikigai, systems-thinking, principles]
+course_module: 2
+course_order: 1
 publish: true
 publish_as: post
 source_path: "0-principles/stream-framework.md"

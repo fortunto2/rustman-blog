@@ -4,6 +4,8 @@ title: "MemPalace — spatial memory architecture for AI agents"
 description: "Open-source local-first memory system: 96.6% on LongMemEval, palace metaphor (wings/rooms/halls), ChromaDB + SQLite knowledge graph, 19 MCP tools."
 created: 2026-04-09
 tags: [memory, agents, tools, mcp, rag, open-source]
+course_module: 5
+course_order: 7
 publish: true
 source_url: "https://github.com/milla-jovovich/mempalace"
 ---

@@ -4,6 +4,8 @@ description: "Knowledge graph of source code across all projects. Scans files, s
 title: "CodeGraph — code intelligence across all projects via FalkorDB + tree-sitter"
 created: 2026-02-07
 tags: [codegraph, graph, code-intelligence, falkordb, tree-sitter, mcp, solograph]
+course_module: 6
+course_order: 3
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
 ---

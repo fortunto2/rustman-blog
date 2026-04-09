@@ -4,6 +4,8 @@ description: "One of three harness engineering components. The idea: agent conte
 title: "Context engineering — context as code"
 created: 2026-04-07
 tags: [context, agents, claude-md, progressive-disclosure, harness]
+course_module: 5
+course_order: 2
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 ---

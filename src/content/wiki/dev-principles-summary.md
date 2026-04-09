@@ -4,6 +4,8 @@ description: "993-line reference document applied to every project regardless of
 title: "Universal Development Principles — every project, any stack"
 created: 2026-04-07
 tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, agents, methodology]
+course_module: 4
+course_order: 1
 publish: true
 source_path: "1-methodology/dev-principles.md"
 ---

@@ -4,6 +4,8 @@ title: "Agent Memory Architecture — From Working Memory to Compound Learning"
 description: "How to build memory for AI agents: 4 memory types, 3 operational loops, 5 systems compared. From dict-based v1 to spatial palaces and knowledge graphs."
 created: 2026-04-09
 tags: [agents, memory, architecture, methodology, rag, context-engineering]
+course_module: 5
+course_order: 6
 publish: true
 publish_as: post
 source_path: "1-methodology/agent-memory-architecture.md"

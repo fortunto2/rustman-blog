@@ -4,6 +4,8 @@ description: "Unified infrastructure for multiple mini-startups. Two principles:
 title: "Infrastructure: two tools, serverless by default"
 created: 2026-04-07
 tags: [infra, sst, pulumi, cloudflare, hetzner, serverless, deployment]
+course_module: 4
+course_order: 6
 publish: true
 source_path: "1-methodology/infra-prd.md"
 ---

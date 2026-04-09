@@ -4,6 +4,8 @@ description: "The antidote to "platform thinking": don't build a platform, don't
 title: "One pain → one feature → launch"
 created: 2026-02-11
 tags: [manifesto, shipping, lean, focus]
+course_module: 2
+course_order: 6
 publish: true
 source_path: "0-principles/manifest.md"
 ---

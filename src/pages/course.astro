@@ -1,189 +1,88 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/config';
+import { getAllContent } from '../lib/content';
 
-const modules = [
-  {
-    id: 1,
-    title: 'Mindset & Philosophy',
-    description: 'Why build. What to believe. How to think about risk, creativity, and freedom.',
-    outcome: 'Clear personal manifesto. Decision framework installed.',
-    items: [
-      { href: '/posts/manifest', title: 'Solo Founder Manifesto', type: 'post' },
-      { href: '/wiki/origin-story', title: 'Origin Story', type: 'wiki' },
-      { href: '/wiki/antifragile-life-design', title: 'Antifragile Life Design', type: 'wiki' },
-      { href: '/wiki/ikigai-micro-joys', title: 'Ikigai as Micro-Joys', type: 'wiki' },
-      { href: '/wiki/optimizer-syndrome', title: 'Optimizer Syndrome', type: 'wiki' },
-      { href: '/wiki/portfolio-approach', title: 'Portfolio Approach', type: 'wiki' },
-      { href: '/wiki/privacy-as-architecture', title: 'Privacy is Architecture', type: 'wiki' },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Decision Making',
-    description: 'Frameworks for decisions at every level — from epistemics to daily ops.',
-    outcome: 'STREAM framework applied to one real decision. Kill/iterate/scale thresholds set.',
-    items: [
-      { href: '/posts/stream-framework', title: 'STREAM Framework', type: 'post' },
-      { href: '/wiki/stream-six-layers', title: 'STREAM: Principles as Hierarchy', type: 'wiki' },
-      { href: '/wiki/decision-framework-5-steps', title: '5-Step Decision Framework', type: 'wiki' },
-      { href: '/wiki/decision-making', title: 'Decision Making Hub', type: 'wiki' },
-      { href: '/wiki/kill-iterate-scale', title: 'Kill / Iterate / Scale', type: 'wiki' },
-      { href: '/wiki/one-pain-one-feature-launch', title: 'One Pain, One Feature, Launch', type: 'wiki' },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Validation & Launch',
-    description: 'From niche selection to live product with traffic in 5-9 days.',
-    outcome: 'One niche scored via S.E.E.D. Fake-door test run. Go/kill decision made.',
-    items: [
-      { href: '/posts/launch-playbook', title: 'Launch Playbook', type: 'post' },
-      { href: '/wiki/seed-niche-scoring', title: 'S.E.E.D. Niche Scoring', type: 'wiki' },
-      { href: '/wiki/startup-validation', title: 'Startup Validation Hub', type: 'wiki' },
-      { href: '/wiki/solopreneur-patterns-summary', title: 'Solopreneur Success Patterns', type: 'wiki' },
-      { href: '/wiki/validated-apps-2026', title: '2026 Validated App Ideas', type: 'wiki' },
-      { href: '/wiki/inspiration-sources', title: 'Inspiration Sources', type: 'wiki' },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Engineering Foundations',
-    description: 'Schemas first, CLI-first, clean architecture, privacy by design.',
-    outcome: 'Project scaffolded from stack template. CLAUDE.md configured. Pre-commit hooks running.',
-    items: [
-      { href: '/wiki/dev-principles-summary', title: 'Universal Dev Principles', type: 'wiki' },
-      { href: '/wiki/schema-guided-reasoning', title: 'Schema-Guided Reasoning (SGR)', type: 'wiki' },
-      { href: '/wiki/sgr-deep-dive', title: 'SGR Complete Guide', type: 'wiki' },
-      { href: '/wiki/cli-first-testing', title: 'CLI-First Testing', type: 'wiki' },
-      { href: '/wiki/privacy-first', title: 'Privacy-First Architecture', type: 'wiki' },
-      { href: '/wiki/infra-two-tools', title: 'Infrastructure: Two Tools', type: 'wiki' },
-      { href: '/wiki/background-jobs-ladder', title: 'Background Jobs Ladder', type: 'wiki' },
-      { href: '/wiki/kmp-sync-strategy', title: 'KMP Sync Strategy', type: 'wiki' },
-      { href: '/wiki/posthog-cross-platform', title: 'PostHog Analytics', type: 'wiki' },
-    ],
-  },
-  {
-    id: 5,
-    title: 'AI Agent Engineering',
-    description: 'Harness, memory, context, testing, code review with agents. The core of the course.',
-    outcome: 'Harness file tuned. Memory system configured. Agent does reliable work on your real tasks.',
-    items: [
-      { href: '/posts/harness-engineering', title: 'Harness Engineering', type: 'post' },
-      { href: '/wiki/context-engineering', title: 'Context Engineering', type: 'wiki' },
-      { href: '/wiki/agent-mistake-fix-harness', title: 'Agent Mistake = Fix the Harness', type: 'wiki' },
-      { href: '/wiki/agent-self-discipline', title: 'Agent Self-Discipline', type: 'wiki' },
-      { href: '/wiki/agent-sandboxing', title: 'Agent Sandboxing', type: 'wiki' },
-      { href: '/posts/agent-memory-architecture', title: 'Agent Memory Architecture', type: 'post' },
-      { href: '/wiki/mempalace-agent-memory', title: 'MemPalace', type: 'wiki' },
-      { href: '/posts/context-graphs', title: 'Context Graphs', type: 'post' },
-      { href: '/wiki/decision-traces-compound', title: 'Decision Traces Compound', type: 'wiki' },
-      { href: '/wiki/rag-patterns', title: 'RAG Patterns', type: 'wiki' },
-      { href: '/wiki/enterprise-rag-challenge', title: 'Enterprise RAG Challenge', type: 'wiki' },
-      { href: '/wiki/token-efficient-web-requests', title: 'Token-Efficient Web Requests', type: 'wiki' },
-      { href: '/wiki/tool-calling-four-layers', title: 'Tool Calling Internals', type: 'wiki' },
-      { href: '/wiki/agent-benchmarks', title: 'Agent Benchmarks', type: 'wiki' },
-      { href: '/wiki/apple-on-device-ai', title: 'Apple Foundation Models', type: 'wiki' },
-    ],
-  },
-  {
-    id: 6,
-    title: 'Solo Factory: The Toolkit',
-    description: 'Claude Code plugin as the practical framework. 30 skills grouped by pipeline phase. Use as-is or build your own.',
-    outcome: 'Solo-factory installed. 3-5 skills used on a real project. Custom skill created.',
-    items: [
-      { href: '/projects/project-solo-factory', title: 'Solo Factory — Overview', type: 'project' },
-      { href: '/wiki/agent-toolkit-landscape', title: 'Agent Toolkit Landscape', type: 'wiki' },
-      { href: '/wiki/codegraph-guide', title: 'CodeGraph Guide', type: 'wiki' },
-      { href: '/projects/project-solograph', title: 'Solograph — Memory in Practice', type: 'project' },
-      { href: '/wiki/llm-providers-credits', title: 'LLM Providers & Startup Credits', type: 'wiki' },
-    ],
-  },
-  {
-    id: 7,
-    title: 'Case Studies',
-    description: 'Real projects demonstrating the principles. Each one: problem, approach, result, lessons.',
-    outcome: 'Your own project shipped end-to-end using the methodology.',
-    items: [
-      { href: '/projects/project-openai-oxide', title: 'openai-oxide — Rust crate via pipeline', type: 'project' },
-      { href: '/projects/project-rust-code', title: 'rust-code — AI agent in Rust', type: 'project' },
-      { href: '/projects/project-airq', title: 'airq — Rust CLI + WASM + sensors', type: 'project' },
-      { href: '/projects/project-invoice-crm', title: 'Invoice CRM — privacy-first tool', type: 'project' },
-      { href: '/projects/project-you2idea', title: 'You2Idea — idea search from YouTube', type: 'project' },
-      { href: '/projects/project-superduperai', title: 'SuperDuperAI — the studio', type: 'project' },
-      { href: '/projects/project-superstoryboard', title: 'SuperStoryboard — hackathon win', type: 'project' },
-      { href: '/projects/project-life2film', title: 'Life2Film — 1M+ users', type: 'project' },
-      { href: '/projects/project-facealarm', title: 'FaceAlarm — on-device AI', type: 'project' },
-      { href: '/projects/project-kubizbeat', title: 'KubizBeat — cultural tech', type: 'project' },
-    ],
-  },
-];
+const MODULE_META: Record<number, { title: string; description: string; outcome: string }> = {
+  1: { title: 'Mindset & Philosophy', description: 'Why build. What to believe. How to think about risk, creativity, and freedom.', outcome: 'Clear personal manifesto. Decision framework installed.' },
+  2: { title: 'Decision Making', description: 'Frameworks for decisions at every level — from epistemics to daily ops.', outcome: 'STREAM framework applied to one real decision. Kill/iterate/scale thresholds set.' },
+  3: { title: 'Validation & Launch', description: 'From niche selection to live product with traffic in 5-9 days.', outcome: 'One niche scored via S.E.E.D. Fake-door test run. Go/kill decision made.' },
+  4: { title: 'Engineering Foundations', description: 'Schemas first, CLI-first, clean architecture, privacy by design.', outcome: 'Project scaffolded from stack template. CLAUDE.md configured. Pre-commit hooks running.' },
+  5: { title: 'AI Agent Engineering', description: 'Harness, memory, context, testing, code review with agents. The core of the course.', outcome: 'Harness file tuned. Memory system configured. Agent does reliable work on your real tasks.' },
+  6: { title: 'Solo Factory: The Toolkit', description: 'Claude Code plugin as the practical framework. 30 skills grouped by pipeline phase.', outcome: 'Solo-factory installed. 3-5 skills used on a real project. Custom skill created.' },
+  7: { title: 'Case Studies', description: 'Real projects demonstrating the principles. Each one: problem, approach, result, lessons.', outcome: 'Your own project shipped end-to-end using the methodology.' },
+};
 
-const skills = [
-  {
-    phase: 'Analysis',
-    color: 'text-blue-400',
-    items: [
-      { name: 'research', desc: 'Market research, competitors, evidence' },
-      { name: 'swarm', desc: 'Parallel 3-agent research' },
-      { name: 'validate', desc: 'STREAM scoring + PRD generation' },
-      { name: 'stream', desc: 'Decision framework for founder choices' },
-      { name: 'you2idea-extract', desc: 'Mine startup ideas from YouTube' },
-    ],
-  },
-  {
-    phase: 'Development',
-    color: 'text-green-400',
-    items: [
-      { name: 'scaffold', desc: 'New project from PRD + stack template' },
-      { name: 'setup', desc: 'TDD workflow, dev environment' },
-      { name: 'plan', desc: 'Spec + phased implementation plan' },
-      { name: 'build', desc: 'Execute plan tasks, TDD, commit' },
-      { name: 'deploy', desc: 'Push to production' },
-      { name: 'review', desc: 'Quality check before ship' },
-    ],
-  },
-  {
-    phase: 'Promotion',
-    color: 'text-yellow-400',
-    items: [
-      { name: 'launch', desc: 'GTM strategy, distribution plan' },
-      { name: 'landing-gen', desc: 'Landing page from PRD' },
-      { name: 'content-gen', desc: 'Social media pack' },
-      { name: 'video-promo', desc: 'Video script + storyboard' },
-      { name: 'community-outreach', desc: 'Find communities, draft posts' },
-      { name: 'reddit', desc: 'Reddit engagement + karma' },
-      { name: 'github-outreach', desc: 'Target competitor dependents' },
-      { name: 'seo-audit', desc: 'SEO health check' },
-      { name: 'metrics-track', desc: 'PostHog events, funnels, KPIs' },
-      { name: 'legal', desc: 'Privacy policy, ToS, GDPR' },
-      { name: 'humanize', desc: 'Strip AI patterns from copy' },
-    ],
-  },
-  {
-    phase: 'Utility',
-    color: 'text-purple-400',
-    items: [
-      { name: 'init', desc: 'First-time solo-factory setup' },
-      { name: 'factory', desc: 'Install all skills at once' },
-      { name: 'pipeline', desc: 'Chain skills: research to deploy' },
-      { name: 'retro', desc: 'Pipeline quality review' },
-      { name: 'audit', desc: 'Knowledge base health check' },
-      { name: 'memory-audit', desc: 'CLAUDE.md + context budget' },
-      { name: 'skill-audit', desc: 'Skill quality review' },
-      { name: 'index-youtube', desc: 'Index YouTube transcripts' },
-    ],
-  },
-];
+// Build course from frontmatter course_module + course_order
+const all = getAllContent();
+const courseItems = all.filter(e => e.frontmatter.course_module);
+
+const modulesMap = new Map<number, typeof courseItems>();
+for (const item of courseItems) {
+  const mod = Number(item.frontmatter.course_module);
+  if (!modulesMap.has(mod)) modulesMap.set(mod, []);
+  modulesMap.get(mod)!.push(item);
+}
+
+// Sort items within each module by course_order
+const modules = [...modulesMap.entries()]
+  .sort(([a], [b]) => a - b)
+  .map(([id, items]) => ({
+    id,
+    ...MODULE_META[id],
+    items: items.sort((a, b) => Number(a.frontmatter.course_order || 99) - Number(b.frontmatter.course_order || 99)),
+  }));
 
 const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
-const totalSkills = skills.reduce((acc, g) => acc + g.items.length, 0);
+
+const skills = [
+  { phase: 'Analysis', items: [
+    { name: 'research', desc: 'Market research, competitors, evidence' },
+    { name: 'swarm', desc: 'Parallel 3-agent research' },
+    { name: 'validate', desc: 'STREAM scoring + PRD generation' },
+    { name: 'stream', desc: 'Decision framework for founder choices' },
+    { name: 'sgr', desc: 'Design Schema-Guided Reasoning pipelines' },
+    { name: 'you2idea-extract', desc: 'Mine startup ideas from YouTube' },
+  ]},
+  { phase: 'Development', items: [
+    { name: 'scaffold', desc: 'New project from PRD + stack template' },
+    { name: 'setup', desc: 'TDD workflow, dev environment' },
+    { name: 'plan', desc: 'Spec + phased implementation plan' },
+    { name: 'build', desc: 'Execute plan tasks, TDD, commit' },
+    { name: 'deploy', desc: 'Push to production' },
+    { name: 'review', desc: 'Quality check before ship' },
+  ]},
+  { phase: 'Promotion', items: [
+    { name: 'launch', desc: 'GTM strategy, distribution plan' },
+    { name: 'landing-gen', desc: 'Landing page from PRD' },
+    { name: 'content-gen', desc: 'Social media pack' },
+    { name: 'video-promo', desc: 'Video script + storyboard' },
+    { name: 'community-outreach', desc: 'Find communities, draft posts' },
+    { name: 'reddit', desc: 'Reddit engagement + karma' },
+    { name: 'github-outreach', desc: 'Target competitor dependents' },
+    { name: 'seo-audit', desc: 'SEO health check' },
+    { name: 'metrics-track', desc: 'PostHog events, funnels, KPIs' },
+    { name: 'legal', desc: 'Privacy policy, ToS, GDPR' },
+    { name: 'humanize', desc: 'Strip AI patterns from copy' },
+  ]},
+  { phase: 'Utility', items: [
+    { name: 'init', desc: 'First-time solo-factory setup' },
+    { name: 'factory', desc: 'Install all skills at once' },
+    { name: 'pipeline', desc: 'Chain skills: research to deploy' },
+    { name: 'retro', desc: 'Pipeline quality review' },
+    { name: 'audit', desc: 'Knowledge base health check' },
+    { name: 'memory-audit', desc: 'CLAUDE.md + context budget' },
+    { name: 'skill-audit', desc: 'Skill quality review' },
+    { name: 'index-youtube', desc: 'Index YouTube transcripts' },
+  ]},
+];
 ---
 
-<BaseLayout title="Course: AI Solopreneur Engineer" description="From philosophy to production: 7 modules, 60+ lessons, 30 skills. Everything I know about building AI products solo.">
+<BaseLayout title="Course: AI Solopreneur Engineer" description="From philosophy to production: 7 modules, 60+ lessons, 30 skills.">
   <div class="mb-10">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">AI Solopreneur Engineer</h1>
-    <p class="text-[var(--color-muted)] mb-4">From philosophy to production. {modules.length} modules, {totalLessons} lessons, {totalSkills} skills. Build AI products solo — principles, frameworks, tools, and real projects.</p>
-    <p class="text-sm text-[var(--color-muted)]">The practical toolkit is <a href="/projects/project-solo-factory" class="link-muted hover:underline">solo-factory</a> — a Claude Code plugin that implements this methodology as executable skills. Use it as-is, or build your own framework following the same patterns.</p>
+    <p class="text-[var(--color-muted)] mb-4">{modules.length} modules, {totalLessons} lessons. Build AI products solo — principles, frameworks, tools, and real projects.</p>
+    <p class="text-sm text-[var(--color-muted)]">Powered by <a href="/projects/project-solo-factory" class="link-muted hover:underline">solo-factory</a> — a Claude Code plugin that implements this methodology as executable skills.</p>
   </div>
 
   <nav class="mb-10 font-mono text-sm">
@@ -202,10 +101,10 @@ const totalSkills = skills.reduce((acc, g) => acc + g.items.length, 0);
       <p class="text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dim)] mb-3 font-mono">Result: {mod.outcome}</p>
       <div class="space-y-0 font-mono text-sm">
         {mod.items.map((item, i) => (
-          <a href={item.href} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+          <a href={`/${item.section}/${item.slug}`} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
             <span class="text-xs text-[var(--color-muted)] shrink-0 w-8 text-right">{mod.id}.{i + 1}</span>
-            <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-14">{item.type}</span>
-            <span class="truncate">{item.title}</span>
+            <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-14">{item.section}</span>
+            <span class="truncate">{item.frontmatter.title || item.slug}</span>
           </a>
         ))}
       </div>
@@ -214,12 +113,11 @@ const totalSkills = skills.reduce((acc, g) => acc + g.items.length, 0);
 
   <section class="mb-10" id="skills">
     <h2 class="text-xl font-semibold mb-2 prompt">Solo Factory Skills</h2>
-    <p class="text-sm text-[var(--color-muted)] mb-1">30 executable skills — install via <code class="text-xs">claude plugin add solo-factory</code> or copy individual skills.</p>
-    <p class="text-sm text-[var(--color-muted)] mb-4">Pipeline order: <span class="font-mono">research → validate → scaffold → setup → plan → build → deploy → launch → review</span></p>
+    <p class="text-sm text-[var(--color-muted)] mb-4">Pipeline: <span class="font-mono">research &rarr; validate &rarr; scaffold &rarr; plan &rarr; build &rarr; deploy &rarr; launch</span></p>
 
     {skills.map(group => (
       <div class="mb-6">
-        <h3 class="text-sm font-semibold mb-2 font-mono {group.color}">{group.phase}</h3>
+        <h3 class="text-sm font-semibold mb-2 font-mono">{group.phase}</h3>
         <div class="space-y-0 font-mono text-sm">
           {group.items.map(skill => (
             <div class="flex items-baseline gap-3 py-0.5">
@@ -233,12 +131,12 @@ const totalSkills = skills.reduce((acc, g) => acc + g.items.length, 0);
   </section>
 
   <div class="mt-8 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)] font-mono">
-    <p>Work in progress — new lessons added as I build and learn.</p>
+    <p>New lessons auto-added when wiki pages get <code>course_module</code> in frontmatter.</p>
     <p class="mt-2">
-      <a href="/posts/manifest" class="link-muted hover:underline">Manifesto</a> ·
-      <a href="/projects/project-solo-factory" class="link-muted hover:underline">Solo Factory</a> ·
-      <a href="https://github.com/fortunto2/solo-factory" class="link-muted hover:underline" target="_blank" rel="noopener">GitHub</a> ·
-      <a href="https://calendar.app.google/n4GorZYpiAucGjAE6" class="link-muted hover:underline" target="_blank" rel="noopener">Book a call</a>
+      <a href="/posts/manifest" class="link-muted hover:underline">Manifesto</a> &middot;
+      <a href="/projects/project-solo-factory" class="link-muted hover:underline">Solo Factory</a> &middot;
+      <a href="https://github.com/fortunto2/solo-factory" class="link-muted hover:underline" target="_blank" rel="noopener">GitHub</a> &middot;
+      <a href={SITE.contact.calendar} class="link-muted hover:underline" target="_blank" rel="noopener">Book a call</a>
     </p>
   </div>
 </BaseLayout>

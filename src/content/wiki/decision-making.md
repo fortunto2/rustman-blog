@@ -5,6 +5,8 @@ title: "Decision Making"
 created: 2026-04-07
 updated: 2026-04-07
 tags: [hub, decisions, stream, mental-models]
+course_module: 2
+course_order: 4
 publish: true
 ---
 

@@ -4,6 +4,8 @@ description: "Hard numeric thresholds for weekly product decisions. No "let's wa
 title: "Kill / Iterate / Scale — weekly decision rules"
 created: 2026-02-11
 tags: [metrics, decisions, launch, kill-criteria]
+course_module: 2
+course_order: 5
 publish: true
 source_path: "1-methodology/launch-playbook.md"
 ---

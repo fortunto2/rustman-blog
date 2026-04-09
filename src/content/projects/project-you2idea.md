@@ -4,6 +4,8 @@ title: "You2Idea — AI startup idea search from YouTube"
 description: "Search 700+ YouTube videos from 46 startup channels. AI extracts ideas, generates PRDs, maps topic clusters. Terminal-style hacker UI."
 created: 2026-03-01
 tags: [project, open-source, ai, youtube, search, astro, startup-ideas]
+course_module: 7
+course_order: 5
 publish: true
 publish_as: project
 source_url: "https://you2idea.com"

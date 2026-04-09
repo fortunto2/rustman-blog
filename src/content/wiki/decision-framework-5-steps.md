@@ -5,6 +5,8 @@ title: "5-step decision framework: from epistemics to action"
 created: 2024-12-20
 updated: 2026-04-07
 tags: [decision-making, framework, stream, mental-models]
+course_module: 2
+course_order: 3
 publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]

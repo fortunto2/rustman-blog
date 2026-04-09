@@ -4,6 +4,8 @@ description: "Curated list of ~60 channels/communities across 7 platforms, organ
 title: "Inspiration sources — curated channels, communities, newsletters"
 created: 2026-02-11
 tags: [sources, youtube, twitter, reddit, telegram, newsletters, reference]
+course_module: 3
+course_order: 6
 publish: true
 source_path: "2-inspiration/sources.md"
 ---

@@ -4,6 +4,8 @@ description: "Data-driven patterns from successful indie hackers (2023-2026). Us
 title: "Solopreneur success patterns — benchmarks, pricing, distribution"
 created: 2026-02-11
 tags: [patterns, benchmarks, pricing, revenue, indie-hacker, business-model]
+course_module: 3
+course_order: 4
 publish: true
 source_path: "2-inspiration/patterns.md"
 ---

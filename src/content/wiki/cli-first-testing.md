@@ -4,6 +4,8 @@ description: "Every project should have a CLI utility that mirrors the core busi
 title: "CLI-first testing — every project gets a CLI mirror"
 created: 2026-04-07
 tags: [testing, cli, integration, tdd, methodology]
+course_module: 4
+course_order: 4
 publish: true
 source_path: "1-methodology/dev-principles.md"
 ---

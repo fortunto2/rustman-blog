@@ -5,6 +5,8 @@ title: "Origin story — Life2Film to SuperDuperAI, second mountain"
 created: 2026-04-07
 source_path: "0-principles/manifest-my.md"
 tags: [personal, origin, motivation, life2film, manifesto]
+course_module: 1
+course_order: 2
 publish: true
 ---
 

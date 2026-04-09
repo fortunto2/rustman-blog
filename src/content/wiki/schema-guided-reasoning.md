@@ -4,6 +4,8 @@ description: "Schema-Guided Reasoning (SGR): all projects built from schemas to 
 title: "SGR — schemas first, logic second, UI last"
 created: 2026-04-07
 tags: [sgr, schemas, ddd, pydantic, zod, methodology]
+course_module: 4
+course_order: 2
 publish: true
 source_path: "1-methodology/dev-principles.md"
 source_url: "https://abdullin.com/schema-guided-reasoning/"

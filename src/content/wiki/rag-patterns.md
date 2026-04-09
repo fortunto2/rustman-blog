@@ -4,6 +4,8 @@ description: "Reference catalog of 7 RAG patterns, each with when-to-use, trade-
 title: "RAG patterns — 7 approaches from vector to agentic"
 created: 2026-02-11
 tags: [rag, retrieval, llm, embeddings, vectors, knowledge-graph, solograph]
+course_module: 5
+course_order: 10
 publish: true
 source_path: "1-methodology/rag-patterns.md"
 ---

@@ -1,9 +1,11 @@
 ---
-type: concept
+type: catalog
 title: "Agent benchmarks — how to measure if your coding agent actually works"
 description: "Catalog of coding agent benchmarks: SWE-bench, PinchBench, PAC-1, LongMemEval. What they test, how scoring works, where we participate."
 created: 2026-04-09
 tags: [agents, benchmarks, evaluation, methodology, tools]
+course_module: 5
+course_order: 14
 publish: true
 ---
 

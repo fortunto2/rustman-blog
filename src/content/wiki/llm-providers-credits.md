@@ -1,9 +1,11 @@
 ---
-type: concept
+type: catalog
 title: "LLM providers & startup credits — where to get models, free tiers, and funding"
 description: "Catalog of LLM providers with free tiers, startup credit programs, and open-source models. From $0 to scale."
 created: 2026-04-09
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
+course_module: 6
+course_order: 5
 publish: true
 ---
 

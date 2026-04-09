@@ -4,6 +4,8 @@ description: "1855-line reference compiling Rinat Abdullin's Schema-Guided Reaso
 title: "SGR complete guide — code examples, patterns, structured output"
 created: 2024-11-15
 tags: [sgr, llm, structured-output, pydantic, tool-calling, agents]
+course_module: 4
+course_order: 3
 publish: true
 source_path: "1-methodology/sgr/sgr-complete.md"
 ---

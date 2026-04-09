@@ -4,6 +4,8 @@ description: "Principles for fighting AI agent degradation. The agent tends to d
 title: "Agent self-discipline — drift detector and complexity thresholds"
 created: 2026-04-07
 tags: [agents, discipline, drift, complexity, harness, methodology]
+course_module: 5
+course_order: 4
 publish: true
 source_path: "1-methodology/dev-principles.md"
 ---

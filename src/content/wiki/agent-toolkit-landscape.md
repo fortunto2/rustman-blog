@@ -1,10 +1,12 @@
 ---
-type: concept
+type: catalog
 title: "Agent toolkit landscape — from prompt libraries to autonomous project managers"
 description: "Categorized comparison of AI agent toolkits: prompt libraries, executable skill systems, project managers, agent frameworks, memory systems. Growing catalog."
 created: 2026-04-09
 updated: 2026-04-09
 tags: [agents, tools, comparison, solo-factory, skills, methodology]
+course_module: 6
+course_order: 2
 publish: true
 ---
 

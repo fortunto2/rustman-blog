@@ -4,6 +4,8 @@ title: "Solo Founder Manifesto"
 description: "Why we build, what we believe, and how we operate. Privacy as architecture, antifragile design, one pain one feature launch."
 created: 2024-01-15
 tags: [manifesto, principles, privacy, antifragile, solo-founder]
+course_module: 1
+course_order: 1
 publish: true
 publish_as: post
 source_path: "0-principles/manifest.md"

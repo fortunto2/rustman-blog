@@ -4,6 +4,8 @@ title: "Harness Engineering — Development in the Age of Agents"
 description: "How to design environments where AI agents do reliable work. Three components: context engineering, architectural constraints, feedback loops."
 created: 2026-02-07
 tags: [harness, agents, methodology, context-engineering, ai]
+course_module: 5
+course_order: 1
 publish: true
 publish_as: post
 source_path: "1-methodology/harness-engineering.md"

@@ -4,6 +4,8 @@ title: "Invoice CRM — free file-based invoice generator for freelancers"
 description: "Open-source CLI for PDF invoices, QR payments (SEPA/EMVCo/SWIFT/crypto), digital signatures, encryption. File-based, git-friendly, AI-agent compatible. No SaaS, no monthly fees."
 created: 2026-03-01
 tags: [project, open-source, python, cli, invoicing, pdf, privacy-first]
+course_module: 7
+course_order: 4
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/invoice-crm"

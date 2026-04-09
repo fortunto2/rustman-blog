@@ -5,6 +5,8 @@ title: "Optimizer syndrome: best choice ≠ more happiness"
 created: 2024-12-20
 updated: 2026-04-07
 tags: [decision-making, psychology, satisficing, happiness]
+course_module: 1
+course_order: 5
 publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]

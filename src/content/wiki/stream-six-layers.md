@@ -5,6 +5,8 @@ title: "STREAM: principles as hierarchy, not a flat list"
 created: 2024-12-20
 updated: 2026-04-07
 tags: [stream, principles, hierarchy, decision-making]
+course_module: 2
+course_order: 2
 publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]

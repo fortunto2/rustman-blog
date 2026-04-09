@@ -4,6 +4,8 @@ description: "iOS app for learning and playing the kubyz (Bashkir jaw harp / var
 title: "KubizBeat — Bashkir kubyz instrument app"
 created: 2025-03-01
 tags: [project, ios, kubyz, music, culture, bashkir]
+course_module: 7
+course_order: 10
 publish: true
 publish_as: project
 ---

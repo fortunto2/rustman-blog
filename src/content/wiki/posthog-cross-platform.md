@@ -4,6 +4,8 @@ description: "Unified analytics for solo founder with mobile apps + web landings
 title: "PostHog analytics: one product = one project, cross-platform identity"
 created: 2026-04-07
 tags: [posthog, analytics, ios, web, cross-platform, privacy, metrics]
+course_module: 4
+course_order: 9
 publish: true
 source_path: "1-methodology/posthog-analytics.md"
 ---

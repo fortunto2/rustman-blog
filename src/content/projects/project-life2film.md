@@ -4,6 +4,8 @@ description: "The original dream, started in 2014: help people turn everyday vid
 title: "Life2Film — turn everyday moments into meaningful montages"
 created: 2014-01-01
 tags: [project, ios, life2film, video, ai, montage, flagship]
+course_module: 7
+course_order: 8
 publish: true
 publish_as: project
 ---
