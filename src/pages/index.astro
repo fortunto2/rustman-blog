@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
-import { SITE, CONSULTING, PROJECT_PRIORITY } from '../lib/config';
+import { SITE, HERO_CARDS, PROJECT_PRIORITY } from '../lib/config';
 import { getCollection, getAllContent } from '../lib/content';
 
 const posts = getCollection('posts');
@@ -23,22 +23,20 @@ sortByPriority(products, PROJECT_PRIORITY.products);
 ---
 
 <BaseLayout>
-  <section class="mb-12 flex items-center gap-5">
+  <section class="mb-10 flex items-center gap-5">
     <img src={SITE.author.avatar} alt={SITE.author.name} class="w-16 h-16 rounded-full" width="64" height="64" />
     <div>
       <h1 class="text-3xl font-bold mb-1 font-mono">rustman<span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)]">.</span></h1>
-      <p class="text-[var(--color-muted)] text-lg">{SITE.author.tagline}</p>
+      <p class="text-[var(--color-muted)] text-lg">AI engineer & solo founder. Building tools, shipping fast, learning in public.</p>
     </div>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-xl font-semibold mb-2 prompt">AI Solutions & Consulting</h2>
-    <p class="text-[var(--color-muted)] mb-4">From 0 to 1: fast MVP development & AI integration for businesses.</p>
     <div class="grid gap-3 sm:grid-cols-2">
-      {CONSULTING.map(s => (
-        <a href={s.href} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
-          <h3 class="font-medium font-mono text-sm">{s.title}</h3>
-          <p class="text-sm text-[var(--color-muted)] mt-1">{s.description}</p>
+      {HERO_CARDS.map(card => (
+        <a href={card.href} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+          <h3 class="font-medium font-mono text-sm">{card.title}</h3>
+          <p class="text-sm text-[var(--color-muted)] mt-1">{card.description}</p>
         </a>
       ))}
     </div>
@@ -51,6 +49,13 @@ sortByPriority(products, PROJECT_PRIORITY.products);
     </div>
   </section>
 
+  {posts.length > 0 && (
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4 prompt">Posts</h2>
+      <ContentList items={posts} basePath="/posts" showDate={true} showTags={false} />
+    </section>
+  )}
+
   {openSource.length > 0 && (
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Open Source</h2>
@@ -62,13 +67,6 @@ sortByPriority(products, PROJECT_PRIORITY.products);
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4 prompt">Products</h2>
       <ContentList items={products} basePath="/projects" showDate={false} showTags={true} />
-    </section>
-  )}
-
-  {posts.length > 0 && (
-    <section class="mb-12">
-      <h2 class="text-xl font-semibold mb-4 prompt">Pillars</h2>
-      <ContentList items={posts} basePath="/posts" showDate={true} showTags={false} />
     </section>
   )}
 

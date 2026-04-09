@@ -35,26 +35,26 @@ export const SITE = {
   },
 } as const;
 
-export const CONSULTING = [
+export const HERO_CARDS = [
   {
-    title: 'RAG & Knowledge Systems',
-    description: '7 production patterns — from vector search to agentic RAG',
-    href: '/wiki/rag-patterns',
+    title: 'Course: AI Solopreneur',
+    description: '7 modules from mindset to shipping. For solo founders and teams adopting AI agents',
+    href: '/course',
   },
   {
-    title: 'AI Agent Development',
-    description: 'Multi-agent systems, harness engineering, reliable autonomous workflows',
-    href: '/posts/harness-engineering',
+    title: 'Solo Factory',
+    description: '30 executable skills for Claude Code. Research → validate → build → deploy → launch',
+    href: '/projects/project-solo-factory',
   },
   {
-    title: 'Fast MVP Development',
-    description: '0→1 in days: validate, build, launch with AI-first stack',
-    href: '/posts/launch-playbook',
+    title: 'Open Source',
+    description: 'Rust crates, MCP servers, CLI tools. Code intelligence, invoicing, air quality',
+    href: '/projects',
   },
   {
-    title: 'Team AI Training',
-    description: 'Context engineering, prompt design, agent workflows for dev teams',
-    href: '/wiki/context-engineering',
+    title: 'AI Consulting',
+    description: 'RAG systems, multi-agent pipelines, MVP development. Team training on agent workflows',
+    href: '/about',
   },
 ] as const;
 
