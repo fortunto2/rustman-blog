@@ -102,6 +102,26 @@ Prices dropped ~80% in 12 months. Format: input / output.
 | **Cerebras** | $0.35 / $0.75 | — | $0.60 / $1.20 |
 | **OpenRouter** | **FREE** | **FREE** | — |
 
+### Nemotron 3 Super 120B — Full Provider Comparison
+
+Best open model for price/quality ratio (MoE: 12B active / 120B total, 1M context).
+
+| Provider | Input $/1M | Output $/1M | 100M tokens (50/50) | tok/s | Source |
+|----------|-----------|------------|-------------------|-------|--------|
+| **DeepInfra** | $0.10 | $0.50 | **$30** | 459 | [deepinfra.com](https://deepinfra.com) |
+| **Hyperbolic** | $0.30 | $0.30 | **$30** | ~400 | [hyperbolic.xyz](https://hyperbolic.xyz) |
+| **W&B** | ~$0.15 | ~$0.55 | **$35** | ~440 | artificialanalysis.ai |
+| **Baseten** | ~$0.18 | ~$0.65 | **$41** | 485 | baseten.co |
+| **Nebius** | ~$0.20 | ~$0.70 | **$45** | 464 | nebius.ai |
+| **Digital Ocean** | $0.30 | $0.65 | **$48** | — | NVIDIA NIM partners |
+| **Bitdeer AI** | $0.20 | $0.80 | **$50** | — | NVIDIA NIM partners |
+| **CoreWeave** | $0.20 | $0.80 | **$50** | — | NVIDIA NIM partners |
+| **Cloudflare** | $0.50 | $1.50 | **$100** | ~80 | CF Workers AI |
+| **OpenRouter** | FREE | FREE | **$0** | varies | rate limited (20 RPM) |
+| **NVIDIA NIM** | FREE | FREE | **$0** | 449 | 1000 credits, 40 RPM |
+
+**Winner: DeepInfra** — $30 per 100M tokens, 459 tok/s. If speed critical: Baseten ($41, 485 tok/s). Cloudflare 3.3x more expensive and 6x slower — use only for edge/prototype.
+
 ### Speed Leaderboard
 
 | Provider | Hardware | 8B tok/s | 70B tok/s | 405B tok/s |
