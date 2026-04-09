@@ -5,6 +5,7 @@ import ArticleMeta from '../../components/ArticleMeta.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
 import AppStoreCard from '../../components/AppStoreCard.astro';
 import CrateBadges from '../../components/CrateBadges.astro';
+import RelatedByTags from '../../components/RelatedByTags.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -48,4 +49,6 @@ const hasBadges = fm.crate || fm.npm || fm.pypi;
   </article>
 
   <SourceFooter sourceUrls={post.frontmatter.source_url} sourcePath={post.frontmatter.source_path} />
+
+  <RelatedByTags tags={post.frontmatter.tags as string[] || []} currentSlug={entry.slug} currentSection="projects" />
 </BaseLayout>

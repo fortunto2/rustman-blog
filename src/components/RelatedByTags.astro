@@ -1,0 +1,72 @@
+---
+/**
+ * Auto-discovers related content from other sections by shared tags.
+ * No hardcoding — matches at build time.
+ *
+ * Props:
+ *   tags          — current page tags
+ *   currentSlug   — current page slug (to exclude self)
+ *   currentSection — current section (to exclude same-section items)
+ *   maxPerSection — max items per section (default 5)
+ */
+import { getCollection, type Section } from '../lib/content';
+
+interface Props {
+  tags: string[];
+  currentSlug: string;
+  currentSection: string;
+  maxPerSection?: number;
+}
+
+const { tags, currentSlug, currentSection, maxPerSection = 5 } = Astro.props;
+
+const skipTags = new Set(['project', 'open-source', 'hub', 'skill', 'stack', 'template']);
+const matchTags = tags.filter(t => !skipTags.has(t));
+
+if (matchTags.length === 0) return;
+
+const sections: { key: Section; label: string }[] = [
+  { key: 'projects', label: 'Projects' },
+  { key: 'stacks', label: 'Stacks' },
+  { key: 'wiki', label: 'Wiki' },
+  { key: 'posts', label: 'Posts' },
+  { key: 'skills', label: 'Skills' },
+];
+
+const related = sections
+  .filter(s => s.key !== currentSection)
+  .map(s => {
+    const items = getCollection(s.key)
+      .filter(e => e.slug !== currentSlug)
+      .map(e => {
+        const eTags: string[] = (e.frontmatter.tags && typeof e.frontmatter.tags !== 'string')
+          ? e.frontmatter.tags
+          : [];
+        const overlap = matchTags.filter(t => eTags.includes(t)).length;
+        return { ...e, section: s.key, overlap };
+      })
+      .filter(e => e.overlap > 0)
+      .sort((a, b) => b.overlap - a.overlap)
+      .slice(0, maxPerSection);
+    return { ...s, items };
+  })
+  .filter(s => s.items.length > 0);
+---
+
+{related.length > 0 && (
+  <div class="mt-8 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+    <h3 class="text-sm font-semibold font-mono text-[var(--color-muted)] mb-3">Related</h3>
+    {related.map(section => (
+      <div class="mb-3">
+        <span class="text-xs uppercase font-mono text-[var(--color-muted)] dark:text-[var(--color-accent-dim)]">{section.label}</span>
+        <div class="space-y-0 font-mono text-sm mt-1">
+          {section.items.map(item => (
+            <a href={`/${item.section}/${item.slug}`} class="block py-0.5 link-muted hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors truncate">
+              {item.frontmatter.title || item.slug}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+)}

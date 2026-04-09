@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackLink from '../../components/BackLink.astro';
 import ArticleMeta from '../../components/ArticleMeta.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
+import RelatedByTags from '../../components/RelatedByTags.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -28,4 +29,6 @@ const post = renderMarkdown(entry.raw);
   </article>
 
   <SourceFooter sourceUrls={post.frontmatter.source_url} sourcePath={post.frontmatter.source_path} />
+
+  <RelatedByTags tags={post.frontmatter.tags as string[] || []} currentSlug={entry.slug} currentSection="posts" />
 </BaseLayout>
