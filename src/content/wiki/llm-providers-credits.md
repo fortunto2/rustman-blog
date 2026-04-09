@@ -44,6 +44,32 @@ Apply for credits when you have a registered company or VC backing.
 - **xAI / Grok** — no public startup program found (check manually)
 - **OpenRouter** — no accelerator program, standard billing model
 
+### No-VC / Bootstrapped Friendly
+
+| Provider | Credits | Requirements | Link |
+|----------|---------|-------------|------|
+| **DeepInfra DeepStart** | 1B free tokens | Startup application, no VC required | [deepinfra.com/deepstart](https://deepinfra.com/deepstart) |
+| **NVIDIA Inception** | Free membership → unlocks $100K AWS + $150K Nebius | 1+ dev, website, incorporated, <10 years. No equity, no VC | [nvidia.com/startups](https://www.nvidia.com/en-us/startups/) |
+| **Mistral (Mistralship)** | Up to $30K | Startup program application | [mistral.ai](https://mistral.ai) |
+| **Microsoft Founders Hub** | $1K–$150K | No VC required, business verification | [startups.microsoft.com](https://startups.microsoft.com) |
+| **DigitalOcean Hatch** | Up to $100K | Raised <$10M, website, AI-native preferred | [digitalocean.com/startups](https://www.digitalocean.com/startups) |
+| **OVHcloud** | Up to €100K | Pre-seed/seed (START) or Series A+ (SCALE) | [startup.ovhcloud.com](https://startup.ovhcloud.com/en/) |
+| **Scaleway** | Up to €36K | EU-based or EU-focused | [scaleway.com/startup-program](https://www.scaleway.com/en/startup-program/) |
+| **Intel Liftoff** | Cloud credits (varies) | Early-stage to Series B, must have product | [intel.com/liftoff](https://www.intel.com/content/www/us/en/developer/tools/oneapi/liftoff.html) |
+| **xAI** | $25 signup + $150/mo | Opt-in data sharing (irreversible) | [x.ai/api](https://x.ai/api) |
+
+### Credit Stacking Strategy
+
+Apply in this order for maximum runway (no VC required):
+1. **NVIDIA Inception** (free) → unlocks $100K AWS + $150K Nebius partner credits
+2. **Microsoft Founders Hub** → up to $150K Azure (incl Azure OpenAI)
+3. **DeepInfra DeepStart** → 1B tokens free
+4. **Mistral** → $30K
+5. **Modal** → $25K (if seed-funded)
+6. **Stack the rest**: Cerebras $22.5K + Groq $10K + CF $5-250K
+
+**Total potential: $500K+** without VC funding.
+
 *Credits and requirements change — check provider pages for current terms.*
 
 ---
@@ -231,6 +257,14 @@ DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10
 | **Hyperbolic** | Good prices, open models | [hyperbolic.xyz](https://hyperbolic.xyz) |
 | **DeepInfra** | H100/B200, competitive pricing | [deepinfra.com](https://deepinfra.com) |
 | **Nebius** | Wide Qwen3 selection, batch 50% off, base+fast flavors | [nebius.com/token-factory](https://nebius.com/token-factory/prices) |
+| **Mistral AI** | Own models (Large/Medium/Small), EU data residency, free experiment tier | [mistral.ai](https://mistral.ai) |
+| **xAI (Grok)** | Grok 4, 2M context window (largest), X/Twitter integration | [x.ai/api](https://x.ai/api) |
+| **Cohere** | RAG-optimized, Rerank model, multilingual Aya, 1K free calls/mo | [cohere.com](https://cohere.com) |
+| **SiliconFlow** | Chinese provider, very cheap, free Qwen3-8B/DeepSeek-7B | [siliconflow.com](https://siliconflow.com) |
+| **Featherless AI** | Flat-rate: $10/mo (15B), $200/mo (all 25K+ HuggingFace models, unlimited) | [featherless.ai](https://featherless.ai) |
+| **GMI Cloud** | H200 at $2.60/hr, some free models, 37% cheaper than hyperscalers | [gmicloud.ai](https://gmicloud.ai) |
+| **Vast.ai** | GPU marketplace, H100 from $1.87/hr, 3-5x cheaper than hyperscalers | [vast.ai](https://vast.ai) |
+| **RunPod** | Serverless inference, scale-to-zero, H100 $2.69/hr flex | [runpod.io](https://runpod.io) |
 | **Modal** | GPU cloud, BYO model, autoscaling | [modal.com](https://modal.com) |
 
 ---
@@ -286,4 +320,16 @@ Run locally or on your own infrastructure. Zero API cost.
 
 ---
 
-*Catalog growing. Last updated: 2026-04-09. Add providers as you discover them.*
+## Pricing Comparison Sites
+
+| Site | What | Link |
+|------|------|------|
+| **Artificial Analysis** | Quality + speed + price benchmarks, industry standard | [artificialanalysis.ai](https://artificialanalysis.ai) |
+| **Price Per Token** | 300+ models, cheapest finder, coding/RAG leaderboards | [pricepertoken.com](https://pricepertoken.com) |
+| **CostGoat** | 309 APIs, quality/price/value scoring | [costgoat.com](https://costgoat.com/compare/llm-api) |
+| **Infrabase** | 53 providers, EU flagged, hosting type filters | [infrabase.ai](https://infrabase.ai/compare/inference-apis) |
+| **Epoch AI** | Historical price trend analysis (academic-grade) | [epoch.ai](https://epoch.ai/data-insights/llm-inference-price-trends/) |
+
+---
+
+*Catalog growing. Last updated: 2026-04-10. Add providers as you discover them.*
