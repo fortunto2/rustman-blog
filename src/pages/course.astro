@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const modules = [
+  {
+    id: 1,
+    title: 'Mindset & Philosophy',
+    description: 'Why build. What to believe. How to think about risk, creativity, and freedom.',
+    items: [
+      { href: '/posts/manifest', title: 'Solo Founder Manifesto', type: 'post', note: 'Core values: privacy as architecture, antifragile design, creator not robot' },
+      { href: '/wiki/origin-story', title: 'Origin Story', type: 'wiki', note: 'Life2Film → SuperDuperAI, the second mountain' },
+      { href: '/wiki/antifragile-life-design', title: 'Antifragile Life Design', type: 'wiki', note: 'Barbell across 5 domains: 90% safe + 10% unlimited upside' },
+      { href: '/wiki/ikigai-micro-joys', title: 'Ikigai as Micro-Joys', type: 'wiki', note: 'Not one grand mission — 8-9 small daily joys (Okinawan research)' },
+      { href: '/wiki/optimizer-syndrome', title: 'Optimizer Syndrome', type: 'wiki', note: 'Maximizers are less happy. Satisfice for low-stakes decisions' },
+      { href: '/wiki/portfolio-approach', title: 'Portfolio Approach', type: 'wiki', note: 'Multiple small bets with asymmetric upside, not one big bet' },
+      { href: '/wiki/privacy-as-architecture', title: 'Privacy is Architecture', type: 'wiki', note: 'On-device, no accounts, zero data = zero risk' },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Decision Making',
+    description: 'Frameworks for decisions at every level — from epistemics to daily ops.',
+    items: [
+      { href: '/posts/stream-framework', title: 'STREAM Framework', type: 'post', note: '6-layer system: Scope → Time → Route → Exposure → Audience → Meaning' },
+      { href: '/wiki/stream-six-layers', title: 'STREAM: Principles as Hierarchy', type: 'wiki', note: 'S→T→R→E→A→M, each layer builds on previous' },
+      { href: '/wiki/decision-framework-5-steps', title: '5-Step Decision Framework', type: 'wiki', note: 'From epistemics to action in 5 concrete steps' },
+      { href: '/wiki/decision-making', title: 'Decision Making Hub', type: 'wiki', note: 'Central page linking all decision-related concepts' },
+      { href: '/wiki/kill-iterate-scale', title: 'Kill / Iterate / Scale', type: 'wiki', note: 'Hard numeric thresholds: <10 clicks per $20 = KILL' },
+      { href: '/wiki/one-pain-one-feature-launch', title: 'One Pain → One Feature → Launch', type: 'wiki', note: 'Not platforms. Ship in days, kill if nobody wants it' },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Validation & Launch',
+    description: 'From niche selection to live product with traffic in 5-9 days.',
+    items: [
+      { href: '/posts/launch-playbook', title: 'Launch Playbook', type: 'post', note: '5D workflow, S.E.E.D. scoring, fake-door validation, weekly decision rules' },
+      { href: '/wiki/seed-niche-scoring', title: 'S.E.E.D. Niche Scoring', type: 'wiki', note: 'Searchability, Evidence, Ease, Demand — score in 10 minutes' },
+      { href: '/wiki/startup-validation', title: 'Startup Validation Hub', type: 'wiki', note: 'All validation patterns and frameworks' },
+      { href: '/wiki/solopreneur-patterns-summary', title: 'Solopreneur Success Patterns', type: 'wiki', note: 'Benchmarks, pricing, distribution from real indie hackers' },
+      { href: '/wiki/validated-apps-2026', title: '2026 Validated App Ideas', type: 'wiki', note: 'Homeschool, family productivity, privacy-first — with evidence' },
+      { href: '/wiki/inspiration-sources', title: 'Inspiration Sources', type: 'wiki', note: 'Curated channels, communities, newsletters' },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Engineering Principles',
+    description: 'How to build: schemas first, CLI-first, clean architecture, privacy by design.',
+    items: [
+      { href: '/wiki/dev-principles-summary', title: 'Universal Dev Principles', type: 'wiki', note: 'TDD, DDD, SOLID, clean arch — every project, any stack' },
+      { href: '/wiki/schema-guided-reasoning', title: 'Schema-Guided Reasoning (SGR)', type: 'wiki', note: 'Schemas → logic → UI. The contract between AI and business logic' },
+      { href: '/wiki/sgr-deep-dive', title: 'SGR Complete Guide', type: 'wiki', note: 'Code examples, patterns, BAML integration' },
+      { href: '/wiki/cli-first-testing', title: 'CLI-First Testing', type: 'wiki', note: 'Every project gets a CLI mirror. If it works from CLI, it is decoupled' },
+      { href: '/wiki/privacy-first', title: 'Privacy-First Architecture Hub', type: 'wiki', note: 'On-device processing, local storage, offline-first patterns' },
+      { href: '/wiki/infra-two-tools', title: 'Infrastructure: Two Tools', type: 'wiki', note: 'SST + Pulumi, serverless by default. 4 tiers from CF Workers to Fly.io' },
+      { href: '/wiki/background-jobs-ladder', title: 'Background Jobs Ladder', type: 'wiki', note: 'Cron → CF Workers → Prefect → Temporal → Trigger.dev' },
+      { href: '/wiki/kmp-sync-strategy', title: 'KMP Sync Strategy', type: 'wiki', note: 'Supabase + PowerSync for offline-first cross-platform' },
+      { href: '/wiki/posthog-cross-platform', title: 'PostHog Analytics', type: 'wiki', note: 'One product = one project, cross-platform identity, anonymous by default' },
+    ],
+  },
+  {
+    id: 5,
+    title: 'AI Agent Engineering',
+    description: 'Building reliable AI agents: harness, memory, context, reasoning.',
+    items: [
+      { href: '/posts/harness-engineering', title: 'Harness Engineering', type: 'post', note: 'Designing environments where agents do reliable work. The definitive guide' },
+      { href: '/wiki/context-engineering', title: 'Context Engineering', type: 'wiki', note: 'Context as code: CLAUDE.md as TOC, progressive disclosure' },
+      { href: '/wiki/agent-mistake-fix-harness', title: 'Agent Mistake → Fix the Harness', type: 'wiki', note: 'Core loop: mistake → fix CLAUDE.md/linter/test. Ratchet effect' },
+      { href: '/wiki/agent-self-discipline', title: 'Agent Self-Discipline', type: 'wiki', note: 'Drift detector (5 anti-patterns), complexity thresholds' },
+      { href: '/wiki/agent-sandboxing', title: 'Agent Sandboxing', type: 'wiki', note: 'Safe LLM execution via lightweight VMs. Lima on macOS' },
+      { href: '/posts/agent-memory-architecture', title: 'Agent Memory Architecture', type: 'post', note: '4 memory types, 3 loops, 5 systems compared. The complete guide' },
+      { href: '/wiki/mempalace-agent-memory', title: 'MemPalace', type: 'wiki', note: 'Spatial memory system: 96.6% LongMemEval, palace metaphor' },
+      { href: '/posts/context-graphs', title: 'Context Graphs', type: 'post', note: 'Agent trajectories as organizational memory. Trillion-dollar thesis' },
+      { href: '/wiki/decision-traces-compound', title: 'Decision Traces Compound', type: 'wiki', note: 'Each agent action improves future ones via precedent retrieval' },
+      { href: '/wiki/rag-patterns', title: 'RAG Patterns', type: 'wiki', note: '7 approaches: vector, graph-boosted, tree-based, ColBERT, HyDE, hybrid, agentic' },
+      { href: '/wiki/enterprise-rag-challenge', title: 'Enterprise RAG Challenge', type: 'wiki', note: 'What actually wins in production RAG competitions' },
+      { href: '/wiki/tool-calling-four-layers', title: 'Tool Calling Internals', type: 'wiki', note: 'HTTP → chat template → constrained decoding → parser' },
+      { href: '/wiki/apple-on-device-ai', title: 'Apple Foundation Models', type: 'wiki', note: 'Zero-cost on-device AI for iOS apps' },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Tools & Case Studies',
+    description: 'Real projects demonstrating the principles. Open source, build in public.',
+    items: [
+      { href: '/wiki/codegraph-guide', title: 'CodeGraph Guide', type: 'wiki', note: 'Code intelligence via FalkorDB + tree-sitter across all projects' },
+      { href: '/projects/project-solograph', title: 'Solograph', type: 'project', note: 'Graph + vector MCP server. 15 tools. The memory system in practice' },
+      { href: '/projects/project-solo-factory', title: 'Solo Factory', type: 'project', note: 'Claude Code plugin: 27 skills, 3 agents, full startup pipeline' },
+      { href: '/projects/project-openai-oxide', title: 'openai-oxide', type: 'project', note: 'Idiomatic Rust client for OpenAI. Shipped via solo-factory pipeline' },
+      { href: '/projects/project-rust-code', title: 'rust-code', type: 'project', note: 'AI terminal agent in Rust. BAML loop, TUI, MCP support' },
+      { href: '/projects/project-airq', title: 'airq', type: 'project', note: 'Air quality CLI in Rust. Sensor+model merge, WASM, event detection' },
+      { href: '/projects/project-invoice-crm', title: 'Invoice CRM', type: 'project', note: 'File-based invoice generator. Privacy-first, AI-agent compatible' },
+      { href: '/projects/project-you2idea', title: 'You2Idea', type: 'project', note: 'AI startup ideas from YouTube. Terminal hacker UI, semantic search' },
+      { href: '/projects/project-superduperai', title: 'SuperDuperAI', type: 'project', note: 'The company: product studio, AI video, multi-agent platform' },
+      { href: '/projects/project-superstoryboard', title: 'SuperStoryboard', type: 'project', note: '2nd place Supabase Hackathon. AI storyboards + Figma sync' },
+      { href: '/projects/project-life2film', title: 'Life2Film', type: 'project', note: 'The origin: auto video from everyday moments, 1M+ users' },
+      { href: '/projects/project-facealarm', title: 'FaceAlarm', type: 'project', note: 'Face yoga timer. On-device AI, born from real user pain' },
+      { href: '/projects/project-kubizbeat', title: 'KubizBeat', type: 'project', note: 'Bashkir kubyz instrument app. Cultural preservation through tech' },
+    ],
+  },
+];
+
+const totalItems = modules.reduce((acc, m) => acc + m.items.length, 0);
+---
+
+<BaseLayout title="Course: AI Solopreneur Engineer" description="From philosophy to production: 6 modules, 60+ lessons. Everything I know about building AI products solo.">
+  <div class="mb-10">
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">AI Solopreneur Engineer</h1>
+    <p class="text-[var(--color-muted)]">From philosophy to production. {modules.length} modules, {totalItems} lessons. Everything I know about building AI products solo — principles, frameworks, tools, and real projects.</p>
+  </div>
+
+  {modules.map(mod => (
+    <section class="mb-10" id={`module-${mod.id}`}>
+      <h2 class="text-lg font-semibold mb-1 prompt">Module {mod.id}: {mod.title}</h2>
+      <p class="text-sm text-[var(--color-muted)] mb-3">{mod.description}</p>
+      <div class="space-y-0 font-mono text-sm">
+        {mod.items.map((item, i) => (
+          <a href={item.href} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+            <span class="text-xs text-[var(--color-muted)] shrink-0 w-8 text-right">{mod.id}.{i + 1}</span>
+            <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-14">{item.type}</span>
+            <span class="truncate">{item.title}</span>
+            <span class="hidden lg:inline text-xs text-[var(--color-muted)] truncate ml-auto shrink-0 max-w-[40%]">{item.note}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <div class="mt-8 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)] font-mono">
+    <p>Work in progress — new lessons added as I build and learn. <a href="/posts/manifest" class="link-muted hover:underline">Read the manifesto</a> to understand why.</p>
+  </div>
+</BaseLayout>

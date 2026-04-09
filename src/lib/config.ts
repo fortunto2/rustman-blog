@@ -18,6 +18,7 @@ export const SITE = {
   },
 
   navigation: [
+    { href: '/course', label: 'Course' },
     { href: '/posts', label: 'Posts' },
     { href: '/wiki', label: 'Wiki' },
     { href: '/projects', label: 'Projects' },
