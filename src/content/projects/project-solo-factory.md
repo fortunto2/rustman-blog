@@ -53,18 +53,11 @@ claude plugin install solo@solo --scope user
 | `code-analyst` | Haiku | Codebase exploration, dependency analysis |
 | `idea-validator` | Sonnet | Idea validation, STREAM scoring, PRD generation |
 
-## Available Stacks
+## Stacks
 
-| Stack | Tech |
-|-------|------|
-| `ios-swift` | SwiftUI, CoreML, StoreKit 2 |
-| `nextjs-supabase` | Next.js 16, React 19, Tailwind 4, Supabase |
-| `nextjs-ai-agents` | extends nextjs-supabase + Vercel AI SDK, MCP |
-| `cloudflare-workers` | Hono, D1, R2, Durable Objects |
-| `kotlin-android` | Jetpack Compose, Room, Koin |
-| `astro-static` | Astro 5, Cloudflare Pages |
-| `python-api` | FastAPI, Pydantic, SQLAlchemy, Alembic |
-| `python-ml` | uv, Pydantic, FalkorDB, MLX |
+9 stack templates: iOS, Next.js, Kotlin, Astro, Python, Cloudflare Workers.
+
+**[Browse all stacks →](/stacks)** — full YAML configs with copy button.
 
 ## Automated Pipeline
 
