@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/metrics-track"
 ---
 
+Set up a metrics tracking plan for a project. Defines PostHog event funnel, KPI benchmarks, and kill/iterate/scale decision thresholds based on lean startup principles.
+
+```markdown
 # /metrics-track
 
 Set up a metrics tracking plan for a project. Defines PostHog event funnel, KPI benchmarks, and kill/iterate/scale decision thresholds based on lean startup principles.
@@ -135,3 +138,4 @@ This skill implements metrics tracking based on lean startup principles:
 ### PostHog SDK not in project
 **Cause:** Metrics plan generated but SDK not installed.
 **Fix:** This skill generates the PLAN only. Install PostHog SDK separately: `pnpm add posthog-js` (web) or add `posthog-ios` via SPM (iOS).
+```

@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/github-outreach"
 ---
 
+Competitive outreach pipeline. Scan a competitor's dependents, evaluate which repos would benefit from switching to your library, and draft personalized GitHub issues.
+
+```markdown
 # /github-outreach
 
 Competitive outreach pipeline. Scan a competitor's dependents, evaluate which repos would benefit from switching to your library, and draft personalized GitHub issues.
@@ -262,3 +265,4 @@ Evaluate next N repos efficiently.
 4. **Stale dependents** — GitHub's dependency graph is delayed. Some repos may have already switched away. Check Cargo.lock if available.
 5. **Issue tone matters enormously** — "I noticed you use X, have you tried Y?" works. "X is slow, switch to Y" does not. See `references/issue-templates.md`.
 6. **Competitor forks are the strongest signal** — if a repo uses `git = "..."` instead of crates.io, they forked the competitor because it's missing something. Check the fork diff (usually 1-3 commits). If they added a feature we already have, that's our #1 pitch — "drop your fork, we have it built-in." Example: fastrepl/char forked async-openai to add schemars → our `structured` feature does exactly that.
+```

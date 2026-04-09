@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/launch"
 ---
 
+Generate a go-to-market launch strategy that ties together all promotion skills into a unified plan. Reads PRD and research data, defines the beachhead, maps channels, validates pricing against manifesto principles, and produces an actionable launch checklist.
+
+```markdown
 # /launch
 
 Generate a go-to-market launch strategy that ties together all promotion skills into a unified plan. Reads PRD and research data, defines the beachhead, maps channels, validates pricing against manifesto principles, and produces an actionable launch checklist.
@@ -193,3 +196,4 @@ If MCP tools are not available, fall back to Glob + Grep + WebSearch.
 ### Beachhead too broad
 **Cause:** "Everyone who uses X" is not a beachhead.
 **Fix:** Narrow to a specific community, profession, or behavior pattern. You should be able to find them in one place.
+```

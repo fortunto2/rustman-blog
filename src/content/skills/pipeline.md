@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/pipeline"
 ---
 
+Launch an automated multi-skill pipeline. The Stop hook chains skills automatically — no manual invocation needed between stages.
+
+```markdown
 # /pipeline
 
 Launch an automated multi-skill pipeline. The Stop hook chains skills automatically — no manual invocation needed between stages.
@@ -157,3 +160,4 @@ Re-running a pipeline reuses any existing state — completed stages are skipped
 3. **Cancel = delete state file** — tell users this if they want to stop.
 4. **Max iterations** prevent infinite loops (default 5 for research, 15 for dev).
 5. **Use `--no-dashboard`** when running from within Claude Code skill context.
+```

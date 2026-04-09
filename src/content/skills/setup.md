@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/setup"
 ---
 
+Auto-generate project workflow config from existing PRD and CLAUDE.md. Zero interactive questions — all answers extracted from project data that already exists after `/scaffold`.
+
+```markdown
 # /setup
 
 Auto-generate project workflow config from existing PRD and CLAUDE.md. Zero interactive questions — all answers extracted from project data that already exists after `/scaffold`.
@@ -118,3 +121,4 @@ If MCP tools are not available, fall back to reading local files only.
 ### Wrong test framework detected
 **Cause:** Multiple test frameworks in devDependencies.
 **Fix:** Skill picks the first found. Edit `docs/workflow.md` manually to specify the correct framework.
+```

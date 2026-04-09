@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/scaffold"
 ---
 
+Scaffold a complete project from PRD + stack template. Creates directory structure, configs, CLAUDE.md, git repo, and pushes to GitHub. Studies existing projects via SoloGraph for consistent patterns, uses Context7 for latest library versions.
+
+```markdown
 # /scaffold
 
 Scaffold a complete project from PRD + stack template. Creates directory structure, configs, CLAUDE.md, git repo, and pushes to GitHub. Studies existing projects via SoloGraph for consistent patterns, uses Context7 for latest library versions.
@@ -232,3 +235,4 @@ Never say "scaffold complete" without running the install and verifying it works
 ### org defaults missing
 **Cause:** `~/.solo-factory/defaults.yaml` not created.
 **Fix:** Run `/init` first for one-time setup, or skill will ask for bundle ID and team ID interactively.
+```

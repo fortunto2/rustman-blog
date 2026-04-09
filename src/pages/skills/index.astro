@@ -39,4 +39,13 @@ const ungrouped = all.filter(s => !phases.includes(s.frontmatter.phase));
       <ContentList items={ungrouped} basePath="/skills" showDate={false} showTags={false} />
     </section>
   )}
+  <div class="mt-10 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm font-mono">
+    <h3 class="font-semibold mb-2">Related</h3>
+    <div class="space-y-0">
+      <a href="/projects/project-solo-factory" class="block py-0.5 link-muted">Solo Factory — full product overview, agents, stacks, pipeline</a>
+      <a href="/course" class="block py-0.5 link-muted">Course: AI Solopreneur Engineer — learn the methodology behind these skills</a>
+      <a href="/wiki/agent-toolkit-landscape" class="block py-0.5 link-muted">Agent Toolkit Landscape — where solo-factory fits vs Superpowers, GSD-2, etc</a>
+      <a href="/wiki/harness-engineering-summary" class="block py-0.5 link-muted">Harness Engineering — skills are prompts, not programs. The harness IS the product</a>
+    </div>
+  </div>
 </BaseLayout>

@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/humanize"
 ---
 
+Strip AI writing patterns from user-facing text. Takes a file or pasted text and rewrites it to read like a human wrote it, without losing meaning or structure.
+
+```markdown
 # /humanize
 
 Strip AI writing patterns from user-facing text. Takes a file or pasted text and rewrites it to read like a human wrote it, without losing meaning or structure.
@@ -156,3 +159,4 @@ AI tends to write: heading → one-sentence intro → 3 bullets → transition s
 - **Already clean:** report "No AI patterns found. Text looks human."
 - **Code-heavy docs:** skip code blocks entirely, only process prose sections
 - **Non-English text:** apply em dash and structural rules (they're universal), skip English stock phrases
+```

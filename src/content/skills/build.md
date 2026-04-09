@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/build"
 ---
 
+This skill is self-contained — follow the task loop, TDD rules, and completion flow below instead of delegating to external build/execution skills (superpowers, etc.).
+
+```markdown
 # /build
 
 This skill is self-contained — follow the task loop, TDD rules, and completion flow below instead of delegating to external build/execution skills (superpowers, etc.).
@@ -445,3 +448,4 @@ These thoughts mean STOP — you're about to cut corners:
 ### Phase checkpoint failed
 **Cause:** Tests or linter failed at phase boundary.
 **Fix:** Fix failures before proceeding. Re-run verification for that phase.
+```

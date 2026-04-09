@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/you2idea-extract"
 ---
 
+Extract startup ideas from YouTube videos. Two operating modes depending on available tools.
+
+```markdown
 # /you2idea-extract
 
 Extract startup ideas from YouTube videos. Two operating modes depending on available tools.
@@ -128,3 +131,4 @@ Check which tools are available:
 
 ### Too many ideas, hard to prioritize
 **Fix:** Use `/validate` on the top 3 ideas to score them through STREAM framework.
+```

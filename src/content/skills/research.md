@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/research"
 ---
 
+Deep research before PRD generation. Produces a structured `research.md` with competitive analysis, user pain points, SEO/ASO keywords, naming/domain options, and market sizing.
+
+```markdown
 # /research
 
 Deep research before PRD generation. Produces a structured `research.md` with competitive analysis, user pain points, SEO/ASO keywords, naming/domain options, and market sizing.
@@ -272,3 +275,4 @@ If a page returns 403/CAPTCHA via WebFetch:
 2. **Reddit search:** PullPush API `api.pullpush.io` (structured JSON, full selftext)
 3. **Product Hunt / other sites:** MCP Playwright `browser_navigate` (no captcha on most sites)
 4. **General:** WebSearch snippets + WebSearch synthesis
+```

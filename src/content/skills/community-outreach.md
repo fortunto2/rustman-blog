@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/community-outreach"
 ---
 
+Find relevant community threads (Reddit, Hacker News, ProductHunt) and draft contextual, value-first responses. NOT spam — genuine helpful answers that naturally mention the product.
+
+```markdown
 # /community-outreach
 
 Find relevant community threads (Reddit, Hacker News, ProductHunt) and draft contextual, value-first responses. NOT spam — genuine helpful answers that naturally mention the product.
@@ -180,3 +183,4 @@ If MCP tools are not available, use WebSearch/WebFetch as fallback.
 ### Responses sound promotional
 **Cause:** Product mention too prominent or lacks genuine value.
 **Fix:** Rewrite with value-first approach: 80% helpful answer, 20% product mention. Always include builder disclosure.
+```

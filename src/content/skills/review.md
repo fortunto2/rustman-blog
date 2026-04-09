@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/review"
 ---
 
+This skill is self-contained — follow the instructions below instead of delegating to external review skills (superpowers, etc.) or spawning Task subagents. Run all checks directly.
+
+```markdown
 # /review
 
 This skill is self-contained — follow the instructions below instead of delegating to external review skills (superpowers, etc.) or spawning Task subagents. Run all checks directly.
@@ -712,3 +715,4 @@ Never write "tests should pass" — run them and show the output.
 5. **Check acceptance criteria** — spec.md is the source of truth for "done".
 6. **Security is non-negotiable** — any hardcoded secret = BLOCK.
 7. **Fresh evidence only** — run commands before making claims. Never rely on memory.
+```

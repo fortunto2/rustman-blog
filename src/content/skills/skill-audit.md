@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/skill-audit"
 ---
 
+Audit a skill against the quality checklist based on Anthropic's internal best practices for Claude Code skills. Reads the skill's SKILL.md, references/, scripts/, and evaluates across 12 dimensions.
+
+```markdown
 # /skill-audit
 
 Audit a skill against the quality checklist based on Anthropic's internal best practices for Claude Code skills. Reads the skill's SKILL.md, references/, scripts/, and evaluates across 12 dimensions.
@@ -96,3 +99,4 @@ Full checklist with scoring rubric: `references/checklist.md`
 ### Score seems unfair
 **Cause:** Some dimensions don't apply to the skill type.
 **Fix:** N/A dimensions score 2. Re-read the rubric — it accounts for genuinely stateless or config-free skills.
+```

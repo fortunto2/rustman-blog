@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/validate"
 ---
 
+Validate a startup idea end-to-end: search KB, run Manifest alignment, S.E.E.D. niche check, Devil's Advocate inversion, STREAM 6-layer analysis, pick stack, generate PRD.
+
+```markdown
 # /validate
 
 Validate a startup idea end-to-end: search KB, run Manifest alignment, S.E.E.D. niche check, Devil's Advocate inversion, STREAM 6-layer analysis, pick stack, generate PRD.
@@ -255,3 +258,4 @@ If MCP tools are not available, fall back to Grep/Glob/WebSearch.
 ### Manifest conflicts rationalized away
 **Cause:** The idea is exciting but conflicts with principles.
 **Fix:** State conflicts explicitly. "This violates X because Y" is more useful than silence. The user decides whether to proceed — not the skill.
+```

@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/landing-gen"
 ---
 
+Generate landing page content from a project's PRD. Produces hero section, features, social proof, CTA, SEO meta tags, and A/B headline variants. If astro-static stack detected, can scaffold actual page files.
+
+```markdown
 # /landing-gen
 
 Generate landing page content from a project's PRD. Produces hero section, features, social proof, CTA, SEO meta tags, and A/B headline variants. If astro-static stack detected, can scaffold actual page files.
@@ -168,3 +171,4 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 ### Stack not detected for page scaffolding
 **Cause:** No `astro.config.*` or `next.config.*` found.
 **Fix:** Skill outputs content-only markdown by default. To get actual page files, ensure the project uses astro-static or nextjs-supabase stack.
+```

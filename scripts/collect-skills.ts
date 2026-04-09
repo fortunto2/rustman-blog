@@ -37,13 +37,18 @@ function extractDescription(content: string): string {
   const match = content.match(/^description:\s*(.+)/m);
   if (!match) return '';
   let desc = match[1].trim();
+  // Strip outer quotes
+  desc = desc.replace(/^["']|["']$/g, '');
   // Clean: take first sentence before "Do NOT use"
   const doNot = desc.indexOf('Do NOT');
   if (doNot > 0) desc = desc.slice(0, doNot).trim();
-  // Remove "Use when" prefix
+  // Remove "Use when" prefix and trigger patterns
   desc = desc.replace(/^Use when\s+/, '').replace(/[",]$/, '').trim();
+  // Remove escaped quotes
+  desc = desc.replace(/\\"/g, '"');
   // Capitalize first letter
-  return desc.charAt(0).toUpperCase() + desc.slice(1);
+  if (desc) desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  return desc;
 }
 
 function main() {
@@ -75,11 +80,13 @@ function main() {
     const parts = raw.split('---');
     const body = parts.length >= 3 ? parts.slice(2).join('---').trim() : '';
 
-    // First heading or first paragraph as summary
-    const firstHeading = body.match(/^#\s+(.+)/m)?.[1] || `/${name}`;
+    // Extract first paragraph as human-readable summary (before first ##)
+    const firstSection = body.split(/^##/m)[0].trim();
+    const summary = firstSection.replace(/^#[^\n]*\n+/, '').split('\n\n')[0].trim();
 
     const ghUrl = `https://github.com/fortunto2/solo-factory/tree/main/skills/${name}`;
 
+    // Render as code block (like stacks) so agent instructions are readable
     const md = `---
 title: "/${name}"
 description: "${description.replace(/"/g, '\\"')}"
@@ -91,7 +98,9 @@ publish: true
 source_url: "${ghUrl}"
 ---
 
+${summary ? summary + '\n\n' : ''}\`\`\`markdown
 ${body}
+\`\`\`
 `;
 
     writeFileSync(join(OUT_DIR, `${name}.md`), md);

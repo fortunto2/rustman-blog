@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/init"
 ---
 
+One-time founder onboarding. Asks key questions, generates personalized configuration files. Everything stored as readable markdown/YAML — edit anytime.
+
+```markdown
 # /init
 
 One-time founder onboarding. Asks key questions, generates personalized configuration files. Everything stored as readable markdown/YAML — edit anytime.
@@ -147,3 +150,4 @@ See `references/generation-rules.md` → "Edge Cases" for full list.
 ### defaults.yaml already exists
 **Cause:** Previously initialized.
 **Fix:** Skill detects existing config and asks whether to reconfigure. Choose "Reconfigure from scratch" to overwrite.
+```

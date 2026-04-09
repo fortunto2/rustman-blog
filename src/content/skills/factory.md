@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/factory"
 ---
 
+One-command setup for the entire Solo Factory startup toolkit.
+
+```markdown
 # /factory
 
 One-command setup for the entire Solo Factory startup toolkit.
@@ -166,3 +169,4 @@ One-command setup for the entire Solo Factory startup toolkit.
 
 ### MCP tools not working
 **Fix:** Test with `uvx solograph --help`. Check `.mcp.json` or mcporter config.
+```

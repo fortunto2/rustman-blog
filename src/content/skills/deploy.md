@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/deploy"
 ---
 
+Deploy the project to its hosting platform. Reads the stack template YAML (`templates/stacks/{stack}.yaml`) for exact deploy config (platform, CLI tools, infra tier, CI/CD, monitoring), detects installed CLI tools, sets up database and environment, pushes code, and verifies deployment is live.
+
+```markdown
 # /deploy
 
 Deploy the project to its hosting platform. Reads the stack template YAML (`templates/stacks/{stack}.yaml`) for exact deploy config (platform, CLI tools, infra tier, CI/CD, monitoring), detects installed CLI tools, sets up database and environment, pushes code, and verifies deployment is live.
@@ -430,3 +433,4 @@ When running in a pipeline (`--print`, no human watching):
 7. **Report all URLs** — deployment URL + platform dashboard links.
 8. **Infrastructure in repo** — prefer `sst.config.ts` or `wrangler.toml` over manual dashboard config.
 9. **Verify before claiming done** — HTTP 200 from the live URL + clean logs, not just "deploy command succeeded".
+```

@@ -9,6 +9,9 @@ publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/retro"
 ---
 
+This skill is self-contained — follow the phases below instead of delegating to other skills (/review, /audit, /build) or spawning Task subagents. Run all analysis directly.
+
+```markdown
 # /retro
 
 This skill is self-contained — follow the phases below instead of delegating to other skills (/review, /audit, /build) or spawning Task subagents. Run all analysis directly.
@@ -489,3 +492,4 @@ Pipeline: {stages run} | Iters: {total} | Waste: {pct}%
 
 - `${CLAUDE_PLUGIN_ROOT}/skills/retro/references/eval-dimensions.md` — scoring rubric (8 axes, weights)
 - `${CLAUDE_PLUGIN_ROOT}/skills/retro/references/failure-catalog.md` — known failure patterns and fixes
+```
