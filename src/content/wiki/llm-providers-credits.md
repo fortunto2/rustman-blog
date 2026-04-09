@@ -55,8 +55,10 @@ Start building today for $0.
 | Provider | Free Tier | Models | Limits | Best for |
 |----------|-----------|--------|--------|----------|
 | **Google AI Studio** | Free | Gemini 2.5 Pro/Flash | 15 RPM, rate limited | Prototyping, testing |
-| **Groq** | Free | Llama 3, Mixtral, Gemma | Rate limited | Fast inference |
-| **OpenRouter** | Free models | Various open models | Per-model limits | Routing + fallback |
+| **Groq** | Free | Llama 3, Mixtral, Gemma | Rate limited | Fast inference (LPU, 840 tok/s) |
+| **Cerebras** | 1M tok/day free | Llama, Qwen, GPT-OSS | 1M tokens/day, no card | Fastest inference (2,200 tok/s) |
+| **SambaNova** | $5 credits (30 days) | Llama, Qwen, DeepSeek | Limited | Fast RDU inference |
+| **OpenRouter** | 29 free models | GPT-OSS 120B, Nemotron 120B, Llama 70B, DeepSeek R1, Gemma 4 | 20 RPM, 200 req/day per model | Routing + fallback, no card |
 | **Cloudflare Workers AI** | 10K neurons/day free | Llama, Mistral, Gemma, Phi, etc | 10K neurons/day, zero egress | Edge inference, startup credits up to $50K |
 | **NVIDIA NIM** | Free preview | Llama, Mistral, CodeLlama, DeepSeek, etc | Rate limited, API key required | Code gen, inference preview | [build.nvidia.com](https://build.nvidia.com/models) |
 | **Hugging Face** | Free inference | All open models | Rate limited, queue | Testing open models |
@@ -66,19 +68,79 @@ Start building today for $0.
 
 ---
 
-## API Providers (pay-as-you-go)
+## Inference Pricing ($/1M tokens, Apr 2026)
 
-| Provider | Key Models | Pricing Model | Differentiator |
-|----------|-----------|---------------|----------------|
-| **OpenAI** | GPT-4o, GPT-5, o3 | Per token | Best overall ecosystem |
-| **Anthropic** | Claude Opus 4, Sonnet 4 | Per token | Best for coding, long context |
-| **Google** | Gemini 2.5 Pro/Flash | Per token | Longest context (1M+), multimodal |
-| **OpenRouter** | 100+ models | Per token (markup) | Single API for all providers, fallback routing |
-| **Together AI** | Open models (Llama, Mixtral) | Per token | Cheapest for open models |
-| **Groq** | Llama, Mixtral | Per token | Fastest inference (LPU) |
-| **Fireworks** | Open models | Per token | Low latency, fine-tuning |
-| **Modal** | Any (BYO model) | Per GPU-second | Run your own models, autoscaling |
-| **Replicate** | Open models | Per prediction | Simple API, community models |
+Prices dropped ~80% in 12 months. Format: input / output.
+
+### Frontier (closed)
+
+| Provider | Model | Input | Output |
+|----------|-------|-------|--------|
+| **OpenAI** | GPT-5 | ~$5 | ~$15 |
+| **Anthropic** | Claude Opus 4 | ~$15 | ~$75 |
+| **Anthropic** | Claude Sonnet 4 | ~$3 | ~$15 |
+| **Google** | Gemini 2.5 Pro | ~$1.25 | ~$10 |
+
+### Open Models — 70B class
+
+| Provider | Llama 3.3 70B | Qwen 2.5 72B | DeepSeek V3 | Speed |
+|----------|--------------|-------------|-------------|-------|
+| **Novita AI** | $0.14 / $0.40 | $0.38 / $0.40 | $0.27 / $0.40 | GPU |
+| **DeepInfra** | $0.23 / $0.40 | $0.12 / $0.39 | $0.27 / $1.10 | GPU |
+| **Hyperbolic** | $0.40 | $0.40 | $0.25 | GPU |
+| **Groq** | $0.59 / $0.79 | — | — | 394 tok/s (LPU) |
+| **Together AI** | $0.88 | — | $0.60 / $1.70 | GPU |
+| **OpenRouter** | **FREE** | $0.23 | **FREE** (R1) | varies |
+
+### Open Models — 120B+ class
+
+| Provider | GPT-OSS 120B | Nemotron 120B | Qwen3 235B |
+|----------|-------------|---------------|------------|
+| **Groq** | $0.15 / $0.60 | — | — |
+| **Together AI** | $0.15 / $0.60 | — | — |
+| **Fireworks** | $0.15 / $0.60 | — | — |
+| **Cerebras** | $0.35 / $0.75 | — | $0.60 / $1.20 |
+| **OpenRouter** | **FREE** | **FREE** | — |
+
+### Speed Leaderboard
+
+| Provider | Hardware | 8B tok/s | 70B tok/s | 405B tok/s |
+|----------|----------|----------|-----------|-----------|
+| **Cerebras** | WSE-3 (wafer) | ~2,200 | ~1,500 | ~969 |
+| **SambaNova** | RDU | ~988 | ~536 | — |
+| **Groq** | LPU (ASIC) | ~840 | ~394 | — |
+| GPU providers | H100/B200 | ~200-400 | ~100-200 | ~50-100 |
+
+### Best Value Picks
+
+| Use Case | Provider | Why |
+|----------|---------|-----|
+| **Cheapest 70B** | Novita AI or OpenRouter (free) | $0.14/M or $0 |
+| **Cheapest 120B+** | OpenRouter free (GPT-OSS, Nemotron) | $0 with rate limits |
+| **Fastest** | Cerebras | 2-6x faster than competition |
+| **Fast + cheap** | Groq | Good speed/price, $0.05-0.79 |
+| **Most models** | Together AI or OpenRouter | 200+ models |
+| **DeepSeek R1 cheap** | Novita AI | $0.70 / $2.50 |
+| **Free no card** | Cerebras free tier | 1M tokens/day |
+| **29 free models** | OpenRouter | Including GPT-OSS, Nemotron, Llama, DeepSeek R1 |
+
+### Key Providers
+
+| Provider | Differentiator | Link |
+|----------|---------------|------|
+| **OpenAI** | Best ecosystem, GPT-5 | openai.com |
+| **Anthropic** | Best coding, Claude | anthropic.com |
+| **Google** | 1M+ context, multimodal | ai.google.dev |
+| **OpenRouter** | Aggregator, 29 free models, fallback routing | [openrouter.ai](https://openrouter.ai) |
+| **Groq** | LPU custom ASIC, very fast | [groq.com](https://groq.com) |
+| **Cerebras** | Wafer-scale, fastest inference | [cerebras.ai](https://cerebras.ai) |
+| **Together AI** | Open models, fine-tuning, ATLAS engine | [together.ai](https://together.ai) |
+| **Fireworks** | Low latency, batch 50% discount | [fireworks.ai](https://fireworks.ai) |
+| **SambaNova** | Custom RDU chip, fast | [sambanova.ai](https://sambanova.ai) |
+| **Novita AI** | Cheapest prices across the board | [novita.ai](https://novita.ai) |
+| **Hyperbolic** | Good prices, open models | [hyperbolic.xyz](https://hyperbolic.xyz) |
+| **DeepInfra** | H100/B200, competitive pricing | [deepinfra.com](https://deepinfra.com) |
+| **Modal** | GPU cloud, BYO model, autoscaling | [modal.com](https://modal.com) |
 
 ---
 
