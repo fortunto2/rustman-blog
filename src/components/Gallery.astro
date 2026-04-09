@@ -1,0 +1,21 @@
+---
+/**
+ * Image gallery for project pages.
+ * Props:
+ *   images — array of { src, alt? } objects
+ */
+interface Props {
+  images: { src: string; alt?: string }[];
+}
+const { images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class="not-prose grid gap-3 sm:grid-cols-2 my-6">
+    {images.map(img => (
+      <a href={img.src} target="_blank" rel="noopener" class="block overflow-hidden border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <img src={img.src} alt={img.alt || ''} loading="lazy" class="w-full h-auto hover:scale-105 transition-transform duration-200" />
+      </a>
+    ))}
+  </div>
+)}
