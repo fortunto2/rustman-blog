@@ -120,6 +120,54 @@ Not all memories should persist forever. Decisions have an expiry date — polic
 
 ---
 
+## Trust Hierarchy: Not All Memory is Equal
+
+A common failure mode: the agent "remembers something" but you can't tell if it's trustworthy. Memory systems that treat everything as equal — recent chat, old decisions, daily notes, canonical specs — produce agents that confidently cite stale or wrong information.
+
+The [Zero Harness](https://github.com/openclaw/openclaw) approach introduces an explicit **trust hierarchy** for memory:
+
+| Layer | Trust Level | Example | Update Frequency |
+|-------|------------|---------|-----------------|
+| **Source of truth** | Canonical | `source_of_truth.md`, schemas, configs | Rarely, deliberately |
+| **Handoff** | High | `handoff.md` — current state, decisions, blockers | Every session end |
+| **Daily notes** | Medium | Daily log, task notes, runtime snapshots | Daily |
+| **Memory entries** | Variable | Structured facts, observations | Ongoing |
+| **Chat history** | Low | Raw conversation, ephemeral context | Per session |
+
+**Source of truth > volume.** The agent knowing which file is canonical matters more than remembering everything. When memory contradicts source of truth, source of truth wins.
+
+**Handoff as save game.** The most underrated memory pattern. Not abstract "long-term memory" — a short, living file that captures: what's happening now, what decisions were made, what's broken, what's left to do, which files are load-bearing. Like a game save point. OpenClaw's `## Retain` section, GSD-2's `.gsd/STATE.md`, and Claude Code's session summaries are all variations of this pattern.
+
+**Memory should help act, not just recall.** Useful memory units aren't just facts — they're actionable artifacts: task notes, daily plans, fixed decisions, integration statuses, runtime snapshots, environment self-maps. Good agent memory is an operational surface you can act from, not a museum of recollections.
+
+This connects to [[harness-engineering-summary|harness engineering]]: the harness defines which artifacts are source of truth (CLAUDE.md, schemas, tests), and the memory system respects that hierarchy.
+
+---
+
+## Lexical-First Retrieval
+
+Most agent memory systems default to vector/semantic search. But in practice, engineering queries are often exact and operational: "what did we decide about heartbeat?", "where is the runtime snapshot?", "which cron is failing?", "what file is canonical?"
+
+For these queries, **lexical search (BM25/FTS5) is more reliable than embeddings**:
+
+- Exact file names, identifiers, integration names — lexical wins
+- Specific formulations, decisions, promises — lexical wins
+- "Find something conceptually similar" — embeddings win
+- "What does X relate to?" — graph queries win
+
+The practical stack, in order of reliability:
+
+1. **Lexical first** (BM25 / FTS5) — handles exact names, identifiers, operational queries
+2. **Graph queries** (Cypher / FalkorDB) — handles relationships, dependencies, cross-references
+3. **Vector search** (embeddings) — handles conceptual similarity, fuzzy matching
+4. **LLM reranking** — optional final pass for relevance scoring
+
+This matches what multiple systems converge on independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found that structural filtering beats raw embeddings by 34%, [[project-solograph|Solograph]] combines FTS5 + graph + vector.
+
+**Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries. Add embeddings when lexical search fails — which is less often than you'd expect.
+
+---
+
 ## Progressive Context Loading
 
 All systems converge on the same [[context-engineering|context engineering]] pattern: don't load everything, load progressively.

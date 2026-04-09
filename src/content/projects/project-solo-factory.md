@@ -22,3 +22,4 @@ Claude Code plugin that turns a solo founder into a startup factory. 27 skills c
 - [[harness-engineering-summary]] — solo-factory IS harness engineering in practice
 - [[solo-methodology]] — the plugin that powers the methodology
 - [[agent-mistake-fix-harness]] — every skill improvement is a harness fix
+- [[agent-toolkit-landscape]] — where solo-factory fits: executable skills vs prompt libraries vs frameworks

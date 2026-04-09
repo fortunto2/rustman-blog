@@ -31,3 +31,4 @@ Tools for legibility (OpenAI): app per worktree (isolated instance per change), 
 - [[harness-engineering-summary]] — origin: component 1 of three
 - [[agent-mistake-fix-harness]] — context engineering is the lightweight fix mechanism (vs linters/tests)
 - [[solo-methodology]] — CLAUDE.md structure directly implements this pattern
+- [[token-efficient-web-requests]] — context engineering for external data: Accept header, html2text, truncation

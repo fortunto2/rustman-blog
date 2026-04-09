@@ -20,3 +20,4 @@ Idiomatic Rust client for OpenAI API with 1:1 parity to openai-python. Typed res
 - [[schema-guided-reasoning]] — typed Rust structs = SGR at compile time
 - [[cli-first-testing]] — CLI-first: `cargo test` + integration tests against live API
 - [[portfolio-approach]] — one crate in the Rust open source portfolio
+- [[token-efficient-web-requests]] — HTTP transport optimizations (gzip, TCP_NODELAY, HTTP/2 tuning) [contributed upstream to rust-genai](https://github.com/jeremychone/rust-genai/pull/177)
