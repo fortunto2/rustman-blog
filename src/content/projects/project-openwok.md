@@ -10,6 +10,7 @@ course_order: 13
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/OpenWok"
+github: fortunto2/OpenWok
 ---
 
 # OpenWok

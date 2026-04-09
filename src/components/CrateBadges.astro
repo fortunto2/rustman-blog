@@ -1,0 +1,59 @@
+---
+/**
+ * Registry badges for published packages.
+ * Shows crates.io, npm, PyPI badges with links.
+ *
+ * Props:
+ *   crate   — crates.io package name
+ *   npm     — npm package name
+ *   pypi    — PyPI package name
+ *   docs    — docs.rs URL or custom docs link
+ *   github  — GitHub repo (owner/repo)
+ */
+interface Props {
+  crate?: string;
+  npm?: string;
+  pypi?: string;
+  docs?: string;
+  github?: string;
+}
+
+const { crate: crateName, npm, pypi, docs, github } = Astro.props;
+---
+
+<div class="not-prose flex flex-wrap gap-2 my-4 font-mono text-xs">
+  {crateName && (
+    <a href={`https://crates.io/crates/${crateName}`} target="_blank" rel="noopener"
+       class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+      <span class="text-orange-400">crates.io</span>
+      <span>{crateName}</span>
+    </a>
+  )}
+  {npm && (
+    <a href={`https://www.npmjs.com/package/${npm}`} target="_blank" rel="noopener"
+       class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+      <span class="text-red-400">npm</span>
+      <span>{npm}</span>
+    </a>
+  )}
+  {pypi && (
+    <a href={`https://pypi.org/project/${pypi}/`} target="_blank" rel="noopener"
+       class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+      <span class="text-blue-400">PyPI</span>
+      <span>{pypi}</span>
+    </a>
+  )}
+  {docs && (
+    <a href={docs} target="_blank" rel="noopener"
+       class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+      <span class="text-green-400">docs</span>
+    </a>
+  )}
+  {github && (
+    <a href={`https://github.com/${github}`} target="_blank" rel="noopener"
+       class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+      <span class="text-[var(--color-muted)]">github</span>
+      <span>{github}</span>
+    </a>
+  )}
+</div>

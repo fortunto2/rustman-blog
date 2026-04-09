@@ -10,6 +10,7 @@ course_order: 12
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/supervox"
+github: fortunto2/supervox
 ---
 
 # SuperVox

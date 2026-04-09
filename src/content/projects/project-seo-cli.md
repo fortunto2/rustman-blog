@@ -10,6 +10,8 @@ course_order: 11
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/seo-cli"
+pypi: seo-cli
+github: fortunto2/seo-cli
 ---
 
 # SEO CLI

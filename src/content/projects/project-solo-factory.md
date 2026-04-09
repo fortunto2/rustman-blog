@@ -10,6 +10,7 @@ course_order: 1
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solo-factory"
+github: fortunto2/solo-factory
 ---
 
 # Solo Factory

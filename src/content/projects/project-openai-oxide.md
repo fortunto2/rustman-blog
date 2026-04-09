@@ -10,6 +10,11 @@ course_order: 1
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/openai-oxide"
+crate: openai-oxide
+npm: openai-oxide
+pypi: openai-oxide
+docs_url: "https://docs.rs/openai-oxide"
+github: fortunto2/openai-oxide
 ---
 
 # openai-oxide

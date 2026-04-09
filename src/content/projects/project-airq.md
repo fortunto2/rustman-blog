@@ -10,6 +10,8 @@ course_order: 3
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/airq"
+crate: airq
+github: fortunto2/airq
 ---
 
 # airq

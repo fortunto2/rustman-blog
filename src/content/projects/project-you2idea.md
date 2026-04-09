@@ -10,6 +10,7 @@ course_order: 5
 publish: true
 publish_as: project
 source_url: "https://you2idea.com"
+github: fortunto2/you2idea
 ---
 
 # You2Idea

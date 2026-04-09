@@ -10,6 +10,7 @@ course_order: 4
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/invoice-crm"
+github: fortunto2/invoice-crm
 ---
 
 # Invoice CRM

@@ -10,6 +10,7 @@ course_order: 7
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superstoryboard"
+github: fortunto2/superstoryboard
 ---
 
 # SuperStoryboard

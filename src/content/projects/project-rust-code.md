@@ -10,6 +10,8 @@ course_order: 2
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/rust-code"
+crate: sgr-agent
+github: fortunto2/rust-code
 ---
 
 # rust-code
