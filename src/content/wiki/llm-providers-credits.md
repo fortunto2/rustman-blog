@@ -157,14 +157,25 @@ DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10
 | **Claude Sonnet 4** (Anthropic) | **$900** | 35x more |
 | **Gemini 2.5 Pro** (Google) | **$563** | 22x more |
 
-### Speed Leaderboard
+### Speed Leaderboard (custom hardware)
 
-| Provider | Hardware | 8B tok/s | 70B tok/s | 405B tok/s |
-|----------|----------|----------|-----------|-----------|
-| **Cerebras** | WSE-3 (wafer) | ~2,200 | ~1,500 | ~969 |
-| **SambaNova** | RDU | ~988 | ~536 | — |
-| **Groq** | LPU (ASIC) | ~840 | ~394 | — |
-| GPU providers | H100/B200 | ~200-400 | ~100-200 | ~50-100 |
+| Provider | Hardware | 8B tok/s | 70B tok/s | 120B tok/s | Note |
+|----------|----------|----------|-----------|-----------|------|
+| **Cerebras** | WSE-3 (wafer, 4T transistors) | ~2,200 | ~1,500 | ~3,000 | 6x faster than Groq. OpenAI partner |
+| **Groq** | LPU (SRAM ASIC) | 840 | 394 | 500 | Sub-100ms TTFT. Wide model selection |
+| **SambaNova** | SN50 (RDU, Feb 2026) | ~988 | ~536 | — | 5x claim, 10M context support |
+| GPU providers | H100/B200 | ~300 | ~150 | ~80 | DeepInfra, Together, Fireworks |
+
+### Groq Pricing (from LPU, exact Apr 2026)
+
+| Model | TPS | Input $/1M | Output $/1M | 100M (50/50) |
+|-------|-----|-----------|------------|-------------|
+| **GPT-OSS 20B** | 1,000 | $0.075 | $0.30 | **$19** |
+| **Llama 4 Scout** | 594 | $0.11 | $0.34 | **$23** |
+| **GPT-OSS 120B** | 500 | $0.15 | $0.60 | **$38** |
+| **Qwen3 32B** | 662 | $0.29 | $0.59 | **$44** |
+| **Llama 3.3 70B** | 394 | $0.59 | $0.79 | **$69** |
+| **Llama 3.1 8B** | 840 | $0.05 | $0.08 | **$7** |
 
 ### Best Value Picks
 
