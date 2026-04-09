@@ -9,13 +9,13 @@ course_order: 9
 publish: true
 publish_as: project
 source_url: "https://www.face-alarm.com"
+app_store_id: "6758454962"
+play_store_url: "https://play.google.com/store/apps/details?id=com.facealarm.app"
 ---
 
 # FaceAlarm
 
 Track your face transformation daily. AI-powered alarm that won't turn off until you take a selfie — perfect for face yoga, gua sha, and skincare routines.
-
-![FaceAlarm](/images/projects/facealarm/app-mockup.png)
 
 ## The Problem
 
@@ -35,8 +35,6 @@ Wife runs a face massage coaching business. Her clients needed a daily reminder 
 - **Progress timeline** — before/after comparisons over time
 - **Guided exercises** — face yoga, gua sha, skincare routines
 - **Privacy-first** — all photos stay on device, no registration required
-
-![FaceAlarm screenshots](/images/projects/facealarm/facealarm-2.webp)
 
 ## Stack
 

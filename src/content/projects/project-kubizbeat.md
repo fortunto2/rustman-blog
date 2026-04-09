@@ -9,14 +9,13 @@ course_order: 10
 publish: true
 publish_as: project
 source_url: "https://apps.apple.com/app/jaw-harp-synth/id6758465213"
-images: ["/images/projects/kubizbeat-icon.png"]
+app_store_id: "6758465213"
+app_store_screenshots: [https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/92/87/97/928797e7-c6a8-95ac-c039-0d0e66299a9e/Simulator_Screenshot_-_iPhone_17_Pro_Max_-_2026-01-31_at_12.12.28.png/460x0w.webp, https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4c/02/c2/4c02c21e-9219-63d9-f00d-488095708362/Simulator_Screenshot_-_iPhone_17_Pro_Max_-_2026-01-31_at_12.12.33.png/460x0w.webp, https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3d/c9/57/3dc95759-b5d7-4cc2-7be6-8bf412f268a7/Simulator_Screenshot_-_iPhone_17_Pro_Max_-_2026-01-31_at_12.31.55.png/460x0w.webp, https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/83/8c/ec/838cec29-07ad-946b-594b-1421dacfceb8/Simulator_Screenshot_-_iPhone_17_Pro_Max_-_2026-01-31_at_12.12.56.png/460x0w.webp, https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/13/ae/b8/13aeb850-3498-0c75-4ff6-2c87578a3567/Simulator_Screenshot_-_iPhone_17_Pro_Max_-_2026-01-31_at_12.13.01.png/460x0w.webp]
 ---
 
 # Jaw Harp Synth (KubizBeat)
 
 Virtual jaw harp (kubyz/vargan) synthesizer for iOS. Play traditional instrument sounds with modern digital effects on your iPhone.
-
-![KubizBeat](/images/projects/kubizbeat-icon.png)
 
 ## Sound Engine
 

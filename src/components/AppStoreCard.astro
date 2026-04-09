@@ -1,0 +1,96 @@
+---
+/**
+ * App Store card with icon, rating, screenshots from iTunes API.
+ * Fetched at build time — static HTML, no client JS.
+ *
+ * Props:
+ *   appId       — iTunes app ID (e.g. "6758465213")
+ *   country     — store country (default "us")
+ *   screenshots — override screenshot URLs (if API doesn't return them)
+ *   playStoreUrl — optional Google Play link
+ */
+interface Props {
+  appId: string;
+  country?: string;
+  screenshots?: string[];
+  playStoreUrl?: string;
+}
+
+const { appId, country = 'us', screenshots: overrideScreenshots, playStoreUrl } = Astro.props;
+
+let app: {
+  name: string;
+  developer: string;
+  icon: string;
+  rating: number;
+  ratingCount: number;
+  price: string;
+  screenshots: string[];
+  url: string;
+} | null = null;
+
+try {
+  const res = await fetch(`https://itunes.apple.com/lookup?id=${appId}&country=${country}`);
+  const data = await res.json();
+  if (data.resultCount > 0) {
+    const d = data.results[0];
+    app = {
+      name: d.trackName,
+      developer: d.artistName,
+      icon: d.artworkUrl512,
+      rating: d.averageUserRating || 0,
+      ratingCount: d.userRatingCount || 0,
+      price: d.formattedPrice,
+      screenshots: d.screenshotUrls || [],
+      url: d.trackViewUrl?.replace('?uo=4', '') || '',
+    };
+  }
+} catch {}
+
+const shots = overrideScreenshots?.length ? overrideScreenshots : (app?.screenshots || []);
+const stars = app ? Math.round(app.rating * 10) / 10 : 0;
+---
+
+{app && (
+  <div class="not-prose my-8">
+    <div class="flex items-center gap-4 mb-6">
+      <img src={app.icon} alt={app.name} width="80" height="80" class="rounded-[18px] shadow-lg" loading="lazy" />
+      <div>
+        <h3 class="text-lg font-bold font-mono">{app.name}</h3>
+        <p class="text-sm text-[var(--color-muted)]">{app.developer}</p>
+        {stars > 0 && (
+          <p class="text-sm text-[var(--color-muted)] mt-0.5">
+            {'★'.repeat(Math.round(stars))}{'☆'.repeat(5 - Math.round(stars))} {stars} ({app.ratingCount})
+          </p>
+        )}
+        <div class="flex gap-2 mt-2">
+          <a href={app.url} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black text-white text-xs font-medium rounded-lg hover:bg-gray-800 transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>
+          {playStoreUrl && (
+            <a href={playStoreUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black text-white text-xs font-medium rounded-lg hover:bg-gray-800 transition-colors">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+              Google Play
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+
+    {shots.length > 0 && (
+      <div class="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 snap-x">
+        {shots.slice(0, 6).map((url, i) => (
+          <img
+            src={url}
+            alt={`${app.name} screenshot ${i + 1}`}
+            width="220"
+            height="476"
+            loading="lazy"
+            class="rounded-xl shadow-lg shrink-0 snap-center"
+          />
+        ))}
+      </div>
+    )}
+  </div>
+)}

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackLink from '../../components/BackLink.astro';
 import ArticleMeta from '../../components/ArticleMeta.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
+import AppStoreCard from '../../components/AppStoreCard.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -15,10 +16,22 @@ export function getStaticPaths() {
 
 const { entry } = Astro.props;
 const post = renderMarkdown(entry.raw);
+const appStoreId = post.frontmatter.app_store_id;
+const appStoreScreenshots = post.frontmatter.app_store_screenshots;
+const playStoreUrl = post.frontmatter.play_store_url;
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }}>
   <BackLink href="/projects" label="Projects" />
+
+  {appStoreId && (
+    <AppStoreCard
+      appId={appStoreId}
+      screenshots={appStoreScreenshots}
+      playStoreUrl={playStoreUrl}
+    />
+  )}
+
   <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:projects">
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
