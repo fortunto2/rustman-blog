@@ -4,6 +4,7 @@ description: "Code intelligence MCP server: multi-project code graph, semantic s
 title: "solograph — code intelligence MCP server"
 created: 2026-02-07
 tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter]
+project_type: tool
 course_module: 6
 course_order: 4
 publish: true

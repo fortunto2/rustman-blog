@@ -4,6 +4,7 @@ title: "SEO CLI — all search engine data in one terminal"
 description: "Unified CLI for SEO: Google Search Console, GA4, Cloudflare, Bing, IndexNow. Launch, audit, monitor, reindex — 18 commands, one config, all sites."
 created: 2026-03-01
 tags: [project, open-source, python, cli, seo, analytics]
+project_type: tool
 course_module: 7
 course_order: 11
 publish: true

@@ -4,6 +4,7 @@ description: "AI platform that turns everyday moments into meaningful montages. 
 title: "Life2Film — turn everyday moments into meaningful montages"
 created: 2014-01-01
 tags: [project, ios, life2film, video, ai, montage, flagship]
+project_type: app
 course_module: 7
 course_order: 8
 publish: true

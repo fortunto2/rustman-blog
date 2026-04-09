@@ -4,6 +4,7 @@ description: "Virtual jaw harp (kubyz/vargan) synthesizer for iOS. Physics-based
 title: "KubizBeat — Bashkir kubyz instrument app"
 created: 2025-03-01
 tags: [project, ios, kubyz, music, culture, bashkir]
+project_type: app
 course_module: 7
 course_order: 10
 publish: true

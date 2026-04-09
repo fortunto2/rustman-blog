@@ -4,6 +4,7 @@ description: "Claude Code plugin with 30 startup skills, 3 agents, 9 stack templ
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
 tags: [project, open-source, claude-code, plugin, skills, agents]
+project_type: tool
 course_module: 6
 course_order: 1
 publish: true

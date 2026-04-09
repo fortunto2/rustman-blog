@@ -4,6 +4,7 @@ description: "Check AQI, PM2.5, PM10 for any city from terminal. Open-Meteo + Se
 title: "airq — CLI air quality checker"
 created: 2026-03-16
 tags: [project, open-source, rust, air-quality, cli, wasm]
+project_type: tool
 course_module: 7
 course_order: 3
 publish: true

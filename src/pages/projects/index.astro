@@ -4,15 +4,41 @@ import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
 const projects = getCollection('projects');
+
+const types = [
+  { key: 'tool', label: 'Tools & CLI' },
+  { key: 'library', label: 'Libraries & Agents' },
+  { key: 'app', label: 'Apps' },
+  { key: 'product', label: 'Products & Platforms' },
+];
+
+const grouped = types.map(t => ({
+  ...t,
+  items: projects.filter(p => p.frontmatter.project_type === t.key),
+})).filter(g => g.items.length > 0);
+
+const ungrouped = projects.filter(p => !types.some(t => t.key === p.frontmatter.project_type));
 ---
 
-<BaseLayout title="Projects" description="Products I'm building in public." section="projects">
+<BaseLayout title="Projects" description="Open source tools and products I'm building in public." section="projects">
   <div class="mb-8">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">Projects</h1>
     <p class="text-[var(--color-muted)]">Open source tools and products I'm building in public.</p>
   </div>
 
-  <ContentList items={projects} basePath="/projects" showDate={true} showTags={true} />
+  {grouped.map(({ label, items }) => (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">{label}</h2>
+      <ContentList items={items} basePath="/projects" showDate={false} showTags={true} />
+    </section>
+  ))}
+
+  {ungrouped.length > 0 && (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Other</h2>
+      <ContentList items={ungrouped} basePath="/projects" showDate={false} showTags={true} />
+    </section>
+  )}
 
   {projects.length === 0 && <p class="text-[var(--color-muted)]">No projects published yet.</p>}
 </BaseLayout>

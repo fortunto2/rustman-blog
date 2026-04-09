@@ -4,6 +4,7 @@ title: "SuperStoryboard — AI storyboard generation with Figma sync"
 description: "AI-powered storyboard generation with real-time Figma collaboration. 2nd place at Supabase Hackathon. Gemini + Veo 3.1 + PGMQ."
 created: 2026-04-01
 tags: [project, ai, supabase, figma, hackathon, video, storyboard]
+project_type: product
 course_module: 7
 course_order: 7
 publish: true

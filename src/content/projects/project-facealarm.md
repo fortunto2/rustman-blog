@@ -4,6 +4,7 @@ description: "Face yoga tracker with daily selfie alarm. AI won't turn off until
 title: "FaceAlarm — face yoga tracker with daily selfie alarm"
 created: 2025-06-01
 tags: [project, ios, android, facealarm, on-device-ai, health]
+project_type: app
 course_module: 7
 course_order: 9
 publish: true

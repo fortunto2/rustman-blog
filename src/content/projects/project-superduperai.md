@@ -4,6 +4,7 @@ description: "SuperDuperAI is the umbrella: SuperDuper AI Teknoloji (Turkey, tec
 title: "SuperDuperAI — the company behind the products"
 created: 2024-01-01
 tags: [project, company, superduperai, turkey, usa, portfolio]
+project_type: product
 course_module: 7
 course_order: 6
 publish: true
