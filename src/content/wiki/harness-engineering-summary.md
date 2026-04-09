@@ -6,6 +6,7 @@ created: 2026-04-07
 tags: [harness, agents, ai-dev, context-engineering, methodology]
 publish: true
 source_path: "1-methodology/harness-engineering.md"
+source_url: "https://openai.com/index/harness-engineering/"
 ---
 
 ## Key Takeaways

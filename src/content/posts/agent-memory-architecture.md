@@ -13,7 +13,7 @@ source_path: "1-methodology/agent-memory-architecture.md"
 
 AI agents forget everything between sessions. Context windows are finite. [[rag-patterns|RAG]] retrieves documents but doesn't capture decisions, preferences, or evolving relationships. This is the core problem of agent memory — and there are now several mature approaches to solving it.
 
-This post synthesizes patterns from five memory-focused systems I've built or studied: [[schema-guided-reasoning|SGR Agents]] spec (the cognitive foundation), [Moltis](https://github.com/moltis-ai/moltis), [OpenClaw](https://github.com/openclaw/openclaw) Workspace Memory, [[mempalace-agent-memory|MemPalace]], and [[project-solograph|Solograph]]. Each takes a different approach. Together they map the full design space.
+This post synthesizes patterns from five memory-focused systems I've built or studied: [[schema-guided-reasoning|SGR Agents]] spec (the cognitive foundation), [Moltis](https://github.com/moltis-org/moltis), [OpenClaw](https://github.com/openclaw/openclaw) Workspace Memory, [[mempalace-agent-memory|MemPalace]], and [[project-solograph|Solograph]]. Each takes a different approach. Together they map the full design space.
 
 ---
 
@@ -212,7 +212,7 @@ The ultimate goal isn't just remembering — it's compounding. Every [[context-g
 - [[mempalace-agent-memory|MemPalace]] — [GitHub](https://github.com/milla-jovovich/mempalace) — spatial memory, 96.6% LongMemEval, MIT (27K stars)
 - [[project-solograph|Solograph]] — [GitHub](https://github.com/fortunto2/solograph) — graph + vector MCP server, 15 tools, FalkorDB + MLX
 - [QMD](https://github.com/tobi/qmd) — mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Used as optional backend in Moltis for enhanced hybrid search
-- [Moltis](https://github.com/moltis-ai/moltis) — Rust-based memory with hybrid search + LLM reranking
+- [Moltis](https://github.com/moltis-org/moltis) — Rust-based memory with hybrid search + LLM reranking
 - [OpenClaw](https://github.com/openclaw/openclaw) — Markdown source-of-truth + derived index, Retain/Recall/Reflect
 - [Letta](https://github.com/cpacker/MemGPT) — MemGPT implementation, core/archival/recall memory management
 - [LangGraph](https://github.com/langchain-ai/langgraph) — graph-based agent execution framework
