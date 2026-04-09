@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/index-yo
 
 Index YouTube video transcripts into a searchable knowledge base. Supports two modes depending on available tools.
 
-```markdown
+````markdown
 # /index-youtube
 
 Index YouTube video transcripts into a searchable knowledge base. Supports two modes depending on available tools.
@@ -154,4 +154,4 @@ Report to the user:
 ### solograph-cli not found
 **Cause:** solograph not installed or not on PATH.
 **Fix:** Install with `pip install solograph` or `uvx solograph`. Check `which solograph-cli`.
-```
+````

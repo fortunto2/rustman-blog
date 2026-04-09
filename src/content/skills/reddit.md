@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/reddit"
 
 Reddit engagement automation — from finding relevant posts to writing authentic comments and tracking results. Comment-first strategy: build karma and reputation before any self-promotion.
 
-```markdown
+````markdown
 # /reddit
 
 Reddit engagement automation — from finding relevant posts to writing authentic comments and tracking results. Comment-first strategy: build karma and reputation before any self-promotion.
@@ -287,4 +287,4 @@ Show current Reddit engagement stats.
 - This skill complements `/community-outreach` (which finds threads) and `/content-gen` (which generates post copy). Use `/reddit` for the actual engagement loop.
 - For Reddit Ads, see the `reddit-ads` skill from kostja94/marketing-skills.
 - Karma builds compound: each good comment makes the next one more visible.
-```
+````

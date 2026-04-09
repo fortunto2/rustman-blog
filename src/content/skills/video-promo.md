@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/video-pr
 
 Generate a promo video plan from a project's PRD. Produces a 30-45 second video script with shot-by-shot storyboard. Detects Montage-tool or Remotion in the project and outputs compatible config when found.
 
-```markdown
+````markdown
 # /video-promo
 
 Generate a promo video plan from a project's PRD. Produces a 30-45 second video script with shot-by-shot storyboard. Detects Montage-tool or Remotion in the project and outputs compatible config when found.
@@ -166,4 +166,4 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 ### No screenshots or UI to record
 **Cause:** Product not built yet or no visual interface.
 **Fix:** Use mockups, wireframes, or describe intended visuals in the storyboard. Record after MVP is built.
-```
+````

@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/stream"
 
 Interactive wizard that walks any decision through the STREAM 6-layer framework. Designed for founders making high-stakes choices under uncertainty.
 
-```markdown
+````markdown
 # /stream
 
 Interactive wizard that walks any decision through the STREAM 6-layer framework. Designed for founders making high-stakes choices under uncertainty.
@@ -114,4 +114,4 @@ Interactive wizard that walks any decision through the STREAM 6-layer framework.
 ### Want to save the decision record
 **Cause:** Running in a project without a `docs/decisions/` directory.
 **Fix:** Skill saves to `docs/decisions/` in the current project. Create the directory if needed.
-```
+````

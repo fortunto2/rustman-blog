@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/seo-audi
 
 SEO health check for any URL or project landing page. Fetches the page, analyzes meta tags, OG, JSON-LD, sitemap, robots.txt, checks SERP positions for target keywords, and outputs a scored report.
 
-```markdown
+````markdown
 # /seo-audit
 
 SEO health check for any URL or project landing page. Fetches the page, analyzes meta tags, OG, JSON-LD, sitemap, robots.txt, checks SERP positions for target keywords, and outputs a scored report.
@@ -165,4 +165,4 @@ If MCP tools are not available, use Claude WebSearch/WebFetch as fallback.
 ### Low score despite good content
 **Cause:** Missing infrastructure files (sitemap.xml, robots.txt, JSON-LD).
 **Fix:** These are the highest-impact fixes. Generate sitemap, add robots.txt with sitemap reference, and add JSON-LD structured data.
-```
+````

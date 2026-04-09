@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/audit"
 
 Audit the knowledge base for quality issues: missing frontmatter, broken links, tag inconsistencies, orphaned files, and coverage gaps. Works on any markdown-heavy project.
 
-```markdown
+````markdown
 # /audit
 
 Audit the knowledge base for quality issues: missing frontmatter, broken links, tag inconsistencies, orphaned files, and coverage gaps. Works on any markdown-heavy project.
@@ -112,4 +112,4 @@ Audit the knowledge base for quality issues: missing frontmatter, broken links, 
 ### Frontmatter validation errors
 **Cause:** YAML syntax issues (missing quotes, wrong indentation).
 **Fix:** Ensure `---` delimiters are present. Use `type:` and `status:` values consistent with your KB's detected schema.
-```
+````

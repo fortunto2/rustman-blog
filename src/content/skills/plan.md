@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/plan"
 
 This skill is self-contained — follow the steps below instead of delegating to external planning skills (superpowers, etc.).
 
-```markdown
+````markdown
 # /plan
 
 This skill is self-contained — follow the steps below instead of delegating to external planning skills (superpowers, etc.).
@@ -339,4 +339,4 @@ These thoughts mean STOP — you're skipping research:
 ### Research phase finds no relevant code
 **Cause:** New project with minimal codebase or MCP tools unavailable.
 **Fix:** Skill falls back to Glob + Grep. For new projects, the plan will rely more on CLAUDE.md architecture and stack conventions.
-```
+````

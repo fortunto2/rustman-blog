@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/content-
 
 Generate a promotion content pack from a project's PRD or README. Produces 3 ready-to-use content pieces: LinkedIn post, Reddit answer draft, and Twitter/X thread. For video scripts, use `/video-promo`.
 
-```markdown
+````markdown
 # /content-gen
 
 Generate a promotion content pack from a project's PRD or README. Produces 3 ready-to-use content pieces: LinkedIn post, Reddit answer draft, and Twitter/X thread. For video scripts, use `/video-promo`.
@@ -163,4 +163,4 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 ### Wrong tone for audience
 **Cause:** ICP not clearly defined in PRD.
 **Fix:** Specify the target audience in PRD. LinkedIn = professional, Reddit = casual/technical, Twitter = punchy/conversational.
-```
+````

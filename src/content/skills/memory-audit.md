@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/memory-a
 
 Audit Claude Code memory hierarchy for a project. Shows what files load at session start, total context budget, and optimization hints.
 
-```markdown
+````markdown
 # /memory-audit
 
 Audit Claude Code memory hierarchy for a project. Shows what files load at session start, total context budget, and optimization hints.
@@ -110,4 +110,4 @@ paths:
 ```
 
 Without `paths:`, the rule always loads and consumes context budget.
-```
+````

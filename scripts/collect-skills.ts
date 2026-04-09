@@ -98,9 +98,9 @@ publish: true
 source_url: "${ghUrl}"
 ---
 
-${summary ? summary + '\n\n' : ''}\`\`\`markdown
+${summary ? summary + '\n\n' : ''}\`\`\`\`markdown
 ${body}
-\`\`\`
+\`\`\`\`
 `;
 
     writeFileSync(join(OUT_DIR, `${name}.md`), md);

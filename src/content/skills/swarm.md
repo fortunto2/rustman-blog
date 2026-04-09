@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/swarm"
 
 Create an agent team to research "$ARGUMENTS" from multiple perspectives in parallel.
 
-```markdown
+````markdown
 # /swarm
 
 Create an agent team to research "$ARGUMENTS" from multiple perspectives in parallel.
@@ -85,4 +85,4 @@ After team completes, the lead should:
 ### Web search returns limited results
 **Cause:** No additional search backends configured.
 **Fix:** Teammates fall back to WebSearch (built-in) which is always available. For richer results with engine routing (Reddit, GitHub, YouTube), set up [SearXNG](https://github.com/fortunto2/searxng-docker-tavily-adapter) (private, self-hosted, free) and configure solograph MCP.
-```
+````

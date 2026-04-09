@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/sgr"
 
 Design and implement Schema-Guided Reasoning (SGR) pipelines. Translate domain expert mental checklists into structured reasoning schemas for LLMs.
 
-```markdown
+````markdown
 # /sgr
 
 Design and implement Schema-Guided Reasoning (SGR) pipelines. Translate domain expert mental checklists into structured reasoning schemas for LLMs.
@@ -178,4 +178,4 @@ In Rust, SGR is even stronger: `#[serde(tag = "tool")]` gives discriminated unio
 ### Agent loops forever
 **Cause:** No `task_completed` gate or `ReportCompletion` tool.
 **Fix:** Always include a completion signal in the Union. Cap loop iterations.
-```
+````

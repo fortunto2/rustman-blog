@@ -11,7 +11,7 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/legal"
 
 Generate privacy policy and terms of service tailored to the project's stack, features, and data handling. Aligned with manifesto privacy-first principles (`templates/principles/manifest.md`): on-device processing, local storage, no accounts when possible, user owns their data.
 
-```markdown
+````markdown
 # /legal
 
 Generate privacy policy and terms of service tailored to the project's stack, features, and data handling. Aligned with manifesto privacy-first principles (`templates/principles/manifest.md`): on-device processing, local storage, no accounts when possible, user owns their data.
@@ -218,4 +218,4 @@ Generate privacy policy and terms of service tailored to the project's stack, fe
 ### App Store rejection for missing privacy policy
 **Cause:** No privacy policy URL in app metadata.
 **Fix:** Host privacy-policy.md as a web page (GitHub Pages, project website, or static hosting). Add URL to App Store Connect / Play Console.
-```
+````
