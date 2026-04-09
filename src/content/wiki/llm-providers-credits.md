@@ -122,6 +122,41 @@ Best open model for price/quality ratio (MoE: 12B active / 120B total, 1M contex
 
 **Winner: DeepInfra** — $30 per 100M tokens, 459 tok/s. If speed critical: Baseten ($41, 485 tok/s). Cloudflare 3.3x more expensive and 6x slower — use only for edge/prototype.
 
+### Top Open-Source Models — Price/Quality Leaders (Apr 2026)
+
+Best bang for buck across all open models and providers.
+
+| Model | Params (active) | Best Provider | In $/1M | Out $/1M | 100M (50/50) | tok/s |
+|-------|----------------|--------------|---------|----------|-------------|-------|
+| **Qwen3 235B** (A22B) | 235B (22B) | DeepInfra | $0.12 | $0.39 | **$26** | ~300 |
+| **Qwen3 32B** | 32B | Novita AI | $0.10 | $0.45 | **$28** | ~500 |
+| **Nemotron 120B** (A12B) | 120B (12B) | DeepInfra | $0.10 | $0.50 | **$30** | 459 |
+| **DeepSeek V3.2** | 671B MoE | DeepSeek API | $0.28 | $0.42 | **$35** | ~200 |
+| **GPT-OSS 120B** | 120B | Groq | $0.15 | $0.60 | **$38** | ~400 |
+| **Qwen3 Coder 480B** (A35B) | 480B (35B) | DeepInfra Turbo | $0.22 | $0.90 | **$56** | 173 |
+| **Llama 4 Maverick** | 400B MoE | Groq | $0.50 | $0.77 | **$64** | ~300 |
+| **DeepSeek R1** (reasoning) | 671B MoE | Novita AI | $0.70 | $2.50 | **$160** | — |
+
+**Best picks:**
+- **Cheapest powerful:** Qwen3 235B on DeepInfra — $26/100M, GPT-4 level quality
+- **Fastest powerful:** Nemotron 120B on DeepInfra — $30/100M, 459 tok/s
+- **Best for coding:** Qwen3 Coder 480B on DeepInfra — $56/100M, 262K context, tool use
+- **Best reasoning:** DeepSeek R1 — expensive but 96% cheaper than OpenAI o1
+
+### DeepSeek Cache Hack
+
+DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10x savings). For repeated system prompts this means **~$5 effective per 100M tokens** instead of $35. Best for agents with stable system prompts.
+
+### For comparison: frontier models at 100M tokens
+
+| Model | 100M (50/50) | vs Qwen3 235B |
+|-------|-------------|---------------|
+| **Qwen3 235B** (open) | **$26** | baseline |
+| **GPT-5** (OpenAI) | **$1,000** | 38x more |
+| **Claude Opus 4** (Anthropic) | **$4,500** | 173x more |
+| **Claude Sonnet 4** (Anthropic) | **$900** | 35x more |
+| **Gemini 2.5 Pro** (Google) | **$563** | 22x more |
+
 ### Speed Leaderboard
 
 | Provider | Hardware | 8B tok/s | 70B tok/s | 405B tok/s |
