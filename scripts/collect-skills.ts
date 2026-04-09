@@ -11,10 +11,11 @@ const SKILLS_DIR = join(import.meta.dirname, '..', '..', 'solo-factory', 'skills
 const OUT_DIR = join(import.meta.dirname, '..', 'src', 'content', 'skills');
 
 const PHASES: Record<string, string[]> = {
+  meta: ['knowledge', 'skill-audit', 'memory-audit'],
   analysis: ['research', 'swarm', 'validate', 'stream', 'sgr', 'you2idea-extract'],
   development: ['scaffold', 'setup', 'plan', 'build', 'deploy', 'review'],
   promotion: ['launch', 'landing-gen', 'content-gen', 'video-promo', 'community-outreach', 'reddit', 'github-outreach', 'seo-audit', 'metrics-track', 'legal', 'humanize'],
-  utility: ['init', 'factory', 'pipeline', 'retro', 'audit', 'memory-audit', 'skill-audit', 'index-youtube'],
+  utility: ['init', 'factory', 'pipeline', 'retro', 'audit', 'index-youtube'],
 };
 
 function getPhase(skillName: string): string {

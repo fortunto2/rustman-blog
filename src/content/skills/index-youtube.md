@@ -4,7 +4,7 @@ description: "Need searchable YouTube content"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"
-phase_order: 8
+phase_order: 6
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/index-youtube"
 ---

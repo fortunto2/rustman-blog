@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/config';
+---
+
+<BaseLayout title="Help — How to Use This Knowledge Base" description="How to connect AI agents to rustman.org knowledge base. llms.txt, MCP, skills, API access.">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">Help</h1>
+    <p class="text-[var(--color-muted)]">This site is a knowledge base for AI agents and humans. Here is how to connect.</p>
+  </div>
+
+  <article class="prose dark:prose-invert max-w-none">
+    <h2>For AI Agents</h2>
+
+    <h3>1. llms.txt (simplest)</h3>
+    <p>Every page is indexed in a machine-readable format:</p>
+    <pre><code>curl https://rustman.org/llms.txt</code></pre>
+    <p>Returns: all pages with titles, URLs, descriptions. Feed it to any LLM as context. ~19KB, 120+ entries.</p>
+
+    <h3>2. Solo Factory skill (recommended)</h3>
+    <pre><code>npx skills add fortunto2/solo-factory/knowledge</code></pre>
+    <p>The <code>/knowledge</code> skill loads llms.txt, finds relevant pages, fetches and synthesizes answers. Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex.</p>
+    <pre><code>/knowledge "how does harness engineering work?"
+/knowledge "what stacks do we support?"
+/knowledge "agent memory approaches"</code></pre>
+
+    <h3>3. Direct page fetch</h3>
+    <p>Any page is plain HTML, works with WebFetch/curl:</p>
+    <pre><code>WebFetch https://rustman.org/wiki/harness-engineering-summary
+WebFetch https://rustman.org/posts/agent-memory-architecture</code></pre>
+
+    <h3>4. MCP (Solograph)</h3>
+    <p>For deep integration — semantic search, code graph, session history:</p>
+    <pre><code>claude mcp add -s project solograph -- uvx solograph</code></pre>
+    <p>15 MCP tools: <code>kb_search</code>, <code>session_search</code>, <code>codegraph_query</code>, <code>web_search</code>, and more. See <a href="/projects/project-solograph">Solograph</a>.</p>
+
+    <h2>For Humans</h2>
+
+    <h3>Search</h3>
+    <p>Click the <strong>search icon</strong> in the top nav (or press <kbd>/</kbd>). Searches all content. On section pages, scoped to that section.</p>
+
+    <h3>Browse</h3>
+    <ul>
+      <li><a href="/course">Course</a> — structured learning path, 7 modules</li>
+      <li><a href="/posts">Posts</a> — pillar articles (methodology, frameworks)</li>
+      <li><a href="/wiki">Wiki</a> — compiled knowledge pages</li>
+      <li><a href="/projects">Projects</a> — build-in-public case studies</li>
+      <li><a href="/skills">Skills</a> — 30+ executable Claude Code skills</li>
+      <li><a href="/stacks">Stacks</a> — technology stack templates</li>
+    </ul>
+
+    <h3>RSS</h3>
+    <pre><code>https://rustman.org/rss.xml</code></pre>
+
+    <h2>Content Structure</h2>
+
+    <p>Built on <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy's LLM Wiki pattern</a>: raw sources (immutable) → wiki (LLM-maintained synthesis) → blog (published subset). Files are source of truth, indexes are derived.</p>
+
+    <table>
+      <thead><tr><th>Section</th><th>What</th><th>URL pattern</th></tr></thead>
+      <tbody>
+        <tr><td>Posts</td><td>Pillar articles from raw sources</td><td><code>/posts/{'{slug}'}</code></td></tr>
+        <tr><td>Wiki</td><td>Compiled knowledge pages</td><td><code>/wiki/{'{slug}'}</code></td></tr>
+        <tr><td>Projects</td><td>Open source + products</td><td><code>/projects/{'{slug}'}</code></td></tr>
+        <tr><td>Skills</td><td>Solo Factory skills (auto-collected)</td><td><code>/skills/{'{slug}'}</code></td></tr>
+        <tr><td>Stacks</td><td>YAML stack templates</td><td><code>/stacks/{'{slug}'}</code></td></tr>
+        <tr><td>Course</td><td>Structured learning path</td><td><code>/course</code></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Connect</h2>
+    <ul>
+      <li><a href={SITE.social.github}>GitHub</a> — all projects open source</li>
+      <li><a href={SITE.social.telegram}>Telegram</a></li>
+      <li><a href={SITE.social.linkedin}>LinkedIn</a></li>
+      <li><a href={SITE.contact.calendar}>Book a call</a></li>
+      <li><a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></li>
+    </ul>
+  </article>
+</BaseLayout>

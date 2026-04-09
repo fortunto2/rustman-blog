@@ -2,9 +2,9 @@
 title: "/skill-audit"
 description: "Evaluating skill against best practices"
 created: 2026-04-09
-tags: [skill, utility, solo-factory]
-phase: "utility"
-phase_order: 7
+tags: [skill, meta, solo-factory]
+phase: "meta"
+phase_order: 2
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/skill-audit"
 ---

@@ -2,9 +2,9 @@
 title: "/memory-audit"
 description: "Need to optimize agent context loading"
 created: 2026-04-09
-tags: [skill, utility, solo-factory]
-phase: "utility"
-phase_order: 6
+tags: [skill, meta, solo-factory]
+phase: "meta"
+phase_order: 3
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/memory-audit"
 ---

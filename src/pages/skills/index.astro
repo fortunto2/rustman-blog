@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from '../../lib/content';
 
 const all = getCollection('skills');
-const phases = ['analysis', 'development', 'promotion', 'utility'];
+const phases = ['meta', 'analysis', 'development', 'promotion', 'utility'];
 const grouped = phases.map(phase => ({
   phase,
   items: all

@@ -2,9 +2,9 @@
 title: "/knowledge"
 description: "Needing methodology reference, asking about principles, harness engineering, SGR, launch playbook, agent memory, decision frameworks, or any topic covered in the solopreneur knowledge base. Also use when the user asks or"
 created: 2026-04-09
-tags: [skill, utility, solo-factory]
-phase: "utility"
-phase_order: 99
+tags: [skill, meta, solo-factory]
+phase: "meta"
+phase_order: 1
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/knowledge"
 ---
