@@ -39,57 +39,11 @@ claude plugin marketplace add https://github.com/fortunto2/solo-factory
 claude plugin install solo@solo --scope user
 ```
 
-## Skills by Phase
+## Skills
 
-### Analysis (6 skills)
+30 executable skills in 4 phases: **Analysis** (6) → **Development** (6) → **Promotion** (11) → **Utility** (7).
 
-| Command | What it does |
-|---------|-------------|
-| `/research <idea>` | Market — competitors, SEO keywords, domains, TAM/SAM/SOM |
-| `/swarm <idea>` | 3 parallel research agents (market + users + tech) |
-| `/validate <idea>` | [[seed-niche-scoring|S.E.E.D.]] check + [[stream-six-layers|STREAM]] scoring + Devil's Advocate → PRD |
-| `/stream <decision>` | [[stream-six-layers|STREAM]] 6-layer decision framework for high-stakes choices |
-| `/sgr` | Design [[schema-guided-reasoning|SGR]] pipelines — NextStep, analysis cascade, tool dispatch |
-| `/you2idea-extract` | Mine startup ideas from YouTube transcripts |
-
-### Development (6 skills)
-
-| Command | What it does |
-|---------|-------------|
-| `/scaffold <name> <stack>` | PRD → running project with CLAUDE.md, git, GitHub push |
-| `/setup` | Wire TDD workflow, linting, CI — zero questions |
-| `/plan <feature>` | Explore codebase → spec + phased plan with file-level tasks |
-| `/build [track-id]` | Execute plan with TDD, auto-commit, phase gates |
-| `/deploy` | Detect CLI tools, set up DB, push, verify live |
-| `/review` | Final quality gate — tests, coverage, security, acceptance criteria |
-
-### Promotion (11 skills)
-
-| Command | What it does |
-|---------|-------------|
-| `/launch` | GTM strategy — beachhead, channels, pricing, growth loops |
-| `/landing-gen` | Landing page content — hero, features, A/B headlines, CTA |
-| `/content-gen` | Social media pack — LinkedIn, Reddit, Twitter/X thread |
-| `/video-promo` | 30-45s promo script + storyboard |
-| `/community-outreach` | Find Reddit/HN/PH threads, draft value-first responses |
-| `/reddit` | Reddit engagement + karma building |
-| `/github-outreach` | Target competitor library dependents |
-| `/seo-audit <url>` | SEO health check — meta tags, JSON-LD, sitemap, score 0-100 |
-| `/metrics-track` | PostHog event funnel, KPI benchmarks, [[kill-iterate-scale|kill/iterate/scale]] |
-| `/legal` | Privacy policy + terms — [[privacy-as-architecture|privacy-first]], manifest-aligned |
-| `/humanize` | Strip AI writing patterns from copy |
-
-### Utility (7 skills)
-
-| Command | What it does |
-|---------|-------------|
-| `/pipeline research <idea>` | Automated research → validate loop |
-| `/pipeline dev <name> <stack>` | Automated scaffold → setup → plan → build → deploy → review |
-| `/init` | One-time founder onboarding — manifest, calibration, stack selection |
-| `/factory` | Install the full Solo Factory toolkit in one command |
-| `/retro` | Post-pipeline retrospective — score, find waste, suggest fixes |
-| `/audit` | KB health check — broken links, frontmatter, tags |
-| `/memory-audit` | Claude Code memory hierarchy — loaded files, char counts, optimization |
+**[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
 ## Agents
 

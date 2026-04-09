@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
 const all = getCollection('skills');
@@ -13,6 +12,7 @@ const grouped = phases.map(phase => ({
 })).filter(g => g.items.length > 0);
 
 const ungrouped = all.filter(s => !phases.includes(s.frontmatter.phase));
+if (ungrouped.length > 0) grouped.push({ phase: 'other', items: ungrouped });
 ---
 
 <BaseLayout title="Skills" description="Solo Factory executable skills — 30 commands for the full startup pipeline." section="skills">
@@ -29,16 +29,17 @@ const ungrouped = all.filter(s => !phases.includes(s.frontmatter.phase));
   {grouped.map(({ phase, items }) => (
     <section class="mb-8">
       <h2 class="text-lg font-semibold mb-3 prompt capitalize">{phase}</h2>
-      <ContentList items={items} basePath="/skills" showDate={false} showTags={false} />
+      <div class="space-y-0 font-mono text-sm">
+        {items.map(item => (
+          <a href={`/skills/${item.slug}`} class="group flex items-baseline gap-3 py-1.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+            <span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] shrink-0 w-40">/{item.slug}</span>
+            <span class="text-[var(--color-muted)] truncate text-xs">{item.frontmatter.description}</span>
+          </a>
+        ))}
+      </div>
     </section>
   ))}
 
-  {ungrouped.length > 0 && (
-    <section class="mb-8">
-      <h2 class="text-lg font-semibold mb-3 prompt">Other</h2>
-      <ContentList items={ungrouped} basePath="/skills" showDate={false} showTags={false} />
-    </section>
-  )}
   <div class="mt-10 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm font-mono">
     <h3 class="font-semibold mb-2">Related</h3>
     <div class="space-y-0">
