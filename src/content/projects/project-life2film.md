@@ -61,6 +61,19 @@ From [life2film.com/about](https://life2film.com/about):
 - **LifeGO** — geotag gamification: filming in rare locations yields higher rewards
 - **Creator ecosystem** — Creator, Director, Editor, Musician, Sponsor, Moderator roles
 
+## Why Rust
+
+The original Life2Film (2014) was Python + Yahoo's [hecate](https://github.com/yahoo/hecate) for video analysis. Rewrote it in Rust and got:
+
+- **100x more convenient** — direct FFmpeg API access, frame processing in memory, entire pipeline in one binary
+- **One binary, every platform** — compile to iOS, Android, desktop, or WASM for browser. Same core algorithm everywhere
+- **Rust + Swift = Apple must-have** — Rust core for performance, Swift for native UI and Apple APIs
+- **DDD finally works** — strict types, ownership, algebraic data types. What I was forcing with Pydantic in Python is native in Rust
+
+Cross-platform bridges: WASM for web, [PyO3](https://pyo3.rs/) for Python, [UniFFI](https://mozilla.github.io/uniffi-rs/) for Swift/Kotlin/C#.
+
+> "Rust — the programming language and my short name (Rust'am). With agents, the more typed and strict the language, the better. Python is for humans — but IDEs aren't needed anymore."
+
 ## The Story
 
 Started in 2014. Built the first version, reached 1M+ users on iOS. Technology wasn't ready — closed in 2021. The dream never left. SuperDuperAI is the second chapter. Now AI can do what was impossible then: understand video content, detect emotions, match music, create meaningful edits automatically.
