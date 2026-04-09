@@ -60,6 +60,6 @@ export const HERO_CARDS = [
 ] as const;
 
 export const PROJECT_PRIORITY = {
-  openSource: ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea', 'project-invoice-crm'],
+  openSource: ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea', 'project-invoice-crm', 'project-seo-cli'],
   products: ['project-superduperai', 'project-superstoryboard'],
 } as const;
