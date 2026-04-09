@@ -3,7 +3,7 @@ type: summary
 description: "993-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS,..."
 title: "Universal Development Principles — every project, any stack"
 created: 2026-04-07
-tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, baml, agents, methodology]
+tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, agents, methodology]
 publish: true
 source_path: "1-methodology/dev-principles.md"
 ---
@@ -15,8 +15,6 @@ source_path: "1-methodology/dev-principles.md"
 **CLI-first testing:** every project has CLI mirroring core logic. CLI uses same modules as UI (DRY). Must work without LLM/network. `make integration` — mandatory Makefile target. If logic works through CLI, it doesn't depend on UI framework.
 
 **SGR (Schema-Guided Reasoning):** schemas → logic → UI, never the reverse. Agent must read `Models/schemas/types/` before any work. SGR is the technical implementation of DDD: bounded context = separate schemas, aggregate = root schema, ubiquitous language = field names and enums.
-
-**BAML (Boundary AI Markup Language):** turns prompt engineering into schema engineering. One `.baml` file gives prompt + schema + streaming parser + retries + typed SDK. Auto-fixes broken LLM output without re-requesting, 2-4x fewer tokens than JSON Schema. Use SGR where precision matters, BAML where reasoning matters.
 
 **Agent self-discipline:** drift detector (task queue mode, report mode, permission mode, amnesia, scope creep), complexity thresholds (function >150 lines → split, module >1000 → split, CLAUDE.md >40k chars → trim, plan >15 tasks → split tracks). Evolution = commit: iteration without commit = not an iteration.
 

@@ -19,7 +19,7 @@ AI-driven solo development — how one person ships products using LLM agents, h
 | [solo-factory](https://github.com/fortunto2/solo-factory) | Claude Code plugin — 27 startup skills, 3 agents, privacy-first pipeline | 14 |
 | [solograph](https://github.com/fortunto2/solograph) | Code intelligence MCP server — multi-project code graph, semantic search, session history | 3 |
 | [openai-oxide](https://github.com/fortunto2/openai-oxide) | Idiomatic Rust client for OpenAI API — 1:1 parity with openai-python | 20 |
-| [rust-code](https://github.com/fortunto2/rust-code) | AI-powered terminal coding agent in Rust — TUI, BAML agent loop, MCP | 7 |
+| [rust-code](https://github.com/fortunto2/rust-code) | AI-powered terminal coding agent in Rust — TUI, structured agent loop, MCP | 7 |
 | [supervox](https://github.com/fortunto2/supervox) | Voice pipeline toolkit — STT, VAD, TTS for Rust voice apps | 0 |
 | [airq](https://github.com/fortunto2/airq) | CLI air quality checker — any city, Open-Meteo + Sensor.Community | 0 |
 | [rustman-blog](https://github.com/fortunto2/rustman-blog) | This blog — Astro static, wiki content, CF Pages | 0 |

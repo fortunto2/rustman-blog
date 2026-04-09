@@ -32,7 +32,7 @@ The contract between inference framework and provider — what goes where via ch
 
 Key references for going deep: vLLM source (tool parsers), model `tokenizer_config.json` (chat templates), xgrammar (constrained decoding library).
 
-- [[schema-guided-reasoning]] — SGR/constrained decoding is Layer 3 of this pipeline. BAML also operates at this level
+- [[schema-guided-reasoning]] — SGR/constrained decoding is Layer 3 of this pipeline
 - [[harness-engineering-summary]] — understanding the tool calling contract is part of "know your tools" in harness engineering
 - [[context-engineering]] — chat templates are literally context engineering: what the model sees is shaped by the template, not just your prompt
 - [[sgr-deep-dive]] — SGR deep dive: the theory behind constrained decoding (layer 3)

@@ -25,10 +25,8 @@ SGR is the technical implementation of DDD:
 - Ubiquitous Language → field names and enums = language of business
 - Value Objects → enums and typed wrappers
 
-By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data class + kotlinx.serialization (Kotlin). See SGR in practice: [openai-oxide](https://github.com/fortunto2/openai-oxide) (Rust client with typed responses), [rust-code](https://github.com/fortunto2/rust-code) (BAML agent loop).
+By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data class + kotlinx.serialization (Kotlin). See SGR in practice: [openai-oxide](https://github.com/fortunto2/openai-oxide) (Rust client with typed responses), [rust-code](https://github.com/fortunto2/rust-code) (structured agent loop).
 
-**BAML extends SGR for LLM output:** when you need structured responses from LLMs, BAML turns prompt engineering into schema engineering. Use SGR (constrained decoding) where precision matters (tool routing, classification), BAML where reasoning matters (extraction, analysis).
-
-- [[dev-principles-summary]] — origin: SGR + BAML sections
+- [[dev-principles-summary]] — origin: SGR section
 - [[context-engineering]] — agent reading schemas first = context engineering for code
 - [[harness-engineering-summary]] — schemas as architectural constraints (component 2)
