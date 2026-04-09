@@ -36,9 +36,7 @@ export function getAllContent(): (ContentEntry & { section: Section })[] {
   const wiki = getCollection('wiki').map(e => ({ ...e, section: 'wiki' as Section }));
   const projects = getCollection('projects').map(e => ({ ...e, section: 'projects' as Section }));
   const posts = getCollection('posts').map(e => ({ ...e, section: 'posts' as Section }));
-  const stacks = getCollection('stacks').map(e => ({ ...e, section: 'stacks' as Section }));
-  const skills = getCollection('skills').map(e => ({ ...e, section: 'skills' as Section }));
-  return [...wiki, ...projects, ...posts, ...stacks, ...skills].sort((a, b) => {
+  return [...wiki, ...projects, ...posts].sort((a, b) => {
     const dateA = a.frontmatter.created || a.frontmatter.date || '';
     const dateB = b.frontmatter.created || b.frontmatter.date || '';
     return dateB.localeCompare(dateA);
@@ -46,7 +44,9 @@ export function getAllContent(): (ContentEntry & { section: Section })[] {
 }
 
 export function getAllTags(): Map<string, (ContentEntry & { section: Section })[]> {
-  const all = getAllContent();
+  const stacks = getCollection('stacks').map(e => ({ ...e, section: 'stacks' as Section }));
+  const skills = getCollection('skills').map(e => ({ ...e, section: 'skills' as Section }));
+  const all = [...getAllContent(), ...stacks, ...skills];
   const tags = new Map<string, (ContentEntry & { section: Section })[]>();
   for (const entry of all) {
     const t = entry.frontmatter.tags;
