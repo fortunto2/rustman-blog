@@ -137,25 +137,33 @@ Best bang for buck across all open models and providers.
 | **Llama 4 Maverick** | 400B MoE | Groq | $0.50 | $0.77 | **$64** | ~300 |
 | **DeepSeek R1** (reasoning) | 671B MoE | Novita AI | $0.70 | $2.50 | **$160** | — |
 
-**Best picks:**
-- **Cheapest powerful:** Qwen3 235B on DeepInfra — $26/100M, GPT-4 level quality
-- **Fastest powerful:** Nemotron 120B on DeepInfra — $30/100M, 459 tok/s
-- **Best for coding:** Qwen3 Coder 480B on DeepInfra — $56/100M, 262K context, tool use
-- **Best reasoning:** DeepSeek R1 — expensive but 96% cheaper than OpenAI o1
+**Best picks (at 80/20 input/output split — typical for agents):**
+
+| Use Case | Model | Provider | 100M cost (80/20) | Speed |
+|----------|-------|---------|-------------------|-------|
+| **Best overall** | Qwen3 235B | [DeepInfra](https://deepinfra.com) | **$17** | ~300 tok/s |
+| **Fastest powerful** | Nemotron 120B | [DeepInfra](https://deepinfra.com) | **$18** | 459 tok/s |
+| **Cheapest with cache** | DeepSeek V3.2 | [DeepSeek API](https://platform.deepseek.com) | **$11** | ~200 tok/s |
+| **Fastest overall** | GPT-OSS 120B | [Groq](https://groq.com) | **$24** | 500 tok/s |
+| **Best for coding** | Qwen3 Coder 480B | [DeepInfra](https://deepinfra.com) | **$36** | 173 tok/s |
+| **Best reasoning** | DeepSeek R1 | [Novita AI](https://novita.ai) | **$106** | — |
+| **Budget $100** | Qwen3 235B | DeepInfra | **~600M tokens** | — |
+
+Model ID for API: `Qwen/Qwen3-235B-A22B` (OpenAI-compatible endpoint at `api.deepinfra.com/v1/openai`)
 
 ### DeepSeek Cache Hack
 
 DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10x savings). For repeated system prompts this means **~$5 effective per 100M tokens** instead of $35. Best for agents with stable system prompts.
 
-### For comparison: frontier models at 100M tokens
+### For comparison: frontier models at 100M tokens (80/20 split)
 
-| Model | 100M (50/50) | vs Qwen3 235B |
-|-------|-------------|---------------|
-| **Qwen3 235B** (open) | **$26** | baseline |
-| **GPT-5** (OpenAI) | **$1,000** | 38x more |
-| **Claude Opus 4** (Anthropic) | **$4,500** | 173x more |
-| **Claude Sonnet 4** (Anthropic) | **$900** | 35x more |
-| **Gemini 2.5 Pro** (Google) | **$563** | 22x more |
+| Model | 100M cost | vs Qwen3 235B |
+|-------|----------|---------------|
+| **Qwen3 235B** (open, DeepInfra) | **$17** | baseline |
+| **Gemini 2.5 Flash** (Google) | **$132** | 8x more |
+| **Claude Sonnet 4** (Anthropic) | **$540** | 32x more |
+| **GPT-5** (OpenAI) | **$700** | 41x more |
+| **Claude Opus 4** (Anthropic) | **$2,700** | 159x more |
 
 ### Speed Leaderboard (custom hardware)
 
