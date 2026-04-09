@@ -13,28 +13,41 @@ source_url: "https://github.com/fortunto2/superstoryboard"
 
 # SuperStoryboard
 
-**2nd Place** at [Supabase Hackathon](https://hackathon.supabase.com/). AI-powered storyboard generation with real-time Figma plugin sync.
+**2nd Place** at [Supabase Hackathon](https://hackathon.supabase.com/).
 
-Built entirely on Supabase as single source of truth. Generates storyboards from text descriptions with instant Figma sync. Combines Google Gemini 2.5 Flash for image generation, Veo 3.1 for video, and Phoenix Channels for real-time collaboration.
+AI-powered storyboard generation with real-time Figma plugin sync. Built entirely on Supabase. Generates storyboards from text descriptions with instant Figma sync.
 
-## Technical highlights
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/ZGePJxuK3ic" title="SuperStoryboard Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; margin: 1.5rem 0;"></iframe>
 
-- Figma Plugin (37kb) with WebSocket sync
-- Supabase as single backend (auth, storage, DB, realtime)
-- Google Gemini 2.5 Flash for image generation
-- Google Veo 3.1 for video generation
-- PGMQ for async job processing
-- Real-time Phoenix Channels protocol
+## How It Works
+
+1. Describe your story in plain text
+2. AI generates scenes with dialogue, camera angles, and descriptions
+3. Gemini 2.5 Flash generates images for each scene
+4. Veo 3.1 generates video clips
+5. Everything syncs to Figma in real-time via WebSocket
+
+## Technical Highlights
+
+- **Figma Plugin** (37kb) with WebSocket sync — real-time collaboration
+- **Supabase** as single source of truth — auth, storage, DB, realtime
+- **Google Gemini 2.5 Flash** for image generation
+- **Google Veo 3.1** for video generation
+- **PGMQ** for async job processing
+- **Real-time Phoenix Channels** protocol
 
 ## Stack
 
-Supabase, Figma Plugin, Google Gemini, Veo 3.1, PGMQ, Phoenix Channels, WebSocket.
+Supabase, Figma Plugin API, Google Gemini, Veo 3.1, PGMQ, Phoenix Channels, WebSocket, Next.js.
 
 ## Links
 
 - [GitHub](https://github.com/fortunto2/superstoryboard)
-- [Live Demo](https://figma-chat.superduperai.co/)
 - [Figma Community Template](https://www.figma.com/community/file/1569684518251047797/ai-storybord-with-google-nana-banana-and-veo3-1)
+- [Supabase Hackathon](https://hackathon.supabase.com/)
+- [YouTube Demo](https://youtu.be/ZGePJxuK3ic)
+
+## Connections
 
 - [[project-superduperai]] — parent product studio
 - [[schema-guided-reasoning]] — structured outputs for storyboard generation pipeline
