@@ -211,10 +211,15 @@ The ultimate goal isn't just remembering — it's compounding. Every [[context-g
 
 - [[mempalace-agent-memory|MemPalace]] — [GitHub](https://github.com/milla-jovovich/mempalace) — spatial memory, 96.6% LongMemEval, MIT (27K stars)
 - [[project-solograph|Solograph]] — [GitHub](https://github.com/fortunto2/solograph) — graph + vector MCP server, 15 tools, FalkorDB + MLX
+- [QMD](https://github.com/tobi/qmd) — mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Used as optional backend in Moltis for enhanced hybrid search
 - [Moltis](https://github.com/moltis-ai/moltis) — Rust-based memory with hybrid search + LLM reranking
 - [OpenClaw](https://github.com/openclaw/openclaw) — Markdown source-of-truth + derived index, Retain/Recall/Reflect
 - [Letta](https://github.com/cpacker/MemGPT) — MemGPT implementation, core/archival/recall memory management
 - [LangGraph](https://github.com/langchain-ai/langgraph) — graph-based agent execution framework
+
+### Knowledge Patterns
+
+- [Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — the foundational pattern our wiki is built on. Three-layer architecture: raw sources (immutable) → wiki (LLM-maintained, interlinked) → schema (conventions). Key insight: "The knowledge is compiled once and kept current, not re-derived on every query." Memory as a **persistent, compounding artifact** — synthesis accumulates rather than being rediscovered. LLM handles the bookkeeping humans abandon: cross-references, consistency, contradiction detection. This is how [[manifest-summary|our knowledge base]] works: raw sources in `0-principles/` and `1-methodology/` → [[codegraph-guide|wiki pages]] synthesized by LLM → [[project-solograph|Solograph]] indexes everything for retrieval
 
 ### Related Wiki Pages
 
