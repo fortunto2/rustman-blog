@@ -14,16 +14,38 @@ export function getStaticPaths() {
 
 const { entry } = Astro.props;
 const post = renderMarkdown(entry.raw);
+const skillName = entry.slug;
+const ghUrl = `https://github.com/fortunto2/solo-factory/tree/main/skills/${skillName}`;
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description}>
   <BackLink href="/skills" label="Skills" />
-  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:skills">
-    {post.frontmatter.title && !post.hasH1 && (
-      <h1>{post.frontmatter.title}</h1>
+
+  <h1 class="text-2xl font-bold mb-2 font-mono">/{skillName}</h1>
+  {post.frontmatter.description && (
+    <p class="text-[var(--color-muted)] mb-4">{post.frontmatter.description}</p>
+  )}
+
+  <div class="mb-6 font-mono text-sm space-y-1 not-prose">
+    <div class="flex items-center gap-2">
+      <span class="text-[var(--color-muted)]">install:</span>
+      <code class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-2 py-0.5">npx skills add fortunto2/solo-factory/{skillName}</code>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[var(--color-muted)]">source:</span>
+      <a href={ghUrl} target="_blank" rel="noopener" class="link-muted hover:underline">{ghUrl.replace('https://github.com/', '')}</a>
+    </div>
+    {post.frontmatter.phase && (
+      <div class="flex items-center gap-2">
+        <span class="text-[var(--color-muted)]">phase:</span>
+        <span>{post.frontmatter.phase}</span>
+      </div>
     )}
+  </div>
+
+  <article class="prose dark:prose-invert max-w-none" data-pagefind-body data-pagefind-filter="section:skills">
     <Fragment set:html={post.html} />
   </article>
 
-  <SourceFooter sourceUrls={post.frontmatter.source_url} />
+  <SourceFooter sourceUrls={ghUrl} />
 </BaseLayout>
