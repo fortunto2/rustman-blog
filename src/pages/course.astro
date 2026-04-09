@@ -35,47 +35,6 @@ const modules = [...modulesMap.entries()]
 
 const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
 
-const skills = [
-  { phase: 'Analysis', items: [
-    { name: 'research', desc: 'Market research, competitors, evidence' },
-    { name: 'swarm', desc: 'Parallel 3-agent research' },
-    { name: 'validate', desc: 'STREAM scoring + PRD generation' },
-    { name: 'stream', desc: 'Decision framework for founder choices' },
-    { name: 'sgr', desc: 'Design Schema-Guided Reasoning pipelines' },
-    { name: 'you2idea-extract', desc: 'Mine startup ideas from YouTube' },
-  ]},
-  { phase: 'Development', items: [
-    { name: 'scaffold', desc: 'New project from PRD + stack template' },
-    { name: 'setup', desc: 'TDD workflow, dev environment' },
-    { name: 'plan', desc: 'Spec + phased implementation plan' },
-    { name: 'build', desc: 'Execute plan tasks, TDD, commit' },
-    { name: 'deploy', desc: 'Push to production' },
-    { name: 'review', desc: 'Quality check before ship' },
-  ]},
-  { phase: 'Promotion', items: [
-    { name: 'launch', desc: 'GTM strategy, distribution plan' },
-    { name: 'landing-gen', desc: 'Landing page from PRD' },
-    { name: 'content-gen', desc: 'Social media pack' },
-    { name: 'video-promo', desc: 'Video script + storyboard' },
-    { name: 'community-outreach', desc: 'Find communities, draft posts' },
-    { name: 'reddit', desc: 'Reddit engagement + karma' },
-    { name: 'github-outreach', desc: 'Target competitor dependents' },
-    { name: 'seo-audit', desc: 'SEO health check' },
-    { name: 'metrics-track', desc: 'PostHog events, funnels, KPIs' },
-    { name: 'legal', desc: 'Privacy policy, ToS, GDPR' },
-    { name: 'humanize', desc: 'Strip AI patterns from copy' },
-  ]},
-  { phase: 'Utility', items: [
-    { name: 'init', desc: 'First-time solo-factory setup' },
-    { name: 'factory', desc: 'Install all skills at once' },
-    { name: 'pipeline', desc: 'Chain skills: research to deploy' },
-    { name: 'retro', desc: 'Pipeline quality review' },
-    { name: 'audit', desc: 'Knowledge base health check' },
-    { name: 'memory-audit', desc: 'CLAUDE.md + context budget' },
-    { name: 'skill-audit', desc: 'Skill quality review' },
-    { name: 'index-youtube', desc: 'Index YouTube transcripts' },
-  ]},
-];
 ---
 
 <BaseLayout title="Course: AI Solopreneur Engineer" description="From philosophy to production: 7 modules, 60+ lessons, 30 skills.">
@@ -90,7 +49,7 @@ const skills = [
       {modules.map(mod => (
         <a href={`#module-${mod.id}`} class="link-muted">{mod.id}. {mod.title}</a>
       ))}
-      <a href="#skills" class="link-muted">Skills</a>
+      <a href="/skills" class="link-muted">Skills</a>
     </div>
   </nav>
 
@@ -110,25 +69,6 @@ const skills = [
       </div>
     </section>
   ))}
-
-  <section class="mb-10" id="skills">
-    <h2 class="text-xl font-semibold mb-2 prompt">Solo Factory Skills</h2>
-    <p class="text-sm text-[var(--color-muted)] mb-4">Pipeline: <span class="font-mono">research &rarr; validate &rarr; scaffold &rarr; plan &rarr; build &rarr; deploy &rarr; launch</span></p>
-
-    {skills.map(group => (
-      <div class="mb-6">
-        <h3 class="text-sm font-semibold mb-2 font-mono">{group.phase}</h3>
-        <div class="space-y-0 font-mono text-sm">
-          {group.items.map(skill => (
-            <div class="flex items-baseline gap-3 py-0.5">
-              <span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] shrink-0 w-40">/{skill.name}</span>
-              <span class="text-[var(--color-muted)] truncate">{skill.desc}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    ))}
-  </section>
 
   <div class="mt-8 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)] font-mono">
     <p>New lessons auto-added when wiki pages get <code>course_module</code> in frontmatter.</p>
