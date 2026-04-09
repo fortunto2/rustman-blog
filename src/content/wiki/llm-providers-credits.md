@@ -151,6 +151,22 @@ Best bang for buck across all open models and providers.
 
 Model ID for API: `Qwen/Qwen3-235B-A22B` (OpenAI-compatible endpoint at `api.deepinfra.com/v1/openai`)
 
+### Nebius Token Factory — Batch = 50% Off
+
+[Nebius](https://nebius.com/token-factory/prices) offers base (cheap) and fast (2x price) flavors. Batch inference = automatic 50% discount on base prices.
+
+| Model | Nebius base in/out | Nebius batch in/out | 100M batch (80/20) |
+|-------|-------------------|--------------------|--------------------|
+| **Qwen3 235B** | $0.20 / $0.60 | $0.10 / $0.30 | **$14** |
+| **Qwen3 32B** | $0.10 / $0.30 | $0.05 / $0.15 | **$7** |
+| **Qwen3 30B-A3B** | $0.10 / $0.30 | $0.05 / $0.15 | **$7** |
+| **Qwen3 Coder 480B** | $0.40 / $1.80 | $0.20 / $0.90 | **$34** |
+| **GPT-OSS 120B** | $0.15 / $0.60 | $0.08 / $0.30 | **$12** |
+
+Nebius batch Qwen3 235B = **$14/100M** — cheaper than DeepInfra realtime ($17). Best for non-realtime workloads (research, bulk analysis, data processing).
+
+Also notable: **Qwen3 30B-A3B** (only 3B active params, 30B total MoE) at $0.10/$0.30 — frontier quality at micro-model cost.
+
 ### DeepSeek Cache Hack
 
 DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10x savings). For repeated system prompts this means **~$5 effective per 100M tokens** instead of $35. Best for agents with stable system prompts.
@@ -214,6 +230,7 @@ DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10
 | **Novita AI** | Cheapest prices across the board | [novita.ai](https://novita.ai) |
 | **Hyperbolic** | Good prices, open models | [hyperbolic.xyz](https://hyperbolic.xyz) |
 | **DeepInfra** | H100/B200, competitive pricing | [deepinfra.com](https://deepinfra.com) |
+| **Nebius** | Wide Qwen3 selection, batch 50% off, base+fast flavors | [nebius.com/token-factory](https://nebius.com/token-factory/prices) |
 | **Modal** | GPU cloud, BYO model, autoscaling | [modal.com](https://modal.com) |
 
 ---
