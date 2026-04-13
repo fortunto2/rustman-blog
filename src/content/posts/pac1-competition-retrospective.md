@@ -147,8 +147,8 @@ This is where the weekend rebuild made the biggest difference. Tools are split a
 ```mermaid
 flowchart TD
     CORE["sgr-agent-core\nTool trait + FileBackend trait"]
-    TOOLS["sgr-agent-tools\nreusable tools, generic over backend"]
-    MW["agent-bit/tools.rs\nPAC1 middleware wrappers"]
+    TOOLS["sgr-agent-tools\n14 reusable tools, generic over backend"]
+    MW["agent-bit/tools.rs\n8 PAC1 tools + middleware wrappers"]
     PCM["PcmClient\nBitGN RPC + read cache"]
 
     CORE --> TOOLS --> MW --> PCM
@@ -161,9 +161,9 @@ flowchart TD
 
 **[sgr-agent-core](https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-core)** defines the traits. **[sgr-agent-tools](https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-tools)** implements them generically -- same tool code works with any `FileBackend`: PcmClient (competition RPC), LocalFs (CLI agents), or MockFs (tests). **[agent-bit/tools.rs](https://github.com/fortunto2/agent-bit/blob/main/src/tools.rs)** wraps them with PAC1-specific middleware (security scanning, workflow guards, AGENTS.MD hooks).
 
-#### All tools (20 total)
+#### All tools
 
-**sgr-agent-tools** -- reusable across any agent:
+**[sgr-agent-tools](https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-tools)** -- 14 reusable tools, generic over `FileBackend`:
 
 | Tool | Loading | What it does |
 |------|---------|-------------|
@@ -174,26 +174,26 @@ flowchart TD
 | `list` | always | Directory listing |
 | `tree` | always | Directory tree with depth limit |
 | `read_all` | always | **The game-changer.** [Batch read entire directory](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/read_all.rs) in one call. Turned 15 sequential reads into 1 tool call. Steps: 185 → 43 |
-| `eval` | feature `eval` | [JavaScript runtime](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/eval.rs) via Boa engine. Pre-reads files by glob pattern, exposes as `file_0..file_N`. For dynamic calculations (finance sums, date math, counting) |
+| `update_plan` | always | Task checklist persisted to plan.md. `[x]` / `[~]` / `[ ]` format |
+| `eval` | feature `eval` | [JavaScript runtime](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/eval.rs) via Boa engine. Pre-reads files by glob pattern, exposes as `file_0..file_N`. Dynamic calculations |
 | `shell` | feature `shell` | Execute commands with timeout (2 min default, 10 min max). 100KB output cap |
 | `apply_patch` | feature `patch` | [Codex-compatible diff DSL](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/apply_patch.rs). Saves tokens vs full write for small edits |
-| `update_plan` | always | Task checklist persisted to plan.md. `[x]` / `[~]` / `[ ]` format |
-| `list_skills` | always | Show available skills (introspection) |
-| `get_skill` | always | Read a specific skill body |
 | `mkdir` | deferred | Create directory (LLM loads when needed) |
 | `move` | deferred | Move/rename file |
 | `find` | deferred | Find files by pattern and type |
 
-**agent-bit/tools.rs** -- PAC1-specific tools:
+**[agent-bit/tools.rs](https://github.com/fortunto2/agent-bit/blob/main/src/tools.rs)** -- 8 PAC1-specific tools (+ middleware wrappers over base read/write/delete/search):
 
 | Tool | What it does |
 |------|-------------|
 | `answer` | Submit final answer with outcome (OK/DENIED/CLARIFICATION/UNSUPPORTED). [OutcomeValidator](https://github.com/fortunto2/agent-bit/blob/main/src/classifier.rs) checks answer via kNN embeddings before submitting |
 | `context` | Get workspace date/time from harness |
 | `search_and_read` | Search + read first match in one call (saves a round-trip) |
-| `date_calc` | Date arithmetic: diff_days, add_days, next_birthday, compare, format. Uses chrono, no JS overhead |
+| `date_calc` | Date arithmetic: diff_days, add_days, next_birthday, compare, format. Uses chrono |
 | `grep_count` | Count matching lines -- for "how many" questions without reading all content |
 | `lookup_contact` | On-demand CRM lookup by name/email. Replaced pre-loaded CRM graph (saved 25 RPCs at startup) |
+| `list_skills` | Show available skills (re-exported from sgr-agent) |
+| `get_skill` | Read a specific skill body (re-exported from sgr-agent) |
 
 #### Middleware pattern
 
@@ -311,7 +311,7 @@ Sometimes the best architecture is no architecture.
 
 ### 1. Dev-Prod gap
 
-On development tasks (43 total), I got **42/43 on Nemotron** -- a free model! In production (104 tasks), everything fell apart. I had hardcoded too many rules at the pre-LLM layer. While updating them in a real-time loop during the competition... well, you can imagine.
+On development tasks (43 total), I got **41/43 on Nemotron** -- a free model! In production (104 tasks), everything fell apart. I had hardcoded too many rules at the pre-LLM layer. While updating them in a real-time loop during the competition... well, you can imagine.
 
 ### 2. Dumb tools, too many steps
 
@@ -352,7 +352,7 @@ All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 
 **3. Observability from day one.** I couldn't debug what I couldn't see. Phoenix + OTEL should have been there from the start, not bolted on after the disaster.
 
-**4. The dev-prod gap will get you.** 42/43 in dev means nothing if prod has 2.5x more tasks with different patterns. Hardcoded rules are technical debt with compound interest.
+**4. The dev-prod gap will get you.** 41/43 in dev means nothing if prod has 2.5x more tasks with different patterns. Hardcoded rules are technical debt with compound interest.
 
 **5. Architecture pays off -- eventually.** My framework now powers multiple agents I'm building. The competition was an expensive stress test, but the sgr-agent ecosystem is stronger for it. A $250 tuition fee for a reusable agent core. This is the [[portfolio-approach]] -- each project strengthens the next.
 
