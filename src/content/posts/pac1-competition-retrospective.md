@@ -111,7 +111,7 @@ pub struct Classified {
 
 pub struct InboxScanned {
     pub inbox_files: Vec<InboxFile>,  // content + SecurityAssessment each
-    pub crm_graph: Option<CrmGraph>,  // petgraph: contacts ↔ accounts
+    pub crm_graph: CrmGraph,          // petgraph (empty now — lookup_contact on demand)
 }
 
 // Pipeline short-circuits at any stage:
