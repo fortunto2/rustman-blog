@@ -140,16 +140,16 @@ pub struct WorkflowState {
 
 Every tool call passes through the workflow: `pre_action()` can block it, `post_action()` can inject follow-up messages. This is how the agent gets nudged back on track without extra LLM calls.
 
-### Tools: three-layer inheritance
+### Tools: three crates, two loading modes
 
-This is where the weekend rebuild made the biggest difference. Tools live in three layers:
+This is where the weekend rebuild made the biggest difference. Tools are split across three Rust crates:
 
 ```mermaid
 flowchart TD
-    CORE["sgr-agent-core\ntrait Tool + trait FileBackend"]
-    TOOLS["sgr-agent-tools\n7 core + 3 feature-gated + 3 deferred"]
-    MW["agent-bit/tools.rs\nmiddleware: guards + hooks + security"]
-    PCM["PcmClient\nBitGN RPC + cache"]
+    CORE["sgr-agent-core\nTool trait + FileBackend trait"]
+    TOOLS["sgr-agent-tools\nreusable tools, generic over backend"]
+    MW["agent-bit/tools.rs\nPAC1 middleware wrappers"]
+    PCM["PcmClient\nBitGN RPC + read cache"]
 
     CORE --> TOOLS --> MW --> PCM
 
@@ -159,20 +159,76 @@ flowchart TD
     click PCM "https://github.com/fortunto2/agent-bit/blob/main/src/pcm.rs"
 ```
 
-Tool loading strategy:
+**[sgr-agent-core](https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-core)** defines the traits. **[sgr-agent-tools](https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-tools)** implements them generically -- same tool code works with any `FileBackend`: PcmClient (competition RPC), LocalFs (CLI agents), or MockFs (tests). **[agent-bit/tools.rs](https://github.com/fortunto2/agent-bit/blob/main/src/tools.rs)** wraps them with PAC1-specific middleware (security scanning, workflow guards, AGENTS.MD hooks).
 
-| Loading | Tools | Why |
-|---------|-------|-----|
-| **Always** | read, write, delete, search, list, tree, read_all | Core operations, every task needs them |
-| **Feature-gated** | eval (Boa JS), shell, apply_patch | Heavy deps, enabled via Cargo features |
-| **Deferred** | mkdir, move, find | LLM requests them when needed, reduces prompt size |
+#### All tools (20 total)
 
-The key insight: `sgr-agent-tools` is generic over `FileBackend`. Same tool code works with:
-- **PcmClient** -- BitGN competition RPC
-- **LocalFs** -- real filesystem for CLI agents
-- **MockFs** -- in-memory for unit tests
+**sgr-agent-tools** -- reusable across any agent:
 
-Agent-bit wraps the base tools with middleware for security scanning, workflow tracking, and AGENTS.MD hooks. The base tools handle the boring stuff (JSON repair, trust metadata, batch operations) so the wrapper only adds domain logic.
+| Tool | Loading | What it does |
+|------|---------|-------------|
+| `read` | always | Read file with [trust metadata](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/trust.rs) (`[path \| trusted/untrusted]`). Two modes: line slice and indentation expand |
+| `write` | always | Write file with [JSON auto-repair](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/write.rs) via llm_json. Supports ranged overwrite (start_line/end_line) |
+| `delete` | always | Batch delete (single path or paths array) |
+| `search` | always | [Smart search](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/search.rs): exact → name variants → fuzzy regex → Levenshtein on filenames. Auto-expands full content when <=10 files match |
+| `list` | always | Directory listing |
+| `tree` | always | Directory tree with depth limit |
+| `read_all` | always | **The game-changer.** [Batch read entire directory](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/read_all.rs) in one call. Turned 15 sequential reads into 1 tool call. Steps: 185 → 43 |
+| `eval` | feature `eval` | [JavaScript runtime](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/eval.rs) via Boa engine. Pre-reads files by glob pattern, exposes as `file_0..file_N`. For dynamic calculations (finance sums, date math, counting) |
+| `shell` | feature `shell` | Execute commands with timeout (2 min default, 10 min max). 100KB output cap |
+| `apply_patch` | feature `patch` | [Codex-compatible diff DSL](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/apply_patch.rs). Saves tokens vs full write for small edits |
+| `update_plan` | always | Task checklist persisted to plan.md. `[x]` / `[~]` / `[ ]` format |
+| `list_skills` | always | Show available skills (introspection) |
+| `get_skill` | always | Read a specific skill body |
+| `mkdir` | deferred | Create directory (LLM loads when needed) |
+| `move` | deferred | Move/rename file |
+| `find` | deferred | Find files by pattern and type |
+
+**agent-bit/tools.rs** -- PAC1-specific tools:
+
+| Tool | What it does |
+|------|-------------|
+| `answer` | Submit final answer with outcome (OK/DENIED/CLARIFICATION/UNSUPPORTED). [OutcomeValidator](https://github.com/fortunto2/agent-bit/blob/main/src/classifier.rs) checks answer via kNN embeddings before submitting |
+| `context` | Get workspace date/time from harness |
+| `search_and_read` | Search + read first match in one call (saves a round-trip) |
+| `date_calc` | Date arithmetic: diff_days, add_days, next_birthday, compare, format. Uses chrono, no JS overhead |
+| `grep_count` | Count matching lines -- for "how many" questions without reading all content |
+| `lookup_contact` | On-demand CRM lookup by name/email. Replaced pre-loaded CRM graph (saved 25 RPCs at startup) |
+
+#### Middleware pattern
+
+Agent-bit doesn't rewrite tools -- it wraps them. Each wrapper adds a middleware chain:
+
+```mermaid
+flowchart LR
+    subgraph READ["read middleware"]
+        R1["base read\n+ trust metadata"] --> R2["guard_content\nsecurity scan"] --> R3["workflow\npost_action"]
+    end
+
+    subgraph WRITE["write middleware"]
+        W0["workflow\npre_action"] --> W1["outbox inject\nsent:false"] --> W2["YAML fix\nauto-quote"] --> W3["base write\nJSON repair"] --> W4["hooks\nAGENTS.MD"] --> W5["workflow\npost_action"]
+    end
+
+    click R1 "https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/read.rs"
+    click W3 "https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/write.rs"
+```
+
+```rust
+// agent-bit wraps sgr-agent-tools with domain middleware:
+pub struct ReadTool {
+    inner: sgr_agent_tools::ReadTool<PcmClient>,  // base tool
+    workflow: SharedWorkflowState,                  // phase tracking
+}
+// execute: inner.read() → guard_content() → workflow.post_action()
+```
+
+#### Why this split matters
+
+Before the split, all tool logic was in agent-bit (1500+ lines). Now:
+- **sgr-agent-tools** (crates.io, 800 lines) -- reusable in any Rust agent. Zero PAC1 knowledge
+- **agent-bit/tools.rs** (1283 lines) -- only domain middleware (security, workflow, hooks)
+
+New agent project? `cargo add sgr-agent-tools` and you get read, write, search, eval, apply_patch -- all with JSON repair, trust metadata, smart search cascade. Add your own middleware on top.
 
 ### Skills: hot-reloadable domain knowledge
 
