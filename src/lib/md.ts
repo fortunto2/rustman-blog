@@ -6,6 +6,10 @@ const md = new MarkdownIt({
   linkify: true,
   typographer: true,
   highlight(str: string, lang: string): string {
+    // Mermaid diagrams — render client-side, not as code
+    if (lang === 'mermaid') {
+      return `<pre class="mermaid">${str}</pre>`;
+    }
     if (lang && hljs.getLanguage(lang)) {
       try {
         return `<pre><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`;

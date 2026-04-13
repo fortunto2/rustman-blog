@@ -76,6 +76,19 @@ body {
   }
 }
 
+/* Mermaid diagrams */
+pre.mermaid {
+  background: transparent !important;
+  border: none !important;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Reusable link style */
 .link-muted {
   color: var(--color-muted);
