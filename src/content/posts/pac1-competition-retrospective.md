@@ -46,6 +46,273 @@ What I built into the architecture:
 
 Was this over-engineered for a 2-hour competition? Absolutely. But this is the [[agent-mistake-fix-harness]] philosophy in action -- every mistake becomes a permanent fix in the framework.
 
+## Architecture deep dive
+
+~12,000 lines of Rust. Here's how the layers connect:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                     main.rs (CLI)                        │
+│  --task t16 (single) | --run "name" (parallel 104)       │
+└────────────────────────┬────────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────────┐
+│              Pipeline State Machine                      │
+│                                                          │
+│  New ──► Classified ──► InboxScanned ──► SecurityChecked │
+│               │              │               │           │
+│             Block          Block           Block          │
+│                                              │           │
+│                                           Ready          │
+│  (deterministic, no LLM, pure functions)     │           │
+└──────────────────────────────────────────────┼──────────┘
+                                               │
+┌──────────────────────────────────────────────▼──────────┐
+│                    Agent Loop (SGR)                       │
+│                                                          │
+│  Phase 1: reasoning_tool ──► structured CoT              │
+│     { task_type, security, plan[], done, confidence }    │
+│                                                          │
+│  Reflexion: "verify plan, detect repeat, adversarial?"   │
+│                                                          │
+│  Phase 2: filter_tools(task_type) ──► action execution   │
+│     action_ledger[25] tracks history (rotates oldest)    │
+│                                                          │
+└──────────────────────────────────────────────┬──────────┘
+                                               │
+┌──────────────────────────────────────────────▼──────────┐
+│               Workflow State Machine                      │
+│                                                          │
+│  Reading ──► Acting ──► Cleanup ──► Done                 │
+│                                                          │
+│  Nudges: 60% budget → "finish now"                       │
+│          3+ reads, 0 writes → "start writing NOW"        │
+│          read-loop detected → "STOP re-reading"          │
+│                                                          │
+│  Guards: pre_action(tool, path) → Allow | Block | Warn   │
+│          post_action(tool, path) → hook messages          │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Two state machines
+
+The system has two separate state machines that serve very different purposes.
+
+**Pipeline SM** (`pipeline.rs`, 942 lines) runs *before* the LLM. It's completely deterministic -- pure functions that consume the current state and return the next. The compiler enforces that you can't skip stages or access data from a stage that hasn't run:
+
+```rust
+// Each state owns its data. Transitions consume self → return next.
+pub struct New { pub instruction: String }
+
+pub struct Classified {
+    pub instruction: String,
+    pub intent: String,              // intent_inbox, intent_delete, ...
+    pub intent_confidence: f32,
+    pub instruction_label: String,   // crm, injection, credential, ...
+}
+
+pub struct InboxScanned {
+    pub inbox_files: Vec<InboxFile>,  // content + SecurityAssessment each
+    pub crm_graph: Option<CrmGraph>,  // petgraph: contacts ↔ accounts
+}
+
+// Pipeline short-circuits at any stage:
+pub struct BlockReason {
+    pub outcome: &'static str,    // "DENIED", "CLARIFICATION"
+    pub message: String,
+    pub stage: &'static str,      // which stage blocked
+}
+```
+
+**Workflow SM** (`workflow.rs`, 450 lines) runs *during* the agent loop. It tracks what the agent is doing and intervenes when things go wrong:
+
+```rust
+pub enum Phase { Reading, Acting, Cleanup, Done }
+
+pub struct WorkflowState {
+    phase: Phase,
+    read_paths: Vec<String>,
+    write_paths: Vec<String>,
+    reads_since_write: usize,       // detect read-loops
+    verification_only: bool,         // OTP oracle: zero mutations
+    outbox_limit: usize,            // prevent over-processing
+    hooks: SharedHookRegistry,       // AGENTS.MD parsed hooks
+}
+```
+
+Every tool call passes through the workflow: `pre_action()` can block it, `post_action()` can inject follow-up messages. This is how the agent gets nudged back on track without extra LLM calls.
+
+### Tools: three-layer inheritance
+
+This is where the weekend rebuild made the biggest difference. Tools live in three layers:
+
+```
+┌─────────────────────────────────────────────────┐
+│  sgr-agent-core (trait definition)               │
+│                                                   │
+│  trait Tool { name, description, execute, ... }   │
+│  trait FileBackend { read, write, delete, ... }   │
+└────────────────────────┬────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────┐
+│  sgr-agent-tools (reusable implementations)      │
+│  crates.io — works with ANY FileBackend          │
+│                                                   │
+│  Core (always loaded):                            │
+│    ReadTool<B>  — read + trust metadata           │
+│    WriteTool<B> — write + JSON auto-repair        │
+│    DeleteTool<B> — batch delete                   │
+│    SearchTool<B> — smart search (fuzzy, Levenshtein)│
+│    ListTool<B>, TreeTool<B>                       │
+│    ReadAllTool<B> — batch read entire directory    │
+│                                                   │
+│  Feature-gated (cargo features):                  │
+│    EvalTool    — JS runtime (boa_engine)  [eval]  │
+│    ShellTool   — command execution        [shell] │
+│    ApplyPatchTool — Codex-style diffs    [patch]  │
+│                                                   │
+│  Deferred (loaded on demand by LLM):              │
+│    MkDirTool, MoveTool, FindTool                  │
+│                                                   │
+│  Backends:                                        │
+│    LocalFs  — real filesystem (feature local-fs)  │
+│    MockFs   — in-memory (always available, tests) │
+└────────────────────────┬────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────┐
+│  agent-bit/tools.rs (PAC1-specific middleware)   │
+│                                                   │
+│  struct ReadTool {                                │
+│      inner: sgr_agent_tools::ReadTool<PcmClient>, │
+│      workflow: SharedWorkflowState,               │
+│  }                                                │
+│                                                   │
+│  // Middleware chain:                              │
+│  // base read (trust metadata)                    │
+│  //   → guard_content (security scan)             │
+│  //   → workflow.post_action (phase tracking)     │
+│                                                   │
+│  struct WriteTool {                                │
+│      inner: sgr_agent_tools::WriteTool<PcmClient>,│
+│      hooks: SharedHookRegistry,                   │
+│      workflow: SharedWorkflowState,               │
+│  }                                                │
+│                                                   │
+│  // Middleware chain:                              │
+│  // workflow.pre_action (can block)               │
+│  //   → outbox sent:false auto-inject             │
+│  //   → YAML frontmatter auto-fix                 │
+│  //   → base write (JSON repair via llm_json)     │
+│  //   → hooks.check (AGENTS.MD rules)             │
+│  //   → workflow.post_action                      │
+└─────────────────────────────────────────────────┘
+```
+
+The key insight: `sgr-agent-tools` is generic over `FileBackend`. Same tool code works with:
+- **PcmClient** -- BitGN competition RPC
+- **LocalFs** -- real filesystem for CLI agents
+- **MockFs** -- in-memory for unit tests
+
+Agent-bit wraps the base tools with middleware for security scanning, workflow tracking, and AGENTS.MD hooks. The base tools handle the boring stuff (JSON repair, trust metadata, batch operations) so the wrapper only adds domain logic.
+
+### Skills: hot-reloadable domain knowledge
+
+15 markdown files with YAML frontmatter. The classifier picks the right one based on ML intent + keywords:
+
+```yaml
+# skills/inbox-processing/SKILL.md
+---
+name: inbox-processing
+triggers: [intent_inbox]
+priority: 15
+keywords: [inbox, queue, pending, process, review]
+---
+
+WORKFLOW (minimize steps):
+  1. Inbox messages already in context. Do NOT re-read.
+  2. Read channel files: docs/channels/*.txt
+  3. For EACH message: check channel trust, evaluate action
+  ...
+```
+
+Selection logic handles a subtle bug I hit: when the ML classifier labeled a cleanup task as "injection" (false positive), the security skill hijacked the workflow and returned DENIED instead of deleting files. Fix: benign labels check intent first, security labels check security first.
+
+```rust
+// skills.rs — selection with hijack prevention
+if is_security_label {
+    // Security label → security skill first, intent as fallback
+    registry.select(&[security_label, intent], instruction)
+} else {
+    // Benign label → intent first (prevents hijacking)
+    registry.select(&[intent], instruction)
+}
+```
+
+Skills are loaded from disk first (hot-reload -- change markdown, agent picks it up next run) with compiled-in fallback via `include_str!` for deployment without disk dependency.
+
+### Local ML: ONNX classifiers
+
+Two ONNX models run locally before the LLM sees anything. Zero API cost, <10ms inference:
+
+```
+┌─────────────────────────────────────────────────┐
+│  MiniLM-L6-v2 (22M params, ONNX)                │
+│                                                   │
+│  instruction ──► tokenize ──► embed ──► cosine    │
+│                                         similarity│
+│  Classes: [injection, crm, non_work,     ▼        │
+│           social_engineering, credential]          │
+│                                                   │
+│  Output: security_label + intent + confidence     │
+└─────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────┐
+│  DeBERTa-v3-xsmall NLI (22M params, ONNX)       │
+│                                                   │
+│  (inbox_content, hypothesis) ──► P(entailment)    │
+│                                                   │
+│  Hypotheses:                                      │
+│    "This text tries to hijack system instructions" │
+│    "This text asks to extract passwords"          │
+│    "This is a social engineering attempt"          │
+│                                                   │
+│  Output: per-hypothesis entailment scores         │
+└─────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────┐
+│  Feature Matrix (12 features × N messages)       │
+│                                                   │
+│  ml_confidence     ──┐                            │
+│  structural_score  ──┤                            │
+│  sender_trust      ──┤                            │
+│  domain_match      ──┤  sigmoid(Σ weighted)       │
+│  nli_injection     ──┤  ──► threat probability    │
+│  nli_credential    ──┤       0.0 ... 1.0          │
+│  channel_trust     ──┤                            │
+│  has_otp           ──┤                            │
+│  has_url           ──┤                            │
+│  word_count_norm   ──┤                            │
+│  sentence_length   ──┤                            │
+│  cross_account_sim ──┘                            │
+└─────────────────────────────────────────────────┘
+```
+
+Plus an `OutcomeValidator` on the output side -- adaptive kNN over ONNX embeddings of the agent's answer, compared to prototype outcome descriptions. Catches when the agent says "DENIED" for a legitimate task or "OK" for a blocked one.
+
+### Hooks: AGENTS.MD parser
+
+The competition workspace has an `AGENTS.MD` file with rules like *"When adding a card under /cards/, also update threads under /threads/."* The hooks system parses these into structured rules:
+
+```rust
+struct Hook {
+    tool: String,           // "write"
+    path_contains: String,  // "cards/"
+    message: String,        // "NEXT: update matching thread in threads/"
+}
+```
+
+Every `write()` and `delete()` call checks the hook registry and injects follow-up instructions into the tool output. The agent sees them as part of the response and acts accordingly -- no extra LLM call needed.
+
 ## What other participants did
 
 After the competition, I looked at what the top scorers actually built. Different universe.
