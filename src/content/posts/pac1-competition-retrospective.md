@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "How I spent $250+ on an AI agent competition and what I learned"
-description: "Personal retrospective on BitGN PAC1 challenge: scoring 18/104 live, organizing a hub event while competing, $50 per GPT-5.4 run, and rebuilding the agent from 180 to 43 steps."
+description: "Personal retrospective on BitGN PAC1 challenge: scoring 17/104 live, organizing a hub event while competing, $50 per GPT-5.4 run, and rebuilding the agent to 74/104 in two days."
 created: 2026-04-13
 tags: [agents, competition, rust, retrospective, sgr, benchmarks]
 publish: true
@@ -10,7 +10,7 @@ publish_as: post
 
 # How I spent $250+ on an AI agent competition and what I learned
 
-I scored 18 out of 104. Let me tell you how I got there and why I'm actually happy about it.
+I scored 17 out of 104. Let me tell you how I got there and why I'm actually happy about it.
 
 ## The setup
 
@@ -44,7 +44,7 @@ What I built into the architecture:
 - Agent loop -- SGR + function calling hybrid
 - OutcomeValidator with adaptive kNN on the output side
 
-Was this over-engineered for a 2-hour competition? Absolutely.
+Was this over-engineered for a 2-hour competition? Absolutely. But this is the [[agent-mistake-fix-harness]] philosophy in action -- every mistake becomes a permanent fix in the framework.
 
 ## What other participants did
 
@@ -64,7 +64,7 @@ On development tasks (43 total), I got **42/43 on Nemotron** -- a free model! In
 
 ### 2. Dumb tools, too many steps
 
-My agent was doing 180 steps per run. Average time: 220 seconds per task. Total trial time: 400 minutes. The problem: no batch tools. Every file read was a separate LLM round-trip.
+My agent was doing 185 steps per run. Average time: 229 seconds per task. Sum of trial times: 396 minutes. The problem: no batch tools. Every file read was a separate LLM round-trip.
 
 ### 3. Blind flying
 
@@ -78,36 +78,36 @@ I sat down on Saturday and Sunday and actually fixed things.
 
 **Observability:** Set up [Phoenix](https://phoenix.arize.com/) locally with OpenTelemetry. My sgr-agent had basic tracing, but I made it proper -- every tool call, every LLM round-trip, every token count visible.
 
-**Results after the rebuild:**
+**Results after the rebuild** (numbers still improving -- this is a snapshot, not the ceiling):
 
-| Metric | Before | After |
-|--------|--------|-------|
-| GPT-5.4 score | 18/104 | [**74/104**](https://eu.bitgn.com/runs/run-22J8DDkgwCuT9GeGCXRk8WPHw) |
-| GPT-5.4-mini score | -- | [**63/104**](https://eu.bitgn.com/runs/run-22J81JoKy5HTbPvMgmjtUZqTi) |
-| Avg steps per task | 180 | **43** |
-| Avg time per task | 220s | **90s** |
-| Total trial time | 400 min | **90 min** |
-| Cost per full run | ~$50 | **$5-10** |
+| Metric | Competition (Apr 11) | After rebuild (Apr 13) | Delta |
+|--------|---------------------|----------------------|-------|
+| Model | GPT-5.4 | GPT-5.4 | same |
+| Parallelism | -104 | 104 | same |
+| Score | [17/104 → 16.3%](https://eu.bitgn.com/runs/run-22J8DDkgwCuT9GeGCXRk8WPHw) | **74/104 → 71.2%** | **+4.4x** |
+| Sum trial times | 396 min (23,806s) | **155 min (9,326s)** | **-61%** |
+| Avg time/task | 229s | **90s** | **-61%** |
+| Avg steps/task | 185.8 | **43.6** | **-76%** |
+| Fastest task | 97s | **4s** | |
+| Slowest task | 508s | **222s** | |
 
-All 104 tasks run in parallel. Total time: 3-4 minutes.
-
-The potential on GPT-5.4 is 80-85 if I keep tuning, but I'm out of credits for now.
+All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 
 ## Lessons
 
-**1. Ship simple first, optimize later.** Codex CLI + good prompts = 70-80 points. My entire Rust pipeline = 18 points on competition day. The infrastructure I built is better *now*, but it wasn't ready *then*.
+**1. Ship simple first, optimize later.** Codex CLI + good prompts = 70-80 points. My entire Rust pipeline = 17 points on competition day. The infrastructure I built is better *now*, but it wasn't ready *then*.
 
-**2. Batch tools are not optional.** `ReadAllTool` alone cut steps from 180 to 43. Each tool call = one LLM round-trip = 2-5 seconds. Multiply by 100+ tasks.
+**2. Batch tools are not optional.** `ReadAllTool` alone cut steps from 185 to 43. Each tool call = one LLM round-trip = 2-5 seconds. Multiply by 100+ tasks.
 
 **3. Observability from day one.** I couldn't debug what I couldn't see. Phoenix + OTEL should have been there from the start, not bolted on after the disaster.
 
 **4. The dev-prod gap will get you.** 42/43 in dev means nothing if prod has 2.5x more tasks with different patterns. Hardcoded rules are technical debt with compound interest.
 
-**5. Architecture pays off -- eventually.** My framework now powers multiple agents I'm building. The competition was an expensive stress test, but the sgr-agent ecosystem is stronger for it. A $250 tuition fee for a reusable agent core.
+**5. Architecture pays off -- eventually.** My framework now powers multiple agents I'm building. The competition was an expensive stress test, but the sgr-agent ecosystem is stronger for it. A $250 tuition fee for a reusable agent core. This is the [[portfolio-approach]] -- each project strengthens the next.
 
 ## Am I happy?
 
-Yes. 18/104 during the competition was embarrassing. 74/104 after the weekend rebuild -- with the potential for 80+ -- is a real system. The architecture is solid, the tools are smart, and every agent I build from here starts at a higher baseline.
+Yes. 17/104 during the competition was embarrassing. 74/104 after the weekend rebuild -- and still improving -- is a real system. The architecture is solid, the tools are smart, and every agent I build from here starts at a higher baseline.
 
 The competition was chaos. The learning was worth every dollar.
 
@@ -115,4 +115,9 @@ The competition was chaos. The learning was worth every dollar.
 
 *Links: [agent-bit on GitHub](https://github.com/fortunto2/agent-bit) | [PAC1 Challenge](https://bitgn.com/challenge/PAC) | [Telegram post](https://t.me/life2film/601)*
 
-*See also: [[agent-bit-pac1]] for the technical architecture deep-dive.*
+*See also:*
+- *[[agent-bit-pac1]] -- technical architecture deep-dive (SGR pipeline, tools, FileBackend trait)*
+- *[[schema-guided-reasoning]] -- the SGR pattern that powers the agent loop*
+- *[[agent-benchmarks]] -- how PAC1 compares to SWE-bench, PinchBench, and others*
+- *[[cli-first-testing]] -- why every project gets a CLI mirror*
+- *[[project-openai-oxide]] -- the OpenAI Rust client underneath*
