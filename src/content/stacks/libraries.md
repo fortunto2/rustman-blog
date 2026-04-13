@@ -12,7 +12,7 @@ source_path: "1-methodology/stacks/libraries.yaml"
 
 Curated libs for specific product types. Not part of default stacks — pick what fits your product.
 
-**Categories:** Data Pipeline · Federation · Actors · Event Sourcing · Openai · Voice · Openapi Codegen · Canvas
+**Categories:** Data Pipeline · Federation · Actors · Event Sourcing · Openai · Voice · Openapi Codegen · Documentation · Reference · Canvas
 
 ## Data Pipeline
 
@@ -48,8 +48,13 @@ Requires Postgres for incremental processing metadata.
 
 | Library | Stack | Install | License |
 |---------|-------|---------|--------|
+| [actix](https://github.com/actix/actix) | rust | `cargo add actix actix-rt` | Apache-2.0 / MIT |
 | [kameo](https://github.com/tqwewe/kameo) | rust | `cargo add kameo` | MIT |
 | [ractor](https://github.com/slawlor/ractor) | rust | `cargo add ractor` | MIT |
+
+**actix:** 9.2k★. The OG Rust actor framework. Tokio-based.
+actix-web (21k★) is built on top but the actor core is separate.
+Stable Rust 1.76+. Less active since 2024 but battle-tested.
 
 **kameo:** 1.2k★. Built-in distributed messaging. Async tokio.
 
@@ -105,6 +110,29 @@ All backends optional via features.
 **openapiv3:** Used by progenitor internally.
 
 **utoipa:** Opposite direction from progenitor — code → spec.
+
+
+## Documentation
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [deepwiki-rs](https://github.com/sopaco/deepwiki-rs) | rust | `cargo install litho` | Apache-2.0 |
+
+**deepwiki-rs:** 891★. Also called Litho. Rust + Axum + LLM.
+4-stage pipeline: preprocess → research → compose → validate.
+Multi-language (Rust, Python, Java, Go, JS, C#).
+External knowledge mounting (PDFs, Markdown, SQL).
+
+
+## Reference
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [awesome-rust](https://github.com/rust-unofficial/awesome-rust) | rust | `null` | CC0-1.0 |
+
+**awesome-rust:** 57k★. The canonical Rust resource list.
+40+ library categories, 25+ application categories.
+Community-maintained, PR-based additions.
 
 
 ## Canvas
