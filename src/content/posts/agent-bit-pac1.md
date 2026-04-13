@@ -204,3 +204,5 @@ let tools = ToolRegistry::new()
 ```
 
 The framework is open-source (MIT) on crates.io.
+
+*See also: [[pac1-competition-retrospective]] for the personal story behind the competition.*
