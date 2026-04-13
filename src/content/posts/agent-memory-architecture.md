@@ -1,7 +1,7 @@
 ---
 type: methodology
-title: "Agent Memory Architecture — From Working Memory to Compound Learning"
-description: "How to build memory for AI agents: 4 memory types, 3 operational loops, 5 systems compared. From dict-based v1 to spatial palaces and knowledge graphs."
+title: "Agent Memory Architecture: From Working Memory to Compound Learning"
+description: "4 memory types, 3 operational loops, 5 systems compared. From dict-based v1 to spatial palaces and knowledge graphs."
 created: 2026-04-09
 tags: [agents, memory, architecture, methodology, rag, context-engineering]
 course_module: 5
@@ -13,7 +13,7 @@ source_path: "1-methodology/agent-memory-architecture.md"
 
 # Agent Memory Architecture
 
-AI agents forget everything between sessions. Context windows are finite. [[rag-patterns|RAG]] retrieves documents but doesn't capture decisions, preferences, or evolving relationships. This is the core problem of agent memory — and there are now several mature approaches to solving it.
+AI agents forget everything between sessions. Context windows are finite. [[rag-patterns|RAG]] retrieves documents but doesn't capture decisions, preferences, or evolving relationships. This is the core problem of agent memory, and several mature approaches now exist to solve it.
 
 This post synthesizes patterns from five memory-focused systems I've built or studied: [[schema-guided-reasoning|SGR Agents]] spec (the cognitive foundation), [Moltis](https://github.com/moltis-org/moltis), [OpenClaw](https://github.com/openclaw/openclaw) Workspace Memory, [[mempalace-agent-memory|MemPalace]], and [[project-solograph|Solograph]]. Each takes a different approach. Together they map the full design space.
 
@@ -21,52 +21,52 @@ This post synthesizes patterns from five memory-focused systems I've built or st
 
 ## The Four Types of Memory
 
-Every serious agent memory system converges on the same cognitive taxonomy, mirroring how human cognition organizes knowledge ([Generative Agents, Stanford 2023](https://arxiv.org/abs/2304.03442)). The naming varies, but the functions are consistent:
+Every agent memory system worth studying converges on the same cognitive taxonomy, mirroring how human cognition organizes knowledge ([Generative Agents, Stanford 2023](https://arxiv.org/abs/2304.03442)). Names vary, but functions stay consistent:
 
 ### 1. Working Memory (short-term)
 
-The agent's scratchpad during a task. Messages, intermediate results, current plan. Cleared or archived when the task completes.
+The agent's scratchpad during a task: messages, intermediate results, current plan. Cleared or archived when the task completes.
 
-- **[[schema-guided-reasoning|SGR]]**: The NextStep schema itself — `reasoning` + `planning` fields are the working memory, visible on every step. Structured JSON makes thought process inspectable.
-- **[[mempalace-agent-memory|MemPalace]]**: L0 + L1 layers (~170 tokens always loaded). Identity + critical facts — the minimum context the agent always has.
+- **[[schema-guided-reasoning|SGR]]**: The NextStep schema itself. `reasoning` + `planning` fields are the working memory, visible on every step. Structured JSON makes thought process inspectable.
+- **[[mempalace-agent-memory|MemPalace]]**: L0 + L1 layers (~170 tokens always loaded). Identity + critical facts, the minimum context the agent always has.
 - **Moltis**: Current session transcript, auto-exported to `memory/sessions/` on close.
-- **[[project-solograph|Solograph]]**: Active Claude Code session context — task state, tool results, conversation. Becomes episodic memory when session ends.
+- **[[project-solograph|Solograph]]**: Active Claude Code session context (task state, tool results, conversation). Becomes episodic memory when session ends.
 
-**Key insight**: Working memory should be *structured*, not a raw conversation log. The [[schema-guided-reasoning|SGR]] approach (reasoning/planning/function as explicit JSON fields) makes the agent's thought process inspectable and debuggable. This aligns with [[harness-engineering-summary|harness engineering]] — agent logic should be transparent.
+**Key insight**: Working memory should be *structured*, not a raw conversation log. The [[schema-guided-reasoning|SGR]] approach (reasoning/planning/function as explicit JSON fields) makes the agent's thought process inspectable and debuggable. This aligns with [[harness-engineering-summary|harness engineering]]: agent logic should be transparent.
 
 ### 2. Semantic Memory (long-term facts)
 
-Durable knowledge about the world, the user, the domain. Timeless or slowly changing. Retrieved by similarity or entity.
+Durable knowledge about the world, the user, the domain. Timeless or slowly changing. Retrieved by similarity or entity lookup.
 
-- **[[schema-guided-reasoning|SGR]]**: Dict-based, no external DB. `memory["semantic"] = { ... }` loaded into system prompt at init. Concise representation is key — summarize, don't dump.
+- **[[schema-guided-reasoning|SGR]]**: Dict-based, no external DB. `memory["semantic"] = { ... }` loaded into system prompt at init. Summarize, don't dump.
 - **OpenClaw**: `bank/world.md` for objective facts, `bank/entities/*.md` for entity pages. Markdown source of truth + derived SQLite/FTS5 index. Inspired by [Hindsight](https://arxiv.org/abs/2404.00498) and [MemGPT/Letta](https://arxiv.org/abs/2310.08560).
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_facts` corridor within each wing. Verbatim storage (96.6% on [LongMemEval](https://arxiv.org/abs/2410.10813)) beats compression (84.2%).
 - **Moltis**: Hybrid search (vector + FTS5 keyword), with optional LLM reranking (70% LLM score + 30% original).
-- **[[project-solograph|Solograph]]**: `kb_search` — knowledge base with MLX embeddings (multilingual-e5-small, RU+EN). Facts, principles, patterns stored as markdown files.
+- **[[project-solograph|Solograph]]**: `kb_search` for knowledge base with MLX embeddings (multilingual-e5-small, RU+EN). Facts, principles, patterns stored as markdown files.
 
-**Key insight**: Structure beats embeddings for retrieval. MemPalace showed that spatial hierarchy (wing → room → hall) improves recall by 34% over flat vector search. Solograph's graph layer adds relationship traversal on top. But for getting started, a simple dict in the system prompt works ([[schema-guided-reasoning|SGR v1]] approach).
+**Key insight**: Structure beats embeddings for retrieval. MemPalace's spatial hierarchy (wing > room > hall) improves recall by 34% over flat vector search. Solograph's graph layer adds relationship traversal on top. But a simple dict in the system prompt works fine to start ([[schema-guided-reasoning|SGR v1]] approach).
 
 ### 3. Episodic Memory (experience log)
 
-What happened, when, in what order. Decision history, interaction logs, past results. Time-bound and growing. This is what [[context-graphs-summary|context graphs]] call "decision traces."
+What happened, when, in what order. Decision history, interaction logs, past results. Time-bound and growing. [[context-graphs-summary|Context graphs]] call these "decision traces."
 
 - **OpenClaw**: Daily logs (`memory/YYYY-MM-DD.md`) + `bank/experience.md` curated by reflection. The `## Retain` section extracts 2-5 narrative, self-contained facts from each day, tagged with type (`W` world, `B` experience, `O` opinion) and entities (`@Peter`).
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_events` + `hall_discoveries` corridors. Specialist agent diaries capture domain-specific history.
-- **[[project-solograph|Solograph]]**: `session_search` — every past Claude Code session is searchable. Each session = a [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace with reasoning.
-- **[Generative Agents](https://arxiv.org/abs/2304.03442)**: Memory stream — timestamped observations, with retrieval scored by recency × relevance × importance. The original "agents need episodic memory" paper.
+- **[[project-solograph|Solograph]]**: `session_search` makes every past Claude Code session searchable. Each session = a [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace with reasoning.
+- **[Generative Agents](https://arxiv.org/abs/2304.03442)**: Memory stream of timestamped observations, with retrieval scored by recency x relevance x importance.
 
-**Key insight**: Episodic ≠ semantic. Episodic is time-ordered (event sequence), semantic is timeless (generalized fact). The OpenClaw `## Retain` pattern is elegant: extract narrative facts from the raw log, tag with type + entities + confidence. [[decision-traces-compound|Decision traces compound]] — each captured trajectory improves future retrieval.
+**Key insight**: Episodic ≠ semantic. Episodic is time-ordered (event sequence), semantic is timeless (generalized fact). The OpenClaw `## Retain` pattern extracts narrative facts from the raw log, tags with type + entities + confidence. [[decision-traces-compound|Decision traces compound]]: each captured trajectory improves future retrieval.
 
 ### 4. Procedural Memory (how-to)
 
-Methods, templates, algorithms, workflows. "How to do X" rather than "what is X".
+Methods, templates, algorithms, workflows. "How to do X" rather than "what X is."
 
-- **[[schema-guided-reasoning|SGR]]**: `memory["procedural"]` — story structure templates (3-act method), writing instructions. Loaded as recommendations in system prompt.
-- **[[mempalace-agent-memory|MemPalace]]**: `hall_advice` corridor — accumulated recommendations and patterns.
-- **[[project-solograph|Solograph]]**: `codegraph_query` + `codegraph_explain` — AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal implementation patterns: "How is auth implemented?" returns structural patterns, not just files.
-- **YAML workflow templates**: Predefined agent sequences (video trailers, marketing campaigns). Codified procedural memory — the agent follows a proven template instead of reasoning from scratch.
+- **[[schema-guided-reasoning|SGR]]**: `memory["procedural"]` stores story structure templates (3-act method), writing instructions. Loaded as recommendations in system prompt.
+- **[[mempalace-agent-memory|MemPalace]]**: `hall_advice` corridor with accumulated recommendations and patterns.
+- **[[project-solograph|Solograph]]**: `codegraph_query` + `codegraph_explain` expose an AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal implementation patterns: "How is auth implemented?" returns structural patterns, not just files.
+- **YAML workflow templates**: Predefined agent sequences (video trailers, marketing campaigns). Codified procedural memory. The agent follows a proven template instead of reasoning from scratch.
 
-**Key insight**: Procedural memory is often the most undervalued. A well-defined workflow template can 10x consistency. [[cli-first-testing|CLI-first]] design makes procedural knowledge testable. [[dev-principles-summary|Schemas first, logic second]] applies here too — define the procedure schema before implementing.
+**Key insight**: Procedural memory is the most undervalued type. A well-defined workflow template multiplies consistency. [[cli-first-testing|CLI-first]] design makes procedural knowledge testable. [[dev-principles-summary|Schemas first, logic second]] applies here too: define the procedure schema before implementing.
 
 ---
 
@@ -80,7 +80,7 @@ From Foundation Capital's [[context-graphs-summary|context graphs]] thesis:
 2. **Retrieve** — before new task, search for similar precedents
 3. **Apply** — adapt found patterns to current situation
 
-Each successful action improves future ones → [[decision-traces-compound|compound learning]] flywheel. Already implemented in [[project-solograph|Solograph]]: `session_search` for precedent retrieval, `kb_search` for pattern matching, `codegraph_query` for structural precedents.
+Each successful action improves future ones, creating a [[decision-traces-compound|compound learning]] flywheel. Implemented in [[project-solograph|Solograph]]: `session_search` for precedent retrieval, `kb_search` for pattern matching, `codegraph_query` for structural precedents.
 
 ### Retain → Recall → Reflect (OpenClaw/[Hindsight](https://arxiv.org/abs/2404.00498) pattern)
 
@@ -100,13 +100,13 @@ Stanford's Generative Agents introduced the three-layer cognitive architecture:
 2. **Reflect** — periodically synthesize observations into higher-level insights ("What are the top 3 things I've learned about X?")
 3. **Plan** — create day/hour plans grounded in reflections and current goals
 
-This is the most research-validated loop — the paper showed it produces believable long-term agent behavior across 25 interacting agents.
+This is the most research-validated loop. The paper showed it produces believable long-term agent behavior across 25 interacting agents.
 
 ---
 
 ## Forgetting: The Half-Life Problem
 
-Not all memories should persist forever. Decisions have an expiry date — policies change, teams change, context shifts. [[context-graphs-summary|Context graphs]] call this the "half-life of decisions."
+Not all memories should persist forever. Decisions expire as policies change, teams change, and context shifts. [[context-graphs-summary|Context graphs]] call this the "half-life of decisions."
 
 ### Approaches to Forgetting
 
@@ -118,29 +118,29 @@ Not all memories should persist forever. Decisions have an expiry date — polic
 | **[Generative Agents](https://arxiv.org/abs/2304.03442)** | Recency score decays exponentially. Old memories naturally rank lower in retrieval |
 | **[SuCo](https://arxiv.org/abs/2411.14754)** | Summarize-Condense-Distill: compress old memories into summaries, discard originals |
 
-**Key insight**: Active forgetting > passive accumulation. Without decay, memory becomes noise. The simplest implementation: `valid_from`/`ended` timestamps on every fact, with periodic cleanup. [[agent-self-discipline|Agent self-discipline]] applies here — thresholds and limits prevent memory bloat.
+**Key insight**: Active forgetting > passive accumulation. Without decay, memory becomes noise. The simplest implementation: `valid_from`/`ended` timestamps on every fact, with periodic cleanup. [[agent-self-discipline|Agent self-discipline]] applies here. Thresholds and limits prevent memory bloat.
 
 ---
 
 ## Trust Hierarchy: Not All Memory is Equal
 
-A common failure mode: the agent "remembers something" but you can't tell if it's trustworthy. Memory systems that treat everything as equal — recent chat, old decisions, daily notes, canonical specs — produce agents that confidently cite stale or wrong information.
+A common failure mode: the agent "remembers something" but you can't tell if it's trustworthy. Memory systems that treat everything as equal (recent chat, old decisions, daily notes, canonical specs) produce agents that confidently cite stale or wrong information.
 
 The [Zero Harness](https://github.com/openclaw/openclaw) approach introduces an explicit **trust hierarchy** for memory:
 
 | Layer | Trust Level | Example | Update Frequency |
 |-------|------------|---------|-----------------|
 | **Source of truth** | Canonical | `source_of_truth.md`, schemas, configs | Rarely, deliberately |
-| **Handoff** | High | `handoff.md` — current state, decisions, blockers | Every session end |
+| **Handoff** | High | `handoff.md` (current state, decisions, blockers) | Every session end |
 | **Daily notes** | Medium | Daily log, task notes, runtime snapshots | Daily |
 | **Memory entries** | Variable | Structured facts, observations | Ongoing |
 | **Chat history** | Low | Raw conversation, ephemeral context | Per session |
 
 **Source of truth > volume.** The agent knowing which file is canonical matters more than remembering everything. When memory contradicts source of truth, source of truth wins.
 
-**Handoff as save game.** The most underrated memory pattern. Not abstract "long-term memory" — a short, living file that captures: what's happening now, what decisions were made, what's broken, what's left to do, which files are load-bearing. Like a game save point. OpenClaw's `## Retain` section, GSD-2's `.gsd/STATE.md`, and Claude Code's session summaries are all variations of this pattern.
+**Handoff as save game.** Not abstract "long-term memory" but a short, living file that captures: what's happening now, what decisions were made, what's broken, what's left to do, which files are load-bearing. Like a game save point. OpenClaw's `## Retain` section, GSD-2's `.gsd/STATE.md`, and Claude Code's session summaries all implement this pattern.
 
-**Memory should help act, not just recall.** Useful memory units aren't just facts — they're actionable artifacts: task notes, daily plans, fixed decisions, integration statuses, runtime snapshots, environment self-maps. Good agent memory is an operational surface you can act from, not a museum of recollections.
+**Memory should help act, not just recall.** Useful memory units aren't just facts but actionable artifacts: task notes, daily plans, fixed decisions, integration statuses, runtime snapshots, environment self-maps. Good agent memory is an operational surface you act from, not a museum of recollections.
 
 This connects to [[harness-engineering-summary|harness engineering]]: the harness defines which artifacts are source of truth (CLAUDE.md, schemas, tests), and the memory system respects that hierarchy.
 
@@ -148,31 +148,31 @@ This connects to [[harness-engineering-summary|harness engineering]]: the harnes
 
 ## Lexical-First Retrieval
 
-Most agent memory systems default to vector/semantic search. But in practice, engineering queries are often exact and operational: "what did we decide about heartbeat?", "where is the runtime snapshot?", "which cron is failing?", "what file is canonical?"
+Most agent memory systems default to vector/semantic search. In practice, engineering queries are exact and operational: "what did we decide about heartbeat?", "where is the runtime snapshot?", "which cron is failing?", "what file is canonical?"
 
-For these queries, **lexical search (BM25/FTS5) is more reliable than embeddings**:
+For these, **lexical search (BM25/FTS5) outperforms embeddings**:
 
-- Exact file names, identifiers, integration names — lexical wins
-- Specific formulations, decisions, promises — lexical wins
-- "Find something conceptually similar" — embeddings win
-- "What does X relate to?" — graph queries win
+- Exact file names, identifiers, integration names: lexical wins
+- Specific formulations, decisions, promises: lexical wins
+- "Find something conceptually similar": embeddings win
+- "What does X relate to?": graph queries win
 
-The practical stack, in order of reliability:
+Practical stack, ordered by reliability:
 
-1. **Lexical first** (BM25 / FTS5) — handles exact names, identifiers, operational queries
-2. **Graph queries** (Cypher / FalkorDB) — handles relationships, dependencies, cross-references
-3. **Vector search** (embeddings) — handles conceptual similarity, fuzzy matching
-4. **LLM reranking** — optional final pass for relevance scoring
+1. **Lexical first** (BM25 / FTS5): exact names, identifiers, operational queries
+2. **Graph queries** (Cypher / FalkorDB): relationships, dependencies, cross-references
+3. **Vector search** (embeddings): conceptual similarity, fuzzy matching
+4. **LLM reranking**: optional final pass for relevance scoring
 
-This matches what multiple systems converge on independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found that structural filtering beats raw embeddings by 34%, [[project-solograph|Solograph]] combines FTS5 + graph + vector.
+Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found structural filtering beats raw embeddings by 34%, [[project-solograph|Solograph]] combines FTS5 + graph + vector.
 
-**Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries. Add embeddings when lexical search fails — which is less often than you'd expect.
+**Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries. Add embeddings when lexical search fails, which happens less often than you'd expect.
 
 ---
 
 ## Progressive Context Loading
 
-All systems converge on the same [[context-engineering|context engineering]] pattern: don't load everything, load progressively.
+All five systems converge on the same [[context-engineering|context engineering]] pattern: don't load everything, load progressively.
 
 | Layer | What | When | Size |
 |-------|------|------|------|
@@ -187,7 +187,7 @@ All systems converge on the same [[context-engineering|context engineering]] pat
 - **Moltis**: File watching + auto-sync as L1, hybrid search as L2-L3
 - **[[project-solograph|Solograph]]**: CLAUDE.md as L0-L1 (table of contents, ~100 lines per [[harness-engineering-summary|harness engineering]]), `kb_search`/`session_search` as L2-L3
 
-This is [[context-engineering|context engineering]] in practice — treating the context window as a memory budget. [[agent-mistake-fix-harness|Harness]] keeps L0-L1 stable and tested; L2-L3 are dynamic.
+This is [[context-engineering|context engineering]] in practice: treating the context window as a memory budget. [[agent-mistake-fix-harness|Harness]] keeps L0-L1 stable and tested; L2-L3 are dynamic.
 
 ---
 
@@ -205,31 +205,31 @@ This is [[context-engineering|context engineering]] in practice — treating the
 
 Solograph implements all four memory types on a unified graph + file foundation:
 
-- **Working memory**: active session context — the current Claude Code conversation, task state, tool results
-- **Semantic memory**: `kb_search` — knowledge base with vector embeddings (MLX, RU+EN). Markdown files indexed with embeddings. [[privacy-as-architecture|Local-first]] — no cloud dependency
-- **Episodic memory**: `session_search` — every past session is a searchable [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace
-- **Procedural memory**: `codegraph_query` + `codegraph_explain` — AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal patterns, not just files
-- **Long-term file storage**: markdown files in wiki/ and knowledge base. Git-backed, human-readable, versioned. No database lock-in — rebuild index from files anytime
+- **Working memory**: active session context (current Claude Code conversation, task state, tool results)
+- **Semantic memory**: `kb_search` with vector embeddings (MLX, RU+EN). Markdown files indexed with embeddings. [[privacy-as-architecture|Local-first]], no cloud dependency
+- **Episodic memory**: `session_search` makes every past session a searchable [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace
+- **Procedural memory**: `codegraph_query` + `codegraph_explain` expose AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal patterns, not just files
+- **Long-term file storage**: markdown files in wiki/ and knowledge base. Git-backed, human-readable, versioned. No database lock-in; rebuild index from files anytime
 
-The graph layer (FalkorDB) adds what flat vector search lacks: **relationship traversal**. `codegraph_shared` finds shared packages across projects. `source_related` finds related content by tag overlap. These are graph queries, not similarity search — the key difference from [[rag-patterns|standard RAG patterns]].
+The graph layer (FalkorDB) adds what flat vector search lacks: **relationship traversal**. `codegraph_shared` finds shared packages across projects. `source_related` finds related content by tag overlap. These are graph queries, not similarity search, which is the key difference from [[rag-patterns|standard RAG patterns]].
 
-15 MCP tools provide the interface — agents call `session_search`, `kb_search`, `codegraph_query` naturally.
+15 MCP tools provide the interface. Agents call `session_search`, `kb_search`, `codegraph_query` naturally.
 
 ---
 
 ## Practical Recommendations
 
 ### Starting Simple ([[schema-guided-reasoning|SGR v1]] approach)
-If you're building your first agent, start with dict-based memory in the system prompt. No database, no embeddings. Three categories: semantic, procedural, rules. Load at init, don't mutate during session. This alone gets you surprisingly far. [[dev-principles-summary|Schemas first]] — define the memory structure before adding persistence.
+If you're building your first agent, start with dict-based memory in the system prompt. No database, no embeddings. Three categories: semantic, procedural, rules. Load at init, don't mutate during session. This alone gets you far. [[dev-principles-summary|Schemas first]]: define the memory structure before adding persistence.
 
 ### Adding Persistence (Moltis/OpenClaw approach)
 When you need cross-session recall: Markdown files as source of truth + SQLite/FTS5 derived index. Rebuild index from Markdown anytime. Add vector search when FTS5 isn't enough. Keep the `## Retain` discipline for extracting structured facts. [[privacy-as-architecture|Local-first, offline-first]].
 
 ### Scaling Up ([[mempalace-agent-memory|MemPalace]]/[[project-solograph|Solograph]] approach)
-For multi-agent systems with rich history: ChromaDB or FalkorDB with spatial/graph hierarchy. Knowledge graph for entity relationships. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]] — try one memory type first, add others incrementally.
+For multi-agent systems with rich history: ChromaDB or FalkorDB with spatial/graph hierarchy. Knowledge graph for entity relationships. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]]: try one memory type first, add others incrementally.
 
 ### The [[decision-traces-compound|Compound Learning]] Goal
-The ultimate goal isn't just remembering — it's compounding. Every [[context-graphs-summary|decision trace]] should make the next decision better. This requires:
+The ultimate goal isn't remembering but compounding. Every [[context-graphs-summary|decision trace]] should make the next decision better. This requires:
 - Capturing *why*, not just *what*
 - Precedent retrieval before new tasks
 - Active decay of stale knowledge
@@ -241,35 +241,35 @@ The ultimate goal isn't just remembering — it's compounding. Every [[context-g
 
 ### Papers
 
-- **MemGPT / Letta** — [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) (Oct 2023). The foundational paper on virtual context management — paging facts in/out of LLM context like an OS manages memory. Core → archival → recall architecture.
-- **Generative Agents** — [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) (Apr 2023, Stanford). 25 agents with memory streams, reflection, and planning. Introduced retrieve-reflect-plan. The original "agents need memory" paper.
-- **Hindsight** — [Hindsight: Posterization for LLM Conversations](https://arxiv.org/abs/2404.00498) (Apr 2024). Separating observed vs believed vs summarized. Confidence-bearing opinions that evolve with evidence.
-- **LongMemEval** — [LongMemEval: Benchmarking Long-Term Memory](https://arxiv.org/abs/2410.10813) (Oct 2024). The benchmark MemPalace scored 96.6% on. Tests multi-session reasoning, temporal reasoning, knowledge updates.
-- **SuCo** — [Summarize, Condense, and Distill](https://arxiv.org/abs/2411.14754) (Nov 2024). Memory compaction for long-running agents — the forgetting problem formalized.
+- **MemGPT / Letta** — [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) (Oct 2023). Virtual context management: paging facts in/out of LLM context like an OS manages memory. Core > archival > recall architecture.
+- **Generative Agents** — [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) (Apr 2023, Stanford). 25 agents with memory streams, reflection, and planning. Introduced retrieve-reflect-plan.
+- **Hindsight** — [Hindsight: Posterization for LLM Conversations](https://arxiv.org/abs/2404.00498) (Apr 2024). Separates observed vs believed vs summarized. Confidence-bearing opinions that evolve with evidence.
+- **LongMemEval** — [LongMemEval: Benchmarking Long-Term Memory](https://arxiv.org/abs/2410.10813) (Oct 2024). Benchmark where MemPalace scored 96.6%. Tests multi-session reasoning, temporal reasoning, knowledge updates.
+- **SuCo** — [Summarize, Condense, and Distill](https://arxiv.org/abs/2411.14754) (Nov 2024). Memory compaction for long-running agents. Formalizes the forgetting problem.
 - **RAISE** — [Retrieval-Augmented In-Context Learning](https://arxiv.org/abs/2401.02009) (Jan 2024). Entity-centric retrieval from semi-structured sources.
-- **Cognitive Architectures for Language Agents** — [CoALA](https://arxiv.org/abs/2309.02427) (Sep 2023). Survey of memory, action, and decision-making in language agents. Proposes working/episodic/semantic/procedural taxonomy used in this post.
+- **Cognitive Architectures for Language Agents** — [CoALA](https://arxiv.org/abs/2309.02427) (Sep 2023). Survey of memory, action, and decision-making in language agents. Proposes the working/episodic/semantic/procedural taxonomy used here.
 
 ### Industry
 
-- [Foundation Capital — Context Graphs](https://foundationcapital.com/context-graphs-ais-trillion-dollar-opportunity/) (Dec 2025) — "system of record for decisions" thesis
-- [Anthropic — Effective Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — context window as working memory budget
-- [Manus — Context Engineering Lessons](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus) — KV-cache locality, filesystem memory
-- [OpenHands — Context Condensation](https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents) — bounded conversation memory
-- [Anthropic — Harness Design for Long-Running Apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) — task state and evaluator design
+- [Foundation Capital: Context Graphs](https://foundationcapital.com/context-graphs-ais-trillion-dollar-opportunity/) (Dec 2025). "System of record for decisions" thesis
+- [Anthropic: Effective Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Context window as working memory budget
+- [Manus: Context Engineering Lessons](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus). KV-cache locality, filesystem memory
+- [OpenHands: Context Condensation](https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents). Bounded conversation memory
+- [Anthropic: Harness Design for Long-Running Apps](https://www.anthropic.com/engineering/harness-design-long-running-apps). Task state and evaluator design
 
 ### Tools & Systems
 
-- [[mempalace-agent-memory|MemPalace]] — [GitHub](https://github.com/milla-jovovich/mempalace) — spatial memory, 96.6% LongMemEval, MIT (27K stars)
-- [[project-solograph|Solograph]] — [GitHub](https://github.com/fortunto2/solograph) — graph + vector MCP server, 15 tools, FalkorDB + MLX
-- [QMD](https://github.com/tobi/qmd) — mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Used as optional backend in Moltis for enhanced hybrid search
-- [Moltis](https://github.com/moltis-org/moltis) — Rust-based memory with hybrid search + LLM reranking
-- [OpenClaw](https://github.com/openclaw/openclaw) — Markdown source-of-truth + derived index, Retain/Recall/Reflect
-- [Letta](https://github.com/cpacker/MemGPT) — MemGPT implementation, core/archival/recall memory management
-- [LangGraph](https://github.com/langchain-ai/langgraph) — graph-based agent execution framework
+- [[mempalace-agent-memory|MemPalace]]: [GitHub](https://github.com/milla-jovovich/mempalace). Spatial memory, 96.6% LongMemEval, MIT (27K stars)
+- [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Graph + vector MCP server, 15 tools, FalkorDB + MLX
+- [QMD](https://github.com/tobi/qmd). Mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Optional Moltis backend
+- [Moltis](https://github.com/moltis-org/moltis). Rust-based memory with hybrid search + LLM reranking
+- [OpenClaw](https://github.com/openclaw/openclaw). Markdown source-of-truth + derived index, Retain/Recall/Reflect
+- [Letta](https://github.com/cpacker/MemGPT). MemGPT implementation, core/archival/recall memory management
+- [LangGraph](https://github.com/langchain-ai/langgraph). Graph-based agent execution framework
 
 ### Knowledge Patterns
 
-- [Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — the foundational pattern our wiki is built on. Three-layer architecture: raw sources (immutable) → wiki (LLM-maintained, interlinked) → schema (conventions). Key insight: "The knowledge is compiled once and kept current, not re-derived on every query." Memory as a **persistent, compounding artifact** — synthesis accumulates rather than being rediscovered. LLM handles the bookkeeping humans abandon: cross-references, consistency, contradiction detection. This is how [[manifest-summary|our knowledge base]] works: raw sources in `0-principles/` and `1-methodology/` → [[codegraph-guide|wiki pages]] synthesized by LLM → [[project-solograph|Solograph]] indexes everything for retrieval
+- [Karpathy LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The pattern our wiki builds on. Three-layer architecture: raw sources (immutable) > wiki (LLM-maintained, interlinked) > schema (conventions). Key insight: "The knowledge is compiled once and kept current, not re-derived on every query." Memory as a **persistent, compounding artifact** where synthesis accumulates rather than being rediscovered. The LLM handles bookkeeping humans abandon: cross-references, consistency, contradiction detection. This is how [[manifest-summary|our knowledge base]] works: raw sources in `0-principles/` and `1-methodology/` > [[codegraph-guide|wiki pages]] synthesized by LLM > [[project-solograph|Solograph]] indexes everything for retrieval
 
 ### Related Wiki Pages
 

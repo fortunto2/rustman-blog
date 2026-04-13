@@ -1,7 +1,7 @@
 ---
 type: concept
 title: "Agent-Bit: building a PAC1 competition agent in Rust"
-description: "How we built a CRM agent scoring 93% on BitGN PAC1 benchmark using sgr-agent framework, ONNX classifiers, pipeline state machine, and 14 reusable tools. Architecture deep dive, lessons learned, tool design principles."
+description: "How we built a CRM agent scoring 93% on BitGN PAC1 benchmark using sgr-agent framework, ONNX classifiers, pipeline state machine, and 14 reusable tools. Architecture, lessons learned, tool design principles."
 created: 2026-04-12
 tags: [agents, competition, sgr, rust, tools, benchmarks, onnx, pipeline, crm]
 course_module: 5
@@ -14,7 +14,7 @@ publish_as: post
 
 We built a CRM agent for the [BitGN PAC1 Challenge](https://bitgn.com) — a benchmark where an AI agent manages a virtual workspace: reading emails, processing invoices, handling OTP verification, detecting social engineering attacks, and answering CRM queries. 43 tasks, scored automatically by a harness.
 
-**Result: 93% (40/43 tasks) on Nemotron 120B** — a free model via Cloudflare Workers AI.
+**Result: 93% (40/43 tasks) on Nemotron 120B**, a free model via Cloudflare Workers AI.
 
 This post covers the architecture, the sgr-agent framework we built, and the lessons learned.
 
@@ -27,7 +27,7 @@ PAC1 gives the agent a virtual CRM workspace via RPC:
 
 The agent reads files, writes responses, and submits an outcome: OK, DENIED (security threat), UNSUPPORTED, or CLARIFICATION.
 
-Tricky part: some inbox messages contain **prompt injection** — social engineering attacks disguised as legitimate requests. The agent must detect and deny these without false positives on real work.
+Tricky part: some inbox messages contain **prompt injection**, social engineering attacks disguised as legitimate requests. The agent must detect and deny these without false positives on real work.
 
 ## Architecture
 
@@ -65,11 +65,11 @@ enum PipelineState {
 }
 ```
 
-Each transition is a pure function returning `Result<NextState, BlockReason>`. First block short-circuits — no LLM call needed for obvious threats.
+Each transition is a pure function returning `Result<NextState, BlockReason>`. First block short-circuits; no LLM call needed for obvious threats.
 
 ## The sgr-agent ecosystem
 
-Agent-bit runs on **sgr-agent** — our Rust framework for LLM agents:
+Agent-bit runs on **sgr-agent**, our Rust framework for LLM agents:
 
 | Crate | Version | What |
 |-------|---------|------|
@@ -79,7 +79,7 @@ Agent-bit runs on **sgr-agent** — our Rust framework for LLM agents:
 
 ### Tools (15)
 
-Tools are generic over `FileBackend` — same code works with RPC (PAC1), local filesystem (CLI), or in-memory mock (tests):
+Tools are generic over `FileBackend` so the same code works with RPC (PAC1), local filesystem (CLI), or in-memory mock (tests):
 
 | Tool | Description |
 |------|-------------|
@@ -97,7 +97,7 @@ Tools are generic over `FileBackend` — same code works with RPC (PAC1), local 
 
 ### FileBackend trait
 
-The key abstraction — 10 async methods that any runtime implements:
+The key abstraction: 10 async methods that any runtime implements:
 
 ```rust
 #[async_trait]
@@ -146,7 +146,7 @@ WORKFLOW:
 
 ### 1. Tool count matters
 
-We started with 16 tools, reduced to 10 active + 5 deferred. Models degrade on long tool lists — Codex uses 7, Claude Code uses 7 + deferred. Our sweet spot: 10 in prompt, 5 loaded on demand.
+We started with 16 tools, then reduced to 10 active + 5 deferred. Models degrade on long tool lists (Codex uses 7, Claude Code uses 7 + deferred). Our sweet spot: 10 in prompt, 5 loaded on demand.
 
 ### 2. Trust metadata prevents injection
 
@@ -154,19 +154,19 @@ Every `read()` output gets a header: `[path | trusted/untrusted]`. Only root AGE
 
 ### 3. Pre-LLM classification saves tokens
 
-The pipeline state machine blocks 100% of obvious threats before the LLM sees them. No token cost, no hallucination risk. ML classifiers (ONNX, 22M params) run in <10ms.
+The pipeline state machine blocks 100% of obvious threats before the LLM sees them. Zero token cost, zero hallucination risk. ML classifiers (ONNX, 22M params) run in <10ms.
 
 ### 4. Batch tools save round-trips
 
-`ReadAllTool` reduced our hardest task from 48 tool calls to 4. Each tool call = one LLM round-trip (2-5 seconds). Batch tools are justified when they save 3+ round-trips.
+`ReadAllTool` reduced our hardest task from 48 tool calls to 4. Each tool call costs one LLM round-trip (2-5 seconds). Batch tools pay for themselves when they save 3+ round-trips.
 
 ### 5. Smart search beats grep
 
-`SearchTool` tries: exact match → name variants → fuzzy regex → Levenshtein on filenames. This cascade handles typos, name ordering ("Smith John" vs "John Smith"), and partial matches without explicit configuration.
+`SearchTool` tries: exact match, then name variants, fuzzy regex, and Levenshtein on filenames. This cascade handles typos, name ordering ("Smith John" vs "John Smith"), and partial matches without explicit configuration.
 
 ### 6. JSON auto-repair is essential
 
-LLMs produce broken JSON — trailing commas, unquoted keys, missing brackets. `WriteTool` auto-repairs via llm_json before writing. This turned ~15% of failed writes into successes.
+LLMs produce broken JSON: trailing commas, unquoted keys, missing brackets. `WriteTool` auto-repairs via llm_json before writing. This turned ~15% of failed writes into successes.
 
 ### 7. The model matters less than the architecture
 
@@ -203,4 +203,4 @@ let tools = ToolRegistry::new()
     .register(ShellTool);
 ```
 
-Build your own agent on the same foundation that scored 93% on PAC1.
+The framework is open-source (MIT) on crates.io.

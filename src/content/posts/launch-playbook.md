@@ -1,7 +1,7 @@
 ---
 type: methodology
 status: active
-title: "Launch Playbook — From Niche to Revenue"
+title: "Launch Playbook: From Niche to Revenue"
 description: "5D workflow (Discovery→Decision→Design→Delivery→Distribution), S.E.E.D. niche scoring, fake-door validation, kill/iterate/scale rules."
 created: 2026-02-11
 updated: 2026-02-11
@@ -19,7 +19,7 @@ related:
 
 # Launch Playbook
 
-Actionable frameworks for niche selection, validation, launch, and go/no-go decisions. Complements the Manifest (philosophy) and STREAM (decision-making) with concrete operational rules.
+Frameworks for niche selection, validation, launch, and go/no-go decisions. Complements the Manifest (philosophy) and STREAM (decision-making) with operational rules.
 
 ---
 
@@ -37,7 +37,7 @@ Every product cycle follows five phases:
 | Delivery | Landing page or working demo | 1-3 days |
 | Distribution | Content pack + first traffic | 1-2 days |
 
-Total: 5-9 days from idea to live product with traffic.
+Total: 5-9 days from idea to live product with traffic
 
 ---
 
@@ -74,27 +74,27 @@ Before writing any code:
 - **< 10 clicks** on CTA per $20 → **KILL** (no oxygen)
 - **10+ clicks** → proceed to PRD
 
-Goal: cheapest possible proof that someone cares.
+Goal: cheapest proof that someone cares.
 
 ---
 
 ## 4. PRD Definition of Done
 
-A PRD is not done until it passes this checklist:
+A PRD is not done until it passes this checklist.
 
 - [ ] **Problem statement** ≥ 30 words (who suffers, when, why now)
-- [ ] **ICP + JTBD** — target segment + 2-3 jobs-to-be-done
-- [ ] **3-5 features** — each with measurable acceptance criteria
-- [ ] **3-5 KPIs** — with units (daily/weekly), target values ≥ 0
-- [ ] **3-5 risks** — with mitigation plan (legal/data/channels/deps)
-- [ ] **Tech requirements** — ≥3 API endpoints, integrations, NFR (speed, logging, limits)
-- [ ] **Evidence-first** — every number/claim has a source URL
+- [ ] **ICP + JTBD**: target segment + 2-3 jobs-to-be-done
+- [ ] **3-5 features**: each with measurable acceptance criteria
+- [ ] **3-5 KPIs**: with units (daily/weekly), target values ≥ 0
+- [ ] **3-5 risks**: with mitigation plan (legal/data/channels/deps)
+- [ ] **Tech requirements**: ≥3 API endpoints, integrations, NFR (speed, logging, limits)
+- [ ] **Evidence-first**: every number/claim has a source URL
 
 ### Quality Controls
 
 - **Evidence-linter**: catches numbers without sources, invalid KPIs, malformed endpoints
 - **Pre-mortem (Counter-PRD)**: structured document asking "where will this break and how will we notice?"
-- **Shadow-PRD** (optional): alternative pain/UVP formulation for A/B testing
+- **Shadow-PRD** (optional): alternative pain/UVP formulation for A/B testing the positioning
 
 ---
 
@@ -152,7 +152,7 @@ Completed "value outcomes" per week per active user.
 
 ### Relative Benchmarking
 
-Don't compare to arbitrary "norms." Compare to your niche:
+Skip arbitrary "norms." Compare to your niche:
 
 ```
 relative_ctr  = your_CTR / niche_benchmark_CTR
@@ -176,8 +176,8 @@ Target: ≥ 1.0× niche benchmark.
 | Day | Duration | Focus |
 |-----|----------|-------|
 | Mon | 90 min | Pick 1-2 decisive steps for the week, freeze everything else |
-| Wed | 30 min | Checkpoint — cut anything not moving North Star |
-| Fri | 60 min | Retro — what got stronger? what to safely break next? |
+| Wed | 30 min | Checkpoint: cut anything not moving North Star |
+| Fri | 60 min | Retro: what got stronger? what to safely break next? |
 
 ### Daily Structure
 
@@ -189,10 +189,10 @@ Target: ≥ 1.0× niche benchmark.
 
 ## 10. Scale Through Leverage
 
-- Partners with access to your target audience (platforms, agencies, niche leaders)
-- Integrations over heavy marketing
+- Find partners who already reach your target audience (platforms, agencies, niche leaders)
+- Ship integrations instead of running ad campaigns
 - Case studies as currency: 2-3 measurable results open doors
-- Concierge first: do non-critical tasks manually until first revenue
+- Start concierge: handle non-critical tasks manually until first revenue
 
 ---
 
@@ -208,8 +208,8 @@ Before committing to a PRD, estimate hours-to-MVP:
 | Landing page | 1-2 hours |
 | Distribution content | 2-3 hours |
 
-If total > 40 hours → the "one pain → one function" is bloating into a platform. Simplify.
+If total > 40 hours, you're bloating "one pain, one function" into a platform. Simplify.
 
 ---
 
-*Extracted from startup-agent v1-v4 evolution. Principles without personalities — only actionable frameworks.*
+*Extracted from startup-agent v1-v4 evolution. No personalities, just operational frameworks.*
