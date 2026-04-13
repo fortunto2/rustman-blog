@@ -10,7 +10,7 @@ publish_as: post
 
 # How I spent $250+ on an AI agent competition and what I learned
 
-I scored 17 out of 104. Let me tell you how I got there and why I'm actually happy about it.
+I scored 17 out of 104. Here's how I got there and why I'm happy about it.
 
 ## The setup
 
@@ -94,9 +94,7 @@ stateDiagram-v2
 
 ### Two state machines
 
-The system has two separate state machines that serve very different purposes.
-
-**Pipeline SM** ([pipeline.rs](https://github.com/fortunto2/agent-bit/blob/main/src/pipeline.rs)) runs *before* the LLM. It's completely deterministic -- pure functions that consume the current state and return the next. The compiler enforces that you can't skip stages or access data from a stage that hasn't run:
+**Pipeline SM** runs *before* the LLM. Pure functions, each transition consumes the current state and returns the next. The compiler won't let you skip a stage:
 
 ```rust
 // Each state owns its data. Transitions consume self → return next.
@@ -122,7 +120,7 @@ pub struct BlockReason {
 }
 ```
 
-**Workflow SM** ([workflow.rs](https://github.com/fortunto2/agent-bit/blob/main/src/workflow.rs)) runs *during* the agent loop. It tracks what the agent is doing and intervenes when things go wrong:
+**Workflow SM** runs *during* the agent loop, tracking what the agent does and intervening when it drifts:
 
 ```rust
 pub enum Phase { Reading, Acting, Cleanup, Done }
@@ -138,11 +136,11 @@ pub struct WorkflowState {
 }
 ```
 
-Every tool call passes through the workflow: `pre_action()` can block it, `post_action()` can inject follow-up messages. This is how the agent gets nudged back on track without extra LLM calls.
+Every tool call goes through the workflow. `pre_action()` can block it, `post_action()` injects follow-up messages. No extra LLM calls needed.
 
 ### Tools: three crates, two loading modes
 
-This is where the weekend rebuild made the biggest difference. Tools are split across three Rust crates:
+Tools are split across three Rust crates:
 
 ```mermaid
 flowchart TD
@@ -173,7 +171,7 @@ flowchart TD
 | `search` | always | [Smart search](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/search.rs): exact → name variants → fuzzy regex → Levenshtein on filenames. Auto-expands full content when <=10 files match |
 | `list` | always | Directory listing |
 | `tree` | always | Directory tree with depth limit |
-| `read_all` | always | **The game-changer.** [Batch read entire directory](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/read_all.rs) in one call. Turned 15 sequential reads into 1 tool call. Steps: 185 → 43 |
+| `read_all` | always | [Batch read entire directory](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/read_all.rs) in one call. This one tool cut steps from 185 to 43 |
 | `update_plan` | always | Task checklist persisted to plan.md. `[x]` / `[~]` / `[ ]` format |
 | `eval` | feature `eval` | [JavaScript runtime](https://github.com/fortunto2/rust-code/blob/master/crates/sgr-agent-tools/src/eval.rs) via Boa engine. Pre-reads files by glob pattern, exposes as `file_0..file_N`. Dynamic calculations |
 | `shell` | feature `shell` | Execute commands with timeout (2 min default, 10 min max). 100KB output cap |
@@ -279,7 +277,7 @@ flowchart LR
     click C "https://github.com/fortunto2/agent-bit/blob/main/src/feature_matrix.rs"
 ```
 
-Both models run locally via ONNX Runtime. <10ms inference, zero API cost. The 12 features include ML confidence, structural injection score, sender trust, domain match, NLI scores, channel trust, and more. Everything feeds into `sigmoid(weighted_sum)` -- a single number that the pipeline uses to block or pass.
+The 12 features: ML confidence, structural injection score, sender trust, domain match, NLI scores, channel trust, and more. Everything feeds into `sigmoid(weighted_sum)` -- one number the pipeline uses to block or pass.
 
 Plus an `OutcomeValidator` on the output side -- adaptive kNN over ONNX embeddings of the agent's answer, compared to prototype outcome descriptions. Catches when the agent says "DENIED" for a legitimate task or "OK" for a blocked one.
 
@@ -301,9 +299,7 @@ Every `write()` and `delete()` call checks the hook registry and injects follow-
 
 After the competition, I looked at what the top scorers actually built. Different universe.
 
-[inozemtsev/bitgn](https://github.com/inozemtsev/bitgn), [ai-babai/bitgn-env](https://github.com/ai-babai/bitgn-env) -- they took [Codex CLI](https://github.com/openai/codex) with a simple wrapper and agent instructions file. No custom frameworks. No ONNX classifiers. No state machines. 70-80 points.
-
-Sometimes the best architecture is no architecture.
+[inozemtsev/bitgn](https://github.com/inozemtsev/bitgn), [ai-babai/bitgn-env](https://github.com/ai-babai/bitgn-env) -- Codex CLI with a simple wrapper and an agent instructions file. No custom frameworks. No ONNX classifiers. No state machines. 70-80 points.
 
 (By the way, Codex has an [official Rust version](https://github.com/openai/codex/tree/main/codex-rs) now. I found it later, and it helped me understand how to design tools better.)
 
@@ -358,9 +354,7 @@ All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 
 ## Am I happy?
 
-Yes. 17/104 during the competition was embarrassing. 74/104 after the weekend rebuild -- and still improving -- is a real system. The architecture is solid, the tools are smart, and every agent I build from here starts at a higher baseline.
-
-The competition was chaos. The learning was worth every dollar.
+17/104 during the competition was embarrassing. 74/104 two days later, with room to grow, is a different story. Every agent I build from here inherits what I fixed that weekend.
 
 ---
 
