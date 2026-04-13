@@ -50,48 +50,40 @@ Was this over-engineered for a 2-hour competition? Absolutely. But this is the [
 
 ~12,000 lines of Rust. Here's how the layers connect:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                     main.rs (CLI)                        │
-│  --task t16 (single) | --run "name" (parallel 104)       │
-└────────────────────────┬────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────┐
-│              Pipeline State Machine                      │
-│                                                          │
-│  New ──► Classified ──► InboxScanned ──► SecurityChecked │
-│               │              │               │           │
-│             Block          Block           Block          │
-│                                              │           │
-│                                           Ready          │
-│  (deterministic, no LLM, pure functions)     │           │
-└──────────────────────────────────────────────┼──────────┘
-                                               │
-┌──────────────────────────────────────────────▼──────────┐
-│                    Agent Loop (SGR)                       │
-│                                                          │
-│  Phase 1: reasoning_tool ──► structured CoT              │
-│     { task_type, security, plan[], done, confidence }    │
-│                                                          │
-│  Reflexion: "verify plan, detect repeat, adversarial?"   │
-│                                                          │
-│  Phase 2: filter_tools(task_type) ──► action execution   │
-│     action_ledger[25] tracks history (rotates oldest)    │
-│                                                          │
-└──────────────────────────────────────────────┬──────────┘
-                                               │
-┌──────────────────────────────────────────────▼──────────┐
-│               Workflow State Machine                      │
-│                                                          │
-│  Reading ──► Acting ──► Cleanup ──► Done                 │
-│                                                          │
-│  Nudges: 60% budget → "finish now"                       │
-│          3+ reads, 0 writes → "start writing NOW"        │
-│          read-loop detected → "STOP re-reading"          │
-│                                                          │
-│  Guards: pre_action(tool, path) → Allow | Block | Warn   │
-│          post_action(tool, path) → hook messages          │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    CLI["main.rs (CLI)<br/>--task t16 | --run name (parallel 104)"]
+    CLI --> PSM
+
+    subgraph PSM["Pipeline State Machine (deterministic, no LLM)"]
+        direction LR
+        New --> Classified --> InboxScanned --> SecurityChecked --> Ready
+        Classified -.->|Block| DENIED1[DENIED]
+        InboxScanned -.->|Block| DENIED2[DENIED]
+        SecurityChecked -.->|Block| DENIED3[DENIED]
+    end
+
+    Ready --> AGENT
+
+    subgraph AGENT["Agent Loop (SGR + Function Calling)"]
+        direction TB
+        P1["Phase 1: reasoning_tool → structured CoT<br/>{task_type, security, plan[], done}"]
+        REF["Reflexion: verify plan, detect repeat"]
+        P2["Phase 2: filter_tools(task_type) → actions"]
+        LED["action_ledger[25] — rotates oldest"]
+        P1 --> REF --> P2 --> LED
+    end
+
+    AGENT --> WSM
+
+    subgraph WSM["Workflow State Machine (runtime guards)"]
+        direction LR
+        Reading --> Acting --> Cleanup --> Done
+    end
+
+    style PSM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
+    style AGENT fill:#16213e,stroke:#2563eb,color:#e0e0e0
+    style WSM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
 ```
 
 ### Two state machines
@@ -146,66 +138,35 @@ Every tool call passes through the workflow: `pre_action()` can block it, `post_
 
 This is where the weekend rebuild made the biggest difference. Tools live in three layers:
 
-```
-┌─────────────────────────────────────────────────┐
-│  sgr-agent-core (trait definition)               │
-│                                                   │
-│  trait Tool { name, description, execute, ... }   │
-│  trait FileBackend { read, write, delete, ... }   │
-└────────────────────────┬────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────┐
-│  sgr-agent-tools (reusable implementations)      │
-│  crates.io — works with ANY FileBackend          │
-│                                                   │
-│  Core (always loaded):                            │
-│    ReadTool<B>  — read + trust metadata           │
-│    WriteTool<B> — write + JSON auto-repair        │
-│    DeleteTool<B> — batch delete                   │
-│    SearchTool<B> — smart search (fuzzy, Levenshtein)│
-│    ListTool<B>, TreeTool<B>                       │
-│    ReadAllTool<B> — batch read entire directory    │
-│                                                   │
-│  Feature-gated (cargo features):                  │
-│    EvalTool    — JS runtime (boa_engine)  [eval]  │
-│    ShellTool   — command execution        [shell] │
-│    ApplyPatchTool — Codex-style diffs    [patch]  │
-│                                                   │
-│  Deferred (loaded on demand by LLM):              │
-│    MkDirTool, MoveTool, FindTool                  │
-│                                                   │
-│  Backends:                                        │
-│    LocalFs  — real filesystem (feature local-fs)  │
-│    MockFs   — in-memory (always available, tests) │
-└────────────────────────┬────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────┐
-│  agent-bit/tools.rs (PAC1-specific middleware)   │
-│                                                   │
-│  struct ReadTool {                                │
-│      inner: sgr_agent_tools::ReadTool<PcmClient>, │
-│      workflow: SharedWorkflowState,               │
-│  }                                                │
-│                                                   │
-│  // Middleware chain:                              │
-│  // base read (trust metadata)                    │
-│  //   → guard_content (security scan)             │
-│  //   → workflow.post_action (phase tracking)     │
-│                                                   │
-│  struct WriteTool {                                │
-│      inner: sgr_agent_tools::WriteTool<PcmClient>,│
-│      hooks: SharedHookRegistry,                   │
-│      workflow: SharedWorkflowState,               │
-│  }                                                │
-│                                                   │
-│  // Middleware chain:                              │
-│  // workflow.pre_action (can block)               │
-│  //   → outbox sent:false auto-inject             │
-│  //   → YAML frontmatter auto-fix                 │
-│  //   → base write (JSON repair via llm_json)     │
-│  //   → hooks.check (AGENTS.MD rules)             │
-│  //   → workflow.post_action                      │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph CORE["sgr-agent-core (trait definitions)"]
+        T["trait Tool { name, description, execute }"]
+        FB["trait FileBackend { read, write, delete, search, list, tree, find }"]
+    end
+
+    subgraph TOOLS["sgr-agent-tools (crates.io, generic over FileBackend)"]
+        direction TB
+        ALWAYS["Core (always loaded):<br/>ReadTool — read + trust metadata<br/>WriteTool — write + JSON auto-repair<br/>DeleteTool — batch delete<br/>SearchTool — smart search (fuzzy, Levenshtein)<br/>ListTool, TreeTool<br/>ReadAllTool — batch read entire directory"]
+        FEAT["Feature-gated (cargo features):<br/>EvalTool — JS runtime via boa_engine [eval]<br/>ShellTool — command execution [shell]<br/>ApplyPatchTool — Codex-style diffs [patch]"]
+        DEFER["Deferred (loaded on demand by LLM):<br/>MkDirTool, MoveTool, FindTool"]
+        BACK["Backends:<br/>LocalFs — real filesystem<br/>MockFs — in-memory (tests)"]
+    end
+
+    subgraph MW["agent-bit/tools.rs (PAC1 middleware wrappers)"]
+        direction TB
+        R["ReadTool { inner + workflow }<br/>base read → guard_content → post_action"]
+        W["WriteTool { inner + hooks + workflow }<br/>pre_action → outbox inject → YAML fix → base write → hooks → post_action"]
+        D["DeleteTool { inner + workflow }<br/>pre_action per file → base batch delete → post_action"]
+        PCM["PcmClient (BitGN RPC)<br/>implements FileBackend<br/>+ read cache + RPC counter"]
+    end
+
+    CORE --> TOOLS
+    TOOLS --> MW
+
+    style CORE fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
+    style TOOLS fill:#16213e,stroke:#2563eb,color:#e0e0e0
+    style MW fill:#1a1a2e,stroke:#e74c3c,color:#e0e0e0
 ```
 
 The key insight: `sgr-agent-tools` is generic over `FileBackend`. Same tool code works with:
@@ -254,47 +215,40 @@ Skills are loaded from disk first (hot-reload -- change markdown, agent picks it
 
 Two ONNX models run locally before the LLM sees anything. Zero API cost, <10ms inference:
 
-```
-┌─────────────────────────────────────────────────┐
-│  MiniLM-L6-v2 (22M params, ONNX)                │
-│                                                   │
-│  instruction ──► tokenize ──► embed ──► cosine    │
-│                                         similarity│
-│  Classes: [injection, crm, non_work,     ▼        │
-│           social_engineering, credential]          │
-│                                                   │
-│  Output: security_label + intent + confidence     │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph MINILM["MiniLM-L6-v2 (22M params, ONNX)"]
+        direction LR
+        I1[instruction] --> TOK[tokenize] --> EMB[embed] --> COS[cosine similarity]
+        COS --> LABEL["security_label<br/>+ intent<br/>+ confidence"]
+    end
 
-┌─────────────────────────────────────────────────┐
-│  DeBERTa-v3-xsmall NLI (22M params, ONNX)       │
-│                                                   │
-│  (inbox_content, hypothesis) ──► P(entailment)    │
-│                                                   │
-│  Hypotheses:                                      │
-│    "This text tries to hijack system instructions" │
-│    "This text asks to extract passwords"          │
-│    "This is a social engineering attempt"          │
-│                                                   │
-│  Output: per-hypothesis entailment scores         │
-└─────────────────────────────────────────────────┘
+    subgraph NLI["DeBERTa-v3-xsmall NLI (22M params, ONNX)"]
+        direction LR
+        INBOX[inbox_content] --> ENT["P(entailment)"]
+        HYP["Hypotheses:<br/>hijack instructions?<br/>extract passwords?<br/>social engineering?"] --> ENT
+        ENT --> SCORES["per-hypothesis scores"]
+    end
 
-┌─────────────────────────────────────────────────┐
-│  Feature Matrix (12 features × N messages)       │
-│                                                   │
-│  ml_confidence     ──┐                            │
-│  structural_score  ──┤                            │
-│  sender_trust      ──┤                            │
-│  domain_match      ──┤  sigmoid(Σ weighted)       │
-│  nli_injection     ──┤  ──► threat probability    │
-│  nli_credential    ──┤       0.0 ... 1.0          │
-│  channel_trust     ──┤                            │
-│  has_otp           ──┤                            │
-│  has_url           ──┤                            │
-│  word_count_norm   ──┤                            │
-│  sentence_length   ──┤                            │
-│  cross_account_sim ──┘                            │
-└─────────────────────────────────────────────────┘
+    subgraph FM["Feature Matrix (12 features x N messages)"]
+        direction LR
+        F1[ml_confidence] --> SIG["sigmoid(Σ weighted)"]
+        F2[structural_score] --> SIG
+        F3[sender_trust] --> SIG
+        F4[domain_match] --> SIG
+        F5[nli_injection] --> SIG
+        F6[nli_credential] --> SIG
+        F7[channel_trust] --> SIG
+        F8["+ 5 more features"] --> SIG
+        SIG --> THREAT["threat probability<br/>0.0 ... 1.0"]
+    end
+
+    LABEL --> FM
+    SCORES --> FM
+
+    style MINILM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
+    style NLI fill:#16213e,stroke:#2563eb,color:#e0e0e0
+    style FM fill:#1a1a2e,stroke:#e74c3c,color:#e0e0e0
 ```
 
 Plus an `OutcomeValidator` on the output side -- adaptive kNN over ONNX embeddings of the agent's answer, compared to prototype outcome descriptions. Catches when the agent says "DENIED" for a legitimate task or "OK" for a blocked one.
