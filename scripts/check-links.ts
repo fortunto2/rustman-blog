@@ -1,19 +1,26 @@
 /**
  * Check for broken wikilinks — links to pages that aren't published.
+ * Handles all publish_as routes (wiki, project, post).
  * Usage: pnpm links
  */
 
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 
 const WIKI_DIR = join(import.meta.dirname, '..', '..', 'wiki');
 
-const files = readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_') && f !== 'index.md');
+const entries = readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_') && f !== 'index.md');
 
-// Collect published slugs
+// Resolve symlinks and read files
+function readWikiFile(filename: string): string {
+  const filepath = join(WIKI_DIR, filename);
+  return readFileSync(filepath, 'utf-8');
+}
+
+// Collect all published slugs (regardless of publish_as route)
 const published = new Set<string>();
-for (const file of files) {
-  const text = readFileSync(join(WIKI_DIR, file), 'utf-8');
+for (const file of entries) {
+  const text = readWikiFile(file);
   if (text.includes('publish: true')) {
     published.add(file.replace('.md', ''));
   }
@@ -21,14 +28,17 @@ for (const file of files) {
 
 // Find broken links in published pages
 let broken = 0;
-for (const file of files) {
-  const text = readFileSync(join(WIKI_DIR, file), 'utf-8');
+for (const file of entries) {
+  const text = readWikiFile(file);
   if (!text.includes('publish: true')) continue;
 
-  const links = [...text.matchAll(/\[\[([^\]|]+)/g)].map(m => m[1].toLowerCase().trim().replace(/\s+/g, '-'));
+  // Match [[slug]] and [[slug|label]], strip trailing backslashes from escaped brackets
+  const links = [...text.matchAll(/\[\[([^\]|\\]+)/g)].map(m =>
+    m[1].toLowerCase().trim().replace(/\s+/g, '-').replace(/\\$/, '')
+  );
 
   for (const slug of links) {
-    if (!published.has(slug)) {
+    if (!slug || !published.has(slug)) {
       console.log(`  ${file} → [[${slug}]] (not published)`);
       broken++;
     }
