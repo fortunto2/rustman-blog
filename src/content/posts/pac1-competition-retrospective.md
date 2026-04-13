@@ -51,39 +51,45 @@ Was this over-engineered for a 2-hour competition? Absolutely. But this is the [
 ~12,000 lines of Rust. Here's how the layers connect:
 
 ```mermaid
-flowchart TB
-    CLI["main.rs (CLI)<br/>--task t16 | --run name (parallel 104)"]
-    CLI --> PSM
+flowchart TD
+    A["CLI\nmain.rs"] --> B["Pipeline SM\npipeline.rs"]
+    B -->|Block| X[DENIED]
+    B -->|Ready| C["Agent Loop\nagent.rs"]
+    C --> D["Workflow SM\nworkflow.rs"]
+    D --> E[Answer]
 
-    subgraph PSM["Pipeline State Machine (deterministic, no LLM)"]
-        direction LR
-        New --> Classified --> InboxScanned --> SecurityChecked --> Ready
-        Classified -.->|Block| DENIED1[DENIED]
-        InboxScanned -.->|Block| DENIED2[DENIED]
-        SecurityChecked -.->|Block| DENIED3[DENIED]
-    end
+    click A "https://github.com/fortunto2/agent-bit/blob/main/src/main.rs"
+    click B "https://github.com/fortunto2/agent-bit/blob/main/src/pipeline.rs"
+    click C "https://github.com/fortunto2/agent-bit/blob/main/src/agent.rs"
+    click D "https://github.com/fortunto2/agent-bit/blob/main/src/workflow.rs"
+```
 
-    Ready --> AGENT
+**Pipeline SM** ([pipeline.rs](https://github.com/fortunto2/agent-bit/blob/main/src/pipeline.rs)) — deterministic, no LLM, blocks threats before they reach the model:
 
-    subgraph AGENT["Agent Loop (SGR + Function Calling)"]
-        direction TB
-        P1["Phase 1: reasoning_tool → structured CoT<br/>{task_type, security, plan[], done}"]
-        REF["Reflexion: verify plan, detect repeat"]
-        P2["Phase 2: filter_tools(task_type) → actions"]
-        LED["action_ledger[25] — rotates oldest"]
-        P1 --> REF --> P2 --> LED
-    end
+```mermaid
+stateDiagram-v2
+    [*] --> New
+    New --> Classified: ONNX classify
+    Classified --> InboxScanned: read + annotate
+    InboxScanned --> SecurityChecked: threat score
+    SecurityChecked --> Ready: safe
+    Classified --> Blocked: threat
+    InboxScanned --> Blocked: threat
+    SecurityChecked --> Blocked: threat
+    Ready --> [*]
+    Blocked --> [*]
+```
 
-    AGENT --> WSM
+**Workflow SM** ([workflow.rs](https://github.com/fortunto2/agent-bit/blob/main/src/workflow.rs)) — runs during agent loop, nudges the agent back on track:
 
-    subgraph WSM["Workflow State Machine (runtime guards)"]
-        direction LR
-        Reading --> Acting --> Cleanup --> Done
-    end
-
-    style PSM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
-    style AGENT fill:#16213e,stroke:#2563eb,color:#e0e0e0
-    style WSM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
+```mermaid
+stateDiagram-v2
+    [*] --> Reading
+    Reading --> Acting: first write()
+    Acting --> Cleanup: first delete()
+    Cleanup --> Done: answer()
+    Reading --> Done: answer()
+    Acting --> Done: answer()
 ```
 
 ### Two state machines
@@ -139,35 +145,27 @@ Every tool call passes through the workflow: `pre_action()` can block it, `post_
 This is where the weekend rebuild made the biggest difference. Tools live in three layers:
 
 ```mermaid
-flowchart TB
-    subgraph CORE["sgr-agent-core (trait definitions)"]
-        T["trait Tool { name, description, execute }"]
-        FB["trait FileBackend { read, write, delete, search, list, tree, find }"]
-    end
+flowchart TD
+    CORE["sgr-agent-core\ntrait Tool + trait FileBackend"]
+    TOOLS["sgr-agent-tools\n7 core + 3 feature-gated + 3 deferred"]
+    MW["agent-bit/tools.rs\nmiddleware: guards + hooks + security"]
+    PCM["PcmClient\nBitGN RPC + cache"]
 
-    subgraph TOOLS["sgr-agent-tools (crates.io, generic over FileBackend)"]
-        direction TB
-        ALWAYS["Core (always loaded):<br/>ReadTool — read + trust metadata<br/>WriteTool — write + JSON auto-repair<br/>DeleteTool — batch delete<br/>SearchTool — smart search (fuzzy, Levenshtein)<br/>ListTool, TreeTool<br/>ReadAllTool — batch read entire directory"]
-        FEAT["Feature-gated (cargo features):<br/>EvalTool — JS runtime via boa_engine [eval]<br/>ShellTool — command execution [shell]<br/>ApplyPatchTool — Codex-style diffs [patch]"]
-        DEFER["Deferred (loaded on demand by LLM):<br/>MkDirTool, MoveTool, FindTool"]
-        BACK["Backends:<br/>LocalFs — real filesystem<br/>MockFs — in-memory (tests)"]
-    end
+    CORE --> TOOLS --> MW --> PCM
 
-    subgraph MW["agent-bit/tools.rs (PAC1 middleware wrappers)"]
-        direction TB
-        R["ReadTool { inner + workflow }<br/>base read → guard_content → post_action"]
-        W["WriteTool { inner + hooks + workflow }<br/>pre_action → outbox inject → YAML fix → base write → hooks → post_action"]
-        D["DeleteTool { inner + workflow }<br/>pre_action per file → base batch delete → post_action"]
-        PCM["PcmClient (BitGN RPC)<br/>implements FileBackend<br/>+ read cache + RPC counter"]
-    end
-
-    CORE --> TOOLS
-    TOOLS --> MW
-
-    style CORE fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
-    style TOOLS fill:#16213e,stroke:#2563eb,color:#e0e0e0
-    style MW fill:#1a1a2e,stroke:#e74c3c,color:#e0e0e0
+    click CORE "https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-core"
+    click TOOLS "https://github.com/fortunto2/rust-code/tree/master/crates/sgr-agent-tools"
+    click MW "https://github.com/fortunto2/agent-bit/blob/main/src/tools.rs"
+    click PCM "https://github.com/fortunto2/agent-bit/blob/main/src/pcm.rs"
 ```
+
+Tool loading strategy:
+
+| Loading | Tools | Why |
+|---------|-------|-----|
+| **Always** | read, write, delete, search, list, tree, read_all | Core operations, every task needs them |
+| **Feature-gated** | eval (Boa JS), shell, apply_patch | Heavy deps, enabled via Cargo features |
+| **Deferred** | mkdir, move, find | LLM requests them when needed, reduces prompt size |
 
 The key insight: `sgr-agent-tools` is generic over `FileBackend`. Same tool code works with:
 - **PcmClient** -- BitGN competition RPC
@@ -217,39 +215,15 @@ Two ONNX models run locally before the LLM sees anything. Zero API cost, <10ms i
 
 ```mermaid
 flowchart LR
-    subgraph MINILM["MiniLM-L6-v2 (22M params, ONNX)"]
-        direction LR
-        I1[instruction] --> TOK[tokenize] --> EMB[embed] --> COS[cosine similarity]
-        COS --> LABEL["security_label<br/>+ intent<br/>+ confidence"]
-    end
+    A["MiniLM-L6\n22M params\nintent + label"] --> C
+    B["DeBERTa NLI\n22M params\ninjection scores"] --> C
+    C["Feature Matrix\n12 features"] --> D["threat\n0.0 — 1.0"]
 
-    subgraph NLI["DeBERTa-v3-xsmall NLI (22M params, ONNX)"]
-        direction LR
-        INBOX[inbox_content] --> ENT["P(entailment)"]
-        HYP["Hypotheses:<br/>hijack instructions?<br/>extract passwords?<br/>social engineering?"] --> ENT
-        ENT --> SCORES["per-hypothesis scores"]
-    end
-
-    subgraph FM["Feature Matrix (12 features x N messages)"]
-        direction LR
-        F1[ml_confidence] --> SIG["sigmoid(Σ weighted)"]
-        F2[structural_score] --> SIG
-        F3[sender_trust] --> SIG
-        F4[domain_match] --> SIG
-        F5[nli_injection] --> SIG
-        F6[nli_credential] --> SIG
-        F7[channel_trust] --> SIG
-        F8["+ 5 more features"] --> SIG
-        SIG --> THREAT["threat probability<br/>0.0 ... 1.0"]
-    end
-
-    LABEL --> FM
-    SCORES --> FM
-
-    style MINILM fill:#1a1a2e,stroke:#00ff41,color:#e0e0e0
-    style NLI fill:#16213e,stroke:#2563eb,color:#e0e0e0
-    style FM fill:#1a1a2e,stroke:#e74c3c,color:#e0e0e0
+    click A "https://github.com/fortunto2/agent-bit/blob/main/src/classifier.rs"
+    click C "https://github.com/fortunto2/agent-bit/blob/main/src/feature_matrix.rs"
 ```
+
+Both models run locally via ONNX Runtime. <10ms inference, zero API cost. The 12 features include ML confidence, structural injection score, sender trust, domain match, NLI scores, channel trust, and more. Everything feeds into `sigmoid(weighted_sum)` -- a single number that the pipeline uses to block or pass.
 
 Plus an `OutcomeValidator` on the output side -- adaptive kNN over ONNX embeddings of the agent's answer, compared to prototype outcome descriptions. Catches when the agent says "DENIED" for a legitimate task or "OK" for a blocked one.
 
