@@ -48,7 +48,7 @@ Was this over-engineered for a 2-hour competition? Absolutely. But this is the [
 
 ## Architecture deep dive
 
-~12,000 lines of Rust. Here's how the layers connect:
+Here's how the layers connect:
 
 ```mermaid
 flowchart TD
@@ -96,7 +96,7 @@ stateDiagram-v2
 
 The system has two separate state machines that serve very different purposes.
 
-**Pipeline SM** (`pipeline.rs`, 942 lines) runs *before* the LLM. It's completely deterministic -- pure functions that consume the current state and return the next. The compiler enforces that you can't skip stages or access data from a stage that hasn't run:
+**Pipeline SM** ([pipeline.rs](https://github.com/fortunto2/agent-bit/blob/main/src/pipeline.rs)) runs *before* the LLM. It's completely deterministic -- pure functions that consume the current state and return the next. The compiler enforces that you can't skip stages or access data from a stage that hasn't run:
 
 ```rust
 // Each state owns its data. Transitions consume self → return next.
@@ -122,7 +122,7 @@ pub struct BlockReason {
 }
 ```
 
-**Workflow SM** (`workflow.rs`, 450 lines) runs *during* the agent loop. It tracks what the agent is doing and intervenes when things go wrong:
+**Workflow SM** ([workflow.rs](https://github.com/fortunto2/agent-bit/blob/main/src/workflow.rs)) runs *during* the agent loop. It tracks what the agent is doing and intervenes when things go wrong:
 
 ```rust
 pub enum Phase { Reading, Acting, Cleanup, Done }
@@ -225,8 +225,8 @@ pub struct ReadTool {
 #### Why this split matters
 
 Before the split, all tool logic was in agent-bit (1500+ lines). Now:
-- **sgr-agent-tools** (crates.io, 800 lines) -- reusable in any Rust agent. Zero PAC1 knowledge
-- **agent-bit/tools.rs** (1283 lines) -- only domain middleware (security, workflow, hooks)
+- **sgr-agent-tools** (crates.io) -- reusable in any Rust agent. Zero PAC1 knowledge
+- **agent-bit/tools.rs** -- only domain middleware (security, workflow, hooks)
 
 New agent project? `cargo add sgr-agent-tools` and you get read, write, search, eval, apply_patch -- all with JSON repair, trust metadata, smart search cascade. Add your own middleware on top.
 
