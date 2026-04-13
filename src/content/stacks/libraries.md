@@ -12,7 +12,7 @@ source_path: "1-methodology/stacks/libraries.yaml"
 
 Curated libs for specific product types. Not part of default stacks — pick what fits your product.
 
-**Categories:** Data Pipeline · Federation · Actors · Event Sourcing · Openai · Voice · Openapi Codegen · Documentation · Reference · Canvas
+**Categories:** Data Pipeline · Federation · Actors · Event Sourcing · Openai · Voice · Openapi Codegen · Media · Audio · Storage · Documentation · Reference · Canvas
 
 ## Data Pipeline
 
@@ -110,6 +110,42 @@ All backends optional via features.
 **openapiv3:** Used by progenitor internally.
 
 **utoipa:** Opposite direction from progenitor — code → spec.
+
+
+## Media
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [dano](https://github.com/kimono-koans/dano) | rust | `cargo install dano` | MPL-2.0 |
+
+**dano:** 173★. CLI wrapper for ffmpeg. Hashes internal streams, not containers.
+Hash algorithms: murmur3 (default), MD5, SHA256, SHA512, CRC32.
+Storage: xattrs or hash files. Concurrent processing.
+Useful pattern for Life2Film import dedup.
+
+
+## Audio
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [glicol](https://github.com/chaosprint/glicol) | rust, typescript | `npm install glicol` | MIT |
+
+**glicol:** 2.9k★. Rust audio engine + parser, compiled to WASM.
+Zero-install playground at glicol.org.
+Graph updates via LCS algorithm — no glitches during live edits.
+Rhai scripting for meta DSP blocks.
+
+
+## Storage
+
+| Library | Stack | Install | License |
+|---------|-------|---------|--------|
+| [rustfs](https://github.com/rustfs/rustfs) | rust | `docker run -d -p 9000:9000 -p 9001:9001 rustfs/rustfs:latest` | Apache-2.0 |
+
+**rustfs:** 25.6k★. 2.3x faster than MinIO on 4KB objects.
+S3 + OpenStack Swift APIs. Web console on :9001.
+Single-node + distributed modes. K8s Helm charts.
+No telemetry, GDPR/CCPA compliant.
 
 
 ## Documentation
