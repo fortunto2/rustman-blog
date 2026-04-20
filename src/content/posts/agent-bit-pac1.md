@@ -206,3 +206,10 @@ let tools = ToolRegistry::new()
 The framework is open-source (MIT) on crates.io.
 
 *See also: [[pac1-competition-retrospective]] for the personal story behind the competition.*
+
+## Connections
+
+- [[claude-code-anatomy]] — Liu et al. measured 98.4/1.6 infra-to-AI ratio in Claude Code. Our 80/20 on PAC1 lands in the same direction: architecture is the moat, model is commodity
+- [[harness-engineering-summary]] — sgr-agent IS the harness: pipeline SM, tool tiering, trust metadata, FileBackend abstraction
+- [[agent-patterns-stream2]] — our 10 active + 5 deferred tools = lazy-load pattern the paper formalizes
+- [[tool-calling-four-layers]] — tool calling internals behind the `Tool` trait
