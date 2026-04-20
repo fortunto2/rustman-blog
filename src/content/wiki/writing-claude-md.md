@@ -117,3 +117,4 @@ See [[agent-mistake-fix-harness]] for the feedback loop: agent makes a mistake â
 - [[context-engineering]] -- CLAUDE.md as code, progressive disclosure
 - [[agent-self-discipline]] -- drift detection, complexity thresholds
 - [[agent-mistake-fix-harness]] -- the ratchet: mistake â†’ harness fix
+- [[claude-code-anatomy]] -- CLAUDE.md is the root node of the seven-component architecture; paper measures what sits behind it (98.4% infra)

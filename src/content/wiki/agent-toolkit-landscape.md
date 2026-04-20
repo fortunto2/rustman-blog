@@ -219,6 +219,7 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 - [[agent-memory-architecture]] — memory layer deep dive (4 types, 3 loops, 5 systems)
 - [[harness-engineering-summary]] — the discipline that makes any toolkit reliable
 - [[context-engineering]] — how to feed context to agents regardless of toolkit
+- [[claude-code-anatomy]] — Claude Code reverse-engineered and compared with LangGraph/SWE-Agent/OpenHands/Aider — different bets on where to impose safety
 
 ---
 
