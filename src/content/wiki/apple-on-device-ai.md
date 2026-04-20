@@ -29,3 +29,4 @@ Unified on-device AI layer for all iOS products (KissMyTask, FaceAlarm, VoiceJou
 - [[antifragile-life-design]] — zero API cost = each product experiment has even lower downside in the barbell
 - [[one-pain-one-feature-launch]] — on-device AI removes the cost barrier to adding AI features in MVPs
 - [[posthog-cross-platform]] — PostHog tracks cross-platform funnels for iOS products using Apple Foundation Models
+- [[bonsai-ternary-llm]] — browser-side equivalent: ternary 500M LLM via WebGPU. Same privacy ceiling as Apple FM, but for web apps

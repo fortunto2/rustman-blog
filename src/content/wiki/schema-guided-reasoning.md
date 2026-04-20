@@ -36,3 +36,4 @@ By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data clas
 - [[dev-principles-summary]] — origin: SGR section
 - [[context-engineering]] — agent reading schemas first = context engineering for code
 - [[harness-engineering-summary]] — schemas as architectural constraints (component 2)
+- [[rlhf-book]] — RLHF = training-time alignment, SGR = inference-time alignment. Complementary strategies for the same goal

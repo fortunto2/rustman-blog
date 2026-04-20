@@ -23,3 +23,4 @@ Implementation: MLX embeddings (Apple Silicon, on-device), Supabase Auth + RLS (
 - [[manifest-summary]] — origin: manifesto principle #2
 - [[privacy-first]] — hub page for privacy-first architecture
 - [[antifragile-life-design]] — privacy = antifragility: less data = smaller attack surface
+- [[bonsai-ternary-llm]] — concrete path to privacy-architecture for web AI: 500M LLM runs in browser via WebGPU, data never leaves the tab

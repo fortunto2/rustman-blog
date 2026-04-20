@@ -179,3 +179,4 @@ The best benchmark is shipping real products. Everything else is a proxy.
 - [[harness-engineering-summary]] — quality comes from harness, not model
 - [[enterprise-rag-challenge]] — RAG-specific competition results
 - [[agent-self-discipline]] — drift detection relates to continuous eval
+- [[rlhf-book]] — eval chapter explains reward hacking & Goodhart's law: why benchmark numbers rise without real capability gains
