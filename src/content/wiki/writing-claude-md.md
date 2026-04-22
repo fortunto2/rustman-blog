@@ -118,3 +118,4 @@ See [[agent-mistake-fix-harness]] for the feedback loop: agent makes a mistake â
 - [[agent-self-discipline]] -- drift detection, complexity thresholds
 - [[agent-mistake-fix-harness]] -- the ratchet: mistake â†’ harness fix
 - [[claude-code-anatomy]] -- CLAUDE.md is the root node of the seven-component architecture; paper measures what sits behind it (98.4% infra)
+- [[design-md-spec]] -- Google Labs' DESIGN.md applies the same CLAUDE.md pattern to visual identity: YAML tokens + markdown rationale, linted in CI
