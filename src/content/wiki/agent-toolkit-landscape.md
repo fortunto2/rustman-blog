@@ -220,6 +220,7 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 - [[harness-engineering-summary]] — the discipline that makes any toolkit reliable
 - [[context-engineering]] — how to feed context to agents regardless of toolkit
 - [[claude-code-anatomy]] — Claude Code reverse-engineered and compared with LangGraph/SWE-Agent/OpenHands/Aider — different bets on where to impose safety
+- [[fff-agent-file-search]] — fff.nvim: memory pushed into the tool layer (file search) instead of the agent. Reduces tokens and roundtrips
 
 ---
 

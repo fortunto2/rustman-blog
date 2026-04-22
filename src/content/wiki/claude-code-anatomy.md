@@ -124,6 +124,7 @@ The architectural tension: **immediate capability amplification vs long-term pre
 - [[decision-traces-compound]] — append-only JSONL transcripts are the memory substrate for trace-based learning
 - [[agent-bit-pac1]] — our independent validation: 93% on PAC1 with Nemotron 120B (free) because the Rust harness does 80% of the work. Same deny-first + tool tiering + Unix-like backend abstraction
 - [[pac1-competition-retrospective]] — competition retrospective: architecture beats model — same lesson the Claude Code paper measures
+- [[fff-agent-file-search]] — Kovalenko's retrieval-layer thesis: compaction wipes the agent's working set, so the tool (not the model) has to carry frecency/combo/git context
 
 ## References
 

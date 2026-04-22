@@ -124,3 +124,4 @@ Copy the `.toml` files to `~/.config/television/cable/`. Adjust paths in `[sourc
 - [[cli-first-testing]] — CLI-first approach to tooling
 - [[token-efficient-web-requests]] — FTS5 search is the lexical-first approach from this page
 - [[codegraph-guide]] — graph-based search (relationships, not text)
+- [[fff-agent-file-search]] — fff.nvim: same fuzzy-finder genre, but adds memory (frecency + combo boost) and an MCP surface for AI agents
