@@ -1,6 +1,6 @@
 ---
 type: concept
-description: "The Western interpretation of ikigai (intersection of "what I love / what I'm good at / what pays / what the world needs") is a distortion of the original. A..."
+description: "The Western interpretation of ikigai (intersection of what I love / what I'm good at / what pays / what the world needs) is a distortion of the original."
 title: "Ikigai as 8-9 daily micro-joys, not a mission"
 created: 2024-12-20
 updated: 2026-04-07

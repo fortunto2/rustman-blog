@@ -1,6 +1,6 @@
 ---
 type: concept
-description: "Barry Schwartz's research ("Paradox of Choice"): maximizers (those who seek the best option) objectively find better outcomes but experience less happiness a..."
+description: "Barry Schwartz's research (Paradox of Choice) — maximizers (those who seek the best option) objectively find better outcomes but experience less happiness."
 title: "Optimizer syndrome: best choice ≠ more happiness"
 created: 2024-12-20
 updated: 2026-04-07

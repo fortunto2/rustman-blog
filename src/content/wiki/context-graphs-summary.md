@@ -1,6 +1,6 @@
 ---
 type: summary
-description: "Context Graph — a graph capturing AI agent decision-making trajectories: not just *what* the agent did, but *how* and *why*. "A system of record for decision..."
+description: "Context Graph — a graph capturing AI agent decision-making trajectories: not just what the agent did, but how and why. A system of record for decision-making."
 title: "Context Graphs — agent trajectories and organizational memory"
 created: 2026-04-07
 tags: [context-graphs, agents, decision-traces, memory, knowledge-graph]
