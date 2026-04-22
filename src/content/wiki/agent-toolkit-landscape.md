@@ -222,6 +222,7 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 - [[claude-code-anatomy]] — Claude Code reverse-engineered and compared with LangGraph/SWE-Agent/OpenHands/Aider — different bets on where to impose safety
 - [[fff-agent-file-search]] — fff.nvim: memory pushed into the tool layer (file search) instead of the agent. Reduces tokens and roundtrips
 - [[design-md-spec]] — Google Labs' DESIGN.md: the CLAUDE.md/AGENTS.md pattern applied to design systems. Another agent-readable spec file with a linter
+- [[vercel-agent-browser]] — Vercel Labs' agent-browser: 30k★ Rust CLI with CDP. Browser-automation primitives rewritten for LLMs (a11y refs, content boundaries, daemon persistence)
 
 ---
 
