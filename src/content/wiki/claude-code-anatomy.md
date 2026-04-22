@@ -125,6 +125,7 @@ The architectural tension: **immediate capability amplification vs long-term pre
 - [[agent-bit-pac1]] — our independent validation: 93% on PAC1 with Nemotron 120B (free) because the Rust harness does 80% of the work. Same deny-first + tool tiering + Unix-like backend abstraction
 - [[pac1-competition-retrospective]] — competition retrospective: architecture beats model — same lesson the Claude Code paper measures
 - [[fff-agent-file-search]] — Kovalenko's retrieval-layer thesis: compaction wipes the agent's working set, so the tool (not the model) has to carry frecency/combo/git context
+- [[conductor-parallel-agents]] — if the model is 1.6% of the system, multiplying model instances costs almost nothing; Conductor productizes that insight as a Mac GUI
 
 ## References
 
