@@ -1,9 +1,10 @@
 ---
 type: concept
-title: "Conductor — parallel coding agents with git worktree isolation (Melty Labs)"
-description: "Conductor.build: Mac app for running many Claude Code and Codex agents in parallel, each isolated in its own git worktree. $22M Series A, used at Linear/Vercel/Notion/Ramp. Thesis: you orchestrate tasks, agents do the typing."
+title: "Parallel coding-agent orchestrators — Conductor and the 2026 ecosystem"
+description: "Conductor, Superset, Emdash, Claude Squad, Parallel Code, ccswarm, Vibe Kanban, Agent Orchestrator: the category of tools that run many Claude Code / Codex / Gemini CLI agents in isolated git worktrees. Addy Osmani's 'conductors to orchestrators' frame: the shift from human dirigent to autonomous planner."
 created: 2026-04-22
-tags: [agents, orchestration, claude-code, codex, worktree, parallelism, melty-labs]
+updated: 2026-04-22
+tags: [agents, orchestration, claude-code, codex, worktree, parallelism, melty-labs, superset, emdash]
 publish: true
 ---
 
@@ -41,6 +42,43 @@ This is the same shift that Symphony (OpenAI) and GSD-2 bet on, framed as *teams
 ## The tradeoff to watch
 
 The value is real but bounded: the moment two lanes need to modify overlapping code, worktree isolation doesn't save you — you get six drift-parallel solutions to the same problem, and the merge review becomes the new bottleneck. The skill this forces is **task decomposition that doesn't overlap**. Buy Conductor if decomposition is your strength; skip it if your work is one-PR-at-a-time.
+
+## The 2026 ecosystem
+
+Conductor wasn't first and isn't alone. Once "agent-per-worktree" landed as a pattern, an entire category appeared in a few months. The axes that matter: open-source vs closed, Mac-only vs cross-platform, Claude-Code-only vs agent-agnostic, terminal vs GUI, orchestrator-managed vs you-decide.
+
+| Tool | License | Platform | Agents | Shape | Distinctive |
+|------|---------|----------|--------|-------|-------------|
+| **[Conductor](https://www.conductor.build/)** (Melty Labs, YC S24) | Closed, free | macOS (Apple Silicon) | Claude Code, Codex | GUI | Deep Claude Code integration, automated spec/plan review for logic errors, race conditions, null-pointer risks |
+| **[Superset](https://github.com/superset-sh/superset)** | Apache-2.0 | macOS, Linux, Windows | Any CLI agent (Claude Code, Codex, Aider, Cursor Agent, Gemini CLI, Copilot, OpenCode…) | Editor-style desktop | 3.2k★ in 3 days; "code editor for the AI agent era," zero telemetry, BYO agent |
+| **[Emdash](https://emdash.sh/)** (YC W26) | MIT | macOS, Linux, Windows | 22+ agents | Desktop + SSH remote | Only one with native Windows/Linux and SSH remote; first-class Linear/Jira/GitHub issue integration |
+| **[Claude Squad](https://github.com/smtg-ai/claude-squad)** | Open-source | Cross-platform | Claude Code | Terminal (tmux + worktrees) | The keyboard-only lineage; `smtg-ai` |
+| **[Parallel Code](https://github.com/johannesjo/parallel-code)** | Open-source | Desktop | Claude Code, Codex, Gemini CLI | GUI | Side-by-side view of 3 agents tackling the same task — useful for A/B model comparison |
+| **[Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator)** (Composio) | Open-source | — | Multiple | Autonomous | Plans tasks, spawns agents, handles CI fixes and merge conflicts without a human in the loop |
+| **[ccswarm](https://github.com/nwiizo/ccswarm)** | Open-source | Cross-platform | Claude Code | Terminal | Each agent is role-specialized (backend, frontend, review) |
+| **[Vibe Kanban](https://github.com/)** | Open-source | Web/Desktop | Multiple | Kanban UI | Task cards → lanes → agents; the Trello metaphor for agent work |
+| **Google Antigravity Mission Control** | Closed | Browser | Google's agents | Cloud | The incumbent entry — Google's bet on the category |
+| **[Workstream Labs](https://github.com/workstream-labs/workstreams)** | Open-source | Desktop | Multiple | IDE-style | "IDE for parallel AI coding agents" positioning |
+
+Awesome list: [andyrewlee/awesome-agent-orchestrators](https://github.com/andyrewlee/awesome-agent-orchestrators).
+
+### The conceptual frame — Addy Osmani's "conductors to orchestrators"
+
+Osmani's [O'Reilly essay](https://www.oreilly.com/radar/conductors-to-orchestrators-the-future-of-agentic-coding/) names the transition this category captures. A **conductor** is a human dirigent — you assign a task to each agent, watch the lanes, merge at the end. An **orchestrator** is the *planner itself*: decompose the goal, fan out agents, resolve merge conflicts, re-plan on failure, surface only exceptions to you.
+
+Today's products are mostly conductor-shaped (Conductor, Superset, Emdash — you still drive). Composio's Agent Orchestrator is the first visible step toward orchestrator-shaped (autonomous planning and CI healing). The category's trajectory is clearly toward the orchestrator end — the same arc [[claude-code-anatomy|98.4% infrastructure]] predicts: once model instances are cheap, the planning and merging logic in the harness becomes the real product.
+
+### How to choose (April 2026)
+
+- **Claude Code on Mac, want it to just work** → Conductor. Closed, free, polished.
+- **Any agent, any OS, open-source, no lock-in** → Superset.
+- **Linux/Windows or SSH remote dev, Linear/Jira integration** → Emdash.
+- **Terminal-first keyboard driver** → Claude Squad or ccswarm.
+- **Same task across multiple models for A/B comparison** → Parallel Code.
+- **Want the agent to plan and fix CI itself (less human in the loop)** → Composio Agent Orchestrator.
+- **Team workflow with explicit cards** → Vibe Kanban.
+
+For our own setup: Superset looks the closest match — agent-agnostic (we run Claude Code + Codex + our own Rust agent), open-source, cross-platform. Worth a spike on one real project before committing.
 
 ## See Also
 

@@ -106,7 +106,7 @@ Autonomous long-running execution systems. State machines, crash recovery, git i
 | Tool | Stars | Architecture | Platform | Key Feature |
 |------|-------|-------------|----------|-------------|
 | [Symphony](https://github.com/openai/symphony) | 15K | Isolated implementation runs | Elixir, OpenAI | Manage work, not supervise agents |
-| [[conductor-parallel-agents\|Conductor]] | — ($22M) | Worktree-per-agent, multi-model | Mac app | Many Claude Code + Codex in parallel, unified review |
+| [[conductor-parallel-agents\|Conductor / Superset / Emdash / …]] | mixed | Worktree-per-agent, multi-model | Mac app / cross-platform | Many Claude Code + Codex in parallel, unified review. See the 2026 orchestrator ecosystem |
 | [GSD-2](https://github.com/gsd-build/gsd-2) | 5K | Milestone → Slice → Task | Pi SDK (20+ providers) | Autonomous multi-session execution |
 
 **Symphony** (15K stars, OpenAI) — turns project work into isolated, autonomous implementation runs. Teams manage work instead of supervising agents. Elixir-based. Each run is isolated — no context leaking between tasks. OpenAI's answer to "how to let agents work on real projects."
