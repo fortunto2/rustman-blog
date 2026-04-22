@@ -18,6 +18,7 @@ Building products where user data stays on-device. Offline-first, local processi
 
 - [[privacy-as-architecture]] — Privacy as architectural decision, not a feature (from manifesto)
 - [[manifest-summary]] — Core values: privacy is architecture = principle #2
+- [[openai-privacy-filter]] — On-device PII redaction model (OpenAI, 1.5B MoE, Apache-2.0) — the strip-before-send primitive
 
 ## Core Concepts
 

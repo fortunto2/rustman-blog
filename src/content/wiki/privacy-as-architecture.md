@@ -24,3 +24,4 @@ Implementation: MLX embeddings (Apple Silicon, on-device), Supabase Auth + RLS (
 - [[privacy-first]] — hub page for privacy-first architecture
 - [[antifragile-life-design]] — privacy = antifragility: less data = smaller attack surface
 - [[bonsai-ternary-llm]] — concrete path to privacy-architecture for web AI: 500M LLM runs in browser via WebGPU, data never leaves the tab
+- [[openai-privacy-filter]] — the "strip PII before sending to LLM provider" primitive: OpenAI's 1.5B PII detection model (Apache-2.0), runs on laptop. Makes the strip-before-send pattern cheap
