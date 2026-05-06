@@ -4,6 +4,8 @@ title: "Inline agent memory — grep-friendly comments as a 5th memory layer"
 description: "AI agents heavily use grep, so persist notes inside the code itself with a discoverable prefix (AI-NOTE / AI-TODO / AI-ASK). A 5th memory location alongside CLAUDE.md, docs/, knowledge graphs, and session logs."
 created: 2026-05-06
 tags: [agents, memory, context-engineering, harness, code-comments, methodology]
+course_module: 5
+course_order: 8
 publish: true
 source_url: "https://t.me/llm_under_hood/590"
 ---
