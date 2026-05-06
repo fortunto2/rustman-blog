@@ -276,6 +276,7 @@ The ultimate goal isn't remembering but compounding. Every [[context-graphs-summ
 - [[context-graphs-summary]] — agent trajectories and organizational memory
 - [[decision-traces-compound]] — why capturing decision rationale compounds
 - [[context-engineering]] — progressive disclosure and context budgeting
+- [[inline-agent-memory]] — 5th memory location: grep-friendly comments at the call site (AI-NOTE / AI-TODO / AI-ASK)
 - [[rag-patterns]] — 7 RAG approaches, spatial filtering as additional pattern
 - [[harness-engineering-summary]] — agent mistake → fix the harness
 - [[agent-mistake-fix-harness]] — the core harness loop

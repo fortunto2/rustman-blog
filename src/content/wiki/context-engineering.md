@@ -36,3 +36,4 @@ Tools for legibility (OpenAI): app per worktree (isolated instance per change), 
 - [[token-efficient-web-requests]] — context engineering for external data: Accept header, html2text, truncation
 - [[agent-patterns-stream2]] — skills lazy-load vs MCPs eager-load: 150 skills = ok, 10 MCPs = context full
 - [[claude-code-anatomy]] — concrete implementation: five-layer lazy-degradation compaction pipeline (budget → snip → microcompact → collapse → auto-compact)
+- [[inline-agent-memory]] — context inside the code itself: AI-NOTE / AI-TODO / AI-ASK comments as a grep-discoverable memory layer below CLAUDE.md and docs/
