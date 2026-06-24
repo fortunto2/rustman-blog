@@ -55,3 +55,4 @@ Swift + SwiftUI + AVAudioEngine. On-device audio synthesis, no server, no intern
 - [[origin-story]] — roots in Bashkortostan
 - [[one-pain-one-feature-launch]] — niche product: one instrument, one app
 - [[portfolio-approach]] — niche cultural app in the portfolio
+- [[project-superduper-dsp]] — the same kubyz physical-modeling engine ships as the **Kubyz** synth in the desktop CLAP plugin suite (Rust), reused from iOS into a DAW instrument

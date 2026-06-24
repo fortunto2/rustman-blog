@@ -34,3 +34,4 @@ Predictions: harness as new service templates, tech stack convergence toward AI-
 - [[stream-six-layers]] — harness = building an accurate map (epistemic layer 1) of the codebase
 - [[privacy-as-architecture]] — architectural constraints parallel: decisions baked into structure, not features
 - [[claude-code-anatomy]] — empirical measurement of the harness thesis: 98.4% infrastructure vs 1.6% AI logic in Claude Code v2.1.88
+- [[deepeval-llm-testing]] — Component 2 (architectural constraints) extended to LLM outputs: ArchUnit for code structure, DeepEval for behavior

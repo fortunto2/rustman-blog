@@ -88,3 +88,4 @@ For our own setup: Superset looks the closest match — agent-agnostic (we run C
 - [[portfolio-approach]] — multi-lane concurrency fits multi-project portfolio work
 - [[project-solo-factory]] — sequential skill pipeline; Conductor is the concurrent orchestration shell that could contain it
 - [[project-rust-code]] — local agent at the node level; Conductor would be the orchestration layer above
+- [[ruflo-orchestration]] — different take on the same problem: instead of worktree managers around a single coding agent, Ruflo is a swarm-first OS with 100 agents, federation, and GOAP planning

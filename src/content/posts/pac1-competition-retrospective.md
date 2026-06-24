@@ -366,3 +366,4 @@ All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 - *[[agent-benchmarks]] -- how PAC1 compares to SWE-bench, PinchBench, and others*
 - *[[cli-first-testing]] -- why every project gets a CLI mirror*
 - *[[project-openai-oxide]] -- the OpenAI Rust client underneath*
+- *[[deepeval-llm-testing]] -- the missing other half: Phoenix gave observability, DeepEval would have given CI assertions on every PR*

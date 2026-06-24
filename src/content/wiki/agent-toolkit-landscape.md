@@ -26,6 +26,7 @@ A growing catalog of AI agent toolkits, organized by what they actually do. Not 
 | **Project Managers** | "I need autonomous long-running execution" | GSD-2 |
 | **Integration Platforms** | "My agent needs to call 1000+ APIs" | Composio |
 | **Agent Frameworks** | "I need to build custom agents" | LangGraph, CrewAI |
+| **Isomorphic Action Frameworks** | "Define an action once, it works in UI + agent + API + MCP + CLI" | [[agent-native-builder]] (Builder.io) |
 | **Memory Systems** | "My agent forgets everything" | MemPalace, Solograph |
 
 ---
@@ -43,7 +44,7 @@ Discover, install, and share agent skills. The npm/crates.io of agent capabiliti
 
 **SkillsMP** — community directory indexing 700K+ skills from GitHub. Uses the open SKILL.md standard (Anthropic, Dec 2025; adopted by OpenAI for Codex CLI). Filters low-quality repos (min 2 stars), scans for quality. Independent project, not official.
 
-**SKILL.md standard:** model-invoked (agent decides when to use) vs slash commands (user-invoked). Personal: `~/.claude/skills/`. Project: `.claude/skills/`. Works across Claude Code and Codex CLI.
+**SKILL.md standard:** model-invoked (agent decides when to use) vs slash commands (user-invoked). Personal: `~/.claude/skills/`. Project: `.claude/skills/`. Works across Claude Code and Codex CLI. See [[skills-standard]] for the full spec, marketplace breakdown, and authoring tips.
 
 **When to use:** before building a custom skill, search these marketplaces. Someone probably already built it.
 
@@ -74,6 +75,8 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 |------|-------|--------|----------|-------------|
 | [Superpowers](https://github.com/obra/superpowers) | 143K | 15+ | Claude Code, Cursor, Copilot, Codex, Gemini CLI, OpenCode | Enforced 7-phase dev workflow, subagent-driven development |
 | [[project-solo-factory\|solo-factory]] | — | 30 | Claude Code | Full startup pipeline: research → ship |
+| [[bmad-method\|BMAD-METHOD v6]] | — | 40+ | Claude Code | Agents-as-skills with menu dispatch, 3-layer TOML customization, CSV-driven help router |
+| [[ruflo-orchestration\|Ruflo]] (ex-Claude Flow) | — | 30 + 60 cmds + 100 agents | Claude Code | Spans this category + Project Managers + Memory: 32 plugins, AgentDB, federation, GOAP planner |
 | [GitHub Spec Kit](https://github.com/github/spec-kit) | — | — | GitHub | Spec-driven development |
 
 **Superpowers** (143K stars) — enforced 7-phase development workflow: brainstorming → git worktrees → writing plans → subagent-driven execution → TDD → code review → finish branch. Key innovations:

@@ -64,3 +64,4 @@ This maps directly to the tool calling pipeline: schema defines the contract, co
 - [[context-engineering]] — router pattern = context engineering for retrieval: right context for right query
 - [[harness-engineering-summary]] — winning teams iterate fast (49 min to solution) because harness is solid
 - [[sgr-deep-dive]] — deep dive into SGR patterns used by ERC winners
+- [[deepeval-llm-testing]] — RAGAS-shaped metrics (faithfulness, contextual recall, answer relevancy) quantify exactly what ERC winners optimised. Without measuring, you can't replicate

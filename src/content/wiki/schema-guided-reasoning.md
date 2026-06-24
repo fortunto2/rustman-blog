@@ -37,3 +37,4 @@ By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data clas
 - [[context-engineering]] — agent reading schemas first = context engineering for code
 - [[harness-engineering-summary]] — schemas as architectural constraints (component 2)
 - [[rlhf-book]] — RLHF = training-time alignment, SGR = inference-time alignment. Complementary strategies for the same goal
+- [[deepeval-llm-testing]] — G-Eval applies the SGR pattern to the judge: rubric → structured (score, reasoning) output, not free-form opinion

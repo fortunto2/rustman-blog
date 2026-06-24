@@ -111,6 +111,7 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
 - [[project-solograph]] — MCP server powering code intelligence
 - [[agent-toolkit-landscape]] — where solo-factory fits in the ecosystem
+- [[bmad-method]] — sibling executable skill system; differs by unifying agents and skills under one TOML primitive with 3-layer overrides
 - [[harness-engineering-summary]] — the methodology behind the design
 - [[context-engineering]] — context as code principle applied
 - [Course: AI Solopreneur Engineer](/course) — learn the methodology step by step

@@ -85,3 +85,4 @@ The common thread: **the AI-native rewrite wins when the old tool was designed f
 - [[context-engineering]] — structured output with refs is the pattern
 - [[agent-sandboxing]] — real Chrome with CDP is the opposite bet: full access, not isolated
 - [[project-rust-code]] — our own Rust CLI agent could integrate agent-browser as the browser tool
+- [[webwright-code-as-action]] — Microsoft's opposite bet: throw the browser away, keep the code. Stable refs vs reusable scripts — both are valid AI-native rewrites, depending on whether the task is session-stateful or repeatable

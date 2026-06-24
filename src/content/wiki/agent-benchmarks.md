@@ -181,3 +181,4 @@ The best benchmark is shipping real products. Everything else is a proxy.
 - [[agent-self-discipline]] — drift detection relates to continuous eval
 - [[rlhf-book]] — eval chapter explains reward hacking & Goodhart's law: why benchmark numbers rise without real capability gains
 - [[fff-agent-file-search]] — Kovalenko's take: retrieval benchmarks are theater when they're proprietary and irreproducible (Cursor's cursor-bench-2.0 case)
+- [[deepeval-llm-testing]] — eval framework layer underneath benchmarks: per-task pytest assertions in CI, not aggregate scoreboard
