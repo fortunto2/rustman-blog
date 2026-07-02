@@ -36,3 +36,4 @@ This is a forcing function for clean architecture: if your business logic can't 
 - [[dev-principles-summary]] — origin: CLI-first testing section
 - [[one-pain-one-feature-launch]] — CLI enables rapid validation: ship logic, test via CLI, add UI later
 - [[solo-methodology]] — `make integration` is mandatory in the solo dev workflow
+- [[native-frontend-toolchain]] — "compilation as integration test": a type checker over generated API types is the cheapest CLI-first gate

@@ -110,6 +110,7 @@ For us specifically, this aligns the [[agent-mistake-fix-harness|harness loop]] 
 - [[claude-code-anatomy]] — why context compaction resets the agent's working set and why the tool has to carry it
 - [[agent-benchmarks]] — why reproducibility matters more than headline numbers
 - [[harness-engineering-summary]] — the outer loop that makes any retrieval improvement compound
+- [[native-frontend-toolchain]] — the same "infrastructure > models" thesis, applied to the human build toolchain (TSGO/Oxlint/Rsbuild) instead of agent retrieval
 
 ## Podcast chapters (for deep-dive)
 
