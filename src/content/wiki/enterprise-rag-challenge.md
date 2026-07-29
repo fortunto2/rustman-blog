@@ -8,6 +8,8 @@ course_module: 5
 course_order: 11
 publish: true
 source_url: "https://abdullin.com/erc/"
+index_line: "ERC results: structured outputs beat vector search, top-3 no embeddings, router+SO+CoT patterns win"
+index_section: "concept"
 ---
 
 Rinat Abdullin's Enterprise RAG Challenge: teams build AI systems to answer 100 questions about 100 annual reports (largest PDF: 1047 pages). Real production RAG, not toy demos.

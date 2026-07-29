@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [rust, reference, libraries, open-source, catalog]
 publish: true
 source_url: "https://github.com/rust-unofficial/awesome-rust"
+index_line: "awesome-rust: 57k-star catalog of 500+ Rust libraries, tools, and apps across 65+ categories"
+index_section: "concept"
 ---
 
 # awesome-rust

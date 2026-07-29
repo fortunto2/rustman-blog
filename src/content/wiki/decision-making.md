@@ -8,6 +8,8 @@ tags: [hub, decisions, stream, mental-models]
 course_module: 2
 course_order: 4
 publish: true
+index_line: "Decision frameworks, mental models, psychological traps"
+index_section: "hub"
 ---
 
 # Decision Making

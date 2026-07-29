@@ -11,6 +11,8 @@ publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [decision-framework-5-steps, ikigai-micro-joys]
+index_line: "Maximizers are less happy (Schwartz). Satisfice for low-stakes. Set limits upfront"
+index_section: "concept"
 ---
 
 Barry Schwartz's research ("Paradox of Choice"): maximizers (those who seek the best option) objectively find better outcomes but experience **less happiness and satisfaction** than satisficers (those who choose "good enough").

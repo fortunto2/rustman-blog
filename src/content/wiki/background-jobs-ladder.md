@@ -8,6 +8,8 @@ course_module: 4
 course_order: 7
 publish: true
 source_path: "1-methodology/background-jobs.md"
+index_line: "Cron → CF Workers → Prefect → Temporal → Trigger.dev. Start simple, move up"
+index_section: "concept"
 ---
 
 ## Key Takeaways

@@ -12,6 +12,8 @@ publish_as: project
 source_url: "https://github.com/fortunto2/rust-code"
 crate: sgr-agent
 github: fortunto2/rust-code
+index_line: "rust-code: AI terminal agent in Rust, structured loop, TUI, MCP support"
+index_section: "project"
 ---
 
 # rust-code

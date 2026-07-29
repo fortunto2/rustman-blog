@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [rust, documentation, ai, tools, open-source]
 publish: true
 source_url: "https://github.com/sopaco/deepwiki-rs"
+index_line: "deepwiki-rs (Litho): AI documentation generator, C4 model from code, Mermaid diagrams, multi-language"
+index_section: "concept"
 ---
 
 # deepwiki-rs (Litho)

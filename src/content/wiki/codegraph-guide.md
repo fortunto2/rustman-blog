@@ -8,6 +8,8 @@ course_module: 6
 course_order: 3
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
+index_line: "CodeGraph: code intelligence across projects via FalkorDB + tree-sitter + MCP. Session tracking"
+index_section: "concept"
 ---
 
 ## Key Takeaways

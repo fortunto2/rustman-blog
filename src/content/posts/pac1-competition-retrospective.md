@@ -6,6 +6,8 @@ created: 2026-04-13
 tags: [agents, competition, rust, retrospective, sgr, benchmarks]
 publish: true
 publish_as: post
+index_line: "PAC1 retrospective: $250 spent, 17→74/104, architecture deep dive, Mermaid diagrams"
+index_section: "concept"
 ---
 
 # How I spent $250+ on an AI agent competition and what I learned

@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [ai, research, benchmarks, industry, investment, trends]
 publish: true
 source_url: "https://hai.stanford.edu/ai-index/2026-ai-index-report"
+index_line: "Stanford AI Index 2026: $285.9B investment, SWE-bench 60→100%, agents 12→66%, 362 incidents, talent drain -89%, 53% GenAI adoption"
+index_section: "concept"
 ---
 
 # Stanford AI Index 2026

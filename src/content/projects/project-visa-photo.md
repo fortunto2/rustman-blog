@@ -9,6 +9,8 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/visa-photo"
 github: fortunto2/visa-photo
+index_line: "Visa Photo: free offline biometric photo tool. Rust + Dioxus, AI background removal (Apple Vision/ONNX), country presets, ICAO guides, print layout"
+index_section: "project"
 ---
 
 # Visa Photo

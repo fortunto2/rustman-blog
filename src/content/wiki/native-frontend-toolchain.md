@@ -5,6 +5,8 @@ created: 2026-07-02
 tags: [frontend, tooling, rust, dx, performance, nextjs, codegen]
 publish: true
 description: The JS build toolchain is being rewritten in Rust/Go — TSGO, Oxlint, Rsbuild deliver 10-100x speedups. Infrastructure beats AI for developer velocity.
+index_line: "JS build toolchain rewritten native: TSGO (Go), Oxlint + Rsbuild (Rust) = 10-100x on typecheck/lint/bundle. swagger-typescript-api codegen makes \"compilation an integration test\". Infrastructure > AI for dev velocity; prefer Rust over Go when equivalent"
+index_section: "concept"
 ---
 
 # Native Frontend Toolchain (Rust/Go rewrites)

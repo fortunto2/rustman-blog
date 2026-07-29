@@ -11,6 +11,8 @@ publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [stream-six-layers, optimizer-syndrome]
+index_line: "5-step decision framework: epistemics → systems → time → risk → action"
+index_section: "concept"
 ---
 
 Every decision passes through 5 steps, each with its own checklist:

@@ -8,6 +8,8 @@ course_module: 5
 course_order: 18
 publish: true
 source_url: "https://github.com/SakanaAI/ShinkaEvolve"
+index_line: "ShinkaEvolve (Sakana AI): LLM-powered evolutionary code optimization. Multi-island, meta-evolution of prompts, won ICFP 2025. We use it for prompt evolution"
+index_section: "concept"
 ---
 
 # ShinkaEvolve

@@ -8,6 +8,8 @@ course_module: 5
 course_order: 8
 publish: true
 source_url: "https://t.me/llm_under_hood/590"
+index_line: "Grep-friendly comments (AI-NOTE / AI-TODO / AI-ASK) as a 5th memory layer. Persistent notes at the call site, no index needed"
+index_section: "concept"
 ---
 
 # Inline agent memory

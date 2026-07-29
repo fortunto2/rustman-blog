@@ -9,6 +9,8 @@ course_module: 7
 course_order: 6
 publish: true
 publish_as: project
+index_line: "SuperDuperAI: the company, portfolio vehicle, Turkey + USA, consulting + products barbell"
+index_section: "project"
 ---
 
 # SuperDuperAI

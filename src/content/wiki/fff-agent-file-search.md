@@ -6,6 +6,8 @@ created: 2026-04-22
 updated: 2026-04-22
 tags: [agents, mcp, search, rust, neovim, memory, token-efficiency, retrieval, lsp, benchmarks, harness]
 publish: true
+index_line: "fff.nvim + Kovalenko #82: file search as the retrieval layer. Sparse bigram index (15x smaller than trigrams), frecency+combo memory, definition inlining, git-status tags. Thesis: infrastructure wins, not models. LSP is the wrong abstraction for agents; measurement is the unsolved problem"
+index_section: "concept"
 ---
 
 # FFF + Kovalenko #82 — File Search as the Retrieval Layer for Coding Agents

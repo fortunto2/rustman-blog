@@ -11,6 +11,8 @@ publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [decision-framework-5-steps, antifragile-life-design]
+index_line: "STREAM: 6 principle layers as dependency graph. S→T→R→E→A→M, each builds on previous"
+index_section: "concept"
 ---
 
 The key difference between STREAM and typical principle collections: it's not a flat list but a **6-layer hierarchy** where each layer builds on the previous one.

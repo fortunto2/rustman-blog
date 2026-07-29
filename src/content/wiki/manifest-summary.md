@@ -6,6 +6,8 @@ created: 2026-02-11
 tags: [manifesto, values, privacy, principles]
 publish: true
 source_path: "0-principles/manifest.md"
+index_line: "Solo Founder Manifesto (0-principles/manifest.md). 6 core values + The Oath + red flags"
+index_section: "summary"
 ---
 
 ## Key Claims

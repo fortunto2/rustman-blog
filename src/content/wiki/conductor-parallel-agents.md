@@ -6,6 +6,8 @@ created: 2026-04-22
 updated: 2026-04-22
 tags: [agents, orchestration, claude-code, codex, worktree, parallelism, melty-labs, superset, emdash]
 publish: true
+index_line: "Parallel coding-agent orchestrators: Conductor (Melty Labs YC S24), Superset (Apache-2.0, agent-agnostic), Emdash (MIT, YC W26, cross-platform + SSH), Claude Squad, Parallel Code, Composio Agent Orchestrator, ccswarm, Vibe Kanban. Addy Osmani's \"conductors to orchestrators\" frame: from human dirigent to autonomous planner"
+index_section: "concept"
 ---
 
 # Conductor — Orchestrate, Don't Supervise

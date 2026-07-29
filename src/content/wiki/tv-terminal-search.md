@@ -7,6 +7,8 @@ tags: [tools, cli, search, productivity, terminal, rust]
 course_module: 6
 course_order: 6
 publish: true
+index_line: "Television (tv) fuzzy finder: custom wiki/docs channels, ripgrep full-text, bat preview. Three search tools compared"
+index_section: "concept"
 ---
 
 # Television (tv) — Terminal Fuzzy Search

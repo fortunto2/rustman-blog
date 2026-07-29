@@ -8,6 +8,8 @@ course_module: 5
 course_order: 2
 publish: true
 source_path: "1-methodology/harness-engineering.md"
+index_line: "Context as code: CLAUDE.md as TOC (~100 lines), progressive disclosure, dynamic context via CDP"
+index_section: "concept"
 ---
 
 One of three harness engineering components. The idea: agent context is not chat history — it's a **continuously improved knowledge base in the repository**.

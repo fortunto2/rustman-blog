@@ -9,6 +9,8 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"
 github: fortunto2/superduper-dsp
+index_line: "SuperDuper DSP: 23 open-source Rust audio plugins (CLAP/VST3/AU), retro phosphor-green GUI. EQ, comp, reverb, NAM, Soothe-style suppressor + 6 synths. Runs in REAPER/Ableton, daily-driver dogfooding, MIT"
+index_section: "project"
 ---
 
 # SuperDuper DSP

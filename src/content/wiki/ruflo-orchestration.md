@@ -6,6 +6,8 @@ created: 2026-05-13
 updated: 2026-05-13
 tags: [agents, swarm, orchestration, claude-code, plugin, mcp, memory, federation, ruvnet]
 publish: true
+index_line: "Ruflo (ex-Claude Flow): 32 plugins, 100+ agents, AgentDB vector memory (HNSW 150-12500x), agent federation (zero-trust), GOAP A* goal planner. Two install paths — lite (slash commands) and full (MCP + hooks + daemon)"
+index_section: "concept"
 ---
 
 # Ruflo — Multi-Agent Orchestration

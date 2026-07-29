@@ -15,6 +15,8 @@ npm: openai-oxide
 pypi: openai-oxide
 docs_url: "https://docs.rs/openai-oxide"
 github: fortunto2/openai-oxide
+index_line: "openai-oxide: idiomatic Rust client for OpenAI API, crates.io"
+index_section: "project"
 ---
 
 # openai-oxide

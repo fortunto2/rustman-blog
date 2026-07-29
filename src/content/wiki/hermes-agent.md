@@ -9,6 +9,8 @@ course_module: 5
 course_order: 17
 publish: true
 source_url: "https://github.com/NousResearch/hermes-agent"
+index_line: "Hermes Agent (Nous Research): self-improving agent with learning loop, **163k stars (2x in 1mo)**. Auto-creates skills, cross-session memory, 7 backends (incl. Vercel Sandbox), multi-platform, native Windows beta"
+index_section: "concept"
 ---
 
 # Hermes Agent

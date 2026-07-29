@@ -7,6 +7,8 @@ tags: [agents, benchmarks, evaluation, methodology, tools]
 course_module: 5
 course_order: 14
 publish: true
+index_line: "Coding agent benchmarks: SWE-bench, PinchBench, PAC-1 (we participate), LongMemEval. What they test, what they miss"
+index_section: "concept"
 ---
 
 # Agent Benchmarks

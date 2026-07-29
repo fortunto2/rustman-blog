@@ -7,6 +7,8 @@ tags: [agents, rust, auth, openai, infrastructure]
 course_module: 5
 course_order: 23
 publish: true
+index_line: "Route LLM requests through ChatGPT subscription via OAuth. No API key, auto-refresh, Chat Completions compatible. Our Rust proxy in sgr-agent"
+index_section: "concept"
 ---
 
 # Codex OAuth Proxy

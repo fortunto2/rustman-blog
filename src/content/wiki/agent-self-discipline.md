@@ -8,6 +8,8 @@ course_module: 5
 course_order: 4
 publish: true
 source_path: "1-methodology/dev-principles.md"
+index_line: "Drift detector (5 anti-patterns), complexity thresholds (150/1000/40k/15), evolution = commit"
+index_section: "concept"
 ---
 
 Principles for fighting AI agent degradation. The agent tends to drift into comfortable but unproductive patterns. Two mechanisms fight this:

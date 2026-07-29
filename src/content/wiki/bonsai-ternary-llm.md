@@ -5,6 +5,8 @@ description: "Bonsai (deepgrove): 500M ternary-weight LLM (-1/0/+1), trained on 
 created: 2026-04-20
 tags: [llm, on-device, webgpu, browser, quantization, privacy, transformers-js, open-model]
 publish: true
+index_line: "Bonsai: 500M ternary-weight LLM (-1/0/+1), <5B tokens training, competitive with Qwen 2.5 0.5B. Runs in browser via WebGPU + transformers.js. Privacy-first LLMs for web, zero server cost"
+index_section: "concept"
 ---
 
 ## Key Takeaways

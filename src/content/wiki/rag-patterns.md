@@ -8,6 +8,8 @@ course_module: 5
 course_order: 10
 publish: true
 source_path: "1-methodology/rag-patterns.md"
+index_line: "7 RAG approaches: vector, graph-boosted, tree-based, ColBERT, HyDE, hybrid, agentic"
+index_section: "concept"
 ---
 
 ## Key Takeaways

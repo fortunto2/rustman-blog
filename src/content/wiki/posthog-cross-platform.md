@@ -8,6 +8,8 @@ course_module: 4
 course_order: 9
 publish: true
 source_path: "1-methodology/posthog-analytics.md"
+index_line: "PostHog EU: one product = one project, cross-platform identity, anonymous by default"
+index_section: "concept"
 ---
 
 ## Key Takeaways

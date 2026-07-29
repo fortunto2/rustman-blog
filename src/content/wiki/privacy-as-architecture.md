@@ -8,6 +8,8 @@ course_module: 1
 course_order: 7
 publish: true
 source_path: "0-principles/manifest.md"
+index_line: "Privacy as architecture, not a feature. On-device, no accounts, zero data = zero risk"
+index_section: "concept"
 ---
 
 Key distinction from the manifesto: privacy is not a settings checkbox but an **architectural decision** made before the first line of code.

@@ -10,6 +10,8 @@ course_order: 8
 publish: true
 publish_as: project
 source_url: "https://life2film.com"
+index_line: "Life2Film: the original dream (2014), video montage with on-device AI, rebuilding v2"
+index_section: "project"
 ---
 
 # Life2Film

@@ -6,6 +6,8 @@ created: 2026-06-24
 tags: [agents, video, screen-recording, open-source, builder-io, agent-legible, loom]
 publish: true
 source_url: "https://github.com/BuilderIO/agent-native"
+index_line: "Clips: free open-source self-hostable Loom replacement built agent-native. Agent reads a clip from its URL — sees+hears everything at any timestamp, not just transcript. Hand a bug-report video to an agent; import Loom by URL; fork & host yourself"
+index_section: "concept"
 ---
 
 # Clips — Video That an Agent Can Actually Watch

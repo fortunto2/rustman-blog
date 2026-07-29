@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [rust, ffmpeg, media, tools, open-source, video]
 publish: true
 source_url: "https://github.com/kimono-koans/dano"
+index_line: "dano: media stream checksums via ffmpeg. Stable across renames, metadata, containers. Duplicate detection"
+index_section: "concept"
 ---
 
 # dano

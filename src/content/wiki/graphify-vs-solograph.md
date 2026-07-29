@@ -6,6 +6,8 @@ created: 2026-07-29
 tags: [agents, code-graph, memory, retrieval, tree-sitter, solograph, graphify, comparison]
 publish: true
 source_url: "https://github.com/Graphify-Labs/graphify"
+index_line: "Graphify (Apache-2.0/MIT, tree-sitter 36 grammars, no embeddings, edges tagged EXTRACTED/INFERRED, git merge driver, PreToolUse hook that blocks raw file reads) vs our own codegraph. Four mechanics to steal, three not to copy"
+index_section: "concept"
 ---
 
 # Graphify vs Solograph

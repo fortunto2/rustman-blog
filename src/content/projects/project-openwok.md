@@ -11,6 +11,8 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/OpenWok"
 github: fortunto2/OpenWok
+index_line: "OpenWok: open-source food delivery. Dioxus fullstack (SSR+WASM), transparent pricing, Cloudflare Containers, self-hosted path, QR payments (SEPA/EMVCo/SWIFT/crypto), privacy-first, AI-agent compatible"
+index_section: "project"
 ---
 
 # OpenWok

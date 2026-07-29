@@ -7,6 +7,8 @@ tags: [llm, providers, credits, startups, infrastructure, free-tier]
 course_module: 6
 course_order: 5
 publish: true
+index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits (Modal $25K, OpenAI, Anthropic, GCP), open models, cost strategy"
+index_section: "concept"
 ---
 
 # LLM Providers & Startup Credits

@@ -11,6 +11,8 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solo-factory"
 github: fortunto2/solo-factory
+index_line: "solo-factory: Claude Code plugin, 27 skills, 3 agents, startup pipeline"
+index_section: "project"
 ---
 
 # Solo Factory

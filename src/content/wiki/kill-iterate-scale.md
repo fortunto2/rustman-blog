@@ -8,6 +8,8 @@ course_module: 2
 course_order: 5
 publish: true
 source_path: "1-methodology/launch-playbook.md"
+index_line: "Hard numeric kill/iterate/scale thresholds. Fake-door < 10 clicks per $20 = KILL"
+index_section: "concept"
 ---
 
 Hard numeric thresholds for weekly product decisions. No "let's wait and see":

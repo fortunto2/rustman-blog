@@ -8,6 +8,8 @@ course_module: 4
 course_order: 4
 publish: true
 source_path: "1-methodology/dev-principles.md"
+index_line: "Every project gets CLI mirror. `make integration` mandatory. If it works from CLI, it's decoupled"
+index_section: "concept"
 ---
 
 Every project should have a **CLI utility** that mirrors the core business logic without UI. Not a separate tool — the same modules, different entry point.

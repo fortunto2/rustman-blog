@@ -6,6 +6,8 @@ created: 2026-05-13
 updated: 2026-05-13
 tags: [agents, skills, bmad, claude-code, methodology, plugin, toml, comparison]
 publish: true
+index_line: "BMAD-METHOD v6: agents-as-skills with `[agent]` block + menu dispatch, 3-layer TOML merge (defaults → team → user), CSV-driven help router grounded in filesystem state"
+index_section: "concept"
 ---
 
 # BMAD-METHOD v6 — Agents-as-Skills

@@ -6,6 +6,8 @@ created: 2026-05-27
 tags: [agents, browser-automation, harness-engineering, microsoft, playwright, code-as-action, plugins]
 publish: true
 source_url: "https://github.com/microsoft/Webwright"
+index_line: "Microsoft Research's Webwright (2.4k★, Apr 2026): agent writes Playwright scripts instead of predicting clicks. Browser is disposable, workspace (code+logs+screenshots) is persistent state. ~1.5k LoC, SOTA on Online-Mind2Web (86.7%) and Odysseys long-horizon (60.1%, +15.6 over prior SOTA). Ships as cross-host plugin (Claude Code, Codex, OpenClaw, Hermes)"
+index_section: "concept"
 ---
 
 # Webwright — A Terminal Is All You Need For Web Agents

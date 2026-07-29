@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [rust, actors, concurrency, framework, open-source]
 publish: true
 source_url: "https://github.com/actix/actix"
+index_line: "Actix: Rust actor framework, typed messages, supervision. 9.2k stars, foundation behind actix-web"
+index_section: "concept"
 ---
 
 # Actix

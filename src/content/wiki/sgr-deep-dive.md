@@ -8,6 +8,8 @@ course_module: 4
 course_order: 3
 publish: true
 source_path: "1-methodology/sgr/sgr-complete.md"
+index_line: "SGR Complete (1-methodology/sgr/sgr-complete.md). Code examples, cycle pattern, tool calling via Union types"
+index_section: "summary"
 ---
 
 ## Key Takeaways

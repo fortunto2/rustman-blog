@@ -11,6 +11,8 @@ publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [optimizer-syndrome]
+index_line: "Authentic ikigai = 8-9 small daily joys, not one grand mission (Okinawan centenarians)"
+index_section: "concept"
 ---
 
 The Western interpretation of ikigai (intersection of "what I love / what I'm good at / what pays / what the world needs") is a distortion of the original. Authentic Japanese ikigai, per Okinawan centenarian research, is **8-9 small sources of daily joy** — not one grand mission.

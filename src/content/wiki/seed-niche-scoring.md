@@ -8,6 +8,8 @@ course_module: 3
 course_order: 2
 publish: true
 source_path: "1-methodology/launch-playbook.md"
+index_line: "S.E.E.D.: Searchability, Evidence, Ease, Demand. Niche scoring in 10 minutes"
+index_section: "concept"
 ---
 
 Quick filter for niche ideas before writing code. 4 dimensions:

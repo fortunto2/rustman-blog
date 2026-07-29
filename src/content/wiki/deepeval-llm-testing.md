@@ -6,6 +6,8 @@ created: 2026-05-22
 tags: [evals, llm, testing, pytest, ragas, methodology, observability]
 publish: true
 source_url: "https://deepeval.com/"
+index_line: "DeepEval: pytest-native LLM evaluation framework (Confident AI, Apache-2.0). G-Eval, DAG, RAGAS, 50+ metrics. Evals as CI assertions, not dashboards"
+index_section: "concept"
 ---
 
 # DeepEval — pytest-native LLM evaluation framework

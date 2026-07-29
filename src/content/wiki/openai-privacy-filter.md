@@ -5,6 +5,8 @@ description: "OpenAI open-sourced a 1.5B-parameter PII detection model (50M acti
 created: 2026-04-22
 tags: [privacy, pii, ml, openai, on-device, gpt-oss, redaction, moe, token-classification]
 publish: true
+index_line: "OpenAI's 1.5B-param MoE PII detection model (Apache-2.0, 50M active params). Bidirectional classifier converted from gpt-oss, BIOES span tagging, Viterbi decoding, 8 PII categories. Runs on laptop. The missing privacy primitive for agent pipelines"
+index_section: "concept"
 ---
 
 # privacy-filter — A Real Model for the PII Problem

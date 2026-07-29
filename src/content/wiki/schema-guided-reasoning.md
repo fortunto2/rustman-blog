@@ -9,6 +9,8 @@ course_order: 2
 publish: true
 source_path: "1-methodology/dev-principles.md"
 source_url: "https://abdullin.com/schema-guided-reasoning/"
+index_line: "SGR: schemas → logic → UI. Agent reads Models/schemas/types/ first. Technical DDD implementation"
+index_section: "concept"
 ---
 
 **Schema-Guided Reasoning (SGR):** all projects built from schemas to logic, not the other way around. Schemas are the contract between AI agent, business logic, and UI.

@@ -3,11 +3,13 @@ type: catalog
 title: "Agent toolkit landscape — from prompt libraries to autonomous project managers"
 description: "Categorized comparison of AI agent toolkits: prompt libraries, executable skill systems, project managers, agent frameworks, memory systems, observability/evals, governance. Growing catalog."
 created: 2026-04-09
-updated: 2026-07-29
+updated: 2026-07-30
 tags: [agents, tools, comparison, solo-factory, skills, methodology, observability, evals, governance]
 course_module: 6
 course_order: 2
 publish: true
+index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers, Compound Engineering) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 11 categories, comparison matrix, 8-layer stack"
+index_section: "concept"
 ---
 
 # Agent Toolkit Landscape
@@ -24,6 +26,7 @@ A growing catalog of AI agent toolkits, organized by what they actually do. Not 
 | **Prompt Libraries** | "I need a domain specialist now" | Agency Agents |
 | **Executable Skills** | "I need a startup pipeline" | solo-factory, Superpowers |
 | **Project Managers** | "I need autonomous long-running execution" | GSD-2 |
+| **Agent Org Orchestration** | "I have 20 agents and no idea who does what, or what it costs" | [[paperclip-agent-company\|Paperclip]], Pentagon, Relevance Workforce |
 | **Integration Platforms** | "My agent needs to call 1000+ APIs" | Composio |
 | **Agent Frameworks** | "I need to build custom agents" | LangGraph, CrewAI |
 | **Isomorphic Action Frameworks** | "Define an action once, it works in UI + agent + API + MCP + CLI" | [[agent-native-builder]] (Builder.io) |
@@ -151,6 +154,25 @@ Autonomous long-running execution systems. State machines, crash recovery, git i
 **vs solo-factory:** GSD-2 is a project manager that runs autonomously for hours. solo-factory is a toolkit you invoke per task. GSD-2 manages the execution loop; solo-factory manages the methodology. They could complement each other — solo-factory for what to build, GSD-2 for how to execute.
 
 **When to use:** you have a clear spec and want autonomous multi-session execution with crash recovery.
+
+---
+
+## Agent Org Orchestration
+
+The layer *above* the runtime. Not "run many agents" (that's Project Managers) but "give them roles, reporting lines, budgets, and approval gates" — the company around the employees. This category didn't exist in the April version of this map; it formed in Q1-Q2 2026.
+
+| Tool | Stars | Model | Runtimes | License |
+|------|-------|-------|----------|---------|
+| [[paperclip-agent-company\|Paperclip]] | 75K | Org chart + budgets + heartbeats + immutable audit, multi-company | OpenClaw, Claude Code, Codex, Cursor, bash, HTTP | MIT, self-host |
+| [Pentagon](https://www.pentagon.run/) (YC) | — | Spatial canvas + Slack-like channels where agents talk to each other; "spawn a Manager and let them hire the rest" | Claude | Studio free, Enterprise hosted/VPC/on-prem |
+| [Relevance Workforce](https://relevanceai.com/blog/introducing-workforce-the-visual-canvas-for-building-ai-teams) | — | Visual canvas that "works like an org chart"; drag agents, tools, approvals into a readable flow | own agents | SaaS |
+| [Tensol](https://www.ycombinator.com/launches/PQ9-tensol-ai-employees-for-your-company-built-on-openclaw) (YC W26) | — | "AI employees" with their own email + phone + tool access, isolated sandboxes | OpenClaw | SaaS |
+
+**[[paperclip-agent-company|Paperclip]]** is the one to study — MIT, self-hosted, and it wraps the runtime you already have rather than replacing it (*"if it can receive a heartbeat, it's hired"*). Five mechanics worth stealing even standalone: atomic task checkout **in the same transaction as** the budget check, per-agent monthly budgets that hard-stop, goal ancestry carried on every task, a DB-backed heartbeat queue with coalescing, and portable org templates with secret scrubbing.
+
+**The honest caveat for the whole category:** the org chart solves *coordination*, not *quality*. "Zero-human company" is branding — a human stays at the top as the board. Independent tests of Paperclip produced hallucinated market statistics and broken sites, which is why the serious entrants now bolt on evals and agent performance reviews.
+
+**vs Project Managers:** GSD-2 and Symphony manage *one* project's execution loop. This category manages *the organization* — many goals, many agents, cost and permission boundaries between them. **vs solo-factory:** our unit is a skill in a pipeline; theirs is a role in a hierarchy. Roles beat skills when work is continuous and concurrent; skills beat roles when work is a staged pipeline with artifacts.
 
 ---
 
@@ -282,15 +304,16 @@ Cloud- and framework-agnostic (Semantic Kernel, AutoGen, LangGraph, CrewAI, …;
 
 ## Comparison Matrix
 
-| Aspect | Prompt Libs | Exec Skills | Project Mgrs | Integrations | Frameworks | Memory |
-|--------|------------|-------------|-------------|-------------|------------|--------|
-| **Setup** | Minutes | Hours | Hours | Hours | Days | Hours |
-| **State** | None | Pipeline | Full SM | Stateless | Custom | Persistent |
-| **Autonomy** | None | Per-task | Multi-session | Per-call | Custom | Background |
-| **Memory** | None | Via Solograph | `.gsd/KNOWLEDGE` | None | Build own | Core |
-| **Quality** | None | Built-in | Verification | N/A | Build own | N/A |
-| **Platform** | 7+ tools | Claude Code | Pi SDK (20+) | Python/TS | Python/JS | Varies |
-| **Best for** | Quick expert | Product cycle | Long execution | API plumbing | Custom agents | Persistence |
+| Aspect | Prompt Libs | Exec Skills | Project Mgrs | Agent Orgs | Integrations | Frameworks | Memory |
+|--------|------------|-------------|-------------|------------|-------------|------------|--------|
+| **Setup** | Minutes | Hours | Hours | Hours | Hours | Days | Hours |
+| **State** | None | Pipeline | Full SM | Org + tickets | Stateless | Custom | Persistent |
+| **Autonomy** | None | Per-task | Multi-session | Continuous (heartbeats) | Per-call | Custom | Background |
+| **Memory** | None | Via Solograph | `.gsd/KNOWLEDGE` | Task + goal ancestry | None | Build own | Core |
+| **Quality** | None | Built-in | Verification | Approval gates + evals | N/A | Build own | N/A |
+| **Cost control** | N/A | Manual | Manual | **Per-agent budgets** | N/A | Build own | N/A |
+| **Platform** | 7+ tools | Claude Code | Pi SDK (20+) | Any heartbeat runtime | Python/TS | Python/JS | Varies |
+| **Best for** | Quick expert | Product cycle | Long execution | Many agents, many goals | API plumbing | Custom agents | Persistence |
 
 ---
 
@@ -301,12 +324,13 @@ These aren't competing — they're layers:
 1. **Memory & retrieval** — [[project-solograph|Solograph]] / [[graphify-vs-solograph|Graphify]] / [[mempalace-agent-memory|MemPalace]] for persistence
 2. **Skills** — [[project-solo-factory|solo-factory]] for methodology (what to build, in what order)
 3. **Execution** — GSD-2 for autonomous long-running tasks, Orca for a parallel fleet
-4. **Specialists** — Agency Agents for domain experts on demand
-5. **Guardrails** — [[agent-sandboxing|VM isolation]] + policy middleware where agents touch real systems
-6. **Feedback** — traces (Langfuse / Laminar) + [[deepeval-llm-testing|evals in CI]] — without this the loop below has no input
-7. **Harness** — [[harness-engineering-summary|CLAUDE.md + linters + hooks]] tying it all together
+4. **Organization** — [[paperclip-agent-company|Paperclip]] when the fleet needs roles, budgets and approval gates rather than more tabs
+5. **Specialists** — Agency Agents for domain experts on demand
+6. **Guardrails** — [[agent-sandboxing|VM isolation]] + policy middleware where agents touch real systems
+7. **Feedback** — traces (Langfuse / Laminar) + [[deepeval-llm-testing|evals in CI]] — without this the loop below has no input
+8. **Harness** — [[harness-engineering-summary|CLAUDE.md + linters + hooks]] tying it all together
 
-The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mistake → fix the harness. Layer 6 is what makes the loop *observable* instead of anecdotal — you can't ratchet on mistakes you never saw.
+The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mistake → fix the harness. Layer 7 is what makes the loop *observable* instead of anecdotal — you can't ratchet on mistakes you never saw.
 
 ---
 
@@ -314,6 +338,7 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 
 - [[project-solo-factory]] — our executable skill system
 - [[graphify-vs-solograph]] — Graphify vs our own code graph: what to steal, what to keep, when to switch
+- [[paperclip-agent-company]] — Paperclip in depth: the five mechanics to steal, and where "zero-human company" stops being true
 - [[agent-memory-architecture]] — memory layer deep dive (4 types, 3 loops, 5 systems)
 - [[harness-engineering-summary]] — the discipline that makes any toolkit reliable
 - [[context-engineering]] — how to feed context to agents regardless of toolkit
@@ -324,6 +349,6 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 
 ---
 
-*Catalog is growing. Last updated: 2026-07-29.*
+*Catalog is growing. Last updated: 2026-07-30.*
 
 **On star counts:** the numbers in this catalog are what the projects and aggregators claim, and in this ecosystem they're unreliable — Graphify shows up as 76K, 97K, and 98K across three sources on the same day. Treat stars as a rough signal of attention, never of quality. Judge by license, what runs locally, and whether the core is actually open.

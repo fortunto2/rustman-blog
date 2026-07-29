@@ -8,6 +8,8 @@ course_module: 1
 course_order: 6
 publish: true
 source_path: "2-inspiration/patterns.md"
+index_line: "Multiple small bets, not one big bet. 7/10 fail = expected. Kill discipline required"
+index_section: "concept"
 ---
 
 Build multiple small products instead of going all-in on one. Pieter Levels: 70+ projects, 3-4 active revenue sources. John Rush: 20+ products. Danny Postma: HeadshotPro + ProfilePicture.ai + others.

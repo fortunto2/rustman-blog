@@ -7,6 +7,8 @@ tags: [agents, context-engineering, methodology, claude-code]
 course_module: 5
 course_order: 22
 publish: true
+index_line: "How to write effective CLAUDE.md: Karpathy 4 principles (29k stars), hierarchical approach, Quality Gate, drift detection, what works and what doesn't"
+index_section: "concept"
 ---
 
 # Writing effective CLAUDE.md files

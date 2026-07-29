@@ -8,6 +8,8 @@ course_module: 4
 course_order: 6
 publish: true
 source_path: "1-methodology/infra-prd.md"
+index_line: "SST + Pulumi, serverless by default. 4 tiers: CF Workers → Hetzner VPS → Prefect → Fly.io"
+index_section: "concept"
 ---
 
 ## Key Takeaways

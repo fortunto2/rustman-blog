@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [agents, research, ai, evolution, architecture, rl]
 publish: true
 source_url: "https://arxiv.org/abs/2603.29640"
+index_line: "ASI-Evolve: autonomous AI research loop. Found 105 attention architectures, +18 MMLU from data curation. Human sets constraints, agent searches"
+index_section: "concept"
 ---
 
 # ASI-Evolve: AI Accelerates AI

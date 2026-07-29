@@ -11,6 +11,8 @@ publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]
 links: [stream-six-layers, decision-framework-5-steps]
+index_line: "Barbell across 5 life domains. 90% safe + 10% unlimited upside experiments"
+index_section: "concept"
 ---
 
 Taleb's antifragility applied not to investments but to **life design** across 5 domains: income, health, relationships, skills, location. Three levels per domain:

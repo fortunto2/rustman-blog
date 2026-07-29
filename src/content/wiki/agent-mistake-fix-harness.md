@@ -8,6 +8,8 @@ course_module: 5
 course_order: 3
 publish: true
 source_path: "1-methodology/harness-engineering.md"
+index_line: "Core harness loop: agent mistake → fix CLAUDE.md/linter/test. Ratchet effect, mistakes happen once"
+index_section: "concept"
 ---
 
 The single most important principle from harness engineering: when an AI agent makes a mistake, **don't fix the prompt or try a better model**. Fix the environment.

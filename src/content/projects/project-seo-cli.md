@@ -12,6 +12,8 @@ publish_as: project
 source_url: "https://github.com/fortunto2/seo-cli"
 pypi: seo-cli
 github: fortunto2/seo-cli
+index_line: "SEO CLI: 18 commands for GSC, GA4, Cloudflare, IndexNow. Launch, audit, monitor, reindex — all sites in one terminal"
+index_section: "project"
 ---
 
 # SEO CLI

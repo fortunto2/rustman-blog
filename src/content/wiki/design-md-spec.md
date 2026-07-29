@@ -5,6 +5,8 @@ description: "Google Labs' DESIGN.md format: YAML design tokens + markdown ratio
 created: 2026-04-22
 tags: [agents, design-systems, harness, tokens, standards, context-engineering, google-labs]
 publish: true
+index_line: "Google Labs' DESIGN.md: YAML design tokens + markdown rationale in one file, linter with contrast/regression checks, Tailwind/DTCG export. CLAUDE.md pattern applied to visual identity"
+index_section: "concept"
 ---
 
 # DESIGN.md — Design System as Agent Context

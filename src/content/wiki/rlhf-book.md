@@ -5,6 +5,8 @@ created: 2026-04-18
 publish: true
 description: Nathan Lambert's living textbook on Reinforcement Learning from Human Feedback — end-to-end pipeline from preference data to DPO/PPO/RLVR, free online, 1.8k stars.
 tags: [rlhf, training, alignment, llm, dpo, ppo, reward-models, book]
+index_line: "Nathan Lambert's open RLHF textbook (1.8k stars, heading to Manning). End-to-end pipeline: IFT → reward model → PPO/DPO → RLVR. Training-time alignment vs SGR (inference-time)"
+index_section: "concept"
 ---
 
 # RLHF Book

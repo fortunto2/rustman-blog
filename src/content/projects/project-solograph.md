@@ -12,6 +12,8 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
+index_line: "solograph: code intelligence MCP server, FalkorDB + tree-sitter, 15 tools"
+index_section: "project"
 ---
 
 # Solograph

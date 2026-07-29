@@ -6,6 +6,8 @@ created: 2026-04-07
 tags: [context-graphs, agents, decision-traces, memory, knowledge-graph]
 publish: true
 source_path: "1-methodology/context-graphs.md"
+index_line: "Context Graphs (1-methodology/context-graphs.md). Decision traces, compound learning, capture→retrieve→apply"
+index_section: "summary"
 ---
 
 ## Key Takeaways

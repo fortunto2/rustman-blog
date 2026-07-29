@@ -8,6 +8,8 @@ tags: [personal, origin, motivation, life2film, manifesto]
 course_module: 1
 course_order: 2
 publish: true
+index_line: "Life2Film → SuperDuperAI, second mountain, products from life. `personal`"
+index_section: "concept"
 ---
 
 Started Life2Film in 2014: help people turn everyday moments into meaningful stories. Not just videos — a way to reflect on life. Technology wasn't ready, people weren't ready, I wasn't ready. Closed in 2021.

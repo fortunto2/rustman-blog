@@ -8,6 +8,8 @@ tags: [hub, validation, ideas]
 course_module: 3
 course_order: 3
 publish: true
+index_line: "Idea validation: S.E.E.D., STREAM, fake-door, kill/iterate/scale"
+index_section: "hub"
 ---
 
 # Startup Validation

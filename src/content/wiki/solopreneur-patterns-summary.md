@@ -8,6 +8,8 @@ course_module: 3
 course_order: 4
 publish: true
 source_path: "2-inspiration/patterns.md"
+index_line: "Patterns (2-inspiration/patterns.md). Revenue benchmarks, pricing, 8 business models, scaling milestones"
+index_section: "summary"
 ---
 
 ## Key Takeaways

@@ -8,6 +8,8 @@ course_module: 5
 course_order: 13
 publish: true
 source_url: "https://t.me/neuraldeep/2047"
+index_line: "Tool calling internals: HTTP → Jinja2 chat template → xgrammar constrained decoding → Hermes parser"
+index_section: "concept"
 ---
 
 How tool calling actually works end-to-end, traced through vLLM internals. Four layers of abstraction that everyone confuses with each other.

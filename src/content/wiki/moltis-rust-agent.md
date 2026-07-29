@@ -8,6 +8,8 @@ course_module: 5
 course_order: 19
 publish: true
 source_url: "https://github.com/moltis-org/moltis"
+index_line: "Moltis: Rust agent server, 2.6k stars. Sandboxed, multi-channel, MCP. Our reqwest PR merged, openai-oxide provider rejected (trust)"
+index_section: "concept"
 ---
 
 # Moltis

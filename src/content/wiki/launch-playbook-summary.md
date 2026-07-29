@@ -6,6 +6,8 @@ created: 2026-02-11
 tags: [launch, validation, niche, seed, metrics, playbook]
 publish: true
 source_path: "1-methodology/launch-playbook.md"
+index_line: "Launch Playbook (1-methodology/launch-playbook.md). 5D Contour, S.E.E.D., Fake-Door, Kill/Iterate/Scale"
+index_section: "summary"
 ---
 
 ## Key Claims

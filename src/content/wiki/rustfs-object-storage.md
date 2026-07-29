@@ -6,6 +6,8 @@ created: 2026-04-14
 tags: [rust, storage, s3, infrastructure, open-source]
 publish: true
 source_url: "https://github.com/rustfs/rustfs"
+index_line: "RustFS: S3-compatible object storage in Rust. 2.3x faster than MinIO, Apache-2.0, 25.6k stars"
+index_section: "concept"
 ---
 
 # RustFS

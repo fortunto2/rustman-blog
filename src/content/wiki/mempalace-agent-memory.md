@@ -8,6 +8,8 @@ course_module: 5
 course_order: 7
 publish: true
 source_url: "https://github.com/milla-jovovich/mempalace"
+index_line: "MemPalace: spatial memory for AI agents (wings/rooms/halls), 96.6% LongMemEval, ChromaDB + knowledge graph, 19 MCP tools"
+index_section: "concept"
 ---
 
 # MemPalace — Spatial Memory for AI Agents

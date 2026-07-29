@@ -11,6 +11,8 @@ publish: true
 publish_as: project
 source_url: "https://you2idea.com"
 github: fortunto2/you2idea
+index_line: "You2Idea: AI startup idea search from 700+ YouTube videos, terminal hacker UI, semantic + fulltext"
+index_section: "project"
 ---
 
 # You2Idea

@@ -8,6 +8,8 @@ course_module: 5
 course_order: 20
 publish: true
 publish_as: post
+index_line: "Agent-Bit: PAC1 competition agent in Rust. SGR pipeline, 14 tools, FileBackend trait, 95.3% on Nemotron"
+index_section: "concept"
 ---
 
 # Agent-Bit: 93% on PAC1 with a Rust agent framework

@@ -7,6 +7,8 @@ tags: [harness, agents, ai-dev, context-engineering, methodology]
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 source_url: "https://openai.com/index/harness-engineering/"
+index_line: "Harness Engineering (1-methodology/harness-engineering.md). 3 components, 6 adoption steps, OpenAI 10x"
+index_section: "summary"
 ---
 
 ## Key Takeaways
