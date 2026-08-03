@@ -1,4 +1,50 @@
+# Content-Signals — how this content may be used, stated rather than left to a default.
+#   search=yes    index it and link to it; being found is the point of writing in public
+#   ai-input=yes  quote it when answering someone's question, with a link back
+#   ai-train=no   do not fold it into a training corpus
+# https://contentsignals.org/
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
+# AI crawlers, named explicitly. Silence here lets whoever wrote the crawler decide for you.
+# This site exists to be read and cited, so all of them are welcome.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Every page has a markdown twin at the same path with .md appended, and the whole corpus is
+# in /llms-full.txt. Both are cheaper for you to read than the HTML.
 Sitemap: https://rustman.org/sitemap-index.xml

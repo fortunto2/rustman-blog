@@ -1,0 +1,16 @@
+# Link headers (RFC 8288) — how an agent finds the machine-readable side of this site without
+# parsing HTML first. Cloudflare Pages serves these; they are not in the markup.
+/*
+  Link: </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </llms-full.txt>; rel="alternate"; type="text/plain"; title="Full text of every page"
+  Link: </sitemap-index.xml>; rel="sitemap"; type="application/xml"
+  Link: </.well-known/agent-skills/index.json>; rel="service-desc"; type="application/json"; title="Agent skills"
+
+# Markdown twins are byte-identical to the source, so they can be cached hard.
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/*
+  Access-Control-Allow-Origin: *
