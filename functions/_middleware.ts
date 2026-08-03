@@ -48,6 +48,16 @@ export const onRequest: PagesFunction = async (context) => {
     ? twinPath(url.pathname)
     : null;
 
+  // The home page has no markdown source, but it is the first thing an agent asks for. Its
+  // honest markdown representation is llms.txt — the map of the site, written for exactly
+  // this reader — so point there rather than answering with a page of layout.
+  if (readOnly && wantsMarkdown(request.headers.get("accept")) && url.pathname === "/") {
+    return new Response(null, {
+      status: 302,
+      headers: { Location: "/llms.txt", Vary: "Accept", "Content-Location": "/" },
+    });
+  }
+
   if (path === null) {
     const original = await next();
     const response = new Response(original.body, original);

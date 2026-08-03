@@ -5,6 +5,7 @@
   Link: </llms-full.txt>; rel="alternate"; type="text/plain"; title="Full text of every page"
   Link: </sitemap-index.xml>; rel="sitemap"; type="application/xml"
   Link: </.well-known/agent-skills/index.json>; rel="service-desc"; type="application/json"; title="Agent skills"
+  Link: </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"; title="MCP server"
 
 # Markdown twins are byte-identical to the source, so they can be cached hard.
 /*.md
