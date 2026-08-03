@@ -81,6 +81,12 @@ const isArticle = !!article;
       ...(article.tags ? { "keywords": article.tags.join(", ") } : {}),
     })} />
   )}
+
+<!-- Our own counter. No cookie and no client-side id at all — the anonymous id is derived at
+     the edge and rotates daily — so nothing here needs a consent banner. It exists so this
+     site is counted alongside the products, not in a dashboard of its own.
+     https://github.com/fortunto2/superduper-analytics -->
+<script defer src="https://analytics.superduperai.co/sda.js" data-source="rustman" is:inline></script>
 </head>
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] dark:bg-[var(--color-bg-dark)] dark:text-[var(--color-text-dark)] min-h-screen flex flex-col">
 
