@@ -9,7 +9,7 @@ course_module: 7
 course_order: 3
 publish: true
 publish_as: project
-source_url: "https://github.com/fortunto2/airq"
+source_url: "https://airsignal.app"
 crate: airq
 github: fortunto2/airq
 index_line: "airq: CLI air quality checker, Rust core, sensor+model merge, WASM"
