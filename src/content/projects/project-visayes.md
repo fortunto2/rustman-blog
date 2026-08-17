@@ -11,6 +11,8 @@ publish: true
 publish_as: project
 source_url: "https://visayes.app"
 github: fortunto2/visa-photo
+index_line: "VisaYes: does your visa photo meet the spec? Rust + WASM in the browser, 9 languages, nothing uploaded. Desktop app on Dioxus from the same core"
+index_section: "project"
 ---
 
 # VisaYes
@@ -50,3 +52,10 @@ Reference material gets read. A verdict gets clicked.
 Rust core for the image work, Astro for the site, Cloudflare Pages. Every document page is
 built twice — once for people, once as markdown for agents, from a single derivation so a
 corrected specification cannot reach one and miss the other.
+
+## There is a desktop app too
+
+The same Rust core also ships as an offline desktop application built with Dioxus — Apple
+Vision or ONNX for background removal, the same country presets, ICAO guides and print
+layout. The web tool covers the case where someone needs one photo now; the desktop one
+covers the case where someone processes many.
