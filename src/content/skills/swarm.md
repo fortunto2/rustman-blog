@@ -53,6 +53,7 @@ Teammates should use available search tools:
 - **WebSearch** (built-in) — broad discovery, market reports, always available
 - **WebFetch** — scrape specific URLs for details, always available
 - **MCP `web_search`** (if available) — additional search with engine routing
+- **MCP `web_extract`** (if available) — read a single page as clean markdown
 - **MCP `kb_search`** (if available) — search local knowledge base for related research
 
 **Domain filtering:** use `site:github.com`, `site:reddit.com` etc. for targeted results.

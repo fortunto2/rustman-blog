@@ -95,6 +95,8 @@ Three pragmatic choices made adoption easy:
 
 Compare to MCP (which requires a server, schema, transport layer) or LangChain tools (require Python imports, type signatures). SKILL.md is closer to AGENTS.md or robots.txt — a convention, not a system.
 
+**How far it went (Jul 2026):** skill repos are now top-100-all-time GitHub projects — `obra/superpowers` 263K (#14), `multica-ai/andrej-karpathy-skills` 197K (#24, a single CLAUDE.md), `mattpocock/skills` 194K (#28), `anthropics/skills` 165K (#47), `ui-ux-pro-max-skill` 111K (#94). A markdown convention outranks most runtimes it plugs into. See [[github-top-100-agentic-shift]].
+
 ## Trade-offs
 
 **Pros**

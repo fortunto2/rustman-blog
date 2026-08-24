@@ -28,6 +28,7 @@ Builder.io ships production templates (Clips, Plans, Design, Content, Slides, An
 
 - [[agent-toolkit-landscape]] — extends the "Agent Frameworks" row of that map with a category the matrix doesn't yet name: **isomorphic action frameworks**, where the differentiator isn't orchestration or memory but collapsing UI/API/agent/MCP/CLI into one definition. Worth adding as its own line.
 - [[webwright-code-as-action]] — both reject "agent chats *about* the app." But they pick opposite axes: Webwright makes the agent **write code that drives a disposable browser**; agent-native makes the agent a **first-class actor inside a persistent app's own action layer**. Webwright = the app is external and you script it; agent-native = the app is yours and the agent shares its verbs.
+- [[buzz-agent-workspace]] — the same "define it once, every consumer projects onto it" move at a different altitude: agent-native collapses UI/API/MCP/CLI into one action, Buzz collapses chat/git/CI/approvals into one signed event log. Agent-native makes the agent a first-class actor in the *app*; Buzz makes it a first-class member of the *team*.
 - [[skills-standard]] — agent-native's "skills for Claude Code / Cursor / Copilot" ride the same SKILL.md cross-platform standard, confirming the pattern that frameworks now ship *both* a runtime and a thin skill layer to hook into whatever harness the developer already uses.
 
 ## Why it matters for solo builders

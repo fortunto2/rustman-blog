@@ -1,13 +1,13 @@
 ---
 type: concept
 title: "Writing effective CLAUDE.md files"
-description: "Patterns for writing agent instruction files. Karpathy's 4 principles (29k stars), our hierarchical approach, what works, what doesn't. Quality Gate, progressive disclosure, refs over inline."
+description: "Patterns for writing agent instruction files. Karpathy's 4 principles (197k stars, #24 all-time), our hierarchical approach, what works, what doesn't. Quality Gate, progressive disclosure, refs over inline."
 created: 2026-04-14
 tags: [agents, context-engineering, methodology, claude-code]
 course_module: 5
 course_order: 22
 publish: true
-index_line: "How to write effective CLAUDE.md: Karpathy 4 principles (29k stars), hierarchical approach, Quality Gate, drift detection, what works and what doesn't"
+index_line: "How to write effective CLAUDE.md: Karpathy 4 principles (197k stars, #24 all-time on GitHub), hierarchical approach, Quality Gate, drift detection, what works and what doesn't"
 index_section: "concept"
 ---
 
@@ -15,9 +15,9 @@ index_section: "concept"
 
 CLAUDE.md is the primary way to shape agent behavior. It loads into context on every request. The difference between a good and bad CLAUDE.md is the difference between an agent that helps and one that fights you.
 
-## Karpathy's 4 principles (29k stars)
+## Karpathy's 4 principles (197k stars, #24 all-time)
 
-[andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) went viral for good reason. Four rules addressing three real LLM failure modes:
+[andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) went viral for good reason. Four rules addressing three real LLM failure modes:
 
 **Failure modes:** silent assumptions, overcomplication, orthogonal changes.
 
@@ -115,9 +115,10 @@ See [[agent-mistake-fix-harness]] for the feedback loop: agent makes a mistake â
 
 ## Links
 
-- [Karpathy skills](https://github.com/forrestchang/andrej-karpathy-skills) -- 29k stars, the baseline
+- [Karpathy skills](https://github.com/multica-ai/andrej-karpathy-skills) -- 197k stars (#24 all-time), the baseline; repo moved from forrestchang/ to multica-ai/
 - [[context-engineering]] -- CLAUDE.md as code, progressive disclosure
 - [[agent-self-discipline]] -- drift detection, complexity thresholds
 - [[agent-mistake-fix-harness]] -- the ratchet: mistake â†’ harness fix
 - [[claude-code-anatomy]] -- CLAUDE.md is the root node of the seven-component architecture; paper measures what sits behind it (98.4% infra)
 - [[design-md-spec]] -- Google Labs' DESIGN.md applies the same CLAUDE.md pattern to visual identity: YAML tokens + markdown rationale, linted in CI
+- [[github-top-100-agentic-shift]] -- a single CLAUDE.md file now outranks React by star velocity; 16 of GitHub's all-time top-100 are harness configs

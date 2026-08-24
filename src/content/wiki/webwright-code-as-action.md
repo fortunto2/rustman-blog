@@ -91,3 +91,4 @@ Both can be right depending on the task. Short, stateful interactions (logged-in
 - [[harness-engineering-summary]] — Webwright is itself a harness study: the action-space choice (free-form Python vs indexed clicks) is the load-bearing decision, not the model
 - [[agent-toolkit-landscape]] — browser-agent slot in the broader catalog; Webwright is the new entrant pushing the code-as-action axis
 - [[agent-native-builder]] — opposite axis on the same "agent acts, not chats" idea: Webwright scripts an external, disposable browser; agent-native makes the agent a first-class actor inside your own app's action layer
+- [[cloudflare-computer-agent-runtime]] — the same inversion one layer down: Webwright makes the browser disposable and keeps the workspace; Cloudflare makes the *computer* disposable and keeps the filesystem

@@ -1,6 +1,6 @@
 ---
 title: "/android-release"
-description: "Ship an Android app to testers or to Google Play. Use when the user says or . Leads with the MINIMAL tester-link workflow (fastest), then the FULL production listing. Carries the exact Play Console browser steps, signing/keystore setup, the testing-track comparison, required assets, and the gotchas (lintVitalRelease crash, 16 KB alignment) so you don't re-learn them"
+description: "Ship an Android app to testers or to Google Play, or push an update to an app already listed there. Use when the user says wants install attribution set up (Play referrer UTMs, Install Referrer API, an in-app counter and the matching Data safety form), or hits a Play policy deadline (). Leads with the MINIMAL tester-link workflow (fastest), then the FULL production listing, then UPDATE for an existing app. Carries the exact Play Console browser steps, signing/keystore setup, the testing-track comparison, required assets, and the gotchas (lintVitalRelease crash, 16 KB alignment, target API deadline) so you don't re-learn them"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"
@@ -24,6 +24,14 @@ Golden rules:
   covers it — but state what you did.
 - **Back up the keystore + password** — losing it = can't update the same Play listing.
 - Browser work: **the user logs in** (never touch their password/2FA); you drive the forms after.
+  Playwright MCP runs its **own persistent Chromium profile**, NOT the user's Chrome — a Chrome that
+  is "already logged in" is invisible to it, and you can't attach unless it was started with
+  `--remote-debugging-port` (check `curl -s localhost:9222/json/version` before promising anything).
+  So: open the Google sign-in page, hand the window over, wait. The login then sticks for later sessions.
+- **The app may live in someone else's developer account** (client/agency who granted you access).
+  `play.google.com/console/developers` shows a **"Choose developer account"** list — one Google login
+  can hold several. Before concluding "the app isn't here", check every developer account in that list,
+  not just the app list of the first one. Newly granted access appears there after a reload.
 
 ---
 
@@ -115,6 +123,11 @@ Pick **data types** (Location→Precise, Photos, Personal info→Name/Email/User
 UGC), then per type open its modal: **Collected** (your backend is not "Shared" with third parties) →
 not ephemeral → **optional** ("users can choose") → purpose **App functionality** → Save.
 
+⚠️ **A counter in the app changes these answers.** Any analytics means Q1 is Yes and **App
+activity → App interactions** is collected. Declare it in the same release that ships the counter,
+not after — see [Analytics](#analytics--attribution-and-the-in-app-counter). Play suspends over a
+Data safety form that disagrees with the app's behaviour, and the form is the easier thing to fix.
+
 ### Browser-automation gotchas (Playwright on Play Console)
 - **Angular Material radios/checkboxes ignore JS `.click()`** — must use a real `browser_click`. Target
   them by the accessibility ref, or `question:has-text("<unique question text>") >> role=radio[name="No"]`.
@@ -130,10 +143,56 @@ not ephemeral → **optional** ("users can choose") → purpose **App functional
   contact email — took two tries).
 - **Direct URLs to `/app-content/*` sub-pages redirect to Home** on hard-navigation; reach them by
   clicking the in-app "App content → overview" link (SPA nav), or navigate to `/app-content/overview`.
+  Deep track URLs (`/tracks/app-bundle-explorer`, `/tracks/<id>/releases/…`) are worse — a cold load
+  dies with **"An unexpected error has occurred (64146155)"**. Land on `/app-dashboard` or
+  `/test-and-release`, then click through the SPA nav. Handy trick: `document.querySelectorAll('a[href]')`
+  on `/test-and-release` dumps every track URL incl. the numeric closed-testing track id.
+- **Read the page with `browser_evaluate`, not full snapshots** — Console pages are enormous. Grab
+  `document.body.innerText` sliced around an anchor phrase, or map `[role="row"]` → `innerText`, and
+  wrap it in `new Promise(res => setTimeout(…, 4000-6000))` because the SPA renders after navigation
+  reports done. Cheap, and it survives the re-renders that invalidate accessibility refs.
+- **Refs go stale constantly** (Console re-renders, plus `?pli=1` redirects on first load). Prefer
+  text-based selectors (`button:has-text("Save")`) or find-by-innerText + `.click()` inside
+  `browser_evaluate` over refs captured more than one action ago.
 - **"Send app for review" locked with everything seemingly filled?** It's almost never a UI lag —
   a required sub-field is silently blank. The dashboard task name understates its requirements (e.g.
   "Select an app category…" also needs **Tags**). When a checklist item won't turn green, open it and
   fill EVERY field, including the ones that look optional, before assuming it's a glitch.
+
+---
+
+## C. UPDATE — new version of an app already on Play
+
+The common ask (policy deadline, bugfix, new build). Nothing from section B is re-done — listing and
+declarations are already approved. Order:
+
+1. **Bump `versionCode`** (strictly greater than anything ever uploaded to ANY track — Play rejects
+   duplicates permanently, even for a track you never rolled out) + `versionName`. Rebuild the signed
+   AAB with the **same upload key**, or the update won't install over the existing app.
+2. Find the live track first: **Dashboard** tells you what's actually active (e.g. "Production —
+   Inactive" means the app has never gone to prod, no matter what the repo history suggests). Ship into
+   the track that's Active; **Test and release → Latest releases and bundles** lists them all.
+3. Track page → **Create new release** → **Upload** the AAB → wait ~40 s for "optimized for
+   distribution" → the table then shows **Version / API levels / Target SDK** for the new bundle next
+   to the previous one. **Read that row** — it's the cheapest proof the build is the one you meant
+   (right versionCode, right targetSdk).
+4. Release name auto-fills as `<code> (<name>)`; notes go inside `<en-US>…</en-US>`. Verify both
+   `input.value`s before continuing.
+5. **Next** → review screen: check the **device-support diff** ("Devices no longer supported" must be
+   0 unless you intended it) and the warnings. Benign: *"contains native code, no debug symbols"*,
+   *"no deobfuscation file"*. Staged roll-out defaults to 100%.
+6. **Save** — this does NOT publish. It parks the change in **Publishing overview** ("Your change has
+   been saved… go to Publishing overview"). Draft stage, safe to reach without asking.
+7. **Publishing overview → "Submit N changes for review" → "Send changes for review"** (confirm dialog).
+   ← **outward-facing: needs the user's explicit OK.** Quick checks run first (up to ~14 min), then the
+   status becomes **"Changes in review"**. Review is typically ≤7 days.
+8. **Managed publishing off** = it goes live to that track's audience the moment review passes. If the
+   user wants to gate the moment, turn managed publishing ON *before* submitting.
+
+**Production may be locked** even for a long-lived app: personal accounts must run a closed test with
+**≥12 opted-in testers for 14 days** before "Apply for production" unlocks. The Dashboard shows the
+live counter ("N testers currently opted-in"). Until it's met, updates can only go to testing tracks —
+say so early instead of hunting for a missing button.
 
 ---
 
@@ -153,6 +212,55 @@ keytool -genkeypair -v -keystore keystore/upload.jks -alias <a> -keyalg RSA -key
 `buildTypes.release.signingConfig`. **Gitignore** `*.jks`, `keystore/`, `keystore.properties`, `*.aab`, `*.apk`.
 Play App Signing (on by default) re-signs with Google's key; your keystore is the **upload** key.
 
+## Analytics — attribution and the in-app counter
+
+Sibling of the same section in **`ios-release`**; the shape is identical, the mechanisms are not.
+Set it up **before** the listing goes public — attribution cannot be applied retroactively.
+
+### 1. Where the install came from
+
+Play uses UTM parameters on the store URL, not Apple's `ct`:
+
+```
+https://play.google.com/store/apps/details?id=<PACKAGE>&referrer=utm_source%3Dsite%26utm_campaign%3Dhero
+```
+
+The value must be **percent-encoded** — `&` inside `referrer` unencoded silently truncates it, and
+the report then shows the campaign as blank rather than as an error. Play Console → Acquisition
+reports attributes store listing views, installs and buyers to it.
+
+For the in-app half there is something iOS has no equivalent of: the **Play Install Referrer API**
+(`com.android.installreferrer:installreferrer`) hands the app its own referrer string on first
+launch. That is a legitimate first-party channel, not a fingerprint — Play gives it, the user's
+device is not queried. Read it once, send it as a prop on the first `app_launched`, never store it
+anywhere else.
+
+### 2. The counter itself
+
+Same endpoint as web and iOS, so a landing visit and an app launch compare without a join:
+
+```
+POST https://analytics.superduperai.co/e
+{"events":[{"source":"<id from registry/sources.yaml>","platform":"android",
+            "name":"app_launched","version":"1.4.2","anon":"<install-scoped UUID>"}]}
+```
+
+**`anon` is generated in the app** — a UUID on first launch, kept locally, gone when the app is
+uninstalled. Not the Advertising ID, not `ANDROID_ID`, not the account. Deriving it at the edge from
+the IP does not work on mobile: the carrier IP moves and NAT merges subscribers.
+
+**Kotlin Multiplatform:** the client belongs in `commonMain` and covers iOS at the same time. Check
+for `composeApp/src/commonMain` before writing anything platform-specific — and grep for the app's
+existing HTTP client rather than adding a second one for four requests.
+
+### 3. What it can and cannot answer
+
+Aggregate only: "40 installs came from the landing page" — yes; "this visitor installed it" — no.
+Per-person site→install linking needs a cross-site identifier, which forces a consent banner. That
+is what fingerprinting and clipboard tricks are underneath, whatever an SDK calls them.
+
+---
+
 ## Gotchas
 - **`lintVitalRelease` crashes** on KMP/Compose ("Unexpected failure during lint analysis of
   MainActivity.kt") and fails `assembleRelease` though the APK/AAB packaged fine →
@@ -162,4 +270,16 @@ Play App Signing (on by default) re-signs with Google's key; your keystore is th
   Verify by parsing the AAB's ELF PT_LOAD headers for `p_align >= 16384`.
 - **AAB ≠ installable** — testers need an **APK** (`assembleRelease`); AAB is Play-only.
 - **Package name** locks at Create-app (Check availability); it's the applicationId forever.
+- **Target API deadline** — Play requires new uploads to target an API level within ~1 year of the
+  latest Android release, and emails "your app doesn't meet Google Play's target API level
+  requirements" ahead of the cutoff (Android 15 / API 35 → 31 Aug 2025; Android 16 / API 36 →
+  31 Aug 2026; expect the pattern to continue). Fix = raise `compileSdk` **and** `targetSdk`, bump
+  versionCode, re-upload. An old AGP refuses to be quiet about a newer compileSdk but still builds
+  fine: `android.suppressUnsupportedCompileSdk=<sdk>` in `gradle.properties` beats an AGP upgrade as
+  the first move (verified: AGP 8.7.3 + `compileSdk 36`). Confirm the result — the merged manifest
+  under `androidApp/build/intermediates/**/AndroidManifest.xml` must say
+  `android:targetSdkVersion="<sdk>"`; don't trust the Gradle file alone.
+- **Behaviour changes ride along with a targetSdk bump** — enforced edge-to-edge, orientation/resize
+  overrides on large screens, predictive back. Worth a device/emulator pass on a UI-heavy app before
+  submitting, and worth telling the user it's untested if there's no device at hand.
 ````

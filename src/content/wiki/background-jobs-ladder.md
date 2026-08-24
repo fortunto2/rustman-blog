@@ -30,3 +30,4 @@ index_section: "concept"
 
 - [[infra-two-tools]] — background jobs are the orchestration layer on top of SST/Pulumi infra
 - [[one-pain-one-feature-launch]] — start with cron, don't over-engineer the job system before validating the product
+- [[claude-subscription-boundary]] — applies this ladder to LLM automations: CF Workers for triggers, one separate host for the agent, because a Worker can't spawn the CLI

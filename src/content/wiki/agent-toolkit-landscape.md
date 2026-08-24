@@ -8,7 +8,7 @@ tags: [agents, tools, comparison, solo-factory, skills, methodology, observabili
 course_module: 6
 course_order: 2
 publish: true
-index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers, Compound Engineering) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 11 categories, comparison matrix, 8-layer stack"
+index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers 263K, gstack 125K, ECC 235K) vs **taste skills** (hallmark, impeccable, ponytail, /humanize) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 13 categories, comparison matrix, 8-layer stack, roles-vs-stages analysis"
 index_section: "concept"
 ---
 
@@ -24,7 +24,8 @@ A growing catalog of AI agent toolkits, organized by what they actually do. Not 
 |----------|---------------|----------|
 | **Skill Marketplaces** | "I need to find and install skills" | skills.sh, SkillsMP |
 | **Prompt Libraries** | "I need a domain specialist now" | Agency Agents |
-| **Executable Skills** | "I need a startup pipeline" | solo-factory, Superpowers |
+| **Executable Skills** | "I need a startup pipeline" | solo-factory, Superpowers, gstack, ECC |
+| **Taste Skills** | "The output is correct and looks like AI slop" | hallmark, impeccable, ponytail, `/humanize` |
 | **Project Managers** | "I need autonomous long-running execution" | GSD-2 |
 | **Agent Org Orchestration** | "I have 20 agents and no idea who does what, or what it costs" | [[paperclip-agent-company\|Paperclip]], Pentagon, Relevance Workforce |
 | **Integration Platforms** | "My agent needs to call 1000+ APIs" | Composio |
@@ -79,8 +80,10 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 
 | Tool | Stars | Skills | Platform | Key Feature |
 |------|-------|--------|----------|-------------|
-| [Superpowers](https://github.com/obra/superpowers) | 143K | 15+ | Claude Code, Cursor, Copilot, Codex, Gemini CLI, OpenCode | Enforced 7-phase dev workflow, subagent-driven development |
+| [Superpowers](https://github.com/obra/superpowers) | 263K | 15+ | Claude Code, Cursor, Copilot, Codex, Gemini CLI, OpenCode | Enforced 7-phase dev workflow, subagent-driven development |
 | [[project-solo-factory\|solo-factory]] | — | 30 | Claude Code | Full startup pipeline: research → ship |
+| [gstack](https://github.com/garrytan/gstack) | 125K | 23 cmds + 8 tools | Claude Code | Garry Tan's (YC CEO) setup as **roles**, not stages: CEO, eng manager, designer, reviewer, QA lead (real browser), security officer (OWASP + STRIDE), release engineer |
+| [ECC](https://github.com/affaan-m/ECC) | 235K | — | Claude Code, Codex, OpenCode, Cursor | "Harness operating system": skills + instincts + memory + security (`ecc-agentshield`), distributed as a GitHub App and npm packages |
 | [[bmad-method\|BMAD-METHOD v6]] | — | 40+ | Claude Code | Agents-as-skills with menu dispatch, 3-layer TOML customization, CSV-driven help router |
 | [[ruflo-orchestration\|Ruflo]] (ex-Claude Flow) | — | 30 + 60 cmds + 100 agents | Claude Code | Spans this category + Project Managers + Memory: 32 plugins, AgentDB, federation, GOAP planner |
 | [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) (Every) | — | 36 skills + 51 agents | Claude Code, Codex, Cursor, Copilot, Gemini CLI | Planning and review as first-class commands; `/ce-compound` files the lesson back |
@@ -110,6 +113,24 @@ Pipeline: output of one skill is input to next. `/pipeline` chains automatically
 **Compound Engineering** (Every Inc, MIT) — 36 skills + 51 agents built on one belief: *each unit of engineering work should make the next unit easier*. Their ratio claim: **"80% of engineering is in planning and review, 20% is in execution"** — enforced by making planning and review actual commands (`/ce-ideate`, `/ce-brainstorm`, `/ce-plan`, `/ce-work`, `/ce-code-review`, `/ce-commit-push-pr`, `/ce-compound`) instead of steps you skip when tired.
 
 **Why it matters even if you write your own skills:** `/ce-compound` is the [[agent-mistake-fix-harness|harness loop]] promoted to an explicit, invocable step in the cycle — not a habit you hope to remember. That's the transferable idea: the ratchet needs its own command, not just a principle in CLAUDE.md.
+
+**gstack vs solo-factory — roles vs stages.** gstack decomposes the same problem by *who reviews*, solo-factory by *what stage you're in*. Roles give you adversarial pressure at any point (a CEO who rethinks the product, a designer who catches slop); stages give you a resumable pipeline with artifacts. Worth borrowing from gstack: `/office-hours` (product pushback before planning), `/qa` against a live staging URL with a real browser, and security as a gate rather than a final-pass afterthought. See [[github-top-100-agentic-shift]] for why this category now occupies 16 slots in GitHub's all-time top-100.
+
+---
+
+## Taste Skills
+
+Skills that encode *judgment*, not procedure. The output was already correct — these decide whether it's any good. A newer category, and the hardest to fake: the value is one person's taste, serialized.
+
+| Tool | Stars | What it constrains |
+|------|-------|-------------------|
+| [hallmark](https://github.com/Nutlope/hallmark) (Nutlope) | 20K | Anti-AI-slop design: kills the purple-gradient/emoji-card default look |
+| [impeccable](https://github.com/pbakaus/impeccable) | 52K | A design language the harness reads before generating UI |
+| [ponytail](https://github.com/DietrichGebert/ponytail) | 91K | "Think like the laziest senior dev in the room" — the best code is the code you never wrote |
+| [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 111K | Design intelligence across 10+ agents and platforms |
+| `/humanize` (solo-factory) | — | Strips AI writing tells: em dashes, stock phrases, rule-of-three lists |
+
+**When to use:** when the failure mode is "technically passes review, still embarrassing to ship." Procedure skills can't catch that — a checklist has no taste. Related: [[design-md-spec]] (taste as a linted artifact), [[solo-methodology]].
 
 ---
 
@@ -223,7 +244,7 @@ Persistent memory that survives between sessions. See [[agent-memory-architectur
 | [[mempalace-agent-memory\|MemPalace]] | 27K | ChromaDB + SQLite KG | Spatial memory, 96.6% LongMemEval |
 | [[project-solograph\|Solograph]] | — | FalkorDB + SQLite + files | Graph + vector + session search, 15 MCP tools |
 | [[graphify-vs-solograph\|Graphify]] | ~98K (unverified) | `graph.json` on disk | Deterministic tree-sitter graph, **no vector store**, every edge tagged EXTRACTED/INFERRED |
-| [OpenViking](https://github.com/volcengine/OpenViking) | 27K | `viking://` virtual FS | Unifies memory + RAG + skills; tiered L0/L1/L2 loading |
+| [OpenViking](https://github.com/volcengine/OpenViking) | 33K | `viking://` virtual FS | Unifies memory + RAG + skills; tiered L0/L1/L2 loading |
 | [QMD](https://github.com/tobi/qmd) | 20K | Local | BM25 + vector + LLM reranking search |
 | [Letta](https://github.com/cpacker/MemGPT) | — | — | MemGPT: core/archival/recall memory |
 | Claude Code auto-memory | — | Files | Built-in ~/.claude/ memory system |
@@ -346,6 +367,7 @@ The [[agent-mistake-fix-harness|harness loop]] applies to all layers: agent mist
 - [[fff-agent-file-search]] — fff.nvim: memory pushed into the tool layer (file search) instead of the agent. Reduces tokens and roundtrips
 - [[design-md-spec]] — Google Labs' DESIGN.md: the CLAUDE.md/AGENTS.md pattern applied to design systems. Another agent-readable spec file with a linter
 - [[vercel-agent-browser]] — Vercel Labs' agent-browser: 30k★ Rust CLI with CDP. Browser-automation primitives rewritten for LLMs (a11y refs, content boundaries, daemon persistence)
+- [[github-top-100-agentic-shift]] — how big this category got: 16 of GitHub's all-time top-100 repos are harness tooling, all created after Jan 2025. Also why stars stopped being a usable signal
 
 ---
 

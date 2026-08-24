@@ -30,6 +30,7 @@ Check which tools are available:
 - `source_related(video_url)` — find related videos by shared tags
 - `kb_search(query)` — cross-reference with knowledge base
 - `web_search(query)` — discover new videos to index
+- `web_extract(url, size, page)` — read a linked article as clean markdown
 
 ## Steps
 

@@ -25,6 +25,7 @@ Deep research before PRD generation. Produces a structured `research.md` with co
 If MCP tools are available, prefer them over CLI:
 - `kb_search(query, n_results)` — search knowledge base for related docs
 - `web_search(query, engines, include_raw_content)` — web search with engine routing
+- `web_extract(url, size, page)` — one page as clean markdown, boilerplate removed
 - `session_search(query, project)` — find how similar research was done before
 - `project_info(name)` — check project details and stacks
 - `codegraph_explain(project)` — architecture overview of an existing project (stack, patterns, deps)
@@ -32,6 +33,9 @@ If MCP tools are available, prefer them over CLI:
 - `project_code_search(query, project)` — semantic search over project source code
 
 MCP `web_search` supports engine override: `engines="reddit"`, `engines="youtube"`, etc.
+For reading one page in full, prefer `web_extract` over `include_raw_content`: it runs
+trafilatura, so navigation and footers are gone and tables survive. `size="s|m|l"` caps
+at 5k/10k/25k chars, `size="f"` paginates the whole document and `page=2` walks it.
 If MCP tools are not available, use WebSearch/WebFetch as primary. If MCP web_search tool is available, use it for better results.
 
 ### Reddit Search Best Practices
@@ -47,7 +51,7 @@ When a search finds a relevant Reddit post, reading its full content requires a 
 ```
 1. MCP Playwright (old.reddit.com)     ← BEST: bypasses CAPTCHA, full post + comments
 2. PullPush API (api.pullpush.io)      ← search by query/subreddit/author/score/date
-3. MCP web_search include_raw_content   ← sometimes works, often truncated
+3. MCP web_extract / web_search raw     ← sometimes works, often truncated
 4. WebFetch / WebSearch snippets        ← last resort, partial data only
 ```
 
@@ -90,7 +94,7 @@ Use **multiple** search backends together. Each has strengths:
 | **YouTube reviews** | MCP `web_search` with `engines: youtube` | Video reviews (views = demand) |
 | **Market size** | WebSearch | Synthesizes numbers from 10 sources |
 | **SEO / ASO** | WebSearch | Broader coverage, trend data |
-| **Page scraping** | WebFetch or MCP `web_search` with `include_raw_content` | Up to 5000 chars of page content |
+| **Page scraping** | MCP `web_extract` (fallback: WebFetch) | Clean markdown, `size=f` + `page=n` for long docs |
 | **Hacker News** | WebSearch `site:news.ycombinator.com` | HN discussions and opinions |
 | **Funding / Companies** | WebSearch `site:crunchbase.com` | Competitor funding, team size |
 | **Verified revenue** | WebFetch `trustmrr.com/startup/<slug>` | Stripe-verified MRR, growth, tech stack, traffic |

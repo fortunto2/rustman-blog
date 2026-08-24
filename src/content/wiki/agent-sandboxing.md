@@ -29,3 +29,4 @@ LLM agents (Claude Code, Codex, Gemini CLI) run with full filesystem access. San
 - [[privacy-as-architecture]] — sandboxing = privacy at the execution layer, not just data layer
 - [[harness-engineering-summary]] — sandbox is an architectural constraint (component 2) for agent safety
 - [[agent-self-discipline]] — sandboxing is the external guardrail when internal discipline isn't enough
+- [[cloudflare-computer-agent-runtime]] — the same isolation at cloud scale, where the driver is unit economics rather than trust: an isolate per agent instead of a VM per agent

@@ -81,6 +81,68 @@ OpenAI: previously 20% of time (Fridays) went to manual cleanup of "AI slop." Do
 
 ---
 
+## Feedback Loops — the agent's only ground truth
+
+An agent cannot see. Everything it believes about the running system comes through a loop: a command it runs that returns a verdict. The **tightness** of that loop sets the ceiling on everything else — context engineering and constraints only decide what the agent tries, the loop decides whether it finds out it was wrong.
+
+A loop is **tight** when it is:
+
+- **Red-capable** — it can fail on the thing you care about, and you have watched it fail. A loop that has only ever been green proves nothing; it may not reach the code path at all.
+- **Deterministic** — same verdict every run. Pin time, seed RNG, isolate the filesystem, freeze the network.
+- **Fast** — seconds, not minutes. A 30-second flaky loop is barely better than none; a 2-second deterministic one is a superpower.
+- **Agent-runnable** — runs unattended. A human in the loop is a last resort, and even then driven by a script so answers come back structured.
+
+**Build the loop before the work, not after.** The pull is always to read code and form a theory first — that's the failure mode. Whatever the task, name the command that will tell you whether it worked, run it once to see its output, and only then start.
+
+**Treat the loop as a product.** Once you have one, tighten it: cache setup, skip unrelated init, narrow scope, assert the specific symptom instead of "didn't crash". The loop gets used hundreds of times; two seconds saved compounds.
+
+**When it can't be deterministic**, raise the reproduction rate instead of chasing a clean repro: loop the trigger 100×, parallelise, add stress, inject sleeps. A 50%-flake is debuggable; 1% is not.
+
+The catalogue of loop constructions — failing test, curl script, CLI+snapshot diff, headless browser, trace replay, throwaway harness, fuzz loop, bisect harness, differential run, HITL script — lives in `skills/diagnose/SKILL.md` Phase 1, ordered by preference. It's written for bugs but the constructions are general: any task where you need a verdict picks from the same list.
+
+**Loops elsewhere in the factory:** TDD's red→green is a loop with a seam agreed up front (`skills/build/references/tdd-seams.md`). `make integration` is the CLI-first loop over business logic. `/review` is the slow loop over a whole change. `/retro` → `~/.solo/evolution.md` is the loop over the factory itself. When a stage feels unreliable, ask what its loop is and whether it can go red.
+
+---
+
+## What a loop costs is part of its design
+
+A loop nobody runs guards nothing, and cost is what decides whether it gets
+run. Four rules, each learned by paying for the opposite:
+
+**Split hooks by cost, not by importance.** A pre-commit hook that runs the
+whole test suite takes minutes, so it gets bypassed with `--no-verify` — and a
+bypassed hook checks nothing. Put seconds-long tripwires on commit and the
+suites on push. The tripwires are worth writing by hand: one per bug that
+actually shipped, phrased as "this file must still contain that guard".
+
+**Measure per test, not per suite.** A suite's total time names the suite, not
+the culprit. Trimming what looked like the expensive loop in one suite saved
+three seconds; the real cost was a different test in the same file, and one
+sort over per-test timings found it in a minute:
+
+```bash
+<test command> 2>&1 | grep -E "passed|failed" | sort -t'(' -k2 -rn
+```
+
+**A test guards a code path, not an amount of data.** The same route through
+the system is exercised by three fixtures or by nine; the extra six buy
+nothing but wall-clock. Fixture volume is a dial, and its default should be
+the smallest value that still reaches the path.
+
+**Repetition is a deliberate act, not a default.** Tests that repeat an
+operation to catch a flake are worth having and worth switching off: put the
+count behind an environment variable, default it to one, and raise it before a
+release or while chasing the flake. Derive the assertions from the fixture too
+— a hardcoded expectation ("the output is at least 25 seconds") turns the next
+deliberate trim red for the wrong reason.
+
+**Verify parallelism instead of assuming it.** Test runners that parallelise by
+cloning a whole environment can be slower than serial when the work is not
+CPU-bound: measured 11m32s against 3m on one iOS suite. And inside a test that
+measures duration, concurrency destroys the very number being asserted.
+
+---
+
 ## 6 Steps of Adoption (Mitchell Hashimoto)
 
 ### Step 1: Drop the chatbot

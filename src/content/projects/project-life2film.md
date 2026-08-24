@@ -98,3 +98,4 @@ Started in 2014. Built the first version, reached 1M+ users on iOS. Technology w
 - [[origin-story]] — the personal story behind Life2Film
 - [[project-superduperai]] — the studio rebuilding the dream
 - [[privacy-as-architecture]] — on-device video processing, your memories stay yours
+- [[claude-subscription-boundary]] — why the in-app LLM key has to be BYOK on an API key, not a Claude subscription login

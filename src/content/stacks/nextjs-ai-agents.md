@@ -16,7 +16,8 @@ source_path: "1-methodology/stacks/nextjs-ai-agents.yaml"
 name: Next.js AI Agents
 platform: web
 language: typescript
-framework: nextjs@16.1
+framework: nextjs@16.3
+framework_release: "16.3 — dev memory −90%, faster build/typecheck/render, custom error boundaries, Instant Navigations, and improved AI-agent tooling. That last one lands closest to this stack: see what the framework exposes for agents before hand-rolling it. Full notes in nextjs-supabase.yaml"
 ui_framework: react@19.2
 styling: tailwindcss@4.1
 component_library: shadcn-ui
