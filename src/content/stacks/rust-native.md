@@ -1,21 +1,21 @@
 ---
 type: stack
 title: "Rust Native"
-description: "Rust Native stack template — local | server | embedded | rust (edition 2021, MSRV 1.75+). Copy and use."
+description: "Rust Native stack template — local | server | embedded | rust (edition 2024, MSRV 1.85+). Copy and use."
 created: 2026-02-11
-tags: [stack, local, server, embedded, rust (edition 2021, MSRV 1.75+), "none, axum, clap, slint"]
+tags: [stack, local, server, embedded, rust (edition 2024, MSRV 1.85+), "none, axum, clap, slint"]
 publish: true
 source_path: "1-methodology/stacks/rust-native.yaml"
 ---
 
 # Rust Native
 
-**Platform:** local | server | embedded | rust (edition 2021, MSRV 1.75+)
+**Platform:** local | server | embedded | rust (edition 2024, MSRV 1.85+)
 
 ```yaml
 name: Rust Native
 platform: local | server | embedded
-language: rust (edition 2021, MSRV 1.75+)
+language: rust (edition 2024, MSRV 1.85+)
 package_manager: cargo
 framework: "none (domain-driven) | axum (web) | clap (CLI) | slint (GUI)"
 build: cargo (debug + release + profiling profiles)
@@ -25,7 +25,7 @@ i18n: "none (CLI) | fluent (i18n for GUI/web)"
 linter: "clippy (cargo clippy -- -D warnings)"
 formatter: "rustfmt (cargo fmt — zero config, enforced)"
 type_checker: "rustc (compiler IS the type checker — no separate tool needed)"
-testing: "cargo test (built-in, parallel) + approx (float) + proptest (property-based)"
+testing: "cargo test (built-in, parallel) + approx (float) + proptest (property-based) + cargo-mutants (mutation — proves the tests actually catch bugs)"
 pre_commit: "cargo test && cargo clippy -- -D warnings (Makefile `check` target, or lefthook)"
 cli: "std::env::args (simple) | clap (complex — derive API, auto --help)"
 key_packages:
@@ -36,6 +36,8 @@ key_packages:
   - tracing-chrome (Chrome DevTools trace — chrome://tracing)
   - mimalloc (fast allocator — 10-15% faster for many medium allocs)
   - approx (float comparison in tests — assert_relative_eq!)
+  - cargo-mutants (mutation testing — injects bugs and reports which ones the
+    suite failed to catch; a green suite that misses them is the real finding)
 optional_packages:
   web:
     - "axum (async HTTP — tower middleware, extractors, great ergonomics)"
@@ -458,6 +460,16 @@ notes: |
   - No separate type checker — rustc IS the type system (unlike Python/TS)
   - Feature flags [features] for optional heavy deps (gui, neural, server)
   - Tests: cargo test (built-in, parallel, fast — no separate test runner)
+  - Mutation: `cargo mutants` answers the question coverage cannot — whether a
+    test would FAIL if the code were wrong. Too slow for every edit; run it on
+    the files a change touched (`--file`), or nightly. A surviving mutant is a
+    test that asserts nothing useful
+  - CAUGHT is NOT printed per mutant — only MISSED/TIMEOUT/UNVIABLE stream past.
+    Caught mutants land in the summary line and in `caught.txt`. Grepping the
+    stream for CAUGHT returns zero on a perfectly healthy run
+  - Before trusting a run, apply one mutation by hand and confirm the suite goes
+    red. Cost is ~50s per mutant single-threaded, so a wrong run is expensive to
+    discover late
   - Profile: tracing-chrome for Rust spans, samply for full C/FFI stacks
   - Release: single static binary — scp to server, no runtime deps
   - .cargo/config.toml for native lib paths + target-cpu optimization

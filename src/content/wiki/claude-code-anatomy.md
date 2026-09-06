@@ -128,6 +128,8 @@ The architectural tension: **immediate capability amplification vs long-term pre
 - [[pac1-competition-retrospective]] — competition retrospective: architecture beats model — same lesson the Claude Code paper measures
 - [[fff-agent-file-search]] — Kovalenko's retrieval-layer thesis: compaction wipes the agent's working set, so the tool (not the model) has to carry frecency/combo/git context
 - [[conductor-parallel-agents]] — if the model is 1.6% of the system, multiplying model instances costs almost nothing; Conductor productizes that insight as a Mac GUI
+- [[reading-agent-output]] — the same 98.4%-is-harness logic applied to the human side of the loop: the terminal is part of the harness, and its defaults were tuned for typing
+- [[commerce-agent-blueprint]] — the same ratio seen from the vendor's product side: one model in one loop, and everything that makes it safe or fast is scaffolding around it
 
 ## References
 

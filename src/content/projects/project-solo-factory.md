@@ -117,3 +117,5 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [[harness-engineering-summary]] — the methodology behind the design
 - [[context-engineering]] — context as code principle applied
 - [Course: AI Solopreneur Engineer](/course) — learn the methodology step by step
+
+- [[project-agent-board]] — the task board that hands out work on this repo: an agent claims under a lease and returns a URL plus the sha256 of exactly what it delivered. Built because both measurements of solo-verify so far were made by its own author

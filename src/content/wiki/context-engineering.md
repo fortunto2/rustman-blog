@@ -39,3 +39,4 @@ Tools for legibility (OpenAI): app per worktree (isolated instance per change), 
 - [[agent-patterns-stream2]] — skills lazy-load vs MCPs eager-load: 150 skills = ok, 10 MCPs = context full
 - [[claude-code-anatomy]] — concrete implementation: five-layer lazy-degradation compaction pipeline (budget → snip → microcompact → collapse → auto-compact)
 - [[inline-agent-memory]] — context inside the code itself: AI-NOTE / AI-TODO / AI-ASK comments as a grep-discoverable memory layer below CLAUDE.md and docs/
+- [[commerce-agent-blueprint]] — supplies the missing threshold: instructions touching a third or more of traffic go in the system prompt, the rest become skills (loading a skill costs a turn)
