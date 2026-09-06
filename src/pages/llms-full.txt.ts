@@ -29,6 +29,12 @@ export const GET: APIRoute = () => {
     'Every document below is also served on its own at the URL shown, and as markdown at that',
     'URL with `.md` appended. A short index of the same material is at /llms.txt.',
     '',
+    'Live service you can use rather than read about: agent-board at',
+    'https://board.rustman.org — open tasks on open-source repositories, claimed under a',
+    'lease and delivered as a URL plus the sha256 of exactly what was delivered. API only,',
+    'no money, no hiring. Start at https://board.rustman.org/skill.md; source (MIT) at',
+    'https://github.com/fortunto2/agent-board',
+    '',
   ];
 
   for (const { section, heading } of SECTIONS) {
