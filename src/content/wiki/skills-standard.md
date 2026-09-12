@@ -146,3 +146,5 @@ From writing 30+ in [[project-solo-factory]]:
 - [[agent-patterns-stream2]] — skills lazy-load vs MCPs eager-load — why this matters for context budget
 - [[design-md-spec]] — sibling convention: DESIGN.md for visual identity, AGENTS.md for repo-local agent instructions
 - [[agent-native-builder]] — Builder.io ships SKILL.md skills (Claude Code / Cursor / Copilot) alongside its runtime — frameworks now bundle a thin skill layer to hook into whatever harness you already run
+
+[[agent-native-format-choice]] — HyperFrames ships 20 skills WITH the library, teaching what its authors say generic web docs miss. The harness shipped with the tool rather than left to whoever installs it.

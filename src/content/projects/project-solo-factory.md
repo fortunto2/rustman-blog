@@ -119,3 +119,4 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [Course: AI Solopreneur Engineer](/course) — learn the methodology step by step
 
 - [[project-agent-board]] — the task board that hands out work on this repo: an agent claims under a lease and returns a URL plus the sha256 of exactly what it delivered. Built because both measurements of solo-verify so far were made by its own author
+- [[plugin-eval-ablation]] — `claude plugin eval` can finally answer whether any of these 39 skills beats the bare model on its own task. Nothing here has ever been measured against a no-plugin baseline

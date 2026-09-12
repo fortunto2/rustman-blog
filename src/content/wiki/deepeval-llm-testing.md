@@ -73,3 +73,7 @@ DeepEval is also explicitly positioning itself as the **eval harness for coding 
 - [deepeval.com](https://deepeval.com/) — official site, docs, metrics catalog
 - [GitHub: confident-ai/deepeval](https://github.com/confident-ai/deepeval) — Apache-2.0, 250+ contributors
 - [Confident AI](https://www.confident-ai.com/) — paid cloud platform on top of OSS framework
+
+## Related
+
+- [[plugin-eval-ablation]] — DeepEval asserts on the absolute quality of one pipeline's output; `claude plugin eval` runs the same case with and without the plugin and reports the difference. Assertion vs ablation: the first catches regressions, the second proves the component was worth loading

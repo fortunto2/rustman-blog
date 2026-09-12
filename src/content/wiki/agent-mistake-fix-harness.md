@@ -27,3 +27,5 @@ The anti-pattern: manually cleaning up "AI slop." OpenAI found that 20% of time 
 - [[harness-engineering-summary]] — origin: core principle from harness engineering synthesis
 - [[solo-methodology]] — the ratchet effect is what makes solo dev viable: compound improvements
 - [[kill-iterate-scale]] — same philosophy: predetermined rules remove human judgment from repetitive decisions
+
+[[cheap-model-delegation-boundary]] — this principle applied to cost rather than correctness: Portal does not ask the agent to use the cheap model for big files, it BLOCKS the read with a PreToolUse hook and redirects it.

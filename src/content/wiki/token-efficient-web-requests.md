@@ -104,3 +104,5 @@ These are transport-level savings — orthogonal to token reduction. Combined wi
 - [[rag-patterns]] — web-augmented RAG benefits from clean input
 - [[agent-self-discipline]] — token budgets as complexity thresholds
 - [[project-openai-oxide]] — Rust client implementing both HTTP optimizations and structured output
+
+[[cheap-model-delegation-boundary]] — the other way to spend fewer tokens on a large input: summarise it with a cheap model instead of asking the source for less. It costs 10-30s per call and loses line numbers, so where content negotiation applies it is the cheaper of the two.

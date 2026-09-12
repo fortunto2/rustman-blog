@@ -1,6 +1,6 @@
 ---
 title: "/knowledge"
-description: "Needing methodology reference, asking about principles, harness engineering, SGR, launch playbook, agent memory, decision frameworks, or any topic covered in the solopreneur knowledge base. Also use when the user asks or"
+description: "Needing methodology reference, asking about principles, harness engineering, SGR, launch playbook, agent memory, decision frameworks, or any topic covered in the solopreneur knowledge base. Use when user says"
 created: 2026-04-09
 tags: [skill, meta, solo-factory]
 phase: "meta"

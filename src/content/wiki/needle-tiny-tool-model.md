@@ -52,3 +52,5 @@ The honest version: this does not replace the ladder, it widens its bottom rung.
 - [[claude-subscription-boundary]] — the access ladder this widens at the bottom
 - [[project-life2film]] — DirectorOS, where the agent's job is already scored on action schemas rather than prose
 - [[privacy-as-architecture]] — a model in the bundle makes the offline claim structural instead of a promise
+
+[[cheap-model-delegation-boundary]] — the same escalate-or-act boundary from the other end: Portal decides what to hand to a cheap model by file size, a proxy, where Needle decides by its own calibrated confidence.

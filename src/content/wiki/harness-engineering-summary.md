@@ -38,3 +38,5 @@ Predictions: harness as new service templates, tech stack convergence toward AI-
 - [[claude-code-anatomy]] — empirical measurement of the harness thesis: 98.4% infrastructure vs 1.6% AI logic in Claude Code v2.1.88
 - [[deepeval-llm-testing]] — Component 2 (architectural constraints) extended to LLM outputs: ArchUnit for code structure, DeepEval for behavior
 - [[commerce-agent-blueprint]] — Anthropic's own production agent puts every guardrail in the harness, not the prompt: staged writes, server-issued ID allowlists, caps on resulting state, fenced third-party content
+
+[[agent-native-format-choice]] — the same argument applied to generated video: a deterministic renderer makes a wrong output detectable without a human watching it, which is what stops review cost eating the generation saving.

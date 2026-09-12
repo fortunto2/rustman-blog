@@ -1,6 +1,6 @@
 ---
 title: "/seo-cli"
-description: "Manage SEO and agent-readiness for all sites via the `seo` CLI — audit pages for SEO+GEO score, run `agent-audit` to check whether AI agents can discover and read a site (robots rules, Content-Signals, llms.txt, markdown negotiation, MCP cards), check Search Console analytics, submit sitemaps, ping IndexNow, inspect indexing. Covers Google, Bing, Yandex. Also points at superduper-analytics for who actually visited, which AI agents read the site, and what each campaign produced. Covers Bing Webmaster API (a second index, and the one ChatGPT and Copilot read). Use when the user asks about search performance, indexing, SEO/GEO score, agent-readiness, llms.txt, MCP, or wants to fix a site"
+description: "Manage SEO and agent-readiness for all sites via the `seo` CLI — audit pages for SEO+GEO score, run `agent-audit` to check whether AI agents can discover and read a site (robots rules, Content-Signals, llms.txt, markdown negotiation, MCP cards), check Search Console analytics, submit sitemaps, ping IndexNow, inspect indexing. Covers Google, Bing, Yandex. Also points at superduper-analytics for who actually visited, which AI agents read the site, and what each campaign produced. Covers Bing Webmaster API (a second index, and the one ChatGPT and Copilot read). Use when user says or wants to fix a site"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"

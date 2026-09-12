@@ -33,3 +33,5 @@ The other half of the pitch is control. **The software is yours** — nobody hik
 - [[agent-native-builder]] — Clips is the headline template of this framework; it's the clearest demonstration of the unified-action, agent-as-equal-citizen thesis.
 - [[project-life2film]] — also treats video as a first-class, AI-processed medium (on-device montage). Clips is the inverse use case: video as *input* for an agent rather than AI-generated *output*.
 - [[webwright-code-as-action]] — shares the "make the environment legible to the agent" instinct: Webwright keeps the run as readable code; Clips keeps the recording as a queryable audiovisual API. Both beat the opaque-blob default (a click log, a video file).
+
+[[agent-native-format-choice]] — the mirror image: Clips makes video an agent can WATCH, HyperFrames makes video an agent can WRITE. Between them the medium stops being opaque in both directions.
