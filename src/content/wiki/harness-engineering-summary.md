@@ -40,3 +40,5 @@ Predictions: harness as new service templates, tech stack convergence toward AI-
 - [[commerce-agent-blueprint]] — Anthropic's own production agent puts every guardrail in the harness, not the prompt: staged writes, server-issued ID allowlists, caps on resulting state, fenced third-party content
 
 [[agent-native-format-choice]] — the same argument applied to generated video: a deterministic renderer makes a wrong output detectable without a human watching it, which is what stops review cost eating the generation saving.
+
+- See also: [[effect-ts-for-agents]] — Effect, the TypeScript reliability layer around execution, and when it is worth its learning curve.

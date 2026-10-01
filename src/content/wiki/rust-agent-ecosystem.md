@@ -78,3 +78,5 @@ The gap in our stack: no multi-channel (Telegram, Discord). No sandboxing. No de
 - [[agent-toolkit-landscape]] -- broader agent ecosystem (Python + Rust + JS)
 - [[hermes-agent]] -- top Python agent for comparison (76k stars)
 - [[buzz-agent-workspace]] -- Block's Buzz: Rust/Axum too, but a different species. These projects *run* the agent; Buzz is the room it runs in (Nostr relay, agent = keypair + membership)
+
+- See also: [[effect-ts-for-agents]] — Effect, the TypeScript reliability layer around execution, and when it is worth its learning curve.

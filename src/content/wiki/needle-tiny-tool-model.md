@@ -54,3 +54,4 @@ The honest version: this does not replace the ladder, it widens its bottom rung.
 - [[privacy-as-architecture]] — a model in the bundle makes the offline claim structural instead of a promise
 
 [[cheap-model-delegation-boundary]] — the same escalate-or-act boundary from the other end: Portal decides what to hand to a cheap model by file size, a proxy, where Needle decides by its own calibrated confidence.
+- [[jev-system-one]] — the same constrain-plus-confidence design scaled up: Jev hosted, Laya 322-421M open weights; three fixed question types with probability distributions, where Needle compiles your own schemas into a grammar

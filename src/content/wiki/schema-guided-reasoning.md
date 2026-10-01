@@ -41,3 +41,6 @@ By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data clas
 - [[rlhf-book]] — RLHF = training-time alignment, SGR = inference-time alignment. Complementary strategies for the same goal
 - [[deepeval-llm-testing]] — G-Eval applies the SGR pattern to the judge: rubric → structured (score, reasoning) output, not free-form opinion
 - [[native-frontend-toolchain]] — codegen-from-OpenAPI is the frontend face of schema-first: "compilation becomes an integration test"
+- [[jev-system-one]] — the opposite bet: Jev/Laya answer a closed Choice/Score/Noul taxonomy with calibrated confidence per answer, instead of arbitrary schemas with none
+
+- See also: [[effect-ts-for-agents]] — Effect, the TypeScript reliability layer around execution, and when it is worth its learning curve.

@@ -49,3 +49,4 @@ Three Claude Code skills wrap this repo for AI-assisted DSP work: `superduper-pl
 - [[project-kubizbeat]] — the **Kubyz** instrument here is the same Bashkir jaw-harp physical model that powers KubizBeat. Cultural-preservation DSP reused as a synth voice; shared physical-modeling code.
 - [[cli-first-testing]] — `sdsp-runner` and the WAV-audit tests are the CLI mirror of every plugin: if a DSP block works headless from the command line, it's decoupled from the GUI and the host.
 - [[privacy-as-architecture]] — native plugins, no accounts, no telemetry, no network. The audio never leaves your machine; same on-device-by-default stance as the rest of the portfolio.
+- [[connectome-as-instrument]] — the fly connectome as a modulation source for this suite: ~2700 cells of the olfactory path run realtime on one core, and Kenyon-cell sparse coding is a non-repeating note generator that a Rust CLAP plugin can host directly
