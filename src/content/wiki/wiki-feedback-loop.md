@@ -55,7 +55,7 @@ is a report, not a guess. See [[agent-memory-architecture]] and [[decision-trace
 
 ## Learned from
 
-PromptQL (Hasura) rebuilt itself around a "context wiki" instead of a semantic layer or
+[[promptql-context-wiki]] has the full list of their mechanics. PromptQL (Hasura) rebuilt itself around a "context wiki" instead of a semantic layer or
 knowledge graph, and argues those don't scale. Three mechanics transferred: the agent
 proposes a wiki edit from a chat correction and the human approves ("PromptQL wants to
 learn"); the agent flags where context is missing; every edit is versioned, attributed,
