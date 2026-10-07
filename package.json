@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && npx pagefind --site dist",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "deploy": "pnpm build && wrangler pages deploy dist",
     "collect": "tsx scripts/collect-content.ts && tsx scripts/collect-skills.ts",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@pagefind/default-ui": "^1.5.0",
     "@types/markdown-it": "^14.1.2",
+    "pagefind": "1.5.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }
