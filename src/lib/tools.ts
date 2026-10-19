@@ -15,7 +15,7 @@ export interface Tool {
 export const TOOLS: Record<string, Tool> = {
   'superduper-dsp': {
     name: 'SuperDuper DSP',
-    what: '31 free plugins: synths, a kubyz, drums, a sampler, effects. CLAP, VST3 and AU for macOS and Windows.',
+    what: '30 free plugins: synths, a kubyz, drums, a sampler, effects. CLAP, VST3 and AU for macOS and Windows.',
     install: 'Download the zip from the latest release, put the .clap files in ~/Library/Audio/Plug-Ins/CLAP/, rescan in your DAW.',
     links: [
       { label: 'Download', href: 'https://github.com/fortunto2/superduper-dsp/releases/latest' },

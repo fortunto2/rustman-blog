@@ -37,7 +37,7 @@ Nothing here needs you to write code. You type sentences; the assistant runs the
 - [REAPER](https://www.reaper.fm/): full trial, cheap licence.
 - [Claude Code](https://claude.com/claude-code): the assistant, with a Claude subscription.
 - My plugins: [SuperDuper DSP](https://github.com/fortunto2/superduper-dsp/releases/latest),
-  31 instruments and effects. Free, open source.
+  30 instruments and effects. Free, open source.
 
 ## Setup, about 20 minutes
 

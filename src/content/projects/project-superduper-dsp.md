@@ -1,7 +1,7 @@
 ---
 type: concept
-description: "Open-source CLAP plugin suite — 31 focused audio effects and synths written in Rust, with a retro phosphor-green GUI. Runs in REAPER, Ableton, and any CLAP/VST3/AU host. Built for personal use first."
-title: "SuperDuper DSP — 31 Rust audio plugins (CLAP/VST3/AU)"
+description: "Open-source CLAP plugin suite — 30 focused audio effects and synths written in Rust, with a retro phosphor-green GUI. Runs in REAPER, Ableton, and any CLAP/VST3/AU host. Built for personal use first."
+title: "SuperDuper DSP — 30 Rust audio plugins (CLAP/VST3/AU)"
 created: 2026-06-24
 tags: [creative, project, open-source, rust, clap, vst3, audio, dsp, daw, reaper, ableton]
 project_type: tool
@@ -9,13 +9,13 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"
 github: fortunto2/superduper-dsp
-index_line: "SuperDuper DSP: 31 open-source Rust audio plugins (CLAP/VST3/AU), retro phosphor-green GUI. EQ, comp, reverb, NAM, Soothe-style suppressor + 6 synths. Runs in REAPER/Ableton, daily-driver dogfooding, MIT"
+index_line: "SuperDuper DSP: 30 open-source Rust audio plugins (CLAP/VST3/AU), retro phosphor-green GUI. EQ, comp, reverb, NAM, Soothe-style suppressor + 6 synths. Runs in REAPER/Ableton, daily-driver dogfooding, MIT"
 index_section: "project"
 ---
 
 # SuperDuper DSP
 
-Open-source **CLAP plugin suite — 31 focused effects and synths written in Rust**, with a retro phosphor-green theme, custom egui GUIs, factory presets, and CLAP state persistence. CLAP is the primary format; VST3 and Audio Unit v2 ship via `clap-wrapper` bridges, so the same `.clap` core loads everywhere.
+Open-source **CLAP plugin suite — 30 focused effects and synths written in Rust**, with a retro phosphor-green theme, custom egui GUIs, factory presets, and CLAP state persistence. CLAP is the primary format; VST3 and Audio Unit v2 ship via `clap-wrapper` bridges, so the same `.clap` core loads everywhere.
 
 Built as a daily-driver toolkit, not a product launch — I use it myself in **REAPER and Ableton**. Dogfooding is the design constraint: every plugin has to earn its slot on a real mix bus before it stays in the repo. Works in any CLAP/VST3/AU host: REAPER, Bitwig, Studio One, FL Studio, Logic 11+, Ableton, Cubase, DaVinci Resolve, GarageBand.
 
