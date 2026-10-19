@@ -21,11 +21,30 @@ const md = new MarkdownIt({
   },
 });
 
+// ```youtube blocks: one video per line, "<url or id> | caption". A shorts URL (or "short" after the
+// id) renders 9:16. youtube-nocookie and lazy loading: no player, no cookies until scrolled to.
+function renderYouTube(content: string): string {
+  const esc = md.utils.escapeHtml;
+  return content.split('\n').map(line => line.trim()).filter(Boolean).map(line => {
+    const [ref, caption = ''] = line.split('|').map(s => s.trim());
+    const id = ref.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([\w-]{11})/)?.[1]
+      ?? ref.match(/^([\w-]{11})(?:\s|$)/)?.[1];
+    if (!id) return '';
+    const vertical = /\/shorts\/|\sshort$/.test(ref);
+    const ratio = vertical ? 'aspect-ratio: 9 / 16; max-width: 360px;' : 'aspect-ratio: 16 / 9;';
+    return `<figure class="yt-embed not-prose" style="margin: 1.5rem 0;">
+<iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${esc(caption || 'Video')}" style="${ratio} width: 100%; border: 0; border-radius: 8px;" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+${caption ? `<figcaption style="font-size: 0.875rem; color: var(--color-muted); margin-top: 0.5rem;">${esc(caption)}</figcaption>` : ''}
+</figure>`;
+  }).join('\n') + '\n';
+}
+
 // ```ab blocks: one line per take, "A: url | label". Rendered as a player that keeps one playhead
 // across takes, so a switch compares the same moment — the only A/B that tells you anything.
 const defaultFence = md.renderer.rules.fence!;
 md.renderer.rules.fence = (tokens, idx, options, env, self) => {
   const token = tokens[idx];
+  if (token.info.trim() === 'youtube') return renderYouTube(token.content);
   if (token.info.trim() !== 'ab') return defaultFence(tokens, idx, options, env, self);
   const takes = token.content.split('\n')
     .map(line => line.match(/^\s*([^:\s]+)\s*:\s*(\S+)\s*(?:\|\s*(.+))?$/))
