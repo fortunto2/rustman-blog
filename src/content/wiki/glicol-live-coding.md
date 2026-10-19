@@ -3,7 +3,7 @@ type: concept
 title: "Glicol -- graph-oriented live coding music in Rust"
 description: "Live coding music language and audio engine in Rust. Runs in browser via WASM, VST plugins, embedded boards. Graph-oriented synthesis with zero-install web playground."
 created: 2026-04-14
-tags: [rust, music, audio, wasm, live-coding, open-source]
+tags: [creative, rust, music, audio, wasm, live-coding, open-source]
 publish: true
 source_url: "https://github.com/chaosprint/glicol"
 index_line: "Glicol: live coding music in Rust + WASM. Graph-oriented synthesis, browser playground, VST plugins"

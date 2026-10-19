@@ -29,7 +29,7 @@ function wantsMarkdown(accept: string | null): boolean {
 // The slug must contain no dot, which is what keeps /wiki/foo.md from matching and being
 // redirected to /wiki/foo.md.md — an infinite loop, since curl and every agent resend the
 // same Accept header while following. Fifty hops before anything complained.
-const TWINNED = /^\/(wiki|posts|projects|stacks|skills)\/([^/.]+)\/?$/;
+const TWINNED = /^\/(wiki|posts|projects|creative|stacks|skills)\/([^/.]+)\/?$/;
 
 /** /wiki/foo and /wiki/foo/ → /wiki/foo.md. Everything else → null. */
 function twinPath(pathname: string): string | null {

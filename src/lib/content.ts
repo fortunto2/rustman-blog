@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { parseFrontmatter, type Frontmatter } from './md';
 
-export type Section = 'wiki' | 'projects' | 'posts' | 'stacks' | 'skills';
+export type Section = 'wiki' | 'projects' | 'posts' | 'creative' | 'stacks' | 'skills';
 
 export interface ContentEntry {
   slug: string;
@@ -36,7 +36,8 @@ export function getAllContent(): (ContentEntry & { section: Section })[] {
   const wiki = getCollection('wiki').map(e => ({ ...e, section: 'wiki' as Section }));
   const projects = getCollection('projects').map(e => ({ ...e, section: 'projects' as Section }));
   const posts = getCollection('posts').map(e => ({ ...e, section: 'posts' as Section }));
-  return [...wiki, ...projects, ...posts].sort((a, b) => {
+  const creative = getCollection('creative').map(e => ({ ...e, section: 'creative' as Section }));
+  return [...wiki, ...projects, ...posts, ...creative].sort((a, b) => {
     const dateA = a.frontmatter.created || a.frontmatter.date || '';
     const dateB = b.frontmatter.created || b.frontmatter.date || '';
     return dateB.localeCompare(dateA);

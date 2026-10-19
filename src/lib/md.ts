@@ -1,5 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 const md = new MarkdownIt({
   html: true,
@@ -73,11 +75,20 @@ export function parseFrontmatter(raw: string): { frontmatter: Frontmatter; conte
   return { frontmatter: fm as Frontmatter, content: match[2] };
 }
 
+// A wikilink names a page, not a section: collect-content routes it by publish_as,
+// so look up where it actually landed. Unknown slugs keep the old /wiki/ guess.
+const LINK_SECTIONS = ['wiki', 'projects', 'posts', 'creative'];
+
+function sectionOf(slug: string): string {
+  const dir = join(process.cwd(), 'src', 'content');
+  return LINK_SECTIONS.find(s => existsSync(join(dir, s, `${slug}.md`))) ?? 'wiki';
+}
+
 export function processWikilinks(content: string): string {
   return content.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, slug, label) => {
     const display = label || slug;
-    const href = `/wiki/${slug.toLowerCase().replace(/\s+/g, '-')}`;
-    return `[${display}](${href})`;
+    const s = slug.toLowerCase().replace(/\s+/g, '-');
+    return `[${display}](/${sectionOf(s)}/${s})`;
   });
 }
 

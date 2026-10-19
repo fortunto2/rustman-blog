@@ -3,7 +3,7 @@ type: concept
 description: "Open-source CLAP plugin suite — 23 focused audio effects and synths written in Rust, with a retro phosphor-green GUI. Runs in REAPER, Ableton, and any CLAP/VST3/AU host. Built for personal use first."
 title: "SuperDuper DSP — 23 Rust audio plugins (CLAP/VST3/AU)"
 created: 2026-06-24
-tags: [project, open-source, rust, clap, vst3, audio, dsp, daw, reaper, ableton]
+tags: [creative, project, open-source, rust, clap, vst3, audio, dsp, daw, reaper, ableton]
 project_type: tool
 publish: true
 publish_as: project

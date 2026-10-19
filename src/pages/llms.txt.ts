@@ -6,6 +6,7 @@ export const GET: APIRoute = () => {
   const wiki = getCollection('wiki');
   const projects = getCollection('projects');
   const posts = getCollection('posts');
+  const creative = getCollection('creative');
   const stacks = getCollection('stacks');
   const skills = getCollection('skills');
 
@@ -46,6 +47,8 @@ ${format(projects, 'projects')}
 ${format(stacks, 'stacks')}
 
 ${posts.length > 0 ? `## Posts\n${format(posts, 'posts')}` : ''}
+
+${creative.length > 0 ? `## Creative (music, video)\n${format(creative, 'creative')}` : ''}
 
 ${skills.length > 0 ? `## Skills (Solo Factory)\n${format(skills, 'skills')}` : ''}
 

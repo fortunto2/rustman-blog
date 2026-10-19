@@ -7,6 +7,7 @@
  * Routing:
  *   - publish_as: project → src/content/projects/
  *   - publish_as: post → src/content/posts/ (pillar articles from raw sources)
+ *   - publish_as: creative → src/content/creative/ (guides for non-programmers: music, video)
  *   - everything else → src/content/wiki/ (knowledge base)
  *   - type: hub → also wiki (hub pages are useful as navigation)
  */
@@ -52,6 +53,7 @@ function getSection(fm: Record<string, unknown>): string {
   const publishAs = fm.publish_as as string | undefined;
   if (publishAs === 'project' || publishAs === 'projects') return 'projects';
   if (publishAs === 'post' || publishAs === 'posts') return 'posts';
+  if (publishAs === 'creative') return 'creative';
   return 'wiki'; // default: all wiki pages go to wiki section
 }
 
@@ -61,7 +63,7 @@ function main() {
     process.exit(1);
   }
 
-  for (const dir of ['wiki', 'projects', 'posts']) {
+  for (const dir of ['wiki', 'projects', 'posts', 'creative']) {
     const path = join(CONTENT_DIR, dir);
     if (existsSync(path)) rmSync(path, { recursive: true });
     mkdirSync(path, { recursive: true });

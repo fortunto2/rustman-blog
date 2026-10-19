@@ -14,6 +14,7 @@ import { SITE } from '../lib/config';
 const SECTIONS: { section: Section; heading: string }[] = [
   { section: 'wiki', heading: 'Wiki — knowledge base' },
   { section: 'projects', heading: 'Projects' },
+  { section: 'creative', heading: 'Creative — music and video guides' },
   { section: 'stacks', heading: 'Stacks — templates' },
   { section: 'posts', heading: 'Posts' },
   { section: 'skills', heading: 'Skills — Solo Factory' },

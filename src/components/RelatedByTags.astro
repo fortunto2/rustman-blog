@@ -26,6 +26,7 @@ const matchTags = tags.filter(t => !skipTags.has(t));
 if (matchTags.length === 0) return;
 
 const sections: { key: Section; label: string }[] = [
+  { key: 'creative', label: 'Creative' },
   { key: 'projects', label: 'Projects' },
   { key: 'stacks', label: 'Stacks' },
   { key: 'wiki', label: 'Wiki' },

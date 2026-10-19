@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
+import { getCollection, getAllContent } from '../../lib/content';
+
+// Guides are written for people who make things, not for programmers.
+const guides = getCollection('creative');
+// The tools behind them live in other sections; a `creative` tag pulls them in here.
+const tools = getAllContent().filter(e =>
+  e.section !== 'creative' &&
+  Array.isArray(e.frontmatter.tags) && e.frontmatter.tags.includes('creative'));
+---
+
+<BaseLayout title="Creative" description="Music and video with an AI assistant: how I make tracks and edit films, written for artists, not programmers." section="creative">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold mb-2 font-mono prompt">Creative</h1>
+    <p class="text-[var(--color-muted)]">Music and video with an AI assistant. How I make tracks and cut films, written for artists, not programmers. Every tool here is free.</p>
+  </div>
+
+  <section class="mb-8">
+    <h2 class="text-lg font-semibold mb-3 prompt">Guides</h2>
+    <ContentList items={guides} basePath="/creative" showDate={false} showTags={true} />
+  </section>
+
+  {tools.length > 0 && (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Tools and projects behind them</h2>
+      <ContentList items={tools} showSection={true} showDate={false} showTags={true} />
+    </section>
+  )}
+</BaseLayout>

@@ -13,7 +13,7 @@ import { getCollection, type Section } from '../lib/content';
 import { parseFrontmatter } from '../lib/md';
 import { SITE } from '../lib/config';
 
-const SECTIONS: Section[] = ['wiki', 'projects', 'stacks', 'posts', 'skills'];
+const SECTIONS: Section[] = ['wiki', 'projects', 'creative', 'stacks', 'posts', 'skills'];
 
 /** Enough to rank on and to show a snippet; the twin has the rest. */
 const EXCERPT_CHARS = 600;
