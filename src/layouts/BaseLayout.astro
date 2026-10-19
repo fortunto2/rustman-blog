@@ -174,6 +174,11 @@ const isArticle = !!article;
 
   <Search section={section} />
 
+  <script>
+    import { initAbPlayers } from '../scripts/ab-player';
+    initAbPlayers();
+  </script>
+
   <!-- Mermaid diagrams (client-side rendering) -->
   <script type="module">
     const mermaidBlocks = document.querySelectorAll('pre.mermaid');

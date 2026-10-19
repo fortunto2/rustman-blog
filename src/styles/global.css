@@ -148,3 +148,44 @@ pre.mermaid svg {
     text-shadow: 0 0 8px var(--color-glow);
   }
 }
+
+/* A/B audio player (```ab blocks, see lib/md.ts) */
+.ab-player {
+  margin: 1.5rem 0;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875rem;
+}
+.ab-takes { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
+.ab-take {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  color: var(--color-muted);
+  background: transparent;
+}
+.ab-take[aria-pressed="true"] {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.ab-transport { display: flex; align-items: center; gap: 0.75rem; }
+.ab-play {
+  width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  background: transparent;
+  cursor: pointer;
+}
+.ab-seek { flex: 1; min-width: 0; accent-color: var(--color-accent); }
+.ab-time { width: 3rem; text-align: right; color: var(--color-muted); }
+@media (prefers-color-scheme: dark) {
+  .ab-player { border-color: var(--color-border-dark); }
+  .ab-take { border-color: var(--color-border-dark); }
+  .ab-take[aria-pressed="true"] {
+    color: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+  }
+  .ab-play { border-color: var(--color-accent-dark); color: var(--color-accent-dark); }
+  .ab-seek { accent-color: var(--color-accent-dark); }
+}

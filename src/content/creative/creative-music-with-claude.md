@@ -1,11 +1,14 @@
 ---
 type: guide
+kind: guide
 title: "Make music with an AI assistant: REAPER, free plugins, plain words"
 description: "How I make tracks by talking to Claude: it builds the REAPER session, plays my free plugins, writes the MIDI and mixes by measurement. Setup for musicians, no code."
 created: 2026-10-18
 tags: [creative, music, reaper, audio, guide]
 publish: true
 publish_as: creative
+index_line: "Make music with Claude: REAPER via MCP, SuperDuper DSP plugins, stems, audio-to-MIDI, mixing by measurement. Guide for musicians + downloadable kit"
+index_section: "creative"
 ---
 
 # Make music with an AI assistant

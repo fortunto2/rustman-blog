@@ -21,6 +21,26 @@ const md = new MarkdownIt({
   },
 });
 
+// ```ab blocks: one line per take, "A: url | label". Rendered as a player that keeps one playhead
+// across takes, so a switch compares the same moment — the only A/B that tells you anything.
+const defaultFence = md.renderer.rules.fence!;
+md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+  const token = tokens[idx];
+  if (token.info.trim() !== 'ab') return defaultFence(tokens, idx, options, env, self);
+  const takes = token.content.split('\n')
+    .map(line => line.match(/^\s*([^:\s]+)\s*:\s*(\S+)\s*(?:\|\s*(.+))?$/))
+    .filter((m): m is RegExpMatchArray => m !== null)
+    .map(([, key, src, label]) => ({ key, src, label: (label ?? '').trim() }));
+  const esc = md.utils.escapeHtml;
+  const buttons = takes.map((t, i) =>
+    `<button type="button" class="ab-take" data-i="${i}" aria-pressed="${i === 0}"><b>${esc(t.key)}</b> ${esc(t.label)}</button>`).join('');
+  const audios = takes.map(t => `<audio preload="metadata" src="${esc(t.src)}"></audio>`).join('');
+  return `<div class="ab-player not-prose" data-ab>
+<div class="ab-takes">${buttons}</div>
+<div class="ab-transport"><button type="button" class="ab-play" aria-label="Play">▶</button><input class="ab-seek" type="range" min="0" max="1000" value="0" aria-label="Position"><span class="ab-time">0:00</span></div>
+${audios}</div>\n`;
+};
+
 export interface Frontmatter {
   title?: string;
   description?: string;
@@ -29,7 +49,8 @@ export interface Frontmatter {
   tags?: string[];
   type?: string;
   publish?: boolean;
-  publish_as?: 'article' | 'project' | 'note';
+  publish_as?: 'article' | 'project' | 'note' | 'post' | 'creative';
+  kind?: 'guide' | 'recipe' | 'note' | 'release';
   source_path?: string;
   source_url?: string | string[];
   cover?: string;

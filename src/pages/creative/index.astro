@@ -3,8 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
 import { getCollection, getAllContent } from '../../lib/content';
 
-// Guides are written for people who make things, not for programmers.
-const guides = getCollection('creative');
+// Written for people who make things, not for programmers. `kind` in the frontmatter groups them;
+// a page without one is a note.
+const notes = getCollection('creative');
+const kinds = [
+  { key: 'guide', label: 'Start here' },
+  { key: 'recipe', label: 'Recipes' },
+  { key: 'note', label: 'Notes' },
+  { key: 'release', label: 'Releases' },
+].map(k => ({ ...k, items: notes.filter(n => (n.frontmatter.kind ?? 'note') === k.key) }))
+ .filter(k => k.items.length > 0);
 // The tools behind them live in other sections; a `creative` tag pulls them in here.
 const tools = getAllContent().filter(e =>
   e.section !== 'creative' &&
@@ -17,10 +25,12 @@ const tools = getAllContent().filter(e =>
     <p class="text-[var(--color-muted)]">Music and video with an AI assistant. How I make tracks and cut films, written for artists, not programmers. Every tool here is free.</p>
   </div>
 
-  <section class="mb-8">
-    <h2 class="text-lg font-semibold mb-3 prompt">Guides</h2>
-    <ContentList items={guides} basePath="/creative" showDate={false} showTags={true} />
-  </section>
+  {kinds.map(({ label, key, items }) => (
+    <section class="mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">{label}</h2>
+      <ContentList items={items} basePath="/creative" showDate={key !== 'guide'} showTags={true} />
+    </section>
+  ))}
 
   {tools.length > 0 && (
     <section class="mb-8">
