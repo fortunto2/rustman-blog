@@ -3,7 +3,7 @@ type: concept
 title: "The connectome is a sparse hash, so play it"
 description: "FlyWire's fly brain is open data and the simulator is already built — the unclaimed part is that the mushroom body's sparse odour code is a ready-made generator of non-repeating musical material."
 created: 2026-09-14
-tags: [connectome, dsp, rust, clap, music, simulation, neuroscience, ios, idea]
+tags: [creative, connectome, dsp, rust, clap, music, simulation, neuroscience, ios, idea]
 publish: true
 source_url: "https://flywire.ai/"
 index_line: "FlyWire connectome as a CLAP modulation source, not another simulator. Surveyed against awesome-fly (94 projects, wave started 2026-09-03 with MaleCNS 166k/125M): 1 audio project, 0 on iOS. Olfactory path ~2700 cells = realtime on one core; Kenyon cells fire sparse and decorrelated, a non-repeating note generator reproducible from a seed"

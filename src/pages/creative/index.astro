@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
+import ToolCards from '../../components/ToolCards.astro';
+import { TOOLS } from '../../lib/tools';
+import { latestReleases } from '../../lib/releases';
 import { getCollection, getAllContent } from '../../lib/content';
 
 // Written for people who make things, not for programmers. `kind` in the frontmatter groups them;
@@ -17,12 +20,14 @@ const kinds = [
 const tools = getAllContent().filter(e =>
   e.section !== 'creative' &&
   Array.isArray(e.frontmatter.tags) && e.frontmatter.tags.includes('creative'));
+const releases = await latestReleases();
 ---
 
 <BaseLayout title="Creative" description="Music and video with an AI assistant: how I make tracks and edit films, written for artists, not programmers." section="creative">
   <div class="mb-8">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">Creative</h1>
     <p class="text-[var(--color-muted)]">Music and video with an AI assistant. How I make tracks and cut films, written for artists, not programmers. Every tool here is free.</p>
+    <p class="text-sm font-mono mt-2"><a href="/creative/rss.xml" class="link-muted">RSS for this section</a></p>
   </div>
 
   {kinds.map(({ label, key, items }) => (
@@ -32,9 +37,25 @@ const tools = getAllContent().filter(e =>
     </section>
   ))}
 
+  <ToolCards tools={Object.values(TOOLS)} heading="Tools (all free)" />
+
+  {releases.length > 0 && (
+    <section class="mt-10 mb-8">
+      <h2 class="text-lg font-semibold mb-3 prompt">Latest releases</h2>
+      <ul class="font-mono text-sm space-y-1">
+        {releases.map(r => (
+          <li class="flex gap-3">
+            <span class="text-xs text-[var(--color-muted)] w-20 shrink-0 pt-0.5">{r.date}</span>
+            <a href={r.url} class="hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)]">{r.tool} {r.tag.replace(/^desktop-/, '')}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   {tools.length > 0 && (
-    <section class="mb-8">
-      <h2 class="text-lg font-semibold mb-3 prompt">Tools and projects behind them</h2>
+    <section class="mb-8 mt-10">
+      <h2 class="text-lg font-semibold mb-3 prompt">The stories behind the tools</h2>
       <ContentList items={tools} showSection={true} showDate={false} showTags={true} />
     </section>
   )}

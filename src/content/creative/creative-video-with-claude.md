@@ -7,6 +7,7 @@ created: 2026-10-18
 tags: [creative, video, montage, guide]
 publish: true
 publish_as: creative
+tools: [life2film-studio, life2film-engine]
 index_line: "Edit video with Claude: Life2Film Studio + MCP, nine Chicago days to films, beat-cut montage, subtitles, rules learned on bad cuts. Guide for non-programmers"
 index_section: "creative"
 ---

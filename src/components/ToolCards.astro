@@ -1,0 +1,36 @@
+---
+/**
+ * "Made with" cards at the end of a /creative note: what the tool is, the one line to install it,
+ * links. Fed by the note's `tools:` frontmatter through lib/tools.ts.
+ */
+import type { Tool } from '../lib/tools';
+
+interface Props {
+  tools: Tool[];
+  heading?: string;
+}
+
+const { tools, heading = 'Made with' } = Astro.props;
+---
+
+{tools.length > 0 && (
+  <section class="not-prose mt-10">
+    <h2 class="text-lg font-semibold mb-3 font-mono prompt">{heading}</h2>
+    <div class="grid gap-3 sm:grid-cols-2">
+      {tools.map(tool => (
+        <div class="border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 flex flex-col gap-2">
+          <h3 class="font-medium font-mono text-sm">
+            {tool.page ? <a href={tool.page} class="hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)]">{tool.name}</a> : tool.name}
+          </h3>
+          <p class="text-sm text-[var(--color-muted)]">{tool.what}</p>
+          <code class="text-xs font-mono break-words bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-2 py-1">{tool.install}</code>
+          <div class="flex flex-wrap gap-3 font-mono text-xs mt-1">
+            {tool.links.map(l => (
+              <a href={l.href} class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] hover:underline">{l.label} &rarr;</a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

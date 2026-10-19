@@ -7,6 +7,7 @@ created: 2026-10-18
 tags: [creative, music, reaper, audio, guide]
 publish: true
 publish_as: creative
+tools: [superduper-dsp, kubizbeat]
 index_line: "Make music with Claude: REAPER via MCP, SuperDuper DSP plugins, stems, audio-to-MIDI, mixing by measurement. Guide for musicians + downloadable kit"
 index_section: "creative"
 ---

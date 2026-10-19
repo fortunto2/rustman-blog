@@ -70,6 +70,7 @@ export interface Frontmatter {
   publish?: boolean;
   publish_as?: 'article' | 'project' | 'note' | 'post' | 'creative';
   kind?: 'guide' | 'recipe' | 'note' | 'release';
+  tools?: string[];
   source_path?: string;
   source_url?: string | string[];
   cover?: string;
