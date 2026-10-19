@@ -19,7 +19,7 @@ film of the whole trip, cut by theme. The assistant did the editing from my word
 judged and asked for changes.
 
 ```youtube
-https://www.youtube.com/watch?v=rW5B6igCv4Y | The whole trip: 55 minutes, cut by theme from the nine day films
+https://www.youtube.com/watch?v=rW5B6igCv4Y | The Chicago film: nine days cut by theme, scored with my own music
 ```
 
 It was not one click. The first cut is almost always boring or out of sync; the third one is good.
@@ -68,11 +68,10 @@ Then ask in plain words:
    people scroll with the sound off.
 7. **Publish private, watch on the phone, then make it public.**
 
-What comes out of one day, a trailer and an episode:
+The same way, a week in California became a trailer:
 
 ```youtube
-https://www.youtube.com/watch?v=1l5dEAFdag8 | Trailer: a festival day in 3 minutes
-https://www.youtube.com/watch?v=5o6fnQt6y30 | Episode: day 1, the full story of the day
+https://www.youtube.com/watch?v=gYAVmXvZ7uw | San Francisco and Silicon Valley: the trailer
 ```
 
 ## Rules I learned on bad cuts
@@ -86,10 +85,6 @@ https://www.youtube.com/watch?v=5o6fnQt6y30 | Episode: day 1, the full story of 
   day got 10 claims. Strip it and put your own score under it.
 - **Vertical clips go to Reels as they are.** Cropping wide shots blindly to 9:16 kept 5 faces of 37;
   following the faces kept 31.
-
-```youtube
-https://www.youtube.com/shorts/eJ02Urg5SRc | A short: shot vertical, published as it was shot
-```
 - **Teach it your names.** Speech recognition turns unknown names into celebrities. Keep a word list
   for the trip and fix it once.
 

@@ -65,6 +65,14 @@ Plain sentences. The assistant picks the right skill on its own.
 
 Ask it to explain what it did. Ask it to make it worse on purpose so you can hear the difference.
 
+## What it sounds like live
+
+My own techno set on a rooftop in Chicago.
+
+```youtube
+https://www.youtube.com/watch?v=iMKhL4hnUSQ | DJ Rust: rooftop techno set, Chicago
+```
+
 ## What I learned
 
 - **Check by numbers and by ear, never by the assistant's word.** It cannot hear. It can measure.
