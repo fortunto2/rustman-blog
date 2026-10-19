@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Stage audio for a /creative note: encode each source to mp3 at the same loudness and put it under
-# public/media/creative/<slug>/, where an ```ab block can reference /media/creative/<slug>/<name>.mp3.
+# Stage media for a /creative note under public/media/creative/<slug>/. Audio is encoded to mp3 at
+# one loudness, so an ```ab block can reference /media/creative/<slug>/<name>.mp3; pictures and
+# recipe files (png/jpg/webp/svg, toml, rpp, mid, txt) are copied as <name>.<ext>.
 #
 #   scripts/stage-media.sh <slug> <name>=<source> [<name>=<source> ...]
 #   scripts/stage-media.sh kubyz-speaks dry=~/Music/demos/src/kubyz30.wav shaped=~/Music/demos/01.wav
@@ -22,6 +23,15 @@ for pair in "$@"; do
   src="${pair#*=}"
   src="${src/#\~/$HOME}"
   [ -f "$src" ] || { echo "missing: $src" >&2; exit 1; }
+
+  # Pictures and recipe files (a spectrum plot, a TOML chain, a REAPER project) go up as they are.
+  case "${src##*.}" in
+    png|jpg|jpeg|webp|svg|toml|rpp|RPP|mid|txt)
+      ext="${src##*.}"
+      cp "$src" "$out/$name.$ext"
+      echo "$name.$ext  copied  $(du -h "$out/$name.$ext" | cut -f1)"
+      continue ;;
+  esac
 
   # Measure first, then apply one static gain: loudnorm's dynamic mode would reshape the
   # dynamics we are trying to compare.
