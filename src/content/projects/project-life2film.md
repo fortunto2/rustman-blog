@@ -93,6 +93,9 @@ Started in 2014. Built the first version, reached 1M+ users on iOS. Technology w
 
 ## Links
 
+- **[Life2Film Studio](https://github.com/fortunto2/life2film-landing/releases/latest)** — the free desktop app for Apple Silicon: `brew install --cask fortunto2/tap/life2film-studio`
+- [[creative-video-with-claude]] — how I cut nine days in Chicago with it and Claude, step by step
+- [life2film-engine on npm](https://www.npmjs.com/package/life2film-engine) — the analysis core (beats, shots, frame quality) as WebAssembly, to build into your own code
 - [life2film.com](https://life2film.com)
 - [About — full vision](https://life2film.com/about) — Life Calendar, ecosystem, Fractal Hypervideo
 - [[origin-story]] — the personal story behind Life2Film

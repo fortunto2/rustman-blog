@@ -70,4 +70,4 @@ Ask it to explain what it did. Ask it to make it worse on purpose so you can hea
 - **When a rebuilt plugin does not change, restart REAPER.** It keeps the old one loaded.
 - **Save often.** The assistant can undo, but a crashed session is still a crashed session.
 
-The technical side of all this is in [[project-superduper-dsp]].
+The technical side of all this is in [[project-superduper-dsp]]. The kubyz started as a phone app, [[project-kubizbeat]]. For the picture side, see [[creative-video-with-claude]].

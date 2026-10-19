@@ -1,7 +1,7 @@
 ---
 type: concept
-description: "Open-source CLAP plugin suite — 23 focused audio effects and synths written in Rust, with a retro phosphor-green GUI. Runs in REAPER, Ableton, and any CLAP/VST3/AU host. Built for personal use first."
-title: "SuperDuper DSP — 23 Rust audio plugins (CLAP/VST3/AU)"
+description: "Open-source CLAP plugin suite — 31 focused audio effects and synths written in Rust, with a retro phosphor-green GUI. Runs in REAPER, Ableton, and any CLAP/VST3/AU host. Built for personal use first."
+title: "SuperDuper DSP — 31 Rust audio plugins (CLAP/VST3/AU)"
 created: 2026-06-24
 tags: [creative, project, open-source, rust, clap, vst3, audio, dsp, daw, reaper, ableton]
 project_type: tool
@@ -9,13 +9,13 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"
 github: fortunto2/superduper-dsp
-index_line: "SuperDuper DSP: 23 open-source Rust audio plugins (CLAP/VST3/AU), retro phosphor-green GUI. EQ, comp, reverb, NAM, Soothe-style suppressor + 6 synths. Runs in REAPER/Ableton, daily-driver dogfooding, MIT"
+index_line: "SuperDuper DSP: 31 open-source Rust audio plugins (CLAP/VST3/AU), retro phosphor-green GUI. EQ, comp, reverb, NAM, Soothe-style suppressor + 6 synths. Runs in REAPER/Ableton, daily-driver dogfooding, MIT"
 index_section: "project"
 ---
 
 # SuperDuper DSP
 
-Open-source **CLAP plugin suite — 23 focused effects and synths written in Rust**, with a retro phosphor-green theme, custom egui GUIs, factory presets, and CLAP state persistence. CLAP is the primary format; VST3 and Audio Unit v2 ship via `clap-wrapper` bridges, so the same `.clap` core loads everywhere.
+Open-source **CLAP plugin suite — 31 focused effects and synths written in Rust**, with a retro phosphor-green theme, custom egui GUIs, factory presets, and CLAP state persistence. CLAP is the primary format; VST3 and Audio Unit v2 ship via `clap-wrapper` bridges, so the same `.clap` core loads everywhere.
 
 Built as a daily-driver toolkit, not a product launch — I use it myself in **REAPER and Ableton**. Dogfooding is the design constraint: every plugin has to earn its slot on a real mix bus before it stays in the repo. Works in any CLAP/VST3/AU host: REAPER, Bitwig, Studio One, FL Studio, Logic 11+, Ableton, Cubase, DaVinci Resolve, GarageBand.
 
@@ -24,6 +24,10 @@ Built as a daily-driver toolkit, not a product launch — I use it myself in **R
 **17 effects:** EQ (3-band RBJ biquad) · LinEq (linear-phase 2048-tap FIR mastering EQ) · Compressor (soft-knee feed-forward + sidechain) · Saturator (tape/tube/soft-tanh, 2×/4× oversampling) · Delay (Lagrange interpolation, tape feedback, ducking) · Reverb (Dattorro plate) · Supermass (cascade reverb→chorus→reverb, 28s tail) · Limiter (lookahead brickwall, true-peak) · Spectrum (BS.1770 LUFS-M/S/I meter) · Vocal (de-esser, plosive killer, hum/click removal) · Chorus · Looper (Mobius-style 4-track) · Filter (resonant multi-mode + LFO) · MidSide (M/S width) · Soothe (24-band dynamic resonance suppressor) · NAM (Neural Amp Modeler, loads community `.nam` files) · Denoise (planned RNNoise port).
 
 **6 instruments:** Pad (8-voice poly synth) · Ambient (autonomous chord-drone generator) · Wave (wavetable bass/lead, mouse-editable curves, Serum export) · Kubyz (jaw-harp physical model with IPA vowel pad) · Drum (6-voice analog drum machine) · Sampler (poly WAV player, YIN pitch detection).
+
+**Added since:** Formant (vowel resonances that follow a singer's voice) · Granular (grain cloud with freeze) · Stretch (PaulStretch up to 50×) · Pitch · Tune · Harmonic · Vocoder · Wind.
+
+**Get it:** [latest release](https://github.com/fortunto2/superduper-dsp/releases/latest) for macOS and Windows. New to this? Start with the musician's guide, [[creative-music-with-claude]].
 
 Common across plugins: sidechain ports, host automation write, A/B + Initialize workflow, tempo-synced LFOs, a live spectrum strip, and a `[bNNNNN]` build-number suffix in display names so you always know which bundle a session loaded.
 
@@ -45,6 +49,8 @@ Three Claude Code skills wrap this repo for AI-assisted DSP work: `superduper-pl
 
 ## Connections
 
+- [[creative-music-with-claude]] — the same suite driven by Claude in REAPER: setup, what to ask, what I learned. Written for musicians.
+- [[creative-video-with-claude]] — the soundtrack side of the travel films: themes played in the footage, re-played with these plugins.
 - [[project-superduperai]] — same SuperDuper brand; this is the audio-DSP arm of the portfolio, the products half of the consulting+products barbell.
 - [[project-kubizbeat]] — the **Kubyz** instrument here is the same Bashkir jaw-harp physical model that powers KubizBeat. Cultural-preservation DSP reused as a synth voice; shared physical-modeling code.
 - [[cli-first-testing]] — `sdsp-runner` and the WAV-audit tests are the CLI mirror of every plugin: if a DSP block works headless from the command line, it's decoupled from the GUI and the host.
