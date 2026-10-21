@@ -49,6 +49,11 @@ export const HERO_CARDS = [
     href: '/projects/project-solo-factory',
   },
   {
+    title: 'SuperDuper DSP: 35 free audio plugins',
+    description: 'EQ, compressors, reverbs, vocal tools, 7 instruments. CLAP/VST3/AU, one installer, an AI agent can mix with them',
+    href: '/projects/project-superduper-dsp',
+  },
+  {
     title: 'Open Source',
     description: 'Rust crates, MCP servers, CLI tools. Code intelligence, invoicing, air quality',
     href: '/projects',
@@ -61,6 +66,6 @@ export const HERO_CARDS = [
 ] as const;
 
 export const PROJECT_PRIORITY = {
-  openSource: ['project-solograph', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea', 'project-invoice-crm', 'project-seo-cli'],
+  openSource: ['project-solograph', 'project-superduper-dsp', 'project-solo-factory', 'project-openai-oxide', 'project-rust-code', 'project-airq', 'project-you2idea', 'project-invoice-crm', 'project-seo-cli'],
   products: ['project-superduperai', 'project-superstoryboard'],
 } as const;

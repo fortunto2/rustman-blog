@@ -33,8 +33,8 @@ sortByPriority(products, PROJECT_PRIORITY.products);
 
   <section class="mb-12">
     <div class="grid gap-3 sm:grid-cols-2">
-      {HERO_CARDS.map(card => (
-        <a href={card.href} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
+      {HERO_CARDS.map((card, i) => (
+        <a href={card.href} class:list={[i === HERO_CARDS.length - 1 && HERO_CARDS.length % 2 === 1 && 'sm:col-span-2']} class="card-glow block border border-[var(--color-border)] dark:border-[var(--color-border-dark)] dark:bg-[var(--color-surface-dark)] p-4 hover:border-[var(--color-accent)] transition-all">
           <h3 class="font-medium font-mono text-sm">{card.title}</h3>
           <p class="text-sm text-[var(--color-muted)] mt-1">{card.description}</p>
         </a>
