@@ -64,7 +64,17 @@ Vivek Haldar, who ran the OC AI Builders Lightning Hackathon in Irvine on 21.10.
 - Checking "is this step finished?" after tool calls cut 605 LLM calls (23.8%), at 356 of 360 correct against 357 for the LLM alone.
 - Classifying email intent, Jev took 141 of 148 decisions by itself, all 148 were correct, and the workflow made 25% fewer LLM calls.
 
-Those are his numbers; I have not reproduced them. The pattern carries over to Laya unchanged: wherever an LLM only classifies or checks, a small calibrated model can take the confident cases, and the LLM keeps the rest.
+Those are his numbers; I have not reproduced them.
+
+A demo at the same event put Jev and Laya side by side as the router. One request, "Translate 'the meeting moved to Thursday afternoon' into Spanish", went to three deciders, each picking a lane (fast or slow model) and scoring urgency and "needs a human":
+
+| Decider | Fast lane | Needs human | Urgency | Latency |
+|---|---|---|---|---|
+| Jev (hosted) | 100% | 24% | 1.5, this week | 259 ms |
+| Laya | 41% | 26% | 1.0, this week | 46 ms |
+| "brain" (LLM) | 94% | 35% | 1.5, today | 562 ms |
+
+The draft then came from a small fast model in 755 ms, and the decision model checked it: safe 97%, answers the request 94%, 235 ms. This is one request photographed off a slide, not a benchmark, but it shows the trade in one row: Laya was 5 times faster than Jev and agreed with it on the soft scores, yet on the routing call it sat at 41%, below any sensible 0.8 gate, where Jev was certain. With Haldar's rule that request would have fallen through to the LLM. The pattern carries over to Laya unchanged: wherever an LLM only classifies or checks, a small calibrated model can take the confident cases, and the LLM keeps the rest.
 
 ## What it cannot do
 
