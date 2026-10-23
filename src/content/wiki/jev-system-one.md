@@ -3,10 +3,10 @@ type: concept
 title: "Jev / System One — decision models that never generate text, and the open-weight Laya"
 description: "Jev (TypeSafe AI) is a non-autoregressive 'System One' model: unstructured text in, typed decisions with calibrated probabilities out, in one parallel pass. Closed weights, API-only — but Laya (Apache 2.0, 322-421M params, ~650-800MB) reproduces it with downloadable weights and runs locally."
 created: 2026-09-20
-updated: 2026-10-21
+updated: 2026-10-23
 tags: [structured-output, classification, non-autoregressive, calibration, rlcd, open-weights, local-models, llm]
 publish: true
-index_line: "Jev (TypeSafe): non-autoregressive System One model — typed decisions (Choice/Score/Noul) with calibrated probabilities, one parallel pass, 70-500ms, $0.042/MTok in + output free, RLCD training. Closed weights. Downloadable reproduction: Laya (Apache 2.0, 322-421M). Measured on M5: 10/12 EN+RU smoke (RU weaker), Core ML GPU 13.7ms/question, ANE refuses; port in ~/startups/active/laya-ane"
+index_line: "Jev (TypeSafe): non-autoregressive System One model — typed decisions (Choice/Score/Noul) with calibrated probabilities, one parallel pass, 70-500ms, $0.042/MTok in + output free, RLCD training. Closed weights. Downloadable reproduction: Laya (Apache 2.0, 322-421M). Measured on M5: 10/12 EN+RU smoke (RU weaker), Core ML GPU 13.7ms/question, ANE refuses; port in ~/startups/active/laya-ane. Six jobs from OC hackathon 21.10.2026: destructive-action gate, agent-output watchdog, scorer + LLM explainer, intent router, feed filter, image judgments; Mike benchmark: JSON-LLM 7/17 confidently wrong, decision models 0"
 index_section: "concept"
 ---
 
@@ -40,6 +40,39 @@ Vivek Haldar ([Integrating Decision Models into Agent Harnesses](https://vivekha
 - **Business decision inside the SOP** (email intent, a `Choice`): Jev took 141 of 148 decisions (95.3%), 7 fell back to Qwen, 148/148 correct either way, −25.4% LLM calls for the whole workflow (556 → 415).
 
 These are his reported numbers, not reproduced here. The reusable pattern: put the decision model where the LLM only classifies or checks completion, gate it on calibrated probability, keep the LLM as the fallback. Code and reports are on the `codex/bounded-business-decisions` branch. Haldar ran the OC AI Builders Lightning Hackathon (Irvine, 21.10.2026, theme "Decision models + LLMs", Nebius support).
+
+## Where it pays off: twelve demos in 50 minutes
+
+At the OC AI Builders Lightning Hackathon (EvoNexus Irvine, 21.10.2026) about a dozen teams demoed after a 50-minute build. Most used Jev, and the ones that worked put it in one of six jobs. The demos that had no closed question to ask (a trip planner, a memory-palace app, a therapist journal) did not use a decision model at all, which is the first filter: if the output is not a choice, a score or a yes/no, Jev has nothing to do.
+
+**1. Gate on destructive actions.** ImageKit let a Claude Code agent clean up duplicate and unused assets in a media library. A hook intercepts the delete batch before the API sees it, code checks what the files are, and Jev decides the borderline cases: anything live or in an active campaign goes back to the human as "are you sure?". The same shape held in a separate benchmark: an agent proposing `rm -rf` on a backup server got Jev "escalate, needs a human" at 0.84, and code printed HOLD.
+
+**2. Watchdog on a coding agent's output.** "Kill Bill" streams a coding agent's output into Jev and kills the run when it goes wrong. One run stopped at token 68 with p=0.97: the visible code imported a module outside the allowed list. Pointed at the author's old logs, it found a 1 h 55 min retry loop in a 12-hour session and would have fired before a build hit the 14 GB disk ceiling. A decision model is cheap enough to read every chunk of a stream, which an LLM judge is not.
+
+**3. Scorer, with the LLM only explaining.** SiteScout picks where to open a shop: Overture map data from the Snowflake marketplace, cut into hexagons. Jev scores every hexagon against what the owner values (students nearby, few competitors), sliders change the weights, and Llama is called only when you click a spot, to explain the score in words. The decision and the prose are separate calls with separate costs.
+
+**4. Intent router.** A voice kitchen copilot sends each utterance to Jev to decide: question about the recipe, navigation to the next step, or set a timer. That is a three-way `Choice` an LLM would answer slower and in prose. The demo's failure was elsewhere: the step navigation still wanted an exact phrase.
+
+**5. Feed filter.** A product lead labeled his own X feed as hype, fact or signal and let Jev triage new items. His finding: Jev agreed with him on what to drop, not on what deserved attention. Rejecting noise is a closed question; taste needs his own labels and evals.
+
+**6. Judgments on images.** [BroCheck](https://bro.rustman.org) (ours) sends two selfies as `Image` state with nine typed questions (same vibe, both smiling, style match, red flags, same person, relationship) and adds the probabilities with weights in code. Images need the header `TypeSafe-Danger-Zone-Images: true`. Every question that references the image re-sends it, so nine questions on a full-size JPEG return a 400; shrink to 768 px. Ask "is the plate empty?" as its own question, or an empty plate passes as a healthy meal. Code: [mama-approves](https://github.com/fortunto2/mama-approves).
+
+### One benchmark from the room
+
+Mike (rawrtech, [decide.rawrtech.ai](https://decide.rawrtech.ai)) ran 17 of his own routing cases through five lanes with one forward pass each. Numbers read off his slides; Jev and Laya are from his notes, the rest approximate.
+
+| Lane | Right vs his own call | Wrong while ≥90% sure | p50 | Cost for 17 |
+|---|---|---|---|---|
+| Jev 1.14, hosted | 14/17 | 0 | 247 ms | $0.00034 |
+| Microsoft decision-1, Foundry | ~11/17 | 0 | 454 ms | $0.00012 |
+| Laya, local, zero-shot | ~9/17 | 0 | 46 ms | $0 |
+| Local LLM asked for JSON | n/a | **7** | 618 ms | $0 |
+
+The LLM asked for JSON was wrong seven times while claiming 90 to 95% confidence. None of the decision models was confidently wrong. Zero-shot Laya was a coin flip on his routing but 5x faster than hosted Jev and free, which matches the Russian misses measured above: Laya needs fine-tuning on your own labels before it decides anything alone.
+
+### The rule that came out of it
+
+Ask a closed question, keep the thresholds in code, and let the LLM write only what a human will read. Mike's line for it: "The model advises. Code controls." His thresholds are three constants at the top of a file, versioned and tested.
 
 ## Why it matters
 
