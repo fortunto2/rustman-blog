@@ -7,7 +7,7 @@ created: 2026-10-18
 tags: [creative, music, reaper, audio, guide]
 publish: true
 publish_as: creative
-tools: [superduper-dsp, kubizbeat]
+tools: [superduper-dsp, sdsp-skills, solo-stem-split, kubizbeat]
 index_line: "Make music with Claude: REAPER via MCP, SuperDuper DSP plugins, stems, audio-to-MIDI, mixing by measurement. Guide for musicians + downloadable kit"
 index_section: "creative"
 ---
@@ -82,4 +82,4 @@ https://www.youtube.com/watch?v=iMKhL4hnUSQ | DJ Rust: rooftop techno set, Chica
 - **When a rebuilt plugin does not change, restart REAPER.** It keeps the old one loaded.
 - **Save often.** The assistant can undo, but a crashed session is still a crashed session.
 
-The technical side of all this is in [[project-superduper-dsp]]. The kubyz started as a phone app, [[project-kubizbeat]]. For the picture side, see [[creative-video-with-claude]].
+The technical side of all this is in [[project-superduper-dsp]]. The kubyz started as a phone app, [[project-kubizbeat]]. For the picture side, see [[creative-video-with-claude]]. Every skill, music and video, in one list: [[creative-skills]].

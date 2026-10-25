@@ -113,6 +113,8 @@ This works in any host: the plugins talk to the agent directly, the DAW doesn't 
 - `audio-to-midi`: turn a recording into MIDI and check it before trusting it.
 - In the repo: `track-teardown` (take a reference song apart and rebuild its feel), `vocal-mix` (a slot-by-slot vocal chain), `superduper-plugin` (write a new plugin in this codebase).
 
+The video skills that use them (scores for travel films, chords lifted from footage) are in [[creative-skills]].
+
 ## Principles
 
 - **Measured, not tuned by ear.** Every plugin passes the official `clap-validator`; each has checked-in quality snapshots (THD, aliasing, levels) that run on every release build; the mix tools are checked against 15 scenes with known answers before their output is trusted. When the validator found 34 real failures that an old report had printed as zero, they were fixed, not hidden.

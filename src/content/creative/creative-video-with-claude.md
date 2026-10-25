@@ -7,7 +7,7 @@ created: 2026-10-18
 tags: [creative, video, montage, guide]
 publish: true
 publish_as: creative
-tools: [life2film-studio, life2film-engine]
+tools: [life2film-studio, life2film-engine, solo-video-edit, solo-transcribe]
 index_line: "Edit video with Claude: Life2Film Studio + MCP, nine Chicago days to films, beat-cut montage, subtitles, rules learned on bad cuts. Guide for non-programmers"
 index_section: "creative"
 ---
@@ -91,3 +91,14 @@ https://www.youtube.com/watch?v=gYAVmXvZ7uw | San Francisco and Silicon Valley: 
 
 The technical side is in [[project-life2film]]. For the soundtrack, see
 [[creative-music-with-claude]].
+
+## Behind the app
+
+For my own trip I mostly skipped the window and ran the same core with ffmpeg from the terminal.
+Four posts on what that month taught: [[creative-video-transcribe]] (speech as the timeline, two
+languages, the GPU path), [[creative-video-agent-cut]] (the cut as a script, the critic, the trip
+film), [[creative-video-sound]] (your own score, stripping the radio) and
+[[creative-video-shipping]] (codecs, vertical crops, the hook and the cover). The rules are
+published as two skills in [solo-factory](https://github.com/fortunto2/solo-factory):
+`solo:transcribe` and `solo:video-edit`. All the skills, video and music, are listed in
+[[creative-skills]].
