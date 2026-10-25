@@ -74,8 +74,8 @@ export const TOOLS: Record<string, Tool> = {
   },
   'sdsp-skills': {
     name: 'Skills: SuperDuper DSP',
-    what: 'sdsp-mix, superduper-song, sdsp-chain and audio-to-midi: mixing by measurement, songs in REAPER, renders without a DAW, a recording turned into MIDI.',
-    install: 'Installed with SuperDuper DSP (the installer runs sdsp-bus setup).',
+    what: 'Nine skills, among them sdsp-mix, superduper-song, sdsp-chain and audio-to-midi: mixing by measurement, songs in REAPER, renders without a DAW, a recording turned into MIDI.',
+    install: 'claude plugin marketplace add https://github.com/fortunto2/superduper-dsp && claude plugin install superduper-dsp@superduper-dsp',
     links: [{ label: 'Source', href: 'https://github.com/fortunto2/superduper-dsp' }],
     page: '/projects/project-superduper-dsp',
   },

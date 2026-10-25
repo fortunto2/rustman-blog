@@ -35,8 +35,16 @@ claude plugin install solo@solo --scope user
 
 ## Music: SuperDuper DSP
 
-The installer from [[project-superduper-dsp]] adds the first four; the rest are in the
-[repo](https://github.com/fortunto2/superduper-dsp).
+All nine install as one Claude Code plugin from the [repo](https://github.com/fortunto2/superduper-dsp):
+
+```bash
+claude plugin marketplace add https://github.com/fortunto2/superduper-dsp
+claude plugin install superduper-dsp@superduper-dsp --scope user
+# other agents: npx skills add fortunto2/superduper-dsp --all
+```
+
+The plugins installer from [[project-superduper-dsp]] also links the first four; use one route,
+not both.
 
 | Skill | What it does |
 |---|---|
@@ -46,6 +54,9 @@ The installer from [[project-superduper-dsp]] adds the first four; the rest are 
 | `audio-to-midi` | A recording to MIDI, checked before it is trusted. In the films it lifts the chords someone played on camera into the score ([[creative-video-sound]]) |
 | `track-teardown` | Take a reference song apart and rebuild its feel |
 | `vocal-mix` | A vocal chain, slot by slot |
+| `sdsp-mash` | Mashups and cyphers from stems |
+| `mic-compare` | Two microphones compared by numbers: response, noise floor, plosives |
+| `superduper-plugin` | Write a new plugin in this codebase |
 
 How they work together in a session: [[creative-music-with-claude]].
 

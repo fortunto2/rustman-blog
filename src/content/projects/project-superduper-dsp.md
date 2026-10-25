@@ -106,7 +106,7 @@ This works in any host: the plugins talk to the agent directly, the DAW doesn't 
 
 **Prompts** (one command each; in Claude Code they show up as `/mcp__superduper-bus__…`): `mix-check` (measure, change nothing), `make-room-for-vocal`, `duck-under`, `fix-mud`, `master-to-target`. Each one measures, makes one change, measures again and keeps the old values as undo.
 
-**Skills** (instructions an agent loads when the task matches). The installer adds the first four:
+**Skills** (instructions an agent loads when the task matches). All nine install as a Claude Code plugin: `claude plugin marketplace add https://github.com/fortunto2/superduper-dsp && claude plugin install superduper-dsp@superduper-dsp`. The installer also links the first four; keep one route:
 - `sdsp-mix`: mix and master by measurement: who masks whom, kick/bass ducking, a pocket for the vocal, band balance against a reference.
 - `superduper-song`: build a track in REAPER on these instruments, with parameter maps and preset indices.
 - `sdsp-chain`: render plugin chains and instruments from the command line, no DAW, with LUFS and true peak per stage.
