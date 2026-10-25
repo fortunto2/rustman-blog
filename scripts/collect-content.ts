@@ -12,11 +12,14 @@
  *   - type: hub → also wiki (hub pages are useful as navigation)
  */
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, realpathSync } from 'fs';
 import { join } from 'path';
 
 const ROOT_DIR = join(import.meta.dirname, '..', '..');
 const WIKI_DIR = join(ROOT_DIR, 'wiki');
+// ~/startups/wiki is a symlink into solopreneur/; the raw dirs sit next to the real wiki, not next to the link.
+// Where the wiki is absent (a clean CI checkout) there is nothing to resolve; main() reports it.
+const KB_DIR = existsSync(WIKI_DIR) ? join(realpathSync(WIKI_DIR), '..') : ROOT_DIR;
 const CONTENT_DIR = join(import.meta.dirname, '..', 'src', 'content');
 
 // Raw source directories to scan for publish: true
@@ -96,7 +99,7 @@ function main() {
 
   // Collect from raw source directories
   for (const dir of RAW_DIRS) {
-    const dirPath = join(ROOT_DIR, dir);
+    const dirPath = join(KB_DIR, dir);
     if (!existsSync(dirPath)) continue;
 
     const files = readdirSync(dirPath).filter(f => f.endsWith('.md'));

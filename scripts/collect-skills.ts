@@ -4,10 +4,14 @@
  * Usage: runs as part of pnpm collect
  */
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, realpathSync } from 'fs';
 import { join } from 'path';
 
-const SKILLS_DIR = join(import.meta.dirname, '..', '..', 'solo-factory', 'skills');
+// solo-factory lives next to the real wiki (solopreneur/), not next to this repo.
+const WIKI_LINK = join(import.meta.dirname, '..', '..', 'wiki');
+const SKILLS_DIR = existsSync(WIKI_LINK)
+  ? join(realpathSync(WIKI_LINK), '..', 'solo-factory', 'skills')
+  : join(import.meta.dirname, '..', '..', 'solo-factory', 'skills');
 const OUT_DIR = join(import.meta.dirname, '..', 'src', 'content', 'skills');
 
 const PHASES: Record<string, string[]> = {
