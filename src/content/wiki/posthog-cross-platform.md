@@ -8,9 +8,14 @@ course_module: 4
 course_order: 9
 publish: true
 source_path: "1-methodology/posthog-analytics.md"
-index_line: "PostHog EU: one product = one project, cross-platform identity, anonymous by default"
+index_line: "SUPERSEDED by superduper-analytics. Was: PostHog EU, one product = one project, cross-platform identity"
 index_section: "concept"
 ---
+
+> **Superseded (2026-10-26).** PostHog is no longer used. Every site and app now reports to
+> [superduper-analytics](https://github.com/fortunto2/superduper-analytics): self-hosted on Cloudflare, no cookie, no per-person link between a
+> landing visit and an install (the funnel is aggregate, store campaign tokens cover installs). The
+> page below is the history of the earlier decision.
 
 ## Key Takeaways
 

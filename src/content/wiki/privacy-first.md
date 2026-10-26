@@ -26,7 +26,7 @@ Building products where user data stays on-device. Offline-first, local processi
 
 - MLX on-device inference (Apple Silicon)
 - Supabase Auth + row-level security
-- PostHog EU analytics (GDPR-compliant)
+- Self-hosted cookieless analytics ([superduper-analytics](https://github.com/fortunto2/superduper-analytics)): no cookie, web id rotates daily, no banner
 - On-device embeddings (multilingual-e5-small)
 - Privacy-first as competitive moat
 
@@ -38,6 +38,6 @@ Building products where user data stays on-device. Offline-first, local processi
 
 ## Key Sources
 
-- `1-methodology/posthog-analytics.md` — PostHog EU setup
+- `1-methodology/posthog-analytics.md` — PostHog EU setup (deprecated, history; replaced by superduper-analytics)
 - `1-methodology/infra-prd.md` — Infrastructure architecture
 - `0-principles/manifest.md` — Privacy-first principle

@@ -20,7 +20,7 @@ This isn't altruism — it's a **competitive advantage**. When Apple makes priva
 
 For a solo founder this is especially valuable: no legal department, no compliance team. If data isn't on the server — there's nothing to protect.
 
-Implementation: MLX embeddings (Apple Silicon, on-device), Supabase Auth + RLS (minimal cloud), PostHog EU (GDPR-compliant analytics).
+Implementation: MLX embeddings (Apple Silicon, on-device), Supabase Auth + RLS (minimal cloud), [superduper-analytics](https://github.com/fortunto2/superduper-analytics) (self-hosted, cookieless analytics, no consent banner).
 
 - [[manifest-summary]] — origin: manifesto principle #2
 - [[privacy-first]] — hub page for privacy-first architecture
