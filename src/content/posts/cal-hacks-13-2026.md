@@ -13,6 +13,8 @@ index_section: "concept"
 
 # Cal Hacks 13.0: what the most technical teams built, and what is worth stealing
 
+![Judge badge in the main hall of Cal Hacks 13.0, 25 October 2026](/images/posts/cal-hacks-13-2026/judge.jpg)
+
 On 25 October I judged at Cal Hacks 13.0 at UC Berkeley, in the Technical Complexity category: a
 morning of five-minute table visits, then a final round with the shortlist. 652 projects went up on
 Devpost. I recorded the keynote and the closing ceremony with [[project-supervox]] and afterwards
