@@ -52,21 +52,21 @@ the same bet as everything I do with personal video in [[project-life2film]].
 
 ## What the teams built
 
-**BrainSync.** A brain-computer interface for people who cannot speak, inspired by a team member's
+**[BrainSync](https://github.com/1thing2say/BrainSync).** A brain-computer interface for people who cannot speak, inspired by a team member's
 grandmother with Parkinson's. Squares flicker at 11 to 17 Hz, an 8-channel dry EEG headset picks up
 the frequency the user is looking at, and a training-free decoder chooses. Claude writes three reply
 options in the user's voice; a second look confirms and Cartesia speaks it. The decoder commits only
 after four consecutive windows agree, and "abstain" counts as a vote, so silence never commits. The
 README has an "Honest claim" table with pre-registered accuracy gates and unmeasured cells left TBD.
 
-**Handoff.** Remote help where the helper's tracked hand appears inside the other person's video call.
+**[Handoff](https://github.com/Wilozz/CalHacks13).** Remote help where the helper's tracked hand appears inside the other person's video call.
 Every few seconds a frame goes to Claude to find the key objects, Meta's SAM 3D turns one into a 3D
 twin with physics, and the helper can grab it and take it apart. Engineering details I liked: at most
 one frame in flight, a slow frame is dropped and never queued; the hand travels as a 262-byte binary
 frame at 30 Hz over an unordered WebRTC channel; a session is saved as an event log (two minutes ≈ 2
 MB) instead of video, so it replays as a lesson.
 
-**Vigil.** Overnight monitoring for nursing homes, where one worker covers 15 or 16 residents. A
+**[Vigil](https://github.com/snr2753423/Vigil_calhacks).** Overnight monitoring for nursing homes, where one worker covers 15 or 16 residents. A
 wristband and an iPhone under the pillow as a bed sensor, live in the final round: get out of bed and
 the resident jumps to the top of the "check next" queue with reasons from the chart. The clever part is
 alarm fatigue: each metric is scored against the resident's own normal for that 4-hour block of the
@@ -74,13 +74,13 @@ day, with hysteresis, persistence and suppression after acknowledgement. Their r
 fixed-threshold alarms against 22. On TimescaleDB, a 7-day hourly query went from 5,158 ms on raw
 rows to 214 ms on a continuous aggregate.
 
-**RealiSIM** (won Most Technically Advanced). Video of a real object in, simulation assets out, with a
+**[RealiSIM](https://github.com/ChampCNV/RealiSIM)** (won Most Technically Advanced; the pipeline lives on the `photo2grasp` branch). Video of a real object in, simulation assets out, with a
 robot arm mirroring the simulation live at the table. The pipeline is staged and resumable, with a
 review pause, and every physical value carries a label: Measured, Supplied, Estimated or Unknown. A
 dimension found on the web that is more than 25% off the scan is dropped; model output never quietly
 overrides a measurement.
 
-**muselet.** An on-device voice agent for the Mac. While the key is held it re-transcribes the
+**[muselet](https://github.com/ardahk/muselet).** An on-device voice agent for the Mac. While the key is held it re-transcribes the
 buffer every 450 ms and starts routing the request speculatively; the final reuses that work if the
 text did not change. The router is not generation at all: one forward pass over single-token choice
 ids on a cached prompt, softmax over their logits, about 60 ms p50 on a 4-bit 4B model in MLX, and
@@ -88,21 +88,21 @@ ids on a cached prompt, softmax over their logits, about 60 ms p50 on a 4-bit 4B
 the best document I read all weekend: seven failures in the user's first ten minutes despite about
 2,000 passing tests, because the fakes returned ok for anything.
 
-**Fermata.** Month-end close for a family retail business in Indonesia with 15 branches, where about
+**[Fermata](https://github.com/keananwongso/fermata).** Month-end close for a family retail business in Indonesia with 15 branches, where about
 20 people reconcile by hand. Known cases go through a deterministic rule engine. An unknown case goes
 to a "case room": an investigator agent proposes a rule, an auditor agent attacks it, the rule is
 backtested on years of real history, and the CFO approves it. Agents propose, code decides, a
 backtest admits.
 
-**Pooltune.** Database connection pools are static, so a traffic spike queues queries for 30 to 60
+**[Pooltune](https://github.com/jyshum/pooltune).** Database connection pools are static, so a traffic spike queues queries for 30 to 60
 seconds. A Go control layer over PgBouncer, Supavisor and the cloud poolers resizes the pool once a
 second, adapting Netflix's open-source concurrency-limits gradient, and keeps warm connections
 standing by.
 
-**Also worth a look:** Hypercompute pools LLM inference across laptops over Iroh QUIC and honestly
-reports that pooling *slows* decoding (0.83x) when one machine already holds the model. Signal Bridge
+**Also worth a look:** [Hypercompute](https://github.com/amemon12/Hypercompute) pools LLM inference across laptops over Iroh QUIC and honestly
+reports that pooling *slows* decoding (0.83x) when one machine already holds the model. [Signal Bridge](https://github.com/tiramisuuuuuuu/SignalBridge)
 merges NWS alerts, FEMA shelters and scraped county pages into an emergency assistant with a voice
-mode and a 50-mile offline map. Overflow puts an escrow contract under agent purchases: data is hashed
+mode and a 50-mile offline map. [Overflow](https://github.com/its-advait/Overflow) puts an escrow contract under agent purchases: data is hashed
 in chunks and payment is released only when the hashes match.
 
 ## Patterns I am taking home
