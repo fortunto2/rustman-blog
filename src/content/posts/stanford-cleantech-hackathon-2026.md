@@ -13,7 +13,7 @@ index_section: "concept"
 
 # Who built what at a climate hackathon, and where the industry is going
 
-On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel and the finalist pitches with [[project-supervox]] and read every Devpost page. Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
+On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel and the finalist pitches with [[project-supervox]] and read every [Devpost page](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
 
 ## Who built what
 

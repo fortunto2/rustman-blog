@@ -370,4 +370,5 @@ All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 - *[[project-openai-oxide]] -- the OpenAI Rust client underneath*
 - *[[deepeval-llm-testing]] -- the missing other half: Phoenix gave observability, DeepEval would have given CI assertions on every PR*
 - *[[erc3-agents-competition]] -- the same lesson one competition earlier: simple ReAct with composite tools beat multi-agent*
+- *[[cyberdefense-hackathon-screenshield-2026]] -- six months later the same sgr-agent core ran a security responder, where policy, not the prompt, forces the important tool call*
 - *[[hackathons]] -- every hackathon and competition, and the lessons that repeat*

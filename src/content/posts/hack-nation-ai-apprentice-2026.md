@@ -59,8 +59,9 @@ IndexedDB.
 - **Teach.** On a case Sabine never saw, the tutor asks the new hire to predict the next decision,
   pauses the save when it would break a guardrail ("Sabine would stop here. Why do you think?"), and
   replays Sabine's moment as 8 seconds of the recorded screen with her quote.
-- **Trust.** "Off the record" is both a button and a tool; it strikes the last 60 seconds. Frames
-  never leave the browser.
+- **Trust.** "Off the record" is both a button and a tool; it strikes the last 60 seconds. Changed
+  frames go to the vision model to become events, but the session and its frames are stored only in
+  the browser, not on a server.
 
 The part I would build again is how guardrails are stored. The synthesis writes each rule twice: in
 the expert's words and as a check, for example `when amount > 5000 → must cost_center = 0400`. That one

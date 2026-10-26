@@ -28,6 +28,8 @@ Portfolio vehicle for building privacy-first AI tools. Two legal entities: Super
 | **KubizBeat** | Bashkir national instrument app (kubyz/kurai) | iOS | shipped |
 | **KissMyTask** | Todo app with AI prioritization | iOS | shipped |
 | **VoiceJournal** | Voice diary with transcription + analysis | iOS | in dev |
+| **Air Signal** | Air quality and 14 outdoor comfort signals, [airsignal.app](https://airsignal.app) | Web + iOS | web live, iOS in review |
+| **Crew Air** | Wildfire-smoke and heat shift plans for outdoor crews (Cal/OSHA), [airsignal.app/crew](https://airsignal.app/crew) | Web + iOS | web live, iOS in review |
 | **QuestSchool** | Gamified homeschool platform | Web | planned |
 
 See [[project-life2film]] for the flagship product.
@@ -41,7 +43,7 @@ See [[project-life2film]] for the flagship product.
 | **openai-oxide** | Idiomatic OpenAI client -- Rust/Node/Python, WebSocket, WASM | Rust | [GitHub](https://github.com/fortunto2/openai-oxide) |
 | **rust-code** | AI terminal coding agent -- TUI, SGR loop, 22 tools, MCP | Rust | [GitHub](https://github.com/fortunto2/rust-code) |
 | **supervox** | Voice pipeline TUI -- live call assistant, post-call analysis, agent chat | Rust | [GitHub](https://github.com/fortunto2/supervox) |
-| **airq** | CLI air quality checker -- 14 signals, pollution fronts, WASM core | Rust | [GitHub](https://github.com/fortunto2/airq) |
+| **airq** | Air quality CLI and the shared Rust/WASM core behind Air Signal and Crew Air -- 14 signals, pollution fronts, EPA NowCast | Rust | [GitHub](https://github.com/fortunto2/airq) |
 | **you2idea** | AI startup idea search from 700+ YouTube videos, 46 channels | Astro | [you2idea.com](https://you2idea.com) |
 
 ## Revenue Model

@@ -1,6 +1,6 @@
 ---
 type: concept
-description: "Check AQI, PM2.5, PM10 for any city from terminal. Open-Meteo + Sensor.Community data merge. Rust core with WASM support."
+description: "Check AQI, PM2.5, PM10 for any city from terminal. Open-Meteo + Sensor.Community data merge. One Rust core, compiled to WASM, behind the CLI, airsignal.app and the Crew Air shift planner."
 title: "airq — CLI air quality checker"
 created: 2026-03-16
 tags: [project, open-source, rust, air-quality, cli, wasm]
@@ -25,6 +25,8 @@ Merges two data sources with dynamic weighting by divergence:
 - **Open-Meteo** -- CAMS atmospheric model (PM2.5, PM10, CO, NO2, O3, SO2, UV) -- fallback
 
 When sources diverge (e.g. model says 130, sensors say 7), sensors win. Model weight drops to ~0% at high divergence.
+
+The core (`airq-core`) is shared. The CLI links it natively; [airsignal.app](https://airsignal.app) runs it as WASM; the Air Signal and Crew Air iPhone apps call the site's API, so every surface gives the same number from the same code.
 
 ```bash
 brew install fortunto2/tap/airq     # Homebrew (macOS & Linux)
@@ -87,7 +89,7 @@ City switching via chips in top bar or search (40K city autocomplete).
 
 ## Air Signal Web
 
-Web dashboard at [air-signal](https://github.com/fortunto2/air_signal): Next.js 16 + Tailwind 4 + shadcn/ui + Leaflet + airq-core (Rust WASM). Cloudflare Pages.
+[airsignal.app](https://airsignal.app) ([source](https://github.com/fortunto2/air-signal-web)): Astro + Cloudflare Workers, D1 for reports, `airq-core` compiled to WASM for the merge, event detection, source attribution (CPF), bearings and the comfort index.
 
 **14 comfort signals** (all normalized in Rust via sigmoid/gaussian):
 
@@ -108,11 +110,22 @@ Web dashboard at [air-signal](https://github.com/fortunto2/air_signal): Next.js 
 | Noise | sigmoid desc | < 60dB |
 | Moon | cosine | full moon |
 
+## Crew Air: shift plans for outdoor crews
+
+Built at the Stanford Cleantech Hackathon (Oct 2026) as a module of the core, `crew.rs`, exported as `wasm_crew_plan`. Live at [airsignal.app/crew](https://airsignal.app/crew).
+
+For a site and a shift it answers, hour by hour, what California's wildfire-smoke rule (Cal/OSHA §5141.1) and heat rule (§3395) require:
+
+- **NowCast, not the daily mean.** Open-Meteo's `us_aqi_pm2_5` is a 24-hour average; the rule uses the current AQI, so the engine recomputes the EPA NowCast from hourly PM2.5.
+- **Rulebooks are data.** Thresholds live in `rulebooks/us-ca.json`, not in code. Smoke rules are concentrations, because the AQI caps at 500.
+- **Checked against the ground.** The nearest AirNow monitor corrects the forecast, clamped to [0.5, 3] so a safety tool only corrects cautiously; NASA VIIRS fires within 50 km come with distance and bearing; the NWS wind turns each fire into a downwind cone.
+- **A signal for machines.** The same plan goes out as JSON that a dispatch system or a building controller can act on.
+
 ## Architecture
 
 **4 crates:**
 - `airq` -- CLI binary (commands, TUI)
-- `airq-core` -- library (matrix, event, merge, signal), 101 tests, 14 signal types
+- `airq-core` -- library (matrix, event, merge, signal, crew), 131 tests, 14 signal types; PM2.5 AQI on the EPA's 2024 breakpoints
 - `airq-dashboard` -- native desktop app
 - `airq-core` WASM -- browser/web build
 
@@ -141,9 +154,9 @@ Install as daemon on macOS (launchd), Linux (systemd), or Windows (nssm).
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/airq) -- Rust, MIT
+- [GitHub](https://github.com/fortunto2/airq) -- Rust, AGPL-3.0
 - [crates.io](https://crates.io/crates/airq)
-- [Air Signal Web](https://github.com/fortunto2/air_signal) -- Next.js dashboard
+- [airsignal.app](https://airsignal.app) -- the web app on the same core; [/crew](https://airsignal.app/crew) -- Crew Air
 - [[privacy-as-architecture]] -- all processing local, no user data sent anywhere
 - [[cli-first-testing]] -- CLI-first: `airq antalya` works offline with cached data
 - [[one-pain-one-feature-launch]] -- one pain (air quality in Antalya), one feature (check from terminal)

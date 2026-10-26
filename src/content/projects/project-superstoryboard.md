@@ -55,4 +55,5 @@ Supabase, Figma Plugin API, Google Gemini, Veo 3.1, PGMQ, Phoenix Channels, WebS
 
 - [[project-superduperai]] — parent product studio
 - [[schema-guided-reasoning]] — structured outputs for storyboard generation pipeline
+- [[neon-personal-agents-life2film-director-2026]]: the next hackathon build on video, a personal agent that edits your own footage instead of generating new
 - [[hackathons]]: the 2nd place at Supabase Lisbon next to every other hackathon, and the lessons that repeat
