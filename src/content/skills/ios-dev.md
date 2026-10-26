@@ -43,7 +43,7 @@ Match these so generated code fits the codebase (from `ios-swift.yaml` patterns,
 - **async/await everywhere, no Combine** for new code. Timer callbacks → `Task { @MainActor in … }`.
 - **Permissions:** `requestPermission() async -> Bool` in the protocol; request before use; "Open Settings" alert on denied; `#if os(iOS)` around `AVAudioSession`/`UIApplication` for macOS compat.
 - **Dir layout:** `App/` `Models/` `Views/` `ViewModels/` `Services/` `Services/Protocols/` `Extensions/` `Resources/`. MVVM.
-- i18n: **String Catalog** (`.xcstrings`, Xcode 16). Lint: **SwiftLint** + **swift-format**; hooks via **lefthook**. Tests: **Swift Testing** (`@Test`) new, XCTest legacy. IAP: **StoreKit 2**. Analytics: **PostHog** (EU).
+- i18n: **String Catalog** (`.xcstrings`, Xcode 16). Lint: **SwiftLint** + **swift-format**; hooks via **lefthook**. Tests: **Swift Testing** (`@Test`) new, XCTest legacy. IAP: **StoreKit 2**. Analytics: **superduper-analytics** via the [SuperDuperAnalytics](https://github.com/fortunto2/superduperai-analytics-swift) SPM package; crashes from App Store Connect + MetricKit, no third-party SDK.
 
 ## Where an `async` function actually runs (Swift 6.2)
 

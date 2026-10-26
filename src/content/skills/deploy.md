@@ -143,7 +143,8 @@ Extract these fields from the YAML:
 - `deploy_cli` — CLI tools and their use cases (e.g. `vercel (local preview, env vars, promote)`)
 - `infra` — infrastructure tool and tier (e.g. `sst (sst.config.ts) — Tier 1`)
 - `ci_cd` — CI/CD system (e.g. `github_actions`)
-- `monitoring` — monitoring/analytics (e.g. `posthog`)
+- `monitoring` — analytics (e.g. `superduper-analytics`)
+- `errors` — where crashes and errors are read (platform reports, logs; no third-party SDK)
 - `database` / `orm` — database and ORM if any (affects migration step)
 - `storage` — storage services if any (R2, D1, KV, etc.)
 - `notes` — stack-specific deployment notes
@@ -367,7 +368,7 @@ Deployment: {project-name}
   Manual steps remaining:
     - [ ] Set environment variables (listed above)
     - [ ] Custom domain (optional)
-    - [ ] PostHog / analytics setup (optional)
+    - [ ] Analytics: superduper-analytics source registered + counter reporting (`seo products`)
 
   Next: /review — final quality gate
 ```

@@ -81,7 +81,7 @@ If MCP tools are not available, fall back to Glob + Grep + WebSearch.
    Week 0 (pre-launch):
    - [ ] /landing-gen — landing page with email capture
    - [ ] /seo-audit — baseline SEO score
-   - [ ] /metrics-track — PostHog events wired
+   - [ ] /metrics-track — superduper-analytics events wired (`seo products` shows the counter reporting)
 
    Week 1 (soft launch):
    - [ ] /community-outreach — 3-5 value-first posts in target communities

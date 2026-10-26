@@ -76,3 +76,6 @@ that, neighbours differed by 9 dB.
 
 The sound side is in [[creative-video-sound]], getting it onto platforms in
 [[creative-video-shipping]].
+
+For contrast, [[filmcraft-agent-built-editor]] gives an agent 650 low-level editor commands; this
+loop gives it what is in the footage and lets it write the cut.
