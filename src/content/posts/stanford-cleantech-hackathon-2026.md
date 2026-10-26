@@ -6,14 +6,14 @@ created: 2026-10-24
 tags: [hackathon, climate, cleantech, energy, public-data, validation, air-quality]
 publish: true
 publish_as: post
-learned_from: "Stanford Cleantech Hackathon 23-24 Oct 2026: investor panel, mentor conversations and finalist pitches recorded with supervox; all 19 Devpost project pages"
+learned_from: "Stanford Cleantech Hackathon 23-24 Oct 2026: investor panel, finalist pitches and Earth Engine workshop recorded on DJI, transcribed with large-v3 and corrected; mentor conversations via supervox; all 19 Devpost project pages"
 index_line: "Post: Stanford Cleantech Hackathon 2026, technical survey. GridLight (CAISO g/kWh), Griddy (chained XGBoost, held-out regions), Shadow Plan (CPUC plan vs CAISO delays), FlareWise (DBSCAN + Gaussian plume on ERA5, 180° wind test), Chill Factor (leave-one-out), Dengai (OR-Tools orienteering), heat plan audit (blind LLM coder, kappa), WattNext, ResilienceOS, Pismo, Crew Air. Panel: data-center load, adaptation, asset owners; red flags utilities, subsidy, AI where physics would do."
 index_section: "concept"
 ---
 
 # Who built what at a climate hackathon, and where the industry is going
 
-On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel and the finalist pitches with [[project-supervox]] and read every Devpost page. Stage quotes are paraphrases of rough speech-to-text; numbers come from the project pages unless stated.
+On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel and the finalist pitches with [[project-supervox]] and read every Devpost page. Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
 
 ## Who built what
 
@@ -33,7 +33,7 @@ On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [
 
 ### Resilience
 
-**ResilienceOS.** Storm-outage risk for life-dependent customers in SCE territory, from ORNL EAGLE-I outage records and NOAA HRRR. Features come from NVIDIA StormCast, a regional AI weather model, fine-tuned on outage history. An LLM agent drafts an action plan that a utility employee reviews. The 52% error on stage belongs to existing models in a 2026 paper. Their own accuracy is not reported; customer sites are synthetic.
+**ResilienceOS.** Storm-outage risk for critical facilities in SCE territory (on stage: hospitals, which utilities must warn 48 to 72 hours ahead), from ORNL EAGLE-I outage records and NOAA HRRR. Features come from NVIDIA StormCast, a regional AI weather model, fine-tuned on outage history. An LLM agent drafts an action plan that a utility employee reviews. The 52% error on stage belongs to existing models in a 2026 paper. Their own accuracy is not reported; customer sites are synthetic.
 
 **Pismo.** Charge a home battery before the NWS warning. NOAA GFS through Earth Engine averaged by county, the NWS alert archive from Iowa Mesonet, EAGLE-I for 2018-21. The rule (rain ≥ 15 mm or wind ≥ 18 m/s) was set on two earlier months and left untouched for the test storm. In Humboldt it fired 27 hours before the High Wind Warning. Santa Cruz and San Mateo got no warning at all. Limits stated: one storm, and EAGLE-I fully records only about 1 day in 7.
 
@@ -57,7 +57,9 @@ The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) 
 
 **Adaptation is the white space, and asset owners pay.** Paraphrasing the panel: funding adaptation used to sound defeatist, and it is now clear mitigation alone is not happening. They named extreme-weather risk, insurance, asset owners with billions at risk, and home hardening. Pismo, ResilienceOS, the Chill Factor (pitched to lenders and land buyers too) and Crew Air sit there.
 
-**The red flags were explicit.** Number one: "we sell to utilities". A utility earns a regulated return on approved capital, and a pilot on its R&D line has no budget to graduate into. Number two: subsidy as the business, "regardless of the party". Then AI where physics or an optimizer would do, single-digit-billion markets, and hardware scaling faster than 10× per step. ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
+**The red flags were explicit**, and they came from three people. Kevin Kopczynski (Congruent Ventures) gave the first two. Number one: "we sell to utilities". A utility earns a regulated return on approved capital; a pilot paid from its R&D line has no bucket to graduate into, and the panel would not back a first-time founder who wants to sell to utilities. Number two: subsidy as the business. He later narrowed it: SBIR, STTR and DOE grants have a role, a solution that only works while subsidised does not. Ajay Gupta added AI used where physics or an optimizer would do. Giancarlo added single-digit total addressable markets and hardware that scales by more than 10× per step: "it's basically not going to happen". ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
+
+There is one exception, and Ajay named it: sell against a liability that already has its own budget line. About 10% of a utility's infrastructure causes over half of its wildfires, and fire mitigation is a line item a startup can sell into.
 
 **Patterns becoming standard**, my inference from the 19 projects:
 - One shared public stack: Open-Meteo, FIRMS, AirNow, CAISO, NWS, EAGLE-I, Earth Engine, Census. Nobody had a data moat.
@@ -67,13 +69,36 @@ The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) 
 
 **Overhyped, in my reading:** chat over a dataset (a panelist: build for the questions businesses actually ask), consumer apps on simulated prices, and "AI" as a label on a rule.
 
+## What the investor panel said
+
+Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a $275M third fund), Ajay Gupta (climate and AI), and Giancarlo of a Swiss carbon fund that began as a family office. What a builder can use, with the time in the full recording:
+
+- **Data is not the product.** "They're not in love with the data, they're in love with the application" (Kevin, 14:52). Methane satellites are a public good, not a business. First Street went from a nonprofit to selling to insurers and asset owners, and was acquired in a few years (on stage "Moody's"; the buyer, in June 2026, was MSCI).
+- **Join a decision someone already makes**: whether to connect a load to the grid, whether to store or dispatch (Ajay, 16:32). "People are not willing to pay a green premium. That is a known fact now" (17:42).
+- **Take risk only on the core.** "You should be buying every other damn thing possible… it's about speed" (Kevin, 21:24). His own story: an anti-reflective coating now on every First Solar panel, 150 square miles of glass.
+- **The first 30 days.** Talk to a hundred potential customers in a few weeks and find who buys and who decides (Ajay, 24:28). Pick a customer for whom failure has severe consequences, and look for the job they hire you for: a diligence tool may really sell "a layer of security for their decisions" (Giancarlo, 22:44).
+- **Grants** are good when they make you faster and bad as "a way to stay alive and extend your runway indefinitely" (Giancarlo, 39:15). Lobbying comes at scale: Fervo fought drilling rules stricter than oil and gas had. "We got a lobbyist" at the seed stage is a red flag (Kevin, 41:36).
+- **Adaptation already has products**: Adaptive Insurance covers deductibles on wind, hail and wildfire, FutureProof sells where people lost their insurance, Florida first and now California. Home hardening is underfunded.
+- **Data centers.** Kevin: half to two-thirds of GDP growth is tied to them. A castings company he knows now makes heat sinks for them (44:14).
+- **Hardware vs software.** "Software companies take less money or less time is a fallacy", and in climate "the bigger returns come from hardware" (Kevin, 51:50). Giancarlo on why funds care about speed: "IRR is very sensitive to time".
+
+## Questions the judges asked
+
+The finalist recording has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models:
+
+- Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases".
+- The Chill Factor: does this make farmers competitors or collaborators? Their answer: free public data first, light hardware later as a data flywheel. Pistachio yield fell 47% in 2015.
+- ResilienceOS: what makes the data proprietary, and do better storm forecasts serve insurers or power producers? The answer stayed general.
+- matcha, on revenue: "B2C2B", featured vendors and sign-ups for virtual power plants.
+- Numbers said on stage: Dengai, 544 dengue deaths in Indonesia in 2025 out of 131,000 confirmed cases; USC, 1,061 more lives saved in LA County for the same budget; Judy, a $5 plug saving $185 a year.
+
 ## Seven insights
 
 1. **The best validation needed no new data.** FlareWise rotated every wind direction 180°: NO2 at Karnes was 4.8 ppb downwind against 2.2 upwind, and the signal vanished under rotation. The Chill Factor and Griddy held out stations and regions.
 2. **Price and carbon disagree, and the usual advice follows price.** On GridLight's simulated home, the same $62 saving cuts CO2 18% at midday and raises it 7% on an overnight timer.
 3. **Provenance became a feature.** WattNext decays confidence per source. Griddy labels every number observed, assumed, simulated or inferred. ResilienceOS counts separating real from synthetic as an accomplishment.
 4. **The honest finding was the uncomfortable one.** FlareWise found that capturing the cheapest gas first avoids more greenhouse gas than its health plan, and published it.
-5. **Numbers grew between page and stage.** 13.7% in a simulator became the saving "if all AI inference companies" adopted it. A kappa of 0.78 became "almost 92% agreement". The pages were more careful than the pitches.
+5. **Numbers grew between page and stage.** 13.7% in a simulator became "around 13%" saved "if all AI inference companies" adopted it, on a premise that off-peak hours run "solely on renewable energy". A kappa of 0.78 became "almost 90% agreement". Dengai's routes ran "on real streets" in the pitch and on straight lines × 1.3 in the Q&A. The pages were more careful than the pitches.
 6. **The missing number is never a model.** Utilities do not publish spare substation capacity (Griddy). EAGLE-I gaps make "no outage" unconfirmable (Pismo, ResilienceOS). Dengai's real detections were not released. Labels and utility data are the bottleneck.
 7. **The panel's AI rule matched the best builds.** Dengai's routing, matcha's sizing, FlareWise's plume and our NowCast are deterministic. LLMs did the reading: 50 plan PDFs, county agendas. A mentor asked me "what is your model?", and "rules and physics" was the right answer.
 
@@ -92,7 +117,14 @@ Each public API we used had one trap. What it gives, the trap, the fix:
 - **TypeSafe Jev.** Typed questions about a photo, answered with probabilities. Trap: wording changes answers. Fix: a 12-photo eval rerun after every change of wording. Smoke was reliable and visibility was not.
 - **Platform traps.** Astro's origin check returns 403 to a multipart POST without an Origin header, so app endpoints take JSON or raw `image/jpeg`. `wrangler dev` keeps its edge cache across restarts, so add a throwaway query parameter. Overpass timed out from the venue twice. Devpost answered 403 to our agent's fetcher; curl with a browser User-Agent worked.
 
-**Earth Engine.** We used it for the pitch, not the product. Notebook auth was blocked on our Cloud project, so a small helper passes a `gcloud auth print-access-token` token into `ee.Initialize` as OAuth credentials. We had no Planet account, so we used Sentinel-2 instead (`COPERNICUS/S2_SR_HARMONIZED`). The least-cloudy scene from 10 to 24 October over the largest FIRMS cluster of 20 October, near Sequoia, rendered as a SWIR composite (B12, B8A, B4), shows the active fire front. A second script computes a dNBR burn scar from median NBR before and after, thresholded at 0.27. At a hackathon its value is that a whole archive comes back as one `getThumbURL` PNG, with nothing downloaded. Other teams used it harder. Griddy took layers for siting, WattNext pulled NAIP at 0.6 m, Sentinel-2 and ESA WorldCover, and Pismo read NOAA GFS forecasts through it. Pismo also measured the cost: about 8 months of forecasts took 1.5 hours, so they cut scope to one storm.
+**Earth Engine.** We used it for the pitch, not the product. Notebook auth was blocked on our Cloud project, so a small helper passes a `gcloud auth print-access-token` token into `ee.Initialize` as OAuth credentials. We had no Planet account, so we used Sentinel-2 instead (`COPERNICUS/S2_SR_HARMONIZED`). The least-cloudy scene from 10 to 24 October over the largest FIRMS cluster of 20 October, near Sequoia, rendered as a SWIR composite (B12, B8A, B4), shows the active fire front. A second script computes a dNBR burn scar from median NBR before and after, thresholded at 0.27. At a hackathon its value is that a whole archive comes back as one `getThumbURL` PNG, with nothing downloaded.
+
+From the opening workshop by Stace Maples (Stanford Geospatial Center), the traps worth knowing:
+- Always pass `scale` to `reduceRegion`. Without it Earth Engine computes at the Code Editor's current zoom, 153 m in his demo, and returns a different number.
+- Planet's public Education & Research account gets 5,000 km² a month. Clip to the GeoJSON area and ask for one band: "I actually just want an NDVI… ask for one band. That's much cheaper."
+- An order is not a download: images sit in cold storage and take about 30 minutes to come out. Use the Planet SDK rather than the raw API, whose results are paginated.
+- Earth Engine, Mapbox, Planet and Google share one Z/X/Y tile grid, so layers from different sources line up; `mercantile` turns a GeoJSON extent into a list of tiles.
+- No Planet account: Planet publishes disaster data as cloud-optimized GeoTIFFs on plain HTTP, Earth Engine already holds SkySat samples, and the awesome-gee-community-catalog adds more. Other teams used it harder. Griddy took layers for siting, WattNext pulled NAIP at 0.6 m, Sentinel-2 and ESA WorldCover, and Pismo read NOAA GFS forecasts through it. Pismo also measured the cost: about 8 months of forecasts took 1.5 hours, so they cut scope to one storm.
 
 ## What happens with Crew Air now
 
