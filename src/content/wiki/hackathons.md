@@ -85,7 +85,7 @@ With a teammate. Crew Air turns smoke and heat forecasts into a shift plan that 
 Q&A. It stays live as a free tool at [airsignal.app/crew](https://airsignal.app/crew). The write-up is
 mostly about the other teams and the investor panel: [[stanford-cleantech-hackathon-2026]].
 
-### 25 October: Cal Hacks 13.0, UC Berkeley, 652 projects
+### 25 October: Cal Hacks 13.0, Palace of Fine Arts SF, 652 projects
 
 Judge for Technical Complexity: table visits, the final round, then eight repos read line by line.
 Sergey Levine's keynote on robot data, and the engineering patterns worth stealing from the repos. Write-up:

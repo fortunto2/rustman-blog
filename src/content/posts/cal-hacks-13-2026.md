@@ -1,13 +1,13 @@
 ---
 type: concept
 title: "Cal Hacks 13.0: what the most technical teams built, and what is worth stealing"
-description: "Judging at Cal Hacks 13.0 (UC Berkeley, 25 Oct 2026): Sergey Levine's keynote on robot data, the stack 13 projects ran on, and thirteen engineering patterns from their repos with the thresholds and files behind them."
+description: "Judging at Cal Hacks 13.0 (Palace of Fine Arts, San Francisco, 25 Oct 2026): Sergey Levine's keynote on robot data, the stack 13 projects ran on, and thirteen engineering patterns from their repos with the thresholds and files behind them."
 created: 2026-10-25
 tags: [hackathon, berkeley, robotics, voice, on-device, agents, evals]
 publish: true
 publish_as: post
 learned_from: "Cal Hacks 13.0, 25 Oct 2026: judging at tables and in the final round, Sergey Levine's keynote and the closing ceremony recorded with supervox, Devpost pages, read-only pass over 13 GitHub repos (numbers re-checked against the repos on 26 Oct)"
-index_line: "Post: Cal Hacks 13.0 (Berkeley, 652 projects, Devpost window Thu 18:00 to Sun 09:30 PT). Levine keynote: more robot data makes human video usable, robot CoT, 13 h espresso. Stack table (Claude+Cartesia, Convex/SpacetimeDB, Tiger Data, Snowflake, MediaPipe/SAM 3D, TRELLIS/CoACD/MuJoCo, Iroh, WebRTC, CDP/USDC). 13 patterns with numbers: speculative STT partials (450 ms), one frame in flight, WebRTC channels by delivery, event log not video, TTS prefetch, single-token router (~60 ms, abstain under tau), N-window voter, personal baseline z per 4-h block + hysteresis 60/50 (903 → 22 alarms, simulated night), backtest-admitted rules (≥90%, 0 wrong), gradient pool limit, pre-registered gates, fail-closed fakes + replay cases, provenance labels + resumable stages. Null results: pooling 0.83x, adaptive ≈ warm pool. Judge's checklist for agent-built repos"
+index_line: "Post: Cal Hacks 13.0 (Hackathons @ Berkeley, held at the Palace of Fine Arts SF, 652 projects, Devpost window Thu 18:00 to Sun 09:30 PT). Levine keynote: more robot data makes human video usable, robot CoT, 13 h espresso. Stack table (Claude+Cartesia, Convex/SpacetimeDB, Tiger Data, Snowflake, MediaPipe/SAM 3D, TRELLIS/CoACD/MuJoCo, Iroh, WebRTC, CDP/USDC). 13 patterns with numbers: speculative STT partials (450 ms), one frame in flight, WebRTC channels by delivery, event log not video, TTS prefetch, single-token router (~60 ms, abstain under tau), N-window voter, personal baseline z per 4-h block + hysteresis 60/50 (903 → 22 alarms, simulated night), backtest-admitted rules (≥90%, 0 wrong), gradient pool limit, pre-registered gates, fail-closed fakes + replay cases, provenance labels + resumable stages. Null results: pooling 0.83x, adaptive ≈ warm pool. Judge's checklist for agent-built repos"
 index_section: "concept"
 ---
 
@@ -15,7 +15,8 @@ index_section: "concept"
 
 ![Judge badge in the main hall of Cal Hacks 13.0, 25 October 2026](/images/posts/cal-hacks-13-2026/judge.jpg)
 
-On 25 October I judged at Cal Hacks 13.0 at UC Berkeley, in the Technical Complexity category: a
+On 25 October I judged at Cal Hacks 13.0, Berkeley's student hackathon, held this year at the Palace
+of Fine Arts in San Francisco. My category was Technical Complexity: a
 morning of five-minute table visits with pairwise votes, then a final round with three shortlisted
 projects. 652 projects went up on Devpost. I recorded the keynote and the closing ceremony with
 [[project-supervox]], and afterwards read 13 of the repos, eight of them file by file.
@@ -38,6 +39,8 @@ speech-to-text.
   sensor and an EEG headset worked anyway.
 
 ## The keynote: Sergey Levine, Physical Intelligence
+
+![Sergey Levine on the Cal Hacks 13.0 stage, and his closing slide: some day all AI systems will incorporate a foundation built from physical interaction](/images/posts/cal-hacks-13-2026/levine-keynote.jpg)
 
 Levine opened with Moravec's paradox: the skills that are easy for us are exactly the ones nobody
 ever wrote down, so there is no text corpus for folding laundry. Web video gives knowledge, but
