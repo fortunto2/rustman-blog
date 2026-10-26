@@ -115,6 +115,48 @@ and about 3 hours per outage, and an unseen error pattern caught 11 s after the 
 Shift), about $350M of economic loss from a San Francisco outage last December (Dwayne), and $500k to
 $1M for a ship survey system against a roughly $10k sonar plus a GB10 (Braille Dive).
 
+## What the other 32 teams built
+
+BuilderBase keeps the gallery behind a login (project API routes answer 401), so the list comes from
+GitHub: 39 repos plus Dwayne, who has none. For 5 the event link is inferred, not stated. By morning
+3 repos returned 404, two of them finalists linked above (Night Shift, Braille Dive), and 8 of the 36
+live ones had been pushed after the 18:00 code freeze, so they may show more than was demoed.
+
+Counted from the READMEs:
+
+- **Runtime** (39 repos): vLLM 16, Ollama 14, llama.cpp 2, TensorFold 1, "Ollama or vLLM" 1, not
+  stated 5.
+- **Models:** Qwen3.6-35B-A3B in 15. A Nemotron is named in 12, a working model in 8. gpt-oss and
+  qwen3.5:9b in 4 each.
+- **Required stack:** NemoClaw runs in 14, OpenClaw in 15, OpenShell in 16, all three in 12. Seven
+  show neither files nor a run.
+- **OpenShell:** 15 ship a policy file. Only Spark MD uses it to block the approval itself; 3 more
+  drop approve from the agent's tools.
+- **Human approval** in 27 of 40; 5 take no action that needs one, 8 do not say.
+- **Code decides** per 20 READMEs, the model in 1, 19 do not say.
+- **Channel:** Slack 10, Telegram 9, Discord 2, none in the repo for 20. Data is synthetic, mock or
+  a replay in 24.
+
+Five worth reading:
+
+- [ImDannyVilla/spraywatch](https://github.com/ImDannyVilla/spraywatch) keeps harvests and crew
+  entries inside pesticide label limits. Code applies every rule, an alert keyed to the exact
+  conflict never posts twice, English and Spanish postings come from fixed templates. The real
+  16-page Captan 80 DF label gave 41 facts on the GB10, all verified by code, in 44 s. Pushed after
+  the freeze.
+- [phucducnguyen/locallab](https://github.com/phucducnguyen/locallab) watches a real NUCLEO-F446RE
+  board and 8 QEMU boards: a fixed rule says HARDWARE or CODE, the model explains with cited serial
+  lines, the dashboard marks whether they agree. Pushed after the freeze.
+- [dude297/skillforge_main](https://github.com/dude297/skillforge_main): a fix that passes a hidden
+  test suite and a human's promotion becomes a sha256-pinned skill; the next matching incident runs
+  it with no model call. Its OpenClaw-in-sandbox gate is marked not passed.
+- [Bikz/super-archilles](https://github.com/Bikz/super-archilles) coaches a talk every 3 s against
+  the plan and the clock. A gate in front of the model cancels background work with HTTP 409 the
+  moment a coach request arrives.
+- [ovevayrus/dealdesk-local](https://github.com/ovevayrus/dealdesk-local) prices enterprise deals
+  with a margin floor. A reply with an amount or percentage absent from the tool results is
+  replaced with scripted wording.
+
 ## What I'd steal
 
 - Put the decision in code and test it like code. Let the model read, summarize and route.
@@ -122,6 +164,10 @@ $1M for a ship survey system against a roughly $10k sonar plus a GB10 (Braille D
 - Treat silence as a feature: say nothing when nothing changed.
 - Verify after acting and roll back on failure (Night Shift); replay the exploit after the patch
   (Wrecking Crew).
+- Grade the agent with checks it cannot see or change: held-out regression tests (Wrecking Crew), a
+  hidden suite before a fix becomes a skill (SkillForge).
+- Keep a model's rewrite only if every number in it is in the source; otherwise ship the wording code
+  produced (On the Record, DealDesk).
 - Write the "what is not validated" section before a judge asks for it.
 
 This matches what I keep relearning in [[harness-engineering-summary]]: a check that proves the result

@@ -100,7 +100,7 @@ archive rules: `references/delivery.md`.
 ## Don't
 
 - Don't trust an automatic hook, cover frame or cutaway list without looking at it.
-- Don't re-encode video to change audio.
+- Don't re-encode video to change audio, trim, mute or add an outro: copy the stream (`references/delivery.md`, "Copy first").
 - Don't crop horizontal footage blindly to 9:16.
 - Don't chop live music per shot, or duck the score under it.
 - Don't render before reading the cut as text.

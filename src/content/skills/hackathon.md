@@ -52,7 +52,7 @@ Load only the reference for the stage you are in. Each one opens with When / Inp
 | # | Stage | One line | Read |
 |---|---|---|---|
 | 01 | Before: research | event page → rules, criteria, stack, schedule, prizes; judges/mentors/organizers with confidence; past winners of the series | `references/01-before-research.md` |
-| 02 | Scout (not attending) | Devpost search → winners only → every winner page + public repo → gallery + cross-hackathon roll-up | `references/02-scout-devpost.md` |
+| 02 | Scout (not attending) | Devpost search → winners only (`scripts/devpost.py`) → every winner page + public repo → gallery + cross-hackathon roll-up | `references/02-scout-devpost.md` |
 | 03 | Build | required-stack check, demo first, submission checklist; then `/plan`, `/build` | `references/03-build.md` |
 | 04 | Live capture | supervox on the room, one block per team, camera on the slides | `references/04-live-capture.md` |
 | 05 | GitHub hunt | repos created since the day before, keyed on stack and domain words; confirm from the README | `references/05-github-hunt.md` |
@@ -93,7 +93,8 @@ Agents report a summary; the main thread posts the 3-6 lines that matter and the
 
 ## Gotchas
 
-- Devpost answers 403 to WebFetch; curl with a browser User-Agent works (details in 02).
+- Devpost answers 403 to WebFetch and to Python's urllib; curl with a browser User-Agent works.
+  `scripts/devpost.py` wraps it: gallery walk, winners, Built With, links, story.
 - A participant dashboard whose API wants a bearer token is a stop sign: note "not visible".
 - Galleries fill late and change: re-read after the deadline and after the awards, and log the
   difference (projects added, withdrawn).
