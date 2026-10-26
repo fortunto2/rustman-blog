@@ -52,9 +52,12 @@ skill. They complement each other: our cut can open in theirs for manual finishi
   FCPXML, FCP7 XML, EDL and AAF. Measured on a 10-shot Life2Film plan: FCPXML and EDL in one
   command, score markers kept. The first run also caught a bug on our side: the plan stored its
   media as `./fixtures/x.mp4`, relative to the folder the CLI ran in, and editors resolve a
-  relative path against the OTIO file's folder, so the footage opened offline. Our OTIO writer now
-  stores absolute `file://` paths, and the same plan links its media. In video-analyzer this is
-  `make otio-export OTIO=plan.otio FORMAT=fcpxml`, which fails loudly when any media is offline.
+  relative path against the OTIO file's folder, so the footage opened offline. Making the writer
+  store absolute paths broke our own core, which uses that string as a key to match moments to
+  shots, so the fix lives at the boundary: the export writes an absolute copy for the editor and
+  leaves the plan alone. In video-analyzer this is `make otio-export OTIO=plan.otio
+  FORMAT=fcpxml`; the same plan now links its media, and the command fails loudly when any clip is
+  still offline.
 - **Container crates, carefully.** Their MP4 muxer is pure Rust and builds for WebAssembly, but it
   writes one sample description per track, the same limit that broke our outro join on 10-bit DJI
   footage the same week ([[creative-video-shipping]]). A camera clip plus a card from another encoder
