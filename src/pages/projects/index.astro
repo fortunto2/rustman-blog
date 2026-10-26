@@ -22,7 +22,7 @@ const ungrouped = projects.filter(p => !types.some(t => t.key === p.frontmatter.
 
 // The whole catalogue as one ItemList, each entry the same SoftwareApplication its own page
 // carries, so an agent reading only this page still gets prices and store links.
-const pageUrl = (slug: string) => new URL(`/projects/${slug}`, Astro.site).href;
+const pageUrl = (slug: string) => new URL(`/projects/${slug}/`, Astro.site).href; // same form as the canonical, so @ids match
 const apps = await Promise.all(projects.map(p => softwareApplicationLd(p.frontmatter, pageUrl(p.slug))));
 const catalogue = {
   '@context': 'https://schema.org',
