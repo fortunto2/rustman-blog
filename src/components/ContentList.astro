@@ -1,9 +1,10 @@
 ---
+import { listDate } from '../lib/md';
 /**
  * Unified single-line catalog component.
  *
  * Props:
- *   items     — array of { slug, section?, frontmatter: { title, created?, date?, tags? } }
+ *   items     — array of { slug, section?, frontmatter: { title, event_date?, created?, date?, tags? } }
  *   basePath  — optional URL prefix (e.g. "/wiki"), auto-derived from section if absent
  *   showSection — show section badge column (default false)
  *   showDate    — show date column (default true)
@@ -44,7 +45,7 @@ const list = limit ? items.slice(0, limit) : items;
       : entry.section
         ? `/${entry.section}/${entry.slug}`
         : `/${entry.slug}`;
-    const date = entry.frontmatter.created || entry.frontmatter.date;
+    const date = listDate(entry.frontmatter);
     const tags = entry.frontmatter.tags;
     const hasTags = showTags && tags && typeof tags !== 'string';
     return (

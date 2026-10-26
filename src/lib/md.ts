@@ -60,11 +60,15 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
 ${audios}</div>\n`;
 };
 
+/** The date a list shows and sorts by: the event's day when the page is about one, else when it was written. */
+export const listDate = (fm: Frontmatter): string => fm.event_date || fm.created || fm.date || '';
+
 export interface Frontmatter {
   title?: string;
   description?: string;
   created?: string;
   date?: string;
+  event_date?: string;
   tags?: string[];
   type?: string;
   publish?: boolean;

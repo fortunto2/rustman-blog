@@ -46,7 +46,7 @@ const softwareLd = await softwareApplicationLd(fm, new URL(Astro.url.pathname, A
     {post.frontmatter.title && !post.hasH1 && (
       <h1>{post.frontmatter.title}</h1>
     )}
-    <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} tags={post.frontmatter.tags as string[]} />
+    <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} eventDate={post.frontmatter.event_date} tags={post.frontmatter.tags as string[]} />
     <Fragment set:html={post.html} />
   </article>
 

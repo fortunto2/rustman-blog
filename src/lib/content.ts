@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { parseFrontmatter, type Frontmatter } from './md';
+import { parseFrontmatter, listDate, type Frontmatter } from './md';
 
 export type Section = 'wiki' | 'projects' | 'posts' | 'creative' | 'stacks' | 'skills';
 
@@ -22,11 +22,7 @@ export function getCollection(section: Section): ContentEntry[] {
         const { frontmatter } = parseFrontmatter(raw);
         return { slug: file.replace('.md', ''), frontmatter, raw };
       })
-      .sort((a, b) => {
-        const dateA = a.frontmatter.created || a.frontmatter.date || '';
-        const dateB = b.frontmatter.created || b.frontmatter.date || '';
-        return dateB.localeCompare(dateA);
-      });
+      .sort((a, b) => listDate(b.frontmatter).localeCompare(listDate(a.frontmatter)));
   } catch {
     return [];
   }
@@ -37,11 +33,8 @@ export function getAllContent(): (ContentEntry & { section: Section })[] {
   const projects = getCollection('projects').map(e => ({ ...e, section: 'projects' as Section }));
   const posts = getCollection('posts').map(e => ({ ...e, section: 'posts' as Section }));
   const creative = getCollection('creative').map(e => ({ ...e, section: 'creative' as Section }));
-  return [...wiki, ...projects, ...posts, ...creative].sort((a, b) => {
-    const dateA = a.frontmatter.created || a.frontmatter.date || '';
-    const dateB = b.frontmatter.created || b.frontmatter.date || '';
-    return dateB.localeCompare(dateA);
-  });
+  return [...wiki, ...projects, ...posts, ...creative].sort((a, b) =>
+    listDate(b.frontmatter).localeCompare(listDate(a.frontmatter)));
 }
 
 export function getAllTags(): Map<string, (ContentEntry & { section: Section })[]> {

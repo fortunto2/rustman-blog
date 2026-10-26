@@ -15,7 +15,7 @@ import { parseFrontmatter } from './md';
 import { SITE } from './config';
 
 /** Keys worth keeping in the twin. Everything else is machinery for the templates. */
-const PUBLIC_KEYS = ['title', 'description', 'created', 'date', 'updated', 'tags', 'source_url'];
+const PUBLIC_KEYS = ['title', 'description', 'event_date', 'created', 'date', 'updated', 'tags', 'source_url'];
 
 export function twinRoutes(section: Section): { getStaticPaths: GetStaticPaths; GET: APIRoute } {
   const getStaticPaths: GetStaticPaths = () =>
