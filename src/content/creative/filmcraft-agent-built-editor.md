@@ -62,6 +62,24 @@ skill. They complement each other: our cut can open in theirs for manual finishi
   writes one sample description per track, the same limit that broke our outro join on 10-bit DJI
   footage the same week ([[creative-video-shipping]]). A camera clip plus a card from another encoder
   still needs `hev1` with parameter sets in-band.
+- **Colour and scopes, as crates.** `filmcraft-color` (crates.io, serde only) decodes HLG, PQ and
+  camera log curves, DJI D-Log and Apple Log among them; `filmcraft-scopes` (git only) turns a
+  frame into numbers an agent can read: clipped and crushed share, luma percentiles, skin-tone
+  hue against the 123° line. Life2Film's analysis now decodes HDR in the frame decoder, so
+  scoring, scene detection and the feature space all see SDR. Before that an iPhone HLG white
+  wall scored 0.749, the brightness of a 75% grey. The tone map is deliberately not theirs: we
+  publish SDR for the web, so the scorer uses the same hable curve as our render and sees what
+  the viewer will see; a test holds the two within 3 levels.
+- **Denoise and dereverb, ported into our own audio crate.** Their `audio-dsp` spectral
+  subtraction and dereverb became the Spectral and Dereverb modes of SuperDuper Denoise
+  ([[project-superduper-dsp]]), next to a Neural mode on RNNoise. Their loudness meter we did not
+  need: ours already passes EBU Tech 3341 within 0.1 LU, so it moved into a zero-dependency crate
+  instead.
+- **Not taken:** their Whisper on candle (the phone uses Apple's on-device recogniser, the Mac
+  mlx-whisper), the broadcast caption formats (YouTube needs SRT), and their tick time. We
+  measured our own timing first: OTIO cuts were already whole frames; the drift was in two plan
+  writers that summed seconds while the render lays whole frames, 3.6 s over an hour-long film
+  of 1385 pieces. Counting in frames fixed it without a new time type.
 - **Agent rules worth copying.** "Never crash": clippy denies `unwrap`, `expect` and `panic`, every
   number from a file is treated as hostile, every crash fix ships with a test that crashed before
   it. "Report progress honestly": every number labelled measured or estimated, a stub counted as a

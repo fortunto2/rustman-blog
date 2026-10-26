@@ -1,7 +1,7 @@
 ---
 type: concept
-description: "35 free, open-source audio plugins in Rust (CLAP/VST3/AU) for macOS and Windows: EQ, compressors, reverbs, vocal tools, a spatial panner and 7 instruments including a Bashkir jaw harp. Every parameter is reachable by an AI agent over MCP. One installer."
-title: "SuperDuper DSP — 35 free Rust audio plugins an AI agent can mix with"
+description: "36 free, open-source audio plugins in Rust (CLAP/VST3/AU) for macOS and Windows: EQ, compressors, reverbs, vocal tools, a spatial panner and 7 instruments including a Bashkir jaw harp. Every parameter is reachable by an AI agent over MCP. One installer."
+title: "SuperDuper DSP — 36 free Rust audio plugins an AI agent can mix with"
 created: 2026-06-24
 tags: [creative, project, open-source, rust, clap, vst3, au, audio, dsp, daw, reaper, ableton, mcp, agents]
 project_type: tool
@@ -10,13 +10,13 @@ publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"
 github: fortunto2/superduper-dsp
-index_line: "SuperDuper DSP: 35 free open-source Rust audio plugins (CLAP/VST3/AU), one macOS installer. Every parameter on an MCP bus, so Claude/Cursor/Codex can measure and mix. Kubyz jaw harp, Space panner, MIT"
+index_line: "SuperDuper DSP: 36 free open-source Rust audio plugins (CLAP/VST3/AU), one macOS installer. Every parameter on an MCP bus, so Claude/Cursor/Codex can measure and mix. Kubyz jaw harp, Space panner, MIT"
 index_section: "project"
 ---
 
 # SuperDuper DSP
 
-35 audio plugins written in Rust, free and MIT-licensed: the everyday mixing set (EQ, compressors, reverbs, de-esser, limiter, meters), vocal tools, a surround panner, and 7 instruments. They run in any host that loads CLAP, VST3 or Audio Unit. What makes them different: every plugin publishes what it hears on a shared bus, and an AI agent can read that bus and turn every knob over MCP.
+36 audio plugins written in Rust, free and MIT-licensed: the everyday mixing set (EQ, compressors, reverbs, de-esser, limiter, meters), vocal tools and a three-mode denoiser, a surround panner, and 7 instruments. They run in any host that loads CLAP, VST3 or Audio Unit. What makes them different: every plugin publishes what it hears on a shared bus, and an AI agent can read that bus and turn every knob over MCP.
 
 <div style="display:flex;flex-wrap:wrap;gap:12px;margin:1.5em 0">
 <a href="https://github.com/fortunto2/superduper-dsp/releases/latest/download/SuperDuperDSP-macos-arm64.pkg" style="display:inline-block;padding:12px 20px;border-radius:8px;background:#16a34a;color:#fff;font-weight:600;text-decoration:none">macOS installer (Apple silicon)</a>
@@ -76,6 +76,7 @@ Single plugins have their own zips on the [release page](https://github.com/fort
 
 **Voice**
 - **Vocal**: de-esser that follows the sibilance, plosive killer, hum and click removal.
+- **Denoise**: three modes behind one knob set. *Spectral* learns or tracks the noise floor (+13.8 dB SNR on bursts in white noise, +17.6 dB with a learned profile, a held tone kept intact); *Dereverb* cuts a room tail by 13 dB between syllables, for voice only; *Neural* is RNNoise in pure Rust, +8.9 dB on voice in noise at 48 kHz, 180× faster than real time in stereo. Mix on every mode, the learned profile saved with the project. The same code runs offline on a whole file, which is how video footage gets cleaned.
 - **Tune**: pitch correction to a scale, to MIDI notes or to another track; hard T-Pain at 0 ms.
 - **Pitch**: pitch and formant shift, a voice engine plus a polyphonic one that can change the key of a whole mix.
 - **Double**: a doubler that drifts like a second take, not like a chorus; Tuned modes snap the doubles to the key.
@@ -119,7 +120,7 @@ The video skills that use them (scores for travel films, chords lifted from foot
 ## Principles
 
 - **Measured, not tuned by ear.** Every plugin passes the official `clap-validator`; each has checked-in quality snapshots (THD, aliasing, levels) that run on every release build; the mix tools are checked against 15 scenes with known answers before their output is trusted. When the validator found 34 real failures that an old report had printed as zero, they were fixed, not hidden.
-- **One plugin, one job.** 35 small plugins instead of one channel strip.
+- **One plugin, one job.** 36 small plugins instead of one channel strip.
 - **Offline.** No accounts, no license server, no telemetry. The audio never leaves the machine.
 - **Open.** MIT license, Rust, source on [GitHub](https://github.com/fortunto2/superduper-dsp).
 
