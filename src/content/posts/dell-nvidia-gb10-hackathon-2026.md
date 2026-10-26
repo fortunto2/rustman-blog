@@ -104,10 +104,10 @@ impressive model engineering of the night and said in Q&A they had not yet worke
 | Mission Control | 24/7 ops for a perishable food wholesale terminal; 15 agents, voice orders in English, Spanish and Cantonese | Nemotron 3 Super 120B (Ollama), whisper | [yfandev/mission-control](https://github.com/yfandev/mission-control) |
 | Solar Storm Ops (SPF) | Geomagnetic storm risk for satellite fleets, approve or deny in Telegram; replays the Feb 2022 Starlink loss | Qwen3.8-Flash-Next 125B NVFP4, NOAA SWPC + CelesTrak | [adi-suresh01/solar-storm-ops](https://github.com/adi-suresh01/solar-storm-ops) |
 | On the Record | Overnight accounts payable audit: 3-way match, then contract tiers and billing history | Nemotron / Qwen 32B (Ollama), OpenClaw skills | [ItsPrateekBansal/on-the-record](https://github.com/ItsPrateekBansal/on-the-record) |
-| Night Shift | On-call SRE: spots an outage, finds the cause, proposes a fix in Slack, applies it after approval | OpenClaw in OpenShell, SQLite FTS5 postmortem memory | [Keerthirajan58/nightshift](https://github.com/Keerthirajan58/nightshift) |
+| Night Shift | On-call SRE: spots an outage, finds the cause, proposes a fix in Slack, applies it after approval | OpenClaw in OpenShell, SQLite FTS5 postmortem memory | Keerthirajan58/nightshift (public on 25.10, 404 since 26.10) |
 | Spark MD | CT follow-up: nodule detection and comparison with the patient's previous scans | Qwen3.8-27B, MONAI v0.5.9, Lung-RADS in code | [tdoan35/spark-md](https://github.com/tdoan35/spark-md) |
 | Wrecking Crew | Red and blue team for your app: find a CVE, prove it, patch, verify | 3× Qwen3-Coder on vLLM, OpenShell deny-all egress | [djang-c/WreckLess-Cyber-Security](https://github.com/djang-c/WreckLess-Cyber-Security) |
-| Braille Dive | Sonar to a 4D seabed scene so rescue divers know where to look | Qwen3-VL-4B LoRA, D-FINE-N tuned on AquaScan, OpenClaw | [francolinx/brailledivesubmission-](https://github.com/francolinx/brailledivesubmission-) |
+| Braille Dive | Sonar to a 4D seabed scene so rescue divers know where to look | Qwen3-VL-4B LoRA, D-FINE-N tuned on AquaScan, OpenClaw | francolinx/brailledivesubmission- (public on 25.10, 404 since 26.10) |
 | Dwayne | Autonomous grid connection control at a substation | OpenClaw agents, local grid physics engine | not public |
 
 Stage claims to read as claims: $88B and $36B of food waste (Mission Control used both), over $300k
