@@ -1,10 +1,10 @@
 /**
  * MCP Server Card — how an agent discovers the server at /mcp without being told about it.
  *
- * Published because the server behind it is real. The neighbouring well-known files in the
- * same family — API catalogue, OAuth metadata — stay absent: this site has no API and nothing
- * to authenticate against, and publishing empty ones would raise a checker's score while
- * telling an agent something untrue.
+ * Published because the server behind it is real. The API catalogue (/.well-known/api-catalog)
+ * lists this server for the same reason. OAuth metadata stays absent: there is nothing here to
+ * authenticate against, and publishing it would raise a checker's score while telling an agent
+ * something untrue. The whole set lives in src/lib/agent-discovery.ts.
  */
 import type { APIRoute } from 'astro';
 import { SITE } from '../../../lib/config';

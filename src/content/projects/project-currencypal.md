@@ -5,6 +5,7 @@ title: "CurrencyPals — 36 currencies at once, offline"
 created: 2026-08-13
 tags: [project, ios, swift, finance, offline, privacy, travel]
 project_type: app
+app_store_id: "6759005730"
 course_module: 7
 course_order: 13
 publish: true

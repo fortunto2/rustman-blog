@@ -5,6 +5,7 @@ title: "Live2Play — party games for a room, not a screen"
 created: 2026-01-01
 tags: [project, ios, live2play, games, party, swift]
 project_type: app
+app_store_id: "6794370589"
 course_module: 7
 course_order: 10
 publish: true

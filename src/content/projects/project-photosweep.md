@@ -5,6 +5,7 @@ title: "PhotoSweep — an honest iPhone storage cleaner"
 created: 2026-08-13
 tags: [project, ios, swift, utilities, storage, privacy]
 project_type: app
+app_store_id: "6794369239"
 course_module: 7
 course_order: 12
 publish: true

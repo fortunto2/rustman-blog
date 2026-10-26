@@ -9,6 +9,8 @@
  *   screenshots — override screenshot URLs (if API doesn't return them)
  *   playStoreUrl — optional Google Play link
  */
+import { appStoreLookup } from '../lib/stores';
+
 interface Props {
   appId: string;
   country?: string;
@@ -18,34 +20,8 @@ interface Props {
 
 const { appId, country = 'us', screenshots: overrideScreenshots, playStoreUrl } = Astro.props;
 
-let app: {
-  name: string;
-  developer: string;
-  icon: string;
-  rating: number;
-  ratingCount: number;
-  price: string;
-  screenshots: string[];
-  url: string;
-} | null = null;
-
-try {
-  const res = await fetch(`https://itunes.apple.com/lookup?id=${appId}&country=${country}`);
-  const data = await res.json();
-  if (data.resultCount > 0) {
-    const d = data.results[0];
-    app = {
-      name: d.trackName,
-      developer: d.artistName,
-      icon: d.artworkUrl512,
-      rating: d.averageUserRating || 0,
-      ratingCount: d.userRatingCount || 0,
-      price: d.formattedPrice,
-      screenshots: d.screenshotUrls || [],
-      url: d.trackViewUrl?.replace('?uo=4', '') || '',
-    };
-  }
-} catch {}
+// Shared with the page's JSON-LD, so the listing is fetched once per build.
+const app = await appStoreLookup(appId, country);
 
 const shots = overrideScreenshots?.length ? overrideScreenshots : (app?.screenshots || []);
 const stars = app ? Math.round(app.rating * 10) / 10 : 0;

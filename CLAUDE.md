@@ -39,6 +39,10 @@ Content lives in `../wiki/` (solopreneur KB). Blog pulls only `publish: true` pa
 /llms.txt            → AI content map (wiki + projects + stacks)
 /sitemap-index.xml   → auto-generated
 /robots.txt          → crawl rules
+/agents.txt          → agent policy in words (same text at /.well-known/ai.txt)
+/.well-known/        → mcp/server-card.json, agent-card.json, ard.json (= ai-catalog.json),
+                       api-catalog (RFC 9727), agent-skills/index.json — all from src/lib/agent-discovery.ts
+                       except the MCP card and skills index. No oauth-protected-resource: nothing is protected
 /404                 → custom 404
 ```
 
@@ -74,6 +78,12 @@ source_url: "https://..."  # optional: attribution link
 source_path: "1-method/..."# optional: path to raw source
 ---
 ```
+
+Project pages also emit schema.org `SoftwareApplication` JSON-LD (`src/lib/software-ld.ts`), and
+`/projects/` an `ItemList` of them. An `Offer` comes only from a source: `app_store_id` (price from the
+App Store listing at build), `crate`/`npm`/`pypi` (price 0, version from the registry), a public `github`
+repo for `project_type: tool|library`, or by hand with `price` + `price_currency` + `offer_url` (only a
+price the page itself states). No source → no Offer. `app_category` overrides the schema.org category.
 
 Content routing:
 - `publish_as: project` → `/projects/{slug}`

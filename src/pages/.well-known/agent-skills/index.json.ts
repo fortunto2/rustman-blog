@@ -5,9 +5,9 @@
  * live in src/content/skills, each with a name, a description of when to use it, and a link
  * to its source. An agent that finds this index can read a skill and follow the workflow.
  *
- * The other well-known files in that RFC family — API catalogue, OAuth metadata, MCP server
- * card — are deliberately NOT published here. This site has no API and no protected resource;
- * an empty catalogue would raise a checker's score and tell an agent something untrue.
+ * The rest of the well-known set is published where something real stands behind it: the MCP
+ * server card and the API catalogue (the MCP server at /mcp is a callable API). OAuth metadata
+ * is not: nothing here is protected, and an empty file would tell an agent something untrue.
  */
 import type { APIRoute } from 'astro';
 import { createHash } from 'node:crypto';

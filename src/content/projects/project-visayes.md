@@ -5,6 +5,9 @@ title: "VisaYes — does your visa photo meet the spec?"
 created: 2026-08-05
 tags: [project, visayes, rust, wasm, onnx, privacy, seo, astro]
 project_type: app
+price: 0
+price_currency: USD
+offer_url: "https://visayes.app"
 course_module: 7
 course_order: 9
 publish: true

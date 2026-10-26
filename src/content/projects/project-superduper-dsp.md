@@ -5,6 +5,7 @@ title: "SuperDuper DSP — 35 free Rust audio plugins an AI agent can mix with"
 created: 2026-06-24
 tags: [creative, project, open-source, rust, clap, vst3, au, audio, dsp, daw, reaper, ableton, mcp, agents]
 project_type: tool
+app_category: MultimediaApplication
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"

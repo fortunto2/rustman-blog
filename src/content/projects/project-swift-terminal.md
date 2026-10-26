@@ -5,6 +5,7 @@ title: "SuperDuper Terminal — SSH from a phone that survives the signal"
 created: 2026-08-14
 tags: [project, ios, swift, ssh, tmux, devtools, terminal]
 project_type: app
+app_store_id: "6758515520"
 course_module: 7
 course_order: 14
 publish: true

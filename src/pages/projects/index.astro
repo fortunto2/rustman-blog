@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
+import { softwareApplicationLd } from '../../lib/software-ld';
 
 const projects = getCollection('projects');
 
@@ -18,9 +19,29 @@ const grouped = types.map(t => ({
 })).filter(g => g.items.length > 0);
 
 const ungrouped = projects.filter(p => !types.some(t => t.key === p.frontmatter.project_type));
+
+// The whole catalogue as one ItemList, each entry the same SoftwareApplication its own page
+// carries, so an agent reading only this page still gets prices and store links.
+const pageUrl = (slug: string) => new URL(`/projects/${slug}`, Astro.site).href;
+const apps = await Promise.all(projects.map(p => softwareApplicationLd(p.frontmatter, pageUrl(p.slug))));
+const catalogue = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Projects',
+  itemListElement: projects.map((p, i) => {
+    const app = apps[i];
+    const { '@context': _context, ...item } = app ?? {};
+    return {
+      '@type': 'ListItem',
+      position: i + 1,
+      url: pageUrl(p.slug),
+      ...(app ? { item } : {}),
+    };
+  }),
+};
 ---
 
-<BaseLayout title="Projects" description="Open source tools and products I'm building in public." section="projects">
+<BaseLayout title="Projects" description="Open source tools and products I'm building in public." section="projects" jsonLd={[catalogue]}>
   <div class="mb-8">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">Projects</h1>
     <p class="text-[var(--color-muted)]">Open source tools and products I'm building in public.</p>
