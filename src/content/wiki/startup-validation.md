@@ -25,6 +25,7 @@ How to validate startup ideas before investing time in building. From quick sign
 - [[antifragile-life-design]] — Barbell: consulting (safe) + solo products (upside)
 - [[launch-playbook-summary]] — Full summary: 5D Contour, S.E.E.D., Fake-Door, metrics
 - [[portfolio-approach]] — Multiple small bets: 7/10 fail is the plan, kill discipline required
+- [[hackathons]]: a jury and other teams test an idea in one evening; 13 events and the lessons that repeat
 - [[solopreneur-patterns-summary]] — Revenue benchmarks, $10K MRR in 12mo, scaling milestones
 
 ## Open Questions

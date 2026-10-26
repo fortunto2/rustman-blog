@@ -84,4 +84,4 @@ Laya reads text only. At that same hackathon we built [BroCheck](https://bro.rus
 
 For English routing, triage and scoring, Laya is ready to embed: 309 MB, 25 ms a question, no server, and an open license. For Russian, ship it behind a review gate. For images, it is the wrong model.
 
-Related: [[jev-system-one]], [[needle-tiny-tool-model]], [[schema-guided-reasoning]].
+Related: [[jev-system-one]], [[needle-tiny-tool-model]], [[schema-guided-reasoning]], [[hackathons]].

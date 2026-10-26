@@ -102,3 +102,5 @@ Crew Air stays a free tool for outdoor crews in California, with no business aro
 
 - Devpost: [devpost.com/software/crew-air](https://devpost.com/software/crew-air)
 - Explainer video, 89 seconds: [youtu.be/cflNvJU9x5o](https://youtu.be/cflNvJU9x5o)
+
+Related: [[cal-hacks-13-2026]] and [[dell-nvidia-gb10-hackathon-2026]] (the next day), every event in [[hackathons]].

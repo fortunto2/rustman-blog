@@ -55,3 +55,4 @@ Supabase, Figma Plugin API, Google Gemini, Veo 3.1, PGMQ, Phoenix Channels, WebS
 
 - [[project-superduperai]] — parent product studio
 - [[schema-guided-reasoning]] — structured outputs for storyboard generation pipeline
+- [[hackathons]]: the 2nd place at Supabase Lisbon next to every other hackathon, and the lessons that repeat

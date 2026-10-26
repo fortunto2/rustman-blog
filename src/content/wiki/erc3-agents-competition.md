@@ -109,6 +109,8 @@ Claude Code itself uses single-loop architecture. Ilya explicitly confirmed: for
 - [[agent-toolkit-landscape]] — simple ReAct vs multi-agent frameworks
 - [[harness-engineering-summary]] — composite tools = harness for agents
 - [[context-engineering]] — pre-loading, rule extraction, context builder
+- [[pac1-competition-retrospective]]: the same lesson at PAC1, where Codex CLI wrappers scored 70-80 of 104 and my Rust stack 17
+- [[hackathons]]: the competitions I entered, and the lessons that repeat
 
 ---
 

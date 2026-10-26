@@ -215,3 +215,4 @@ The framework is open-source (MIT) on crates.io.
 - [[harness-engineering-summary]] — sgr-agent IS the harness: pipeline SM, tool tiering, trust metadata, FileBackend abstraction
 - [[agent-patterns-stream2]] — our 10 active + 5 deferred tools = lazy-load pattern the paper formalizes
 - [[tool-calling-four-layers]] — tool calling internals behind the `Tool` trait
+- [[hackathons]]: PAC1 next to the other hackathons and competitions, and the lessons that repeat

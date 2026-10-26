@@ -82,3 +82,5 @@ The insight is the class, not the vendor: for routing, triage, moderation, scori
 
 - [[schema-guided-reasoning]] — the opposite bet: arbitrary typed schemas over any LLM, expressive but uncalibrated; System One trades expressiveness for honest probabilities on a closed taxonomy
 - [[needle-tiny-tool-model]] — same design one size down: 45M params, grammar-constrained output + confidence head for escalate-or-act, fully on-device; Laya sits between Needle and hosted Jev
+- [[dell-nvidia-gb10-hackathon-2026]]: four days later, eight finalist teams arrived at the same split: the model reads, code decides, the sandbox enforces approval
+- [[hackathons]]: the OC Lightning Hackathon next to the other events of October 2026

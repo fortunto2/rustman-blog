@@ -369,3 +369,5 @@ All 104 tasks run in parallel. Total wall-clock time: 3-4 minutes.
 - *[[cli-first-testing]] -- why every project gets a CLI mirror*
 - *[[project-openai-oxide]] -- the OpenAI Rust client underneath*
 - *[[deepeval-llm-testing]] -- the missing other half: Phoenix gave observability, DeepEval would have given CI assertions on every PR*
+- *[[erc3-agents-competition]] -- the same lesson one competition earlier: simple ReAct with composite tools beat multi-agent*
+- *[[hackathons]] -- every hackathon and competition, and the lessons that repeat*

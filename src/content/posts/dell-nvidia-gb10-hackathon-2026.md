@@ -137,4 +137,4 @@ room, so I plugged in a DJI Osmo Pocket 3 as a USB webcam and drove its pan and 
 script; the camera drops its stream and resets zoom about once a minute, so each frame opens a fresh
 capture and re-applies the zoom. A second agent matched team names heard by speech recognition to
 public GitHub repos created that day. Same week, different rooms: [[cal-hacks-13-2026]] and
-[[stanford-cleantech-hackathon-2026]].
+[[stanford-cleantech-hackathon-2026]]. Every event: [[hackathons]].

@@ -128,4 +128,4 @@ in chunks and payment is released only when the hashes match.
 - **Claude plus Cartesia was the default voice stack**, and Snowflake, Tiger Data and Convex showed up
   wherever a sponsor prize did.
 
-Related: [[stanford-cleantech-hackathon-2026]] (the day before), [[link-radar]].
+Related: [[stanford-cleantech-hackathon-2026]] (the day before), [[dell-nvidia-gb10-hackathon-2026]] (the same day, in SF), [[hackathons]] (all of them), [[link-radar]].
