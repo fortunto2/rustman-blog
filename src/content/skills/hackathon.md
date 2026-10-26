@@ -1,6 +1,6 @@
 ---
 title: "/hackathon"
-description: "Work a hackathon research-first and write it up. Event rules and judging, who the judges and mentors are, what the other teams built and where their code is (GitHub, Devpost gallery), live notes from the stage, the report afterwards; scout mode analyses the winners of hackathons you never attended. Use when user says"
+description: "Work a hackathon research-first and write it up. Event rules and judging, who the judges and mentors are, what the other teams built and where their code is (GitHub, Devpost gallery), live notes from the stage, the report afterwards, and the follow-ups to the people you met (who to write, drafts, when); scout mode analyses the winners of hackathons you never attended. Use when user says"
 created: 2026-04-09
 tags: [skill, utility, solo-factory]
 phase: "utility"
@@ -11,7 +11,8 @@ source_url: "https://github.com/fortunto2/solo-factory/tree/main/skills/hackatho
 
 A hackathon is a day of cheap validation and a room full of people building in your space. This
 skill makes sure you walk in knowing the rules, the judges and the field, keep honest notes while
-it happens, and leave with a report and a list of ideas worth copying. Scout mode does the same
+it happens, and leave with a report, a list of ideas worth copying and the follow-ups to the people
+you met: the network is what is left a month later. Scout mode does the same
 for events you did not attend: what won, with which stack, and what the winning repos show.
 
 ````markdown
@@ -19,7 +20,8 @@ for events you did not attend: what won, with which stack, and what the winning 
 
 A hackathon is a day of cheap validation and a room full of people building in your space. This
 skill makes sure you walk in knowing the rules, the judges and the field, keep honest notes while
-it happens, and leave with a report and a list of ideas worth copying. Scout mode does the same
+it happens, and leave with a report, a list of ideas worth copying and the follow-ups to the people
+you met: the network is what is left a month later. Scout mode does the same
 for events you did not attend: what won, with which stack, and what the winning repos show.
 
 ## Setup
@@ -41,6 +43,7 @@ $HACKATHONS_DIR/
     docs/gallery.md, projects.json   gallery survey
     docs/live/                       panel summaries and slide frames (or a link to the supervox session)
     docs/report.md                   draft of the write-up
+    docs/followup.local.md           who to write after the event, drafts, sent/reply dates (gitignored)
     *.local.md                       anything with other people's handles or contacts (gitignored)
   scout/YYYY-MM-DD-<name>/           gallery.md, projects.json, rollup.md
 ```
@@ -59,10 +62,11 @@ Load only the reference for the stage you are in. Each one opens with When / Inp
 | 06 | Gallery survey | every project page read → all-projects table, copy-into, left-out, pattern counts | `references/06-gallery-survey.md` |
 | 07 | Pitch | deck, demo video, Q&A cheat sheet via `/supervox` pitch coach | `references/07-pitch.md` |
 | 08 | Report and publish | insights first, team table, hub page with backlinks, privacy pass | `references/08-report-publish.md` |
+| 09 | Network follow-up | people log the same evening; contacts graph → who else to write; drafts within 48 h; second touch a week later | `references/09-network-followup.md` |
 
 Research (01, 02, 05, 06) is where this skill does most of its work. Typical order on the day:
 01 the evening before, 05 in the first hours and again after the demos, 04 during the pitches,
-06 once the gallery fills, 08 the same night.
+06 once the gallery fills, 08 the same night, 09 the same night and the next two days.
 
 ## The rule: nothing from thin air
 

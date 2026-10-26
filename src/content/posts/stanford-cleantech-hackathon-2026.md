@@ -13,7 +13,7 @@ index_section: "concept"
 
 # Who built what at a climate hackathon, and where the industry is going
 
-On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel and the finalist pitches with [[project-supervox]] and read every [Devpost page](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
+On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel, the finalist pitches and the Earth Engine workshop on a DJI camera and transcribed them on my laptop, ran [[project-supervox]] during mentor conversations, and read every [Devpost page](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
 
 ## Who built what
 
@@ -51,15 +51,19 @@ On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [
 
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 
+![Crew Air pitch deck, slide 6: two iPhone screens, a sky check that sees no smoke and a shift plan near Stanford at AQI 39 with a satellite fire 21 km east](/images/posts/stanford-cleantech-hackathon-2026/crew-air-app.jpg)
+
+![Crew Air pitch deck, slide 7: the live smoke map of Northern California, satellite fire detections with wind-drawn smoke cones, under an hourly AQI and temperature strip](/images/posts/stanford-cleantech-hackathon-2026/crew-air-smoke-map.jpg)
+
 ## What to expect in this industry
 
 **The money follows data-center load.** A panelist said demand growth is the fastest since right after World War II. Hyperscalers buy transformers and switchgear directly, outside the utility process. Four projects worked that seam: Griddy sized a 1 GW AI campus, Follow The Sun routes inference, WattNext sets a campus against substation headroom, Shadow Plan tracks the queue. LBNL, cited by Griddy, finds only about 13% of capacity that asks for a connection reaches operation. My inference: siting and interconnection intelligence is where software meets that money, and the buyer is a developer or a hyperscaler.
 
 **Adaptation is the white space, and asset owners pay.** Paraphrasing the panel: funding adaptation used to sound defeatist, and it is now clear mitigation alone is not happening. They named extreme-weather risk, insurance, asset owners with billions at risk, and home hardening. Pismo, ResilienceOS, the Chill Factor (pitched to lenders and land buyers too) and Crew Air sit there.
 
-**The red flags were explicit**, and they came from three people. Kevin Kopczynski (Congruent Ventures) gave the first two. Number one: "we sell to utilities". A utility earns a regulated return on approved capital; a pilot paid from its R&D line has no bucket to graduate into, and the panel would not back a first-time founder who wants to sell to utilities. Number two: subsidy as the business. He later narrowed it: SBIR, STTR and DOE grants have a role, a solution that only works while subsidised does not. Ajay Gupta added AI used where physics or an optimizer would do. Giancarlo added single-digit total addressable markets and hardware that scales by more than 10× per step: "it's basically not going to happen". ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
+**The red flags were explicit**, and they came from three people. Kevin Kopczynski (Congruent Ventures) gave the first two (27:55). Number one: "we sell to utilities". A utility earns a regulated return on approved capital; a pilot paid from its R&D line has no bucket to graduate into, and the panel would not back a first-time founder who wants to sell to utilities: "there are better places to bang your head against the wall" (31:17). Asked about the ones that made it, he said even a company "killing it" with one utility often cannot repeat it at the next with the same product and playbook. His only explanation was a champion found inside an opaque decision process: "I don't know the answer to that question, otherwise I might have changed my answer" (45:20). Number two: subsidy as the business. He later narrowed it: SBIR, STTR and DOE grants have a role, a solution that only works while subsidised does not. Ajay Gupta added AI used where physics or an optimizer would do (26:20). Giancarlo added single-digit total addressable markets and hardware that scales by more than 10× per step: "it's basically not going to happen". His tell is a deck that goes from 1,000 tons a year to 50,000 three years later, a 50× step that says the team has not scaled hardware before (30:30). ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
 
-There is one exception, and Ajay named it: sell against a liability that already has its own budget line. About 10% of a utility's infrastructure causes over half of its wildfires, and fire mitigation is a line item a startup can sell into.
+There is one exception, and Ajay named it: sell against a liability that already has its own budget line. About 10% of a utility's infrastructure causes over half of its wildfires, and fire mitigation is a line item a startup can sell into (46:09). ResilienceOS had the start of that argument. On stage it said SCE was fined $8 million for missing the 48 to 72 hours of notice it owes critical facilities (finals recording, 44:48; a stage claim I have not checked). My reading: the fine was the budget line, and a stronger opening than the model.
 
 **Patterns becoming standard**, my inference from the 19 projects:
 - One shared public stack: Open-Meteo, FIRMS, AirNow, CAISO, NWS, EAGLE-I, Earth Engine, Census. Nobody had a data moat.
@@ -80,13 +84,14 @@ Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a
 - **Grants** are good when they make you faster and bad as "a way to stay alive and extend your runway indefinitely" (Giancarlo, 39:15). Lobbying comes at scale: Fervo fought drilling rules stricter than oil and gas had. "We got a lobbyist" at the seed stage is a red flag (Kevin, 41:36).
 - **Adaptation already has products**: Adaptive Insurance covers deductibles on wind, hail and wildfire, FutureProof sells where people lost their insurance, Florida first and now California. Home hardening is underfunded.
 - **Data centers.** Kevin: half to two-thirds of GDP growth is tied to them. A castings company he knows now makes heat sinks for them (44:14).
-- **Hardware vs software.** "Software companies take less money or less time is a fallacy", and in climate "the bigger returns come from hardware" (Kevin, 51:50). Giancarlo on why funds care about speed: "IRR is very sensitive to time".
+- **Hardware vs software.** "Software companies take less money or less time is a fallacy", and in climate "the bigger returns come from hardware" (Kevin, 51:50). Giancarlo on why funds care about speed: "IRR is very sensitive to time" (50:53). He spelled out the math every investor runs during a pitch: a fund owns 5 to 20% of each company and only a few of them must return the whole fund, so the question is "is your company one of the few that can return the fund? And if yes, when?" (51:13).
 
 ## Questions the judges asked
 
-The finalist recording has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models:
+Judging was split evenly over four criteria, announced at the opening: fit to a track's challenge, creativity, technical feasibility, and a path to scale (workshop recording, 37:41). The finalist recording has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models (times below are in the finals recording):
 
-- Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases".
+- Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases". And who decides where a prompt runs? Whoever hosts the model (05:04).
+- Housemates: Opower's most successful move was comparing a home with its neighbours; would the app do that? Their answer: rankings by cost and carbon saved (11:59).
 - The Chill Factor: does this make farmers competitors or collaborators? Their answer: free public data first, light hardware later as a data flywheel. Pistachio yield fell 47% in 2015.
 - ResilienceOS: what makes the data proprietary, and do better storm forecasts serve insurers or power producers? The answer stayed general.
 - matcha, on revenue: "B2C2B", featured vendors and sign-ups for virtual power plants.
@@ -124,15 +129,20 @@ From the opening workshop by Stace Maples (Stanford Geospatial Center), the trap
 - Planet's public Education & Research account gets 5,000 km² a month. Clip to the GeoJSON area and ask for one band: "I actually just want an NDVI… ask for one band. That's much cheaper."
 - An order is not a download: images sit in cold storage and take about 30 minutes to come out. Use the Planet SDK rather than the raw API, whose results are paginated.
 - Earth Engine, Mapbox, Planet and Google share one Z/X/Y tile grid, so layers from different sources line up; `mercantile` turns a GeoJSON extent into a list of tiles.
+- The point of PlanetScope is the daily image, not the resolution: about 250 microsatellites image almost every place on Earth every day at 3 to 4 m, between 9 and 10 am local time (workshop recording, 21:13). "You see things one day, you can do something about them the next day." His examples: SkySat counts of the ships queued at both ends of the Suez Canal while the Ever Given was stuck (31:47), a Stanford project that spots charcoal camps in the Amazon tied to human trafficking fast enough to intervene (33:14), and oil in storage measured from the shadows inside floating-roof tanks, which needs the sun and view angles from the image metadata (26:11).
 - No Planet account: Planet publishes disaster data as cloud-optimized GeoTIFFs on plain HTTP, Earth Engine already holds SkySat samples, and the awesome-gee-community-catalog adds more. Other teams used it harder. Griddy took layers for siting, WattNext pulled NAIP at 0.6 m, Sentinel-2 and ESA WorldCover, and Pismo read NOAA GFS forecasts through it. Pismo also measured the cost: about 8 months of forecasts took 1.5 hours, so they cut scope to one storm.
 
 ## What happens with Crew Air now
 
 We did not make the finals. A hardware concept added on the last morning took the whole Q&A, and the running software never came up. The lesson fits in a line: lock the story the night before.
 
-Crew Air stays a free tool for outdoor crews in California, with no business around it. Site and API are live at [airsignal.app/crew](https://airsignal.app/crew). The iOS app is at version 1.0 and waits for its App Store record. That evening I added two ideas from other teams: a calendar file of the shift plan (GridLight) and a deterministic backup-battery calculator (matcha).
+![Crew Air pitch deck, slide 4: a drone carrying a PM2.5 sensor over a smoky road beside a power line, the hardware concept that took over the Q&A](/images/posts/stanford-cleantech-hackathon-2026/crew-air-drone-concept.jpg)
 
+Crew Air stays a free tool for outdoor crews in California, with no business around it. Site and API are live at [airsignal.app/crew](https://airsignal.app/crew). The iPhone app is in App Store review. That evening I added two ideas from other teams: a calendar file of the shift plan (GridLight) and a deterministic backup-battery calculator (matcha).
+
+Two ideas from the event stay on the list as plans, not results. One is the drone from the deck: a Schneider Electric building air-quality sensor (SpaceLogic PM2.5) flown to the spot a crew is about to be sent to, so the reading comes from the work site and not from a monitor up to 48 km away. The other is a signal in the API that lets energy storage at stations and in buildings charge ahead of a smoke event.
+
+- Pitch deck, 7 slides (PDF, 0.7 MB): [crew-air-pitch-stanford-2026.pdf](/files/crew-air-pitch-stanford-2026.pdf)
 - Devpost: [devpost.com/software/crew-air](https://devpost.com/software/crew-air)
-- Explainer video, 89 seconds: [youtu.be/cflNvJU9x5o](https://youtu.be/cflNvJU9x5o)
 
 Related: [[cal-hacks-13-2026]] and [[dell-nvidia-gb10-hackathon-2026]] (the next day), every event in [[hackathons]].
