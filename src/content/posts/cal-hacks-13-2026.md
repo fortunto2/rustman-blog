@@ -1,8 +1,9 @@
 ---
 type: concept
 title: "Cal Hacks 13.0: what the most technical teams built, and what is worth stealing"
-description: "Judging at Cal Hacks 13.0 (Palace of Fine Arts, San Francisco, 25 Oct 2026): Sergey Levine's keynote on robot data, the stack 13 projects ran on, and thirteen engineering patterns from their repos with the thresholds and files behind them."
+description: "Cal Hacks 13.0 (San Francisco, 25 Oct 2026) from the Technical Complexity judging table: a scorecard of what each project proved, Sergey Levine's keynote on robot data, and thirteen engineering patterns with the thresholds and files behind them."
 created: 2026-10-25
+event_date: 2026-10-25
 tags: [hackathon, berkeley, robotics, voice, on-device, agents, evals]
 publish: true
 publish_as: post
@@ -15,16 +16,7 @@ index_section: "concept"
 
 ![Judge badge in the main hall of Cal Hacks 13.0, 25 October 2026](/images/posts/cal-hacks-13-2026/judge.jpg)
 
-On 25 October I judged at Cal Hacks 13.0, Berkeley's student hackathon, held this year at the Palace
-of Fine Arts in San Francisco. My category was Technical Complexity: a
-morning of five-minute table visits with pairwise votes, then a final round with three shortlisted
-projects. 652 projects went up on Devpost. I recorded the keynote and the closing ceremony with
-[[project-supervox]], and afterwards read 13 of the repos, eight of them file by file.
-
-How to read the numbers: each one is the team's own, from their README or docs, and comes with their
-setup. I re-measured nothing. Two headline results (Vigil's alarm count, Fermata's match rate) were
-measured on synthetic data, and I say so next to them. Stage quotes are paraphrases of rough
-speech-to-text.
+The most technical projects at Cal Hacks 13.0 did not stand out for the size of their model. They stood out for the control code around it: a brain-computer interface that commits only after four agreeing windows, a nursing-home monitor that turns 903 alarms into 22, a voice router that answers in 60 ms or says "ask". I judged the Technical Complexity category there on 25 October, at the Palace of Fine Arts in San Francisco, out of 652 projects on Devpost. Below: what was strong, what was unproven, and thirteen patterns worth copying, each with its numbers and the file to read.
 
 ## The short version
 
@@ -37,6 +29,21 @@ speech-to-text.
   weekend. So the questions that separated teams were "what did you measure" and "what is yours".
 - **Live hardware owned the room.** Venue Wi-Fi killed most live software demos; a robot arm, a bed
   sensor and an EEG headset worked anyway.
+
+## Scorecard
+
+My read of the projects I judged or read in full. Strong is what I would copy; unproven is what the team has not shown yet. These are mine, not the panel's scores.
+
+- **RealiSIM.** Strong: every physical value carries its source, a scene must settle in MuJoCo before export, and an arm mirrored the sim live at the table. Unproven: sim-to-real rests on one README result, a policy picking up one object.
+- **BrainSync.** Strong: the most disciplined evaluation of the weekend, with gates fixed in advance and a trivial baseline printed beside every number. Unproven: their own results table still says TBD for live accuracy and seconds per reply.
+- **Vigil.** Strong: the alarm-fatigue design and the two tiers, so the queue keeps working when the deep tier is down. Unproven: the anomaly and forecast models are Snowflake built-ins that need about a week of data per resident, and the history is simulated.
+- **muselet.** Strong: everything is measured, including its own failures. Unproven: by its README, the last full test run was incomplete.
+- **Handoff.** Strong: the transport and the replay design. Unproven: nothing ran live on venue Wi-Fi, and SAM 3D takes 15 to 30 seconds per object, so the twin arrives well after the moment it is needed.
+- **Fermata.** Strong: agents can only propose, and a backtest decides. Unproven: the 85% to 95% is one synthetic year, not a real close.
+- **Pooltune.** Strong: an honest benchmark. Unproven by their own numbers: throughput matches a well-sized warm pool, so the value is not having to size it, not speed.
+- **Overflow.** Strong: payment released only when hashed data matches, with contracts tested against real USDC bytecode. Unproven: the purchase was not run live, and defence against prompt injection beyond the spending cap stayed vague.
+- **Signal Bridge.** Strong: a 50-mile offline map. Weak: the chatbot needs the internet, the one thing an emergency tool cannot assume.
+- **Hypercompute.** Strong: it measured itself and published the slowdown. Weak: by that measurement, pooling only pays for models that do not fit on one machine.
 
 ## The keynote: Sergey Levine, Physical Intelligence
 
@@ -300,6 +307,10 @@ Venue Wi-Fi killed most live demos, and most teams showed a recorded video. The 
 hardware held the table's attention in a way no video did. If you pitch at a hackathon, make the demo
 run offline: muselet's whole stack does, and it reports the first action 190 ms after the key is
 released.
+
+## How this was put together
+
+I recorded the keynote and the closing ceremony with [[project-supervox]], and afterwards read 13 repos, eight of them file by file, plus their Devpost pages. Every number is the team's own, from its README or docs, and comes with its setup; I re-measured nothing. Two headline results (Vigil's alarm count, Fermata's match rate) were measured on synthetic data. Stage quotes are paraphrases of rough speech-to-text.
 
 Related: [[stanford-cleantech-hackathon-2026]] (the day before), [[dell-nvidia-gb10-hackathon-2026]]
 (the same day, in SF), [[hackathons]] (all of them), [[agent-mistake-fix-harness]] (the same lesson as

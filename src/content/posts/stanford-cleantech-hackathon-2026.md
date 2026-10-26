@@ -1,8 +1,9 @@
 ---
 type: concept
-title: "Who built what at a climate hackathon, and where the industry is going"
-description: "Stanford Cleantech Hackathon 2026, 23-24 Oct: the data, models and stacks behind 13 projects, what the investor panel said about where the money is, and seven insights with evidence."
+title: "Stanford Cleantech Hackathon 2026: the best validation needed no new data"
+description: "Stanford Cleantech Hackathon 2026, 23-24 Oct: four teams validated without new data, investors named selling to utilities as red flag one, and a scorecard of what each project proved and what it did not."
 created: 2026-10-24
+event_date: 2026-10-23
 tags: [hackathon, climate, cleantech, energy, public-data, validation, air-quality]
 publish: true
 publish_as: post
@@ -11,9 +12,37 @@ index_line: "Post: Stanford Cleantech Hackathon 2026, technical survey. GridLigh
 index_section: "concept"
 ---
 
-# Who built what at a climate hackathon, and where the industry is going
+# Stanford Cleantech Hackathon 2026: the best validation needed no new data
 
-On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [Crew Air](https://airsignal.app/crew) with a teammate. 19 projects were submitted across three tracks. I recorded the investor panel, the finalist pitches and the Earth Engine workshop on a DJI camera and transcribed them on my laptop, ran [[project-supervox]] during mentor conversations, and read every [Devpost page](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts of the recordings, with the time in the video; numbers come from the project pages unless stated.
+![At the Jen-Hsun Huang Engineering Center, Stanford, where the hackathon ran on 23-24 October](/images/posts/stanford-cleantech-hackathon-2026/huang-center.jpg)
+
+Four of the 19 projects at the Stanford Cleantech Hackathon tested their models without collecting a single new data point: they rotated the wind 180°, switched off a weather station and predicted it, held out whole regions, or froze a rule before the test storm. That was the best engineering of the weekend. The best business advice came from the investor panel, which called "we sell to utilities" red flag number one and then named the one way around it. We built [Crew Air](https://airsignal.app/crew) there and did not make the finals; why is at the end.
+
+## The short version
+
+- **Validate with the data you already have.** FlareWise found NO2 at 4.8 ppb downwind of a flare against 2.2 upwind, and the gap vanished when every wind direction was rotated 180°. The Chill Factor switched off weather stations and predicted each one as an orchard.
+- **Don't sell to utilities, sell against a liability.** A regulated utility has no budget line for a pilot to graduate into. Fire mitigation is the exception: about 10% of a utility's infrastructure causes over half of its wildfires, and that risk has its own budget.
+- **Read the Devpost page, not the pitch.** 13.7% in a simulator became "around 13%" if every AI inference company adopted it; a kappa of 0.78 became "almost 90% agreement". The pages were more careful than the stage.
+- **Nobody had a data moat.** Everyone used the same public stack: Open-Meteo, FIRMS, AirNow, CAISO, NWS, EAGLE-I, Earth Engine. The number each team was missing was utility data or labels, never a model.
+- **AI did the reading, physics did the deciding.** LLMs read 50 plan PDFs and county agendas; routing, battery sizing, plumes and our NowCast were deterministic. The panel asked for exactly that.
+
+## Scorecard
+
+My read of each project from its page and pitch. Strong is what I would copy; unproven is what the page does not yet show.
+
+- **FlareWise.** Strong: the deepest pipeline in the room (DBSCAN sites, Gaussian plume on ERA5, a thousand Monte Carlo draws into a mixed-integer program), the 180° wind test, and an uncomfortable finding published. Unproven: the headline (19 of 1,574 sites pay for capture) is one basin at one gas price.
+- **Griddy.** Strong: models scored on held-out regions and unseen years, beating a baseline (8.7% against 11.2% error). Unproven: the siting AUC, which the page itself says easy negatives flatter.
+- **Shadow Plan.** Strong: delays counted by two independent programs with a test that they agree, and an LLM that only turns county pages into events with a quote and a page. Unproven: the land rebuild misses the state workbook by more than 5% at 20 of 76 substations.
+- **The Chill Factor.** Strong: leave-one-station-out validation, and a sensor design that sends one message a day. Unproven: no orchard hardware yet.
+- **Pismo.** Strong: the rule was set on earlier months and frozen before the test storm; it fired 27 hours before the warning in Humboldt, and Santa Cruz and San Mateo got no NWS warning at all, so a warning-driven battery would never have charged there. Unproven: one storm, county-average weather predicted outages only weakly on the training months, and outage records cover about 1 day in 7.
+- **USC heat and cold plan audit.** Strong: a blind coder that must quote the page or say "not stated", with agreement reported per field. Weak: kappa 0.38 on status, and the stage rounded the whole thing up to "almost 90%".
+- **Dengai.** Strong: deterministic routing in 30 seconds on one laptop, no paid APIs. Unproven: the 200 sites are synthetic and roads are straight lines × 1.3, though the pitch said "real streets".
+- **GridLight.** Strong: price against carbon hour by hour from real CAISO files, all in the browser. Unproven: the "$62 a month, 18% less CO2" home is simulated.
+- **WattNext.** Strong: confidence as data, decaying per source. Unproven: the 360 households are synthetic, and the customer is an aggregator, close to the panel's first red flag.
+- **ResilienceOS.** Strong: the best opening it did not lead with, an $8 million fine for missed notice to critical facilities (a stage claim I have not checked). Unproven: its own accuracy (the 52% on stage was another paper's) and its sites, which are synthetic.
+- **Follow The Sun.** Unproven: 13.7% less energy comes from modeled estimates and grew on stage.
+- **Consumer apps.** matcha keeps AI to the wording and sizes batteries in plain TypeScript, the right split. Housemates runs on simulated prices; Judy's "reinforcement learning" is a claim on the page.
+- **Crew Air (ours).** Strong: rules as data per jurisdiction, the NowCast instead of a lagging 24-hour mean, ML in one place only. Weak: the sky-photo check is scored on 12 photos, which is a smoke test, not an evaluation, and on stage a hardware concept took the Q&A from the software.
 
 ## Who built what
 
@@ -48,6 +77,8 @@ On 23-24 October I spent 24 hours at the Stanford Cleantech Hackathon building [
 **US Heat and Cold Plan Audit (USC).** A blind Claude coder answered a fixed codebook for 50 plan PDFs, each answer with a verbatim quote and page, or "not stated". Harm comes from EpiNOAA temperatures, EPA CIRA curves and CDC WONDER. Deaths averted are Σ D_t (1 − Π (1 − r_i,t)), so measures are not double counted. A lint test fails if a place name appears in engine code. Agreement: kappa 0.78 on action class, 0.84 on commitment strength, 0.38 on status, all three on the page.
 
 ### Ours: Crew Air
+
+**Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air) · **iPhone app:** in App Store review, the link goes here once it is live.
 
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 
@@ -144,5 +175,9 @@ Two ideas from the event stay on the list as plans, not results. One is the dron
 
 - Pitch deck, 7 slides (PDF, 0.7 MB): [crew-air-pitch-stanford-2026.pdf](/files/crew-air-pitch-stanford-2026.pdf)
 - Devpost: [devpost.com/software/crew-air](https://devpost.com/software/crew-air)
+
+## How this was put together
+
+I spent the 24 hours building Crew Air with a teammate, so the survey came around the build. I recorded the investor panel, the finalist pitches and the Earth Engine workshop on a DJI camera and transcribed them on my laptop, ran [[project-supervox]] during mentor conversations, and read all 19 [Devpost pages](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts, with the time in the video; numbers come from the project pages unless stated. Devpost marked no winners while this was written, and the room recording stops when the judges left to deliberate.
 
 Related: [[cal-hacks-13-2026]] and [[dell-nvidia-gb10-hackathon-2026]] (the next day), every event in [[hackathons]].
