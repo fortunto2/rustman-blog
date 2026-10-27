@@ -81,7 +81,7 @@ Cross-platform bridges: WASM for web, [PyO3](https://pyo3.rs/) for Python, [UniF
 
 ## The Story
 
-Started in 2014. Built the first version, reached 1M+ users on iOS. Technology wasn't ready — closed in 2021. The dream never left. SuperDuperAI is the second chapter. Now AI can do what was impossible then: understand video content, detect emotions, match music, create meaningful edits automatically.
+Started in 2014 as a website. The first version reached 1M+ users, but the technology wasn't ready, and that version closed in 2021; in that form it no longer works. The dream never left: Life2Film is rewritten from scratch around the same idea, as a mobile-first app. SuperDuperAI is the second chapter. Now AI can do what was impossible then: understand video content, detect emotions, match music, create meaningful edits automatically.
 
 ## Stack
 
