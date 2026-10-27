@@ -13,18 +13,19 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 tools, SQLite only. Vectors out in 0.7 (0/40 recall, 14 s cold); structural code graph out in 0.8 (0 structural questions in 4 months; grep matched a code-graph MCP in 8/8 runs)"
+index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 MCP tools, the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9"
 index_section: "project"
 ---
 
 # Solograph
 
-MCP server for a portfolio of projects: one index of every repository's definitions and packages, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram). Everything is SQLite with FTS5.
+MCP server for a portfolio of projects: one index of every repository's definitions and packages, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram). Everything is SQLite with FTS5, and all of it is one Rust binary: the MCP server, every read as a command, an HTTP API for the sources, the nightly scan. Python is left only for the scrapers.
 
 ```bash
-uv tool install solograph
-claude mcp add -s user solograph -- uvx solograph
-solograph-cli init ~/projects
+git clone https://github.com/fortunto2/solograph && cd solograph && make rust-install
+claude mcp add -s user solograph -- ~/.solo/bin/solograph
+~/.solo/bin/solograph scan                       # registry + portfolio index
+~/.solo/bin/solograph symbols "montage profile"  # the same reads the agent gets, --json for its exact output
 ```
 
 ## 12 MCP tools
@@ -72,6 +73,19 @@ solograph started as a FalkorDB code graph with vector search on top. In October
 A 16% saving on one kind of question did not justify a second tool and a second index per repository. What grep cannot do is look across repositories, so that is what stayed. The environment went from 862 MB (torch, FalkorDB) to 89 MB.
 
 Other things the review found: `session_search` had failed on every MCP call for seven weeks (a `-> list[dict]` annotation on a function returning a dict; its tests never went through the protocol); the nightly refresh had scanned zero projects for 70 nights after Homebrew dropped PyYAML from its python, and logged "done" each time; `codegraph_query` accepted writes; 40 checkouts were missing from the registry.
+
+**0.9: the second implementation.** For a day after the Rust port the same 12 tools existed twice, in Rust (serving MCP) and in Python (the CLI). Two implementations of one search drift, and drift is what kept `session_search` failing for seven weeks, so every read moved into the binary and Python kept only what writes the sources index: 11 modules and 17 dependencies gone, the Python environment 97 → 34 MB. The tests that remain are the contract itself — the real scrapers write a store, the real binary reads it.
+
+Session ranking was measured on the way, on 37 sessions with a known answer:
+
+| Ranking | recall@1 | recall@5 |
+|---|---|---|
+| any word, BM25 (0.8) | 26 | 30 |
+| **all words first, then any (0.9)** | **29** | **32** |
+| title weighted ×10 instead of ×3 | 24 | 30 |
+| recency boost | 26 | 30 |
+
+Ranking all words first surfaced the long sessions that contain every word, and FTS5's `snippet()` tokenises a whole 3–4 MB transcript to pick its fragment. Ranking from the index alone and building snippets only for the rows returned took the CLI query from 2–3 s to 70 ms.
 
 The lesson is not "vectors are bad" or "graphs are bad". It is that an index nobody measures drifts silently, and that a feature nobody calls is cost without benefit. The same convergence shows up across the [[code-graph-mcp-landscape|code-graph tools on GitHub]]: tree-sitter + SQLite FTS5, embeddings optional.
 
