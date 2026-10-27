@@ -33,7 +33,7 @@ Can also be used standalone: `/review` on any project to audit code quality.
 ## MCP Tools (use if available)
 
 - `session_search(query)` — find past review patterns and common issues
-- `project_code_search(query, project)` — find similar code patterns across projects
+- `codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")` — find similar code patterns across projects (symbol names, every project; Grep inside one)
 - `codegraph_query(query)` — check dependencies, imports, unused code
 
 If MCP tools are not available, fall back to Glob + Grep + Read.

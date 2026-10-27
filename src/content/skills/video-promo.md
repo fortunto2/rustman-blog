@@ -18,7 +18,7 @@ Generate a promo video plan from a project's PRD. Produces a 30-45 second video 
 
 ## MCP Tools (use if available)
 
-- `project_code_search(query, project)` — find UI components, screens, features to showcase
+- `codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")` — find UI components, screens, features to showcase (symbol names, every project; Grep inside one)
 - `project_info(name)` — get project stack and details
 - `kb_search(query)` — find video production methodology
 
@@ -37,7 +37,7 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
    - If none found: output plain storyboard (no specific tooling config)
 
 3. **Extract key screens/features** to showcase:
-   - If MCP available: `project_code_search("main screen OR hero OR dashboard", project)` — find showcase-worthy UI
+   - If MCP available: `codegraph_query("MATCH (s:Symbol {project: '<name>'}) WHERE s.name =~ '.*(Screen|View|Hero|Dashboard).*' RETURN s.file, s.name LIMIT 30")` — find showcase-worthy UI
    - Otherwise: Glob for screenshots, mockups, or UI component files
    - Read PRD for top 3-5 features to demonstrate
 

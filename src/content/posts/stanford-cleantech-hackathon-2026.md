@@ -106,7 +106,7 @@ There is one exception, and Ajay named it: sell against a liability that already
 
 ## What the investor panel said
 
-Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a $275M third fund), Ajay Gupta (climate and AI), and Giancarlo of a Swiss carbon fund that began as a family office. What a builder can use, with the time in the full recording:
+Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a $275M third fund), Ajay Gupta (climate and AI), and Giancarlo of a Swiss carbon fund that began as a family office. What a builder can use, with the time in the [full recording](https://youtu.be/-cO-eVwS0C8):
 
 - **Data is not the product.** "They're not in love with the data, they're in love with the application" (Kevin, 14:52). Methane satellites are a public good, not a business. First Street went from a nonprofit to selling to insurers and asset owners, and was acquired in a few years (on stage "Moody's"; the buyer, in June 2026, was MSCI).
 - **Join a decision someone already makes**: whether to connect a load to the grid, whether to store or dispatch (Ajay, 16:32). "People are not willing to pay a green premium. That is a known fact now" (17:42).
@@ -119,7 +119,7 @@ Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a
 
 ## Questions the judges asked
 
-Judging was split evenly over four criteria, announced at the opening: fit to a track's challenge, creativity, technical feasibility, and a path to scale (workshop recording, 37:41). The finalist recording has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models (times below are in the finals recording):
+Judging was split evenly over four criteria, announced at the opening: fit to a track's challenge, creativity, technical feasibility, and a path to scale (workshop recording, 37:41). The [finalist recording](https://youtu.be/BJqEXKIvKBA) has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models (times below are in the finals recording):
 
 - Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases". And who decides where a prompt runs? Whoever hosts the model (05:04).
 - Housemates: Opower's most successful move was comparing a home with its neighbours; would the app do that? Their answer: rankings by cost and carbon saved (11:59).
@@ -155,7 +155,7 @@ Each public API we used had one trap. What it gives, the trap, the fix:
 
 **Earth Engine.** We used it for the pitch, not the product. Notebook auth was blocked on our Cloud project, so a small helper passes a `gcloud auth print-access-token` token into `ee.Initialize` as OAuth credentials. We had no Planet account, so we used Sentinel-2 instead (`COPERNICUS/S2_SR_HARMONIZED`). The least-cloudy scene from 10 to 24 October over the largest FIRMS cluster of 20 October, near Sequoia, rendered as a SWIR composite (B12, B8A, B4), shows the active fire front. A second script computes a dNBR burn scar from median NBR before and after, thresholded at 0.27. At a hackathon its value is that a whole archive comes back as one `getThumbURL` PNG, with nothing downloaded.
 
-From the opening workshop by Stace Maples (Stanford Geospatial Center), the traps worth knowing:
+From the opening workshop by Stace Maples (Stanford Geospatial Center), the traps worth knowing ([full recording](https://youtu.be/7Z0LoCRSyWc)):
 - Always pass `scale` to `reduceRegion`. Without it Earth Engine computes at the Code Editor's current zoom, 153 m in his demo, and returns a different number.
 - Planet's public Education & Research account gets 5,000 km² a month. Clip to the GeoJSON area and ask for one band: "I actually just want an NDVI… ask for one band. That's much cheaper."
 - An order is not a download: images sit in cold storage and take about 30 minutes to come out. Use the Planet SDK rather than the raw API, whose results are paginated.
@@ -178,6 +178,6 @@ Two ideas from the event stay on the list as plans, not results. One is the dron
 
 ## How this was put together
 
-I spent the 24 hours building Crew Air with a teammate, so the survey came around the build. I recorded the investor panel, the finalist pitches and the Earth Engine workshop on a DJI camera and transcribed them on my laptop, ran [[project-supervox]] during mentor conversations, and read all 19 [Devpost pages](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts, with the time in the video; numbers come from the project pages unless stated. Devpost marked no winners while this was written, and the room recording stops when the judges left to deliberate.
+I spent the 24 hours building Crew Air with a teammate, so the survey came around the build. I recorded the [investor panel](https://youtu.be/-cO-eVwS0C8), the [finalist pitches](https://youtu.be/BJqEXKIvKBA) and the [Earth Engine workshop](https://youtu.be/7Z0LoCRSyWc) on a DJI camera and transcribed them on my laptop, ran [[project-supervox]] during mentor conversations, and read all 19 [Devpost pages](https://stanford-cleantech-hackathon.devpost.com/project-gallery). Stage quotes come from corrected transcripts, with the time in the video; numbers come from the project pages unless stated. Devpost marked no winners while this was written, and the room recording stops when the judges left to deliberate.
 
 Related: [[cal-hacks-13-2026]] and [[dell-nvidia-gb10-hackathon-2026]] (the next day), every event in [[hackathons]].

@@ -25,7 +25,7 @@ Creates a track for any feature, bug fix, or refactor with a concrete, file-leve
 ## MCP Tools (use if available)
 
 - `session_search(query)` — find similar past work in Claude Code chat history
-- `project_code_search(query, project)` — find reusable code across projects
+- `codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")` — find reusable code across projects (symbol names, every project; Grep inside one)
 - `codegraph_query(query)` — check dependencies of affected files
 - `codegraph_explain(project)` — architecture overview: stack, languages, directory layers, key patterns, top dependencies, hub files
 - `kb_search(query)` — search knowledge base for relevant methodology
@@ -96,7 +96,7 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 
    e. **Search code across projects** (if MCP available):
       ```
-      project_code_search(query="{relevant pattern}")
+      codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")
       ```
 
    f. **Check dependencies** of affected files (if MCP available):
