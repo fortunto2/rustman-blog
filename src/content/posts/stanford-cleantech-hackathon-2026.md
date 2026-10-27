@@ -82,19 +82,66 @@ My read of each project from its page and pitch. Strong is what I would copy; un
 
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 
+<iframe src="https://www.youtube-nocookie.com/embed/cflNvJU9x5o" title="Crew Air: how it works (Stanford Cleantech Hackathon 2026)" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ![Crew Air pitch deck, slide 6: two iPhone screens, a sky check that sees no smoke and a shift plan near Stanford at AQI 39 with a satellite fire 21 km east](/images/posts/stanford-cleantech-hackathon-2026/crew-air-app.jpg)
 
 ![Crew Air pitch deck, slide 7: the live smoke map of Northern California, satellite fire detections with wind-drawn smoke cones, under an hourly AQI and temperature strip](/images/posts/stanford-cleantech-hackathon-2026/crew-air-smoke-map.jpg)
+
+## The finals: pitches and the judges' questions
+
+Judging was split evenly over four criteria, announced at the opening: fit to a track's challenge, creativity, technical feasibility, and a path to scale (workshop recording, [37:41](https://youtu.be/7Z0LoCRSyWc?t=2261)). The [finalist recording](https://youtu.be/BJqEXKIvKBA) has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A.
+
+<iframe src="https://www.youtube-nocookie.com/embed/BJqEXKIvKBA" title="8 climate startup pitches: Stanford Cleantech Hackathon 2026 finals" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Jump to a pitch: [Follow The Sun](https://youtu.be/BJqEXKIvKBA?t=0) · [Housemates](https://youtu.be/BJqEXKIvKBA?t=464) · [Judy](https://youtu.be/BJqEXKIvKBA?t=804) · [Dengai](https://youtu.be/BJqEXKIvKBA?t=1134) · [USC heat and cold plan audit](https://youtu.be/BJqEXKIvKBA?t=1510) · [The Chill Factor](https://youtu.be/BJqEXKIvKBA?t=1818) · [matcha](https://youtu.be/BJqEXKIvKBA?t=2194) · [ResilienceOS](https://youtu.be/BJqEXKIvKBA?t=2579).
+
+The judges asked about money and moats more than about models (times below are in the finals recording):
+
+- Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases". And who decides where a prompt runs? Whoever hosts the model ([05:04](https://youtu.be/BJqEXKIvKBA?t=304)).
+- Housemates: Opower's most successful move was comparing a home with its neighbours; would the app do that? Their answer: rankings by cost and carbon saved ([11:59](https://youtu.be/BJqEXKIvKBA?t=719)).
+- The Chill Factor: does this make farmers competitors or collaborators? Their answer: free public data first, light hardware later as a data flywheel. Pistachio yield fell 47% in 2015.
+- ResilienceOS: what makes the data proprietary, and do better storm forecasts serve insurers or power producers? The answer stayed general.
+- matcha, on revenue: "B2C2B", featured vendors and sign-ups for virtual power plants.
+- Numbers said on stage: Dengai, 544 dengue deaths in Indonesia in 2025 out of 131,000 confirmed cases; USC, 1,061 more lives saved in LA County for the same budget; Judy, a $5 plug saving $185 a year.
+
+## What the investor panel said
+
+Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a $275M third fund), Ajay Gupta (climate and AI), and Giancarlo of a Swiss carbon fund that began as a family office.
+
+<iframe src="https://www.youtube-nocookie.com/embed/-cO-eVwS0C8" title="Climate investors' red flags: Stanford Cleantech Hackathon 2026 investor panel" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+What a builder can use, with the time in the [full recording](https://youtu.be/-cO-eVwS0C8):
+
+- **Data is not the product.** "They're not in love with the data, they're in love with the application" (Kevin, [14:52](https://youtu.be/-cO-eVwS0C8?t=892)). Methane satellites are a public good, not a business. First Street went from a nonprofit to selling to insurers and asset owners, and was acquired in a few years (on stage "Moody's"; the buyer, in June 2026, was MSCI).
+- **Join a decision someone already makes**: whether to connect a load to the grid, whether to store or dispatch (Ajay, [16:32](https://youtu.be/-cO-eVwS0C8?t=992)). "People are not willing to pay a green premium. That is a known fact now" ([17:42](https://youtu.be/-cO-eVwS0C8?t=1062)).
+- **Take risk only on the core.** "You should be buying every other damn thing possible… it's about speed" (Kevin, [21:24](https://youtu.be/-cO-eVwS0C8?t=1284)). His own story: an anti-reflective coating now on every First Solar panel, 150 square miles of glass.
+
+<div style="display:flex;flex-wrap:nowrap;gap:12px;justify-content:center;margin:1.5rem 0"><iframe src="https://www.youtube-nocookie.com/embed/Us4syEsCzEc" title="Founders: buy every other damn thing, take risk only on the core" style="flex:0 1 300px;min-width:0;aspect-ratio:9/16;border:0;border-radius:8px" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
+- **The first 30 days.** Talk to a hundred potential customers in a few weeks and find who buys and who decides (Ajay, [24:28](https://youtu.be/-cO-eVwS0C8?t=1468)). Pick a customer for whom failure has severe consequences, and look for the job they hire you for: a diligence tool may really sell "a layer of security for their decisions" (Giancarlo, [22:44](https://youtu.be/-cO-eVwS0C8?t=1364)).
+- **Grants** are good when they make you faster and bad as "a way to stay alive and extend your runway indefinitely" (Giancarlo, [39:15](https://youtu.be/-cO-eVwS0C8?t=2355)). Lobbying comes at scale: Fervo fought drilling rules stricter than oil and gas had. "We got a lobbyist" at the seed stage is a red flag (Kevin, [41:36](https://youtu.be/-cO-eVwS0C8?t=2496)).
+- **Adaptation already has products**: Adaptive Insurance covers deductibles on wind, hail and wildfire, FutureProof sells where people lost their insurance, Florida first and now California. Home hardening is underfunded.
+- **Data centers.** Kevin: half to two-thirds of GDP growth is tied to them. A castings company he knows now makes heat sinks for them ([44:14](https://youtu.be/-cO-eVwS0C8?t=2654)).
+- **Hardware vs software.** "Software companies take less money or less time is a fallacy", and in climate "the bigger returns come from hardware" (Kevin, [51:50](https://youtu.be/-cO-eVwS0C8?t=3110)). Giancarlo on why funds care about speed: "IRR is very sensitive to time" ([50:53](https://youtu.be/-cO-eVwS0C8?t=3053)). He spelled out the math every investor runs during a pitch: a fund owns 5 to 20% of each company and only a few of them must return the whole fund, so the question is "is your company one of the few that can return the fund? And if yes, when?" ([51:13](https://youtu.be/-cO-eVwS0C8?t=3073)).
+
+### Red flags, and the one way around them
+
+**The red flags were explicit**, and they came from three people. Kevin Kopczynski (Congruent Ventures) gave the first two ([27:55](https://youtu.be/-cO-eVwS0C8?t=1675)). Number one: "we sell to utilities". A utility earns a regulated return on approved capital; a pilot paid from its R&D line has no bucket to graduate into, and the panel would not back a first-time founder who wants to sell to utilities: "there are better places to bang your head against the wall" ([31:17](https://youtu.be/-cO-eVwS0C8?t=1877)). Asked about the ones that made it, he said even a company "killing it" with one utility often cannot repeat it at the next with the same product and playbook. His only explanation was a champion found inside an opaque decision process: "I don't know the answer to that question, otherwise I might have changed my answer" ([45:20](https://youtu.be/-cO-eVwS0C8?t=2720)).
+
+<div style="display:flex;flex-wrap:nowrap;gap:12px;justify-content:center;margin:1.5rem 0"><iframe src="https://www.youtube-nocookie.com/embed/w8rDSr1TO2Y" title="VC red flag #1: we sell to utilities" style="flex:0 1 300px;min-width:0;aspect-ratio:9/16;border:0;border-radius:8px" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><iframe src="https://www.youtube-nocookie.com/embed/kYfwLLX1_O0" title="Why VCs won't fund startups that sell to utilities" style="flex:0 1 300px;min-width:0;aspect-ratio:9/16;border:0;border-radius:8px" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
+Number two: subsidy as the business. He later narrowed it: SBIR, STTR and DOE grants have a role, a solution that only works while subsidised does not. Ajay Gupta added AI used where physics or an optimizer would do ([26:20](https://youtu.be/-cO-eVwS0C8?t=1580)). Giancarlo added single-digit total addressable markets and hardware that scales by more than 10× per step: "it's basically not going to happen". His tell is a deck that goes from 1,000 tons a year to 50,000 three years later, a 50× step that says the team has not scaled hardware before ([30:30](https://youtu.be/-cO-eVwS0C8?t=1830)). ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
+
+<div style="display:flex;flex-wrap:nowrap;gap:12px;justify-content:center;margin:1.5rem 0"><iframe src="https://www.youtube-nocookie.com/embed/rwa6EwAU8Ic" title="The 10x rule of scaling climate hardware" style="flex:0 1 300px;min-width:0;aspect-ratio:9/16;border:0;border-radius:8px" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
+There is one exception, and Ajay named it: sell against a liability that already has its own budget line. About 10% of a utility's infrastructure causes over half of its wildfires, and fire mitigation is a line item a startup can sell into ([46:09](https://youtu.be/-cO-eVwS0C8?t=2769)). ResilienceOS had the start of that argument. On stage it said SCE was fined $8 million for missing the 48 to 72 hours of notice it owes critical facilities (finals recording, [44:48](https://youtu.be/BJqEXKIvKBA?t=2688); a stage claim I have not checked). My reading: the fine was the budget line, and a stronger opening than the model.
 
 ## What to expect in this industry
 
 **The money follows data-center load.** A panelist said demand growth is the fastest since right after World War II. Hyperscalers buy transformers and switchgear directly, outside the utility process. Four projects worked that seam: Griddy sized a 1 GW AI campus, Follow The Sun routes inference, WattNext sets a campus against substation headroom, Shadow Plan tracks the queue. LBNL, cited by Griddy, finds only about 13% of capacity that asks for a connection reaches operation. My inference: siting and interconnection intelligence is where software meets that money, and the buyer is a developer or a hyperscaler.
 
 **Adaptation is the white space, and asset owners pay.** Paraphrasing the panel: funding adaptation used to sound defeatist, and it is now clear mitigation alone is not happening. They named extreme-weather risk, insurance, asset owners with billions at risk, and home hardening. Pismo, ResilienceOS, the Chill Factor (pitched to lenders and land buyers too) and Crew Air sit there.
-
-**The red flags were explicit**, and they came from three people. Kevin Kopczynski (Congruent Ventures) gave the first two (27:55). Number one: "we sell to utilities". A utility earns a regulated return on approved capital; a pilot paid from its R&D line has no bucket to graduate into, and the panel would not back a first-time founder who wants to sell to utilities: "there are better places to bang your head against the wall" (31:17). Asked about the ones that made it, he said even a company "killing it" with one utility often cannot repeat it at the next with the same product and playbook. His only explanation was a champion found inside an opaque decision process: "I don't know the answer to that question, otherwise I might have changed my answer" (45:20). Number two: subsidy as the business. He later narrowed it: SBIR, STTR and DOE grants have a role, a solution that only works while subsidised does not. Ajay Gupta added AI used where physics or an optimizer would do (26:20). Giancarlo added single-digit total addressable markets and hardware that scales by more than 10× per step: "it's basically not going to happen". His tell is a deck that goes from 1,000 tons a year to 50,000 three years later, a 50× step that says the team has not scaled hardware before (30:30). ResilienceOS and WattNext still pitched a utility or an aggregator as the customer.
-
-There is one exception, and Ajay named it: sell against a liability that already has its own budget line. About 10% of a utility's infrastructure causes over half of its wildfires, and fire mitigation is a line item a startup can sell into (46:09). ResilienceOS had the start of that argument. On stage it said SCE was fined $8 million for missing the 48 to 72 hours of notice it owes critical facilities (finals recording, 44:48; a stage claim I have not checked). My reading: the fine was the budget line, and a stronger opening than the model.
 
 **Patterns becoming standard**, my inference from the 19 projects:
 - One shared public stack: Open-Meteo, FIRMS, AirNow, CAISO, NWS, EAGLE-I, Earth Engine, Census. Nobody had a data moat.
@@ -103,30 +150,6 @@ There is one exception, and Ajay named it: sell against a liability that already
 - LLMs for reading documents, deterministic code or classic ML for anything physical.
 
 **Overhyped, in my reading:** chat over a dataset (a panelist: build for the questions businesses actually ask), consumer apps on simulated prices, and "AI" as a label on a rule.
-
-## What the investor panel said
-
-Three investors: Kevin Kopczynski of Congruent Ventures (pre-seed to Series A, a $275M third fund), Ajay Gupta (climate and AI), and Giancarlo of a Swiss carbon fund that began as a family office. What a builder can use, with the time in the [full recording](https://youtu.be/-cO-eVwS0C8):
-
-- **Data is not the product.** "They're not in love with the data, they're in love with the application" (Kevin, 14:52). Methane satellites are a public good, not a business. First Street went from a nonprofit to selling to insurers and asset owners, and was acquired in a few years (on stage "Moody's"; the buyer, in June 2026, was MSCI).
-- **Join a decision someone already makes**: whether to connect a load to the grid, whether to store or dispatch (Ajay, 16:32). "People are not willing to pay a green premium. That is a known fact now" (17:42).
-- **Take risk only on the core.** "You should be buying every other damn thing possible… it's about speed" (Kevin, 21:24). His own story: an anti-reflective coating now on every First Solar panel, 150 square miles of glass.
-- **The first 30 days.** Talk to a hundred potential customers in a few weeks and find who buys and who decides (Ajay, 24:28). Pick a customer for whom failure has severe consequences, and look for the job they hire you for: a diligence tool may really sell "a layer of security for their decisions" (Giancarlo, 22:44).
-- **Grants** are good when they make you faster and bad as "a way to stay alive and extend your runway indefinitely" (Giancarlo, 39:15). Lobbying comes at scale: Fervo fought drilling rules stricter than oil and gas had. "We got a lobbyist" at the seed stage is a red flag (Kevin, 41:36).
-- **Adaptation already has products**: Adaptive Insurance covers deductibles on wind, hail and wildfire, FutureProof sells where people lost their insurance, Florida first and now California. Home hardening is underfunded.
-- **Data centers.** Kevin: half to two-thirds of GDP growth is tied to them. A castings company he knows now makes heat sinks for them (44:14).
-- **Hardware vs software.** "Software companies take less money or less time is a fallacy", and in climate "the bigger returns come from hardware" (Kevin, 51:50). Giancarlo on why funds care about speed: "IRR is very sensitive to time" (50:53). He spelled out the math every investor runs during a pitch: a fund owns 5 to 20% of each company and only a few of them must return the whole fund, so the question is "is your company one of the few that can return the fund? And if yes, when?" (51:13).
-
-## Questions the judges asked
-
-Judging was split evenly over four criteria, announced at the opening: fit to a track's challenge, creativity, technical feasibility, and a path to scale (workshop recording, 37:41). The [finalist recording](https://youtu.be/BJqEXKIvKBA) has eight pitches, from Follow The Sun to ResilienceOS, and stops in the last Q&A. The judges asked about money and moats more than about models (times below are in the finals recording):
-
-- Follow The Sun: what happens to GPU memory across a chain of prompts? Pin the chain to one datacenter for about an hour, which covers "99% of cases". And who decides where a prompt runs? Whoever hosts the model (05:04).
-- Housemates: Opower's most successful move was comparing a home with its neighbours; would the app do that? Their answer: rankings by cost and carbon saved (11:59).
-- The Chill Factor: does this make farmers competitors or collaborators? Their answer: free public data first, light hardware later as a data flywheel. Pistachio yield fell 47% in 2015.
-- ResilienceOS: what makes the data proprietary, and do better storm forecasts serve insurers or power producers? The answer stayed general.
-- matcha, on revenue: "B2C2B", featured vendors and sign-ups for virtual power plants.
-- Numbers said on stage: Dengai, 544 dengue deaths in Indonesia in 2025 out of 131,000 confirmed cases; USC, 1,061 more lives saved in LA County for the same budget; Judy, a $5 plug saving $185 a year.
 
 ## Seven insights
 
@@ -153,14 +176,18 @@ Each public API we used had one trap. What it gives, the trap, the fix:
 - **TypeSafe Jev.** Typed questions about a photo, answered with probabilities. Trap: wording changes answers. Fix: a 12-photo eval rerun after every change of wording. Smoke was reliable and visibility was not.
 - **Platform traps.** Astro's origin check returns 403 to a multipart POST without an Origin header, so app endpoints take JSON or raw `image/jpeg`. `wrangler dev` keeps its edge cache across restarts, so add a throwaway query parameter. Overpass timed out from the venue twice. Devpost answered 403 to our agent's fetcher; curl with a browser User-Agent worked.
 
+### Earth Engine
+
 **Earth Engine.** We used it for the pitch, not the product. Notebook auth was blocked on our Cloud project, so a small helper passes a `gcloud auth print-access-token` token into `ee.Initialize` as OAuth credentials. We had no Planet account, so we used Sentinel-2 instead (`COPERNICUS/S2_SR_HARMONIZED`). The least-cloudy scene from 10 to 24 October over the largest FIRMS cluster of 20 October, near Sequoia, rendered as a SWIR composite (B12, B8A, B4), shows the active fire front. A second script computes a dNBR burn scar from median NBR before and after, thresholded at 0.27. At a hackathon its value is that a whole archive comes back as one `getThumbURL` PNG, with nothing downloaded.
+
+<iframe src="https://www.youtube-nocookie.com/embed/7Z0LoCRSyWc" title="Earth Engine and Planet satellite imagery for hackers: Stanford Cleantech Hackathon 2026 workshop" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 From the opening workshop by Stace Maples (Stanford Geospatial Center), the traps worth knowing ([full recording](https://youtu.be/7Z0LoCRSyWc)):
 - Always pass `scale` to `reduceRegion`. Without it Earth Engine computes at the Code Editor's current zoom, 153 m in his demo, and returns a different number.
 - Planet's public Education & Research account gets 5,000 km² a month. Clip to the GeoJSON area and ask for one band: "I actually just want an NDVI… ask for one band. That's much cheaper."
 - An order is not a download: images sit in cold storage and take about 30 minutes to come out. Use the Planet SDK rather than the raw API, whose results are paginated.
 - Earth Engine, Mapbox, Planet and Google share one Z/X/Y tile grid, so layers from different sources line up; `mercantile` turns a GeoJSON extent into a list of tiles.
-- The point of PlanetScope is the daily image, not the resolution: about 250 microsatellites image almost every place on Earth every day at 3 to 4 m, between 9 and 10 am local time (workshop recording, 21:13). "You see things one day, you can do something about them the next day." His examples: SkySat counts of the ships queued at both ends of the Suez Canal while the Ever Given was stuck (31:47), a Stanford project that spots charcoal camps in the Amazon tied to human trafficking fast enough to intervene (33:14), and oil in storage measured from the shadows inside floating-roof tanks, which needs the sun and view angles from the image metadata (26:11).
+- The point of PlanetScope is the daily image, not the resolution: about 250 microsatellites image almost every place on Earth every day at 3 to 4 m, between 9 and 10 am local time (workshop recording, [21:13](https://youtu.be/7Z0LoCRSyWc?t=1273)). "You see things one day, you can do something about them the next day." His examples: SkySat counts of the ships queued at both ends of the Suez Canal while the Ever Given was stuck ([31:47](https://youtu.be/7Z0LoCRSyWc?t=1907)), a Stanford project that spots charcoal camps in the Amazon tied to human trafficking fast enough to intervene ([33:14](https://youtu.be/7Z0LoCRSyWc?t=1994)), and oil in storage measured from the shadows inside floating-roof tanks, which needs the sun and view angles from the image metadata ([26:11](https://youtu.be/7Z0LoCRSyWc?t=1571)).
 - No Planet account: Planet publishes disaster data as cloud-optimized GeoTIFFs on plain HTTP, Earth Engine already holds SkySat samples, and the awesome-gee-community-catalog adds more. Other teams used it harder. Griddy took layers for siting, WattNext pulled NAIP at 0.6 m, Sentinel-2 and ESA WorldCover, and Pismo read NOAA GFS forecasts through it. Pismo also measured the cost: about 8 months of forecasts took 1.5 hours, so they cut scope to one storm.
 
 ## What happens with Crew Air now
