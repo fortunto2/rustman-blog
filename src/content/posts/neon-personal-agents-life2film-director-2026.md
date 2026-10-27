@@ -105,6 +105,8 @@ video.
 
 ## Demo and result
 
+<iframe src="https://www.youtube-nocookie.com/embed/NAmEDA6vIEY" title="Life2Film Director: a personal film director agent, hackathon demo" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 The pitch was the app on screen with a three-minute demo video as fallback, and it named the sponsor
 tools that did not make it. The hosted demo is bring-your-own OpenAI key: the key stays in the browser
 and travels only as a request header. `skills/life2film-director/SKILL.md` in the repo lets another

@@ -81,6 +81,10 @@ the weights.
 
 ## Demo and result
 
+<iframe src="https://www.youtube-nocookie.com/embed/_GzPxIwRMgo" title="Is He My Bro? BroCheck, built in 50 minutes with Jev | OC AI Builders Hackathon, Irvine" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+The pitch on stage, 2:53: [why Jev](https://youtu.be/_GzPxIwRMgo?t=28) · [two photos, one match](https://youtu.be/_GzPxIwRMgo?t=42) · [Ask Mom](https://youtu.be/_GzPxIwRMgo?t=72) · [live demo, salad vs donut](https://youtu.be/_GzPxIwRMgo?t=111) · [live-coded in 15 minutes](https://youtu.be/_GzPxIwRMgo?t=138).
+
 The pitch was five slides inside the app, one showing the latest verdict from the log, with a QR code
 to the site. Later that evening the build got a public address,
 [bro.rustman.org](https://bro.rustman.org), served from a laptop through a Cloudflare tunnel, so it is

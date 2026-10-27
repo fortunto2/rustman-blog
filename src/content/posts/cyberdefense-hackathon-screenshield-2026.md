@@ -93,6 +93,10 @@ on screen, one QR across 31 rooms, frame text followed by a blocked tool call) a
 
 ## Demo and result
 
+<iframe src="https://www.youtube-nocookie.com/embed/qZVPiqBWxJg" title="3rd place at a San Francisco cyberdefense hackathon: Screen Shield, SF Tech Week" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+The day in 8:31: [what I built](https://youtu.be/qZVPiqBWxJg?t=43) · [other finalists](https://youtu.be/qZVPiqBWxJg?t=171) · [my pitch](https://youtu.be/qZVPiqBWxJg?t=193) · [judges' questions](https://youtu.be/qZVPiqBWxJg?t=323) · [prizes](https://youtu.be/qZVPiqBWxJg?t=389).
+
 The Wi-Fi slide scene made the video. On stage, in slot 59, I pitched live from the dashboard's live
 page; Chrome had blocked the camera for the local address, so the server-side stream fallback ran.
 
@@ -101,7 +105,7 @@ evening it got `shield run --in X --out Y` (stream in, stream out, one second be
 blur lands before a frame leaves, with a three-second hold after the last detection), a Homebrew
 formula, a release with an Apple-silicon tarball, and a Claude Code plugin with a skill.
 
-Result: **3rd place** (AWS credits).
+Result: **3rd place overall**, $400 from the top-overall prizes ([announced at 7:36](https://youtu.be/qZVPiqBWxJg?t=456)).
 
 ## What the other teams built
 
@@ -157,5 +161,5 @@ copies its detectors. The same "brake outside the model" showed up across the ei
 [[dell-nvidia-gb10-hackathon-2026]]. The responder runs on sgr-agent, the agent core behind
 [[pac1-competition-retrospective]]. Every event: [[hackathons]].
 
-Links: [repo](https://github.com/fortunto2/screenshield) · [demo video, 94 s](https://youtu.be/8p0dc0lLVjM) ·
+Links: [repo](https://github.com/fortunto2/screenshield) · [film of the day, 8:31](https://youtu.be/qZVPiqBWxJg) · [demo video, 94 s](https://youtu.be/8p0dc0lLVjM) ·
 [project page](https://tokensand.com/p/screenshield) · related: [[agent-sandboxing]].
