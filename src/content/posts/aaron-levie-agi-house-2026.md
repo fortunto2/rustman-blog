@@ -4,6 +4,7 @@ title: "Aaron Levie: a chatbot saves 30% at best, the gain is in agents that wor
 description: "Box CEO Aaron Levie at AGI House during SF Tech Week, 8 Oct 2026: why a chatbot on an old workflow tops out at 30%, why he expects enterprise AI to take two decades, and his bets on jobs, juniors, sales demos and who pays for cheap AI."
 created: 2026-10-27
 event_date: 2026-10-08
+video_url: "https://youtu.be/I9EQRe1Ec5U"
 tags: [talk, ai, agents, enterprise-ai, future-of-work, sales, education, sf-tech-week]
 publish: true
 publish_as: post

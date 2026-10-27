@@ -4,6 +4,7 @@ title: "Agents that finish the ad, models that generate the world: two bets on A
 description: "Two LA Tech Week evenings in Venice, Los Angeles, on 15 Oct 2026: Vizard and Alibaba Cloud showed an agent that turns a one-line brief into a finished ad, Visko and Google Cloud a live model that generates a world while you watch, and both rooms said the story is still the hard part."
 created: 2026-10-27
 event_date: 2026-10-15
+video_url: "https://youtu.be/GALXltzgYBY"
 tags: [event, la-tech-week, ai-video, video-agents, world-models, video, ugc, distribution, storytelling, life2film]
 publish: true
 publish_as: post
