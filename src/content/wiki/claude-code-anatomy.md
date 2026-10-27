@@ -3,6 +3,7 @@ type: note
 title: "Claude Code anatomy — 98.4% infrastructure, 1.6% AI decisions"
 description: "Reverse-engineering of Claude Code v2.1.88 (Liu et al., 2026). Seven-component agentic loop, five-layer context compaction, deny-first permissions. Empirical proof that harness eats the model — 98.4% of a production agent's code is operational scaffolding, not LLM logic."
 created: 2026-04-20
+updated: 2026-10-27
 tags: [agents, harness, claude-code, context-compaction, permissions, architecture, research]
 course_module: 4
 course_order: 2
@@ -114,6 +115,10 @@ The paper doesn't only celebrate. It names the costs:
 - **Approval fatigue** (see above) — automated safety gates erode human oversight over time
 
 The architectural tension: **immediate capability amplification vs long-term preservation of codebase coherence and human mastery.** Harness design has to make a deliberate bet on this axis, not just maximize task throughput.
+
+## What others found since (Oct 2026)
+
+- **Fatigue hits your own checks too.** Dan McAteer ([Latent Space, Oct 2026](https://www.latent.space/p/claude-mods)) wrote a Claude Code mod that reviews every turn that edits a file, runs a command or makes 8+ tool calls: it fired on 99 of his 111 turns, he started skimming it, and each check costs about 5-6k input-equivalent tokens on a 50k-token session (reported, the mod README's estimate). A check that speaks on nearly every turn is the 93% problem again, and mods run unsandboxed with the user's permissions.
 
 ## Connections
 
