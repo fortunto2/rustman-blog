@@ -5,8 +5,6 @@ description: "Open-source food delivery with transparent pricing, Dioxus fullsta
 created: 2026-03-01
 tags: [project, open-source, rust, wasm, dioxus, food-delivery, cloudflare]
 project_type: product
-course_module: 7
-course_order: 13
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/OpenWok"

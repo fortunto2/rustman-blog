@@ -6,7 +6,7 @@ created: 2024-12-20
 updated: 2026-04-07
 tags: [antifragility, taleb, barbell, life-design, risk]
 course_module: 1
-course_order: 3
+course_order: 4
 publish: true
 source_path: "0-principles/stream-framework.md"
 sources: [stream-framework-summary]

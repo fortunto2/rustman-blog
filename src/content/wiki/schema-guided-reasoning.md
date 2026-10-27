@@ -3,8 +3,9 @@ type: concept
 description: "Schema-Guided Reasoning (SGR): all projects built from schemas to logic, not the other way around. Schemas are the contract between AI agent, business logic,..."
 title: "SGR — schemas first, logic second, UI last"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [sgr, schemas, ddd, pydantic, zod, methodology, rust]
-course_module: 4
+course_module: 3
 course_order: 2
 publish: true
 source_path: "1-methodology/dev-principles.md"
@@ -34,6 +35,13 @@ By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data clas
 **Skill:** `/sgr` in [solo-factory](https://github.com/fortunto2/solo-factory) — design and implement SGR pipelines (NextStep agent loop, analysis cascade, tool dispatch). 4 reference files incl. working 304-line demo.
 
 **Libraries:** [sgr-agent](https://github.com/fortunto2/rust-code) crate v0.6.1 (Rust core for SGR agents), [sgr-agent-core](https://github.com/vamplabAI/sgr-agent-core) (Python, 1K+ stars), [openai-oxide](https://github.com/fortunto2/openai-oxide) (typed Rust client).
+
+## What others found since (Oct 2026)
+
+- **Turn strict mode on; don't assume it.** Armin Ronacher ([Better Models: Worse Tools](https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/), Jul 2026) saw Opus 4.8 and Sonnet 5 invent keys in nested tool arguments in about 20% of one session's edit calls, and `strict` tool mode removed them (reported). His reading: post-training inside a forgiving harness makes its flat schema shapes in-distribution and other shapes out of it. Keep schemas flat and enforce them.
+
+
+## Connections
 
 - [[dev-principles-summary]] — origin: SGR section
 - [[context-engineering]] — agent reading schemas first = context engineering for code

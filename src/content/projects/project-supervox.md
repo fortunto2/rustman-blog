@@ -5,8 +5,6 @@ description: "Voice-powered productivity TUI: live call assistant with real-time
 created: 2026-03-01
 tags: [project, open-source, rust, voice, tui, ai, stt]
 project_type: tool
-course_module: 7
-course_order: 12
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/supervox"

@@ -3,9 +3,10 @@ type: methodology
 title: "Agent Memory Architecture: From Working Memory to Compound Learning"
 description: "4 memory types, 3 operational loops, 5 systems compared. From dict-based v1 to spatial palaces and knowledge graphs."
 created: 2026-04-09
+updated: 2026-10-27
 tags: [agents, memory, architecture, methodology, rag, context-engineering]
 course_module: 5
-course_order: 6
+course_order: 1
 publish: true
 publish_as: post
 source_path: "1-methodology/agent-memory-architecture.md"
@@ -42,9 +43,9 @@ Durable knowledge about the world, the user, the domain. Timeless or slowly chan
 - **OpenClaw**: `bank/world.md` for objective facts, `bank/entities/*.md` for entity pages. Markdown source of truth + derived SQLite/FTS5 index. Inspired by [Hindsight](https://arxiv.org/abs/2404.00498) and [MemGPT/Letta](https://arxiv.org/abs/2310.08560).
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_facts` corridor within each wing. Verbatim storage (96.6% on [LongMemEval](https://arxiv.org/abs/2410.10813)) beats compression (84.2%).
 - **Moltis**: Hybrid search (vector + FTS5 keyword), with optional LLM reranking (70% LLM score + 30% original).
-- **[[project-solograph|Solograph]]**: `kb_search` for knowledge base with MLX embeddings (multilingual-e5-small, RU+EN). Facts, principles, patterns stored as markdown files.
+- **[[project-solograph|Solograph]]**: `kb_search` over the knowledge base: SQLite FTS5, BM25, Russian and English stemming. Facts, principles, patterns stored as markdown files.
 
-**Key insight**: Structure beats embeddings for retrieval. MemPalace's spatial hierarchy (wing > room > hall) improves recall by 34% over flat vector search. Solograph's graph layer adds relationship traversal on top. But a simple dict in the system prompt works fine to start ([[schema-guided-reasoning|SGR v1]] approach).
+**Key insight**: Structure beats embeddings for retrieval. MemPalace's spatial hierarchy (wing > room > hall) improves recall by 34% over flat vector search. Solograph dropped embeddings for plain FTS5 (measured below). But a simple dict in the system prompt works fine to start ([[schema-guided-reasoning|SGR v1]] approach).
 
 ### 3. Episodic Memory (experience log)
 
@@ -52,7 +53,7 @@ What happened, when, in what order. Decision history, interaction logs, past res
 
 - **OpenClaw**: Daily logs (`memory/YYYY-MM-DD.md`) + `bank/experience.md` curated by reflection. The `## Retain` section extracts 2-5 narrative, self-contained facts from each day, tagged with type (`W` world, `B` experience, `O` opinion) and entities (`@Peter`).
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_events` + `hall_discoveries` corridors. Specialist agent diaries capture domain-specific history.
-- **[[project-solograph|Solograph]]**: `session_search` makes every past Claude Code session searchable. Each session = a [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace with reasoning.
+- **[[project-solograph|Solograph]]**: `session_search` makes every past Claude Code session searchable. Each session = a [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace with reasoning, even after Claude Code deletes the transcript.
 - **[Generative Agents](https://arxiv.org/abs/2304.03442)**: Memory stream of timestamped observations, with retrieval scored by recency x relevance x importance.
 
 **Key insight**: Episodic ≠ semantic. Episodic is time-ordered (event sequence), semantic is timeless (generalized fact). The OpenClaw `## Retain` pattern extracts narrative facts from the raw log, tags with type + entities + confidence. [[decision-traces-compound|Decision traces compound]]: each captured trajectory improves future retrieval.
@@ -63,7 +64,7 @@ Methods, templates, algorithms, workflows. "How to do X" rather than "what X is.
 
 - **[[schema-guided-reasoning|SGR]]**: `memory["procedural"]` stores story structure templates (3-act method), writing instructions. Loaded as recommendations in system prompt.
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_advice` corridor with accumulated recommendations and patterns.
-- **[[project-solograph|Solograph]]**: `codegraph_query` + `codegraph_explain` expose an AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal implementation patterns: "How is auth implemented?" returns structural patterns, not just files.
+- **[[project-solograph|Solograph]]**: `symbol_search` indexes tree-sitter definitions across all projects by their words: "auth middleware" lists every implementation already written. `codegraph_explain` summarizes one project's stack and layers.
 - **YAML workflow templates**: Predefined agent sequences (video trailers, marketing campaigns). Codified procedural memory. The agent follows a proven template instead of reasoning from scratch.
 
 **Key insight**: Procedural memory is the most undervalued type. A well-defined workflow template multiplies consistency. [[cli-first-testing|CLI-first]] design makes procedural knowledge testable. [[dev-principles-summary|Schemas first, logic second]] applies here too: define the procedure schema before implementing.
@@ -80,7 +81,7 @@ From Foundation Capital's [[context-graphs-summary|context graphs]] thesis:
 2. **Retrieve** — before new task, search for similar precedents
 3. **Apply** — adapt found patterns to current situation
 
-Each successful action improves future ones, creating a [[decision-traces-compound|compound learning]] flywheel. Implemented in [[project-solograph|Solograph]]: `session_search` for precedent retrieval, `kb_search` for pattern matching, `codegraph_query` for structural precedents.
+Each successful action improves future ones, creating a [[decision-traces-compound|compound learning]] flywheel. Implemented in [[project-solograph|Solograph]]: `session_search` for precedent retrieval, `kb_search` for pattern matching, `symbol_search` for code that already exists.
 
 ### Retain → Recall → Reflect (OpenClaw/[Hindsight](https://arxiv.org/abs/2404.00498) pattern)
 
@@ -164,9 +165,18 @@ Practical stack, ordered by reliability:
 3. **Vector search** (embeddings): conceptual similarity, fuzzy matching
 4. **LLM reranking**: optional final pass for relevance scoring
 
-Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found structural filtering beats raw embeddings by 34%, [[project-solograph|Solograph]] combines FTS5 + graph + vector.
+Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found structural filtering beats raw embeddings by 34%, and most [[code-graph-mcp-landscape|code-graph MCP servers]] now run on SQLite FTS5, embeddings optional.
 
-**Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries. Add embeddings when lexical search fails, which happens less often than you'd expect.
+### Measured: what Solograph removed
+
+[[project-solograph|Solograph]] began with three of these layers: FTS5, a FalkorDB graph queried in Cypher, MLX embeddings. In October 2026 each was tested against known answers.
+
+- **Vectors.** The vector index found 0 of 39 known sessions in its top 5; FTS5 found 32. Claude Code deletes transcripts after 30 days and nothing re-read the disk, so the index and the disk shared no session. Cold KB search: 14 s against 66 ms.
+- **The graph.** 781k call edges, five queries in four months, every one "list the projects" or stats. On a 1,100-file repo, a dedicated code-graph MCP and plain Grep/Read gave the same accuracy in all 8 runs.
+
+Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 77 repositories, the knowledge base, the session archive.
+
+**Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries, and measure each layer you add against it. A stale index fails silently.
 
 ---
 
@@ -199,21 +209,11 @@ This is [[context-engineering|context engineering]] in practice: treating the co
 | **Moltis** | SQLite + FTS5 | Hybrid (vector + keyword) + LLM reranking | Local GGUF / OpenAI / Ollama | <5K chunks |
 | **OpenClaw** | Markdown + SQLite index | FTS5 + optional embeddings | Optional | <10K facts |
 | **[[mempalace-agent-memory\|MemPalace]]** | ChromaDB + SQLite KG | Spatial filtering + vector | Local | 22K+ memories |
-| **[[project-solograph\|Solograph]]** | FalkorDB (graph) + SQLite (vector) + filesystem | Cypher graph queries + vector + session search | MLX multilingual-e5-small | Multi-project |
+| **[[project-solograph\|Solograph]]** | SQLite FTS5 + markdown files | BM25 over KB, sessions, symbols | None (removed Oct 2026) | 77 repos, 63K symbols |
 
 ### [[project-solograph|Solograph]] as a Full Memory System
 
-Solograph implements all four memory types on a unified graph + file foundation:
-
-- **Working memory**: active session context (current Claude Code conversation, task state, tool results)
-- **Semantic memory**: `kb_search` with vector embeddings (MLX, RU+EN). Markdown files indexed with embeddings. [[privacy-as-architecture|Local-first]], no cloud dependency
-- **Episodic memory**: `session_search` makes every past session a searchable [[decision-traces-compound|decision trajectory]]. "What did I do last time I set up auth?" returns the full trace
-- **Procedural memory**: `codegraph_query` + `codegraph_explain` expose AST-based code graph (tree-sitter) across all projects. Cypher queries on code structure reveal patterns, not just files
-- **Long-term file storage**: markdown files in wiki/ and knowledge base. Git-backed, human-readable, versioned. No database lock-in; rebuild index from files anytime
-
-The graph layer (FalkorDB) adds what flat vector search lacks: **relationship traversal**. `codegraph_shared` finds shared packages across projects. `source_related` finds related content by tag overlap. These are graph queries, not similarity search, which is the key difference from [[rag-patterns|standard RAG patterns]].
-
-15 MCP tools provide the interface. Agents call `session_search`, `kb_search`, `codegraph_query` naturally.
+Solograph covers all four types above with SQLite files and no embeddings, over git-backed markdown the index can rebuild from anytime ([[privacy-as-architecture|local-first]]). What separates it from [[rag-patterns|standard RAG patterns]] is freshness, not structure: every index checks its source files before answering, so there is no reindex step to forget. 12 MCP tools provide the interface.
 
 ---
 
@@ -226,7 +226,7 @@ If you're building your first agent, start with dict-based memory in the system 
 When you need cross-session recall: Markdown files as source of truth + SQLite/FTS5 derived index. Rebuild index from Markdown anytime. Add vector search when FTS5 isn't enough. Keep the `## Retain` discipline for extracting structured facts. [[privacy-as-architecture|Local-first, offline-first]].
 
 ### Scaling Up ([[mempalace-agent-memory|MemPalace]]/[[project-solograph|Solograph]] approach)
-For multi-agent systems with rich history: ChromaDB or FalkorDB with spatial/graph hierarchy. Knowledge graph for entity relationships. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]]: try one memory type first, add others incrementally.
+For multi-agent systems with rich history: ChromaDB with a spatial hierarchy, or FTS5 across every store. Knowledge graph for entity relationships. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]]: try one memory type first, add others incrementally.
 
 ### The [[decision-traces-compound|Compound Learning]] Goal
 The ultimate goal isn't remembering but compounding. Every [[context-graphs-summary|decision trace]] should make the next decision better. This requires:
@@ -260,7 +260,7 @@ The ultimate goal isn't remembering but compounding. Every [[context-graphs-summ
 ### Tools & Systems
 
 - [[mempalace-agent-memory|MemPalace]]: [GitHub](https://github.com/milla-jovovich/mempalace). Spatial memory, 96.6% LongMemEval, MIT (27K stars)
-- [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Graph + vector MCP server, 15 tools, FalkorDB + MLX
+- [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Portfolio, KB and session search, 12 MCP tools, SQLite FTS5, Rust server, no embeddings
 - [QMD](https://github.com/tobi/qmd). Mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Optional Moltis backend
 - [Moltis](https://github.com/moltis-org/moltis). Rust-based memory with hybrid search + LLM reranking
 - [OpenClaw](https://github.com/openclaw/openclaw). Markdown source-of-truth + derived index, Retain/Recall/Reflect
@@ -284,8 +284,8 @@ The ultimate goal isn't remembering but compounding. Every [[context-graphs-summ
 - [[schema-guided-reasoning]] — schemas first, logic second
 - [[sgr-deep-dive]] — complete SGR guide with code examples
 - [[privacy-as-architecture]] — local-first memory design
-- [[codegraph-guide]] — Solograph's code intelligence layer
+- [[codegraph-guide]] — Solograph's symbol and package index across projects
 
 ---
 
-*Synthesized from: SGR Agents Spec v1 (Sep 2025), OpenClaw Workspace Memory Research (Feb 2026), Moltis Memory System (Mar 2026), MemPalace (Apr 2026), Solograph (ongoing), Foundation Capital Context Graphs (Jan 2026), and 7 research papers.*
+*Synthesized from: SGR Agents Spec v1 (Sep 2025), OpenClaw Workspace Memory Research (Feb 2026), Moltis Memory System (Mar 2026), MemPalace (Apr 2026), Solograph (measured review, Oct 2026), Foundation Capital Context Graphs (Jan 2026), and 7 research papers.*

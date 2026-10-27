@@ -4,8 +4,8 @@ description: "Hard numeric thresholds for weekly product decisions — no 'let''
 title: "Kill / Iterate / Scale — weekly decision rules"
 created: 2026-02-11
 tags: [metrics, decisions, launch, kill-criteria]
-course_module: 2
-course_order: 5
+course_module: 1
+course_order: 6
 publish: true
 source_path: "1-methodology/launch-playbook.md"
 index_line: "Hard numeric kill/iterate/scale thresholds. Fake-door < 10 clicks per $20 = KILL"

@@ -4,8 +4,6 @@ title: "Agent patterns from practice — skills vs MCPs, dream mode, self-evolut
 description: "4 actionable patterns: skills lazy-load vs MCPs eager-load context, autonomous memory consolidation, fixed/mutable partitioning for self-evolution, interactive teaching to skill extraction."
 created: 2026-04-09
 tags: [agents, skills, memory, context-engineering, methodology]
-course_module: 5
-course_order: 16
 publish: true
 source_url: "https://youtu.be/nUT1YRvjG98"
 index_line: "Skills lazy-load vs MCPs eager-load, dream mode (autonomous memory GC), self-evolution fixed/mutable split, teaching→skill extraction"

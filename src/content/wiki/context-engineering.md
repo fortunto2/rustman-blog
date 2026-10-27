@@ -3,9 +3,10 @@ type: concept
 description: "One of three harness engineering components. The idea: agent context is not chat history — it's a continuously improved knowledge base in the repository."
 title: "Context engineering — context as code"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [context, agents, claude-md, progressive-disclosure, harness]
-course_module: 5
-course_order: 2
+course_module: 4
+course_order: 4
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 index_line: "Context as code: CLAUDE.md as TOC (~100 lines), progressive disclosure, dynamic context via CDP"
@@ -31,6 +32,13 @@ Key OpenAI insight: **one big CLAUDE.md is an anti-pattern.** Pollutes context, 
 Dynamic context goes beyond docs: observability (logs, metrics, traces), browser via Chrome DevTools Protocol, screenshots, DOM snapshots. The agent can literally see what the user sees.
 
 Tools for legibility (OpenAI): app per worktree (isolated instance per change), local observability stack (ephemeral per worktree), custom linters with remediation instructions, Ralph Wiggum Loop (agent reviews its own changes).
+
+## What others found since (Oct 2026)
+
+- **Fewer always-loaded tokens, measured by A/B.** Cursor ([Sep 2026](https://cursor.com/blog/improved-token-efficiency)) cut its system prompt by about 66%, because stronger models need tool behaviour described rather than lists of prohibitions; moved tools used in under 20% of conversations to dynamic loading (-60% static tool tokens); and set explicit cache breakpoints (-20% cold misses). User token cost fell 7% at the same quality (reported). Same direction as cutting always-loaded rules from 37.7 KB to 16 KB in [[claude-5-5-effort-and-cost]].
+
+
+## Connections
 
 - [[harness-engineering-summary]] — origin: component 1 of three
 - [[agent-mistake-fix-harness]] — context engineering is the lightweight fix mechanism (vs linters/tests)

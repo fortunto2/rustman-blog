@@ -5,8 +5,6 @@ description: "Search 700+ YouTube videos from 46 startup channels. AI extracts i
 created: 2026-03-01
 tags: [project, open-source, ai, youtube, search, astro, startup-ideas]
 project_type: product
-course_module: 7
-course_order: 5
 publish: true
 publish_as: project
 source_url: "https://you2idea.com"

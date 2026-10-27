@@ -5,8 +5,6 @@ title: "Privacy-First Architecture"
 created: 2026-04-07
 updated: 2026-04-07
 tags: [hub, privacy, architecture, offline-first]
-course_module: 4
-course_order: 5
 publish: true
 index_line: "Privacy-first architecture: MLX, on-device, E2EE"
 index_section: "hub"

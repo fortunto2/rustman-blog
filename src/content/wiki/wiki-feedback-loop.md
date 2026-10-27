@@ -6,6 +6,8 @@ index_line: "Two files close the raw→wiki loop: `_gaps.md` (questions /wiki-qu
 created: 2026-10-07
 tags: [wiki, memory, harness, agents, context-engineering]
 learned_from: 7d5bb78e-28d5-4bbc-8632-3f8ad5cb16b1
+course_module: 5
+course_order: 4
 publish: true
 ---
 

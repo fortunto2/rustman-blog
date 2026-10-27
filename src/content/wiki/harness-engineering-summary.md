@@ -1,8 +1,9 @@
 ---
 type: summary
-description: "Harness Engineering — designing environments where AI agents do reliable work. Humans steer, agents execute. Synthesized from three sources: OpenAI experimen..."
+description: "Designing environments where AI agents do reliable work: OpenAI, Hashimoto and Böckeler synthesized, plus the sensor layer that checks the agent's work after it acts."
 title: "Harness Engineering — development in the age of agents"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [harness, agents, ai-dev, context-engineering, methodology]
 publish: true
 source_path: "1-methodology/harness-engineering.md"
@@ -17,6 +18,8 @@ index_section: "summary"
 
 Core loop: **agent mistake → fix the harness** (not the prompt, not the model). Fix CLAUDE.md, add a linter, write a structural test. The repository IS the agent's brain.
 
+**Sensors** are the feedback half the three components lack: they check the agent after it acts. In solo-factory every edit gets a syntax check (<1s) and every turn ends with lint, types and tests, where a red receipt keeps the turn from ending; an empty scope reads UNKNOWN and a missing tool PARTIAL, never PASS. The limit is published: `make blind-spots` catches 11 of 24 planted defects. It is the [[agent-mistake-fix-harness]] ratchet run inside the turn, and [[plugin-eval-ablation]] applies the same rule to skills: trust only the with/without delta.
+
 Three components (Böckeler/Fowler):
 1. **Context Engineering** — CLAUDE.md as table of contents (~100 lines, links deeper), docs/ as system of records, progressive disclosure. One big CLAUDE.md is an **anti-pattern** — pollutes context, rots instantly.
 2. **Architectural Constraints** — layered domain architecture, directed dependencies validated by custom linters, parse at boundary (Zod/Pydantic), structural tests (ArchUnit-style), taste invariants.
@@ -28,7 +31,7 @@ OpenAI numbers: 3→7 engineers, ~1M lines, ~1,500 PRs, 3.5 PR/engineer/day, 0 h
 
 Predictions: harness as new service templates, tech stack convergence toward AI-friendliness, topology convergence, two worlds (greenfield with harness vs retrofit on legacy).
 
-**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (27 skills as harness), [solograph](https://github.com/fortunto2/solograph) (code intelligence as context), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent).
+**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (57 skills and 2 agents as feedforward, plus the sensor layer), [solograph](https://github.com/fortunto2/solograph) (portfolio symbol search and session memory over SQLite FTS5), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent).
 
 ## Connections
 

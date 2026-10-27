@@ -5,7 +5,7 @@ description: "AI agents heavily use grep, so persist notes inside the code itsel
 created: 2026-05-06
 tags: [agents, memory, context-engineering, harness, code-comments, methodology]
 course_module: 5
-course_order: 8
+course_order: 2
 publish: true
 source_url: "https://t.me/llm_under_hood/590"
 index_line: "Grep-friendly comments (AI-NOTE / AI-TODO / AI-ASK) as a 5th memory layer. Persistent notes at the call site, no index needed"

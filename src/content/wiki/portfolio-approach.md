@@ -5,7 +5,7 @@ title: "Portfolio approach — multiple small bets, not one big bet"
 created: 2026-02-11
 tags: [patterns, portfolio, barbell, risk, indie-hacker]
 course_module: 1
-course_order: 6
+course_order: 3
 publish: true
 source_path: "2-inspiration/patterns.md"
 index_line: "Multiple small bets, not one big bet. 7/10 fail = expected. Kill discipline required"

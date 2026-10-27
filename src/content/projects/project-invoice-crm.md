@@ -5,8 +5,6 @@ description: "Open-source CLI for PDF invoices, QR payments (SEPA/EMVCo/SWIFT/cr
 created: 2026-03-01
 tags: [project, open-source, python, cli, invoicing, pdf, privacy-first]
 project_type: tool
-course_module: 7
-course_order: 4
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/invoice-crm"

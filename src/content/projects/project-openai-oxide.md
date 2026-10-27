@@ -6,7 +6,7 @@ created: 2026-03-01
 tags: [project, open-source, rust, openai, api-client, crate]
 project_type: library
 course_module: 7
-course_order: 1
+course_order: 5
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/openai-oxide"

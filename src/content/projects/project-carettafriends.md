@@ -6,8 +6,6 @@ created: 2026-06-18
 tags: [project, ios, android, caretta, conservation, turkey, nonprofit]
 project_type: app
 app_store_id: "6794324877"
-course_module: 7
-course_order: 11
 publish: true
 publish_as: project
 source_url: "https://carettafriends.com"

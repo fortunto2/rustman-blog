@@ -6,8 +6,6 @@ created: 2026-08-14
 tags: [project, ios, swift, ssh, tmux, devtools, terminal]
 project_type: app
 app_store_id: "6758515520"
-course_module: 7
-course_order: 14
 publish: true
 publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6758515520"

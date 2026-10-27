@@ -53,7 +53,7 @@ AI-driven solo development — how one person ships products using LLM agents, h
 - [[tool-calling-four-layers]] — Tool calling internals: HTTP → chat template → constrained decoding → parser
 
 ### Infrastructure
-- [[infra-two-tools]] — SST + Pulumi, serverless by default, 4 tiers
+- [[infra-two-tools]] — Cloudflare by default (28 wrangler configs, 0 SST/Pulumi), three named exceptions
 - [[background-jobs-ladder]] — Cron → CF Workers → Prefect → Temporal
 - [[rag-patterns]] — 7 RAG approaches from vector to agentic
 

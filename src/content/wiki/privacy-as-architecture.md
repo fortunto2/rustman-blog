@@ -4,8 +4,8 @@ description: "Key distinction from the manifesto: privacy is not a settings chec
 title: "Privacy is architecture, not a feature"
 created: 2026-02-11
 tags: [privacy, architecture, manifesto, on-device]
-course_module: 1
-course_order: 7
+course_module: 3
+course_order: 6
 publish: true
 source_path: "0-principles/manifest.md"
 index_line: "Privacy as architecture, not a feature. On-device, no accounts, zero data = zero risk"

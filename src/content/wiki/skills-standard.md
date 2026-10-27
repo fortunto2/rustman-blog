@@ -5,6 +5,8 @@ description: "Open standard for packaging reusable agent capabilities. Anthropic
 created: 2026-05-13
 updated: 2026-05-13
 tags: [skills, claude-code, codex, standard, anthropic, openai, marketplace, agents]
+course_module: 5
+course_order: 6
 publish: true
 index_line: "SKILL.md cross-platform standard: model-invoked vs slash, frontmatter routing, install paths. skills.sh marketplace (91K+ skills, top is `find-skills` at 1.5M installs). Adopted by Claude Code, Codex, Cursor, Copilot, 20+ agents"
 index_section: "concept"

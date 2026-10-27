@@ -4,8 +4,6 @@ title: "MemPalace — spatial memory architecture for AI agents"
 description: "Open-source local-first memory system: 96.6% on LongMemEval, palace metaphor (wings/rooms/halls), ChromaDB + SQLite knowledge graph, 19 MCP tools."
 created: 2026-04-09
 tags: [memory, agents, tools, mcp, rag, open-source]
-course_module: 5
-course_order: 7
 publish: true
 source_url: "https://github.com/milla-jovovich/mempalace"
 index_line: "MemPalace: spatial memory for AI agents (wings/rooms/halls), 96.6% LongMemEval, ChromaDB + knowledge graph, 19 MCP tools"
@@ -70,8 +68,8 @@ MemPalace solves the same problem as several tools in the [[codegraph-guide]] ec
 | Our Tool | MemPalace Equivalent | Difference |
 |----------|---------------------|------------|
 | `session_search` | Wing diaries | MemPalace: structured spatial, ours: raw session logs |
-| `kb_search` | Hall search | MemPalace: palace hierarchy, ours: flat vector search |
-| `codegraph_query` | Knowledge graph | MemPalace: entity triples, ours: AST-based code graph |
+| `kb_search` | Hall search | MemPalace: palace hierarchy, ours: flat BM25 (FTS5) |
+| `symbol_search` | Knowledge graph | MemPalace: entity triples, ours: definitions across repos, no graph |
 | Claude auto-memory | L0/L1 layers | MemPalace: explicit mining, ours: implicit capture |
 
 Not a replacement — a complementary architecture. Our tools focus on code intelligence and session history. MemPalace focuses on conversational memory and cross-project knowledge.

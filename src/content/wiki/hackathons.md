@@ -4,6 +4,8 @@ title: "Hackathons"
 description: "Every hackathon and agent competition I built at, ran a hub for, watched or judged, from Supabase in Lisbon in November 2025 to Cal Hacks 13.0 in October 2026: what was built, how it went, and the lessons that repeat."
 created: 2026-10-26
 tags: [hub, hackathon, competition, agents, validation]
+course_module: 2
+course_order: 5
 publish: true
 index_line: "Hub: 10 hackathons/competitions Nov 2025 → Oct 2026 + 2 studied (ERC, ERC3), each with its own write-up. Supabase Lisbon 2nd (SuperStoryboard); BitGN PAC1 17 → 74/104 + Gazipaşa hub; 8 events 3-25 Oct 2026 in California: Hack-Nation (AI Apprentice), Neon (Life2Film Director), Cyberdefense 3rd (ScreenShield), OC Lightning (BroCheck on Jev), super{set} (ConsentShield on Laya), Stanford Cleantech (Crew Air, no finals), Cal Hacks 13.0 judge, Dell x NVIDIA GB10 observer. Patterns: model reads/code decides, brake outside the model, say what you measured and what existed before, simple on the day wins, lock the story + something live, demo must outlive the weekend's keys, bring the asset nobody else has, read the other teams before your slot"
 index_section: "hub"

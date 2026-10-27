@@ -4,8 +4,6 @@ title: "Rust agent ecosystem -- who builds AI agents in Rust"
 description: "4 major Rust agent projects compared: ZeroClaw (30k stars, edge), IronClaw (11.8k, security), Moltis (2.6k, personal server), ZeptoClaw (589, ultra-light). Plus our sgr-agent stack."
 created: 2026-04-14
 tags: [agents, rust, open-source, comparison, ecosystem]
-course_module: 5
-course_order: 21
 publish: true
 index_line: "Rust agent landscape: ZeroClaw (30k, edge), IronClaw (11.8k, security), Moltis (2.6k, server), ZeptoClaw (589, ultra-light). Comparison + patterns to steal"
 index_section: "concept"

@@ -5,8 +5,8 @@ description: "How we built a CRM agent scoring 93% on BitGN PAC1 benchmark using
 created: 2026-04-12
 github: fortunto2/agent-bit
 tags: [agents, competition, sgr, rust, tools, benchmarks, onnx, pipeline, crm]
-course_module: 5
-course_order: 20
+course_module: 6
+course_order: 5
 publish: true
 publish_as: post
 index_line: "Agent-Bit: PAC1 competition agent in Rust. SGR pipeline, 14 tools, FileBackend trait, 95.3% on Nemotron"

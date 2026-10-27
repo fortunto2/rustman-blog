@@ -6,8 +6,8 @@ description: "Personal decision system with 6 hierarchical layers: Scope, Time, 
 created: 2024-12-20
 updated: 2026-02-07
 tags: [stream, decision-framework, ikigai, systems-thinking, principles]
-course_module: 2
-course_order: 1
+course_module: 1
+course_order: 5
 publish: true
 publish_as: post
 source_path: "0-principles/stream-framework.md"

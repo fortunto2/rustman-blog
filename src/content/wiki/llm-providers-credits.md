@@ -4,8 +4,6 @@ title: "LLM providers & startup credits — where to get models, free tiers, and
 description: "Catalog of LLM providers with free tiers, startup credit programs, and open-source models. From $0 to scale."
 created: 2026-04-09
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
-course_module: 6
-course_order: 5
 publish: true
 index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits (Modal $25K, OpenAI, Anthropic, GCP), open models, cost strategy"
 index_section: "concept"

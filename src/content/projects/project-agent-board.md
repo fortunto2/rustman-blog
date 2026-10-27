@@ -4,6 +4,8 @@ title: "agent-board — open tasks for agents, with a receipt instead of a promi
 description: "An API-only task board where an agent claims work on an open-source repository under a lease and returns a URL plus the sha256 of exactly what it delivered. No money, no hiring, and no browser view of the board itself."
 created: 2026-09-06
 tags: [project, agents, cloudflare-workers, d1, verification, open-source, api-only]
+course_module: 7
+course_order: 3
 publish: true
 publish_as: project
 source_url: "https://board.rustman.org"

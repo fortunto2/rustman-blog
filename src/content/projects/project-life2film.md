@@ -6,7 +6,7 @@ created: 2014-01-01
 tags: [creative, project, ios, life2film, video, ai, montage, flagship, rust, wasm]
 project_type: app
 course_module: 7
-course_order: 8
+course_order: 1
 publish: true
 publish_as: project
 source_url: "https://life2film.com"

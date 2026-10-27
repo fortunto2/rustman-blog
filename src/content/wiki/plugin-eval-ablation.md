@@ -3,7 +3,10 @@ type: concept
 title: "Plugin evals: the ablation arm is the finding"
 description: "claude plugin eval runs every case twice, with the plugin and without, and reports the delta. An absolute score measures the model; only the baseline arm measures what your skill contributed."
 created: 2026-09-12
+updated: 2026-10-27
 tags: [evals, claude-code, plugins, skills, harness, measurement, methodology]
+course_module: 6
+course_order: 2
 publish: true
 source_url: "https://code.claude.com/docs/en/plugin-evals"
 index_line: "claude plugin eval (CC 2.1.269): --ablation with-without runs each case with and without the plugin and reports the delta. Absolute score measures the model, delta measures your skill. `tool_used: Skill` is a with-only indicator, kept out of the score: fired-but-useless and useful-but-never-fired are different bugs. 3 runs/case, haiku judge, threshold 1.0, --max-cost-usd, HTML report"
@@ -33,3 +36,7 @@ Trust is not a formality here. The plugin's hooks and MCP servers execute as you
 Category note: [[deepeval-llm-testing]] scores the *output* of a pipeline as a pytest assertion, and [[agent-benchmarks]] scores the *model* against a fixed task set. Neither answers "is my addition to the harness pulling its weight", which is the question a skill author actually has. [[commerce-agent-blueprint]] arrived at the same place from Anthropic's side: snapshot evals, 50-100 cases per flow, a negative case for every positive one.
 
 The same rule at company scale: Aaron Levie's simplest test of whether a company can automate a workflow is whether it has evals for that workflow ([[aaron-levie-agi-house-2026]]).
+
+## What others found since (Oct 2026)
+
+- **Automated graders miss what needs product context.** Antaripa Saha and Hamel Husain ([Jul 2026](https://parlance-labs.com/blog/posts/auto-evals/index.html)) ran 100 human-labelled production traces through six automated eval systems: recall 74.4% to 87.2%, precision 77.4% to 91.0%, 17 to 20 issues found that humans had missed, and every system missed the failures that only look like failures with product context (reported). The ablation arm says what a plugin adds; it does not say the grader knows what "wrong" means. Read traces before trusting a generated eval.

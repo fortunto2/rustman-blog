@@ -3,9 +3,10 @@ type: concept
 description: "How tool calling actually works under the hood: HTTP API → Jinja2 chat template → xgrammar constrained decoding → Hermes XML parser. Four layers of abstraction."
 title: "Tool calling internals — four layers from HTTP to parser"
 created: 2026-04-08
+updated: 2026-10-27
 tags: [tool-calling, llm, inference, constrained-decoding, vllm, chat-template, xgrammar]
 course_module: 5
-course_order: 13
+course_order: 8
 publish: true
 source_url: "https://t.me/neuraldeep/2047"
 index_line: "Tool calling internals: HTTP → Jinja2 chat template → xgrammar constrained decoding → Hermes parser"
@@ -35,6 +36,14 @@ So tools ARE injected into the prompt — but by the chat template, not by you. 
 The contract between inference framework and provider — what goes where via chat template — is what engineers should understand. Otherwise you're a user of someone else's abstractions, not an engineer.
 
 Key references for going deep: vLLM source (tool parsers), model `tokenizer_config.json` (chat templates), xgrammar (constrained decoding library).
+
+## What others found since (Oct 2026)
+
+- **Correction to Layer 3.** "Cannot produce broken tool calls" holds only when constrained decoding is switched on for that call. Armin Ronacher ([Jul 2026](https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/)) saw Opus 4.8 and Sonnet 5 add invented keys to nested tool arguments in about 20% of one session's edit calls under a harness that did not enforce the schema; `strict` mode eliminated it (reported).
+- **Composition moves into the harness.** Ronacher's [Codemode](https://lucumr.pocoo.org/2026/10/6/codemode/) in Pi 1.0 (Oct 2026) runs tool composition as QuickJS in WASM with no network, filesystem or timers, at most 4 concurrent tool calls, and reaches MCP tools only through tool search (reported).
+
+
+## Connections
 
 - [[schema-guided-reasoning]] — SGR/constrained decoding is Layer 3 of this pipeline
 - [[harness-engineering-summary]] — understanding the tool calling contract is part of "know your tools" in harness engineering

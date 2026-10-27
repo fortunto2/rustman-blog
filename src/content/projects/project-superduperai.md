@@ -6,7 +6,7 @@ created: 2024-01-01
 tags: [project, company, superduperai, turkey, usa, portfolio]
 project_type: product
 course_module: 7
-course_order: 6
+course_order: 9
 publish: true
 publish_as: project
 index_line: "SuperDuperAI: the company, portfolio vehicle, Turkey + USA, consulting + products barbell"

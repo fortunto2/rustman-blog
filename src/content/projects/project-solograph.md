@@ -6,8 +6,8 @@ created: 2026-02-07
 updated: 2026-10-27
 tags: [project, open-source, mcp, fts5, sqlite, tree-sitter, python, agent-memory]
 project_type: tool
-course_module: 6
-course_order: 4
+course_module: 5
+course_order: 5
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solograph"

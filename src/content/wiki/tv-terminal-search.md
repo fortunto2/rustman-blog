@@ -4,8 +4,6 @@ title: "Television (tv) — fuzzy terminal search for wiki and code"
 description: "How to set up tv (television) as interactive fuzzy finder for wiki, docs, stacks. Custom channels, ripgrep full-text search, bat preview."
 created: 2026-04-09
 tags: [tools, cli, search, productivity, terminal, rust]
-course_module: 6
-course_order: 6
 publish: true
 index_line: "Television (tv) fuzzy finder: custom wiki/docs channels, ripgrep full-text, bat preview. Three search tools compared"
 index_section: "concept"

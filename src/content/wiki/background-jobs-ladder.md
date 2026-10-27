@@ -4,8 +4,6 @@ description: "5 tools for background jobs, ordered by complexity. Rule: start wi
 title: "Background jobs — cron → CF Workers → Prefect → Temporal → Trigger.dev"
 created: 2026-02-21
 tags: [infrastructure, temporal, prefect, cron, cloudflare, background-jobs, pipelines]
-course_module: 4
-course_order: 7
 publish: true
 source_path: "1-methodology/background-jobs.md"
 index_line: "Cron → CF Workers → Prefect → Temporal → Trigger.dev. Start simple, move up"
@@ -28,6 +26,6 @@ index_section: "concept"
 
 ## Connections
 
-- [[infra-two-tools]] — background jobs are the orchestration layer on top of SST/Pulumi infra
+- [[infra-two-tools]] — where these jobs run: Worker cron triggers first, the VPS only for long-running processes
 - [[one-pain-one-feature-launch]] — start with cron, don't over-engineer the job system before validating the product
 - [[claude-subscription-boundary]] — applies this ladder to LLM automations: CF Workers for triggers, one separate host for the agent, because a Worker can't spawn the CLI

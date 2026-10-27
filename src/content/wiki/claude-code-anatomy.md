@@ -4,6 +4,8 @@ title: "Claude Code anatomy — 98.4% infrastructure, 1.6% AI decisions"
 description: "Reverse-engineering of Claude Code v2.1.88 (Liu et al., 2026). Seven-component agentic loop, five-layer context compaction, deny-first permissions. Empirical proof that harness eats the model — 98.4% of a production agent's code is operational scaffolding, not LLM logic."
 created: 2026-04-20
 tags: [agents, harness, claude-code, context-compaction, permissions, architecture, research]
+course_module: 4
+course_order: 2
 publish: true
 source_url: "https://arxiv.org/abs/2604.14228"
 index_line: "Liu et al. (2026) reverse-engineered Claude Code v2.1.88: 98.4% operational infrastructure, 1.6% AI logic. Seven components, five-layer context compaction, deny-first permissions (93% approved = fatigue). Empirical proof that harness eats the model"

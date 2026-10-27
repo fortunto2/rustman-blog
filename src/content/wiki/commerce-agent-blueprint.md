@@ -3,7 +3,10 @@ type: concept
 title: "Commerce agents blueprint — Anthropic's own answer to skills vs subagents"
 description: "Anthropic's September 2026 commerce blueprint and its engineering deep-dive: one agent with skills beats subagents, guardrails live in the harness rather than the prompt, and prompt-cache segmentation is treated as an architecture decision."
 created: 2026-09-05
+updated: 2026-10-27
 tags: [agents, skills, subagents, harness, prompt-caching, memory, evals, guardrails, claude, commerce]
+course_module: 5
+course_order: 7
 publish: true
 source_url: "https://claude.com/blog/claude-for-commerce-agents"
 index_line: "Anthropic commerce blueprint (Sep 2026, github.com/anthropics/commerce-agents): single agent + skills, NO subagents ('every handoff is state-lossy'); 1/3-of-traffic rule for system prompt vs skill; safety in harness (staged writes + server-issued ID allowlist, no tool call moves money); async memory extractor = +13% recall; 3-segment prompt cache at 90-99% hit; snapshot evals, 50-100 cases/flow, negative for every positive"
@@ -61,3 +64,7 @@ Evals invert the usual instinct: **evaluate snapshots, not conversations.** Cons
 - **Server-issued ID allowlists** for anything a solo project lets an agent mutate: invoices in [[project-invoice-crm]] are the obvious candidate, where a hallucinated client ID is a real invoice to a nonexistent company.
 - **Snapshot evals over conversation replays** — cheap enough to actually run in a one-person CI.
 - The default answer to "should I add a subagent here": no, add a skill.
+
+## What others found since (Oct 2026)
+
+- **For coding work the no-subagents rule bends.** In Cognition's 3,000 sessions ([Jul 2026](https://cognition.com/blog/making-fable-cheaper-than-opus)) a lead that delegated early with a spec-quality brief beat one that did the work itself on both cost and score; the handoff loss shrank once the brief carried constraints and a definition of done (reported). For a conversational flow, where the state is the product, the blueprint's rule stands. See [[lead-model-delegation-economics]].

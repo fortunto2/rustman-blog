@@ -7,8 +7,6 @@ event_date: 2025-11-08
 video_url: "https://youtu.be/ZGePJxuK3ic"
 tags: [project, ai, supabase, figma, hackathon, video, storyboard]
 project_type: product
-course_module: 7
-course_order: 7
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/superstoryboard"

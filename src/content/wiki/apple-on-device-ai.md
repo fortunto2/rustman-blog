@@ -4,8 +4,6 @@ description: "Unified on-device AI layer for all iOS products (KissMyTask, FaceA
 title: "Apple Foundation Models — zero-cost on-device AI for iOS portfolio"
 created: 2026-04-07
 tags: [apple, foundation-models, ios, on-device, sgr, swift, privacy, mlx]
-course_module: 5
-course_order: 15
 publish: true
 source_path: "1-methodology/apple-foundation-models.md"
 index_line: "Apple Foundation Models: zero-cost AI, @Generable = native SGR, privacy by design"

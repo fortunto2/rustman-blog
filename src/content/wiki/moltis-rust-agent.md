@@ -4,8 +4,6 @@ title: "Moltis -- personal agent server in Rust"
 description: "2.6k-star Rust agent server: sandboxed execution, multi-channel (Telegram, Discord, WhatsApp), MCP tools, memory. Our contributions: reqwest bump merged, openai-oxide provider rejected (trust issue)."
 created: 2026-04-14
 tags: [agents, rust, tools, open-source, contributions]
-course_module: 5
-course_order: 19
 publish: true
 source_url: "https://github.com/moltis-org/moltis"
 index_line: "Moltis: Rust agent server, 2.6k stars. Sandboxed, multi-channel, MCP. Our reqwest PR merged, openai-oxide provider rejected (trust)"
@@ -54,7 +52,7 @@ Fair feedback. For a 2.6k-star project, adding a dependency on a 23-star crate i
 | Agent loop | moltis-agents (5K LoC) | sgr-agent (Rust) |
 | LLM client | async-openai (+ our rejected openai-oxide) | openai-oxide |
 | Tools | moltis-tools (21.9K, sandboxed) | sgr-agent-tools (14 tools, FileBackend trait) |
-| Memory | SQLite + FTS + vectors | Solograph (FalkorDB + vectors) |
+| Memory | SQLite + FTS + vectors | Solograph (SQLite FTS5, no vectors) |
 | Channels | Telegram, Discord, WhatsApp, Teams | CLI only (for now) |
 | Deployment | Single binary, Docker, Fly.io | Local |
 

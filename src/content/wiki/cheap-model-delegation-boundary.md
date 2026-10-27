@@ -3,7 +3,10 @@ type: concept
 title: "Where cheap-model delegation stops — reading yes, editing and reasoning no"
 description: "Spotify's Portal routes bulk file reads to Gemini Flash and reports a ~90% mean saving on those reads. The transferable part is the two boundaries it found: summaries lack the line numbers editing needs, and the worker missed a thread-safety bug a summary cannot surface."
 created: 2026-09-08
+updated: 2026-10-27
 tags: [agents, tokens, context-engineering, harness, delegation, cost]
+course_module: 5
+course_order: 10
 publish: true
 source_url: "https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90"
 index_line: "Spotify Portal: PreToolUse hook blocks reads over 350 lines and shunts them to Gemini Flash, which returns a summary; a second mode writes boilerplate straight to disk. Reported ~90% MEAN BULK-READ saving — a per-read figure, not a session total. Two boundaries found by running it: cannot delegate editing (summaries carry no reliable line numbers) and cannot delegate reasoning (worker found surface patterns, missed a thread-safety bug). 10-30s per call makes small reads a net loss; debugging, architecture and safety-critical code excluded by policy"
@@ -68,3 +71,8 @@ second is the better shape, and the harder thing to build.
 asking the *source* for less rather than compressing what came back. Content
 negotiation has no summariser in the loop, so it has neither the latency floor nor the
 lost-line-numbers problem. Where both apply, it is the cheaper one.
+
+## What others found since (Oct 2026)
+
+- **The boundary is the summary, not the edit.** Cognition ([Jul 2026](https://cognition.com/blog/making-fable-cheaper-than-opus)) let a cheap sidekick read and edit files itself while the lead reviewed the diff: Fable 5 with a sidekick scored 60.7 at $1.86 a run, Opus 4.8 with the same sidekick 54.6 at $2.04 (reported). See [[lead-model-delegation-economics]].
+- **A cheap worker gets reliable when it runs the checks while it works.** Naresh Jain ([Oct 2026](https://martinfowler.com/articles/are-harnesses-worth-the-cost.html)): GPT-6 Luna went from 3/10 to 10/10 accepted runs with a behavioral harness, 33% cheaper than an unharnessed frontier model (reported). See [[harness-cost-by-model-tier]].

@@ -4,8 +4,6 @@ title: "Codex OAuth proxy -- use ChatGPT subscription as API"
 description: "Route LLM requests through a ChatGPT Plus/Pro subscription via OAuth token refresh. No API key needed. Rust implementation in sgr-agent with auto-refresh and Chat Completions compatibility — and, since GPT-5.5, the only way to reach the newest model at all."
 created: 2026-04-14
 tags: [agents, rust, auth, openai, infrastructure]
-course_module: 5
-course_order: 23
 publish: true
 index_line: "Route LLM requests through ChatGPT subscription via OAuth. No API key, auto-refresh, Chat Completions compatible. Our Rust proxy in sgr-agent. Semi-official since Apr 2026 (GPT-5.5 subscription-only); creds may now live in the OS keyring, not auth.json"
 index_section: "concept"

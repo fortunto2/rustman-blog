@@ -4,13 +4,13 @@ import { SITE } from '../lib/config';
 import { getAllContent } from '../lib/content';
 
 const MODULE_META: Record<number, { title: string; description: string; outcome: string }> = {
-  1: { title: 'Mindset & Philosophy', description: 'Why build. What to believe. How to think about risk, creativity, and freedom.', outcome: 'Clear personal manifesto. Decision framework installed.' },
-  2: { title: 'Decision Making', description: 'Frameworks for decisions at every level — from epistemics to daily ops.', outcome: 'STREAM framework applied to one real decision. Kill/iterate/scale thresholds set.' },
-  3: { title: 'Validation & Launch', description: 'From niche selection to live product with traffic in 5-9 days.', outcome: 'One niche scored via S.E.E.D. Fake-door test run. Go/kill decision made.' },
-  4: { title: 'Engineering Foundations', description: 'Schemas first, CLI-first, clean architecture, privacy by design.', outcome: 'Project scaffolded from stack template. CLAUDE.md configured. Pre-commit hooks running.' },
-  5: { title: 'AI Agent Engineering', description: 'Harness, memory, context, testing, code review with agents. The core of the course.', outcome: 'Harness file tuned. Memory system configured. Agent does reliable work on your real tasks.' },
-  6: { title: 'Solo Factory: The Toolkit', description: 'Claude Code plugin as the practical framework. 30 skills grouped by pipeline phase.', outcome: 'Solo-factory installed. 3-5 skills used on a real project. Custom skill created.' },
-  7: { title: 'Case Studies', description: 'Real projects demonstrating the principles. Each one: problem, approach, result, lessons.', outcome: 'Your own project shipped end-to-end using the methodology.' },
+  1: { title: 'Mindset & Decisions', description: 'Why build solo, how to bet on many small products, and how to decide without agonising.', outcome: 'Personal manifesto written. One real decision run through STREAM. Kill/iterate/scale thresholds set.' },
+  2: { title: 'Validation & Launch', description: 'From niche to a live product with traffic in days. A hackathon is the cheapest jury there is.', outcome: 'One niche scored via S.E.E.D. Fake-door test run. Go/kill decision made.' },
+  3: { title: 'Engineering Foundations', description: 'Schemas first, a CLI mirror for every project, privacy by design, one cookieless counter, one deploy target.', outcome: 'Project scaffolded from a stack template, tested through its CLI, measured and deployed.' },
+  4: { title: 'Harness Engineering', description: 'The core of the course: the environment the agent works in. CLAUDE.md, context, rules, sensors that check its work, cost.', outcome: 'Harness tuned on a real repo: CLAUDE.md trimmed, a stop gate that blocks on red, one agent mistake turned into a rule.' },
+  5: { title: 'Memory, Skills & Tools', description: 'What the agent remembers, which capabilities it loads, how it calls tools, and when a cheaper model can do the reading.', outcome: 'Memory chosen by the queries you actually run. One custom skill written and used on a real task.' },
+  6: { title: 'Measuring Agents', description: 'Benchmarks, evals with a baseline arm, and what competitions showed about the agents that win.', outcome: 'One eval run with and without your plugin, and a number for what the plugin adds.' },
+  7: { title: 'Case Studies', description: 'Real projects built with the method. Each one: problem, approach, result, lessons.', outcome: 'Your own project shipped end-to-end using the methodology.' },
 };
 
 // Build course from frontmatter course_module + course_order
@@ -37,7 +37,7 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
 
 ---
 
-<BaseLayout title="Course: AI Solopreneur Engineer" description="From philosophy to production: 7 modules, 60+ lessons, 30 skills.">
+<BaseLayout title="Course: AI Solopreneur Engineer" description={`From philosophy to production: ${modules.length} modules, ${totalLessons} lessons.`}>
   <div class="mb-10">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">AI Solopreneur Engineer</h1>
     <p class="text-[var(--color-muted)] mb-4">{modules.length} modules, {totalLessons} lessons. Build AI products solo — principles, frameworks, tools, and real projects.</p>

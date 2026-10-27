@@ -4,8 +4,6 @@ title: "ShinkaEvolve -- LLM-powered evolutionary code discovery"
 description: "Framework from Sakana AI: evolve code with LLMs as mutation operators. Multi-island populations, archive-based selection, meta-evolution of prompts. Won ICFP 2025 contest."
 created: 2026-04-14
 tags: [agents, evolution, ai, tools, open-source, optimization]
-course_module: 5
-course_order: 18
 publish: true
 source_url: "https://github.com/SakanaAI/ShinkaEvolve"
 index_line: "ShinkaEvolve (Sakana AI): LLM-powered evolutionary code optimization. Multi-island, meta-evolution of prompts, won ICFP 2025. We use it for prompt evolution"

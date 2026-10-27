@@ -3,8 +3,9 @@ type: summary
 description: "993-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS,..."
 title: "Universal Development Principles — every project, any stack"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, agents, methodology]
-course_module: 4
+course_module: 3
 course_order: 1
 publish: true
 source_path: "1-methodology/dev-principles.md"
@@ -30,7 +31,12 @@ index_section: "summary"
 
 **Agent-readable content:** markdown for agents (Cloudflare), `/llms.txt` discovery file, `Content-Signal` header.
 
-**Opus 4.6 prompting:** no ALL-CAPS pressure, explain WHY not just WHAT, positive framing over prohibitions, no anti-patterns in examples, tone table for calibration.
+**Claude prompting** (rules written for Opus 4.6): no ALL-CAPS pressure, explain WHY not just WHAT, positive framing over prohibitions, no anti-patterns in examples, tone table for calibration.
+
+## What others found since (Oct 2026)
+
+- **TDD is contested once the agent runs the loop itself.** Birgitta Böckeler ([martinfowler.com](https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html), Aug 2026) had agents do red-green-refactor alone: 2.96x to 8.5x the tokens, mutation scores no better, and the no-TDD runs ranked higher on design in the small and medium tasks (reported, 5 batches). Test-first keeps its value where a human or a fixed spec owns the test. See [[tdd-inside-the-agent-loop]].
+- **File size has a token price.** Giles Edwards-Alexander ([martinfowler.com](https://martinfowler.com/articles/exploring-gen-ai/refactoring-economic-benefit.html), Jul 2026) split a 17,155-line agent-written Rust layer in 15 steps: input tokens per change fell 83%, from 159,564 to 27,360, while total lines stayed flat (reported).
 
 ## Connections
 

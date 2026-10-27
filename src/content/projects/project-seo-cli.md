@@ -1,24 +1,25 @@
 ---
 type: project
 title: "SEO CLI — all search engine data in one terminal"
-description: "Unified CLI for SEO: Google Search Console, GA4, Cloudflare, Bing, IndexNow. Launch, audit, monitor, reindex — 18 commands, one config, all sites."
+description: "Unified CLI for SEO: Google Search Console, GA4, Cloudflare, Bing, IndexNow. Launch, audit, monitor, reindex, plus agent-readiness and who actually visited: 23 commands, one config, all sites."
 created: 2026-03-01
 tags: [project, open-source, python, cli, seo, analytics]
 project_type: tool
+updated: 2026-10-27
 course_module: 7
-course_order: 11
+course_order: 7
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/seo-cli"
 pypi: seo-cli
 github: fortunto2/seo-cli
-index_line: "SEO CLI: 18 commands for GSC, GA4, Cloudflare, IndexNow. Launch, audit, monitor, reindex — all sites in one terminal"
+index_line: "SEO CLI: 23 commands for GSC, GA4, Bing, IndexNow, agent-readiness and superduper-analytics traffic. All sites in one terminal"
 index_section: "project"
 ---
 
 # SEO CLI
 
-All search engine data in one terminal. 18 commands covering launch, analytics, indexing, auditing, and monitoring across all your sites.
+All search engine data in one terminal. 23 commands covering launch, indexing, auditing and monitoring across all your sites, plus two questions search consoles never answer: can an AI agent read the site, and did anyone actually come.
 
 ![SEO CLI dashboard](/images/projects/seo-cli-dashboard.png)
 
@@ -42,7 +43,10 @@ uv tool install seo-cli
 |---------|-------------|
 | `seo ga` | Google Analytics 4: sessions, pages, channels, countries |
 | `seo analytics` | Search queries from GSC + Yandex |
-| `seo traffic` | Cloudflare: views, uniques, bandwidth + bot/human breakdown |
+| `seo traffic` | Who actually visited, from [[superduper-analytics]]. Bots are excluded and reported separately; sampled figures say they are a lower bound |
+| `seo conversion` | Which pages make people act: goals against views of the same page |
+| `seo retention` | Do people come back to the apps on their own (apps only) |
+| `seo products` | Every registered product, and whether its counter reports. Read it before concluding a product has no traffic |
 | `seo compare` | GA vs Cloudflare: real users vs bots, AI referrals (ChatGPT, Perplexity, Gemini) |
 
 ### AI Crawlers
@@ -50,6 +54,8 @@ uv tool install seo-cli
 | Command | What it does |
 |---------|-------------|
 | `seo crawlers` | Who crawls (GPTBot, ClaudeBot, BingBot...), HTTP statuses, trends, ROI by referrals |
+| `seo agents` | Which AI agents read the sites and why: an AI Assistant fetch means someone asked a question right now, an AI Crawler is building an index. These never show in `traffic`, agents don't run JavaScript |
+| `seo agent-audit [URL]` | Agent-readiness: robots rules for GPTBot and friends, llms.txt, markdown negotiation, MCP and A2A cards. Starts with a path that cannot exist, so a site that answers 200 for everything is caught |
 
 ### Indexing
 
@@ -82,6 +88,7 @@ One config — all sites:
 - **Google Search Console** — indexation, queries, impressions
 - **Google Analytics 4** — sessions, users, channels, pages
 - **Cloudflare** — traffic, bots, bandwidth, plans
+- **[[superduper-analytics]]** — people, page views, goals, app retention, AI agent fetches
 - **Bing Webmaster Tools** — indexation, submit
 - **IndexNow** — instant ping to Bing, Yandex, Naver, Seznam
 

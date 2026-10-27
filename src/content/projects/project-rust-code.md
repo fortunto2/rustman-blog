@@ -6,7 +6,7 @@ created: 2026-03-15
 tags: [project, open-source, rust, agent, tui, mcp]
 project_type: library
 course_module: 7
-course_order: 2
+course_order: 6
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/rust-code"

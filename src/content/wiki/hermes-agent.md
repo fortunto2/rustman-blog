@@ -5,8 +5,6 @@ description: "163k-star agent with learning loop: creates skills from experience
 created: 2026-04-14
 updated: 2026-05-23
 tags: [agents, tools, memory, skills, open-source]
-course_module: 5
-course_order: 17
 publish: true
 source_url: "https://github.com/NousResearch/hermes-agent"
 index_line: "Hermes Agent (Nous Research): self-improving agent with learning loop, **163k stars (2x in 1mo)**. Auto-creates skills, cross-session memory, 7 backends (incl. Vercel Sandbox), multi-platform, native Windows beta"
@@ -62,7 +60,7 @@ This connects to [[decision-traces-compound]]: every agent action becomes a trai
 |---|---|---|
 | Language | Python | Rust |
 | Learning | Auto-creates skills | Skills authored in SKILL.md, hot-reloaded |
-| Memory | FTS5 + LLM summarization | Solograph (FalkorDB + vectors) |
+| Memory | FTS5 + LLM summarization | Solograph (SQLite FTS5, no vectors) |
 | Deployment | 7 backends including 3 serverless (Daytona, Modal, Vercel Sandbox) | Local + competition RPC |
 | Models | 200+ via OpenRouter | Provider-agnostic (config.toml) |
 | Tools | 40+ Python | 14 generic + domain middleware |

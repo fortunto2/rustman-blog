@@ -4,6 +4,8 @@ title: "What I changed in my Claude Code setup after the Opus 5.5 and Sonnet 5.5
 description: "Anthropic's September 2026 claude.dev posts on effort, cost and evals, read against a real setup: effort dropped from xhigh to high, always-loaded rules cut from 37.7 KB to 16 KB, subagents moved to Sonnet 5.5."
 created: 2026-09-30
 tags: [claude-code, effort, cost, context-engineering, harness, evals]
+course_module: 4
+course_order: 7
 publish: true
 publish_as: post
 index_line: "Opus/Sonnet 5.5 field notes: effort is a verification dial, every CLAUDE.md line is resent per turn, rules 37.7→16 KB, build-eval/hillclimb"
@@ -56,6 +58,8 @@ If you call the API directly, Sonnet 5.5 has breaking changes. `thinking: {type:
 ## What I haven't done yet: build-eval and hillclimb
 
 [Automating eval design](https://claude.dev/blog/automating-eval-design-and-hillclimbing/) adds `/claude-api build-eval` and `/claude-api hillclimb` to the claude-api skill. The hillclimber proposes one patch per round, keeps a held-out test split, and reverts any patch that improves train while test stays flat. When the score stalls it stops editing and sorts the remaining failures by cause, which is how they found graders that contradicted the docs. Their example is skill-trigger accuracy, where the metric depends directly on the text being edited. I have 47 skills and a trigger validator that has already been wrong about itself once, so that's the next experiment.
+
+**Update, 27 Oct 2026.** Hamel Husain [advises holding off](https://hamel.dev/blog/posts/claude-auto-evals/) on `build-eval` and `hillclimb`: the tool has you write an eval before reading the data, and its first evaluator bundled four failure modes into one (reported). His comparison with Antaripa Saha of six automated eval systems found 74.4% to 87.2% recall against human labels, and every system missed the failures that need product context. So the experiment starts with reading traces, then the generated eval. More in [[plugin-eval-ablation]].
 
 A related tool is `/claude-api prompt-audit`. It looks for instructions written for older models: "think carefully", "do not be lazy", mandatory multi-step rituals, verify-twice rules. I grepped my skills and CLAUDE.md first and found none, so the audit wasn't needed this time.
 

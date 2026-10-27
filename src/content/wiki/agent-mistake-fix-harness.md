@@ -3,9 +3,10 @@ type: concept
 description: "The single most important principle from harness engineering: when an AI agent makes a mistake, don't fix the prompt or try a better model. Fix the environment."
 title: "Agent mistake → fix the harness, not the prompt"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [harness, agents, methodology, debugging]
-course_module: 5
-course_order: 3
+course_module: 4
+course_order: 5
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 index_line: "Core harness loop: agent mistake → fix CLAUDE.md/linter/test. Ratchet effect, mistakes happen once"
@@ -23,6 +24,13 @@ Three mechanisms, escalating in robustness:
 This creates a **ratchet**: mistakes can only happen once. Each failure permanently improves the harness. Over time, the repository becomes a progressively better environment for agents.
 
 The anti-pattern: manually cleaning up "AI slop." OpenAI found that 20% of time (Fridays) went to cleanup — doesn't scale. Automation or bust.
+
+## What others found since (Oct 2026)
+
+- **At 30,000 merges a day, the job is saying no.** Anthropic's source-control team ([Oct 2026](https://www.anthropic.com/research/redesigning-source-control)) went from about 2,500 merges a day in May to 30,000+ in September. Engineers often spent their time telling Claude no, because agents break core constraints to fit a familiar pattern, and reviewers moved to reading the intent of a change rather than every line (reported). A "no" that repeats is a harness rule not yet written.
+
+
+## Connections
 
 - [[harness-engineering-summary]] — origin: core principle from harness engineering synthesis
 - [[solo-methodology]] — the ratchet effect is what makes solo dev viable: compound improvements

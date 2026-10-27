@@ -9,7 +9,7 @@ price: 0
 price_currency: USD
 offer_url: "https://visayes.app"
 course_module: 7
-course_order: 9
+course_order: 8
 publish: true
 publish_as: project
 source_url: "https://visayes.app"

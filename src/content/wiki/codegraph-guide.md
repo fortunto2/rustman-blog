@@ -5,8 +5,6 @@ title: "CodeGraph — symbol and package index across all projects"
 created: 2026-02-07
 updated: 2026-10-27
 tags: [codegraph, code-intelligence, fts5, tree-sitter, mcp, solograph]
-course_module: 6
-course_order: 3
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
 index_line: "CodeGraph: symbol + package index across all projects (tree-sitter → SQLite FTS5, words of camel/snake names). Graph layer (calls/imports/inheritance) dropped Oct 2026: 0 structural questions in 4 months, grep matched a code-graph MCP 8/8"

@@ -6,8 +6,6 @@ created: 2026-08-13
 tags: [project, ios, swift, utilities, storage, privacy]
 project_type: app
 app_store_id: "6794369239"
-course_module: 7
-course_order: 12
 publish: true
 publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6794369239"

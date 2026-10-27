@@ -5,8 +5,6 @@ description: "Categorized comparison of AI agent toolkits: prompt libraries, exe
 created: 2026-04-09
 updated: 2026-07-30
 tags: [agents, tools, comparison, solo-factory, skills, methodology, observability, evals, governance]
-course_module: 6
-course_order: 2
 publish: true
 index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers 263K, gstack 125K, ECC 235K) vs **taste skills** (hallmark, impeccable, ponytail, /humanize) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 13 categories, comparison matrix, 8-layer stack, roles-vs-stages analysis"
 index_section: "concept"
@@ -242,7 +240,7 @@ Persistent memory that survives between sessions. See [[agent-memory-architectur
 | Tool | Stars | Storage | Key Feature |
 |------|-------|---------|-------------|
 | [[mempalace-agent-memory\|MemPalace]] | 27K | ChromaDB + SQLite KG | Spatial memory, 96.6% LongMemEval |
-| [[project-solograph\|Solograph]] | — | FalkorDB + SQLite + files | Graph + vector + session search, 15 MCP tools |
+| [[project-solograph\|Solograph]] | — | SQLite FTS5 + files | Symbol, KB and session search, no vectors, 12 MCP tools |
 | [[graphify-vs-solograph\|Graphify]] | ~98K (unverified) | `graph.json` on disk | Deterministic tree-sitter graph, **no vector store**, every edge tagged EXTRACTED/INFERRED |
 | [OpenViking](https://github.com/volcengine/OpenViking) | 33K | `viking://` virtual FS | Unifies memory + RAG + skills; tiered L0/L1/L2 loading |
 | [QMD](https://github.com/tobi/qmd) | 20K | Local | BM25 + vector + LLM reranking search |

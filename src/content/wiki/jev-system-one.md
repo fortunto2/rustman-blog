@@ -3,8 +3,10 @@ type: concept
 title: "Jev / System One — decision models that never generate text, and the open-weight Laya"
 description: "Jev (TypeSafe AI) is a non-autoregressive 'System One' model: unstructured text in, typed decisions with calibrated probabilities out, in one parallel pass. Closed weights, API-only — but Laya (Apache 2.0, 322-421M params, ~650-800MB) reproduces it with downloadable weights and runs locally."
 created: 2026-09-20
-updated: 2026-10-23
+updated: 2026-10-27
 tags: [structured-output, classification, non-autoregressive, calibration, rlcd, open-weights, local-models, llm]
+course_module: 3
+course_order: 3
 publish: true
 index_line: "Jev (TypeSafe): non-autoregressive System One model — typed decisions (Choice/Score/Noul) with calibrated probabilities, one parallel pass, 70-500ms, $0.042/MTok in + output free, RLCD training. Closed weights. Downloadable reproduction: Laya (Apache 2.0, 322-421M). Measured on M5: 10/12 EN+RU smoke (RU weaker), Core ML GPU 13.7ms/question, ANE refuses; port in ~/startups/active/laya-ane. Six jobs from OC hackathon 21.10.2026: destructive-action gate, agent-output watchdog, scorer + LLM explainer, intent router, feed filter, image judgments; Mike benchmark: JSON-LLM 7/17 confidently wrong, decision models 0"
 index_section: "concept"
@@ -77,6 +79,10 @@ Ask a closed question, keep the thresholds in code, and let the LLM write only w
 ## Why it matters
 
 The insight is the class, not the vendor: for routing, triage, moderation, scoring — the bulk of production "AI" calls — generation was never the point. A model that only answers closed questions can be small, calibrated, and 100x cheaper, and a `Noul` at 0.55 can honestly route to a human where an LLM's confident prose cannot. This fits privacy-first/offline-first products directly: Laya-multilingual at 647 MB is download-on-demand territory for a desktop app.
+
+## What others found since (Oct 2026)
+
+- **Tune the threshold, then check calibration.** Hamel Husain and Antaripa Saha ([decision models for evals](https://hamel.dev/blog/posts/decision-model-evals/), Oct 2026) compared six decision models as eval judges on 98 traces. The default 0.50 cutoff left accuracy on the table; OpenAI Decisions reached F1 0.87 at 3.72¢ per 100 runs; in one Clef Flash group the predicted failure rate was about 8% against 60% observed (reported). A confident probability is a claim until it has been checked against labels, which is what the Laya smoke set above does.
 
 ## Links
 

@@ -1,23 +1,23 @@
 ---
 type: concept
-description: "Claude Code plugin with 30 startup skills, 3 agents, 9 stack templates, MCP code intelligence. Full pipeline: research → validate → scaffold → build → deploy → launch."
+description: "Claude Code plugin with 57 skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
 tags: [project, open-source, claude-code, plugin, skills, agents]
 project_type: tool
-course_module: 6
-course_order: 1
+course_module: 4
+course_order: 10
 publish: true
 publish_as: project
 source_url: "https://github.com/fortunto2/solo-factory"
 github: fortunto2/solo-factory
-index_line: "solo-factory: Claude Code plugin, 27 skills, 3 agents, startup pipeline"
+index_line: "solo-factory: Claude Code plugin, 57 skills, 2 agents, startup pipeline"
 index_section: "project"
 ---
 
 # Solo Factory
 
-**From shower thought to deployed product** — 30 skills, 3 agents, and a code intelligence MCP server that knows every project you've ever built.
+**From shower thought to deployed product** — 57 skills, 2 agents, and an MCP server that searches every project you've ever built.
 
 ```
 /research → /validate → /scaffold → /setup → /plan → /build → /deploy → /launch → /review
@@ -28,8 +28,8 @@ index_section: "project"
 Most AI coding tools help you write code. Solo Factory helps you **run a startup** — from market research and idea validation to deployment and promotion. Every skill is designed for one-person teams moving fast across multiple projects and stacks.
 
 - **No context switching** — one pipeline handles research, coding, deployment, and marketing
-- **Stack-agnostic** — 9 templates from SwiftUI to Cloudflare Workers
-- **Code intelligence** — [[project-solograph|Solograph]] MCP server indexes all your projects, searches past sessions, and provides semantic code search
+- **Stack-agnostic** — 12 templates from SwiftUI to Rust
+- **Portfolio search** — [[project-solograph|Solograph]] MCP server indexes symbols and packages across all your projects and searches past sessions
 - **Works without MCP** — skills gracefully fall back to Glob, Grep, Read, WebSearch
 
 ## Install
@@ -38,14 +38,14 @@ Most AI coding tools help you write code. Solo Factory helps you **run a startup
 # Option 1: Skills (any AI agent — Claude Code, Cursor, Copilot, Gemini CLI, Codex)
 npx skills add fortunto2/solo-factory --all
 
-# Option 2: Claude Code Plugin (skills + agents + MCP)
+# Option 2: Claude Code Plugin (skills + agents + hooks)
 claude plugin marketplace add https://github.com/fortunto2/solo-factory
 claude plugin install solo@solo --scope user
 ```
 
 ## Skills
 
-30 executable skills in 4 phases: **Analysis** (6) → **Development** (6) → **Promotion** (11) → **Utility** (7).
+57 executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
 
 **[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
@@ -55,11 +55,10 @@ claude plugin install solo@solo --scope user
 |-------|-------|----------------|
 | `researcher` | Sonnet | Market research, competitors, pain points |
 | `code-analyst` | Haiku | Codebase exploration, dependency analysis |
-| `idea-validator` | Sonnet | Idea validation, STREAM scoring, PRD generation |
 
 ## Stacks
 
-9 stack templates: iOS, Next.js, Kotlin, Astro, Python, Cloudflare Workers.
+12 stack templates: iOS, Next.js, Kotlin, Astro, Python, Rust, Cloudflare Workers.
 
 **[Browse all stacks →](/stacks)** — full YAML configs with copy button.
 
@@ -83,12 +82,14 @@ Skills auto-detect [[project-solograph|Solograph]] tools when available:
 
 | Tool | What it does |
 |------|-------------|
-| `kb_search` | Semantic search over knowledge base |
-| `session_search` | Search past Claude Code sessions |
-| `codegraph_query` | Cypher queries on code intelligence graph |
+| `kb_search` | BM25 full-text search over the knowledge base, RU+EN stemming |
+| `session_search` | Past Claude Code sessions, including transcripts Claude Code deleted |
+| `symbol_search` | Where a function or class is defined, across every project |
 | `codegraph_explain` | Architecture overview of any project |
-| `project_code_search` | Semantic code search across projects |
-| `web_search` | Web search via SearXNG or Tavily |
+| `codegraph_shared` | Packages shared across projects, or who uses one |
+| `source_search` | Indexed YouTube transcripts, ProductHunt, TrustMRR, Telegram |
+
+Web search is a separate MCP server, `searxng` (`web_search`, `web_extract`, `youtube_transcript`), so a broken import in one cannot take the other down.
 
 Without MCP, skills fall back to Glob, Grep, Read, WebSearch — always works.
 
@@ -97,11 +98,11 @@ Without MCP, skills fall back to Glob, Grep, Read, WebSearch — always works.
 The [[harness-engineering-summary|harness]] IS the product:
 
 ```
-skills/          — 30 SKILL.md files (instructions, not code)
-agents/          — 3 agent definitions (model + role + tools)
-templates/stacks — 9 YAML stack templates
-rules/           — routing table, AI comments, debugging
-hooks/           — session start/stop, pipeline progression
+skills/          — 57 SKILL.md files (instructions, not code)
+agents/          — 2 agent definitions (model + role + tools)
+templates/stacks — 12 YAML stack templates
+rules/           — routing, skill locations, AI comments, debugging, sensors
+hooks/           — sensors on edit and end of turn, secret guard, pipeline progression
 scripts/         — bighead launcher, tmux dashboard, formatters
 ```
 
@@ -109,9 +110,9 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 30 skills, 3 agents
+- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 57 skills, 2 agents
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
-- [[project-solograph]] — MCP server powering code intelligence
+- [[project-solograph]] — MCP server for portfolio, KB and session search
 - [[agent-toolkit-landscape]] — where solo-factory fits in the ecosystem
 - [[bmad-method]] — sibling executable skill system; differs by unifying agents and skills under one TOML primitive with 3-layer overrides
 - [[harness-engineering-summary]] — the methodology behind the design
@@ -119,4 +120,4 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [Course: AI Solopreneur Engineer](/course) — learn the methodology step by step
 
 - [[project-agent-board]] — the task board that hands out work on this repo: an agent claims under a lease and returns a URL plus the sha256 of exactly what it delivered. Built because both measurements of solo-verify so far were made by its own author
-- [[plugin-eval-ablation]] — `claude plugin eval` can finally answer whether any of these 39 skills beats the bare model on its own task. Nothing here has ever been measured against a no-plugin baseline
+- [[plugin-eval-ablation]] — `claude plugin eval` can finally answer whether any of these 57 skills beats the bare model on its own task. Nothing here has ever been measured against a no-plugin baseline

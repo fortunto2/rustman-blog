@@ -4,8 +4,6 @@ description: "For family/cross-platform apps needing offline-first sync between 
 title: "KMP sync — Supabase + PowerSync for offline-first cross-platform"
 created: 2026-04-07
 tags: [kotlin, kmp, sync, offline-first, supabase, powersync, mobile]
-course_module: 4
-course_order: 8
 publish: true
 source_path: "1-methodology/sync-strategy.md"
 index_line: "Supabase + PowerSync for offline-first KMP sync. Realm deprecated Sep 2025"

@@ -5,8 +5,6 @@ title: "KubizBeat — Bashkir kubyz instrument app"
 created: 2025-03-01
 tags: [creative, project, ios, kubyz, music, culture, bashkir]
 project_type: app
-course_module: 7
-course_order: 10
 publish: true
 publish_as: project
 source_url: "https://apps.apple.com/app/jaw-harp-synth/id6758465213"

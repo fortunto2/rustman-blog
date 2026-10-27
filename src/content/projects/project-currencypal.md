@@ -6,8 +6,6 @@ created: 2026-08-13
 tags: [project, ios, swift, finance, offline, privacy, travel]
 project_type: app
 app_store_id: "6759005730"
-course_module: 7
-course_order: 13
 publish: true
 publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6759005730"
