@@ -4,6 +4,10 @@ title: "Stanford Cleantech Hackathon 2026: the best validation needed no new dat
 description: "Stanford Cleantech Hackathon 2026, 23-24 Oct: four teams validated without new data, investors named selling to utilities as red flag one, and a scorecard of what each project proved and what it did not."
 created: 2026-10-24
 event_date: 2026-10-23
+github: fortunto2/stanford-cleantech-2026
+demo_url: "https://airsignal.app/crew"
+video_url: "https://youtu.be/cflNvJU9x5o"
+devpost_url: "https://devpost.com/software/crew-air"
 tags: [hackathon, climate, cleantech, energy, public-data, validation, air-quality]
 publish: true
 publish_as: post
@@ -78,7 +82,7 @@ My read of each project from its page and pitch. Strong is what I would copy; un
 
 ### Ours: Crew Air
 
-**Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air) · **iPhone app:** in App Store review, the link goes here once it is live.
+**Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Code:** [github.com/fortunto2/stanford-cleantech-2026](https://github.com/fortunto2/stanford-cleantech-2026) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air) · **iPhone app:** in App Store review, the link goes here once it is live.
 
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 

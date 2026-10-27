@@ -4,6 +4,8 @@ title: "AI Apprentice: a voice agent that asks an expert why, built overnight at
 description: "Hack-Nation 7 (3-4 Oct 2026, ElevenLabs challenge): a voice apprentice that stores each expert rule as her words plus a machine check, and why its 23-of-23 eval, one scripted case with a model playing the expert, proves less than it looks."
 created: 2026-10-26
 event_date: 2026-10-03
+github: fortunto2/ai-apprentice
+demo_url: "https://ai-apprentice-nu.vercel.app"
 tags: [hackathon, voice, elevenlabs, screen-understanding, agents, guardrails, evals]
 publish: true
 publish_as: post

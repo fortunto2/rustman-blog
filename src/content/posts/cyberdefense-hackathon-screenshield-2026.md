@@ -4,6 +4,8 @@ title: "ScreenShield: DLP for screen recordings, and what the other 77 projects 
 description: "Cyberdefense Hackathon (tokens&, AWS Builder Loft, San Francisco, 9 Oct 2026): a one-day Rust build that blurs secrets in a live video stream took 3rd of 78 as the only video project, and two of its pitched mechanisms turned out weaker than the slides."
 created: 2026-10-26
 event_date: 2026-10-09
+github: fortunto2/screenshield
+video_url: "https://youtu.be/qZVPiqBWxJg"
 tags: [hackathon, security, dlp, video, ocr, agents, clickhouse, rust]
 publish: true
 publish_as: post

@@ -4,6 +4,9 @@ title: "Life2Film Director: a personal agent that learns your editing taste, bui
 description: "Build Personal Agents Hack (Neon, San Francisco, 4 Oct 2026): a video agent built on a month of real footage, why most of its strength was built before the kickoff, and why 'it learns your taste' rested on one rule."
 created: 2026-10-26
 event_date: 2026-10-04
+github: fortunto2/tech-week-agent
+demo_url: "https://tech-week-agent.vercel.app"
+video_url: "https://youtu.be/NAmEDA6vIEY"
 tags: [hackathon, personal-agents, video, life2film, neon, mastra, hybrid-search, wasm]
 publish: true
 publish_as: post

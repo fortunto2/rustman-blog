@@ -3,6 +3,7 @@ type: concept
 title: "How I spent $250+ on an AI agent competition and what I learned"
 description: "Personal retrospective on BitGN PAC1 challenge: scoring 17/104 live, organizing a hub event while competing, $50 per GPT-5.4 run, and rebuilding the agent to 74/104 in two days."
 created: 2026-04-13
+github: fortunto2/agent-bit
 tags: [agents, competition, rust, retrospective, sgr, benchmarks]
 publish: true
 publish_as: post

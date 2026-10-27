@@ -4,6 +4,8 @@ title: "ConsentShield: consent checked at the moment an agent takes your screen"
 description: "super{set} national renaissance hackathon (San Francisco, 22 Oct 2026, personal agents and data privacy track): an on-device gate that enforces consent per purpose before a cloud agent sees the screen, and why its zero-shot local model still hands three lines in ten to the human."
 created: 2026-10-26
 event_date: 2026-10-22
+github: fortunto2/consentshield
+demo_url: "https://fortunto2.github.io/consentshield/"
 tags: [hackathon, privacy, consent, agents, mcp, local-models, decision-models, ocr]
 publish: true
 publish_as: post

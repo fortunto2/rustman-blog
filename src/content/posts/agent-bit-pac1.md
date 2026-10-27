@@ -3,6 +3,7 @@ type: concept
 title: "Agent-Bit: building a PAC1 competition agent in Rust"
 description: "How we built a CRM agent scoring 93% on BitGN PAC1 benchmark using sgr-agent framework, ONNX classifiers, pipeline state machine, and 14 reusable tools. Architecture, lessons learned, tool design principles."
 created: 2026-04-12
+github: fortunto2/agent-bit
 tags: [agents, competition, sgr, rust, tools, benchmarks, onnx, pipeline, crm]
 course_module: 5
 course_order: 20

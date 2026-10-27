@@ -4,6 +4,9 @@ title: "BroCheck: a 50-minute build where a decision model, not an LLM, judges t
 description: "OC AI Builders Lightning Hackathon (EvoNexus, Irvine, 21 Oct 2026): BroCheck and Mama Approves ask TypeSafe's Jev typed questions and compose the verdict in code with no LLM, and why calibrated answers under a hand-set formula still make an uncalibrated verdict."
 created: 2026-10-26
 event_date: 2026-10-21
+github: fortunto2/mama-approves
+demo_url: "https://bro.rustman.org"
+video_url: "https://youtu.be/_GzPxIwRMgo"
 tags: [hackathon, decision-models, jev, calibration, images, structured-output]
 publish: true
 publish_as: post
