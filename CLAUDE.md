@@ -76,6 +76,11 @@ publish: true              # required
 publish_as: project        # optional: routes to /projects/ instead of /wiki/
 source_url: "https://..."  # optional: attribution link
 source_path: "1-method/..."# optional: path to raw source
+event_date: 2026-10-23     # optional: the event's first day; lists sort by it, "written <created>" beside it
+github: fortunto2/repo     # optional: link chip under the date, rendered only if the repo is public
+demo_url: "https://..."    # optional chips: live demo, video, Devpost (components/PostLinks.astro)
+video_url: "https://youtu.be/..."
+devpost_url: "https://devpost.com/software/..."
 ---
 ```
 
