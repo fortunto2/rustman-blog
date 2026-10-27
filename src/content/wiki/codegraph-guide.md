@@ -16,13 +16,12 @@ index_section: "concept"
 
 Knowledge graph of source code across all projects. Scans files, symbols (functions, classes, protocols), dependencies, imports, function calls, class inheritance, and git history. FalkorDBLite (embedded, no Docker), Cypher queries. CLI with Rich output. 10 MCP tools via solograph.
 
-**Architecture:** `registry.yaml` (12+ projects) → `codegraph scan [--deep]` → FalkorDB nodes (Project → File → Symbol, File → Package dependencies, Session → File edits). Deep analysis adds imports, calls, inheritance edges. Per-project vector DBs for semantic search.
+**Architecture:** `registry.yaml` (12+ projects) → `codegraph scan [--deep]` → FalkorDB nodes (Project → File → Symbol, File → Package dependencies, Session → File edits). Deep analysis adds imports, calls, inheritance edges. Search (sessions, KB, sources) is SQLite FTS5; the per-project vector DBs were removed in solograph 0.7.
 
 **Key MCP tools:**
 - `codegraph_query` — raw Cypher queries on the graph
 - `codegraph_explain` — architectural overview of a project
 - `codegraph_shared` — find shared packages across projects
-- `project_code_search` — semantic code search within a project
 - `codegraph_stats` — graph statistics
 
 **GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, Python, FalkorDBLite, FastMCP.
@@ -39,4 +38,4 @@ Knowledge graph of source code across all projects. Scans files, symbols (functi
 - [[decision-traces-compound]] — session tracking = agent trajectory recording, compounds over time
 - [[harness-engineering-summary]] — codegraph is an architectural constraint tool: dependency direction, shared packages
 - [[solo-methodology]] — codegraph is the code intelligence layer powering the solo dev workflow
-- [[rag-patterns]] — graph-boosted RAG pattern implemented: vectors + structural edges
+- [[rag-patterns]] — graph-boosted RAG; solograph now pairs structural edges with BM25 rather than vectors

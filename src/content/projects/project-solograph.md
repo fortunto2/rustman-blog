@@ -1,8 +1,9 @@
 ---
 type: concept
-description: "Code intelligence MCP server: multi-project code graph, semantic search, session history, knowledge base, web search. 15 tools for Claude Code. FalkorDB + tree-sitter + MLX."
+description: "Code intelligence MCP server: a tree-sitter code graph across every project, plus full-text search over Claude Code sessions, a knowledge base and external sources. 13 tools, FalkorDB + SQLite FTS5, no embeddings."
 title: "solograph — code intelligence MCP server"
 created: 2026-02-07
+updated: 2026-10-26
 tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter, python, rust]
 project_type: tool
 course_module: 6
@@ -12,46 +13,42 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: code intelligence MCP server, FalkorDB + tree-sitter, 15 tools"
+index_line: "solograph: code graph (FalkorDB + tree-sitter, 83 projects) + FTS5 search over sessions/KB/sources, 13 tools; vectors removed in 0.7 after measuring them (0/40 recall, 14 s cold, hung source search)"
 index_section: "project"
 ---
 
 # Solograph
 
-Code intelligence MCP server for Claude Code. Multi-project code graph, semantic search, session history, knowledge base, web search.
+Code intelligence MCP server for Claude Code: a tree-sitter code graph across every project in a portfolio, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram).
 
 ```bash
-# Install + add to Claude Code
 uv tool install solograph
-claude mcp add -s project solograph -- uvx solograph
+claude mcp add -s user solograph -- uvx solograph
+solograph-cli init ~/projects --deep
 ```
 
-## 15 MCP Tools
+## 13 MCP tools
 
-| Tool | What it does |
-|------|-------------|
-| `codegraph_query` | Cypher queries against code graph |
-| `codegraph_stats` | Graph statistics (projects, files, symbols, packages) |
-| `codegraph_explain` | Architecture overview of any project |
-| `codegraph_shared` | Packages shared across projects |
-| `project_code_search` | Semantic code search (auto-indexes on first call) |
-| `project_code_reindex` | Reindex project code into FalkorDB vectors |
-| `project_info` | Project registry info |
-| `session_search` | Claude Code session history search |
-| `kb_search` | Knowledge base semantic search (RU + EN) |
-| `web_search` | Web search via SearXNG or Tavily |
-| `source_search` | Search indexed external sources (YouTube, Telegram) |
-| `source_list` | List indexed sources with document counts |
-| `source_tags` | Auto-detected topics with video counts |
-| `source_related` | Find related videos by shared tags |
+| Tool | What it answers |
+|------|-----------------|
+| `codegraph_query` | Read-only Cypher over the code graph |
+| `codegraph_stats` | Counts of projects, files, symbols, packages, sessions, edges |
+| `codegraph_explain` | Architecture of one project: stack, layers, hub files, dependencies |
+| `codegraph_repomap` | Aider-style map of a project's most important files and symbols |
+| `codegraph_shared` | Packages used by more than one project |
+| `project_info` | Registry entry for a project |
+| `session_search` | Every past prompt and answer, including transcripts Claude Code already deleted |
+| `kb_search` | Markdown knowledge base: frontmatter title, type, tags, body |
+| `source_search` | YouTube transcripts (timestamped links), ProductHunt, TrustMRR, Telegram |
+| `source_list` / `source_tags` / `source_related` | What is indexed, topics, related videos |
+| `web_fetch` | A URL as text |
+
+Web search lives in a separate searxng MCP server, so a broken import in one cannot take the other down.
 
 ## Architecture
 
-**Storage:** FalkorDB (embedded graph DB, no Docker) + MLX embeddings (Apple Silicon, multilingual-e5-small, 384-dim).
-
-**Code scanning:** tree-sitter AST parsing for Python, Swift, TypeScript, Kotlin, Rust. Extracts files, symbols (classes/functions), imports, calls, inheritance.
-
-**Graph schema:**
+- **Code graph:** FalkorDBLite (embedded, no Docker). tree-sitter parses Python, Swift, TypeScript, Kotlin, Rust and more into Project → File → Symbol, with imports, calls, inheritance and package dependencies. A nightly job merges new checkouts into the registry and rescans what git says changed: 83 projects, 113k symbols, 781k call edges.
+- **Search:** SQLite FTS5, BM25, Snowball stems for Russian and English sent as prefix terms. Every index stats its source files before answering and re-reads only what changed, so there is no reindex step.
 
 ```
 Project ──HAS_FILE──→ File ──DEFINES──→ Symbol
@@ -59,63 +56,41 @@ Project ──HAS_FILE──→ File ──DEFINES──→ Symbol
    └──DEPENDS_ON──→ Package          INHERITS/CALLS
                        ↑
 Session ──EDITED──→ File
-   │
-   └──IN_PROJECT──→ Project
 ```
-
-**Example Cypher queries:**
 
 ```cypher
--- Hub files (most imported)
-MATCH (f:File)<-[:IMPORTS]-(other:File)
-RETURN f.path, COUNT(other) AS importers ORDER BY importers DESC LIMIT 10
-
--- Shared packages across projects
-MATCH (p1:Project)-[:DEPENDS_ON]->(pkg:Package)<-[:DEPENDS_ON]-(p2:Project)
-WHERE p1.name <> p2.name
-RETURN pkg.name, COLLECT(DISTINCT p1.name) AS projects
-
--- Impact analysis: what breaks if I change this file?
-MATCH (f:File {path: 'lib/utils.ts'})<-[:IMPORTS*1..3]-(dep:File)
-RETURN dep.path
+-- What breaks if I change this file?
+MATCH (f:File {path: 'lib/utils.ts'})<-[:IMPORTS*1..3]-(dep:File) RETURN dep.path
 ```
 
-## Embeddings
+## 0.7: the vectors came out
 
-| Backend | Model | Platform | Languages |
-|---------|-------|----------|-----------|
-| **MLX** (primary) | multilingual-e5-small-mlx | Apple Silicon | RU + EN |
-| **sentence-transformers** (fallback) | all-MiniLM-L6-v2 | Any | EN |
+Until October 2026 every search in solograph was an embedding search (multilingual-e5-small on MLX, FalkorDB vector indexes). A review measured each part on the live machine, and the graph was the only part that worked:
 
-Auto-detects Apple Silicon → MLX. Falls back to sentence-transformers on other platforms.
+| | Vector version | FTS5 version |
+|---|---|---|
+| Session search, 39 known-answer sessions, found in top 5 | **0** | 32 |
+| Why | index held 640 sessions, disk 633, **overlap zero**: Claude Code deletes transcripts after 30 days and nothing re-read the disk | syncs before every search; deleted transcripts stay as archive |
+| KB search, cold | 14 s, top hit always "relevance 1.0" (it was rank position), first result for "tree-sitter code graph" an Amazon page snapshot | 66 ms, BM25 score, hidden dirs skipped |
+| Source search | hung past 120 s | 16 ms median |
+| Environment | 862 MB (torch) | 149 MB |
 
-## Web Search
+Other things the review found: `session_search` had failed on every MCP call for seven weeks (a `-> list[dict]` annotation on a function returning a dict; its tests called the function directly, never through the protocol); the nightly refresh had scanned zero projects for 70 nights after Homebrew dropped PyYAML from its python, and logged "done" each time; `codegraph_query` accepted writes; 40 checkouts were missing from the registry.
 
-Connects to any Tavily-compatible API. Works with self-hosted [SearXNG + Tavily Adapter](https://github.com/fortunto2/searxng-docker-tavily-adapter) — private, no API keys. Smart engine routing: tech queries → GitHub + StackOverflow, academic → arxiv, product → Reddit + app stores.
+The lesson is not "vectors are bad". It is that an index nobody measures drifts silently, and that for an agent's own history and notes, lexical search plus freshness beats semantic search on a stale index. The same convergence shows up across the [[code-graph-mcp-landscape|code-graph tools on GitHub]]: tree-sitter + SQLite FTS5, embeddings optional.
 
-## CLI
+## Sessions as an archive
 
-```bash
-solograph-cli init ~/projects          # Scan + build graph
-solograph-cli scan --deep              # Re-scan with imports/calls/inheritance
-solograph-cli explain my-app           # Architecture overview
-solograph-cli xray ~/projects          # Portfolio X-Ray (all projects)
-solograph-cli diagram my-app           # Mermaid diagram
-solograph-cli query "MATCH (n) RETURN n LIMIT 5"
-solograph-cli index-youtube -c GregIsenberg -n 10
-```
+Claude Code keeps transcripts 30 days. The session index keeps their text after that, marked `transcript: deleted`; live ones come with a `claude --resume` command. Transcripts are append-only, so a grown one is read from its last byte offset: live transcripts reach 400 MB, and a resync costs ~10 ms. Batch runs from temp directories (`claude -p` from `/tmp`, agent scratchpads, 322 of 633 transcripts here) are left out; a folder with `.solograph-private` or Spotlight's `.metadata_never_index` keeps its sessions out entirely.
 
-## Why It Matters
+## Why it matters
 
-Solograph implements [[context-graphs-summary|context graphs]] for code. Every Claude Code session is a [[decision-traces-compound|decision trajectory]] recorded in the graph. The graph compounds — each session makes future sessions smarter.
-
-It's also a full [[agent-memory-architecture|memory system]]: working memory (active session), semantic memory (kb_search), episodic memory (session_search), procedural memory (codegraph_query for patterns).
+Solograph implements [[context-graphs-summary|context graphs]] for code: every session is a [[decision-traces-compound|decision trajectory]] linked to the files it touched. As a [[agent-memory-architecture|memory system]]: episodic memory (session_search), reference memory (kb_search), structural memory (the code graph).
 
 ## Links
 
 - [GitHub](https://github.com/fortunto2/solograph) — MIT, Python, PyPI
-- [PyPI](https://pypi.org/project/solograph/) — `pip install solograph`
-- [[codegraph-guide]] — full architecture and usage guide
-- [[context-graphs-summary]] — the theory behind solograph
-- [[agent-memory-architecture]] — solograph as a full memory system
+- [[codegraph-guide]] — architecture and usage guide
+- [[code-graph-mcp-landscape]] — the tools solograph sits among, October 2026
+- [[graphify-vs-solograph]] — the closest competitor and what to take from it
 - [[agent-toolkit-landscape]] — where solograph fits in the ecosystem
