@@ -77,6 +77,10 @@ export interface Frontmatter {
   tools?: string[];
   source_path?: string;
   source_url?: string | string[];
+  github?: string | string[];
+  demo_url?: string;
+  video_url?: string;
+  devpost_url?: string;
   cover?: string;
   status?: string;
 }

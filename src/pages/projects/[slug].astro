@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackLink from '../../components/BackLink.astro';
 import ArticleMeta from '../../components/ArticleMeta.astro';
+import PostLinks from '../../components/PostLinks.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
 import AppStoreCard from '../../components/AppStoreCard.astro';
 import CrateBadges from '../../components/CrateBadges.astro';
@@ -47,6 +48,7 @@ const softwareLd = await softwareApplicationLd(fm, new URL(Astro.url.pathname, A
       <h1>{post.frontmatter.title}</h1>
     )}
     <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} eventDate={post.frontmatter.event_date} tags={post.frontmatter.tags as string[]} />
+    <PostLinks github={hasBadges ? undefined : fm.github} demo={fm.demo_url} video={fm.video_url} devpost={fm.devpost_url} />
     <Fragment set:html={post.html} />
   </article>
 

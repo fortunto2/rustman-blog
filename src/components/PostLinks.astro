@@ -1,0 +1,44 @@
+---
+import { githubIsPublic } from '../lib/stores';
+
+/**
+ * The links a reader looks for first: code, a live demo, the video, the Devpost page.
+ * Shown under the date so they are visible without scrolling to a "Links:" line at the end.
+ *
+ * Props (from frontmatter):
+ *   github   — owner/repo, or a list of them; shown only when the repo is public
+ *   demo     — live site or app URL
+ *   video    — YouTube (or other) URL
+ *   devpost  — Devpost project URL
+ */
+interface Props {
+  github?: string | string[];
+  demo?: string;
+  video?: string;
+  devpost?: string;
+}
+
+const { github, demo, video, devpost } = Astro.props;
+const named = (Array.isArray(github) ? github : github ? [github] : []).filter(Boolean);
+// A private repo is a 404 for readers and leaks its name, so only public ones get a link.
+const repos = (await Promise.all(named.map(async r => ((await githubIsPublic(r)) ? r : '')))).filter(Boolean);
+const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+const links = [
+  ...repos.map(r => ({ label: 'github', text: r, href: `https://github.com/${r}` })),
+  ...(demo ? [{ label: 'demo', text: host(demo), href: demo }] : []),
+  ...(video ? [{ label: 'video', text: 'YouTube', href: video }] : []),
+  ...(devpost ? [{ label: 'devpost', text: host(devpost).replace(/^devpost\.com\/software\//, ''), href: devpost }] : []),
+];
+---
+
+{links.length > 0 && (
+  <div class="not-prose flex flex-wrap gap-2 -mt-3 mb-6 font-mono text-xs">
+    {links.map(l => (
+      <a href={l.href} target="_blank" rel="noopener"
+         class="inline-flex items-center gap-1 px-2 py-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:border-[var(--color-accent)] dark:hover:border-[var(--color-accent-dark)] transition-colors">
+        <span class="text-[var(--color-muted)]">{l.label}</span>
+        <span>{l.text}</span>
+      </a>
+    ))}
+  </div>
+)}
