@@ -54,6 +54,17 @@ Stars measured with `gh api` on 26 Oct 2026. GitHub no longer serves star histor
 
 Serena is a complement rather than a rival: LSP precision where tree-sitter guesses.
 
+## Measured here: codegraph against plain grep
+
+On 27 Oct codegraph 1.6.2 was run against a real repository with its own README's method: `claude -p`, `--strict-mcp-config`, WITH = only codegraph's MCP server, WITHOUT = no MCP at all, its CLI blocked in both arms. The repository was a 1,105-file Rust + Swift app; codegraph indexed it in 5 s (20k nodes, 47k edges, a 76 MB index). Two questions, two runs per arm, every answer checked against call sites found with `rg`:
+
+| Question | Cost, median (with / without) | Tool calls | Correct |
+|---|---|---|---|
+| Trace how `plan_montage` is reached, from the UI down, across a Swift↔Rust FFI boundary | $1.73 / $2.07 (−16%) | 16.5 / 25 | 4/4 both |
+| What breaks if `resolve_montage_profile`'s signature changes | $0.69 / $0.65 | 6 / 5.5 | 4/4 both |
+
+Both arms found the same chain through the same files, including the UniFFI hop. The graph saved a sixth of the cost where the agent had to explore, and nothing where it could grep its way there in five calls — which is what codegraph's own README says ("near-even where it got there in 7"). For that, it wants a global agent install, a per-repo index and a background daemon (one was still running after the runs). Not adopted here; two runs per cell is a small sample, and a repo where questions need 30–40 lookups could come out differently.
+
 ## What none of them do
 
 Not one covers several projects at once, or the agent's own history. Solograph's distinct part is the portfolio: one graph over 83 repositories, cross-project Cypher (`codegraph_shared`), and full-text search over every Claude Code session, including the ones Claude Code has deleted. That is the part worth keeping; per-repo depth can come from codegraph.

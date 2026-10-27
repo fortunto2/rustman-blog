@@ -31,3 +31,5 @@ Trust is not a formality here. The plugin's hooks and MCP servers execute as you
 [[project-solo-factory]] has 39 skills and zero evidence that any individual one beats the bare model on its own task. The [[agent-mistake-fix-harness]] loop assumes each written rule earned its place; nothing ever checked. The realistic expectation from a first sweep is that several skills come back at delta ≈ 0, and that result is worth more than the skill was, because a rule that changes nothing still costs context on every session that loads it.
 
 Category note: [[deepeval-llm-testing]] scores the *output* of a pipeline as a pytest assertion, and [[agent-benchmarks]] scores the *model* against a fixed task set. Neither answers "is my addition to the harness pulling its weight", which is the question a skill author actually has. [[commerce-agent-blueprint]] arrived at the same place from Anthropic's side: snapshot evals, 50-100 cases per flow, a negative case for every positive one.
+
+The same rule at company scale: Aaron Levie's simplest test of whether a company can automate a workflow is whether it has evals for that workflow ([[aaron-levie-agi-house-2026]]).

@@ -79,3 +79,5 @@ The sound side is in [[creative-video-sound]], getting it onto platforms in
 
 For contrast, [[filmcraft-agent-built-editor]] gives an agent 650 low-level editor commands; this
 loop gives it what is in the footage and lets it write the cut.
+
+Vizard's video agent runs the same loop on generated footage: an anchor shot checked first, the other shots in parallel, a cut, then a review of its own render ([[la-tech-week-video-agents-live-worlds-2026]]).

@@ -56,3 +56,4 @@ If the reason to want a subscription was avoiding token spend, [[llm-providers-c
 - [[cloudflare-computer-agent-runtime]] — why an isolate can't host the agent, and what a serious edge answer would need
 - [[llm-providers-credits]] — the alternative when the motive was cost rather than convenience
 - [[project-life2film]] — the app where the BYOK-vs-subscription decision came up concretely
+- [[aaron-levie-agi-house-2026]]: who pays for the cheap Max plan, in Aaron Levie's telling: endowments, then LPs, then startups buying tokens, with a $10,000 subsidy the labs hope to bring down to $500 of compute

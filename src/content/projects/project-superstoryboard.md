@@ -59,3 +59,4 @@ Supabase, Figma Plugin API, Google Gemini, Veo 3.1, PGMQ, Phoenix Channels, WebS
 - [[schema-guided-reasoning]] — structured outputs for storyboard generation pipeline
 - [[neon-personal-agents-life2film-director-2026]]: the next hackathon build on video, a personal agent that edits your own footage instead of generating new
 - [[hackathons]]: the 2nd place at Supabase Lisbon next to every other hackathon, and the lessons that repeat
+- [[neu-wave-ai-film-festival-2026]]: where AI film generation stood a year later, and why I went back to the director side instead of the generator

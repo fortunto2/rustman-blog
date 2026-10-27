@@ -64,3 +64,5 @@ imperfect composition. Subtitles are burned in here and only here: the feed play
 How the cut itself was made: [[creative-video-agent-cut]]. Sound: [[creative-video-sound]].
 Every recipe here was re-run before publishing and lives in the `solo:video-edit` skill
 ([solo-factory](https://github.com/fortunto2/solo-factory), `references/delivery.md`).
+
+A UGC talk at LA Tech Week put numbers on the first frame: 0.1 seconds for Gen Z, 0.5 for millennials, 1 to 2 for boomers, by the speaker's own count ([[la-tech-week-video-agents-live-worlds-2026]]).

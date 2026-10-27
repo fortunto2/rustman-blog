@@ -122,7 +122,10 @@ the event brief). Whether it reached the top six, and any judges' feedback, was 
 of the other teams was kept; the one note from the room is the reason for the pivot.
 
 Same day, same idea in another form: [[hack-nation-ai-apprentice-2026]] turned an expert's spoken
-answers into rules for a tutor and an agent. Every event: [[hackathons]].
+answers into rules for a tutor and an agent. Ten days later the [[neu-wave-ai-film-festival-2026|Neu Wave AI Film Festival]]
+said the same from the film side: generation is cheap, directing is scarce, and the next evening a director at
+Vizard × Alibaba kept five seconds of every ten-second AI clip and called the pick the artist's ([[la-tech-week-video-agents-live-worlds-2026]]).
+Every event: [[hackathons]].
 
 Links: [repo](https://github.com/fortunto2/tech-week-agent) · [hosted demo](https://tech-week-agent.vercel.app) ·
 [demo video, 3 min](https://youtu.be/NAmEDA6vIEY).
