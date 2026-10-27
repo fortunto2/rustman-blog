@@ -67,12 +67,12 @@ Both arms found the same chain through the same files, including the UniFFI hop.
 
 ## What none of them do
 
-Not one covers several projects at once, or the agent's own history. Solograph's distinct part is the portfolio: one graph over 83 repositories, cross-project Cypher (`codegraph_shared`), and full-text search over every Claude Code session, including the ones Claude Code has deleted. That is the part worth keeping; per-repo depth can come from codegraph.
+Not one covers several projects at once, or the agent's own history. Solograph's distinct part is the portfolio: symbol and package search over 77 repositories, and full-text search over every Claude Code session, including the ones Claude Code has deleted. That is the part it kept. Its own structural graph went in 0.8: agents asked it nothing structural in four months, and inside one repo Grep does the job, as the measurement above shows.
 
 ## Caveats
 
 - **Star counts look inflated.** In July three sources gave Graphify 76k, 97k and 98k on the same day; it shows 136k now. Fork velocity is a better signal and can be gamed too.
-- **Every benchmark is the vendor's own.** codegraph claims 62% fewer tokens, codebase-memory 10× (its own preprint), jcodemunch 96%. None were rerun here. codegraph's own README adds the honest counterpoint: answers stay resident, so its sessions end with about 80% more retrieval context in the window.
+- **Every benchmark is the vendor's own.** codegraph claims 62% fewer tokens, codebase-memory 10× (its own preprint), jcodemunch 96%. Only codegraph's was rerun here, above, and came out far smaller. codegraph's own README adds the honest counterpoint: answers stay resident, so its sessions end with about 80% more retrieval context in the window.
 - "No embeddings" for CodeGraphContext and jcodemunch means their READMEs do not mention any.
 
 ## Related

@@ -33,8 +33,8 @@ Can also be used standalone: `/review` on any project to audit code quality.
 ## MCP Tools (use if available)
 
 - `session_search(query)` — find past review patterns and common issues
-- `codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")` — find similar code patterns across projects (symbol names, every project; Grep inside one)
-- `codegraph_query(query)` — check dependencies, imports, unused code
+- `symbol_search("<words>")` — find similar code patterns across projects (symbol names, every project; Grep inside one)
+- `codegraph_explain(project)` — stack, layers, dependencies, files with the most definitions
 
 If MCP tools are not available, fall back to Glob + Grep + Read.
 
@@ -44,7 +44,7 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 ```
 codegraph_explain(project="{project name}")
 ```
-Returns: stack, languages, directory layers, key patterns, top dependencies, hub files. Use this to detect stack and understand project structure.
+Returns: stack, languages, directory layers, key patterns, top dependencies, files with the most definitions. Use this to detect stack and understand project structure.
 
 ### 2. Essential docs (parallel reads)
 - `CLAUDE.md` — architecture, Do/Don't rules
@@ -63,13 +63,13 @@ Use stack from `codegraph_explain` response (or `CLAUDE.md` if no MCP) to choose
 
 ### 4. Smart source code loading (for code quality spot check)
 
-**Do NOT read random source files.** Use the graph to find the most important code:
+**Do NOT read random source files.** Find the most important code first:
 
 ```
-codegraph_query("MATCH (f:File {project: '{name}'})-[e]-() RETURN f.path, COUNT(e) AS edges ORDER BY edges DESC LIMIT 5")
+codegraph_explain(project="{name}")
 ```
 
-Read only the top 3-5 hub files (most connected = most impactful). For security checks, use Grep with narrow patterns (`sk_live`, `password\s*=`) — not full file reads.
+Its `largest_files` are the files with the most definitions; read only the top 3-5, plus the entry points. For security checks, use Grep with narrow patterns (`sk_live`, `password\s*=`) — not full file reads.
 
 ## Review Dimensions
 

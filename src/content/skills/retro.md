@@ -33,7 +33,7 @@ Can also be used standalone on any project — with or without pipeline logs.
 
 - `session_search(query)` — find past pipeline runs and known issues
 - `codegraph_explain(project)` — understand project architecture context
-- `codegraph_query(query)` — query code graph for project metadata
+- `codegraph_explain(project)` — project stack, layers and dependencies
 
 If MCP tools are not available, fall back to Glob + Grep + Read.
 

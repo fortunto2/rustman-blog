@@ -1,41 +1,40 @@
 ---
 type: summary
-description: "Knowledge graph of source code across all projects. Scans files, symbols (functions, classes, protocols), dependencies, imports, function calls, class inheri..."
-title: "CodeGraph — code intelligence across all projects via FalkorDB + tree-sitter"
+description: "How solograph indexes a portfolio: every project's symbol definitions and packages in SQLite FTS5, searchable by their words across all repositories. Started as a FalkorDB code graph; the structural layer was dropped in Oct 2026 after agents asked it nothing structural in four months."
+title: "CodeGraph — symbol and package index across all projects"
 created: 2026-02-07
-tags: [codegraph, graph, code-intelligence, falkordb, tree-sitter, mcp, solograph]
+updated: 2026-10-27
+tags: [codegraph, code-intelligence, fts5, tree-sitter, mcp, solograph]
 course_module: 6
 course_order: 3
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
-index_line: "CodeGraph: code intelligence across projects via FalkorDB + tree-sitter + MCP. Session tracking"
+index_line: "CodeGraph: symbol + package index across all projects (tree-sitter → SQLite FTS5, words of camel/snake names). Graph layer (calls/imports/inheritance) dropped Oct 2026: 0 structural questions in 4 months, grep matched a code-graph MCP 8/8"
 index_section: "concept"
 ---
 
 ## Key Takeaways
 
-Knowledge graph of source code across all projects. Scans files, symbols (functions, classes, protocols), dependencies, imports, function calls, class inheritance, and git history. FalkorDBLite (embedded, no Docker), Cypher queries. CLI with Rich output. 10 MCP tools via solograph.
+One index over every project in the registry: symbol definitions (functions, classes, protocols) from tree-sitter, packages from the manifests, files with language and size. SQLite with FTS5, no server. Symbol names are indexed by their words, so "montage profile" finds `resolve_montage_profile` in one repository and `MontageProfile` in the sibling repository where it is actually defined.
 
-**Architecture:** `registry.yaml` (12+ projects) → `codegraph scan [--deep]` → FalkorDB nodes (Project → File → Symbol, File → Package dependencies, Session → File edits). Deep analysis adds imports, calls, inheritance edges. Search (sessions, KB, sources) is SQLite FTS5; the per-project vector DBs were removed in solograph 0.7.
+**Architecture:** `registry.yaml` (77 projects) → `solograph-cli scan` → `portfolio.db` (projects, packages, files, symbols + FTS5). Every scan is incremental by mtime and size; the nightly job covers the whole portfolio in seconds. Search over sessions, KB and sources is the same SQLite FTS5.
 
 **Key MCP tools:**
-- `codegraph_query` — raw Cypher queries on the graph
-- `codegraph_explain` — architectural overview of a project
-- `codegraph_shared` — find shared packages across projects
-- `codegraph_stats` — graph statistics
+- `symbol_search` — where something is defined, across every project
+- `codegraph_explain` — what a project is made of: stack, languages, layers, dependencies
+- `codegraph_shared` — packages shared across projects, or who uses a given one
+- `codegraph_stats` — counts
 
-**GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, Python, FalkorDBLite, FastMCP.
+**What it used to be.** Until 0.8 this was a FalkorDB graph with imports, function calls, inheritance and session→file edges, queried in Cypher. Agents asked it nothing structural in four months, and Grep answers those questions as well: a dedicated code-graph MCP against Grep/Read on a 1,100-file repository gave the same accuracy in 8 of 8 runs, with a 16% cost difference on one question type and none on the other. See [[project-solograph]] for the numbers.
 
-**Code reuse detection:** find shared packages, common patterns, functions that multiple projects import. Directly supports the portfolio approach — shared infrastructure across products.
+**Code reuse detection:** shared packages, and the same concept implemented in several projects (search a phrase, see every repository that defines it). Directly supports the portfolio approach: shared infrastructure across products.
 
-**Session tracking:** records which files each Claude Code session edited. Enables: "what did I work on last week?", "which sessions touched auth code?", "show me all context for this feature."
-
-**This is context graphs applied to code** — not just "what functions exist" but "how do they relate, who uses what, what changed when." The structural memory that harness engineering talks about.
+**GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, Python, SQLite, FastMCP.
 
 ## Connections
 
-- [[context-graphs-summary]] — codegraph IS a context graph implementation for code (capture → retrieve → apply)
-- [[decision-traces-compound]] — session tracking = agent trajectory recording, compounds over time
-- [[harness-engineering-summary]] — codegraph is an architectural constraint tool: dependency direction, shared packages
-- [[solo-methodology]] — codegraph is the code intelligence layer powering the solo dev workflow
-- [[rag-patterns]] — graph-boosted RAG; solograph now pairs structural edges with BM25 rather than vectors
+- [[context-graphs-summary]] — the theory this started from; the measured result is that the agent's own history (sessions) is the part it uses
+- [[decision-traces-compound]] — session search is the trajectory record that compounds
+- [[harness-engineering-summary]] — shared packages and duplicated concepts as architectural signals
+- [[solo-methodology]] — the code intelligence layer of the solo dev workflow
+- [[rag-patterns]] — lexical retrieval with freshness beat vectors on a stale index here

@@ -49,14 +49,14 @@ Scaffold a complete project from PRD + stack template. Creates directory structu
       Example: for `ios-swift`, find existing projects with matching stack.
 
    b. **Architecture overview** — `codegraph_explain(project="<sibling>")` for each sibling.
-      Gives: directory layers, key patterns (base classes, protocols, CRUD), top dependencies, hub files.
+      Gives: directory layers, key patterns (base classes, protocols, CRUD), top dependencies, files with the most definitions.
 
-   c. **Search for reusable patterns** in the sibling — Grep/Glob under its path (from `project_info`), or symbol names across projects with `codegraph_query("MATCH (s:Symbol) WHERE toLower(s.name) CONTAINS '<term>' RETURN s.project, s.file, s.name LIMIT 20")`:
+   c. **Search for reusable patterns** in the sibling — Grep/Glob under its path (from `project_info`), or symbol names across projects with `symbol_search("<words>")`:
       - Search for stack-specific patterns: "MVVM ViewModel", "SwiftData model", "AVFoundation recording"
       - Search for shared infrastructure: "Makefile", "project.yml", ".swiftlint.yml"
       - Search for services: "Service protocol", "actor service"
 
-   d. **Check shared packages** — `codegraph_query("MATCH (p:Project)-[:DEPENDS_ON]->(pkg:Package) WHERE p.name = '<sibling>' RETURN pkg.name")`.
+   d. **Check shared packages** — the `dependencies` in `codegraph_explain(project="<sibling>")`, and `codegraph_shared()` for what several projects already use.
       Collect package versions for reference (but verify with Context7 for latest).
 
    e. **Critically evaluate** what to adopt vs skip:
@@ -162,7 +162,7 @@ Scaffold a complete project from PRD + stack template. Creates directory structu
    - **Don't section** (project-specific negative constraints)
    - **Drift section** (anti-patterns: scheduling vs doing, bullets vs code)
    - **MCP Integration section** (optional, if MCP tools available):
-     Lists available MCP tools: `kb_search`, `session_search`, `codegraph_query`, `codegraph_explain`, `project_info`
+     Lists available MCP tools: `kb_search`, `session_search`, `symbol_search`, `codegraph_explain`, `project_info`
 
 11. **Generate README.md** — project name, description, prerequisites, setup, run/test/deploy.
 

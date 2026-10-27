@@ -1,10 +1,10 @@
 ---
 type: concept
-description: "Code intelligence MCP server: a tree-sitter code graph across every project, plus full-text search over Claude Code sessions, a knowledge base and external sources. 13 tools, FalkorDB + SQLite FTS5, no embeddings."
-title: "solograph — code intelligence MCP server"
+description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 12 tools, all SQLite FTS5: no graph database, no embeddings."
+title: "solograph — portfolio index and agent memory over SQLite"
 created: 2026-02-07
-updated: 2026-10-26
-tags: [project, open-source, mcp, code-graph, falkordb, tree-sitter, python, rust]
+updated: 2026-10-27
+tags: [project, open-source, mcp, fts5, sqlite, tree-sitter, python, agent-memory]
 project_type: tool
 course_module: 6
 course_order: 4
@@ -13,29 +13,28 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: code graph (FalkorDB + tree-sitter, 83 projects) + FTS5 search over sessions/KB/sources, 13 tools; vectors removed in 0.7 after measuring them (0/40 recall, 14 s cold, hung source search)"
+index_line: "solograph: symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 tools, SQLite only. Vectors out in 0.7 (0/40 recall, 14 s cold); structural code graph out in 0.8 (0 structural questions in 4 months; grep matched a code-graph MCP in 8/8 runs)"
 index_section: "project"
 ---
 
 # Solograph
 
-Code intelligence MCP server for Claude Code: a tree-sitter code graph across every project in a portfolio, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram).
+MCP server for a portfolio of projects: one index of every repository's definitions and packages, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram). Everything is SQLite with FTS5.
 
 ```bash
 uv tool install solograph
 claude mcp add -s user solograph -- uvx solograph
-solograph-cli init ~/projects --deep
+solograph-cli init ~/projects
 ```
 
-## 13 MCP tools
+## 12 MCP tools
 
 | Tool | What it answers |
 |------|-----------------|
-| `codegraph_query` | Read-only Cypher over the code graph |
-| `codegraph_stats` | Counts of projects, files, symbols, packages, sessions, edges |
-| `codegraph_explain` | Architecture of one project: stack, layers, hub files, dependencies |
-| `codegraph_repomap` | Aider-style map of a project's most important files and symbols |
-| `codegraph_shared` | Packages used by more than one project |
+| `symbol_search` | Where something is defined, across every project: "montage profile" finds `resolve_montage_profile` and `MontageProfile` |
+| `codegraph_explain` | What one project is made of: stack, languages, layers, patterns, dependencies |
+| `codegraph_shared` | Packages used by more than one project, or every project using a given one |
+| `codegraph_stats` | Counts: projects, files, symbols by kind, packages |
 | `project_info` | Registry entry for a project |
 | `session_search` | Every past prompt and answer, including transcripts Claude Code already deleted |
 | `kb_search` | Markdown knowledge base: frontmatter title, type, tags, body |
@@ -45,27 +44,16 @@ solograph-cli init ~/projects --deep
 
 Web search lives in a separate searxng MCP server, so a broken import in one cannot take the other down.
 
-## Architecture
+## How it works
 
-- **Code graph:** FalkorDBLite (embedded, no Docker). tree-sitter parses Python, Swift, TypeScript, Kotlin, Rust and more into Project → File → Symbol, with imports, calls, inheritance and package dependencies. A nightly job merges new checkouts into the registry and rescans what git says changed: 83 projects, 113k symbols, 781k call edges.
-- **Search:** SQLite FTS5, BM25, Snowball stems for Russian and English sent as prefix terms. Every index stats its source files before answering and re-reads only what changed, so there is no reindex step.
+- **Portfolio:** tree-sitter reads function, class and protocol definitions from 15 languages; manifests give the packages. Symbol names are indexed by their words (camelCase and snake_case split), so a phrase finds every spelling, and a definition in a sibling repository shows up next to the one in front of you. A scan re-reads a file only when its mtime or size changed: all 77 projects from scratch in 38 seconds, an untouched portfolio in about 7.
+- **Search:** SQLite FTS5, BM25, Snowball stems for Russian and English sent as prefix terms. Every index stats its source files before answering, so there is no reindex step.
 
-```
-Project ──HAS_FILE──→ File ──DEFINES──→ Symbol
-   │                    │                  │
-   └──DEPENDS_ON──→ Package          INHERITS/CALLS
-                       ↑
-Session ──EDITED──→ File
-```
+## What was cut, and the numbers behind it
 
-```cypher
--- What breaks if I change this file?
-MATCH (f:File {path: 'lib/utils.ts'})<-[:IMPORTS*1..3]-(dep:File) RETURN dep.path
-```
+solograph started as a FalkorDB code graph with vector search on top. In October 2026 both were measured on the live machine, and both went.
 
-## 0.7: the vectors came out
-
-Until October 2026 every search in solograph was an embedding search (multilingual-e5-small on MLX, FalkorDB vector indexes). A review measured each part on the live machine, and the graph was the only part that worked:
+**0.7: the vectors.**
 
 | | Vector version | FTS5 version |
 |---|---|---|
@@ -73,11 +61,19 @@ Until October 2026 every search in solograph was an embedding search (multilingu
 | Why | index held 640 sessions, disk 633, **overlap zero**: Claude Code deletes transcripts after 30 days and nothing re-read the disk | syncs before every search; deleted transcripts stay as archive |
 | KB search, cold | 14 s, top hit always "relevance 1.0" (it was rank position), first result for "tree-sitter code graph" an Amazon page snapshot | 66 ms, BM25 score, hidden dirs skipped |
 | Source search | hung past 120 s | 16 ms median |
-| Environment | 862 MB (torch) | 149 MB |
 
-Other things the review found: `session_search` had failed on every MCP call for seven weeks (a `-> list[dict]` annotation on a function returning a dict; its tests called the function directly, never through the protocol); the nightly refresh had scanned zero projects for 70 nights after Homebrew dropped PyYAML from its python, and logged "done" each time; `codegraph_query` accepted writes; 40 checkouts were missing from the registry.
+**0.8: the structural graph.** 781k call edges, imports, inheritance, session→file and git edges. In four months agents asked it nothing structural: five calls in total, every one "list the projects" or stats. Grep answers those questions as well. A benchmark on video-analyzer (1,100 files, Rust + Swift), `claude -p` with a dedicated code-graph MCP ([colbymchenry/codegraph](https://github.com/colbymchenry/codegraph)) against plain Grep/Read, answers checked against ripgrep:
 
-The lesson is not "vectors are bad". It is that an index nobody measures drifts silently, and that for an agent's own history and notes, lexical search plus freshness beats semantic search on a stale index. The same convergence shows up across the [[code-graph-mcp-landscape|code-graph tools on GitHub]]: tree-sitter + SQLite FTS5, embeddings optional.
+| Question | Accuracy | Cost (median) | Tool calls |
+|---|---|---|---|
+| Call chain to `plan_montage` | same, 4/4 each | $1.73 vs $2.07 | 16.5 vs 25 |
+| Impact of changing `resolve_montage_profile` | same, 4/4 each | $0.69 vs $0.65 | — |
+
+A 16% saving on one kind of question did not justify a second tool and a second index per repository. What grep cannot do is look across repositories, so that is what stayed. The environment went from 862 MB (torch, FalkorDB) to 89 MB.
+
+Other things the review found: `session_search` had failed on every MCP call for seven weeks (a `-> list[dict]` annotation on a function returning a dict; its tests never went through the protocol); the nightly refresh had scanned zero projects for 70 nights after Homebrew dropped PyYAML from its python, and logged "done" each time; `codegraph_query` accepted writes; 40 checkouts were missing from the registry.
+
+The lesson is not "vectors are bad" or "graphs are bad". It is that an index nobody measures drifts silently, and that a feature nobody calls is cost without benefit. The same convergence shows up across the [[code-graph-mcp-landscape|code-graph tools on GitHub]]: tree-sitter + SQLite FTS5, embeddings optional.
 
 ## Sessions as an archive
 
@@ -85,12 +81,12 @@ Claude Code keeps transcripts 30 days. The session index keeps their text after 
 
 ## Why it matters
 
-Solograph implements [[context-graphs-summary|context graphs]] for code: every session is a [[decision-traces-compound|decision trajectory]] linked to the files it touched. As a [[agent-memory-architecture|memory system]]: episodic memory (session_search), reference memory (kb_search), structural memory (the code graph).
+As a [[agent-memory-architecture|memory system]]: episodic memory (session_search), reference memory (kb_search), and a map of everything already written across the portfolio (symbol_search), which is how [[decision-traces-compound|past decisions compound]] instead of being rewritten.
 
 ## Links
 
 - [GitHub](https://github.com/fortunto2/solograph) — MIT, Python, PyPI
-- [[codegraph-guide]] — architecture and usage guide
+- [[codegraph-guide]] — usage guide
 - [[code-graph-mcp-landscape]] — the tools solograph sits among, October 2026
 - [[graphify-vs-solograph]] — the closest competitor and what to take from it
 - [[agent-toolkit-landscape]] — where solograph fits in the ecosystem
