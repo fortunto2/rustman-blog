@@ -108,3 +108,4 @@ Started in 2014 as a website. The first version reached 1M+ users, but the techn
 - [[offline-dream-instanternity-stanford-2026]]: Ljubljana philosophers at Stanford, Oct 2026; Kolenc answered my question (we are both authors and spectators of our lives, the stored gap breeds anxiety), Simoniti on the shot the story cannot explain and endings inside or outside time
 - [[shot-detection-phone-footage-no-cuts]]: sixteen detectors and TransNetV2 on two hand-labelled phone days; zero cuts found at the beach, because a phone day is takes, not edits
 - [[apple-on-device-agent-sgr]]: Apple's on-device 3B as the Life2Film agent: 11 of 24 plans right as free text, 24 of 24 with one schema and a code check (tuned; held-out batch started at 2 of 8)
+- [[on-device-beat-tracking-downbeats]]: the montage's DSP beat tracker found downbeats at F 0.08; Beat This! ported to the iPhone reaches 0.846 on eight excerpts, and the app does not use it yet
