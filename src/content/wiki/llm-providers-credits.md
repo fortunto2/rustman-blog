@@ -205,12 +205,15 @@ DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10
 | Model | 100M cost | vs Qwen3 235B |
 |-------|----------|---------------|
 | **Qwen3 235B** (open, DeepInfra) | **$17** | baseline |
-| **Claude Haiku 5.5** (Anthropic, Oct 2026) | **$18** | 1.1x |
+| **Claude Haiku 5.5** (Anthropic, Oct 2026; prompts up to 100K) | **$18** | 1.1x |
+| **Claude Haiku 5.5** (prompts over 100K, $0.50 / $2.50) | **$90** | 5.3x more |
 | **Gemini 2.5 Flash** (Google) | **$132** | 8x more |
 | **Claude Sonnet 5.5** (Anthropic, Oct 2026) | **$360** | 21x more |
 | **GPT-5** (OpenAI) | **$700** | 41x more |
 | **Claude Opus 5.5** (Anthropic, Oct 2026) | **$720** | 42x more |
 | **Claude Fable 5.1** (Anthropic, Oct 2026) | **$1,800** | 106x more |
+
+Read the table with three caveats. Anthropic rows are October 2026 list prices; Gemini 2.5 Flash, GPT-5 and the open models are the April 2026 snapshot, so the gaps between vendors are older than they look. Agent prompts often run past 100K tokens, where Haiku 5.5 costs five times its headline rate — "as cheap as Qwen" holds only for short prompts. And none of these rows include prompt caching: an agent loop re-sends the same prefix every turn, and Anthropic's cache reads cost $0.20/M on Opus 5.5 and Sonnet 5.5 ($0.25/M on Fable 5.1) instead of $4 or $2, which moves the bill more than switching models does.
 
 ### Speed Leaderboard (custom hardware)
 
