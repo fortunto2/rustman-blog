@@ -95,7 +95,15 @@ Claude Code keeps transcripts 30 days. The session index keeps their text after 
 
 ## The knowledge base: one engine
 
-Until Oct 2026 the same wiki was indexed four times: solograph for `kb_search`, a Python FTS index for `make wiki-search`, a third for the prompt hint, and a JSON link graph a script rebuilt (it sat at 36 nodes for eight months while the wiki passed 160 pages). Now one index serves all of it, synced before every call: `solograph kb [--path wiki/]`, `solograph kb-graph` (hubs, orphans, broken links, pages missing from the catalog, backlinks), and `solograph kb-hint` behind the UserPromptSubmit hook (22 ms median). The wiki scripts became thin callers.
+Until Oct 2026 the same wiki was indexed four times: solograph for `kb_search`, a Python FTS index for `make wiki-search`, a third for the prompt hint, and a JSON link graph a script rebuilt (it sat at 36 nodes for eight months while the wiki passed 160 pages). Now one index serves all of it, synced before every call: `solograph kb [--pages]`, `solograph kb-graph` (hubs, orphans, broken links, pages missing from the catalog, backlinks; `--check` fails on any, and that exit code is the pre-commit gate), and `solograph kb-hint --hook`, registered as the UserPromptSubmit hook itself.
+
+The engine knows no KB's layout: a KB states it in `.solograph.yaml` (`kb: pages, stacks, exclude`). Here that excluded a gitignored client checkout that was 949 of the 1187 directories every sync walked:
+
+| | before | after |
+|---|---|---|
+| KB search, median | 60-70 ms | 12 ms |
+| MCP `kb_search` | 48 ms | 15 ms |
+| prompt hook, end to end | 74 ms (a Python wrapper, then the binary) | 19-35 ms (the binary, syncing only `wiki/`) |
 
 Each layer was kept only with its measured delta, as the Epiphan knowledge agent did, on a known-answer set (`scripts/kb_eval.py`):
 

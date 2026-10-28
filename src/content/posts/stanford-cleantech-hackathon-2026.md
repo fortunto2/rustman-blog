@@ -85,7 +85,7 @@ My read of each project from its page and pitch. Strong is what I would copy; un
 
 ### Ours: Crew Air
 
-**Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Code:** [github.com/fortunto2/stanford-cleantech-2026](https://github.com/fortunto2/stanford-cleantech-2026) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air) · **iPhone app:** App Review turned down the first submission on 26 October; it goes back in, and the link goes here once it is live.
+**Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Code:** [github.com/fortunto2/stanford-cleantech-2026](https://github.com/fortunto2/stanford-cleantech-2026) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air)
 
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 
@@ -203,7 +203,7 @@ We did not make the finals. A hardware concept added on the last morning took th
 
 ![Crew Air pitch deck, slide 4: a drone carrying a PM2.5 sensor over a smoky road beside a power line, the hardware concept that took over the Q&A](/images/posts/stanford-cleantech-hackathon-2026/crew-air-drone-concept.jpg)
 
-Crew Air stays a free tool for outdoor crews in California, with no business around it. Site and API are live at [airsignal.app/crew](https://airsignal.app/crew). The iPhone app was turned down in App Review on 26 October and goes back in. That evening I added two ideas from other teams: a calendar file of the shift plan (GridLight) and a deterministic backup-battery calculator (matcha).
+Crew Air stays a free tool for outdoor crews in California, with no business around it. Site and API are live at [airsignal.app/crew](https://airsignal.app/crew). That evening I added two ideas from other teams: a calendar file of the shift plan (GridLight) and a deterministic backup-battery calculator (matcha).
 
 Two ideas from the event stay on the list as plans, not results. One is the drone from the deck: a Schneider Electric building air-quality sensor (SpaceLogic PM2.5) flown to the spot a crew is about to be sent to, so the reading comes from the work site and not from a monitor up to 48 km away. The other is a signal in the API that lets energy storage at stations and in buildings charge ahead of a smoke event.
 
