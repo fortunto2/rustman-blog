@@ -31,8 +31,10 @@ export const SITE = {
   social: {
     github: 'https://github.com/fortunto2',
     linkedin: 'https://www.linkedin.com/in/rustam-salavatov/',
-    telegram: 'https://t.me/life2film',
+    telegram: 'https://t.me/deeplearning_ru',
+    telegramPersonal: 'https://t.me/life2film',
     youtube: 'https://www.youtube.com/@SuperDuperStartup',
+    youtubeLife: 'https://www.youtube.com/@salavatov',
     instagram: 'https://instagram.com/life2film',
   },
 } as const;
@@ -45,11 +47,11 @@ export const HERO_CARDS = [
   },
   {
     title: 'Solo Factory',
-    description: '30 executable skills for Claude Code. Research → validate → build → deploy → launch',
+    description: '57 executable skills for Claude Code. Research → validate → build → deploy → launch',
     href: '/projects/project-solo-factory',
   },
   {
-    title: 'SuperDuper DSP: 35 free audio plugins',
+    title: 'SuperDuper DSP: 36 free audio plugins',
     description: 'EQ, compressors, reverbs, vocal tools, 7 instruments. CLAP/VST3/AU, one installer, an AI agent can mix with them',
     href: '/projects/project-superduper-dsp',
   },
