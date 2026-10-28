@@ -202,6 +202,11 @@ Acceptance Criteria:
 
 After updating checkboxes, commit: `git add docs/plan/*/spec.md && git commit -m "docs: update spec checkboxes (verified by review)"`
 
+**Three rounds, then a human.** When the author pushes back on a finding and the
+same finding comes back a third time, do not open a fourth round: put it in the
+report under **Needs a human decision** with both positions and the one fact that
+would settle it, and leave the verdict at FIX FIRST for that item only.
+
 ### 6. Code Quality Spot Check
 
 Read 3-5 key files (entry points, API routes, main components):

@@ -319,6 +319,12 @@ When all phases and tasks are `[x]`:
   - Update spec.md checkboxes: `- [ ]` → `- [x]` for verified criteria.
   - If any criterion FAILS → do NOT mark plan complete. Fix or note the failure.
   - Commit spec updates: `git add docs/plan/*/spec.md && git commit -m "docs: update spec checkboxes (verified by build)"`
+- **Map every criterion to the test that proves it.** Print one table in the summary,
+  `criterion → test (file::name) → last result`. A criterion with no test is a red
+  check, listed by name under **UNPROVEN**, even if the code looks right; a test that
+  never ran in this session counts as no test. Criteria a test cannot reach (a store
+  listing, a human sign-off) are listed as `manual: <who checks it>`, never silently
+  ticked. Why: a checkbox ticked by reading code is the agent grading its own claim.
 
 ### Build failure escalation
 
@@ -430,6 +436,7 @@ These thoughts mean STOP — you're about to cut corners:
 7. **Keep test output concise** — when running tests, pipe through `head -50` or use `--reporter=dot` / `-q` flag. Thousands of test lines pollute context. Only show failures in detail. If output is large, use observation masking (write to `scratch/`, keep summary).
 8. **Verify before claiming done** — run the actual command, read the full output, confirm success BEFORE marking a task complete. Never say "should work now".
 9. **Recite the plan** — re-read plan.md at the start of each task. Don't rely on memory of what comes next.
+10. **Three rounds, then a human** — when a reviewer (agent, `/review`, `/code-review`) and the author keep answering the same finding, stop after the third round on it: write the finding, both positions and what would settle it, and hand the decision to the human. A fourth round costs a context and decides nothing.
 
 ## Common Issues
 

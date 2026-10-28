@@ -228,7 +228,7 @@ It stays silent unless a prompt names something your wiki is specifically about,
 
 - **Russian over the whole knowledge base is still weak.** Inside the wiki a Russian question finds its English page 21 times in 22; across everything, 7 in 22, because Russian notes elsewhere match Russian words first. Scoping is a workaround, and `kb_search` without a scope is what agents call most.
 - **The alias table is kept by hand.** 315 groups today, added by the skills that write wiki pages. A missing group is a silent miss.
-- **The evals are wiki-shaped.** Most queries were generated from wiki pages, and only 10 are real agent queries. The next step is to log real `kb_search` calls and grade them.
+- **The evals are wiki-shaped.** Most queries were generated from wiki pages, and only 10 are real agent queries. Since 0.11 every MCP call and hook run is logged (`solograph usage`: calls per tool, the queries that found nothing, the slowest), so the next eval set can come from real queries; grading them is still to do.
 - **Old pieces linger.** Six MCP servers started before the rewrite still read the previous index file until their sessions end.
 - **Graphify's other ideas are still untaken:** marking which links were written and which were inferred, and short and long versions of a project summary so an agent can stop early.
 
