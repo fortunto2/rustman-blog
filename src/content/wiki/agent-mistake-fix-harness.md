@@ -37,3 +37,5 @@ The anti-pattern: manually cleaning up "AI slop." OpenAI found that 20% of time 
 - [[kill-iterate-scale]] — same philosophy: predetermined rules remove human judgment from repetitive decisions
 
 [[cheap-model-delegation-boundary]] — this principle applied to cost rather than correctness: Portal does not ask the agent to use the cheap model for big files, it BLOCKS the read with a PreToolUse hook and redirects it.
+
+- [[running-production-with-agents-2026]] — the same ratchet seen from production SRE: teams that remove the capability (a deploy target that cannot expose an app, a governor on agent tool calls) instead of writing a rule, and our gaps against that

@@ -124,3 +124,5 @@ I recorded the session on a DJI camera from the audience. The audio was transcri
 Quotes come from the transcript with the time in the video. Numbers are as he said them, and the predictions are his, not established facts. Audience members who asked questions are not named. Seven shorts were cut from the same transcript by a script, a hook on top, one or two English words at a time in the middle and the Russian line below; the two public ones are embedded above. The video was edited with [[project-life2film]], and the transcription workflow is in [[creative-video-transcribe]].
 
 Related, from the same week of SF Tech Week: [[neon-personal-agents-life2film-director-2026]] (4 Oct) and [[cyberdefense-hackathon-screenshield-2026]] (9 Oct).
+
+Later the same month: [[running-production-with-agents-2026]], the SRE side of agents in production (27 Oct).

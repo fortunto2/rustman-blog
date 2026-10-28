@@ -45,3 +45,5 @@ Predictions: harness as new service templates, tech stack convergence toward AI-
 [[agent-native-format-choice]] — the same argument applied to generated video: a deterministic renderer makes a wrong output detectable without a human watching it, which is what stops review cost eating the generation saving.
 
 - See also: [[effect-ts-for-agents]] — Effect, the TypeScript reliability layer around execution, and when it is worth its learning curve.
+
+- See also: [[running-production-with-agents-2026]] — a Rootly panel (PostHog, WorkOS, NVIDIA, Replit) on delegating by reversibility, three reviewers per PR, reviewing the spec instead of the diff, and an external governor on agent tool calls

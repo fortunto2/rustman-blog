@@ -35,3 +35,5 @@ LLM agents (Claude Code, Codex, Gemini CLI) run with full filesystem access. San
 - [[harness-engineering-summary]] — sandbox is an architectural constraint (component 2) for agent safety
 - [[agent-self-discipline]] — sandboxing is the external guardrail when internal discipline isn't enough
 - [[cloudflare-computer-agent-runtime]] — the same isolation at cloud scale, where the driver is unit economics rather than trust: an isolate per agent instead of a VM per agent
+
+- [[running-production-with-agents-2026]] — sandboxing bounds the damage on one machine; the panel's governor bounds it across every agent and system, with one permission graph and one log
