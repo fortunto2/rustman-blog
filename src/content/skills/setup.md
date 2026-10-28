@@ -69,11 +69,16 @@ If MCP tools are not available, fall back to reading local files only.
    # Workflow — {ProjectName}
 
    ## TDD Policy
-   **Moderate** — Tests encouraged but not blocking. Write tests for:
+   **Moderate** — design first (data model, edge cases, contracts), then code and tests
+   together at agreed seams. No agent-run red-green ritual. Write tests for:
    - Business logic and validation
    - API route handlers
    - Complex algorithms
    Tests optional for: UI components, one-off scripts, prototypes.
+   Regression check: the stack's mutation tool (mutmut / Stryker / cargo-mutants) on changed
+   business logic at the end of a phase, where installed.
+   Switch to **Strict** only if a human writes or reviews each failing test before the
+   implementation.
 
    ## Test Framework
    {from package manifest devDeps: vitest/jest/pytest/xctest}

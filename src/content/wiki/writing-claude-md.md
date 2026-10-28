@@ -48,7 +48,7 @@ Each level adds context. Global is terse (language, stack, methodology). Workspa
 ```markdown
 ## Methodology
 Ref: `~/startups/solopreneur/solo-factory/templates/principles/dev-principles.md`
-- **TDD:** Red→Green→Refactor
+- **Tests:** design first, code + tests at agreed seams; red-green only for tests a human owns
 - **Schemas First:** Read Models/schemas/types/ before any work
 ```
 

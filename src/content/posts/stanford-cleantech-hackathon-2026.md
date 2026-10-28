@@ -11,6 +11,9 @@ devpost_url: "https://devpost.com/software/crew-air"
 tags: [hackathon, climate, cleantech, energy, public-data, validation, air-quality]
 publish: true
 publish_as: post
+people:
+  - "Kevin Kopczynski"
+  - "Ajay Gupta"
 learned_from: "Stanford Cleantech Hackathon 23-24 Oct 2026: investor panel, finalist pitches and Earth Engine workshop recorded on DJI, transcribed with large-v3 and corrected; mentor conversations via supervox; all 19 Devpost project pages"
 index_line: "Post: Stanford Cleantech Hackathon 2026, technical survey. GridLight (CAISO g/kWh), Griddy (chained XGBoost, held-out regions), Shadow Plan (CPUC plan vs CAISO delays), FlareWise (DBSCAN + Gaussian plume on ERA5, 180° wind test), Chill Factor (leave-one-out), Dengai (OR-Tools orienteering), heat plan audit (blind LLM coder, kappa), WattNext, ResilienceOS, Pismo, Crew Air. Panel: data-center load, adaptation, asset owners; red flags utilities, subsidy, AI where physics would do."
 index_section: "concept"

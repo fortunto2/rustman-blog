@@ -53,9 +53,9 @@ not prevent the tautological test: one TDD run computed its "expected" value by
 re-running the implementation. That is the third of the four lying tests in
 `skills/build/references/tdd-seams.md`.
 
-Our `/solo:build` says "a test that has never been red proves nothing." That holds for a
+`/solo:build` used to say "a test that has never been red proves nothing." That holds for a
 human. For an agent the stronger statement holds: a test the agent saw go red proves
-nothing either.
+nothing either. The line was removed on 27 Oct 2026.
 
 ## Rule
 
@@ -80,12 +80,16 @@ nothing either.
   of this applies. Seam-first and vertical slices in [[dev-principles-summary]] are about
   *what* gets tested and stay as they are.
 
-## What it touches here
+## Adopted here, 27 Oct 2026
 
-[[writing-claude-md]] and [[dev-principles-summary]] teach Red→Green→Refactor as a
-default. [[cli-first-testing]] stays: `make integration` is a sensor with a human-owned
-expectation. And [[agent-mistake-fix-harness]] applies: a procedure that drifts across
-model releases belongs in the harness, not the prompt.
+The rule above replaced Red→Green→Refactor as the default everywhere it was written: the
+personal CLAUDE.md, solo-factory's `dev-principles.md`, `/solo:build` 2.4.0 (strict = the
+user approves each failing test; moderate, the default = design first, code and tests
+together at agreed seams, a mutation check per phase), `/solo:setup` and `/solo:init`.
+[[dev-principles-summary]] and [[writing-claude-md]] follow. [[cli-first-testing]] stays as
+it was: `make integration` is a sensor with a human-owned expectation. And
+[[agent-mistake-fix-harness]] applies: a procedure that drifts across model releases
+belongs in the harness, not the prompt.
 
 ## Learned from
 
