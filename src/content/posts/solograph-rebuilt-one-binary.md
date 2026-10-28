@@ -226,7 +226,7 @@ It stays silent unless a prompt names something your wiki is specifically about,
 
 ## What is still open
 
-- **Russian over the whole knowledge base is still weak.** Inside the wiki a Russian question finds its English page 21 times in 22; across everything, 7 in 22, because Russian notes elsewhere match Russian words first. Scoping is a workaround, and `kb_search` without a scope is what agents call most.
+- **Russian over the whole knowledge base is better, not solved.** Inside the wiki a Russian question finds its English page 21 times in 22. Across everything it was 6 in 22, because Russian notes elsewhere matched first; since 0.13 a search with no scope takes the whole KB and the wiki in turn, and finds it 16 times in 22 (14 of 22 on questions written after tuning), while 40 questions about notes outside the wiki lose one place in the top 5. A boost for wiki pages was tried first and dropped: the page was not even in the top 30.
 - **The alias table is kept by hand.** 315 groups today, added by the skills that write wiki pages. A missing group is a silent miss.
 - **The evals are wiki-shaped.** Most queries were generated from wiki pages, and only 10 are real agent queries. Since 0.11 every MCP call and hook run is logged (`solograph usage`: calls per tool, the queries that found nothing, the slowest), so the next eval set can come from real queries; grading them is still to do.
 - **Old pieces linger.** Six MCP servers started before the rewrite still read the previous index file until their sessions end.
