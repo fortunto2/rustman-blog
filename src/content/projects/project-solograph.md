@@ -3,7 +3,7 @@ type: concept
 description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 12 tools, all SQLite FTS5: no graph database, no embeddings."
 title: "solograph — portfolio index and agent memory over SQLite"
 created: 2026-02-07
-updated: 2026-10-27
+updated: 2026-10-28
 tags: [project, open-source, mcp, fts5, sqlite, tree-sitter, python, agent-memory]
 project_type: tool
 course_module: 5
@@ -13,7 +13,7 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 MCP tools, the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9"
+index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 MCP tools, the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5"
 index_section: "project"
 ---
 
@@ -38,7 +38,7 @@ claude mcp add -s user solograph -- ~/.solo/bin/solograph
 | `codegraph_stats` | Counts: projects, files, symbols by kind, packages |
 | `project_info` | Registry entry for a project |
 | `session_search` | Every past prompt and answer, including transcripts Claude Code already deleted |
-| `kb_search` | Markdown knowledge base: frontmatter title, type, tags, body |
+| `kb_search` | Markdown knowledge base: title and summary fields above the body, `path` to scope it (`wiki/`), `expand_graph` for up to 3 pages linked by `[[wikilinks]]`; Russian words reach English pages through the KB's alias table |
 | `source_search` | YouTube transcripts (timestamped links), ProductHunt, TrustMRR, Telegram |
 | `source_list` / `source_tags` / `source_related` | What is indexed, topics, related videos |
 | `web_fetch` | A URL as text |
@@ -92,6 +92,20 @@ The lesson is not "vectors are bad" or "graphs are bad". It is that an index nob
 ## Sessions as an archive
 
 Claude Code keeps transcripts 30 days. The session index keeps their text after that, marked `transcript: deleted`; live ones come with a `claude --resume` command. Transcripts are append-only, so a grown one is read from its last byte offset: live transcripts reach 400 MB, and a resync costs ~10 ms. Batch runs from temp directories (`claude -p` from `/tmp`, agent scratchpads, 322 of 633 transcripts here) are left out; a folder with `.solograph-private` or Spotlight's `.metadata_never_index` keeps its sessions out entirely.
+
+## The knowledge base: one engine
+
+Until Oct 2026 the same wiki was indexed four times: solograph for `kb_search`, a Python FTS index for `make wiki-search`, a third for the prompt hint, and a JSON link graph a script rebuilt (it sat at 36 nodes for eight months while the wiki passed 160 pages). Now one index serves all of it, synced before every call: `solograph kb [--path wiki/]`, `solograph kb-graph` (hubs, orphans, broken links, pages missing from the catalog, backlinks), and `solograph kb-hint` behind the UserPromptSubmit hook (22 ms median). The wiki scripts became thin callers.
+
+Each layer was kept only with its measured delta, as the Epiphan knowledge agent did, on a known-answer set (`scripts/kb_eval.py`):
+
+| Layer | body words, top-1 /40 | summary words, top-1 /25 | real agent queries, top-1 /10 | Russian → English page, top-5 /22 |
+|---|---|---|---|---|
+| title + body index (before) | 29 | 18 | 7 | 0 |
+| title / summary fields / body, BM25 2-2-1, file name as a field | 31 | 22 | 7 | 0 |
+| + alias table, one way | 31 | 22 | 8 | 4 (21 with `path wiki/`) |
+
+Body-word top-5 lost one query (38 → 37, a rank 5 that became 7) with the field split itself: it happens at weights 1-1-1 too. The alias table first expanded both ways and sent English queries to Russian documents (top-1 31 → 24); one way, from other spellings to the term the wiki writes, left every English set untouched. Over the whole KB a Russian question still lands on Russian docs first, which is why the wiki tools scope to `wiki/`.
 
 ## Why it matters
 
