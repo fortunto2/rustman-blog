@@ -59,7 +59,7 @@ This is the same concern [[token-efficient-web-requests]] raises for web fetchin
 
 | Need | Tool |
 |------|------|
-| Persistent logged-in Chrome profile, personal agent | [[browser-automation-cdp]] (Playwright + `connect_over_cdp`) |
+| Persistent logged-in Chrome profile, personal agent | a real Chrome over CDP (Playwright + `connect_over_cdp`) |
 | Ephemeral automation in an agent workflow, want ref-based UI interaction | **agent-browser** |
 | MCP integration into Claude Code / Cursor | Playwright MCP (still the path if you want MCP specifically) |
 | Cloud-native scaled browser fleet | Browserless / Browserbase / Kernel — agent-browser lists integrations |
@@ -79,7 +79,7 @@ The common thread: **the AI-native rewrite wins when the old tool was designed f
 
 ## See Also
 
-- [[browser-automation-cdp]] — complementary: personal persistent Chrome via CDP+Playwright. Same protocol, different use case
+- A persistent logged-in Chrome driven over CDP with Playwright is the complement: same protocol, different use case
 - [[agent-toolkit-landscape]] — where agent-browser sits (integration layer)
 - [[fff-agent-file-search]] — parallel rewrite at the file-search layer
 - [[design-md-spec]] — parallel rewrite at the design-system layer

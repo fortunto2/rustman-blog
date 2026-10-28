@@ -318,4 +318,4 @@ I recorded the keynote and the closing ceremony with [[project-supervox]], and a
 
 Related: [[stanford-cleantech-hackathon-2026]] (the day before), [[dell-nvidia-gb10-hackathon-2026]]
 (the same day, in SF), [[hackathons]] (all of them), [[agent-mistake-fix-harness]] (the same lesson as
-muselet's postmortem), [[semantica-decision-provenance]], [[link-radar]].
+muselet's postmortem), [[semantica-decision-provenance]].

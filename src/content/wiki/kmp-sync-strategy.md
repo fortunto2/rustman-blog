@@ -3,6 +3,7 @@ type: summary
 description: "For family/cross-platform apps needing offline-first sync between Android + iOS: Supabase + PowerSync is the recommended stack. MongoDB Realm Sync was deprec..."
 title: "KMP sync — Supabase + PowerSync for offline-first cross-platform"
 created: 2026-04-07
+updated: 2026-10-27
 tags: [kotlin, kmp, sync, offline-first, supabase, powersync, mobile]
 publish: true
 source_path: "1-methodology/sync-strategy.md"
@@ -24,6 +25,10 @@ For family/cross-platform apps needing offline-first sync between Android + iOS:
 PowerSync maintains local SQLite on each device, syncs bidirectionally with Supabase Postgres. supabase-kt SDK (v3.3.0) provides full KMP support.
 
 If budget is tight and offline isn't critical: Firebase via GitLive SDK (simpler, online-first with cache).
+
+## What was actually built (Oct 2026)
+
+The recommendation above was never put into practice. Caretta Friends, the one KMP app in the portfolio ([[project-carettafriends]]), runs without PowerSync and without supabase-kt: the local store is a single JSON file written through okio, sync is raw PostgREST over ktor, pushed on every change and once on start, and auth is an anonymous GoTrue session. supabase-kt was skipped on purpose because of a Kotlin 2.3 ABI incompatibility, so "full KMP support" in the SDK did not hold for that build. PowerSync stays untested here; treat its row in the table as a vendor claim until a project measures it.
 
 ## Connections
 

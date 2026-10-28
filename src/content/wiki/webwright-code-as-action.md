@@ -79,12 +79,12 @@ This is the [[skills-standard]] pattern paying off in real life: one folder, fou
 
 The key contrast: [[vercel-agent-browser]] solves the same surface problem (browser primitives for LLMs) but in the opposite direction. Vercel's bet is *make the browser session better* — stable `@e1` refs, content boundaries, a persistent daemon. Webwright's bet is *make the browser session disposable* — keep the code, throw the browser away.
 
-Both can be right depending on the task. Short, stateful interactions (logged-in dashboards, multi-tab workflows where session continuity matters) favour Vercel's daemon model. Long-horizon, repeatable, parameterisable tasks (book a flight, scrape this listing, fill this form for 500 records) favour Webwright's script model. For our [[browser-automation-cdp|persistent Chrome + CDP setup]], Vercel's primitives map naturally; Webwright would be the layer on top when we want a reusable script as the deliverable.
+Both can be right depending on the task. Short, stateful interactions (logged-in dashboards, multi-tab workflows where session continuity matters) favour Vercel's daemon model. Long-horizon, repeatable, parameterisable tasks (book a flight, scrape this listing, fill this form for 500 records) favour Webwright's script model. For a persistent Chrome + CDP setup, Vercel's primitives map naturally; Webwright would be the layer on top when we want a reusable script as the deliverable.
 
 ## Connections
 
 - [[vercel-agent-browser]] — opposite stance: stable refs + persistent daemon. Webwright says throw the browser away, keep the code. Both rewrite browser primitives for LLMs, just in opposite directions
-- [[browser-automation-cdp]] — our personal CDP + persistent Chrome rig. Webwright's loop could sit on top: agent writes a script against our authenticated Chrome instance, script becomes the reusable artifact
+- A persistent logged-in Chrome over CDP is the natural base for it. Webwright's loop could sit on top: agent writes a script against our authenticated Chrome instance, script becomes the reusable artifact
 - [[hermes-agent]] — Webwright ships as a Hermes skill out of the box. Same `skills/webwright/` folder, no duplication
 - [[skills-standard]] — the SKILL.md cross-host pattern is what makes one folder install into Claude Code, Codex, OpenClaw, and Hermes simultaneously
 - [[claude-code-anatomy]] — same minimal-harness aesthetic: ~1.5k LoC, flat loop, run-artifacts on disk. Webwright is "Claude Code's design philosophy applied to web automation"

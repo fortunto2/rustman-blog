@@ -6,6 +6,7 @@
 
 import { readFileSync, readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
+import { mapOutsideCode } from '../src/lib/md.ts';
 
 const WIKI_DIR = join(import.meta.dirname, '..', '..', 'wiki');
 
@@ -32,8 +33,11 @@ for (const file of entries) {
   const text = readWikiFile(file);
   if (!text.includes('publish: true')) continue;
 
-  // Match [[slug]] and [[slug|label]], strip trailing backslashes from escaped brackets
-  const links = [...text.matchAll(/\[\[([^\]|\\]+)/g)].map(m =>
+  // Match [[slug]] and [[slug|label]], strip trailing backslashes from escaped brackets.
+  // Only outside code, the same rule the renderer follows.
+  const prose: string[] = [];
+  mapOutsideCode(text, part => (prose.push(part), part));
+  const links = [...prose.join('\n').matchAll(/\[\[([^\]|\\]+)/g)].map(m =>
     m[1].toLowerCase().trim().replace(/\s+/g, '-').replace(/\\$/, '')
   );
 

@@ -3,6 +3,7 @@ type: project
 title: "You2Idea — AI startup idea search from YouTube"
 description: "Search 700+ YouTube videos from 46 startup channels. AI extracts ideas, generates PRDs, maps topic clusters. Terminal-style hacker UI."
 created: 2026-03-01
+updated: 2026-10-27
 tags: [project, open-source, ai, youtube, search, astro, startup-ideas]
 project_type: product
 publish: true
@@ -38,18 +39,18 @@ Hacker aesthetic: green-on-black CRT terminal, JetBrains Mono, scanline effects,
 
 **Frontend:** Astro 5 (SSG + SSR), Tailwind CSS 4, Fuse.js (client-side fuzzy search), Graphology (graph visualization), HuggingFace Transformers (browser-side embeddings).
 
-**Backend:** Python 3.13 + Temporal (daily pipeline), FalkorDB (graph DB), yt-dlp (transcript extraction).
+**Backend:** Python 3.13 + Temporal (daily pipeline on a VPS), solograph's source store (SQLite FTS5, `search.db`), yt-dlp (transcript extraction).
 
 **Infra:** Cloudflare Pages + Workers + R2 (subtitles, data files).
 
 ## Data Pipeline
 
-Video data is pre-exported from FalkorDB (indexed by solograph) as JSON files:
+Video data is pre-exported from solograph's source store (`search.db`, SQLite, read-only) as JSON files:
 - `src/data/videos.json` -- channels, recent videos, tags, stats (33KB)
 - `public/data/all-videos.json` -- all 727 videos with chapters for search (681KB, lazy-loaded)
 
 ```bash
-make export   # Export fresh data from FalkorDB
+make export   # Export fresh data from search.db
 make update   # Export -> build -> deploy (one command)
 ```
 
@@ -87,7 +88,7 @@ ssh google 'cd ~/you2idea-cron && docker compose up -d --build'
 
 | Host path | Purpose |
 |-----------|---------|
-| `./data/youtube/` | FalkorDB graph.db (325MB) |
+| `./data/sources/` | solograph source store `search.db` (SQLite, ~180 MB) |
 | `./data/wrangler/` | Wrangler OAuth tokens |
 | `./data/vtt/` | ~750 VTT subtitle files |
 

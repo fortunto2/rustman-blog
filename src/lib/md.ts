@@ -133,12 +133,30 @@ function sectionOf(slug: string): string {
   return LINK_SECTIONS.find(s => existsSync(join(dir, s, `${slug}.md`))) ?? 'wiki';
 }
 
+export const WIKILINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+
+// Code is literal: `[[agent.menu]]` in a TOML sample is an array of tables, not a link.
+// Applies fn to the text outside fenced blocks and inline code spans only.
+export function mapOutsideCode(content: string, fn: (text: string) => string): string {
+  let fence: string | null = null;
+  return content.split('\n').map(line => {
+    const m = line.match(/^\s*(```|~~~)/);
+    if (m) {
+      if (!fence) fence = m[1];
+      else if (m[1] === fence) fence = null;
+      return line;
+    }
+    if (fence) return line;
+    return line.split(/(`[^`]*`)/).map((part, i) => (i % 2 ? part : fn(part))).join('');
+  }).join('\n');
+}
+
 export function processWikilinks(content: string): string {
-  return content.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, slug, label) => {
+  return mapOutsideCode(content, text => text.replace(WIKILINK, (_, slug, label) => {
     const display = label || slug;
     const s = slug.toLowerCase().replace(/\s+/g, '-');
     return `[${display}](/${sectionOf(s)}/${s})`;
-  });
+  }));
 }
 
 export function renderMarkdown(raw: string): Post & { slug: string } {

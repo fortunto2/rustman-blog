@@ -3,6 +3,7 @@ type: catalog
 title: "LLM providers & startup credits — where to get models, free tiers, and funding"
 description: "Catalog of LLM providers with free tiers, startup credit programs, and open-source models. From $0 to scale."
 created: 2026-04-09
+updated: 2026-10-27
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
 publish: true
 index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits (Modal $25K, OpenAI, Anthropic, GCP), open models, cost strategy"
@@ -96,15 +97,17 @@ Start building today for $0.
 
 ## Inference Pricing ($/1M tokens, Apr 2026)
 
-Prices dropped ~80% in 12 months. Format: input / output.
+Prices dropped ~80% in 12 months. Format: input / output. Anthropic rows updated 27 Oct 2026 from Anthropic's price list; the rest is the April 2026 snapshot.
 
 ### Frontier (closed)
 
 | Provider | Model | Input | Output |
 |----------|-------|-------|--------|
 | **OpenAI** | GPT-5 | ~$5 | ~$15 |
-| **Anthropic** | Claude Opus 4 | ~$15 | ~$75 |
-| **Anthropic** | Claude Sonnet 4 | ~$3 | ~$15 |
+| **Anthropic** | Claude Fable 5.1 (Oct 2026) | $10 | $50 |
+| **Anthropic** | Claude Opus 5.5 (Oct 2026) | $4 | $20 |
+| **Anthropic** | Claude Sonnet 5.5 (Oct 2026) | $2 | $10 |
+| **Anthropic** | Claude Haiku 5.5 (Oct 2026, prompts up to 100K; $0.50 / $2.50 beyond) | $0.10 | $0.50 |
 | **Google** | Gemini 2.5 Pro | ~$1.25 | ~$10 |
 
 ### Open Models — 70B class
@@ -202,10 +205,12 @@ DeepSeek auto-caches prompt prefixes. Cache hit = $0.03/M instead of $0.28/M (10
 | Model | 100M cost | vs Qwen3 235B |
 |-------|----------|---------------|
 | **Qwen3 235B** (open, DeepInfra) | **$17** | baseline |
+| **Claude Haiku 5.5** (Anthropic, Oct 2026) | **$18** | 1.1x |
 | **Gemini 2.5 Flash** (Google) | **$132** | 8x more |
-| **Claude Sonnet 4** (Anthropic) | **$540** | 32x more |
+| **Claude Sonnet 5.5** (Anthropic, Oct 2026) | **$360** | 21x more |
 | **GPT-5** (OpenAI) | **$700** | 41x more |
-| **Claude Opus 4** (Anthropic) | **$2,700** | 159x more |
+| **Claude Opus 5.5** (Anthropic, Oct 2026) | **$720** | 42x more |
+| **Claude Fable 5.1** (Anthropic, Oct 2026) | **$1,800** | 106x more |
 
 ### Speed Leaderboard (custom hardware)
 
@@ -332,4 +337,4 @@ Run locally or on your own infrastructure. Zero API cost.
 
 ---
 
-*Catalog growing. Last updated: 2026-04-10. Add providers as you discover them.*
+*Catalog growing. Last updated: 2026-04-10; Anthropic prices 2026-10-27. Add providers as you discover them.*
