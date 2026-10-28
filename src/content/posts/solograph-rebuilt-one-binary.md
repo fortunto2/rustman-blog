@@ -169,7 +169,7 @@ You need Claude Code (or any MCP client) and macOS or Linux. The commands below 
 
 ```bash
 mkdir -p ~/.solo/bin
-curl -L -o ~/.solo/bin/solograph \
+curl -fL -o ~/.solo/bin/solograph \
   https://github.com/fortunto2/solograph/releases/latest/download/solograph-macos-arm64   # or solograph-linux-x86_64
 chmod +x ~/.solo/bin/solograph
 ```
@@ -193,7 +193,7 @@ CODEGRAPH_SCAN_PATH=~/projects ~/.solo/bin/solograph scan
 ~/.solo/bin/solograph symbols "auth middleware"      # what the agent will get
 ```
 
-Sessions need nothing: the index reads `~/.claude/projects` on the first search. Add the scan to cron or launchd (`0 4 * * * ~/.solo/bin/solograph scan`) so new code is in the index by morning.
+Sessions need nothing: the index reads `~/.claude/projects` on the first search. For new code by morning, add both steps to cron or launchd: `0 4 * * * ~/.solo/bin/solograph registry && ~/.solo/bin/solograph scan`. `registry` adds checkouts that appeared; `scan` only reads the registry, so a project you removed from it stays out.
 
 **4. A knowledge base**, if you keep one: a folder of markdown with YAML frontmatter, the linked pages in `wiki/`. If your layout differs, say so in `.solograph.yaml` at its root:
 

@@ -22,7 +22,7 @@ index_section: "project"
 MCP server for a portfolio of projects: one index of every repository's definitions and packages, plus full-text search over Claude Code session history, a markdown knowledge base, and indexed external sources (YouTube, ProductHunt, TrustMRR, Telegram). Everything is SQLite with FTS5, and all of it is one Rust binary: the MCP server, every read as a command, an HTTP API for the sources, the nightly scan. Python is left only for the scrapers.
 
 ```bash
-curl -L -o ~/.solo/bin/solograph --create-dirs \
+curl -fL -o ~/.solo/bin/solograph --create-dirs \
   https://github.com/fortunto2/solograph/releases/latest/download/solograph-macos-arm64   # or -linux-x86_64
 chmod +x ~/.solo/bin/solograph
 claude mcp add -s user solograph -- ~/.solo/bin/solograph
