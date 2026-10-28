@@ -10,7 +10,7 @@ tags: [talk, philosophy, psychoanalysis, film, internet, ai, ljubljana-school, s
 publish: true
 publish_as: post
 learned_from: "Panel 'The Offline Dream Program: Three Takes on Film, the Internet, and Instanternity', Oshman Hall, McMurtry Building, Stanford, 27 Oct 2026, 18:00 PT, heard from the audience: on-device transcript ~/.supervox/live/sessions/20261027-185900/stream.jsonl (supervox, parakeet; starts at the end of Simoniti's talk, Moder's talk not recorded), live notes ~/.supervox/live/sessions/20261027-185900/summary.md; abstracts and bios from https://creees.stanford.edu/events/offline-dream-program-three-takes-film-internet-and-instanternity; Kolenc's books and the Repetition and Subjectivity description from https://sunypress.edu/Books/R/Repetition-and-Subjectivity2; Marx quote checked against https://www.marxists.org/archive/marx/works/1867-c1/ch15.htm; Life2Film privacy facts from ~/startups/active/life2film and wiki/creative-video-with-claude.md; Wade et al. 2002 citation via Crossref (doi 10.3758/BF03196318); MyLifeBits/Total Recall via https://en.wikipedia.org/wiki/MyLifeBits"
-index_line: "Post with 5 mermaid diagrams: Ljubljana philosophers Bara Kolenc, Gregor Moder, Jure Simoniti at Stanford (Oshman Hall, 27 Oct 2026, mod. Pavle Levi), heard live, no video. Map table + glossary (instanternity, vulgar time, split subject, emblematic surplus, closure, moral depreciation). Kolenc (book The Internet and the Subject, Analecta 2025, Slovenian): moment = cut (crow riddle), reality = constellation rebuilt for the subject; web = (1) realm of reality + fantasy of a whole world, (2) materialized virtuality, (3) medium reversing McLuhan + Debord thesis 8, (4) machine: Imperva 53% automated as she cited, Marx moral depreciation (Capital ch.15 §3b), 'amphibian' labour power + product, (5) Althusser apparatus replacing the school, 'every post is capital', consumerism as tautology, (6) one form of the internet: 'a different internet is possible' (protocols vs WWW 1991); instanternity, vulgar time (Heidegger) vs moment as cut; four forms of vulgar time coexist (immersive/kairos, current/chronos, valorized, digital: history one stratum); 'it thinks' = the subject, self is object, AI question = is it split (doubt, desidero). Books: Repetition and Subjectivity (SUNY 2026; deflation/reformation/inflation/formation), Figura dvojnika, Ponavljanje in uprizoritev, co-ed. Master/s. My question (directors or audience?): 'we are both', gap = anxiety, materialized it stays → forget as well as remember, private by default. Moder: theatricality of power, Trump, Bosnia 1990s vs Fukuyama/Pinker, 'random guy with a mustache', Shylock cut before revenge. Simoniti: Queen Margot icon (Memoirs 1628), Searchers/Rosebud closure, film cannot not narrate, emblematic surplus, endings inside vs outside time. Who goes further: Stiegler, Kahneman (remembering self, peak-end), Barthes punctum + Steyerl, Wade et al. 2002 false photos, Mayer-Schönberger Delete, Bell & Gemmell Total Recall + van Dijck, Turkle, Koselleck Sediments of Time, Manovich, Rushkoff + Han, Fisher + Crary, Zuboff, Ljubljana core."
+index_line: "Post with 2 photos and 5 mermaid diagrams: Ljubljana philosophers Bara Kolenc, Gregor Moder, Jure Simoniti at Stanford (Oshman Hall, 27 Oct 2026, mod. Pavle Levi), heard live, no video. Map table + glossary (instanternity, vulgar time, split subject, emblematic surplus, closure, moral depreciation). Kolenc (book The Internet and the Subject, Analecta 2025, Slovenian): moment = cut (crow riddle), reality = constellation rebuilt for the subject; web = (1) realm of reality + fantasy of a whole world, (2) materialized virtuality, (3) medium reversing McLuhan + Debord thesis 8, (4) machine: Imperva 53% automated as she cited, Marx moral depreciation (Capital ch.15 §3b), 'amphibian' labour power + product, (5) Althusser apparatus replacing the school, 'every post is capital', consumerism as tautology, (6) one form of the internet: 'a different internet is possible' (protocols vs WWW 1991); instanternity, vulgar time (Heidegger) vs moment as cut; four forms of vulgar time coexist (immersive/kairos, current/chronos, valorized, digital: history one stratum); 'it thinks' = the subject, self is object, AI question = is it split (doubt, desidero). Books: Repetition and Subjectivity (SUNY 2026; deflation/reformation/inflation/formation), Figura dvojnika, Ponavljanje in uprizoritev, co-ed. Master/s. My question (directors or audience?): 'we are both', gap = anxiety, materialized it stays → forget as well as remember, private by default. Moder: theatricality of power, Trump, Bosnia 1990s vs Fukuyama/Pinker, 'random guy with a mustache', Shylock cut before revenge. Simoniti: Queen Margot icon (Memoirs 1628), Searchers/Rosebud closure, film cannot not narrate, emblematic surplus, endings inside vs outside time. Who goes further: Stiegler, Kahneman (remembering self, peak-end), Barthes punctum + Steyerl, Wade et al. 2002 false photos, Mayer-Schönberger Delete, Bell & Gemmell Total Recall + van Dijck, Turkle, Koselleck Sediments of Time, Manovich, Rushkoff + Han, Fisher + Crary, Zuboff, Ljubljana core. Films about recorded memory: The Final Cut (2004), Black Mirror 'The Entire History of You' (2011), Eternal Sunshine (2004), Total Recall (1990), Strange Days (1995). Ideas-to-keep list with attributions."
 index_section: "concept"
 ---
 
@@ -18,7 +18,9 @@ index_section: "concept"
 
 I asked Bara Kolenc whether we are the directors of our own lives or only the audience. "We are both," she said. The internet and AI did not create that split, they exposed it. The gap between the one who directs a life and the one who watches it produces anxiety, and while it lives in our heads it is transient; put online, it stays. Kolenc, Gregor Moder and Jure Simoniti, philosophers from the University of Ljubljana, spoke at Stanford on 27 October 2026 in a panel called ["The Offline Dream Program: Three Takes on Film, the Internet, and Instanternity"](https://creees.stanford.edu/events/offline-dream-program-three-takes-film-internet-and-instanternity), moderated by Pavle Levi of Stanford's Department of Art & Art History. I was in the audience, and since I build [[project-life2film]], a personal AI film director, I had a stake in the question.
 
-<!-- PHOTOS: panel -->
+![Oshman Hall in the McMurtry Building at Stanford during the panel, 27 October 2026](/images/posts/offline-dream-instanternity-stanford-2026/oshman-hall.jpg)
+
+![After the panel, Oshman Hall, Stanford](/images/posts/offline-dream-instanternity-stanford-2026/after-the-panel.jpg)
 
 ## The evening on one screen
 
@@ -168,7 +170,7 @@ flowchart LR
     O --> R["Life2Film: forget as well as remember, private by default"]
 ```
 
-She did not take up the machine, but her answer bears on it. If AI only exposes a split we already had, the editing machine is no rival director; it puts the old gap on a screen and makes it last. A director that records everything and plays it all back widens the stored half of that gap, so it should help us forget as well as remember: keep the few shots that carry the day and let the rest go. And if every post is capital, a film of someone's life should stay private by default rather than feed a platform. That is the rule of [[privacy-as-architecture]]: if we cannot see your footage, we cannot leak it or sell it. Life2Film runs everything on the Mac and uploads nothing. We can hand the editing to a machine, but not the memories.
+She did not take up the machine, but her answer bears on it. If AI only exposes a split we already had, the editing machine is no rival director; it puts the old gap on a screen and makes it last. Fiction has tried this. In *The Final Cut* (2004) Robin Williams plays a "cutter" who edits a dead person's lifetime of implant recordings into a memorial film, and in *Black Mirror*'s "The Entire History of You" (2011) an implant that records everything turns replay into jealousy. A director that records everything and plays it all back widens the stored half of that gap, so it should help us forget as well as remember: keep the few shots that carry the day and let the rest go. And if every post is capital, a film of someone's life should stay private by default rather than feed a platform. That is the rule of [[privacy-as-architecture]]: if we cannot see your footage, we cannot leak it or sell it. Life2Film runs everything on the Mac and uploads nothing. We can hand the editing to a machine, but not the memories.
 
 ## Gregor Moder: the theatricality of power
 
@@ -221,15 +223,6 @@ The last audience question: in his American examples the resolution falls on one
 
 A personal film has to respect that gap. A life goes on and writes its own story, and a cut freezes it into someone else's. The film of a day can make an icon of a moment, but the person in it should stay the Margot who writes the memoirs.
 
-## What I take back to the editing room
-
-My reading, not theirs:
-
-- **Keep one shot the story cannot explain.** People remember the emblematic surplus, and an editor tuned only for a clean story will cut it.
-- **Choose where the ending sits.** An event like the burning sled ends inside time; a freeze frame or a fade ends outside it. They make different films.
-- **No feed, no hook.** If the web's cunning is that we enjoy our own dependence, a personal film app should not borrow its tricks. My [[manifest-summary]] already rules out dark patterns and addiction mechanics.
-- **Forget as well as remember**, and keep the film on the owner's device unless they decide otherwise ([[privacy-first]]).
-
 ## Who goes further on this
 
 These writers go deeper on single roads across her map, with more cases and data.
@@ -250,15 +243,84 @@ These writers go deeper on single roads across her map, with more cases and data
 
 ## Further reading
 
-**The subject**: Lacan, "The Mirror Stage" (1936/1949) and *Seminar XI* (1964), where "desidero is the Freudian cogito". Freud, "On Narcissism" (1914) and "A Difficulty in the Path of Psycho-Analysis" (1917), with the ego "not master in its own house". Lichtenberg's *Waste Books*: say "it thinks", as one says "it lightens". Žižek, *The Sublime Object of Ideology* (1989). Kierkegaard, *Repetition* (1843) and *The Concept of Anxiety* (1844), with Kolenc's *Repetition and Subjectivity* (2026) as the bridge; I bought it after the panel.
+**The subject**
 
-**Time**: Heidegger, *Being and Time* (1927), §81 and the *Augenblick*. Descartes, *Discourse on the Method* (1637), part two. Michael Levin, "Technological Approach to Mind Everywhere" (2022).
+- Lacan, "The Mirror Stage" (1936/1949): why the self is an image, behind "the self is object to the subject".
+- Lacan, *Seminar XI* (1964): "desidero is the Freudian cogito", the split subject and the big Other.
+- Freud, "On Narcissism" (1914) and "A Difficulty in the Path of Psycho-Analysis" (1917): the ego "not master in its own house".
+- Lichtenberg, *Waste Books*: say "it thinks", as one says "it lightens"; the old objection to "I think".
+- Kierkegaard, *Repetition* (1843) and *The Concept of Anxiety* (1844): repetition "recollected forward", and the moment where time touches eternity.
+- Kolenc, *Repetition and Subjectivity* (SUNY Press, 2026): the theory under the talk; I bought it after the panel.
+- Žižek, *The Sublime Object of Ideology* (1989) and *Hegel in a Wired Brain* (2020): the Ljubljana starting point, and its take on brain–computer interfaces.
+- Zupančič, *What Is Sex?* (2017), and Dolar, *A Voice and Nothing More* (2006): the rest of the Ljubljana vocabulary.
 
-**Media, capital, ideology**: Debord, *The Society of the Spectacle* (1967), thesis 8; short, read it whole. McLuhan, *Understanding Media* (1964). Marx, *Capital*, vol. 1, ch. 15 (13 in German), section 3b. Althusser, "Ideology and Ideological State Apparatuses" (1970). Badiou, *The Communist Hypothesis* (2009). Foucault, "What Is an Author?" (1969). Deleuze and Guattari, *What Is Philosophy?* (1991). Imperva, *Bad Bot Report* (2025), for her 53%; check it before reusing the figure.
+**Memory and the self**
 
-**Power, comedy, history**: Benjamin, "The Work of Art in the Age of Its Technological Reproducibility" (1935/36), the epilogue. Bergson, *Laughter* (1900). Zupančič, *The Odd One In: On Comedy* (2008). Fukuyama, *The End of History and the Last Man* (1992); Pinker, *The Better Angels of Our Nature* (2011).
+- Stiegler, *Technics and Time*, vol. 3 (2001): tertiary retention, memory stored in technical objects; the closest theory to Life2Film.
+- Kahneman, *Thinking, Fast and Slow* (2011), with Redelmeier and Kahneman (1996): the remembering self and the peak-end rule, an editing rule in disguise.
+- Loftus and Pickrell, "The Formation of False Memories" (1995), and Wade, Garry, Read and Lindsay (2002): suggestion and doctored photos can plant memories; read these before letting AI edit the past.
+- Mayer-Schönberger, *Delete* (2009): expiration dates for data, a design for forgetting.
+- Bell and Gemmell, *Total Recall* (2009): the lifelogging case for keeping everything, from MyLifeBits.
+- van Dijck, *Mediated Memories in the Digital Age* (2007): memory made with media rather than stored in them.
 
-**Film**: Kuleshov's montage experiment (around 1920); Bordwell, *Narration in the Fiction Film* (1985). The films: *Queen Margot* (1994), *Queen Christina* (1933), *Citizen Kane* (1941), *La dolce vita* (1960), *Persona* (1966), *The Searchers* (1956), *To Be or Not to Be* (1942), *The Great Dictator* (1940), *The 400 Blows* (1959), *Run Lola Run* (1998).
+**Time**
+
+- Heidegger, *Being and Time* (1927), §81 and the *Augenblick*: the vulgar time and the moment she reworks.
+- Koselleck, *Zeitschichten* (2000; *Sediments of Time*, 2018): layered historical time, a precursor of "history is one stratum".
+- Rushkoff, *Present Shock* (2013), and Han, *The Scent of Time* (2009): the present without duration, in plainer prose.
+- Descartes, *Discourse on the Method* (1637), part two: the heated room behind Levi's joke.
+- Michael Levin, "Technological Approach to Mind Everywhere" (2022): her example of a non-temporal pattern.
+
+**Images, montage, narrative**
+
+- Barthes, *Camera Lucida* (1980): the *punctum*, the detail no story explains.
+- Steyerl, "In Defense of the Poor Image" (2009): what circulation does to an image.
+- Manovich, *The Language of New Media* (2001): database against narrative, camera roll against film.
+- Kuleshov's montage experiment (around 1920): the next shot decides what a face means.
+- Bordwell, *Narration in the Fiction Film* (1985): how classical narration closes.
+
+**Media, capital, ideology**
+
+- Debord, *The Society of the Spectacle* (1967), thesis 8: "reciprocal alienation"; short, read it whole.
+- McLuhan, *Understanding Media* (1964): the thesis she turns around.
+- Marx, *Capital*, vol. 1, ch. 15 (13 in German), section 3b: moral depreciation and the "unfailing means" sentence.
+- Althusser, "Ideology and Ideological State Apparatuses" (1970): the school as apparatus, to test her claim that the web replaced it.
+- Badiou, *The Communist Hypothesis* (2009): the egalitarian emancipation behind "a different internet".
+- Foucault, "What Is an Author?" (1969): authorship born with ownership.
+- Deleuze and Guattari, *What Is Philosophy?* (1991): geophilosophy.
+- Zuboff, *The Age of Surveillance Capitalism* (2019): how behavior becomes product, the mechanics of "every post is capital".
+- Fisher, *Capitalist Realism* (2009), and Crary, *Scorched Earth* (2022): no alternative in sight, or a life beyond the internet.
+- Turkle, *Alone Together* (2011): interviews on connection without contact.
+- Imperva, *Bad Bot Report* (2025): the source of her 53%; check it before reusing.
+
+**Power, comedy, history**
+
+- Benjamin, "The Work of Art in the Age of Its Technological Reproducibility" (1935/36), epilogue: fascism as aestheticized politics.
+- Bergson, *Laughter* (1900): the mechanical encrusted on the living.
+- Zupančič, *The Odd One In: On Comedy* (2008): the Ljubljana book on comedy.
+- Fukuyama, *The End of History and the Last Man* (1992), and Pinker, *The Better Angels of Our Nature* (2011): the two positions Moder argued against.
+
+**Films from the evening**: *Queen Margot* (Chéreau, 1994), *Queen Christina* (Mamoulian, 1933), *Citizen Kane* (Welles, 1941), *La dolce vita* (Fellini, 1960), *Persona* (Bergman, 1966), *The Searchers* (Ford, 1956), *To Be or Not to Be* (Lubitsch, 1942), *The Great Dictator* (Chaplin, 1940), *The 400 Blows* (Truffaut, 1959), *Run Lola Run* (Tykwer, 1998).
+
+**Films about recorded memory**
+
+- *The Final Cut* (Omar Naim, 2004): Robin Williams as a "cutter" who edits people's lifetime implant recordings into memorial films. A personal-film director, ethics included.
+- *Black Mirror*, "The Entire History of You" (2011): a grain behind the ear records everything, and replaying it breeds jealousy. Kolenc's gap, materialized.
+- *Eternal Sunshine of the Spotless Mind* (Michel Gondry, 2004): a clinic erases a former lover from memory. The case for and against forgetting.
+- *Total Recall* (Paul Verhoeven, 1990), from Philip K. Dick's "We Can Remember It for You Wholesale" (1966): memories implanted as a product.
+- *Strange Days* (Kathryn Bigelow, 1995): recorded experience sold as black-market clips.
+
+## Ideas to keep
+
+- The moment is a cut that creates reality and time at once, and reality is rebuilt for the subject at every moment. *Kolenc*
+- Every post, even one against capitalism, is capital, and a different internet is possible. *Kolenc*
+- Ask of an AI whether it is split, whether it doubts and desires, rather than whether it is conscious. *Kolenc*
+- We are both the authors and the spectators of our lives; online, the gap between them stays. *Kolenc, answering my question*
+- Power is theatrical, so comedy can show the leader is "just a random guy with a mustache". *Moder*
+- History survived its own death, and the end of history was a fantasy. *Moder*
+- Film cannot not narrate, and every cut leaves an emblematic surplus. *Simoniti*
+- In the edit, keep one shot the story cannot explain, and choose whether the ending sits inside time or outside it. *My reading of Simoniti and Levi*
+- A personal film tool should have no feed and no hook ([[manifest-summary]]), should forget as well as remember, and should keep films on the owner's device ([[privacy-first]]). *My reading of Kolenc*
 
 ## How this was put together
 
