@@ -22,7 +22,7 @@ index_section: "summary"
 
 **Ontology debate:** emergent (let agents discover structure), prescriptive (Palantir's 3 layers), or hybrid (stable core entities + discovered relationships). Hybrid is pragmatic.
 
-**Already implemented in solograph:** session_search (past Claude Code sessions = decision trajectories), codegraph_query (structural code memory), kb_search (decisions/patterns/precedents), source_search (external knowledge).
+**Already implemented in solograph:** session_search (past Claude Code sessions = decision trajectories), symbol_search and codegraph_explain (where code lives across the portfolio; the Cypher graph of calls and imports was dropped in Oct 2026 — agents never queried it), kb_search (decisions/patterns/precedents), source_search (external knowledge).
 
 **What to strengthen:** decision logging (capture *why*), trajectory export, pattern mining across sessions, precedent retrieval before new tasks, decay mechanism for stale decisions.
 

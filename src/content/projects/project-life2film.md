@@ -52,10 +52,10 @@ AI watches your videos, finds the best moments, adds music, and creates a film. 
 | `va-wasm` | WebAssembly build for browser |
 | `va-gui-dioxus` | Desktop GUI (Dioxus/Rust) |
 
-**Platforms** (rollout order):
-1. **Mobile** (first) — iOS beta, then Android
-2. **Desktop** — Rust native (Dioxus) or Swift (macOS)
-3. **Web** — WASM build of va-core in browser
+**Platforms** (as of Oct 2026):
+1. **iOS** — live in the App Store since 26 Aug 2026 (1.15 in review in late Oct); Android later
+2. **Mac** — the desktop app, Studio: analysis on the device, nothing uploaded
+3. **Web** — an earlier WASM/web version existed and is retired; the `va-wasm` crate remains in the engine
 
 ## Vision
 
@@ -106,3 +106,4 @@ Started in 2014 as a website. The first version reached 1M+ users, but the techn
 - [[neu-wave-ai-film-festival-2026]]: at the Neu Wave AI Film Festival (Santa Monica, Oct 2026) the shortage the stage named was directors, not generators, which is the layer Life2Film works on
 - [[la-tech-week-video-agents-live-worlds-2026]]: two LA Tech Week evenings on 15 Oct 2026, agents that assemble a finished ad and live models that generate a world, with story and editing still the bottleneck
 - [[offline-dream-instanternity-stanford-2026]]: Ljubljana philosophers at Stanford, Oct 2026; Kolenc answered my question (we are both authors and spectators of our lives, the stored gap breeds anxiety), Simoniti on the shot the story cannot explain and endings inside or outside time
+- [[shot-detection-phone-footage-no-cuts]]: sixteen detectors and TransNetV2 on two hand-labelled phone days; zero cuts found at the beach, because a phone day is takes, not edits
