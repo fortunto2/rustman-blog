@@ -36,7 +36,7 @@ The whole thing is open source: [fortunto2/solograph](https://github.com/fortunt
 
 | Term | What it means here |
 |---|---|
-| **MCP** | Model Context Protocol: how Claude Code and other agents call outside tools. Solograph is an MCP server with 12 tools. |
+| **MCP** | Model Context Protocol: how Claude Code and other agents call outside tools. Solograph is an MCP server with 5 tools (12 when this was written; 0.17 cut them, see [[project-solograph]]). |
 | **tree-sitter** | A parser library with grammars for most languages. Solograph uses it to read function, class and protocol definitions out of 15 languages. |
 | **SQLite FTS5** | SQLite's built-in full-text index. No server, one file, and it ranks matches with BM25. |
 | **BM25** | The standard ranking formula of lexical search: a match on a rare word counts more than a match on a common one, and a long document does not win just by being long. |
@@ -71,7 +71,7 @@ flowchart LR
     T --> F --> SE
     W --> F --> K
     Y --> SO
-    P & SE & K & SO --> O["MCP: 12 tools for agents"]
+    P & SE & K & SO --> O["MCP: 5 tools for agents"]
     P & SE & K & SO --> C["CLI: the same reads"]
     K --> H["Prompt hook: 'the wiki has notes on this'"]
     K --> G["Pre-commit: orphans, broken links"]
