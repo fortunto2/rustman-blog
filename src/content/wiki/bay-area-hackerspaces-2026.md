@@ -34,6 +34,10 @@ Written for a solo founder from abroad on a short US trip who builds AI agents, 
 | The Residency | SF, Berkeley | Cohort hacker houses, demo days | $1,800 shared / $3,000 private per month, 3-6 months | Yes |
 | Edge City / Edge Esmeralda | Healdsburg (popup) | 4-week popup village | 2026 edition ended 27 Jun; Edge City Bhutan 11-19 Nov | Yes, during the event |
 
+<iframe src="/maps/bay-area-hackerspaces-2026.html" title="Map of Bay Area hackerspaces, hacker houses, residencies and founder clubs (Oct 2026)" style="width:100%;aspect-ratio:4/3;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy"></iframe>
+
+[Open the map full screen](/maps/bay-area-hackerspaces-2026.html). Dashed markers are approximate: only the neighbourhood or city is public, so they sit at its centre.
+
 ```mermaid
 flowchart TD
     A[Solo founder on a trip] --> B{What do you need this week?}
@@ -111,6 +115,22 @@ HF0 runs batches for repeat founders (next start 4 Jan per its site). The same d
 ## How to apply for a Feb–Mar 2027 stay
 
 Assumes one month (about 4 weeks) on a visitor visa. Checked on the places' own sites on 28 Oct 2026. Most programs below publish no Feb–Mar cohort dates yet, so "lead time" is what the site says or what the format implies. A visitor (B-1/B-2) cannot take US employment; none of the sites address this, so keep any program that takes equity or expects you to work for a US entity out of the plan until you have read its terms.
+
+### Where to live for a month: conditions
+
+| Place | Area | Room | Per month | Minimum stay | How you get in | Equity / strings | Events |
+|---|---|---|---|---|---|---|---|
+| Startup House Palo Alto | Palo Alto (Moreno Ave); also Menlo Park, SF (Bush St) | Shared 3-4 person room or private | Shared ~$45/night on a long stay (≈ $1,350); private ~$2,000 in the same house; short stay $65/night | 3 nights (SF house 7 nights) | Apply on site or message the house | None mentioned | Workshops, mentor sessions |
+| Superhero Hotel | SF, 825 Sutter St | Hotel room (110 rooms) | $2,400 for 30 nights + ~17.5% tax | 30 nights for the monthly rate | Book online, no interview | None | Frontier Tower access, 3+ events a day |
+| Foundry | SF, 4 buildings | Small or large room | From $2,290 (small) / $2,690 (large) + one month deposit | 1 month | Tour or application, then a call; ~100 on waitlist in Aug | None mentioned | Weekly dinners, investor dinners |
+| Accelr8 | SF: 1412 Market, Epik on Polk, Alamo Square | Not stated | $1,500-2,500 | 30 days | Application, short interview | None mentioned | Frontier Tower access |
+| Lightyear | SF, Pacific Heights | Not stated | $0 (unverified) | 1 month (cohort) | Tally form, interview; selective | HF0-incubated, terms not published | Not stated |
+| Draper University / Hero City | San Mateo | Dorm-style housing during a cohort | Tuition paid (~$10,000 for non-residents per a 2026 partner listing, unverified); coworking from ~$100 | 5 weeks (Hero Training) | Form, no fee, rolling; Spring 2027 dates not out | Optional investment up to $100K via DUV | Classes, Hero City coworking |
+| The Residency | SF, Berkeley | Shared or private | $1,800 shared / $3,000 private | 3 months (cohorts 3-6) | 10-minute application, AI and human interviews | None mentioned | Demo days |
+| Mission Control / 20mish | SF | Not stated | $1,500-1,700 / $1,625+ | 12 months | Application, group interview or tour | None mentioned | Community house |
+| SPC Member Residency | SF | No housing, office only | $0 | 6 months, office 3+ days a week | Airtable form, reply in 1-3 weeks, interview | No equity; no visa sponsorship | Full programming |
+| Frontier Residency | SF, housed at Superhero Hotel | Hotel room | Housing, desk and lunch included | 8 weeks | Typeform, rolling, 10 teams | 3% equity | Demo day |
+| DobryDom | SF, near Alamo Square | Room in a private townhouse | Not published (unverified) | Not published (unverified) | Closed, applications paused; by introduction only | None known | Lectures, yoga, banya (per NYT 2022) |
 
 | Place | How to get in | Lead time | Price for ~4 weeks | Note |
 |---|---|---|---|---|
