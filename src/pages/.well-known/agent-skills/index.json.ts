@@ -11,24 +11,21 @@
  */
 import type { APIRoute } from 'astro';
 import { createHash } from 'node:crypto';
-import { getCollection } from '../../../lib/content';
 import { SITE } from '../../../lib/config';
+import { publishedSkills } from '../../../lib/agent-discovery';
 
 export const GET: APIRoute = () => {
   const base = `https://${SITE.domain}`;
 
-  const skills = getCollection('skills')
-    .filter(entry => entry.frontmatter.publish !== false)
-    .map(entry => ({
-      name: String(entry.frontmatter.title || entry.slug).replace(/^\//, ''),
-      type: 'skill',
-      description: String(entry.frontmatter.description || ''),
-      // The markdown twin, not the HTML page: this is meant to be read by a machine.
-      url: `${base}/skills/${entry.slug}.md`,
-      // Over the source, so the digest changes exactly when the skill does.
-      sha256: createHash('sha256').update(entry.raw).digest('hex'),
-      ...(entry.frontmatter.source_url ? { source: String(entry.frontmatter.source_url) } : {}),
-    }));
+  const skills = publishedSkills().map(s => ({
+    name: s.name,
+    type: 'skill',
+    description: s.description,
+    url: s.url,
+    // Over the source, so the digest changes exactly when the skill does.
+    sha256: createHash('sha256').update(s.raw).digest('hex'),
+    ...(s.source ? { source: s.source } : {}),
+  }));
 
   const body = {
     $schema: 'https://agentskills.io/schemas/discovery/v0.2.0.json',

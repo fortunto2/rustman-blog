@@ -42,7 +42,9 @@ Content lives in `../wiki/` (solopreneur KB). Blog pulls only `publish: true` pa
 /agents.txt          → agent policy in words (same text at /.well-known/ai.txt)
 /.well-known/        → mcp/server-card.json, agent-card.json, ard.json (= ai-catalog.json),
                        api-catalog (RFC 9727), agent-skills/index.json — all from src/lib/agent-discovery.ts
-                       except the MCP card and skills index. No oauth-protected-resource: nothing is protected
+                       except the MCP card. No oauth-protected-resource: nothing is protected.
+                       ARD lists only agentic resources (MCP, agent card, one entry per skill); pages, RSS,
+                       sitemap stay out, their types fail ARD parsers. Check: connect.arliwork.com/api/check?url=rustman.org
 /404                 → custom 404
 ```
 

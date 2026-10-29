@@ -11,8 +11,24 @@
  * agent to a door that does not open.
  */
 import { SITE } from './config';
+import { getCollection } from './content';
 
 const base = `https://${SITE.domain}`;
+
+/** The published Solo Factory skills; the skills index and the ARD manifest both list these. */
+export function publishedSkills() {
+  return getCollection('skills')
+    .filter(entry => entry.frontmatter.publish !== false)
+    .map(entry => ({
+      slug: entry.slug,
+      name: String(entry.frontmatter.title || entry.slug).replace(/^\//, ''),
+      description: String(entry.frontmatter.description || ''),
+      // The markdown twin, not the HTML page: this is meant to be read by a machine.
+      url: `${base}/skills/${entry.slug}.md`,
+      raw: entry.raw,
+      source: entry.frontmatter.source_url ? String(entry.frontmatter.source_url) : undefined,
+    }));
+}
 
 export const URLS = {
   llms: `${base}/llms.txt`,
@@ -132,10 +148,19 @@ export function agentCard() {
   };
 }
 
+/** ARD's media type for an Agent Skill written in markdown (spec v0.91 §3.3). */
+const SKILL_MD_TYPE = 'text/markdown; profile="urn:air:agent-skills"';
+
 /**
  * Agentic Resource Discovery manifest (https://agenticresourcediscovery.org/spec/, v0.91).
  * Served at /.well-known/ard.json, the current path, and at /.well-known/ai-catalog.json,
  * the predecessor path that older consumers and checkers still ask for.
+ *
+ * Only agentic resources go in: the MCP server, the agent card, and each skill as its own
+ * entry, so a registry can match one skill to a query. Pages, llms.txt, RSS and the sitemap
+ * are not agentic resources; agents.txt and the Link headers point at those instead. Their
+ * media types (text/html, application/rss+xml) are also unknown to ARD parsers, which made
+ * Connect.ARLI warn on this file until 28 Oct 2026.
  */
 export function ardManifest() {
   const entry = (
@@ -153,7 +178,8 @@ export function ardManifest() {
     type,
     url,
     description,
-    representativeQueries,
+    // SHOULD, not MUST: omitted rather than invented when there is no real query to give.
+    ...(representativeQueries.length ? { representativeQueries } : {}),
     ...extra,
   });
 
@@ -167,32 +193,9 @@ export function ardManifest() {
         'What an agent can get here and through which interface (MCP; there is no A2A task endpoint).',
         ['what can an agent do on rustman.org', 'how to connect to rustman.org'],
         { capabilities: ['search', 'read'] }),
-      entry('skills', 'Solo Factory skills', 'application/agent-skills+json', URLS.skills,
-        'Index of the Solo Factory agent skills: research, validate, build, deploy, launch. Each links to its markdown.',
-        ['skill for validating a startup idea', 'agent skill to ship an iOS app to TestFlight', 'workflow for an SEO audit with an agent'],
-        { tags: ['skills', 'claude-code'] }),
-      entry('llms-txt', 'llms.txt', 'text/plain', URLS.llms,
-        'Map of the site written for language models: every wiki page, project, stack and post with one line each.',
-        ['overview of rustman.org', 'list of projects by Rustam Salavatov']),
-      entry('llms-full', 'llms-full.txt', 'text/plain', URLS.llmsFull,
-        'Full text of every page in one file.',
-        ['all of rustman.org in one document', 'full text of the wiki']),
-      entry('projects', 'Projects', 'text/html', `${base}/projects`,
-        'Apps, tools and libraries built in public. Each project page carries schema.org SoftwareApplication JSON-LD with store links and, where a store states one, the price.',
-        ['apps by Rustam Salavatov', 'open-source Rust crates for OpenAI', 'is FaceAlarm free'],
-        { tags: ['projects', 'apps', 'open-source'] }),
-      entry('wiki', 'Wiki', 'text/html', `${base}/wiki`,
-        'Knowledge base: concepts, methods and lessons from building products with AI.',
-        ['what is harness engineering', 'lessons from launching indie apps']),
-      entry('posts', 'Posts', 'text/html', `${base}/posts`,
-        'Long-form posts.',
-        ['latest posts on rustman.org']),
-      entry('rss', 'RSS feed', 'application/rss+xml', URLS.rss,
-        'New and updated wiki pages, projects and posts.',
-        ['rustman.org feed', 'what changed on rustman.org recently']),
-      entry('sitemap', 'Sitemap', 'application/xml', URLS.sitemap,
-        'Every URL on the site.',
-        ['all pages on rustman.org']),
+      ...publishedSkills().map(s =>
+        entry(`skills:${s.slug}`, s.name, SKILL_MD_TYPE, s.url, s.description, [],
+          { tags: ['skill', 'solo-factory', 'claude-code'], ...(s.source ? { metadata: { source: s.source } } : {}) })),
     ],
   };
 }
