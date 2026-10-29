@@ -64,7 +64,7 @@ Methods, templates, algorithms, workflows. "How to do X" rather than "what X is.
 
 - **[[schema-guided-reasoning|SGR]]**: `memory["procedural"]` stores story structure templates (3-act method), writing instructions. Loaded as recommendations in system prompt.
 - **[[mempalace-agent-memory|MemPalace]]**: `hall_advice` corridor with accumulated recommendations and patterns.
-- **[[project-solograph|Solograph]]**: `symbol_search` indexes tree-sitter definitions across all projects by their words: "auth middleware" lists every implementation already written. `codegraph_explain` summarizes one project's stack and layers.
+- **[[project-solograph|Solograph]]**: `symbol_search` indexes tree-sitter definitions across all projects by their words: "auth middleware" lists every implementation already written. `project_info` summarizes one project's stack and layers.
 - **YAML workflow templates**: Predefined agent sequences (video trailers, marketing campaigns). Codified procedural memory. The agent follows a proven template instead of reasoning from scratch.
 
 **Key insight**: Procedural memory is the most undervalued type. A well-defined workflow template multiplies consistency. [[cli-first-testing|CLI-first]] design makes procedural knowledge testable. [[dev-principles-summary|Schemas first, logic second]] applies here too: define the procedure schema before implementing.
@@ -260,7 +260,7 @@ The ultimate goal isn't remembering but compounding. Every [[context-graphs-summ
 ### Tools & Systems
 
 - [[mempalace-agent-memory|MemPalace]]: [GitHub](https://github.com/milla-jovovich/mempalace). Spatial memory, 96.6% LongMemEval, MIT (27K stars)
-- [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Portfolio, KB and session search, 12 MCP tools, SQLite FTS5, Rust server, no embeddings
+- [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Portfolio, KB and session search, 5 MCP tools, SQLite FTS5, Rust server, no embeddings
 - [QMD](https://github.com/tobi/qmd). Mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Optional Moltis backend
 - [Moltis](https://github.com/moltis-org/moltis). Rust-based memory with hybrid search + LLM reranking
 - [OpenClaw](https://github.com/openclaw/openclaw). Markdown source-of-truth + derived index, Retain/Recall/Reflect

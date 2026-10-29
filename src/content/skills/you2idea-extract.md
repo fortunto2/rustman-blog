@@ -19,15 +19,15 @@ Extract startup ideas from YouTube videos. Two operating modes depending on avai
 ## Mode Detection
 
 Check which tools are available:
-- **With solograph MCP**: use `source_search`, `source_list`, `source_tags`, `source_related` for indexed corpus
+- **With solograph MCP**: use `source_search` for the indexed corpus (a query; `related=` a video; nothing for the sources and topics)
 - **Without MCP (standalone)**: use yt-dlp + Read for transcript analysis
 
 ## MCP Tools (if available)
 
 - `source_search(query, source="youtube")` — full-text search over indexed video transcripts
-- `source_list()` — check indexed video counts
-- `source_tags()` — auto-detected topics with confidence scores
-- `source_related(video_url)` — find related videos by shared tags
+- `source_search()` — check indexed video counts
+- `source_search()` — auto-detected topics with confidence scores
+- `source_search(related=video_url)` — find related videos by shared tags
 - `kb_search(query)` — cross-reference with knowledge base
 - `web_search(query)` — discover new videos to index
 - `web_extract(url, size, page)` — read a linked article as clean markdown
@@ -54,7 +54,7 @@ Check which tools are available:
    solograph-cli index-youtube -c "$CHANNEL" -n 5
    ```
 
-3. **Verify indexing** — `source_list()` to confirm new video count. `source_tags()` for topic distribution.
+3. **Verify indexing** — `source_search()` to confirm new video count. `source_search()` for topic distribution.
 
 4. **Search corpus** — `source_search(query="startup ideas", source="youtube")`.
 

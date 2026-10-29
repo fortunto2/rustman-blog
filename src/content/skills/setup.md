@@ -24,7 +24,7 @@ After `/scaffold` creates a project, before `/plan`. Creates `docs/workflow.md` 
 
 - `project_info(name)` — get project details, detected stack
 - `kb_search(query)` — search for dev principles, manifest, stack templates
-- `codegraph_explain(project)` — project stack and dependencies
+- `project_info(name)` — project stack and dependencies
 
 If MCP tools are not available, fall back to reading local files only.
 

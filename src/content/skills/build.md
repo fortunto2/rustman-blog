@@ -94,7 +94,7 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 
 ### Step 1 — Architecture overview (if MCP available)
 ```
-codegraph_explain(project="{project name}")
+project_info(name="{project name}")
 ```
 Returns: stack, languages, directory layers, key patterns, top dependencies, files with the most definitions.
 

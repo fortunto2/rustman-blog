@@ -1,6 +1,6 @@
 ---
 type: concept
-description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 12 tools, all SQLite FTS5: no graph database, no embeddings."
+description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 5 tools, all SQLite FTS5: no graph database, no embeddings."
 title: "solograph — portfolio index and agent memory over SQLite"
 created: 2026-02-07
 updated: 2026-10-28
@@ -13,7 +13,7 @@ publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 12 MCP tools, the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5"
+index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 5 MCP tools (12 until 0.17), the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5"
 index_section: "project"
 ---
 
@@ -30,20 +30,15 @@ claude mcp add -s user solograph -- ~/.solo/bin/solograph
 ~/.solo/bin/solograph symbols "montage profile"  # the same reads the agent gets, --json for its exact output
 ```
 
-## 12 MCP tools
+## 5 MCP tools
 
 | Tool | What it answers |
 |------|-----------------|
-| `symbol_search` | Where something is defined, across every project: "montage profile" finds `resolve_montage_profile` and `MontageProfile` |
-| `codegraph_explain` | What one project is made of: stack, languages, layers, patterns, dependencies |
-| `codegraph_shared` | Packages used by more than one project, or every project using a given one |
-| `codegraph_stats` | Counts: projects, files, symbols by kind, packages |
-| `project_info` | Registry entry for a project |
-| `session_search` | Every past prompt and answer, including transcripts Claude Code already deleted |
+| `session_search` | Every past prompt and answer, including transcripts Claude Code already deleted. The session asking is left out; a result's `session_id` reads that session's passages for the query |
 | `kb_search` | Markdown knowledge base: title and summary fields above the body, `path` to scope it (`wiki/`), `expand_graph` for up to 3 pages linked by `[[wikilinks]]`; Russian words reach English pages through the KB's alias table |
-| `source_search` | YouTube transcripts (timestamped links), ProductHunt, TrustMRR, Telegram |
-| `source_list` / `source_tags` / `source_related` | What is indexed, topics, related videos |
-| `web_fetch` | A URL as text |
+| `symbol_search` | Where something is defined, across every project: "montage profile" finds `resolve_montage_profile` and `MontageProfile` |
+| `source_search` | YouTube transcripts (timestamped links), ProductHunt, TrustMRR, Telegram; `related` for videos sharing topics, no query for the sources and topics |
+| `project_info` | All projects with stacks and counts, one project's make-up (stack, languages, layers, dependencies), or who uses a package |
 
 Web search lives in a separate searxng MCP server, so a broken import in one cannot take the other down.
 
@@ -75,6 +70,10 @@ solograph started as a FalkorDB code graph with vector search on top. In October
 A 16% saving on one kind of question did not justify a second tool and a second index per repository. What grep cannot do is look across repositories, so that is what stayed. The environment went from 862 MB (torch, FalkorDB) to 89 MB.
 
 Other things the review found: `session_search` had failed on every MCP call for seven weeks (a `-> list[dict]` annotation on a function returning a dict; its tests never went through the protocol); the nightly refresh had scanned zero projects for 70 nights after Homebrew dropped PyYAML from its python, and logged "done" each time; `codegraph_query` accepted writes; 40 checkouts were missing from the registry.
+
+**0.17: twelve tools to five.** Claude Code defers MCP tools by default, so at the start of a session the agent sees tool names and the server's instructions, nothing else. solograph sent no instructions and twelve names, four of them `codegraph_*` for a graph gone since 0.8. Two months of transcripts from both profiles: 72 calls, 56 of them to `session_search`, `kb_search`, `symbol_search` and `source_search`; `codegraph_shared` and `source_related` none, `web_fetch` one. In October agents searched in 12 of 681 sessions. The fix copies what similar tools converged on (2-5 tools: episodic-memory, qmd, claude-context): five tools named after the question, 848 characters of instructions saying when to use each, the two memory tools loaded with the session, compact JSON (13-46% smaller), `web_fetch` dropped with its HTTP stack (3 MB of binary). And the session doing the search no longer answers itself: it was first in 7 of 18 agent searches, because its prompt holds the very words searched for.
+
+`solograph usage` now opens with five numbers, from agent calls only (scripts made 47 of the first 58 logged calls): reach (sessions that searched), hints followed, found, opened (a returned file or session used before the next prompt) and retried within two minutes. Before 0.17, from transcripts with the same definitions: reach 1.8%, found 69% (13 of 45 searches were errors: a month of a broken Python server nobody counted), opened 35%, retried 18%. A first A/B before any log (five prompts that lean on earlier work, `claude -p` from a temp directory, one run each): the agent called solograph on 1 of 5 with 0.16 and 5 of 5 with 0.17, answers right in both, $0.30 vs $0.32 a prompt. With 0.16 it grepped the wiki, which held the answers: for notes grep is the competitor, and solograph's own ground is the sessions.
 
 **0.9: the second implementation.** For a day after the Rust port the same 12 tools existed twice, in Rust (serving MCP) and in Python (the CLI). Two implementations of one search drift, and drift is what kept `session_search` failing for seven weeks, so every read moved into the binary and Python kept only what writes the sources index: 11 modules and 17 dependencies gone, the Python environment 97 → 34 MB. The tests that remain are the contract itself — the real scrapers write a store, the real binary reads it.
 

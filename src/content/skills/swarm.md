@@ -42,8 +42,7 @@ Focus: feasibility, tech stack, existing solutions, implementation complexity.
 - Search GitHub for open-source alternatives (`site:github.com <query>`)
 - Evaluate tech stack options
 - If MCP `project_info` available: check existing projects for reusable code
-- If MCP `codegraph_explain` available: get architecture overview of similar existing projects
-- If MCP `codegraph_shared` available: find shared packages across projects
+- If MCP `project_info` available: `project_info(name=...)` for the architecture of similar existing projects, `project_info(package=...)` for which projects already use a package
 - If MCP `symbol_search` available: look up definitions across existing projects for reusable patterns, services, infrastructure
 - Assess implementation complexity and timeline
 

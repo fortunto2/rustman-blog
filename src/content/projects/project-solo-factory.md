@@ -85,8 +85,7 @@ Skills auto-detect [[project-solograph|Solograph]] tools when available:
 | `kb_search` | BM25 full-text search over the knowledge base, RU+EN stemming |
 | `session_search` | Past Claude Code sessions, including transcripts Claude Code deleted |
 | `symbol_search` | Where a function or class is defined, across every project |
-| `codegraph_explain` | Architecture overview of any project |
-| `codegraph_shared` | Packages shared across projects, or who uses one |
+| `project_info` | The projects; one project's stack and layers; who uses a package |
 | `source_search` | Indexed YouTube transcripts, ProductHunt, TrustMRR, Telegram |
 
 Web search is a separate MCP server, `searxng` (`web_search`, `web_extract`, `youtube_transcript`), so a broken import in one cannot take the other down.

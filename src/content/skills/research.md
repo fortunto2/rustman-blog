@@ -28,8 +28,8 @@ If MCP tools are available, prefer them over CLI:
 - `web_extract(url, size, page)` — one page as clean markdown, boilerplate removed
 - `session_search(query, project)` — find how similar research was done before
 - `project_info(name)` — check project details and stacks
-- `codegraph_explain(project)` — architecture overview of an existing project (stack, patterns, deps)
-- `codegraph_shared(package)` — packages shared across projects, or every project using a given one
+- `project_info(name)` — architecture overview of an existing project (stack, patterns, deps)
+- `project_info(package)` — packages shared across projects, or every project using a given one
 - `symbol_search("<words>")` — find code by symbol name across every project (Grep inside one)
 
 MCP `web_search` supports engine override: `engines="reddit"`, `engines="youtube"`, etc.
@@ -124,9 +124,9 @@ Use WebSearch/WebFetch as primary. If MCP `web_search` tool is available, use it
    - Check if `research.md` or `prd.md` already exist for this idea.
 
 4. **Check existing portfolio** (if MCP codegraph tools available):
-   - `codegraph_explain(project="<similar project>")` — architecture overview of related projects in the portfolio
+   - `project_info(name="<similar project>")` — architecture overview of related projects in the portfolio
    - `symbol_search("<words>")` — find reusable code by symbol name across every project
-   - `codegraph_shared(package="<relevant tech>")` — find projects using similar tech
+   - `project_info(package="<relevant tech>")` — find projects using similar tech
    - This helps assess: feasibility, reusable code, stack decisions, and time estimates
    - If no MCP tools available, skip this step.
 

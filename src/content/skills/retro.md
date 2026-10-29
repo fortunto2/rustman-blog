@@ -32,8 +32,7 @@ Can also be used standalone on any project — with or without pipeline logs.
 ## MCP Tools (use if available)
 
 - `session_search(query)` — find past pipeline runs and known issues
-- `codegraph_explain(project)` — understand project architecture context
-- `codegraph_explain(project)` — project stack, layers and dependencies
+- `project_info(name)` — project stack, layers and dependencies
 
 If MCP tools are not available, fall back to Glob + Grep + Read.
 

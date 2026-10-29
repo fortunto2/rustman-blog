@@ -240,7 +240,7 @@ Persistent memory that survives between sessions. See [[agent-memory-architectur
 | Tool | Stars | Storage | Key Feature |
 |------|-------|---------|-------------|
 | [[mempalace-agent-memory\|MemPalace]] | 27K | ChromaDB + SQLite KG | Spatial memory, 96.6% LongMemEval |
-| [[project-solograph\|Solograph]] | — | SQLite FTS5 + files | Symbol, KB and session search, no vectors, 12 MCP tools |
+| [[project-solograph\|Solograph]] | — | SQLite FTS5 + files | Symbol, KB and session search, no vectors, 5 MCP tools |
 | [[graphify-vs-solograph\|Graphify]] | ~98K (unverified) | `graph.json` on disk | Deterministic tree-sitter graph, **no vector store**, every edge tagged EXTRACTED/INFERRED |
 | [OpenViking](https://github.com/volcengine/OpenViking) | 33K | `viking://` virtual FS | Unifies memory + RAG + skills; tiered L0/L1/L2 loading |
 | [QMD](https://github.com/tobi/qmd) | 20K | Local | BM25 + vector + LLM reranking search |

@@ -27,7 +27,7 @@ Creates a track for any feature, bug fix, or refactor with a concrete, file-leve
 - `session_search(query)` — find similar past work in Claude Code chat history
 - `symbol_search("<words>")` — find reusable code across projects (symbol names, every project; Grep inside one)
 - Grep — imports and callers of the files you will change
-- `codegraph_explain(project)` — architecture overview: stack, languages, directory layers, key patterns, top dependencies, files with the most definitions
+- `project_info(name)` — architecture overview: stack, languages, directory layers, key patterns, top dependencies, files with the most definitions
 - `kb_search(query)` — search knowledge base for relevant methodology
 
 If MCP tools are not available, fall back to Glob + Grep + Read.
@@ -67,7 +67,7 @@ If MCP tools are not available, fall back to Glob + Grep + Read.
 
    a. **Get architecture overview** (if MCP available — do this FIRST):
       ```
-      codegraph_explain(project="{project name from CLAUDE.md or directory name}")
+      project_info(name="{project name from CLAUDE.md or directory name}")
       ```
       Gives you: stack, languages, directory layers, key patterns, top dependencies, files with the most definitions.
 

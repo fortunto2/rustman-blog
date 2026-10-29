@@ -19,9 +19,7 @@ One index over every project in the registry: symbol definitions (functions, cla
 
 **Key MCP tools:**
 - `symbol_search` — where something is defined, across every project
-- `codegraph_explain` — what a project is made of: stack, languages, layers, dependencies
-- `codegraph_shared` — packages shared across projects, or who uses a given one
-- `codegraph_stats` — counts
+- `project_info` — all projects with portfolio counts; with `name`, what one project is made of (stack, languages, layers, dependencies); with `package`, who uses it
 
 **What it used to be.** Until 0.8 this was a FalkorDB graph with imports, function calls, inheritance and session→file edges, queried in Cypher. Agents asked it nothing structural in four months, and Grep answers those questions as well: a dedicated code-graph MCP against Grep/Read on a 1,100-file repository gave the same accuracy in 8 of 8 runs, with a 16% cost difference on one question type and none on the other. See [[project-solograph]] for the numbers.
 
