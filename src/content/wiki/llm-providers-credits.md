@@ -6,7 +6,7 @@ created: 2026-04-09
 updated: 2026-10-29
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
 publish: true
-index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits re-checked Oct 2026 (bootstrapped: Microsoft $150K, Cloudflare $10K, Together $15K, ElevenLabs, Runway, fal.ai, Grok; closed: Anthropic, DeepInfra, Nebius), open models, cost strategy"
+index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits re-checked Oct 2026 (bootstrapped: Microsoft $150K, Alibaba $120K, Huawei, Backblaze $100K, Together $15K, Cloudflare $10K, ElevenLabs, Cartesia, Runway, fal.ai, Grok; closed: Anthropic, DeepInfra, Nebius, GitHub), open models, cost strategy"
 index_section: "concept"
 ---
 
@@ -36,6 +36,18 @@ Re-checked on official pages on 29 Oct 2026. Most programs are one-time per comp
 | **Deepgram** | $1K, up to $100K via a partner | Case by case; no agencies; 12-month expiry | STT/TTS | [deepgram.com/startup-program](https://deepgram.com/startup-program) |
 | **MongoDB for Startups (Inspire)** | Atlas credits + Voyage AI tokens (unpublished) | Bootstrapped tier, company under 7 years | Database, embeddings | [mongodb.com/solutions/startups](https://www.mongodb.com/solutions/startups) |
 | **NVIDIA Inception** | Free membership; partner perks such as Lambda $1K | 1+ developer, website, incorporated, under 10 years | Perks, not credits of its own | [nvidia.com/startups](https://www.nvidia.com/en-us/startups/) |
+| **Cartesia Startups Grant** | A year of the Scale tier: 96M Sonic/Ink credits + $299/mo agent credits | Startups at any stage; you agree to logo use and a social post | TTS/STT, voice cloning, 44 languages | [cartesia.ai/startups](https://cartesia.ai/startups) |
+| **Backblaze Flamethrower** | Up to $100K B2 storage credits | Under 7 years, <100 staff, bootstrapped named as a fit; storage must be core (AI, video) | Object storage, no egress fees | [backblaze.com/flamethrower](https://www.backblaze.com/flamethrower) |
+| **Alibaba Cloud AI Catalyst** | Up to $120K + 2B Model Studio tokens | No criteria published; AI video/image named as a priority; answer in 4–5 days | Qwen and Wan video models | [alibabacloud.com/en/startup/ai](https://www.alibabacloud.com/en/startup/ai) |
+| **Huawei Cloud Startup** | $5K voucher minimum, up to $150K | Under 5 years (aggregators); company documents, ~10-day audit | Cloud, no investor needed | [startup.huaweicloud.com](https://startup.huaweicloud.com/intl/center) |
+| **Akamai Rise** | Up to $120K in year 1, discounts in years 2–3 | Under 7 years; paid staff, real users, revenue or VC; Akamai must be a main provider; new account with a card | Cloud (ex-Linode), media prioritized | [akamai.com/cloud/start-ups/rise](https://www.akamai.com/cloud/start-ups/rise) |
+| **Hume AI** | 40M credits, 12 months | "Qualifying startups and small businesses"; full terms did not render | Expressive voice | [hume.ai/startup-program](https://hume.ai/startup-program) |
+| **Gcore for Startups** | CDN/WAAP/DNS bundle worth €18K+/yr, up to 30% off GPU | Up to Series A, tech product, 2-day review | Edge + GPU | [gcore.com](https://gcore.com/go/startups-apply-program) |
+| **Sentry for Startups** | $5K, 12 months | Founded <2 years, <$5M VC, new to paying Sentry | Error tracking | [sentry.io/for/startups](https://sentry.io/for/startups/apply/) |
+| **Vast.ai credit match** | Dollar-for-dollar match up to an agreed cap (~$2.5K) | Shipping workloads, no VC; you spend first | Cheap H100/H200 | [vast.ai/startup](https://vast.ai/startup) |
+| **Mux** | $500, one year | New to Mux | Video infrastructure | [mux.com/startups](https://www.mux.com/startups) |
+| **JetBrains Startup Program** | 50% off up to 10 IDE + 10 AI seats, 5 years | Founded <5 years, 48h review | Discount, not credit | [jetbrains.com/store/startups](https://www.jetbrains.com/store/startups/) |
+| **Small SaaS tail** | Langfuse 50% off 12 mo; Intercom 93% off year 1; Framer Pro free year | Langfuse: bootstrapped or <$5M; Intercom: <$10M, <15 staff | Discounts | [langfuse.com/startups](https://langfuse.com/startups) |
 | **xAI data sharing** | $25 signup + $150/mo | Opt-in data sharing (irreversible, team-wide). Amounts come from third-party guides; xAI's own pages did not show them in Oct 2026 | Grok API | [x.ai/api](https://x.ai/api) |
 
 ### VC-backed, referral-only, or closed (Oct 2026)
@@ -54,7 +66,17 @@ Re-checked on official pages on 29 Oct 2026. Most programs are one-time per comp
 | **Scaleway** | EU-incorporated companies only |
 | **Cerebras, Fireworks, Groq, Mistral** | Startup pages 404 or show no credits (Groq goes through a hand-picked partner program) |
 | **Replicate** | Now part of Cloudflare, no standalone program |
-| **No program found** | Luma, Black Forest Labs, Kling, Hedra, HeyGen, Pika, Twelve Labs |
+| **GitHub for Startups** | $10K needs a partner and outside funding; GitHub Enterprise via Microsoft is Investor Network only |
+| **Fly.io, Render, LangSmith, Auth0, Replit, Tencent, HubSpot** | VC-backed, seed minimums or partner codes ("bootstrapped not eligible" on Fly.io) |
+| **Perplexity, Cohere, Oracle** | Perplexity $5K via referral (aggregators), Cohere a 25% discount, Oracle page blocked; unverified |
+| **Apple, Google Play, RevenueCat, Adapty** | No money for small developers; free tiers only |
+| **No program found** | Luma, Black Forest Labs, Kling, Hedra, HeyGen, Pika, Twelve Labs, Hugging Face, Stability, Ideogram, Recraft, Krea, D-ID, Synthesia, Higgsfield, LTX, Moonvalley, Hetzner, IBM, Crusoe, Lightning AI |
+
+### Turkey
+
+- **KOSGEB AI Credit** is a loan, not free credit: 0% interest, 500K–5M TL over 24 months (12 grace), spent on AWS, Google or Azure AI services through the GO Dijital Cüzdan. Needs a Teknogirişim badge (free, e-Devlet) and a bank guarantee letter ([kosgeb.gov.tr](https://www.kosgeb.gov.tr/site/tr/genel/destekdetay/9414))
+- **Herkes İçin GPU** (Ministry of Industry): first call expected around spring 2027; watch sanayi.gov.tr
+- A Turkish legal entity opens programs a Delaware corp cannot: fal.ai (Europe/Asia teams), and it is a fresh applicant at Microsoft, Google Cloud, Huawei and Alibaba
 
 ### Community Signal (Reddit)
 
@@ -66,12 +88,13 @@ Re-checked on official pages on 29 Oct 2026. Most programs are one-time per comp
 ### Credit Stacking Strategy (bootstrapped, Oct 2026)
 
 Apply in this order:
-1. **Microsoft for Startups**: the only large ceiling left without an investor, and it is earned through usage
-2. **Cloudflare Tier 3** ($10K) and **Together Build** ($15K)
-3. **Video/audio APIs**: ElevenLabs, Runway, fal.ai (needs a European or Asian entity), Grok for Startups
-4. **Small tail**: AWS Founders, AssemblyAI, Deepgram, MongoDB, NVIDIA Inception → Lambda $1K
+1. **Microsoft for Startups**: the largest ceiling without an investor, earned through usage
+2. **Voice and video APIs** (minutes per form, answer within a week): ElevenLabs, Cartesia, Runway, fal.ai (needs a European or Asian entity), Grok for Startups, Hume
+3. **Clouds with big "up to" ceilings**: Alibaba AI Catalyst, Huawei, Backblaze (if you store video), Akamai (only if it will host something)
+4. **Mid-size**: Cloudflare Tier 3 ($10K), Together Build ($15K)
+5. **Small tail**: AWS Founders, AssemblyAI, Deepgram, MongoDB, Sentry, Mux, NVIDIA Inception → Lambda $1K
 
-**Realistic ceiling: about $200K**, three quarters of it Microsoft's usage-gated $150K. The "$500K+ without VC" of April 2026 is gone: DeepInfra, Nebius and DigitalOcean closed to bootstrapped companies, and Anthropic's open cohort filled in three days. An incubator or accelerator partner code (Microsoft, AWS Portfolio up to $200K, Cloudflare Tier 1–2) is now the main lever.
+**On paper about $700K, in practice far less.** Most of the total is "up to" ceilings from clouds (Huawei, Alibaba, Akamai, Microsoft, Backblaze) that pay the minimum unless you become a real customer. The fixed grants that pay out on approval are the voice and video ones, each $1–6K. The "$500K+ without VC" of April 2026 came from a different list: DeepInfra, Nebius and DigitalOcean have since closed to bootstrapped companies, and Anthropic's open cohort filled in three days. An incubator or accelerator partner code (Microsoft, AWS Portfolio up to $200K, Cloudflare Tier 1–2) is still the main lever.
 
 *Credits and requirements change; check provider pages for current terms.*
 
