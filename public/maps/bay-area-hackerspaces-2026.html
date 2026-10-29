@@ -14,6 +14,11 @@
   .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.3); }
   .legend .approx { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; border: 2px dashed #334155; vertical-align: -1px; }
   .legend .toggle { display: none; }
+  .legend label { display: block; cursor: pointer; white-space: nowrap; }
+  .legend input { margin: 0 5px 0 0; vertical-align: -2px; }
+  .legend input[type=search] { width: 100%; box-sizing: border-box; margin: 4px 0 6px; padding: 3px 6px; font: inherit; border: 1px solid #cbd5e1; border-radius: 6px; }
+  .legend hr { border: 0; border-top: 1px solid #e2e8f0; margin: 5px 0; }
+  .legend .count { color: #64748b; }
   .leaflet-popup-content { margin: 10px 12px; font-size: 13px; min-width: 180px; }
   .leaflet-popup-content h3 { margin: 0 0 2px; font-size: 14px; }
   .leaflet-popup-content .kind { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
@@ -48,7 +53,7 @@ const PLACES = [
   { n: 'Sudo Room', k: 'space', ll: [37.83500, -122.26415], p: 'Free, open membership', m: 'Walk in (Tuesday open house)', u: 'https://sudoroom.org/', a: 'Omni Commons, 4799 Shattuck Ave, Oakland' },
   { n: 'Ace Makerspace', k: 'space', ll: [37.84470, -122.27689], p: '$200/mo or $2,000/yr, 24/7', m: 'Monthly membership', u: 'https://www.acemakerspace.org/membership/', a: '6050 Lowell St, Oakland' },
   { n: 'Maker Nexus', k: 'space', ll: [37.41207, -122.00590], p: '$160/mo, 10:00-22:00 daily', m: 'Monthly membership', u: 'https://www.makernexus.org/join-maker-nexus', a: '1330 Orleans Dr, Sunnyvale' },
-  { n: 'Humanmade', k: 'space', ll: [37.77817, -122.39954], p: '$250/mo ($99 first month), student $200; hardware accelerator free, no equity', m: 'Monthly membership', u: 'https://www.humanmade.org/memberships', a: '655 Bryant St, SF (13,000 sq ft shop)' },
+  { n: 'Humanmade', k: 'space', free: false, ll: [37.77817, -122.39954], p: '$250/mo ($99 first month), student $200; hardware accelerator free, no equity', m: 'Monthly membership', u: 'https://www.humanmade.org/memberships', a: '655 Bryant St, SF (13,000 sq ft shop)' },
   { n: 'Circuit Launch Oakland', k: 'space', ll: [37.74015, -122.20138], p: 'Hot desk $275/mo, dedicated $325/mo, 24/7 (same price list for both sites)', m: 'Monthly membership', u: 'https://www.circuitlaunch.com/', a: '8000 Edgewater Dr, Oakland (hardware and robotics coworking)' },
   { n: 'Circuit Launch Mountain View', k: 'space', ll: [37.3861, -122.0839], approx: 'Mountain View', p: 'Hot desk $275/mo, dedicated $325/mo, 24/7', m: 'Monthly membership; hosts hardware meetups', u: 'https://www.circuitlaunch.com/' },
   { n: 'Counter Culture Labs', k: 'space', ll: [37.8300, -122.2700], approx: 'Oakland', p: '$100/mo, sliding scale', m: 'Monthly, safety training', u: 'https://www.counterculturelabs.org/join/' },
@@ -71,7 +76,7 @@ const PLACES = [
   { n: 'Frontier Residency', k: 'program', ll: [37.78850, -122.41330], p: 'Housing, desk, lunch included; 3% equity', m: '8 weeks, 10 teams', u: 'https://frontiertower.io/residency', a: 'Housed at Superhero Hotel, 825 Sutter St' },
   { n: 'Draper University + Hero City', k: 'program', ll: [37.56352, -122.32492], p: 'Hero Training paid (tuition unverified); Hero City coworking from ~$100/mo (old list)', m: '5-week cohort, Spring 2027 next', u: 'https://draperuniversity.com/apply?name=HeroTraining&FormNo=firstform', a: '44 E 3rd Ave, San Mateo' },
   { n: 'Lightyear', k: 'program', ll: [37.79272, -122.43564], approx: 'Pacific Heights', p: '$0 (per Aug 2026 directory, verify)', m: '1 month', u: 'https://joinlightyear.com/' },
-  { n: 'Z Fellows', k: 'program', ll: [37.7780, -122.4150], approx: 'San Francisco (final day in SF or NYC)', p: 'Optional $10K at a $1B cap, or join with no money', m: '1 week, mostly online, rolling applications', u: 'https://www.zfellows.com/' },
+  { n: 'Z Fellows', k: 'program', live: false, ll: [37.7780, -122.4150], approx: 'San Francisco (final day in SF or NYC)', p: 'Optional $10K at a $1B cap, or join with no money', m: '1 week, mostly online, rolling applications', u: 'https://www.zfellows.com/' },
   { n: 'HF0', k: 'program', ll: [37.7740, -122.4300], approx: 'San Francisco', p: 'Batches for repeat founders', m: 'Batch, next start 4 Jan', u: 'https://www.eomag.io/article/hacker-houses-san-francisco' },
   { n: 'Edge Esmeralda', k: 'program', ll: [38.6105, -122.8697], approx: 'Healdsburg (popup)', p: 'Application', m: '4-week popup village; 2026 edition ended 27 Jun', u: 'https://www.edgecity.live/' },
 
@@ -124,25 +129,56 @@ for (const pl of PLACES) {
     (pl.approx ? `<div class="note">Approximate: marker at the neighbourhood or city centre, exact address not public.</div>` : '')
   );
   mk.bindTooltip(pl.n, { direction: 'top', offset: [0, -6] });
-  markers.push(mk);
+  markers.push({ mk, pl });
 }
 window.MARKER_COUNT = markers.length;
 
 // Fit SF to San Jose; Healdsburg sits outside on purpose.
 map.fitBounds([[37.81, -122.52], [37.33, -121.88]], { padding: [10, 10] });
 
+// Filters: kind, "free", "can live there", hide closed, text search. Free and closed
+// are read from the price and stay text, so a new row needs no extra field.
+const isFree = pl => pl.free ?? (/\bfree\b|\$0\b/i.test(pl.p) && !/not free/i.test(pl.p));
+const isClosed = pl => /closed|paused/i.test(pl.m + ' ' + pl.p);
+const canLive = pl => (pl.live ?? (pl.k === 'house' || pl.k === 'program')) && !isClosed(pl);
+const state = { kinds: new Set(Object.keys(KINDS)), free: false, live: false, hideClosed: false, q: '' };
+
+function apply() {
+  let shown = 0;
+  for (const { mk, pl } of markers) {
+    const text = (pl.n + ' ' + (pl.a || '') + ' ' + (pl.approx || '') + ' ' + pl.p).toLowerCase();
+    const ok = state.kinds.has(pl.k) && (!state.free || isFree(pl)) && (!state.live || canLive(pl)) &&
+      (!state.hideClosed || !isClosed(pl)) && (!state.q || text.includes(state.q));
+    if (ok) { mk.addTo(map); shown++; } else { map.removeLayer(mk); }
+  }
+  document.querySelector('.legend .count').textContent = `${shown} of ${PLACES.length} shown`;
+}
+
 const legend = L.control({ position: 'bottomleft' });
 legend.onAdd = function () {
   const d = L.DomUtil.create('div', 'legend');
   const small = window.matchMedia('(max-width: 480px)').matches;
-  d.innerHTML = `<span class="toggle">Legend ▾</span><div class="rows${small ? ' hidden' : ''}"><b>${PLACES.length} places, Oct 2026</b>` +
-    Object.values(KINDS).map(k => `<div><i style="background:${k.color}"></i>${k.label}</div>`).join('') +
-    `<div><span class="approx"></span>Approximate location</div></div>`;
+  const n = k => PLACES.filter(pl => pl.k === k).length;
+  d.innerHTML = `<span class="toggle">Filters ▾</span><div class="rows${small ? ' hidden' : ''}"><b>Bay Area spaces, Oct 2026</b>` +
+    `<input type="search" placeholder="Search: Rust, Oakland, $0…" aria-label="Search places">` +
+    Object.entries(KINDS).map(([key, k]) =>
+      `<label><input type="checkbox" data-kind="${key}" checked><i style="background:${k.color}"></i>${k.label} (${n(key)})</label>`).join('') +
+    `<hr><label><input type="checkbox" data-flag="live">Can live there</label>` +
+    `<label><input type="checkbox" data-flag="free">Free</label>` +
+    `<label><input type="checkbox" data-flag="hideClosed">Hide closed</label>` +
+    `<hr><div><span class="approx"></span>Approximate location</div><div class="count"></div></div>`;
   L.DomEvent.disableClickPropagation(d);
+  L.DomEvent.disableScrollPropagation(d);
   d.querySelector('.toggle').addEventListener('click', () => d.querySelector('.rows').classList.toggle('hidden'));
+  d.querySelectorAll('input[data-kind]').forEach(cb => cb.addEventListener('change', () => {
+    cb.checked ? state.kinds.add(cb.dataset.kind) : state.kinds.delete(cb.dataset.kind); apply();
+  }));
+  d.querySelectorAll('input[data-flag]').forEach(cb => cb.addEventListener('change', () => { state[cb.dataset.flag] = cb.checked; apply(); }));
+  d.querySelector('input[type=search]').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); apply(); });
   return d;
 };
 legend.addTo(map);
+apply();
 </script>
 </body>
 </html>
