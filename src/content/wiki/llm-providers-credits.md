@@ -323,6 +323,7 @@ Run locally or on your own infrastructure. Zero API cost.
 
 - [[token-efficient-web-requests]] — reduce API costs 80% with content negotiation
 - [[infra-two-tools]] — infrastructure strategy (SST + Pulumi)
+- [[cheap-compute-cpu-gpu]] — renting raw CPU cores and GPUs by the hour (Vast, Oracle A1, spot, Thunder, Kaggle free)
 - [[privacy-as-architecture]] — when to self-host vs use API
 - [[apple-on-device-ai]] — zero-cost on-device inference for iOS
 
