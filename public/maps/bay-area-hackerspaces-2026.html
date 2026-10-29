@@ -48,6 +48,9 @@ const PLACES = [
   { n: 'Sudo Room', k: 'space', ll: [37.83500, -122.26415], p: 'Free, open membership', m: 'Walk in (Tuesday open house)', u: 'https://sudoroom.org/', a: 'Omni Commons, 4799 Shattuck Ave, Oakland' },
   { n: 'Ace Makerspace', k: 'space', ll: [37.84470, -122.27689], p: '$200/mo or $2,000/yr, 24/7', m: 'Monthly membership', u: 'https://www.acemakerspace.org/membership/', a: '6050 Lowell St, Oakland' },
   { n: 'Maker Nexus', k: 'space', ll: [37.41207, -122.00590], p: '$160/mo, 10:00-22:00 daily', m: 'Monthly membership', u: 'https://www.makernexus.org/join-maker-nexus', a: '1330 Orleans Dr, Sunnyvale' },
+  { n: 'Humanmade', k: 'space', ll: [37.77817, -122.39954], p: '$250/mo ($99 first month), student $200; hardware accelerator free, no equity', m: 'Monthly membership', u: 'https://www.humanmade.org/memberships', a: '655 Bryant St, SF (13,000 sq ft shop)' },
+  { n: 'Circuit Launch Oakland', k: 'space', ll: [37.74015, -122.20138], p: 'Hot desk $275/mo, dedicated $325/mo, 24/7 (same price list for both sites)', m: 'Monthly membership', u: 'https://www.circuitlaunch.com/', a: '8000 Edgewater Dr, Oakland (hardware and robotics coworking)' },
+  { n: 'Circuit Launch Mountain View', k: 'space', ll: [37.3861, -122.0839], approx: 'Mountain View', p: 'Hot desk $275/mo, dedicated $325/mo, 24/7', m: 'Monthly membership; hosts hardware meetups', u: 'https://www.circuitlaunch.com/' },
   { n: 'Counter Culture Labs', k: 'space', ll: [37.8300, -122.2700], approx: 'Oakland', p: '$100/mo, sliding scale', m: 'Monthly, safety training', u: 'https://www.counterculturelabs.org/join/' },
   { n: 'BioCurious', k: 'space', ll: [37.39540, -121.98180], p: 'Monthly plan + $120 setup (rate unverified)', m: 'Monthly', u: 'https://biocurious.org/membership/', a: '3108 Patrick Henry Dr, Santa Clara' },
 
@@ -56,6 +59,11 @@ const PLACES = [
   { n: 'Founders, Inc. (Night Hack)', k: 'club', ll: [37.80633, -122.43206], p: 'Night Hack free (apply on Luma); campus for funded founders', m: 'Per event', u: 'https://f.inc/', a: 'Fort Mason, SF' },
   { n: 'AGI House (agihouse.org)', k: 'club', ll: [37.55725, -122.36253], approx: 'Hillsborough', p: 'Invite or apply per event', m: 'Events only, no residency', u: 'https://www.agihouse.org/' },
   { n: 'AGI House SF (agihouse.ai)', k: 'club', ll: [37.7700, -122.4250], approx: 'San Francisco', p: 'Per event', m: 'Events; calls itself a residency, separate organisation', u: 'https://agihouse.ai/' },
+  { n: 'Mox SF', k: 'club', ll: [37.77080, -122.41999], p: 'Membership by application (price not published); guest program only for partner orgs', m: 'Coworking, ~275 members: AI safety, founders, writers', u: 'https://moxsf.com/', a: '1680 Mission St, SF' },
+  { n: 'House of AI', k: 'club', ll: [37.77450, -122.40313], p: 'Desks and events; price not published (ask)', m: 'Curated AI coworking, 6,000 sq ft', u: 'https://www.house-of.ai/', a: '40 Boardman Pl, SF (SoMa)' },
+  { n: 'European Startup Embassy', k: 'club', ll: [37.78185, -122.39479], p: 'Day pass booked on LANS (price on that page); Rooftop Demo Night', m: 'Day pass; events open by approval', u: 'https://europeanstartupembassy.com/the-cowork-event-space/', a: '461 Bryant St, South Park, SF' },
+  { n: 'Gray Area / Grand Theater', k: 'club', ll: [37.75444, -122.41826], p: 'Events, some free, some paid', m: 'Per event', u: 'https://grayarea.org/', a: '2665 Mission St, SF (open Tue-Fri 12-6 pm)' },
+  { n: 'Bay Area AI War Room (Victory Point Cafe)', k: 'club', ll: [37.87517, -122.26844], p: 'Free, Meetup; 1st Saturday monthly 10:00 to 12:00 through 31 Dec 2026', m: 'Walk in', u: 'https://www.meetup.com/bay-area-artificial-war-room/', a: '1797 Shattuck Ave, Berkeley' },
   { n: 'SHACK15', k: 'club', ll: [37.79555, -122.39347], p: 'Members only, dues after application', m: 'Membership', u: 'https://www.shack15.com/membership', a: 'Ferry Building, SF' },
   { n: 'South Park Commons', k: 'club', ll: [37.78064, -122.39404], p: 'Member Residency $0, no equity; Fellowship $400K for 7%', m: 'Member Residency 6 months', u: 'https://blog.southparkcommons.com/what-is-the-spc-member-residency/', a: '380 Brannan St, SF (address from its site)' },
 
@@ -63,6 +71,7 @@ const PLACES = [
   { n: 'Frontier Residency', k: 'program', ll: [37.78850, -122.41330], p: 'Housing, desk, lunch included; 3% equity', m: '8 weeks, 10 teams', u: 'https://frontiertower.io/residency', a: 'Housed at Superhero Hotel, 825 Sutter St' },
   { n: 'Draper University + Hero City', k: 'program', ll: [37.56352, -122.32492], p: 'Hero Training paid (tuition unverified); Hero City coworking from ~$100/mo (old list)', m: '5-week cohort, Spring 2027 next', u: 'https://draperuniversity.com/apply?name=HeroTraining&FormNo=firstform', a: '44 E 3rd Ave, San Mateo' },
   { n: 'Lightyear', k: 'program', ll: [37.79272, -122.43564], approx: 'Pacific Heights', p: '$0 (per Aug 2026 directory, verify)', m: '1 month', u: 'https://joinlightyear.com/' },
+  { n: 'Z Fellows', k: 'program', ll: [37.7780, -122.4150], approx: 'San Francisco (final day in SF or NYC)', p: 'Optional $10K at a $1B cap, or join with no money', m: '1 week, mostly online, rolling applications', u: 'https://www.zfellows.com/' },
   { n: 'HF0', k: 'program', ll: [37.7740, -122.4300], approx: 'San Francisco', p: 'Batches for repeat founders', m: 'Batch, next start 4 Jan', u: 'https://www.eomag.io/article/hacker-houses-san-francisco' },
   { n: 'Edge Esmeralda', k: 'program', ll: [38.6105, -122.8697], approx: 'Healdsburg (popup)', p: 'Application', m: '4-week popup village; 2026 edition ended 27 Jun', u: 'https://www.edgecity.live/' },
 
@@ -85,6 +94,7 @@ const PLACES = [
   { n: 'DobryDom (Добрый Дом)', k: 'ru', ll: [37.77636, -122.43470], approx: 'near Alamo Square, private home', p: 'Not published (unverified)', m: 'Not published; closed, applications paused', u: 'https://www.instagram.com/dobrydomsf/' },
   { n: 'GOORT, Ukrainian Tech Hub', k: 'ru', ll: [37.7830, -122.4030], approx: 'San Francisco', p: 'Coworking price not published', m: 'Contact form', u: 'https://www.goort.cc/' },
   { n: 'Silkroad Innovation Hub', k: 'ru', ll: [37.4440, -122.1610], approx: 'Palo Alto / Menlo Park', p: 'Events; Alchemist Silkroad residency', m: 'Residency 3 months', u: 'https://silkroadinnovationhub.com/' },
+  { n: 'Tech Flow Bay Area', k: 'ru', ll: [37.7800, -122.4100], approx: 'San Francisco (Aug 2026 meetup at Homeland Loft)', p: 'Free community; 1,000+ members across 14 US cities', m: 'Next Bay Area meetup not announced', u: 'https://www.jointechflow.com/chapters/bay-area' },
   { n: 'Russian Center of SF', k: 'ru', ll: [37.78547, -122.44094], p: 'Cultural events', m: 'Per event', u: 'https://www.russiancentersf.org/local-events', a: '2450 Sutter St, SF' }
 ];
 
