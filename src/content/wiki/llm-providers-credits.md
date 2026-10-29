@@ -3,7 +3,7 @@ type: catalog
 title: "LLM providers & startup credits — where to get models, free tiers, and funding"
 description: "Catalog of LLM providers with free tiers, startup credit programs, and open-source models. From $0 to scale."
 created: 2026-04-09
-updated: 2026-10-27
+updated: 2026-10-29
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
 publish: true
 index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits (Modal $25K, OpenAI, Anthropic, GCP), open models, cost strategy"
@@ -42,7 +42,7 @@ Apply for credits when you have a registered company or VC backing.
 - **Groq** — very high speed, good price/perf. Rate-limit and burst error discussions
 - **Fireworks** — technically solid, discussions focus on pricing/stability rather than startup program
 - **Cloudflare** — Workers AI has free tier with open models, startup credits up to $250K. Already on CF Pages = easy upgrade path
-- **xAI / Grok** — no public startup program found (check manually)
+- **xAI / Grok** — Grok for Startups ([x.ai/startups](https://x.ai/startups)): one balance for Grok, Grok Build, Grok Bot and the API, sized for 6–12 months of usage; 20% on approval, 80% after onboarding, expires 6 months after it is applied, one grant per company. Reddit (Oct 2026): Grok 4.7 is tuned for coding agents, chat got weaker; Grok Build is liked as a harness but weekly limits were cut in August; the Imagine video API is praised for native audio and lip sync, but moderation tightened in April 2026 and failed generations are still billed. YC Startup School xAI credits ($2.5k) were offered for $100–1,000 on Reddit, so price them low
 - **OpenRouter** — no accelerator program, standard billing model
 
 ### No-VC / Bootstrapped Friendly
