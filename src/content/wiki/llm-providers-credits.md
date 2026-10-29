@@ -6,7 +6,7 @@ created: 2026-04-09
 updated: 2026-10-29
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
 publish: true
-index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits (Modal $25K, OpenAI, Anthropic, GCP), open models, cost strategy"
+index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits re-checked Oct 2026 (bootstrapped: Microsoft $150K, Cloudflare $10K, Together $15K, ElevenLabs, Runway, fal.ai, Grok; closed: Anthropic, DeepInfra, Nebius), open models, cost strategy"
 index_section: "concept"
 ---
 
@@ -18,60 +18,62 @@ Where to get LLMs: free tiers, startup credit programs, open-source models. Orga
 
 ## Startup Credit Programs
 
-Apply for credits when you have a registered company or VC backing.
+Re-checked on official pages on 29 Oct 2026. Most programs are one-time per company, so a second legal entity is a second chance.
+
+### Open to bootstrapped companies (no VC, no referral)
 
 | Provider | Credits | Requirements | What you get | Link |
 |----------|---------|-------------|-------------|------|
-| **Together AI** | $15K–$50K | Build (<$5M raised): $15K + 3h eng. Scale ($5-10M): $30K + 6h. Grow (>$10M): $50K + 10h | Open model inference + fine-tuning + GTM + VC network | [together.ai/startup-accelerator](https://www.together.ai/startup-accelerator) |
-| **Modal** | $25K | Seed–Series A, VC-backed or raised >$1M | GPU, inference, training, batch, sandboxes | [modal.com/startups](https://modal.com/startups) |
-| **Cerebras** | $22.5K | Startup deal | Inference value + priority support + co-marketing | [cerebras.ai/startup-deal](https://www.cerebras.ai/startup-deal) |
-| **Fireworks** | Varies | AI-native startups | Platform, tools, expertise | [fireworks.ai/startup-program](https://fireworks.ai/startup-program) |
-| **Groq** | $10K | Groq for Startups eligibility | Fast inference credits (LPU) | [console.groq.com/docs/billing-faqs](https://console.groq.com/docs/billing-faqs) |
-| **Google Cloud** | $2K–$350K | Google for Startups | Vertex AI, Gemini API, GCP credits | cloud.google.com/startup |
-| **AWS** | $1K–$100K | AWS Activate | Bedrock (Claude, Llama, etc), SageMaker | aws.amazon.com/activate |
-| **Azure** | $1K–$150K | Microsoft for Startups | Azure OpenAI, Cognitive Services | startups.microsoft.com |
-| **OpenAI** | $2.5K+ (VC referral) | VC partner referral required, varies by stage. Grove program for pre-idea founders (closed cohorts) | GPT-4/5 API credits | [openai.com/startups](https://openai.com/startups/) |
-| **Anthropic** | Varies | Claude for Startups — credits, resources, community | Claude API credits | [claude.com/programs/startups](https://claude.com/programs/startups) |
-| **Cloudflare** | $5K–$250K | Bootstrapped: $5K. Early: $25K. Seed ($1-5M): $100K. High growth/Tier 1 VC: $250K. Workers AI capped at $50K | CDN, Workers AI (free models), R2 storage, Pages, zero egress | [cloudflare.com/forstartups](https://www.cloudflare.com/en-gb/forstartups/) |
-| **Replicate** | $1K–$10K | Startup program | GPU inference for open models | replicate.com |
+| **Microsoft for Startups** | Up to $150K, unlocked over time by verified Azure usage | One entry point now ("Founders Hub" name retired); no investor needed; ~3-day review | Azure incl. Azure OpenAI | [startups.microsoft.com](https://startups.microsoft.com) |
+| **Cloudflare for Startups** | $10K (Tier 3, was $5K) | Bootstrapped or <$1M raised, founded <10 years, first-time applicants only. Workers AI capped at $2.5K on this tier | Workers, R2, Pages, Workers AI | [cloudflare.com/forstartups](https://www.cloudflare.com/forstartups/) |
+| **Together AI** | Up to $15K + 3h engineering (Build tier) | Raised under $5M, $0 counts | Open-model inference + fine-tuning | [together.ai/startup-accelerator](https://www.together.ai/startup-accelerator) |
+| **xAI (Grok for Startups)** | 6–12 months of usage, sized by funding, revenue and AI spend | Live product, one grant per company. 20% on approval, 80% after onboarding; credits expire 6 months after they are applied | One balance for Grok, Grok Build, Grok Bot and the API (incl. Imagine image/video) | [x.ai/startups](https://x.ai/startups) |
+| **ElevenLabs Startup Grants** | 33M characters (~$5.5K), 12 months | Under 25 staff, no funding test, any country; no agencies or kids' products; answer in ~1 week | TTS, dubbing, STT, SFX | [elevenlabs.io/startup-grants](https://elevenlabs.io/startup-grants) |
+| **Runway Builders** | Up to 500K API credits (~$5K) + Tier 5 limits | Page says Seed to Series C, but the form offers "Bootstrapped" | Video-generation API | [runway.com/product/builders](https://runway.com/product/builders) |
+| **fal.ai Startup Program** | $1K, then $2.5K / $5K as spend grows | Team in Europe or Asia only (US excluded); real users, revenue or an investor | Image/video-gen inference | [fal.ai/startups](https://fal.ai/startups) |
+| **AWS Activate Founders** | $1K, up to $5K | Self-funded, pre-Series B, paid-tier AWS account, never had Activate credits | AWS incl. Bedrock | [aws.amazon.com/startups](https://aws.amazon.com/startups/credits) |
+| **AssemblyAI** | Monthly credits for 12 months (size unpublished) | "Bootstrapped teams welcome"; speech must be central to the product | Speech-to-text | [assemblyai.com/startup-program](https://www.assemblyai.com/startup-program) |
+| **Deepgram** | $1K, up to $100K via a partner | Case by case; no agencies; 12-month expiry | STT/TTS | [deepgram.com/startup-program](https://deepgram.com/startup-program) |
+| **MongoDB for Startups (Inspire)** | Atlas credits + Voyage AI tokens (unpublished) | Bootstrapped tier, company under 7 years | Database, embeddings | [mongodb.com/solutions/startups](https://www.mongodb.com/solutions/startups) |
+| **NVIDIA Inception** | Free membership; partner perks such as Lambda $1K | 1+ developer, website, incorporated, under 10 years | Perks, not credits of its own | [nvidia.com/startups](https://www.nvidia.com/en-us/startups/) |
+| **xAI data sharing** | $25 signup + $150/mo | Opt-in data sharing (irreversible, team-wide). Amounts come from third-party guides; xAI's own pages did not show them in Oct 2026 | Grok API | [x.ai/api](https://x.ai/api) |
 
-### Community Signal (Reddit, Apr 2026)
+### VC-backed, referral-only, or closed (Oct 2026)
 
-- **Together AI** — wide model selection, good price/quality. Few post-mortem reviews of accelerator, but tiers are clear
-- **Cerebras** — complaints about limits/queues, signup pauses due to load. Great speed when access is available
-- **Groq** — very high speed, good price/perf. Rate-limit and burst error discussions
-- **Fireworks** — technically solid, discussions focus on pricing/stability rather than startup program
-- **Cloudflare** — Workers AI has free tier with open models, startup credits up to $250K. Already on CF Pages = easy upgrade path
-- **xAI / Grok** — Grok for Startups ([x.ai/startups](https://x.ai/startups)): one balance for Grok, Grok Build, Grok Bot and the API, sized for 6–12 months of usage; 20% on approval, 80% after onboarding, expires 6 months after it is applied, one grant per company. Reddit (Oct 2026): Grok 4.7 is tuned for coding agents, chat got weaker; Grok Build is liked as a harness but weekly limits were cut in August; the Imagine video API is praised for native audio and lip sync, but moderation tightened in April 2026 and failed generations are still billed. YC Startup School xAI credits ($2.5k) were offered for $100–1,000 on Reddit, so price them low
-- **OpenRouter** — no accelerator program, standard billing model
+| Provider | Status |
+|----------|--------|
+| **Anthropic** | Bootstrapped cohort ($1K API + a free Claude Team year) opened 6 Oct 2026 and closed 9 Oct after "hundreds of thousands" applied. The page says the cohort is full |
+| **OpenAI** | VC partner referral; small routes via Brex (~$1K) or Ramp perks |
+| **Vercel for Startups** | Up to $30K, needs an approved accelerator or VC partner. The AI Accelerator ($6M pool, 40 teams) last ran Mar–Apr 2026 |
+| **Modal** | $25K, seed–Series A, VC-backed or raised >$1M |
+| **DeepInfra DeepStart** | Now needs $250K–$10M raised and a company under 2 years |
+| **Nebius** | $150K needs $5M+ raised through a Nebius VC partner; Inception does not unlock it |
+| **Google Cloud** | $2K pre-funded tier; higher tiers through partners |
+| **DigitalOcean Hatch** | Applications paused until early 2027; credits exclude GPU and inference since May 2026 |
+| **OVHcloud** | START is €10K (SCALE €100K is Series A+); Turkey not on the country list |
+| **Scaleway** | EU-incorporated companies only |
+| **Cerebras, Fireworks, Groq, Mistral** | Startup pages 404 or show no credits (Groq goes through a hand-picked partner program) |
+| **Replicate** | Now part of Cloudflare, no standalone program |
+| **No program found** | Luma, Black Forest Labs, Kling, Hedra, HeyGen, Pika, Twelve Labs |
 
-### No-VC / Bootstrapped Friendly
+### Community Signal (Reddit)
 
-| Provider | Credits | Requirements | Link |
-|----------|---------|-------------|------|
-| **DeepInfra DeepStart** | 1B free tokens | Startup application, no VC required | [deepinfra.com/deepstart](https://deepinfra.com/deepstart) |
-| **NVIDIA Inception** | Free membership → unlocks $100K AWS + $150K Nebius | 1+ dev, website, incorporated, <10 years. No equity, no VC | [nvidia.com/startups](https://www.nvidia.com/en-us/startups/) |
-| **Mistral (Mistralship)** | Up to $30K | Startup program application | [mistral.ai](https://mistral.ai) |
-| **Microsoft Founders Hub** | $1K–$150K | No VC required, business verification | [startups.microsoft.com](https://startups.microsoft.com) |
-| **DigitalOcean Hatch** | Up to $100K | Raised <$10M, website, AI-native preferred | [digitalocean.com/startups](https://www.digitalocean.com/startups) |
-| **OVHcloud** | Up to €100K | Pre-seed/seed (START) or Series A+ (SCALE) | [startup.ovhcloud.com](https://startup.ovhcloud.com/en/) |
-| **Scaleway** | Up to €36K | EU-based or EU-focused | [scaleway.com/startup-program](https://www.scaleway.com/en/startup-program/) |
-| **Intel Liftoff** | Cloud credits (varies) | Early-stage to Series B, must have product | [intel.com/liftoff](https://www.intel.com/content/www/us/en/developer/tools/oneapi/liftoff.html) |
-| **xAI** | $25 signup + $150/mo | Opt-in data sharing (irreversible) | [x.ai/api](https://x.ai/api) |
+- **Together AI**: wide model selection, good price/quality. Few post-mortem reviews of the accelerator, but tiers are clear (Apr 2026)
+- **Cerebras**: complaints about limits and queues, signup pauses due to load. Great speed when access is available (Apr 2026)
+- **Groq**: very high speed, good price/perf. Rate-limit and burst error discussions (Apr 2026)
+- **xAI / Grok** (Oct 2026): Grok 4.7 is tuned for coding agents, chat got weaker; Grok Build is liked as a harness but weekly limits were cut in August; the Imagine video API is praised for native audio and lip sync, but moderation tightened in April 2026 and failed generations are still billed. YC Startup School xAI credits ($2.5k) were offered for $100–1,000 on Reddit, so price them low
 
-### Credit Stacking Strategy
+### Credit Stacking Strategy (bootstrapped, Oct 2026)
 
-Apply in this order for maximum runway (no VC required):
-1. **NVIDIA Inception** (free) → unlocks $100K AWS + $150K Nebius partner credits
-2. **Microsoft Founders Hub** → up to $150K Azure (incl Azure OpenAI)
-3. **DeepInfra DeepStart** → 1B tokens free
-4. **Mistral** → $30K
-5. **Modal** → $25K (if seed-funded)
-6. **Stack the rest**: Cerebras $22.5K + Groq $10K + CF $5-250K
+Apply in this order:
+1. **Microsoft for Startups**: the only large ceiling left without an investor, and it is earned through usage
+2. **Cloudflare Tier 3** ($10K) and **Together Build** ($15K)
+3. **Video/audio APIs**: ElevenLabs, Runway, fal.ai (needs a European or Asian entity), Grok for Startups
+4. **Small tail**: AWS Founders, AssemblyAI, Deepgram, MongoDB, NVIDIA Inception → Lambda $1K
 
-**Total potential: $500K+** without VC funding.
+**Realistic ceiling: about $200K**, three quarters of it Microsoft's usage-gated $150K. The "$500K+ without VC" of April 2026 is gone: DeepInfra, Nebius and DigitalOcean closed to bootstrapped companies, and Anthropic's open cohort filled in three days. An incubator or accelerator partner code (Microsoft, AWS Portfolio up to $200K, Cloudflare Tier 1–2) is now the main lever.
 
-*Credits and requirements change — check provider pages for current terms.*
+*Credits and requirements change; check provider pages for current terms.*
 
 ---
 
@@ -341,4 +343,4 @@ Run locally or on your own infrastructure. Zero API cost.
 
 ---
 
-*Catalog growing. Last updated: 2026-04-10; Anthropic prices 2026-10-27. Add providers as you discover them.*
+*Catalog growing. Last updated: 2026-04-10; Anthropic prices 2026-10-27; credit programs 2026-10-29. Add providers as you discover them.*
