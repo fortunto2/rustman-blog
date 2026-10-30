@@ -18,14 +18,14 @@ export const SITE = {
   },
 
   navigation: [
-    { href: '/course', label: 'Course' },
-    { href: '/posts', label: 'Posts' },
-    { href: '/wiki', label: 'Wiki' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/creative', label: 'Creative' },
-    { href: '/skills', label: 'Skills' },
-    { href: '/stacks', label: 'Stacks' },
-    { href: '/about', label: 'About' },
+    { href: '/course/', label: 'Course' },
+    { href: '/posts/', label: 'Posts' },
+    { href: '/wiki/', label: 'Wiki' },
+    { href: '/projects/', label: 'Projects' },
+    { href: '/creative/', label: 'Creative' },
+    { href: '/skills/', label: 'Skills' },
+    { href: '/stacks/', label: 'Stacks' },
+    { href: '/about/', label: 'About' },
   ],
 
   social: {
@@ -43,27 +43,27 @@ export const HERO_CARDS = [
   {
     title: 'Course: AI Solopreneur',
     description: '7 modules from mindset to shipping. For solo founders and teams adopting AI agents',
-    href: '/course',
+    href: '/course/',
   },
   {
     title: 'Solo Factory',
     description: '57 executable skills for Claude Code. Research → validate → build → deploy → launch',
-    href: '/projects/project-solo-factory',
+    href: '/projects/project-solo-factory/',
   },
   {
     title: 'SuperDuper DSP: 36 free audio plugins',
     description: 'EQ, compressors, reverbs, vocal tools, 7 instruments. CLAP/VST3/AU, one installer, an AI agent can mix with them',
-    href: '/projects/project-superduper-dsp',
+    href: '/projects/project-superduper-dsp/',
   },
   {
     title: 'Open Source',
     description: 'Rust crates, MCP servers, CLI tools. Code intelligence, invoicing, air quality',
-    href: '/projects',
+    href: '/projects/',
   },
   {
     title: 'AI Consulting',
     description: 'RAG systems, multi-agent pipelines, MVP development. Team training on agent workflows',
-    href: '/about',
+    href: '/about/',
   },
 ] as const;
 

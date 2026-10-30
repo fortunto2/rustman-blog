@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
 import { SITE, HERO_CARDS, PROJECT_PRIORITY } from '../lib/config';
 import { getCollection, getAllContent } from '../lib/content';
+import { listDate, modifiedDate } from '../lib/md';
 
 const posts = getCollection('posts');
 const projects = getCollection('projects');
@@ -20,9 +21,28 @@ const sortByPriority = (list: typeof projects, priority: readonly string[]) =>
 
 sortByPriority(openSource, PROJECT_PRIORITY.openSource);
 sortByPriority(products, PROJECT_PRIORITY.products);
+
+const base = `https://${SITE.domain}`;
+const blogLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: SITE.name,
+  url: `${base}/`,
+  author: { '@type': 'Person', name: SITE.author.name, url: SITE.social.github },
+  blogPost: [...posts]
+    .sort((a, b) => listDate(b.frontmatter).localeCompare(listDate(a.frontmatter)))
+    .slice(0, 12)
+    .map(p => ({
+      '@type': 'BlogPosting',
+      headline: p.frontmatter.title,
+      url: `${base}/posts/${p.slug}/`,
+      ...(listDate(p.frontmatter) ? { datePublished: listDate(p.frontmatter) } : {}),
+      ...(modifiedDate(p.frontmatter) ? { dateModified: modifiedDate(p.frontmatter) } : {}),
+    })),
+};
 ---
 
-<BaseLayout>
+<BaseLayout jsonLd={[blogLd]}>
   <section class="mb-10 flex items-center gap-5">
     <img src={SITE.author.avatar} alt={SITE.author.name} class="w-16 h-16 rounded-full" width="64" height="64" />
     <div>
@@ -42,7 +62,7 @@ sortByPriority(products, PROJECT_PRIORITY.products);
     </div>
     <div class="mt-4 flex flex-wrap items-center gap-3 font-mono text-sm">
       <a href={SITE.contact.calendar} target="_blank" rel="noopener" class="inline-block border border-[var(--color-accent)] dark:border-[var(--color-accent-dark)] text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] px-4 py-2 hover:bg-[var(--color-accent)] hover:text-white dark:hover:bg-[var(--color-accent-dark)] dark:hover:text-black transition-colors">Book a call &rarr;</a>
-      <a href="/creative" class="link-muted">Music &amp; video &rarr;</a>
+      <a href="/creative/" class="link-muted">Music &amp; video &rarr;</a>
       <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="link-muted">LinkedIn</a>
       <a href={SITE.social.github} target="_blank" rel="noopener" class="link-muted">GitHub</a>
       <a href={SITE.social.telegram} target="_blank" rel="noopener" class="link-muted">Telegram</a>

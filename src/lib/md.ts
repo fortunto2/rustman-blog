@@ -41,6 +41,26 @@ ${caption ? `<figcaption style="font-size: 0.875rem; color: var(--color-muted); 
 
 // ```ab blocks: one line per take, "A: url | label". Rendered as a player that keeps one playhead
 // across takes, so a switch compares the same moment — the only A/B that tells you anything.
+/**
+ * Pages are served at /section/slug/ (that is the canonical and the sitemap entry); a link without
+ * the slash costs every reader and crawler a 308 first, and audits count it as a broken link.
+ * Internal paths to pages get the slash; files (anything with an extension) and anchors keep theirs.
+ */
+export function withSlash(href: string): string {
+  const m = href.match(/^(\/(?!\/)[^?#]*)(.*)$/);
+  if (!m) return href;
+  const [, path, rest] = m;
+  if (path.endsWith('/') || /\.[a-z0-9]+$/i.test(path)) return href;
+  return `${path}/${rest}`;
+}
+
+const defaultLinkOpen = md.renderer.rules.link_open ?? ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
+md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+  const href = tokens[idx].attrGet('href');
+  if (href) tokens[idx].attrSet('href', withSlash(href));
+  return defaultLinkOpen(tokens, idx, options, env, self);
+};
+
 const defaultFence = md.renderer.rules.fence!;
 md.renderer.rules.fence = (tokens, idx, options, env, self) => {
   const token = tokens[idx];
@@ -62,11 +82,14 @@ ${audios}</div>\n`;
 
 /** The date a list shows and sorts by: the event's day when the page is about one, else when it was written. */
 export const listDate = (fm: Frontmatter): string => fm.event_date || fm.created || fm.date || '';
+/** When the page's content last changed: `updated` where the wiki records it, else when it was written. */
+export const modifiedDate = (fm: Frontmatter): string => fm.updated || fm.created || fm.date || '';
 
 export interface Frontmatter {
   title?: string;
   description?: string;
   created?: string;
+  updated?: string;
   date?: string;
   event_date?: string;
   tags?: string[];
@@ -155,7 +178,7 @@ export function processWikilinks(content: string): string {
   return mapOutsideCode(content, text => text.replace(WIKILINK, (_, slug, label) => {
     const display = label || slug;
     const s = slug.toLowerCase().replace(/\s+/g, '-');
-    return `[${display}](/${sectionOf(s)}/${s})`;
+    return `[${display}](/${sectionOf(s)}/${s}/)`;
   }));
 }
 

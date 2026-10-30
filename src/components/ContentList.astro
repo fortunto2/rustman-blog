@@ -40,11 +40,12 @@ const list = limit ? items.slice(0, limit) : items;
 
 <div class="space-y-0 font-mono text-sm">
   {list.map(entry => {
+    // With the trailing slash pages are served at; without it every click is a 308 first.
     const href = basePath
-      ? `${basePath}/${entry.slug}`
+      ? `${basePath}/${entry.slug}/`
       : entry.section
-        ? `/${entry.section}/${entry.slug}`
-        : `/${entry.slug}`;
+        ? `/${entry.section}/${entry.slug}/`
+        : `/${entry.slug}/`;
     const date = listDate(entry.frontmatter);
     const tags = entry.frontmatter.tags;
     const hasTags = showTags && tags && typeof tags !== 'string';

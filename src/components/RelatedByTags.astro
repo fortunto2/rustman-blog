@@ -62,7 +62,7 @@ const related = sections
         <span class="text-xs uppercase font-mono text-[var(--color-muted)] dark:text-[var(--color-accent-dim)]">{section.label}</span>
         <div class="space-y-0 font-mono text-sm mt-1">
           {section.items.map(item => (
-            <a href={`/${item.section}/${item.slug}`} class="block py-0.5 link-muted hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors truncate">
+            <a href={`/${item.section}/${item.slug}/`} class="block py-0.5 link-muted hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors truncate">
               {item.frontmatter.title || item.slug}
             </a>
           ))}

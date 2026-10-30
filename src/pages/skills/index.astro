@@ -31,7 +31,7 @@ if (ungrouped.length > 0) grouped.push({ phase: 'other', items: ungrouped });
       <h2 class="text-lg font-semibold mb-3 prompt capitalize">{phase}</h2>
       <div class="space-y-0 font-mono text-sm">
         {items.map(item => (
-          <a href={`/skills/${item.slug}`} class="group flex items-baseline gap-3 py-1.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+          <a href={`/skills/${item.slug}/`} class="group flex items-baseline gap-3 py-1.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
             <span class="text-[var(--color-accent)] dark:text-[var(--color-accent-dark)] shrink-0 w-40">/{item.slug}</span>
             <span class="text-[var(--color-muted)] truncate text-xs">{item.frontmatter.description}</span>
           </a>
@@ -43,10 +43,10 @@ if (ungrouped.length > 0) grouped.push({ phase: 'other', items: ungrouped });
   <div class="mt-10 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm font-mono">
     <h3 class="font-semibold mb-2">Related</h3>
     <div class="space-y-0">
-      <a href="/projects/project-solo-factory" class="block py-0.5 link-muted">Solo Factory — full product overview, agents, stacks, pipeline</a>
-      <a href="/course" class="block py-0.5 link-muted">Course: AI Solopreneur Engineer — learn the methodology behind these skills</a>
-      <a href="/wiki/agent-toolkit-landscape" class="block py-0.5 link-muted">Agent Toolkit Landscape — where solo-factory fits vs Superpowers, GSD-2, etc</a>
-      <a href="/wiki/harness-engineering-summary" class="block py-0.5 link-muted">Harness Engineering — skills are prompts, not programs. The harness IS the product</a>
+      <a href="/projects/project-solo-factory/" class="block py-0.5 link-muted">Solo Factory — full product overview, agents, stacks, pipeline</a>
+      <a href="/course/" class="block py-0.5 link-muted">Course: AI Solopreneur Engineer — learn the methodology behind these skills</a>
+      <a href="/wiki/agent-toolkit-landscape/" class="block py-0.5 link-muted">Agent Toolkit Landscape — where solo-factory fits vs Superpowers, GSD-2, etc</a>
+      <a href="/wiki/harness-engineering-summary/" class="block py-0.5 link-muted">Harness Engineering — skills are prompts, not programs. The harness IS the product</a>
     </div>
   </div>
 </BaseLayout>

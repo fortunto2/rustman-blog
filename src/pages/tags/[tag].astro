@@ -16,7 +16,7 @@ const { tag, entries } = Astro.props;
 
 <BaseLayout title={`#${tag}`} description={`All pages tagged "${tag}".`}>
   <div class="mb-4">
-    <a href="/tags" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] font-mono">&larr; All tags</a>
+    <a href="/tags/" class="text-sm text-[var(--color-muted)] hover:text-[var(--color-accent)] font-mono">&larr; All tags</a>
   </div>
   <h1 class="text-2xl font-bold mb-6 font-mono">#{tag} <span class="text-[var(--color-muted)] font-normal text-lg">({entries.length})</span></h1>
 

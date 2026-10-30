@@ -28,8 +28,8 @@ const hasBadges = fm.crate || fm.npm || fm.pypi;
 const softwareLd = await softwareApplicationLd(fm, new URL(Astro.url.pathname, Astro.site).href);
 ---
 
-<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, tags: post.frontmatter.tags as string[] }} jsonLd={softwareLd ? [softwareLd] : []}>
-  <BackLink href="/projects" label="Projects" />
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }} jsonLd={softwareLd ? [softwareLd] : []}>
+  <BackLink href="/projects/" label="Projects" />
 
   {appStoreId && (
     <AppStoreCard

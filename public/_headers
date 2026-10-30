@@ -11,6 +11,7 @@
 
 # Markdown twins are byte-identical to the source, so they can be cached hard.
 /*.md
+  X-Robots-Tag: noindex
   Content-Type: text/markdown; charset=utf-8
   Cache-Control: public, max-age=3600
   Access-Control-Allow-Origin: *

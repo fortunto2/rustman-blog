@@ -1,0 +1,2 @@
+# Crawlers and audits ask for /sitemap.xml first; @astrojs/sitemap writes an index.
+/sitemap.xml /sitemap-index.xml 301

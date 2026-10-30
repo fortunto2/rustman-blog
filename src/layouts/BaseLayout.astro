@@ -7,7 +7,7 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  article?: { date?: string; tags?: string[] };
+  article?: { date?: string; updated?: string; tags?: string[] };
   section?: string;
   /** Extra JSON-LD nodes for this page, e.g. the SoftwareApplication on a project page. */
   jsonLd?: Record<string, unknown>[];
@@ -73,6 +73,7 @@ const isArticle = !!article;
       "description": pageDescription,
       "url": canonicalUrl,
       "datePublished": article.date,
+      ...(article.updated || article.date ? { "dateModified": article.updated || article.date } : {}),
       "author": {
         "@type": "Person",
         "name": SITE.author.name,
@@ -125,7 +126,7 @@ const isArticle = !!article;
         <a href={SITE.social.telegram} target="_blank" rel="noopener" class="link-muted">telegram</a>
         <a href="/rss.xml" class="link-muted">rss</a>
         <a href="/llms.txt" class="link-muted">llms.txt</a>
-        <a href="/help" class="link-muted">help</a>
+        <a href="/help/" class="link-muted">help</a>
       </div>
     </div>
   </footer>

@@ -41,7 +41,7 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
   <div class="mb-10">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">AI Solopreneur Engineer</h1>
     <p class="text-[var(--color-muted)] mb-4">{modules.length} modules, {totalLessons} lessons. Build AI products solo — principles, frameworks, tools, and real projects.</p>
-    <p class="text-sm text-[var(--color-muted)]">Powered by <a href="/projects/project-solo-factory" class="link-muted hover:underline">solo-factory</a> — a Claude Code plugin that implements this methodology as executable skills.</p>
+    <p class="text-sm text-[var(--color-muted)]">Powered by <a href="/projects/project-solo-factory/" class="link-muted hover:underline">solo-factory</a> — a Claude Code plugin that implements this methodology as executable skills.</p>
   </div>
 
   <nav class="mb-10 font-mono text-sm">
@@ -49,7 +49,7 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
       {modules.map(mod => (
         <a href={`#module-${mod.id}`} class="link-muted">{mod.id}. {mod.title}</a>
       ))}
-      <a href="/skills" class="link-muted">Skills</a>
+      <a href="/skills/" class="link-muted">Skills</a>
     </div>
   </nav>
 
@@ -60,7 +60,7 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
       <p class="text-xs text-[var(--color-accent)] dark:text-[var(--color-accent-dim)] mb-3 font-mono">Result: {mod.outcome}</p>
       <div class="space-y-0 font-mono text-sm">
         {mod.items.map((item, i) => (
-          <a href={`/${item.section}/${item.slug}`} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
+          <a href={`/${item.section}/${item.slug}/`} class="group flex items-baseline gap-3 py-1 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">
             <span class="text-xs text-[var(--color-muted)] shrink-0 w-8 text-right">{mod.id}.{i + 1}</span>
             <span class="text-xs uppercase text-[var(--color-muted)] dark:text-[var(--color-accent-dim)] shrink-0 w-14">{item.section}</span>
             <span class="truncate">{item.frontmatter.title || item.slug}</span>
@@ -73,8 +73,8 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
   <div class="mt-8 pt-6 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] text-sm text-[var(--color-muted)] font-mono">
     <p>New lessons auto-added when wiki pages get <code>course_module</code> in frontmatter.</p>
     <p class="mt-2">
-      <a href="/posts/manifest" class="link-muted hover:underline">Manifesto</a> &middot;
-      <a href="/projects/project-solo-factory" class="link-muted hover:underline">Solo Factory</a> &middot;
+      <a href="/posts/manifest/" class="link-muted hover:underline">Manifesto</a> &middot;
+      <a href="/projects/project-solo-factory/" class="link-muted hover:underline">Solo Factory</a> &middot;
       <a href="https://github.com/fortunto2/solo-factory" class="link-muted hover:underline" target="_blank" rel="noopener">GitHub</a> &middot;
       <a href={SITE.contact.calendar} class="link-muted hover:underline" target="_blank" rel="noopener">Book a call</a>
     </p>
