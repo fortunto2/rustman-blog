@@ -6,7 +6,7 @@ export const GET: APIRoute = () => {
   const all = getAllContent().slice(0, 30);
 
   const items = all.map(entry => {
-    const link = `https://${SITE.domain}/${entry.section}/${entry.slug}`;
+    const link = `https://${SITE.domain}/${entry.section}/${entry.slug}/`;
     const date = entry.frontmatter.created || entry.frontmatter.date || '2026-01-01';
     return `
     <item>

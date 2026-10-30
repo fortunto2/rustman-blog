@@ -137,7 +137,7 @@ export function agentCard() {
     url: URLS.mcp,
     preferredTransport: 'MCP',
     version: '1.0.0',
-    provider: { organization: SITE.author.name, url: `${base}/about` },
+    provider: { organization: SITE.author.name, url: `${base}/about/` },
     iconUrl: `${base}/favicon.svg`,
     documentationUrl: URLS.llms,
     capabilities: { streaming: false, pushNotifications: false, stateTransitionHistory: false },

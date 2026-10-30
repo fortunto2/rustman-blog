@@ -47,7 +47,7 @@ export const GET: APIRoute = () => {
       const { content } = parseFrontmatter(entry.raw);
       const title = String(entry.frontmatter.title || entry.slug);
       out.push(`\n### ${title}`);
-      out.push(`Source: ${base}/${section}/${entry.slug}`);
+      out.push(`Source: ${base}/${section}/${entry.slug}/`);
       if (entry.frontmatter.description) out.push(`\n${String(entry.frontmatter.description)}`);
       out.push('', content.trim(), '');
     }

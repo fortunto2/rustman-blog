@@ -34,7 +34,7 @@ export const GET: APIRoute = () => {
         return {
           section,
           slug: entry.slug,
-          url: `${base}/${section}/${entry.slug}`,
+          url: `${base}/${section}/${entry.slug}/`,
           markdown: `${base}/${section}/${entry.slug}.md`,
           title: String(entry.frontmatter.title || entry.slug),
           description: String(entry.frontmatter.description || ''),

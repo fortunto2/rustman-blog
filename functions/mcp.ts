@@ -239,15 +239,23 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
 
         let path: string;
         try {
-          path = raw.startsWith("http") ? new URL(raw).pathname : raw;
+          const url = raw.startsWith("http") ? new URL(raw) : null;
+          // Only this site: a foreign address used to come back as this site's home page HTML.
+          if (url && url.hostname !== new URL(origin).hostname && url.hostname !== "rustman.org") {
+            return toolText(id, `I only read rustman.org pages, not ${url.hostname}. Use \`search\` to find one.`, version, true);
+          }
+          path = url ? url.pathname : raw.startsWith("/") ? raw : `/${raw}`;
         } catch {
           return toolText(id, `Not a URL I can read: ${raw}`, version, true);
         }
-        // The twin is the canonical machine-readable form; ask for it directly.
-        const target = path.endsWith(".md") ? path : `${path.replace(/\/+$/, "")}.md`;
+        // The twin is the canonical machine-readable form; ask for it directly. The home page has
+        // none of its own: its Markdown form is llms.txt, as for Accept: text/markdown.
+        const trimmed = path.replace(/\/+$/, "");
+        const target = trimmed === "" ? "/llms.txt" : path.endsWith(".md") ? path : `${trimmed}.md`;
 
         const response = await env.ASSETS.fetch(new Request(`${origin}${target}`));
-        if (!response.ok) {
+        // The asset server answers unknown paths with an HTML page; that is not a markdown twin.
+        if (!response.ok || (response.headers.get("content-type") ?? "").includes("text/html")) {
           return toolText(
             id,
             `No markdown version of ${path}. Only wiki, posts, projects, stacks and skills ` +

@@ -30,7 +30,7 @@ export function twinRoutes(section: Section): { getStaticPaths: GetStaticPaths; 
     const fm = entry.frontmatter as Record<string, unknown>;
 
     const lines: string[] = ['---'];
-    lines.push(`url: https://${SITE.domain}/${section}/${entry.slug}`);
+    lines.push(`url: https://${SITE.domain}/${section}/${entry.slug}/`);
     for (const key of PUBLIC_KEYS) {
       const value = fm[key];
       if (value === undefined || value === null || value === '') continue;
