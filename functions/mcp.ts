@@ -13,6 +13,7 @@
  * Two tools, both backed by things the site already has rather than invented for a checklist:
  *   search — over an excerpt index built at build time (/search-index.json)
  *   read   — the markdown twin of any page, which exists for all 155 of them
+ *   skill  — the full SKILL.md of any Solo Factory skill (58), for clients that do not show prompts
  *   contact — how to reach the author: the booking link for a call and a ready mailto. It books and
  *             sends nothing; the person picks the slot or presses send (or their own agent does,
  *             from their own calendar and mailbox).
@@ -29,6 +30,17 @@
  */
 
 import { SITE } from "../src/lib/config";
+
+/**
+ * The skills offered as MCP prompts, which clients show as commands (Claude Code: /mcp__rustman__plan).
+ * The ones the author uses most, in pipeline order; every other skill is one `skill` call away, so the
+ * command list stays short. The text is read from the published /skills/<slug>.md page, so a skill
+ * edited in solo-factory reaches this server with the next site build.
+ */
+const FEATURED_SKILLS = [
+  "research", "validate", "scaffold", "plan", "build", "deploy", "review", "launch",
+  "diagnose", "grill", "humanize", "transcribe", "video-edit", "seo-cli",
+];
 
 const SUPPORTED_VERSIONS = ["2025-11-25", "2025-06-18", "2025-03-26"];
 const LATEST = SUPPORTED_VERSIONS[0];
@@ -67,6 +79,19 @@ const TOOLS = [
         limit: { type: "integer", minimum: 1, maximum: 25, description: "How many results (default 8)." },
       },
       required: ["query"],
+    },
+  },
+  {
+    name: "skill",
+    title: "Get a Solo Factory skill",
+    description:
+      "The full instructions (SKILL.md) of one Solo Factory skill: a reusable workflow for an AI coding agent, " +
+      "such as research, scaffold, plan, build, deploy, transcribe or video-edit. Follow it as a playbook; steps " +
+      "that need a tool you do not have can be skipped, saying so. Use search with section=skills to find one.",
+    inputSchema: {
+      type: "object",
+      properties: { name: { type: "string", description: "Skill name, e.g. plan, scaffold, transcribe." } },
+      required: ["name"],
     },
   },
   {
@@ -142,6 +167,18 @@ function scoreDoc(doc: Doc, terms: string[]): number {
   return matched === terms.length ? score * 2 : score;
 }
 
+/** The SKILL.md inside a skill page: the page wraps it in a ````markdown fence after a short intro. */
+async function loadSkill(env: { ASSETS: Fetcher }, origin: string, slug: string): Promise<string | null> {
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
+  const response = await env.ASSETS.fetch(new Request(`${origin}/skills/${slug}.md`));
+  if (!response.ok || (response.headers.get("content-type") ?? "").includes("text/html")) return null;
+  const page = await response.text();
+  const fenced = page.match(/````markdown\n([\s\S]*?)\n````/);
+  return fenced ? fenced[1] : null;
+}
+
+const skillSource = (slug: string) => `https://github.com/fortunto2/solo-factory/tree/main/skills/${slug}`;
+
 async function loadIndex(env: { ASSETS: Fetcher }, origin: string): Promise<Doc[]> {
   const response = await env.ASSETS.fetch(new Request(`${origin}/search-index.json`));
   if (!response.ok) return [];
@@ -190,12 +227,13 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
             protocolVersion: SUPPORTED_VERSIONS.includes(String(params?.protocolVersion))
               ? String(params?.protocolVersion)
               : LATEST,
-            capabilities: { tools: { listChanged: false } },
+            capabilities: { tools: { listChanged: false }, prompts: { listChanged: false } },
             serverInfo: SERVER,
             instructions:
               "Notes, projects and Solo Factory skills of a solo founder building with AI. " +
-              "Search first, then read the pages that look relevant. Everything here is public " +
-              "and may be quoted with a link back.",
+              "Search first, then read the pages that look relevant. The main skills are also " +
+              "prompts, and any skill's full instructions come from the skill tool. Everything " +
+              "here is public and may be quoted with a link back.",
           },
         },
         200,
@@ -204,6 +242,37 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
 
     case "ping":
       return json({ jsonrpc: "2.0", id, result: {} }, 200, version);
+
+    case "prompts/list": {
+      const docs = await loadIndex(env, origin);
+      const prompts = FEATURED_SKILLS.flatMap((slug) => {
+        const doc = docs.find((d) => d.section === "skills" && d.slug === slug);
+        return doc
+          ? [{
+              name: slug,
+              title: doc.title,
+              description: doc.description,
+              arguments: [{ name: "input", description: "What to run it on: an idea, a project, a file, a task.", required: false }],
+            }]
+          : [];
+      });
+      return json({ jsonrpc: "2.0", id, result: { prompts } }, 200, version);
+    }
+
+    case "prompts/get": {
+      const slug = String(params?.name ?? "");
+      const input = String((params?.arguments as Record<string, unknown> | undefined)?.input ?? "").trim();
+      const body = await loadSkill(env, origin, slug);
+      if (!body) return rpcError(id, -32602, `Unknown prompt: ${slug}`, version);
+      const text =
+        `Follow this Solo Factory skill (${skillSource(slug)}). Steps that need a tool you do not have can be ` +
+        `skipped; say which.\n\n${body.replaceAll("$ARGUMENTS", input || "(no input given; ask for it)")}`;
+      return json({
+        jsonrpc: "2.0",
+        id,
+        result: { description: `Solo Factory skill /${slug}`, messages: [{ role: "user", content: { type: "text", text } }] },
+      }, 200, version);
+    }
 
     case "tools/list":
       return json({ jsonrpc: "2.0", id, result: { tools: TOOLS } }, 200, version);
@@ -252,6 +321,17 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
           .join("\n\n---\n\n");
 
         return toolText(id, `${hits.length} of ${docs.length} documents matched "${query}".\n\n${text}`, version);
+      }
+
+      if (name === "skill") {
+        const slug = String(args.name ?? "").trim().toLowerCase().replace(/^\//, "");
+        const body = await loadSkill(env, origin, slug);
+        if (!body) {
+          const docs = await loadIndex(env, origin);
+          const names = docs.filter((d) => d.section === "skills").map((d) => d.slug).join(", ");
+          return toolText(id, `No skill "${slug}". Skills: ${names}.`, version, true);
+        }
+        return toolText(id, `Source: ${skillSource(slug)}\n\n${body}`, version);
       }
 
       if (name === "contact") {

@@ -25,11 +25,12 @@ export const GET: APIRoute = () => {
     },
     // Streamable HTTP, stateless: POST returns application/json and no stream is opened.
     remotes: [{ type: 'streamable-http', url: `${base}/mcp` }],
-    capabilities: { tools: { listChanged: false } },
+    capabilities: { tools: { listChanged: false }, prompts: { listChanged: false } },
     // Listed here too so an agent can decide whether to connect before it does.
     tools: [
       { name: 'search', description: 'Full-text search across every page on the site.' },
       { name: 'read', description: 'Fetch a page as markdown rather than HTML.' },
+      { name: 'skill', description: 'The full SKILL.md of any Solo Factory skill; the main ones are also prompts.' },
       { name: 'contact', description: 'A booking link for a call and a ready mailto to the author; books and sends nothing.' },
     ],
     // No key, no account, nothing to rate-limit against a login.

@@ -110,6 +110,15 @@ const MCP_SKILLS = [
     outputModes: ['application/json'],
   },
   {
+    id: 'skill',
+    name: 'Get a Solo Factory skill',
+    description: 'The full instructions of a Solo Factory skill (research, scaffold, plan, build, transcribe, video-edit, ...). The main ones are MCP prompts too.',
+    tags: ['skills', 'solo-factory', 'workflow'],
+    examples: ['plan', 'scaffold', 'transcribe'],
+    inputModes: ['application/json'],
+    outputModes: ['text/markdown'],
+  },
+  {
     id: 'contact',
     name: 'Book a call or write to the author',
     description: 'A booking link for a call and a ready mailto to Rustam Salavatov. Books and sends nothing.',
