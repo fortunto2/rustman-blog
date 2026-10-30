@@ -53,7 +53,7 @@ AI watches your videos, finds the best moments, adds music, and creates a film. 
 | `va-gui-dioxus` | Desktop GUI (Dioxus/Rust) |
 
 **Platforms** (as of Oct 2026):
-1. **iOS** — live in the App Store since 13 Aug 2026 (1.15 in review in late Oct); Android later
+1. **iOS** — live in the [App Store](https://apps.apple.com/app/id6761656888) since 13 Aug 2026 (1.15 on sale since 28 Oct); Android later
 2. **Mac** — the desktop app, Studio: analysis on the device, nothing uploaded
 3. **Web** — an earlier WASM/web version existed and is retired; the `va-wasm` crate remains in the engine
 
