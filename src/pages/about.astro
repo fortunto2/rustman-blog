@@ -1,4 +1,5 @@
 ---
+import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../lib/config';
 ---
@@ -73,7 +74,7 @@ import { SITE } from '../lib/config';
       <li><a href={SITE.social.youtube}>YouTube @SuperDuperStartup</a>: building startups with AI agents</li>
       <li><a href={SITE.social.youtubeLife}>YouTube @salavatov</a>: life, trips and the talks I record</li>
       <li><a href={SITE.social.instagram}>Instagram @life2film</a>: films of my life, made with Life2Film</li>
-      <li><a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></li>
+      <li><EmailLink email={SITE.contact.email} /></li>
     </ul>
 
   </article>

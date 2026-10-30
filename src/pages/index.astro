@@ -1,4 +1,5 @@
 ---
+import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
 import { SITE, HERO_CARDS, PROJECT_PRIORITY } from '../lib/config';
@@ -66,7 +67,7 @@ const blogLd = {
       <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="link-muted">LinkedIn</a>
       <a href={SITE.social.github} target="_blank" rel="noopener" class="link-muted">GitHub</a>
       <a href={SITE.social.telegram} target="_blank" rel="noopener" class="link-muted">Telegram</a>
-      <a href={`mailto:${SITE.contact.email}`} class="link-muted">Email</a>
+      <EmailLink email={SITE.contact.email} label="Email" class="link-muted" />
     </div>
   </section>
 

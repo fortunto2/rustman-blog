@@ -1,4 +1,5 @@
 ---
+import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../lib/config';
 ---
@@ -74,7 +75,7 @@ WebFetch https://rustman.org/posts/agent-memory-architecture</code></pre>
       <li><a href={SITE.social.telegram}>Telegram</a></li>
       <li><a href={SITE.social.linkedin}>LinkedIn</a></li>
       <li><a href={SITE.contact.calendar}>Book a call</a></li>
-      <li><a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></li>
+      <li><EmailLink email={SITE.contact.email} /></li>
     </ul>
   </article>
 </BaseLayout>

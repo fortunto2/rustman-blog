@@ -1,0 +1,12 @@
+---
+/**
+ * A mailto link Cloudflare leaves alone. Its Email Obfuscation rewrites mailto: into
+ * /cdn-cgi/l/email-protection#…, which only JavaScript turns back into an address: agents and
+ * crawlers got a 404 instead of the email, and audits counted a broken link. The email_off
+ * markers exclude this one link; set:html because Astro may drop plain comments.
+ */
+interface Props { email: string; label?: string; class?: string }
+const { email, label = email, class: cls } = Astro.props;
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+---
+<Fragment set:html={`<!--email_off--><a href="mailto:${esc(email)}"${cls ? ` class="${esc(cls)}"` : ""}>${esc(label)}</a><!--/email_off-->`} />
