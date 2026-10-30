@@ -258,9 +258,11 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
         const topic = String(args.topic ?? "").trim().slice(0, 300);
         const who = String(args.name ?? "").trim().slice(0, 80);
         const subject = `${who ? `${who}: ` : ""}${topic ? topic.slice(0, 90) : "Call"} (via rustman.org)`;
-        const body =
-          `Hi Rustam,\n\n${topic || "I would like to talk about"}\n\n` +
-          "(Found you through rustman.org; this note was drafted with an AI assistant.)";
+        // He reads both; a Russian topic gets a Russian draft rather than "Hi Rustam" over Cyrillic.
+        const ru = /[а-яё]/i.test(`${topic} ${who}`);
+        const body = ru
+          ? `Здравствуйте, Рустам!\n\n${topic || "Хочу обсудить"}\n\n(Нашёл вас через rustman.org; письмо подготовлено с помощью ИИ-ассистента.)`
+          : `Hi Rustam,\n\n${topic || "I would like to talk about"}\n\n(Found you through rustman.org; this note was drafted with an AI assistant.)`;
         const mailto = `mailto:${SITE.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         return toolText(
           id,
