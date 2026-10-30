@@ -3,10 +3,16 @@
  * Usage: runs as part of pnpm collect
  */
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, realpathSync } from 'fs';
 import { join } from 'path';
 
-const STACKS_DIR = join(import.meta.dirname, '..', '..', '1-methodology', 'stacks');
+// Like collect-content and collect-skills: 1-methodology sits next to the real wiki (solopreneur/),
+// not next to the ~/startups/wiki symlink. Looked up next to the link it was never found, and the
+// stack pages silently stopped updating.
+const WIKI_LINK = join(import.meta.dirname, '..', '..', 'wiki');
+const STACKS_DIR = existsSync(WIKI_LINK)
+  ? join(realpathSync(WIKI_LINK), '..', '1-methodology', 'stacks')
+  : join(import.meta.dirname, '..', '..', '1-methodology', 'stacks');
 const OUT_DIR = join(import.meta.dirname, '..', 'src', 'content', 'stacks');
 
 function extractTags(yaml: string, file: string): string[] {
