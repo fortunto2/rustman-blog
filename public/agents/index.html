@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rustman-agent</title>
+<meta name="description" content="What rustman-agent is, what it fetches, how it identifies itself and how to block it.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+  :root { --bg: #fff; --fg: #1a1a1a; --muted: #5c5c5c; --code: #f3f3f3; --link: #0b57d0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111; --fg: #e8e8e8; --muted: #a0a0a0; --code: #1e1e1e; --link: #8ab4f8; }
+  }
+  body { background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; margin: 0; }
+  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 16px 4rem; }
+  h1 { font-size: 1.8rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
+  p.lede { color: var(--muted); margin-top: 0; }
+  code, pre { background: var(--code); border-radius: 4px; font: 14px/1.5 ui-monospace, monospace; }
+  code { padding: 1px 4px; overflow-wrap: anywhere; }
+  pre { padding: 12px; overflow-x: auto; }
+  a { color: var(--link); }
+</style>
+</head>
+<body>
+<main>
+<h1>rustman-agent</h1>
+<p class="lede">The automated client of Rustam Salavatov (<a href="/">rustman.org</a>). This page is for site owners who saw it in their logs.</p>
+
+<h2>What it does</h2>
+<p>Personal research and scheduling tasks, run from one machine: reading public event listings to plan which meetups to attend, and fetching single pages that Rustam asked an assistant to read or summarise. It does not train models, resell content, or crawl whole sites.</p>
+
+<h2>How to recognise it</h2>
+<p>User-Agent: <code>rustman-agent/0.1 (+https://rustman.org/agents/)</code></p>
+<p>Every request is signed with <a href="https://datatracker.ietf.org/doc/draft-meunier-webbotauth-httpsig-protocol/">Web Bot Auth</a> (HTTP Message Signatures, RFC 9421) with an Ed25519 key. The request carries <code>Signature-Agent: "https://rustman.org"</code> and a <code>Signature-Input</code> with <code>tag="web-bot-auth"</code>. A request without a valid signature from the key below is not this agent, whatever its User-Agent says.</p>
+<p>Key directory: <a href="/.well-known/http-message-signatures-directory"><code>https://rustman.org/.well-known/http-message-signatures-directory</code></a><br>
+Key id (JWK thumbprint): <code>XaMIWlFyQzNy4hrzYUe_Ly5EHDHS0cU6eBYJPBRS2pc</code></p>
+
+<h2>How it behaves</h2>
+<p>It reads <code>robots.txt</code> before the first request to a host and obeys the group for <code>rustman-agent</code> (or <code>*</code> when there is none), including <code>Crawl-delay</code>. Without a crawl delay it waits at least one second between requests to the same host.</p>
+
+<h2>How to block it</h2>
+<pre>User-agent: rustman-agent
+Disallow: /</pre>
+
+<h2>Contact</h2>
+<p>Rustam Salavatov, <a href="https://github.com/fortunto2">github.com/fortunto2</a>. If it misbehaves on your site, say so there and it will be fixed or stopped for your site.</p>
+</main>
+</body>
+</html>
