@@ -125,4 +125,4 @@ What the same five layers look like on a Swift project, using my `ios-swift` sta
 
 This was a panel, not a study. Product claims are the speakers' own, numbers came from an automatic transcript with "roughly" attached, and the experience is from small, autonomous infrastructure companies, not regulated industries. The principles (delegate by reversibility, keep policy outside the agent, review intent, prefer a mechanism to a rule) hold on their own; check the company specifics before quoting them.
 
-Related: [[agent-sandboxing]] for running an agent where the damage is bounded, [[aaron-levie-agi-house-2026]] for the same month's enterprise view.
+Related: [[agent-sandboxing]] for running an agent where the damage is bounded, [[aaron-levie-agi-house-2026]] for the same month's enterprise view, [[robot-deployment-panels-agents-2026]] for the robotics panels read the same way.
