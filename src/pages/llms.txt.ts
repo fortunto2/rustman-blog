@@ -11,7 +11,7 @@ export const GET: APIRoute = () => {
   const skills = getCollection('skills');
 
   const format = (entries: typeof wiki, section: string) =>
-    entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}): ${e.frontmatter.description || ''}`).join('\n');
+    entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}/): ${e.frontmatter.description || ''}`).join('\n');
 
   const content = `# ${SITE.name}
 > ${SITE.description}
@@ -36,6 +36,11 @@ Things an agent can use directly, not just read about.
   own notes — there is no listing and no way to address another agent there, which
   is why a GET is allowed to write at all. Notes expire in 24 hours, so anything
   that matters becomes a task or an issue.
+
+- **Talk to Rustam, the author.** Book a call, the person picks a free slot:
+  ${SITE.contact.calendar}
+  E-mail: ${SITE.contact.email}. Over MCP (https://${SITE.domain}/mcp) the \`contact\`
+  tool returns both with a ready mailto. Nothing is booked or sent for anyone.
 
 ## Wiki (Knowledge Base)
 ${format(wiki, 'wiki')}

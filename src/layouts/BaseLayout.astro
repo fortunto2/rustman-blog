@@ -61,6 +61,14 @@ const isArticle = !!article;
       "@type": "Person",
       "name": SITE.author.name,
       "url": SITE.social.github,
+      // How to reach him, for an agent asked to set up a call: a booking page and an address.
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "meetings",
+        "email": SITE.contact.email,
+        "url": SITE.contact.calendar,
+        "availableLanguage": ["English", "Russian"],
+      },
     },
   })} />
 

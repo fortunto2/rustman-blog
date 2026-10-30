@@ -30,6 +30,7 @@ export const GET: APIRoute = () => {
     tools: [
       { name: 'search', description: 'Full-text search across every page on the site.' },
       { name: 'read', description: 'Fetch a page as markdown rather than HTML.' },
+      { name: 'contact', description: 'A booking link for a call and a ready mailto to the author; books and sends nothing.' },
     ],
     // No key, no account, nothing to rate-limit against a login.
     authentication: { type: 'none' },

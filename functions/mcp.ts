@@ -13,6 +13,9 @@
  * Two tools, both backed by things the site already has rather than invented for a checklist:
  *   search — over an excerpt index built at build time (/search-index.json)
  *   read   — the markdown twin of any page, which exists for all 155 of them
+ *   contact — how to reach the author: the booking link for a call and a ready mailto. It books and
+ *             sends nothing; the person picks the slot or presses send (or their own agent does,
+ *             from their own calendar and mailbox).
  *
  * TRANSPORT
  *
@@ -24,6 +27,8 @@
  * negotiated 2025-06-18 must not be answered in a later dialect. Absent header defaults to
  * 2025-03-26, which is what the spec says to assume.
  */
+
+import { SITE } from "../src/lib/config";
 
 const SUPPORTED_VERSIONS = ["2025-11-25", "2025-06-18", "2025-03-26"];
 const LATEST = SUPPORTED_VERSIONS[0];
@@ -62,6 +67,22 @@ const TOOLS = [
         limit: { type: "integer", minimum: 1, maximum: 25, description: "How many results (default 8)." },
       },
       required: ["query"],
+    },
+  },
+  {
+    name: "contact",
+    title: "Book a call or write to the author",
+    description:
+      "How to reach Rustam Salavatov, who writes rustman.org: a booking link where the person picks a free " +
+      "slot for a call, and his e-mail with a ready mailto link (subject and a short draft from `topic`). " +
+      "Nothing is booked or sent by this tool. Give the person the links, or, if you act for them with their " +
+      "own calendar or mailbox, use those.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        topic: { type: "string", description: "What the person wants to talk about, in a sentence." },
+        name: { type: "string", description: "Optional: the person's name, for the e-mail subject." },
+      },
     },
   },
   {
@@ -231,6 +252,27 @@ export const onRequest: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, e
           .join("\n\n---\n\n");
 
         return toolText(id, `${hits.length} of ${docs.length} documents matched "${query}".\n\n${text}`, version);
+      }
+
+      if (name === "contact") {
+        const topic = String(args.topic ?? "").trim().slice(0, 300);
+        const who = String(args.name ?? "").trim().slice(0, 80);
+        const subject = `${who ? `${who}: ` : ""}${topic ? topic.slice(0, 90) : "Call"} (via rustman.org)`;
+        const body =
+          `Hi Rustam,\n\n${topic || "I would like to talk about"}\n\n` +
+          "(Found you through rustman.org; this note was drafted with an AI assistant.)";
+        const mailto = `mailto:${SITE.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        return toolText(
+          id,
+          [
+            `Book a call (the person picks a free slot): ${SITE.contact.calendar}`,
+            `E-mail: ${SITE.contact.email}`,
+            `Ready to send: ${mailto}`,
+            "",
+            "Nothing was booked or sent. Rustam answers e-mail himself; English or Russian.",
+          ].join("\n"),
+          version,
+        );
       }
 
       if (name === "read") {

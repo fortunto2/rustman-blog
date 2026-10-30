@@ -110,6 +110,15 @@ const MCP_SKILLS = [
     outputModes: ['application/json'],
   },
   {
+    id: 'contact',
+    name: 'Book a call or write to the author',
+    description: 'A booking link for a call and a ready mailto to Rustam Salavatov. Books and sends nothing.',
+    tags: ['contact', 'meeting', 'calendar', 'email'],
+    examples: ['book a call about Solo Factory', 'write to the author about a collaboration'],
+    inputModes: ['application/json'],
+    outputModes: ['text/plain'],
+  },
+  {
     id: 'read',
     name: 'Read a page as markdown',
     description: 'Fetch a whole page as markdown, by a URL from search or a bare path such as /wiki/some-slug.',

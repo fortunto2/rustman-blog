@@ -44,7 +44,12 @@ curl https://rustman.org/llms-full.txt    # every page in full</code></pre>
       <li><a href="/agents.txt">/agents.txt</a> — the policy in plain words</li>
     </ul>
 
-    <h3>5. Your own knowledge base (Solograph)</h3>
+    <h3>5. Book a call or write</h3>
+    <p>An agent asked to set up a meeting with Rustam can give the person the booking page, where they pick a free slot, or write from their own mailbox. Over MCP, the <code>contact</code> tool returns both, with a ready mailto; it books and sends nothing itself.</p>
+    {/* email_off: Cloudflare would otherwise swap the address for a link that 404s without script. */}
+    <Fragment set:html={`<!--email_off--><pre><code>Booking: ${SITE.contact.calendar}\nE-mail:  ${SITE.contact.email}</code></pre><!--/email_off-->`} />
+
+    <h3>6. Your own knowledge base (Solograph)</h3>
     <p>Not this site: the local tool behind it. Semantic search over your own notes, code graph and session history:</p>
     <pre><code>claude mcp add -s project solograph -- uvx solograph</code></pre>
     <p>See <a href="/projects/project-solograph/">Solograph</a>.</p>
