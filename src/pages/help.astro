@@ -13,27 +13,41 @@ import { SITE } from '../lib/config';
   <article class="prose dark:prose-invert max-w-none">
     <h2>For AI Agents</h2>
 
-    <h3>1. llms.txt (simplest)</h3>
-    <p>Every page is indexed in a machine-readable format:</p>
-    <pre><code>curl https://rustman.org/llms.txt</code></pre>
-    <p>Returns: all pages with titles, URLs, descriptions. Feed it to any LLM as context. ~19KB, 120+ entries.</p>
+    <h3>1. MCP server (connect once, search and read everything)</h3>
+    <p>A remote MCP server at <code>https://rustman.org/mcp</code>: Streamable HTTP, no key, no account. Two tools: <code>search</code> across every wiki page, post, project, stack and skill, and <code>read</code>, which returns any page as Markdown.</p>
+    <pre><code># Claude Code
+claude mcp add --transport http rustman https://rustman.org/mcp
 
-    <h3>2. Solo Factory skill (recommended)</h3>
+# Claude Desktop, claude.ai, ChatGPT: add a custom connector with this URL
+https://rustman.org/mcp
+
+# Cursor and other clients (mcp.json)
+{"{"} "mcpServers": {"{"} "rustman": {"{"} "url": "https://rustman.org/mcp" {"}"} {"}"} {"}"}</code></pre>
+    <p>Its card is at <a href="/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.</p>
+
+    <h3>2. Markdown, without parsing HTML</h3>
+    <p>Every page answers <code>Accept: text/markdown</code> with its Markdown twin, and each twin also sits at the page address plus <code>.md</code>. The home page answers with llms.txt.</p>
+    <pre><code>curl -H "Accept: text/markdown" https://rustman.org/wiki/harness-engineering-summary/
+curl https://rustman.org/llms.txt         # every page: title, URL, description
+curl https://rustman.org/llms-full.txt    # every page in full</code></pre>
+
+    <h3>3. Solo Factory skills</h3>
     <pre><code>npx skills add fortunto2/solo-factory/knowledge</code></pre>
-    <p>The <code>/knowledge</code> skill loads llms.txt, finds relevant pages, fetches and synthesizes answers. Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex.</p>
-    <pre><code>/knowledge "how does harness engineering work?"
-/knowledge "what stacks do we support?"
-/knowledge "agent memory approaches"</code></pre>
+    <p>The <code>/knowledge</code> skill loads llms.txt, finds relevant pages, fetches and synthesizes answers. Works with Claude Code, Cursor, Copilot, Gemini CLI, Codex. All the skills are listed with a digest each in <a href="/.well-known/agent-skills/index.json">/.well-known/agent-skills/index.json</a>.</p>
 
-    <h3>3. Direct page fetch</h3>
-    <p>Any page is plain HTML, works with WebFetch/curl:</p>
-    <pre><code>WebFetch https://rustman.org/wiki/harness-engineering-summary
-WebFetch https://rustman.org/posts/agent-memory-architecture</code></pre>
+    <h3>4. Discovery, for agents that look before they ask</h3>
+    <p>Every response carries <code>Link</code> headers to the files below, and robots.txt states what AI may do here (search and answers yes, training no).</p>
+    <ul>
+      <li><a href="/.well-known/api-catalog">/.well-known/api-catalog</a> — the APIs (RFC 9727)</li>
+      <li><a href="/.well-known/agent-card.json">/.well-known/agent-card.json</a> — what an agent can do here, and through which interface</li>
+      <li><a href="/.well-known/ard.json">/.well-known/ard.json</a> — agentic resources, one entry per skill</li>
+      <li><a href="/agents.txt">/agents.txt</a> — the policy in plain words</li>
+    </ul>
 
-    <h3>4. MCP (Solograph)</h3>
-    <p>For deep integration — semantic search, code graph, session history:</p>
+    <h3>5. Your own knowledge base (Solograph)</h3>
+    <p>Not this site: the local tool behind it. Semantic search over your own notes, code graph and session history:</p>
     <pre><code>claude mcp add -s project solograph -- uvx solograph</code></pre>
-    <p>15 MCP tools: <code>kb_search</code>, <code>session_search</code>, <code>codegraph_query</code>, <code>web_search</code>, and more. See <a href="/projects/project-solograph/">Solograph</a>.</p>
+    <p>See <a href="/projects/project-solograph/">Solograph</a>.</p>
 
     <h2>For Humans</h2>
 
