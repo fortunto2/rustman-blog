@@ -1,14 +1,14 @@
 ---
 type: concept
 title: "My agent harness, and a Gnome that never sleeps: an always-on Claude Code supervisor on a $5 VPS"
-description: "How I run my work through Claude Code agents: the harness that steers and checks them, the scheduled jobs that already run on my laptop, why they need a box that never sleeps, what that box costs in October 2026, and where a week of agent usage actually went."
+description: "How I run my work through Claude Code agents: the harness that steers and checks them, the scheduled jobs that already run on my laptop, why they need a box that never sleeps, what that box costs in October 2026, where a week of agent usage actually went, and the rules I hand people who are starting with agents."
 created: 2026-10-31
 tags: [harness-engineering, claude-code, agents, vps, self-hosting, scheduled-jobs, ovh, usage-limits, subagents, ops]
 publish: true
 publish_as: post
 github: fortunto2/solo-factory
 learned_from: "Sessions of 30-31 Oct 2026: VPS and agent-host price research (OVH, Hetzner, DigitalOcean, Lightsail, Oracle, Cloudflare Containers, exe.dev, Sprites and 15 others), cloud scheduled tasks docs, the box bootstrap in harness/box/, and a usage scan of ~45k Claude Code turns from local transcripts"
-index_line: "Post, 4 mermaid diagrams + glossary: my harness (feedforward rules/skills, sensors on edit/end of turn/commit, registry + standup) and the Gnome, a tmux+systemd supervisor Claude session with cron ticks (claude -p --resume) and a 15-min watchdog on a VPS. Hosts Oct 2026: OVH VPS-1 $4.54/mo (12 mo) 2vCPU/4GB, Hetzner CX unorderable + CPX22 EUR19.49, DO/Lightsail $24, exe.dev $15, Sprites/Blaxel sleep (kills tmux), CF Containers ~$34.50 ephemeral disk, routines hourly no local state. Usage scan: ~$1,830 API-equiv in 2.6 days; subagents 56% (forks $314), cache reads 52%; fixes CLAUDE_CODE_SUBAGENT_MODEL=sonnet + autoCompactWindow 400k"
+index_line: "Post, 4 mermaid diagrams + glossary: my harness (feedforward rules/skills, sensors on edit/end of turn/commit, registry + standup) and the Gnome, a tmux+systemd supervisor Claude session with cron ticks (claude -p --resume) and a 15-min watchdog on a VPS. Hosts Oct 2026: OVH VPS-1 $4.54/mo (12 mo) 2vCPU/4GB, Hetzner CX unorderable + CPX22 EUR19.49, DO/Lightsail $24, exe.dev $15, Sprites/Blaxel sleep (kills tmux), CF Containers ~$34.50 ephemeral disk, routines hourly no local state. Usage scan: ~$1,830 API-equiv in 2.6 days; subagents 56% (forks $314), cache reads 52%; fixes CLAUDE_CODE_SUBAGENT_MODEL=sonnet + autoCompactWindow 400k. Starter rules: CLAUDE.md (9 of 10 chats, <500 lines) vs skill (weekly, a folder), new task = new chat, heartbeat + iteration brakes, skip-permissions only in a sandbox + PreToolUse hook, Cursor marketplace trojaned Claude Code extension 29 Oct (~11 h, SSH key)"
 index_section: "concept"
 ---
 
@@ -33,7 +33,7 @@ The surprise of the week was the last row. I went looking for a server because m
 
 ## What I mean by a harness
 
-A coding agent is a model plus everything around it. The model I cannot change; everything around it is mine. I split it into two halves.
+A coding agent is a model plus everything around it. The word is literal: a harness is horse tack. The model is a strong horse, and the bridle, saddle and stirrups decide whether it goes where you need. The model I cannot change; everything around it is mine. It is also the third step most people climb: first prompt engineering (magic words), then context (what the model sees), then the harness and the loop it runs in. I split the harness into two halves.
 
 **Feedforward** steers the agent before it acts: `CLAUDE.md` files per project, rules that load in every session (routing, privacy, where skills live), and about sixty skills for recurring work, from scaffolding an app to publishing a post. When the agent makes a mistake, I fix the harness, not the prompt: a line in `CLAUDE.md`, a linter rule, a test. The same mistake should happen once ([[agent-mistake-fix-harness]]).
 
@@ -184,6 +184,61 @@ What the numbers said:
 
 Two settings fixed most of it. `CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-5-5` puts subagents, teammates and workflow agents on Sonnet at half the price of Opus, which matters most when the main session runs on something expensive. `"autoCompactWindow": 400000` compacts a session at 400k tokens instead of near the 1M limit. A small `claude-mode lean | full` script flips both, so I can go back to Opus subagents in a week when the limit is fresh. Forks are not covered by the subagent setting, so the remaining rule is behavioral: a search goes to a fresh subagent, and a fork only when it really needs the whole conversation.
 
+## If you are starting: the rules I hand people
+
+I showed this setup to a researcher friend who is new to agents, and most of the hour went to small rules, not to servers. Here they are, grouped.
+
+### CLAUDE.md or a skill
+
+- **`CLAUDE.md` is what the agent needs in nine conversations out of ten**: who you are, what the project is, the hard rules ("Russian for talk, English for code and docs"). It loads into every chat. **A skill is what it needs once a week**: the procedure for one kind of task, loaded on demand.
+- Keep `CLAUDE.md` under about 500 lines, the same ceiling Anthropic suggests for a `SKILL.md`. The files stack: `~/.claude/CLAUDE.md`, the project's, and ones in subfolders. Personal notes in a shared project go into `CLAUDE.local.md` or an `@`-import. In a team, `CLAUDE.md` is code: git, review, merge conflicts.
+- `/memory` shows which memory files are loaded. Reread the auto-memory now and then: stale conclusions collect there.
+
+### Skills
+
+- A skill is a folder, not a file: `SKILL.md` plus the scripts, templates and references it uses.
+- If it does not trigger on its own, put the phrases you actually type into its description, or call it as `/name`.
+- Write one the third time you walk the same fifteen steps. For a team: one shared skill per kind of work, a subfolder per client; close a task, package it as a skill. That also makes your work visible, and it is one more thing to maintain.
+- Do not install other people's skills and extensions blindly. On 29 October a tampered copy of the Claude Code extension sat in the Cursor marketplace for about eleven hours and added an attacker's key to `~/.ssh/authorized_keys`, by Cursor's own security notice. Ask Claude to build your own skill from someone else's repo instead.
+- After every feature: code, then `/simplify`, then `/code-review`. Like washing your hands. Mind the price: a deep review fans out many agents (see the usage section above).
+- The plain claude.ai chat does not see `~/.claude/skills`; there a skill is uploaded as a zip in Settings, Capabilities.
+
+### Context
+
+- New task, new chat, or `/clear` in the same folder. `/context` shows what fills the window, `/usage` what is left of the limit.
+- Start `claude` from the project folder: the folder is the context, and you cannot change it inside a session. Started from your home folder, the agent sees everything and knows nothing about any project.
+- Terminal or desktop app: in the terminal you always see where you are, one tab is one task, and the full harness (hooks, plugins) is there. The desktop app can change folders, but you have to remember to.
+
+### Loops and autonomy
+
+- Work without a window: `/loop` inside a session, `/schedule` for a cloud task, or `launchd`/cron plus `claude -p`, as above.
+- Silence is not success. Anything that runs alone needs a heartbeat and a timeout: my meeting recorder writes one every 30 seconds, and two minutes without one raises an alarm.
+- Loops need brakes: an iteration limit, and three rounds without progress on the same error means stop and hand it to a human. A weaker model spins at a barrier more often; switch to a stronger one there.
+- Long builds: a checklist plan plus end-of-turn checks, so a red result cannot be declared "done".
+
+### Safety
+
+- `--dangerously-skip-permissions` only with a seatbelt: a sandbox or a VPS, plus a `PreToolUse` hook that stops irreversible commands. A gentler start is Shift+Tab into accept-edits mode, where it still asks before running commands. Experiment on a clone of the repo.
+- Hooks are scripts on events that the agent cannot talk its way around: make the mistake impossible, not forbidden.
+- Keep keys out of the agent's sight: secrets in Keychain or the 1Password CLI, injected by a script, and a hook that masks key-shaped strings in output.
+- Production databases read-only, or a replica. Push to a shared branch and merge only with a human's yes: a bad merge costs reputation, not just a revert.
+- Sandboxes leak: minimal rights, no root, risky work on a separate machine.
+- The bar for attackers has dropped: with agents a teenager finds the hole, and attackers run open local models that never refuse. Audit your own code with agents first: give it the context and the repo, ask where it could be attacked, then check every finding by hand.
+
+### Not drowning
+
+- The hardest part is understanding what the agent did. Start from what you know ("I know R, explain it in R terms"); when lost, ask for one level simpler, or for a diagram.
+- A decision log in a file plus a five-line summary beats the fog of a long session.
+- The first answer is a draft: a self-check, then a review by a second agent.
+- The agent is confidently wrong about your field; it once called a different method a regression. Only expertise catches that, so ask it to show the line of code.
+- Experience decides: a senior with an agent gets several times faster, a junior accumulates mistakes several times faster.
+
+### People
+
+- Trust is access, and earning it is harder than building the thing. Make the work visible: updates in the team channel, a monthly report generated from git and sessions.
+- Bring management a ready proposal: two options, a recommendation, a price.
+- Show agents to colleagues on their own task, not as a contest; only results remove skepticism. Adoption rests on one champion inside the team, and every adoption story I heard this autumn said the same.
+
 ## What's next
 
 The Gnome takes over the 13 jobs once the box is up: the inbox sweep, the standup, the channel post, the nightly indexes. The repo-only jobs, like answering new GitHub issues or a weekly link check of this wiki, move to cloud scheduled tasks triggered by GitHub events and the clock. The laptop goes back to being a laptop.
@@ -199,5 +254,8 @@ The Gnome takes over the 13 jobs once the box is up: the inbox sweep, the standu
 - **Subagent / fork**: a child agent; a subagent starts with a fresh context, a fork inherits the parent's whole conversation.
 - **Cloud scheduled task**: Claude Code's hosted cron (formerly "routines"): runs on Anthropic's machines with a git repo and connectors, at most hourly.
 - **Compaction**: summarizing a long conversation so the agent stops re-reading all of it on every turn.
+- **Skill**: a folder with a `SKILL.md` procedure and its scripts, loaded only when the task calls for it.
+- **Hook**: a script Claude Code runs on an event (before a tool call, at the end of a turn); the agent cannot skip it.
+- **Agentic engineering**: directing agents and owning the result. "Vibe coding", Karpathy's 2025 term, names the careless version of the same thing.
 
 Related: [[harness-engineering-summary]], [[agent-mistake-fix-harness]], [[claude-subscription-boundary]], [[cheap-compute-cpu-gpu]], [[cloudflare-computer-agent-runtime]], [[solograph-rebuilt-one-binary]].
