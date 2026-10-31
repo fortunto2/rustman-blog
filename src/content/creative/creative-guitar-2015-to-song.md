@@ -27,9 +27,16 @@ media:
 
 # From a 2015 guitar take to a new song
 
-In 2015 I recorded a one-minute guitar theme for a film: acoustic, capo on the first fret, one
-take. Ten years later I gave it to Suno as a starting point and got a full demo back, with drums,
-bass, synths, strings and voices. The song is called «Выше и дальше» ("Higher and further").
+In 2015 I recorded a one-minute guitar theme: acoustic, capo on the first fret, one take. It became
+the anthem of Life2Film, my service that cut people's clips into a film on the beat of a song
+([[project-life2film]]). This is the promo film it played under:
+
+```youtube
+https://www.youtube.com/watch?v=HpqiNjCTVIU | Life2Film promo, 2015: the guitar theme this song grew from
+```
+
+Ten years later I gave the same recording to Suno as a starting point and got a full demo back, with
+drums, bass, synths, strings and voices. The song is called «Выше и дальше» ("Higher and further").
 
 A demo is not a song, though. It plays my theme in its own way, and the guitar that started it is
 gone. So I took it back, part by part, in REAPER, with Claude as the assistant: it measured, wrote
@@ -91,13 +98,16 @@ demo's spectrum within 0.6 dB per section (take B above) and still was not the s
   beat (step 3), and for most of the night every written part played one bar early, because the
   bar count started from the wrong downbeat.
 
-I also asked my sound engineer, Andrey Renev ([@andreyrenev](https://t.me/andreyrenev) on
-Telegram), for help. He set the demo up in REAPER at 68 BPM with the circle Ab | Eb | Fm | Db.
-Later the measurements showed that this is exactly the grid and the circle the demo's harmony
-moves on.
+Usually I work with my sound engineer, Andrey Renev ([@andreyrenev](https://t.me/andreyrenev) on
+Telegram): he assesses my Suno draft and sets the base, the grid and the scale; I add the style,
+the effects and the voice; then he mixes. This time he set the demo up in REAPER at 68 BPM with
+block chords on a piano, one per bar: Ab | Eb | Fm | Db. Later the measurements showed that this
+is exactly the grid and the circle the demo's harmony moves on, and his chords now play in the
+song as a pad in the choruses, the break and the final (his voicing, an octave up, so it stays
+clear of the guitar and the bass).
 
-In the end I decided to build it myself. I know this melody and how it is supposed to sound, so I
-went back to the guitar it came from.
+The process is getting more parallel, and for speed I aim to run the whole cycle myself. I know this
+melody and how it is supposed to sound, so I went back to the guitar it came from.
 
 ### 1. Hear what the guitar really plays
 
