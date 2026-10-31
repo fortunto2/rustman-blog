@@ -279,6 +279,29 @@ The tambourine in the choruses went the same way as the drums before it: the loo
 measured (off-beat eighths loudest, the other sixteenths 8 to 14 dB lower) and replayed with my
 kubyz strokes.
 
+### 11. Why the bass looked small, and two masters
+
+Side by side in a DJ app with commercial tracks, ours looked thin: short red strokes with gaps
+between them. It was not the loudness. DJ apps level-match, and "Lose Yourself" at −15.4 LUFS looked
+bigger than our render at −8.6 LUFS. What the app draws in red is the share of energy under 120 Hz:
+ours had **20 %** of the chorus there, the demo 52 %, "Lose Yourself" 58 %, a current trap hit 65 %.
+
+Three things had cut it:
+
+- the master limiter was pushed 8 dB and shaved every kick and bass peak (dynamics range 2.6);
+- the bass is a kubyz, whose pitch lives in a formant around 320 Hz with the fundamental 28 dB lower;
+- that bass had a 0.5 s attack, so under every kick there was almost no bass.
+
+The fixes: a sub layer playing the same notes (Wave "808 Sub", tape saturation before a 200 Hz
+low-pass so it is still heard on a phone), the bass attack at 0.01 s, the sub ducking only 3 dB under
+the kick so it fills the gaps, the limiter backed off, and a second, low-only kick (in F, peak at
+44 Hz) under the punchy one. The share went 20 → 43 → 53 → 65 %.
+
+That leaves two masters: one for streaming at −11.2 LUFS with the dynamics kept (range 8.8), and a club
+one at −9.1 LUFS (an "inflate" saturator before the limiter, ceiling −1.5 dB so the mp3 stays under
+zero). Louder than that is clipping: the trap hit measures +2.3 dB over full scale. And the top came
+from a new bright hi-hat layer: kubyz sounds have almost nothing above 5 kHz.
+
 ## How I would do it next time
 
 1. **Start from the real recording**, and check it is solo with a stem split.
@@ -299,6 +322,8 @@ kubyz strokes.
     kick side-chain, space, vocal duck.
 12. **Measure the demo's build before writing yours**: which layer swells, by how many dB, and
     where it stops.
+13. **Check the low-end share before the loudness**: how much of the chorus sits under 120 Hz,
+    against a reference in the same style.
 
 ## What to ask the assistant
 
@@ -313,6 +338,6 @@ kubyz strokes.
 
 Besides the vocals: a backbeat (nothing on 2 and 4 in the choruses yet), the violin, which in the
 demo plays in the interlude, the bridge and the final, the pipe line in the interlude, and the
-master. Each is one more step of the same loop.
+release master. Each is one more step of the same loop.
 
 Related: [[project-superduper-dsp]], [[creative-music-with-claude]], [[creative-kubyz-speaks]].
