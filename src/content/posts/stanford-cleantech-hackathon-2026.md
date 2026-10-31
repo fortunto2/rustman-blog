@@ -87,6 +87,8 @@ My read of each project from its page and pitch. Strong is what I would copy; un
 
 **Try it:** [airsignal.app/crew](https://airsignal.app/crew) (site and API, free) · **Code:** [github.com/fortunto2/stanford-cleantech-2026](https://github.com/fortunto2/stanford-cleantech-2026) · **Devpost:** [devpost.com/software/crew-air](https://devpost.com/software/crew-air)
 
+![Building Crew Air on the first day at the Huang Engineering Center. Photo: Daniel Vegera](/images/posts/stanford-cleantech-hackathon-2026/crew-air-building-day1.jpg)
+
 The hour each Cal/OSHA rule starts on an outdoor shift. Rust engine (airq-core) compiled to WASM on a Cloudflare Worker, D1 for reports. It computes the EPA NowCast from hourly PM2.5 (why is in the API notes below). Rules are data: one JSON rulebook per jurisdiction. VIIRS fires within 50 km raise a warning. An AirNow monitor within 25 km that disagrees by more than 1.5× scales the forecast, clamped to [0.5, 3] and fading over 12 hours. Hourly wind draws smoke cones, with NWS as fallback. A sky photo goes to TypeSafe's Jev: smoke right on 11 or 12 of 12 known photos, never wrong. ML appears only there.
 
 <iframe src="https://www.youtube-nocookie.com/embed/cflNvJU9x5o" title="Crew Air: how it works (Stanford Cleantech Hackathon 2026)" style="width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin:1.5rem 0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
