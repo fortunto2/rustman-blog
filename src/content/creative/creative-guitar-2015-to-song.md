@@ -34,11 +34,13 @@ gone. So I took it back, part by part, in REAPER, with Claude as the assistant: 
 the project files and moved the knobs, and I listened and said what was wrong. This page is the
 path, with the numbers, and the short version of how I would do it next time.
 
-<!-- AI-TODO: the teaser goes here once it is public on YouTube:
+The teaser below is a day on the Coast Starlight train through Oregon. I worked on this track on
+that train, and Claude cut the video from my footage with the same kind of skills
+([[creative-video-agent-cut]]).
+
 ```youtube
-https://www.youtube.com/watch?v=<id> | teaser: the song as it stands
+https://www.youtube.com/watch?v=TszqvuMx9wQ | teaser: a day on the Coast Starlight through Oregon, with the track as it stands
 ```
--->
 
 Start with the guitar. A is the 2015 recording, B is the same 30 seconds replayed from the notes the
 decoder found, on a simple plucked-string synth:
