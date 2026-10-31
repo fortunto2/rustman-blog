@@ -226,6 +226,59 @@ in which band. The rules it followed:
 
 The voice's band (1.9 to 2.3 kHz) is now free: guitar under the vocal went from 60 % to 0.
 
+### 9. The chain on every track, and the plugins doing the work
+
+Every track gets the same order of plugins. Only the numbers change:
+
+```
+instrument → EQ → Compressor (keyed from the kick) → Space → Soothe (keyed from the vocal)
+```
+
+- **EQ right after the instrument.** It starts flat, so the shared meter hears the track, and
+  then takes the cuts the measurements ask for.
+- **Compressor next, keyed from the kick.** In REAPER: the kick track sends to channels 3/4 of the
+  target track (post-fader), the target track gets 4 channels, and the compressor's side-chain pins
+  read 3/4. Threshold sits above the target's own peaks (−14 dB here, the 808 peaks at −17 to
+  −20), so only the kick can trigger it; Ratio 10, and the depth comes from Range.
+- **Space before the last step.** It writes every output channel, so anything keyed from channels
+  3/4 must come before it.
+- **Soothe last**, keyed from the vocal, so a part steps aside only while the voice sings.
+
+The SuperDuper plugins in the song and what each one does there:
+
+| plugin | on | job |
+|---|---|---|
+| Piano | guitar bass, picking | plays the decoded guitar lines (Salamander grand) |
+| Wave | picking layer, synth low and high | wavetable synth: the picking's texture, the synth lines |
+| Kubyz | the "808" | the kubyz as a bass voice (formant mix 0.5, brightness 0.6) |
+| Pad | Andrey's chords, the build into the chorus | "Slow Strings", his voicing an octave up |
+| Wind | riser before each chorus | "Howling Gale" |
+| EQ | every track | cuts: 808 −4 dB at 200 Hz, picking −3 dB at 300 Hz, pad −3 dB at 700 Hz and HP 250 Hz |
+| Compressor | 808, both synths, pad, kubyz layer | ducks under the kick: 808 5 dB, synth high 4, synth low 3, pad 3 (slower release, so it breathes), kubyz layer 2 |
+| Soothe | synth high, pad | yields to the vocal only while it sings: 7 dB and 5 dB |
+| Space | pad, kubyz layers, risers | depth and side: pad a little back and wide, the kubyz groove right, the kubyz picking left |
+
+The guitar picking does not duck under the kick: it is the song.
+
+### 10. Building into the chorus
+
+In the demo the pre-chorus builds and ours just played the guitar, even and flat. Measured first:
+the demo's guitar gets brighter every bar (spectral centre 1610 → 1870 Hz), a swell in its "other"
+stem rises 18 dB over the pre-chorus (30 dB in the last bar of the second one), and the guitar
+steps back 4 to 5 dB on the chorus downbeat. Ours has the same shape:
+
+- **a string swell**: the pre-chorus chords on Andrey's pad, fading in from silence, running into
+  the same pad in the chorus;
+- **a wind riser** on the last two bars;
+- **a kubyz roll** made of my four strokes, accelerating from quarters to 32nds, rising from −18
+  to 0 dB while its high-pass opens from 2.5 kHz to 400 Hz;
+- **Space moves both** from far (distance 0.9) to close (0) by the downbeat;
+- **a sixteenth of silence** before the chorus: every build layer stops just short of the downbeat.
+
+The tambourine in the choruses went the same way as the drums before it: the loop's accents were
+measured (off-beat eighths loudest, the other sixteenths 8 to 14 dB lower) and replayed with my
+kubyz strokes.
+
 ## How I would do it next time
 
 1. **Start from the real recording**, and check it is solo with a stem split.
@@ -242,6 +295,10 @@ The voice's band (1.9 to 2.3 kHz) is now free: guitar under the vocal went from 
 9. **Bring your own sounds**: takes from your earlier songs are what makes it yours.
 10. **Mix by measurement**: balance against the demo's stems, sidechain the bass, duck under the
     voice only while it sings, and fix a clash in the source before you reach for EQ.
+11. **Keep one chain order on every track**, so any track can be read at a glance: instrument, EQ,
+    kick side-chain, space, vocal duck.
+12. **Measure the demo's build before writing yours**: which layer swells, by how many dB, and
+    where it stops.
 
 ## What to ask the assistant
 
@@ -255,7 +312,7 @@ The voice's band (1.9 to 2.3 kHz) is now free: guitar under the vocal went from 
 ## What is still missing
 
 Besides the vocals: a backbeat (nothing on 2 and 4 in the choruses yet), the violin, which in the
-demo plays in the interlude, the bridge and the final, a pad under the chords, the pipe line in the
-interlude, and the master. Each is one more step of the same loop.
+demo plays in the interlude, the bridge and the final, the pipe line in the interlude, and the
+master. Each is one more step of the same loop.
 
 Related: [[project-superduper-dsp]], [[creative-music-with-claude]], [[creative-kubyz-speaks]].
