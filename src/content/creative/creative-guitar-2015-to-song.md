@@ -12,6 +12,8 @@ index_section: "creative"
 tools: [superduper-dsp, sdsp-skills, solo-stem-split]
 cover: /media/creative/guitar-2015-to-song/intro-2015.png
 media:
+  - suno-demo=~/Music/1music/vyshe-i-dalshe/article/publish/suno-demo.wav
+  - first-try=~/Music/1music/vyshe-i-dalshe/article/publish/first-try.wav
   - guitar-2015=~/Music/1music/vyshe-i-dalshe/article/publish/guitar-2015.wav
   - guitar-decoded=~/Music/1music/vyshe-i-dalshe/article/publish/guitar-decoded.wav
   - intro-now=~/Music/1music/vyshe-i-dalshe/article/publish/intro-now.mp3
@@ -42,7 +44,19 @@ that train, and Claude cut the video from my footage with the same kind of skill
 https://www.youtube.com/watch?v=TszqvuMx9wQ | teaser: a day on the Coast Starlight through Oregon, with the track as it stands
 ```
 
-Start with the guitar. A is the 2015 recording, B is the same 30 seconds replayed from the notes the
+Here is the whole journey in one player, the first 48 seconds of the song three times: the demo
+Suno made from my guitar, my first try at replacing it, and where it stands now.
+
+```ab
+A: /media/creative/guitar-2015-to-song/suno-demo.mp3 | the Suno demo
+B: /media/creative/guitar-2015-to-song/first-try.mp3 | first try: every stem turned into MIDI and replayed on my plugins
+C: /media/creative/guitar-2015-to-song/intro-now.mp3 | now: the 2015 guitar opens, the band comes in on the picking
+```
+
+B still carries Suno's voice, strings and percussion; C has no vocals yet. So far it is simple, but
+it is already what it needs to be.
+
+And the guitar itself. A is the 2015 recording, B is the same 30 seconds replayed from the notes the
 decoder found, on a simple plucked-string synth:
 
 ```ab
@@ -62,6 +76,28 @@ B: /media/creative/guitar-2015-to-song/guitar-decoded.mp3 | the notes found in i
   Rubber Band (time-stretch).
 
 ## The path
+
+### 0. The first try: straight from the stems to MIDI
+
+My first idea was the direct one: split the demo into its 12 stems, turn every stem into MIDI and
+play that MIDI on my own instruments. One night of it produced a full rebuild that matched the
+demo's spectrum within 0.6 dB per section (take B above) and still was not the song:
+
+- the bass came out as 10 to 24 notes per bar, re-attacks and harmonics read as notes. It only
+  worked once the rhythm came from the bass stem's onsets and the pitch from the chord of the bar;
+- the drums, transcribed by frequency band, were noise: the snare smeared over all 16 slots, hats
+  everywhere, 195 kicks in 98 bars. They became a hand-written pattern;
+- everything sat on the demo's apparent tempo, 90.91 BPM, which turned out to be the kick, not the
+  beat (step 3), and for most of the night every written part played one bar early, because the
+  bar count started from the wrong downbeat.
+
+I also asked my sound engineer, Andrey Renev ([@andreyrenev](https://t.me/andreyrenev) on
+Telegram), for help. He set the demo up in REAPER at 68 BPM with the circle Ab | Eb | Fm | Db.
+Later the measurements showed that this is exactly the grid and the circle the demo's harmony
+moves on.
+
+In the end I decided to build it myself. I know this melody and how it is supposed to sound, so I
+went back to the guitar it came from.
 
 ### 1. Hear what the guitar really plays
 
@@ -104,7 +140,8 @@ ran too fast.
 
 ![The guitar at the drum tempo: the chord colours change twice as often as the music](/media/creative/guitar-2015-to-song/too-fast.png)
 
-Measured, the harmony moves every 3.527 s, which is **68.05 BPM**. The 90.91 came from the kick
+Measured, the harmony moves every 3.527 s, which is **68.05 BPM**, the tempo Andrey had set.
+The 90.91 came from the kick
 repeating every 0.66 s, three sixteenths, not from the beat. And the demo's drums turned out to be
 tight on their own grid (snare and hats within 12 to 17 ms of it), so the whole project now takes
 its grid from the drum stem, one tempo point per beat, written straight into the project file.
