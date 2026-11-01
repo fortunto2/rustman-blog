@@ -50,17 +50,68 @@ function parseFrontmatter(raw: string): Record<string, unknown> {
   return fm;
 }
 
-function getSection(fm: Record<string, unknown>, file: string): string {
-  if (fm.publish_as !== undefined) {
-    // AI-NOTE: publish_as was retired 2026-11-01 (type/feed/audience replace it); fail loudly, not route silently.
-    throw new Error(`${file}: publish_as is retired, use type: project, feed: true or audience: creative`);
+// The contract lives in one file, shared with the pre-commit gate (scripts/wiki_frontmatter.py).
+// Here only what decides routing and listing is enforced: a page that breaks it is not published.
+const SCHEMA = JSON.parse(readFileSync(join(WIKI_DIR, '_frontmatter.json'), 'utf-8')) as {
+  retired: Record<string, string>;
+  enums: Record<string, string[]>;
+  booleans: string[];
+};
+
+function violations(fm: Record<string, unknown>, raw: string): string[] {
+  const errs: string[] = [];
+  for (const [key, why] of Object.entries(SCHEMA.retired)) {
+    if (fm[key] !== undefined) errs.push(`${key}: ${why}`);
   }
-  return fm.type === 'project' ? 'projects' : 'wiki';
+  const head = raw.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  for (const key of SCHEMA.booleans) {
+    // parseFrontmatter strips quotes, so `feed: "true"` would pass here and fail in promo (a string there).
+    const m = head.match(new RegExp(`^${key}:\\s*(.*?)\\s*(#.*)?$`, 'm'));
+    if (m && !['true', 'false'].includes(m[1])) errs.push(`${key}: must be a bare true/false, got ${m[1]}`);
+  }
+  for (const [key, allowed] of Object.entries(SCHEMA.enums)) {
+    if (fm[key] !== undefined && !allowed.includes(String(fm[key]))) errs.push(`${key}: ${fm[key]} not in ${allowed.join('|')}`);
+  }
+  return errs;
 }
+
+type Page = { file: string; from: string; raw: string; section: string };
 
 function main() {
   if (!existsSync(WIKI_DIR)) {
     console.error(`Wiki directory not found: ${WIKI_DIR}`);
+    process.exit(1);
+  }
+
+  // Read and check everything first, write nothing until all of it passes. The old order
+  // (clear, then route file by file) left half the content behind when one page failed,
+  // and `pnpm build` then shipped that half with exit 0 (2026-11-01).
+  const pages: Page[] = [];
+  const errors: string[] = [];
+  let skipped = 0;
+  let total = 0;
+  const sources: { dir: string; label: string; files: string[] }[] = [
+    { dir: WIKI_DIR, label: 'wiki', files: readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_') && f !== 'index.md') },
+    ...RAW_DIRS.map(d => join(KB_DIR, d)).filter(existsSync).map(dir => ({
+      dir, label: dir.split('/').pop()!, files: readdirSync(dir).filter(f => f.endsWith('.md')),
+    })),
+  ];
+  for (const { dir, label, files } of sources) {
+    for (const file of files) {
+      total++;
+      const raw = readFileSync(join(dir, file), 'utf-8');
+      const fm = parseFrontmatter(raw);
+      if (!fm.publish) {
+        skipped++;
+        continue;
+      }
+      for (const e of violations(fm, raw)) errors.push(`${label}/${file}: ${e}`);
+      pages.push({ file, from: label, raw, section: fm.type === 'project' ? 'projects' : 'wiki' });
+    }
+  }
+  if (errors.length > 0) {
+    console.error(errors.join('\n'));
+    console.error(`\n${errors.length} violation(s); nothing was written. Contract: wiki/_frontmatter.json`);
     process.exit(1);
   }
 
@@ -71,56 +122,11 @@ function main() {
   }
   for (const dir of ['wiki', 'projects']) mkdirSync(join(CONTENT_DIR, dir), { recursive: true });
 
-  let collected = 0;
-  let skipped = 0;
-  let total = 0;
-
-  // Collect from wiki/
-  const wikiFiles = readdirSync(WIKI_DIR).filter(f => f.endsWith('.md') && !f.startsWith('_'));
-  for (const file of wikiFiles) {
-    if (file === 'index.md') continue;
-    total++;
-
-    const raw = readFileSync(join(WIKI_DIR, file), 'utf-8');
-    const fm = parseFrontmatter(raw);
-
-    if (!fm.publish) {
-      skipped++;
-      continue;
-    }
-
-    const section = getSection(fm, file);
-    const dest = join(CONTENT_DIR, section, file);
-    writeFileSync(dest, raw);
-    collected++;
-    console.log(`  ${section}/${file}`);
+  for (const { file, from, raw, section } of pages) {
+    writeFileSync(join(CONTENT_DIR, section, file), raw);
+    console.log(`  ${section}/${file}${from === 'wiki' ? '' : ` (from ${from}/)`}`);
   }
-
-  // Collect from raw source directories
-  for (const dir of RAW_DIRS) {
-    const dirPath = join(KB_DIR, dir);
-    if (!existsSync(dirPath)) continue;
-
-    const files = readdirSync(dirPath).filter(f => f.endsWith('.md'));
-    for (const file of files) {
-      total++;
-      const raw = readFileSync(join(dirPath, file), 'utf-8');
-      const fm = parseFrontmatter(raw);
-
-      if (!fm.publish) {
-        skipped++;
-        continue;
-      }
-
-      const section = getSection(fm, file);
-      const dest = join(CONTENT_DIR, section, file);
-      writeFileSync(dest, raw);
-      collected++;
-      console.log(`  ${section}/${file} (from ${dir}/)`);
-    }
-  }
-
-  console.log(`\nCollected: ${collected} | Skipped: ${skipped} | Total: ${total}`);
+  console.log(`\nCollected: ${pages.length} | Skipped: ${skipped} | Total: ${total}`);
 }
 
 // Also collect stacks
