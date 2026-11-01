@@ -8,7 +8,6 @@ tags: [agents, memory, context-engineering, harness, inspiration]
 source_url: https://promptql.io/why-promptql-works
 learned_from: 7d5bb78e-28d5-4bbc-8632-3f8ad5cb16b1
 publish: true
-index_section: summary
 ---
 
 # PromptQL: a context wiki instead of a semantic layer

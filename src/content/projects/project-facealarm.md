@@ -1,18 +1,16 @@
 ---
-type: concept
+type: project
 description: "Face yoga tracker with daily selfie alarm. AI won't turn off until you take a selfie. Track transformation daily. iOS + Android."
 title: "FaceAlarm — face yoga tracker with daily selfie alarm"
 created: 2025-06-01
 tags: [project, ios, android, facealarm, on-device-ai, health]
 project_type: app
 publish: true
-publish_as: project
 source_url: "https://www.face-alarm.com"
 app_store_id: "6758454962"
 app_store_screenshots: [/images/projects/facealarm/facealarm-1.webp, /images/projects/facealarm/facealarm-2.webp, /images/projects/facealarm/facealarm-3.webp, /images/projects/facealarm/facealarm-4.webp, /images/projects/facealarm/facealarm-5.webp, /images/projects/facealarm/facealarm-6.webp]
 play_store_url: "https://play.google.com/store/apps/details?id=com.facealarm.app"
 index_line: "FaceAlarm: face massage coaching timer, born from wife's business, on-device AI"
-index_section: "project"
 ---
 
 # FaceAlarm

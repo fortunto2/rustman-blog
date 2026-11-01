@@ -6,7 +6,6 @@ created: 2026-04-09
 tags: [tools, cli, search, productivity, terminal, rust]
 publish: true
 index_line: "Television (tv) fuzzy finder: custom wiki/docs channels, ripgrep full-text, bat preview. Three search tools compared"
-index_section: "concept"
 ---
 
 # Television (tv) — Terminal Fuzzy Search

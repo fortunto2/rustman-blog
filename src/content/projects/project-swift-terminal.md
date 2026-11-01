@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "SSH client for iPhone with a real PTY and tmux by default, so losing signal does not kill the session. Keys generated on device, held in the Keychain behind Face ID."
 title: "SuperDuper Terminal — SSH from a phone that survives the signal"
 created: 2026-08-14
@@ -7,10 +7,8 @@ tags: [project, ios, swift, ssh, tmux, devtools, terminal]
 project_type: app
 app_store_id: "6758515520"
 publish: true
-publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6758515520"
 index_line: "SuperDuper Terminal: iPhone SSH client with a real PTY and tmux by default. Keys generated on device, behind Face ID"
-index_section: "project"
 ---
 
 # SuperDuper Terminal

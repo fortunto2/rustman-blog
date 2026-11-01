@@ -7,7 +7,6 @@ updated: 2026-04-07
 tags: [hub, decisions, stream, mental-models]
 publish: true
 index_line: "Decision frameworks, mental models, psychological traps"
-index_section: "hub"
 ---
 
 # Decision Making

@@ -6,7 +6,6 @@ created: 2026-10-26
 tags: [agents, code-graph, mcp, retrieval, tree-sitter, fts5, solograph, comparison]
 publish: true
 index_line: "15 code-graph/code-search MCP tools (gh-measured 26 Oct 2026): convergence on tree-sitter + SQLite FTS5, embeddings optional. Top picks colbymchenry/codegraph, codebase-memory-mcp, Graphify; star counts look inflated, fork velocity used instead"
-index_section: "concept"
 ---
 
 # Code-graph MCP servers, October 2026

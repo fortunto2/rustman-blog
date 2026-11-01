@@ -9,12 +9,10 @@ updated: 2026-10-27
 course_module: 7
 course_order: 7
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/seo-cli"
 pypi: seo-cli
 github: fortunto2/seo-cli
 index_line: "SEO CLI: 23 commands for GSC, GA4, Bing, IndexNow, agent-readiness and superduper-analytics traffic. All sites in one terminal"
-index_section: "project"
 ---
 
 # SEO CLI

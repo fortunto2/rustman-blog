@@ -7,7 +7,6 @@ tags: [agents, skills, memory, context-engineering, methodology]
 publish: true
 source_url: "https://youtu.be/nUT1YRvjG98"
 index_line: "Skills lazy-load vs MCPs eager-load, dream mode (autonomous memory GC), self-evolution fixed/mutable split, teaching→skill extraction"
-index_section: "concept"
 ---
 
 # Agent Patterns from Practice

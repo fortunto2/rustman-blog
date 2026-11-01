@@ -7,7 +7,6 @@ tags: [agents, skills, harness, open-source, github, benchmarks, distribution]
 source_url: "https://www.star-history.com/"
 publish: true
 index_line: "GitHub all-time top-100 (Jul 2026): **16 of 100 repos created after Jan 2025 — all of them agent harness tooling**. Velocity: claw-code 1611★/day, OpenClaw 1550, ECC 1219, mattpocock/skills 1095, karpathy-skills 1073, Superpowers 895, gstack 887 vs React's lifetime 52★/day. Markdown-only repos now outrank frameworks. Includes what to steal (gstack roles, ECC harness-OS, taste skills) and why stars died as a signal (GitHub closed the stargazers API Jul 6, 2026)"
-index_section: "concept"
 ---
 
 # GitHub Top-100 in 2026 — Agent Harnesses Ate the All-Time Chart

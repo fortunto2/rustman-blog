@@ -10,7 +10,6 @@ course_order: 3
 publish: true
 source_path: "0-principles/manifest.md"
 index_line: "One pain → one feature → ship in days. Not platforms, not roadmaps"
-index_section: "concept"
 ---
 
 The antidote to "platform thinking": don't build a platform, don't draw a 50-feature roadmap. One pain, one solution, shipped in days.

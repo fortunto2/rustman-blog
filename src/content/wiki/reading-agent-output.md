@@ -6,7 +6,6 @@ created: 2026-08-29
 tags: [terminal, ergonomics, claude-code, tooling, attention]
 publish: true
 index_line: "Agent-era terminal: motion/contrast/habit are 3 separate fatigue sources. Positive polarity wins in a lit room, 7-12:1 not 21:1, ported light themes leave ANSI accents at 2-3:1. macOS ALS readable at 25ms"
-index_section: "concept"
 ---
 
 The job changed before the tools did. Writing code means looking at static text you

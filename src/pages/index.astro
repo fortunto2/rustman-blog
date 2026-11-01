@@ -3,10 +3,10 @@ import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
 import { SITE, HERO_CARDS, PROJECT_PRIORITY } from '../lib/config';
-import { getCollection, getAllContent } from '../lib/content';
+import { getCollection, getAllContent, getFeed } from '../lib/content';
 import { listDate, modifiedDate } from '../lib/md';
 
-const posts = getCollection('posts');
+const posts = getFeed();
 const projects = getCollection('projects');
 const recent = getAllContent().slice(0, 30);
 
@@ -36,7 +36,7 @@ const blogLd = {
     .map(p => ({
       '@type': 'BlogPosting',
       headline: p.frontmatter.title,
-      url: `${base}/posts/${p.slug}/`,
+      url: `${base}/wiki/${p.slug}/`,
       ...(listDate(p.frontmatter) ? { datePublished: listDate(p.frontmatter) } : {}),
       ...(modifiedDate(p.frontmatter) ? { dateModified: modifiedDate(p.frontmatter) } : {}),
     })),
@@ -73,8 +73,8 @@ const blogLd = {
 
   {posts.length > 0 && (
     <section class="mb-12">
-      <h2 class="text-xl font-semibold mb-4 prompt">Posts</h2>
-      <ContentList items={posts} basePath="/posts" showDate={true} showTags={false} />
+      <h2 class="text-xl font-semibold mb-4 prompt">Writing</h2>
+      <ContentList items={posts} basePath="/wiki" showDate={true} showTags={false} />
     </section>
   )}
 

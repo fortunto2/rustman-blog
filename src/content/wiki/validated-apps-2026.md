@@ -7,7 +7,6 @@ tags: [opportunities, homeschool, privacy, on-device-ai, mobile, validation]
 publish: true
 source_path: "4-opportunities/2026-validated-apps.md"
 index_line: "Validated Apps (4-opportunities/2026-validated-apps.md). QuestSchool, homeschool gap, on-device AI"
-index_section: "summary"
 ---
 
 ## Key Takeaways

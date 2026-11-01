@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Storage cleaner for iPhone that only claims what iOS actually permits: clears large videos and screenshots, and gives step-by-step guidance for the caches no app is allowed to touch."
 title: "PhotoSweep — an honest iPhone storage cleaner"
 created: 2026-08-13
@@ -7,10 +7,8 @@ tags: [project, ios, swift, utilities, storage, privacy]
 project_type: app
 app_store_id: "6794369239"
 publish: true
-publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6794369239"
 index_line: "PhotoSweep: iPhone storage cleaner that says what iOS won't let it do. Large videos, screenshots, and honest guidance for the rest"
-index_section: "project"
 ---
 
 # PhotoSweep

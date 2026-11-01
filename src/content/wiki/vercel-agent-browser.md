@@ -6,7 +6,6 @@ created: 2026-04-22
 tags: [agents, browser-automation, cdp, rust, cli, vercel, accessibility, prompt-injection]
 publish: true
 index_line: "Vercel Labs' agent-browser (30k★): native Rust CLI + CDP. Accessibility-tree refs (@e1) instead of CSS, content boundaries against prompt injection, persistent daemon, batch mode. Browser automation rewritten for LLMs"
-index_section: "concept"
 ---
 
 # agent-browser — Browser Automation Designed for LLMs

@@ -4,12 +4,10 @@
  *
  * Usage: pnpm collect
  *
- * Routing:
- *   - publish_as: project → src/content/projects/
- *   - publish_as: post → src/content/posts/ (pillar articles from raw sources)
- *   - publish_as: creative → src/content/creative/ (guides for non-programmers: music, video)
- *   - everything else → src/content/wiki/ (knowledge base)
- *   - type: hub → also wiki (hub pages are useful as navigation)
+ * Routing: one kind of page, one URL space. `type: project` → src/content/projects/ (a product,
+ * with its own schema.org data); every other page → src/content/wiki/. Where a page is LISTED
+ * is a view, not a route: `feed: true` puts it on the homepage and in the feed,
+ * `audience: creative` on /creative/. Neither changes its URL, so a page never moves.
  */
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync, realpathSync } from 'fs';
@@ -52,12 +50,12 @@ function parseFrontmatter(raw: string): Record<string, unknown> {
   return fm;
 }
 
-function getSection(fm: Record<string, unknown>): string {
-  const publishAs = fm.publish_as as string | undefined;
-  if (publishAs === 'project' || publishAs === 'projects') return 'projects';
-  if (publishAs === 'post' || publishAs === 'posts') return 'posts';
-  if (publishAs === 'creative') return 'creative';
-  return 'wiki'; // default: all wiki pages go to wiki section
+function getSection(fm: Record<string, unknown>, file: string): string {
+  if (fm.publish_as !== undefined) {
+    // AI-NOTE: publish_as was retired 2026-11-01 (type/feed/audience replace it); fail loudly, not route silently.
+    throw new Error(`${file}: publish_as is retired, use type: project, feed: true or audience: creative`);
+  }
+  return fm.type === 'project' ? 'projects' : 'wiki';
 }
 
 function main() {
@@ -66,11 +64,12 @@ function main() {
     process.exit(1);
   }
 
-  for (const dir of ['wiki', 'projects', 'posts', 'creative']) {
+  // posts/, creative/, articles/, notes/ are sections that no longer exist; clear them too.
+  for (const dir of ['wiki', 'projects', 'posts', 'creative', 'articles', 'notes']) {
     const path = join(CONTENT_DIR, dir);
     if (existsSync(path)) rmSync(path, { recursive: true });
-    mkdirSync(path, { recursive: true });
   }
+  for (const dir of ['wiki', 'projects']) mkdirSync(join(CONTENT_DIR, dir), { recursive: true });
 
   let collected = 0;
   let skipped = 0;
@@ -90,7 +89,7 @@ function main() {
       continue;
     }
 
-    const section = getSection(fm);
+    const section = getSection(fm, file);
     const dest = join(CONTENT_DIR, section, file);
     writeFileSync(dest, raw);
     collected++;
@@ -113,7 +112,7 @@ function main() {
         continue;
       }
 
-      const section = getSection(fm);
+      const section = getSection(fm, file);
       const dest = join(CONTENT_DIR, section, file);
       writeFileSync(dest, raw);
       collected++;

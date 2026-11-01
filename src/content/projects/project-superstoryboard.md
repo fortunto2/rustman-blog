@@ -8,11 +8,9 @@ video_url: "https://youtu.be/ZGePJxuK3ic"
 tags: [project, ai, supabase, figma, hackathon, video, storyboard]
 project_type: product
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/superstoryboard"
 github: fortunto2/superstoryboard
 index_line: "SuperStoryboard: AI storyboard generation + Figma sync, 2nd place Supabase Hackathon"
-index_section: "project"
 ---
 
 # SuperStoryboard

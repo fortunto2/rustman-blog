@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Sea turtle nest patrols in Gazipaşa, Turkey — an iOS and Android app for the volunteers who walk the beaches, and a site explaining what to do if you find a turtle or a nest."
 title: "Caretta Friends — nest patrols for Caretta caretta"
 created: 2026-06-18
@@ -7,10 +7,8 @@ tags: [project, ios, android, caretta, conservation, turkey, nonprofit]
 project_type: app
 app_store_id: "6794324877"
 publish: true
-publish_as: project
 source_url: "https://carettafriends.com"
 index_line: "Caretta Friends: sea turtle nest patrols in Gazipaşa. iOS + Android app for volunteers, plus a three-language site on what to do if you find a turtle"
-index_section: "project"
 ---
 
 # Caretta Friends

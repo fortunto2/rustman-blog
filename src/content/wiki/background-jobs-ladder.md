@@ -7,7 +7,6 @@ tags: [infrastructure, temporal, prefect, cron, cloudflare, background-jobs, pip
 publish: true
 source_path: "1-methodology/background-jobs.md"
 index_line: "Cron → CF Workers → Prefect → Temporal → Trigger.dev. Start simple, move up"
-index_section: "concept"
 ---
 
 ## Key Takeaways

@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Turn a room full of people into a game. iOS app plus a web site — party games that need no setup, no accounts and no second device."
 title: "Live2Play — party games for a room, not a screen"
 created: 2026-01-01
@@ -7,10 +7,8 @@ tags: [project, ios, live2play, games, party, swift]
 project_type: app
 app_store_id: "6794370589"
 publish: true
-publish_as: project
 source_url: "https://live2play.superduperai.co"
 index_line: "Live2Play: party games for a room of people. iOS app and site sharing one funnel"
-index_section: "project"
 ---
 
 # Live2Play

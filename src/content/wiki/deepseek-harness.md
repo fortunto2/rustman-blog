@@ -7,7 +7,6 @@ tags: [agents, harness-engineering, plugins, typescript, deepseek, architecture,
 publish: true
 source_url: "https://github.com/deepseek-ai/deepseek-harness"
 index_line: "dsh (DeepSeek, MIT, TypeScript, 191k stars in 12 days): everything is a plugin on Cordis — model adapter, tool registry, session log, and the agent loop itself. Layers compose bundle → profile patch → home patch → --patch, so extending means mounting beside, never forking. Steal: 'model-visible means logged' as a runtime invariant, seam = Definition+Provider+Consumer or it isn't one, apiKeyEnv as a credential reference resolved per request. headless profile = one-shot runner, no port"
-index_section: "concept"
 ---
 
 # DeepSeek Harness

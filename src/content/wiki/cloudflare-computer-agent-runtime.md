@@ -7,7 +7,6 @@ tags: [agents, cloudflare, isolates, containers, durable-objects, harness-engine
 publish: true
 source_url: "https://blog.cloudflare.com/cloudflare-computer/"
 index_line: "@cloudflare/computer (open source, early preview): durable SQLite filesystem on a Durable Object, compute attaches to it — isolate by default (just-bash translates shell to JS in Dynamic Workers), Cloudflare Container via FUSE mount only when Linux binaries are needed. Target: <10% of agent work needs a container. The model picks the backend at runtime via exec(cmd, {backend}). Inverts state/compute: the filesystem persists, the computer is disposable"
-index_section: "concept"
 ---
 
 # Cloudflare Computer — the agent's computer is an isolate

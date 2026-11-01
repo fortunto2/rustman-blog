@@ -6,7 +6,6 @@ created: 2026-10-29
 tags: [compute, gpu, cpu, spot, vast-ai, runpod, hetzner, oracle-cloud, modal, free-credits, infra]
 publish: true
 index_line: "Rent-compute price list read 2026-10-29: 64 vCPU x 1.5 h costs ~$0.23 on Vast.ai, ~$0 on Oracle A1 (Arm, free 1,500 OCPU-h/mo), ~$1.4-1.8 AWS/GCP spot, $3.2 Hetzner CCX63 (48 vCPU max; CCX prices 2-3x since 15 Jun 2026). GPU: Kaggle free, Vast 3090/4090 $0.16-0.5/h, Thunder A100-80GB $1.09/h, Modal T4 $0.59/h covered by $30/mo free. Oracle Always Free A1 is now 2 OCPU/12 GB"
-index_section: "concept"
 ---
 
 # Cheap compute: CPU burst and single GPU (Oct 2026)

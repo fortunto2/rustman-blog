@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 5 tools, all SQLite FTS5: no graph database, no embeddings."
 title: "solograph — portfolio index and agent memory over SQLite"
 created: 2026-02-07
@@ -9,12 +9,10 @@ project_type: tool
 course_module: 5
 course_order: 5
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
 index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 5 MCP tools (12 until 0.17), the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5"
-index_section: "project"
 ---
 
 # Solograph

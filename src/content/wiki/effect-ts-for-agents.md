@@ -6,7 +6,6 @@ created: 2026-09-30
 tags: [agents, typescript, effect, reliability, sgr, vercel-ai-sdk, architecture]
 publish: true
 index_line: "Effect (TS effect system) vs Vercel AI SDK for agents: overhead for simple calls, wins for long parallel cancellable pipelines (video editing). Stats, pros/cons, decision rule"
-index_section: "concept"
 ---
 
 ## The short answer

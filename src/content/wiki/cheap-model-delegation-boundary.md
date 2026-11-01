@@ -10,7 +10,6 @@ course_order: 10
 publish: true
 source_url: "https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90"
 index_line: "Spotify Portal: PreToolUse hook blocks reads over 350 lines and shunts them to Gemini Flash, which returns a summary; a second mode writes boilerplate straight to disk. Reported ~90% MEAN BULK-READ saving — a per-read figure, not a session total. Two boundaries found by running it: cannot delegate editing (summaries carry no reliable line numbers) and cannot delegate reasoning (worker found surface patterns, missed a thread-safety bug). 10-30s per call makes small reads a net loss; debugging, architecture and safety-critical code excluded by policy"
-index_section: "concept"
 ---
 
 # Where cheap-model delegation stops

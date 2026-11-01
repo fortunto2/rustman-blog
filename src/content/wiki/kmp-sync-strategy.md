@@ -8,7 +8,6 @@ tags: [kotlin, kmp, sync, offline-first, supabase, powersync, mobile]
 publish: true
 source_path: "1-methodology/sync-strategy.md"
 index_line: "Supabase + PowerSync for offline-first KMP sync. Realm deprecated Sep 2025"
-index_section: "concept"
 ---
 
 ## Key Takeaways

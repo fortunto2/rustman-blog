@@ -9,7 +9,6 @@ course_module: 5
 course_order: 6
 publish: true
 index_line: "SKILL.md cross-platform standard: model-invoked vs slash, frontmatter routing, install paths. skills.sh marketplace (91K+ skills, top is `find-skills` at 1.5M installs). Adopted by Claude Code, Codex, Cursor, Copilot, 20+ agents"
-index_section: "concept"
 ---
 
 # SKILL.md Standard

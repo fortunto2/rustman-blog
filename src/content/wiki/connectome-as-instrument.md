@@ -7,7 +7,6 @@ tags: [creative, connectome, dsp, rust, clap, music, simulation, neuroscience, i
 publish: true
 source_url: "https://flywire.ai/"
 index_line: "FlyWire connectome as a CLAP modulation source, not another simulator. Surveyed against awesome-fly (94 projects, wave started 2026-09-03 with MaleCNS 166k/125M): 1 audio project, 0 on iOS. Olfactory path ~2700 cells = realtime on one core; Kenyon cells fire sparse and decorrelated, a non-repeating note generator reproducible from a seed"
-index_section: "concept"
 ---
 
 # The connectome is a sparse hash, so play it

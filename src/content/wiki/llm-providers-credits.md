@@ -7,7 +7,6 @@ updated: 2026-10-29
 tags: [llm, providers, credits, startups, infrastructure, free-tier]
 publish: true
 index_line: "LLM providers catalog: free tiers (Gemini, Groq, Ollama), startup credits re-checked Oct 2026 (bootstrapped: Microsoft $150K, Alibaba $120K, Huawei, Backblaze $100K, Together $15K, Cloudflare $10K, ElevenLabs, Cartesia, Runway, fal.ai, Grok; closed: Anthropic, DeepInfra, Nebius, GitHub), open models, cost strategy"
-index_section: "concept"
 ---
 
 # LLM Providers & Startup Credits

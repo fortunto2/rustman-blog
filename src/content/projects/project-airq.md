@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Check AQI, PM2.5, PM10 for any city from terminal. Open-Meteo + Sensor.Community data merge. One Rust core, compiled to WASM, behind the CLI, airsignal.app and the Crew Air shift planner."
 title: "airq — CLI air quality checker"
 created: 2026-03-16
@@ -8,12 +8,10 @@ project_type: tool
 course_module: 7
 course_order: 4
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/airq"
 crate: airq
 github: fortunto2/airq
 index_line: "airq: CLI air quality checker, Rust core, sensor+model merge, WASM"
-index_section: "project"
 ---
 
 # airq

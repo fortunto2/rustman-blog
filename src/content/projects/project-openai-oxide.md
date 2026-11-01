@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "1:1 parity with openai-python. Typed responses, streaming, function calling. First Rust crate shipped via solo-factory pipeline."
 title: "openai-oxide — idiomatic Rust client for OpenAI API"
 created: 2026-03-01
@@ -8,7 +8,6 @@ project_type: library
 course_module: 7
 course_order: 5
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/openai-oxide"
 crate: openai-oxide
 npm: openai-oxide
@@ -16,7 +15,6 @@ pypi: openai-oxide
 docs_url: "https://docs.rs/openai-oxide"
 github: fortunto2/openai-oxide
 index_line: "openai-oxide: idiomatic Rust client for OpenAI API, crates.io"
-index_section: "project"
 ---
 
 # openai-oxide

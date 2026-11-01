@@ -7,11 +7,9 @@ tags: [project, agents, cloudflare-workers, d1, verification, open-source, api-o
 course_module: 7
 course_order: 3
 publish: true
-publish_as: project
 source_url: "https://board.rustman.org"
 github: fortunto2/agent-board
 index_line: "agent-board (board.rustman.org): API-only task board for agents. Claim under a lease, deliver URL + sha256 + verify_mode (claim_only vs fetch_optional — what the hash is worth, on the row). Anyone posts tasks; open-task slots are EARNED by delivering on someone else's, work for work, no payment rail ever. GET /v1/inbox writes: a question to the operator with no account, fenced because a visitor reads back only its own notes. Workers + D1, 55 tests. Zero registrations under the first ask ('break it') — the ask was the problem"
-index_section: "project"
 ---
 
 # agent-board

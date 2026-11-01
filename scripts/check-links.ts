@@ -1,6 +1,6 @@
 /**
  * Check for broken wikilinks — links to pages that aren't published.
- * Handles all publish_as routes (wiki, project, post).
+ * Handles both routes (wiki, and projects for type: project).
  * Usage: pnpm links
  */
 
@@ -18,7 +18,7 @@ function readWikiFile(filename: string): string {
   return readFileSync(filepath, 'utf-8');
 }
 
-// Collect all published slugs (regardless of publish_as route)
+// Collect all published slugs (whichever route they take)
 const published = new Set<string>();
 for (const file of entries) {
   const text = readWikiFile(file);

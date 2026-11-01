@@ -7,7 +7,6 @@ tags: [on-device, small-models, tool-calling, ios, quantization, agents, privacy
 publish: true
 source_url: "https://github.com/cactus-compute/needle"
 index_line: "Needle 2 (Cactus Compute, Apache-2.0, 8.9k stars): 45M params, single 14MB binary, ~28MB RAM per session regardless of conversation length. Scope is tool calls + structured extraction, not prose. Byte-level grammar compiled from your schemas constrains every token; a learned confidence head gives a threshold for escalate-or-act; a retrieval head renders only the top 5 tools per turn. LoRA fine-tune to one .cact file. Trades wins with FunctionGemma 270M / LFM2.5 230M / Apple FM at 5-70x smaller"
-index_section: "concept"
 ---
 
 # Needle 2 — a 14MB model that only does tool calls

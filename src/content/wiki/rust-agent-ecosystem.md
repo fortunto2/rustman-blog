@@ -6,7 +6,6 @@ created: 2026-04-14
 tags: [agents, rust, open-source, comparison, ecosystem]
 publish: true
 index_line: "Rust agent landscape: ZeroClaw (30k, edge), IronClaw (11.8k, security), Moltis (2.6k, server), ZeptoClaw (589, ultra-light). Comparison + patterns to steal"
-index_section: "concept"
 ---
 
 # Rust Agent Ecosystem

@@ -7,7 +7,6 @@ updated: 2026-04-07
 tags: [hub, privacy, architecture, offline-first]
 publish: true
 index_line: "Privacy-first architecture: MLX, on-device, E2EE"
-index_section: "hub"
 ---
 
 # Privacy-First Architecture

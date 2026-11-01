@@ -7,7 +7,6 @@ tags: [agents, evolution, ai, tools, open-source, optimization]
 publish: true
 source_url: "https://github.com/SakanaAI/ShinkaEvolve"
 index_line: "ShinkaEvolve (Sakana AI): LLM-powered evolutionary code optimization. Multi-island, meta-evolution of prompts, won ICFP 2025. We use it for prompt evolution"
-index_section: "concept"
 ---
 
 # ShinkaEvolve

@@ -10,7 +10,6 @@ course_order: 1
 publish: true
 source_path: "1-methodology/dev-principles.md"
 index_line: "Dev Principles (1-methodology/dev-principles.md). SOLID, TDD, DDD, SGR, agent discipline, code quality"
-index_section: "summary"
 ---
 
 ## Key Takeaways

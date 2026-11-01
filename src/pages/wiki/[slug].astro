@@ -6,6 +6,8 @@ import PostLinks from '../../components/PostLinks.astro';
 import SourceFooter from '../../components/SourceFooter.astro';
 import RelatedByTags from '../../components/RelatedByTags.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import ToolCards from '../../components/ToolCards.astro';
+import { toolsFor } from '../../lib/tools';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 
@@ -18,10 +20,11 @@ export function getStaticPaths() {
 
 const { entry } = Astro.props;
 const post = renderMarkdown(entry.raw);
+const creative = post.frontmatter.audience === 'creative';
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }}>
-  <BackLink href="/wiki/" label="Wiki" />
+  <BackLink href={creative ? '/creative/' : '/wiki/'} label={creative ? 'Creative' : 'Wiki'} />
 
   {post.frontmatter.source_url && post.frontmatter.source_url.includes('youtu') && (
     <YouTubeEmbed url={post.frontmatter.source_url} title={post.frontmatter.title} />
@@ -35,6 +38,8 @@ const post = renderMarkdown(entry.raw);
     <PostLinks github={post.frontmatter.github} demo={post.frontmatter.demo_url} video={post.frontmatter.video_url} devpost={post.frontmatter.devpost_url} />
     <Fragment set:html={post.html} />
   </article>
+
+  {creative && <ToolCards tools={toolsFor(post.frontmatter.tools)} />}
 
   <SourceFooter sourceUrls={post.frontmatter.source_url} sourcePath={post.frontmatter.source_path} />
 

@@ -10,7 +10,6 @@ publish: true
 source_url: "https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html"
 learned_from: "https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html"
 index_line: "Böckeler (martinfowler.com, 10 Aug 2026; Sonnet 4.6 builds, Opus 4.8 ranks blind, 5 batches, greenfield business logic): agent-run TDD ranked #3-#4 behind no-TDD on small+medium tasks, mutation scores no better (81.0/77.3% vs 84.2/89.6%), tokens 2.96x-8.5x (REPORTED, cache reads counted). Agents faked/skipped red, over-implemented past the current test, still wrote a tautological test. Up-front design was what moved quality. Rule here: test-first only where a human or a fixed spec owns the test; mutation score is the regression sensor; 'never been red' is not evidence when the agent watched it"
-index_section: "concept"
 ---
 
 # TDD inside the agent loop

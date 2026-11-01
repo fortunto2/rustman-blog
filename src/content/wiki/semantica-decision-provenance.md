@@ -7,7 +7,6 @@ tags: [agents, knowledge-graph, provenance, observability, context-engineering, 
 publish: true
 source_url: "https://github.com/semantica-agi/semantica"
 index_line: "Semantica (MIT, Python, 10.7k stars, live since Jun 2025): 'open source Palantir for AI agents' — context graph + KG with decision provenance, deterministic and LLM-free at the reasoning layer, RDF + LPG, built for regulated domains like lending. For solo work the platform is oversized; the transferable idea is that a retrieval graph and a provenance graph are different artefacts optimised for different questions"
-index_section: "concept"
 ---
 
 # Semantica — the graph is for the audit, not the recall

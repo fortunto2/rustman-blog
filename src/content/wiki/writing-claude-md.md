@@ -8,7 +8,6 @@ course_module: 4
 course_order: 3
 publish: true
 index_line: "How to write effective CLAUDE.md: Karpathy 4 principles (197k stars, #24 all-time on GitHub), hierarchical approach, Quality Gate, drift detection, what works and what doesn't"
-index_section: "concept"
 ---
 
 # Writing effective CLAUDE.md files

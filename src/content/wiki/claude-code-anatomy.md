@@ -10,7 +10,6 @@ course_order: 2
 publish: true
 source_url: "https://arxiv.org/abs/2604.14228"
 index_line: "Liu et al. (2026) reverse-engineered Claude Code v2.1.88: 98.4% operational infrastructure, 1.6% AI logic. Seven components, five-layer context compaction, deny-first permissions (93% approved = fatigue). Empirical proof that harness eats the model"
-index_section: "concept"
 ---
 
 ## Key Takeaways

@@ -7,7 +7,6 @@ updated: 2026-04-07
 tags: [hub, validation, ideas]
 publish: true
 index_line: "Idea validation: S.E.E.D., STREAM, fake-door, kill/iterate/scale"
-index_section: "hub"
 ---
 
 # Startup Validation

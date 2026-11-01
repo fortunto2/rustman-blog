@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Check whether a passport or visa photo meets a country's published specification, and crop one that does. Rust core, WebAssembly in the browser — the photo never leaves the device. 1000+ pages across 9 languages."
 title: "VisaYes — does your visa photo meet the spec?"
 created: 2026-08-05
@@ -12,11 +12,9 @@ offer_url: "https://visayes.app"
 course_module: 7
 course_order: 8
 publish: true
-publish_as: project
 source_url: "https://visayes.app"
 github: fortunto2/visa-photo
 index_line: "VisaYes: does your visa photo meet the spec? Rust + WASM in the browser, 9 languages, nothing uploaded. Google went to ~0 by September 2026; 73% of visitors now arrive from ChatGPT citations. Visa-help chat (Claude Haiku, contact = request) and agent-readable twins, skill, WebMCP. Desktop app on Dioxus from the same core"
-index_section: "project"
 ---
 
 # VisaYes

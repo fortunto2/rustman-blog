@@ -8,7 +8,6 @@ course_module: 6
 course_order: 1
 publish: true
 index_line: "Coding agent benchmarks: SWE-bench, PinchBench, PAC-1 (we participate), LongMemEval. What they test, what they miss"
-index_section: "concept"
 ---
 
 # Agent Benchmarks

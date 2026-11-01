@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { parseFrontmatter, listDate, type Frontmatter } from './md';
 
-export type Section = 'wiki' | 'projects' | 'posts' | 'creative' | 'stacks' | 'skills';
+export type Section = 'wiki' | 'projects' | 'stacks' | 'skills';
 
 export interface ContentEntry {
   slug: string;
@@ -31,10 +31,18 @@ export function getCollection(section: Section): ContentEntry[] {
 export function getAllContent(): (ContentEntry & { section: Section })[] {
   const wiki = getCollection('wiki').map(e => ({ ...e, section: 'wiki' as Section }));
   const projects = getCollection('projects').map(e => ({ ...e, section: 'projects' as Section }));
-  const posts = getCollection('posts').map(e => ({ ...e, section: 'posts' as Section }));
-  const creative = getCollection('creative').map(e => ({ ...e, section: 'creative' as Section }));
-  return [...wiki, ...projects, ...posts, ...creative].sort((a, b) =>
+  return [...wiki, ...projects].sort((a, b) =>
     listDate(b.frontmatter).localeCompare(listDate(a.frontmatter)));
+}
+
+/** Pages with `feed: true`: the write-ups that go on the homepage. A view of the wiki, not a section. */
+export function getFeed(): ContentEntry[] {
+  return getCollection('wiki').filter(e => e.frontmatter.feed === true);
+}
+
+/** Pages written for artists (`audience: creative`), listed on /creative/. */
+export function getCreative(): ContentEntry[] {
+  return getCollection('wiki').filter(e => e.frontmatter.audience === 'creative');
 }
 
 export function getAllTags(): Map<string, (ContentEntry & { section: Section })[]> {

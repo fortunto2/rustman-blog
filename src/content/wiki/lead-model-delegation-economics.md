@@ -10,7 +10,6 @@ publish: true
 source_url: "https://cognition.com/blog/making-fable-cheaper-than-opus"
 learned_from: "https://cognition.com/blog/making-fable-cheaper-than-opus ; https://factory.com/news/model-routing-belongs-in-the-harness"
 index_line: "Cognition (13 Jul 2026, own FrontierCode 1.1, 3,000 sessions): Fable 5 is 2x Opus 4.8 per token, yet Fable+sidekick $1.86/60.7 vs Opus+sidekick $2.04/54.6; pure Fable $4.03/60.8, so sidekick -54% at same score. Fable lead 11.5 turns vs 26.5, 545k vs 1,679k input, no code edit in 81% of runs (Opus 24%). Both ~3 handoffs/run: the difference is WHEN (early) and WHAT (constraints, edge cases, done). Forcing delegation lowers quality; no gain on short or serial-debugging tasks. Factory (24 Aug 2026, own router): cache-aware routing -58% aggregate, median session -76%; cache-blind switching 2.12-2.37x all-frontier by turn 61+; reviewer from another model family. Refines Portal's 'cannot delegate editing' and Anthropic's 'no subagents'"
-index_section: "concept"
 ---
 
 # Delegation economics

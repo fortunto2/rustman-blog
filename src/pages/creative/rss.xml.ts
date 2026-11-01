@@ -1,11 +1,11 @@
 // Feed of /creative alone: friends who follow music and video should not get the agent posts.
 import type { APIRoute } from 'astro';
 import { SITE } from '../../lib/config';
-import { getCollection } from '../../lib/content';
+import { getCreative } from '../../lib/content';
 
 export const GET: APIRoute = () => {
-  const items = getCollection('creative').map(entry => {
-    const link = `https://${SITE.domain}/creative/${entry.slug}`;
+  const items = getCreative().map(entry => {
+    const link = `https://${SITE.domain}/wiki/${entry.slug}/`;
     const date = entry.frontmatter.created || entry.frontmatter.date || '2026-01-01';
     return `
     <item>

@@ -9,7 +9,6 @@ course_order: 4
 publish: true
 source_url: "https://www.youtube.com/watch?v=vGR5m-PURCc"
 index_line: "ERC3 results: simple ReAct beats multi-agent, composite tools, evolution system 68→100%, pre-execution validator, wiki rule extraction"
-index_section: "concept"
 ---
 
 # ERC3: AI Agents in Action

@@ -5,7 +5,6 @@ title: "Swift 6 callback isolation — the crash that hides behind a symptom"
 created: 2026-08-13
 tags: [swift, ios, concurrency, debugging, swift6]
 index_line: "Swift 6: framework callbacks inherit @MainActor isolation and SIGTRAP on the framework's own queue — pull the crash report first"
-index_section: "concept"
 publish: true
 ---
 

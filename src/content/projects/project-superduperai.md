@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "SuperDuperAI is the umbrella: SuperDuper AI Teknoloji (Turkey, tech park with R&D tax benefits) + SuperDuperAI Corp (USA, Delaware). Not a single product — a portfolio vehicle for building privacy-first AI tools."
 title: "SuperDuperAI — the company behind the products"
 created: 2024-01-01
@@ -8,9 +8,7 @@ project_type: product
 course_module: 7
 course_order: 9
 publish: true
-publish_as: project
 index_line: "SuperDuperAI: the company, portfolio vehicle, Turkey + USA, consulting + products barbell"
-index_section: "project"
 ---
 
 # SuperDuperAI

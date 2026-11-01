@@ -6,7 +6,6 @@ created: 2026-08-23
 tags: [agents, auth, anthropic, claude-code, infrastructure, byok, automation]
 publish: true
 index_line: "Max $200 buys usage rights to Claude Code + claude.ai, not an API credential. setup-token for own scripts = documented; claude.ai login in your product = banned since Feb 2026. Agent SDK credit ($20/$100/$200) announced May 13, killed June 15. Personal automations: one agent host + per-project CF Workers"
-index_section: "concept"
 ---
 
 # Claude subscription is not a developer credential

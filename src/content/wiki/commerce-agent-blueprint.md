@@ -10,7 +10,6 @@ course_order: 7
 publish: true
 source_url: "https://claude.com/blog/claude-for-commerce-agents"
 index_line: "Anthropic commerce blueprint (Sep 2026, github.com/anthropics/commerce-agents): single agent + skills, NO subagents ('every handoff is state-lossy'); 1/3-of-traffic rule for system prompt vs skill; safety in harness (staged writes + server-issued ID allowlist, no tool call moves money); async memory extractor = +13% recall; 3-segment prompt cache at 90-99% hit; snapshot evals, 50-100 cases/flow, negative for every positive"
-index_section: "concept"
 ---
 
 # Commerce agents blueprint — what Anthropic ships when it builds an agent itself

@@ -10,7 +10,6 @@ course_order: 2
 publish: true
 source_url: "https://code.claude.com/docs/en/plugin-evals"
 index_line: "claude plugin eval (CC 2.1.269): --ablation with-without runs each case with and without the plugin and reports the delta. Absolute score measures the model, delta measures your skill. `tool_used: Skill` is a with-only indicator, kept out of the score: fired-but-useless and useful-but-never-fired are different bugs. 3 runs/case, haiku judge, threshold 1.0, --max-cost-usd, HTML report"
-index_section: "concept"
 ---
 
 # Plugin evals: the ablation arm is the finding

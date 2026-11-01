@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Claude Code plugin with 57 skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
@@ -8,11 +8,9 @@ project_type: tool
 course_module: 4
 course_order: 10
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/solo-factory"
 github: fortunto2/solo-factory
 index_line: "solo-factory: Claude Code plugin, 57 skills, 2 agents, startup pipeline"
-index_section: "project"
 ---
 
 # Solo Factory

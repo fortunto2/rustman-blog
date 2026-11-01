@@ -8,7 +8,6 @@ tags: [codegraph, code-intelligence, fts5, tree-sitter, mcp, solograph]
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
 index_line: "CodeGraph: symbol + package index across all projects (tree-sitter → SQLite FTS5, words of camel/snake names). Graph layer (calls/imports/inheritance) dropped Oct 2026: 0 structural questions in 4 months, grep matched a code-graph MCP 8/8"
-index_section: "concept"
 ---
 
 ## Key Takeaways

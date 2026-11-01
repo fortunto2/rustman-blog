@@ -7,7 +7,6 @@ updated: 2026-04-08
 tags: [hub, methodology, ai-driven, solo]
 publish: true
 index_line: "AI-driven solo dev: harness engineering, TDD, pipeline, codegraph"
-index_section: "hub"
 ---
 
 # Solo Methodology

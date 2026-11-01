@@ -7,7 +7,6 @@ tags: [sources, youtube, twitter, reddit, telegram, newsletters, reference]
 publish: true
 source_path: "2-inspiration/sources.md"
 index_line: "Sources (2-inspiration/sources.md). 60+ curated channels across YouTube, Twitter, Reddit, newsletters"
-index_section: "summary"
 ---
 
 ## Key Takeaways

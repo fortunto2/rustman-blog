@@ -6,7 +6,6 @@ created: 2026-04-14
 tags: [agents, rust, auth, openai, infrastructure]
 publish: true
 index_line: "Route LLM requests through ChatGPT subscription via OAuth. No API key, auto-refresh, Chat Completions compatible. Our Rust proxy in sgr-agent. Semi-official since Apr 2026 (GPT-5.5 subscription-only); creds may now live in the OS keyring, not auth.json"
-index_section: "concept"
 ---
 
 # Codex OAuth Proxy

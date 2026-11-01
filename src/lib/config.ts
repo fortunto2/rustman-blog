@@ -18,13 +18,11 @@ export const SITE = {
   },
 
   navigation: [
-    { href: '/course/', label: 'Course' },
-    { href: '/posts/', label: 'Posts' },
     { href: '/wiki/', label: 'Wiki' },
     { href: '/projects/', label: 'Projects' },
     { href: '/creative/', label: 'Creative' },
-    { href: '/skills/', label: 'Skills' },
-    { href: '/stacks/', label: 'Stacks' },
+    { href: '/course/', label: 'Course' },
+    { href: '/skills/', label: 'Toolkit' },
     { href: '/about/', label: 'About' },
   ],
 

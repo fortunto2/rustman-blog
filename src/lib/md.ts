@@ -95,7 +95,8 @@ export interface Frontmatter {
   tags?: string[];
   type?: string;
   publish?: boolean;
-  publish_as?: 'article' | 'project' | 'note' | 'post' | 'creative';
+  feed?: boolean;              // listed on the homepage and in the feed (was publish_as: post)
+  audience?: 'creative';       // listed on /creative/ for artists (was publish_as: creative)
   kind?: 'guide' | 'recipe' | 'note' | 'release';
   tools?: string[];
   source_path?: string;
@@ -147,9 +148,9 @@ export function parseFrontmatter(raw: string): { frontmatter: Frontmatter; conte
   return { frontmatter: fm as Frontmatter, content: match[2] };
 }
 
-// A wikilink names a page, not a section: collect-content routes it by publish_as,
-// so look up where it actually landed. Unknown slugs keep the old /wiki/ guess.
-const LINK_SECTIONS = ['wiki', 'projects', 'posts', 'creative'];
+// A wikilink names a page, not a section: collect-content sends `type: project` to /projects/,
+// so look up where it actually landed. Unknown slugs keep the /wiki/ guess.
+const LINK_SECTIONS = ['wiki', 'projects'];
 
 function sectionOf(slug: string): string {
   const dir = join(process.cwd(), 'src', 'content');

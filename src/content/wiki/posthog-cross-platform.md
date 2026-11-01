@@ -7,7 +7,6 @@ tags: [posthog, analytics, ios, web, cross-platform, privacy, metrics]
 publish: true
 source_path: "1-methodology/posthog-analytics.md"
 index_line: "SUPERSEDED by superduper-analytics. Was: PostHog EU, one product = one project, cross-platform identity"
-index_section: "concept"
 ---
 
 > **Superseded (2026-10-26).** PostHog is no longer used. Every site and app now reports to

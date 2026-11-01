@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Long-exposure astrophotography for iPhone: manual camera that holds, frame stacking from 10s to an hour, star alignment, night time-lapse, and a meteor detector with a pre-roll buffer."
 title: "Starlapse — long-exposure astrophotography for iPhone"
 created: 2026-08-13
@@ -8,9 +8,7 @@ project_type: app
 source_url: "https://github.com/fortunto2/starlapse"
 app_store_id: "6801191027"
 index_line: "Starlapse: iPhone astro camera — locked manual control, stacking, star alignment, meteor detector; built in one night of Perseids"
-index_section: "project"
 publish: true
-publish_as: project
 ---
 
 # Starlapse

@@ -10,7 +10,6 @@ course_order: 8
 publish: true
 source_path: "1-methodology/infra-prd.md"
 index_line: "Measured 2026-10-27 in active/: 0 sst.config.ts, 0 Pulumi.yaml; 28 wrangler configs in 13 projects (Worker+D1 in 8, static-asset Workers 5, Pages 4, Durable Objects 2, Containers 1). Off Cloudflare: 4 Next.js apps on Vercel, 1 VPS (Docker: Python video analysis + Temporal), SearXNG on the Mac for its residential IP. Nothing on Hetzner or Fly. infra-prd.md = the earlier SST+Pulumi plan"
-index_section: "concept"
 ---
 
 ## What the plan said, and what happened

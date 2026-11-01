@@ -7,7 +7,6 @@ tags: [agents, orchestration, org-chart, budgets, heartbeats, governance, opencl
 publish: true
 source_url: "https://github.com/paperclipai/paperclip"
 index_line: "Paperclip (MIT, TypeScript, 75k★ in 5 months): wraps Claude Code/Codex/Cursor/OpenClaw in a company — org chart with reporting lines, per-agent monthly budgets that hard-stop, DB-backed heartbeat queue, atomic task checkout, goal ancestry, immutable audit, multi-company isolation. Five mechanics to steal; 'zero-human' is marketing"
-index_section: "concept"
 ---
 
 # Paperclip — the company around the agents

@@ -7,7 +7,6 @@ updated: 2026-07-30
 tags: [agents, tools, comparison, solo-factory, skills, methodology, observability, evals, governance]
 publish: true
 index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers 263K, gstack 125K, ECC 235K) vs **taste skills** (hallmark, impeccable, ponytail, /humanize) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 13 categories, comparison matrix, 8-layer stack, roles-vs-stages analysis"
-index_section: "concept"
 ---
 
 # Agent Toolkit Landscape

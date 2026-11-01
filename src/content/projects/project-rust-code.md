@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "TUI coding agent with structured agent loop, fuzzy search, tmux background tasks, skills, MCP support. Alternative to Claude Code in Rust."
 title: "rust-code — AI terminal coding agent in Rust"
 created: 2026-03-15
@@ -8,12 +8,10 @@ project_type: library
 course_module: 7
 course_order: 6
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/rust-code"
 crate: sgr-agent
 github: fortunto2/rust-code
 index_line: "rust-code: AI terminal agent in Rust, structured loop, TUI, MCP support"
-index_section: "project"
 ---
 
 # rust-code

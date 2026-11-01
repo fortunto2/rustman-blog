@@ -5,8 +5,9 @@ import { getCollection } from '../lib/content';
 export const GET: APIRoute = () => {
   const wiki = getCollection('wiki');
   const projects = getCollection('projects');
-  const posts = getCollection('posts');
-  const creative = getCollection('creative');
+  const creative = wiki.filter(e => e.frontmatter.audience === 'creative');
+  const writing = wiki.filter(e => e.frontmatter.feed === true);
+  const reference = wiki.filter(e => e.frontmatter.audience !== 'creative' && e.frontmatter.feed !== true);
   const stacks = getCollection('stacks');
   const skills = getCollection('skills');
 
@@ -43,7 +44,10 @@ Things an agent can use directly, not just read about.
   tool returns both with a ready mailto. Nothing is booked or sent for anyone.
 
 ## Wiki (Knowledge Base)
-${format(wiki, 'wiki')}
+${format(reference, 'wiki')}
+
+## Writing (dated write-ups: events, retros, builds)
+${format(writing, 'wiki')}
 
 ## Projects
 ${format(projects, 'projects')}
@@ -51,9 +55,7 @@ ${format(projects, 'projects')}
 ## Stacks (Templates)
 ${format(stacks, 'stacks')}
 
-${posts.length > 0 ? `## Posts\n${format(posts, 'posts')}` : ''}
-
-${creative.length > 0 ? `## Creative (music, video)\n${format(creative, 'creative')}` : ''}
+${creative.length > 0 ? `## Creative (music, video)\n${format(creative, 'wiki')}` : ''}
 
 ${skills.length > 0 ? `## Skills (Solo Factory)\n${format(skills, 'skills')}` : ''}
 

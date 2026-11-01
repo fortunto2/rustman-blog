@@ -86,7 +86,7 @@ Allow: /
 #   Agent skills          ${URLS.skills}
 #   Resource catalogue    ${URLS.ard}
 #   API catalogue         ${URLS.apiCatalog}
-#   Markdown              send "Accept: text/markdown" to any /wiki, /projects, /posts,
+#   Markdown              send "Accept: text/markdown" to any /wiki, /projects,
 #                         /stacks or /skills page, or append .md to its path
 #
 # A separate service on a subdomain does take writes: agent-board, open tasks on
@@ -102,9 +102,9 @@ const MCP_SKILLS = [
     id: 'search',
     name: 'Search rustman.org',
     description:
-      'Full-text search across the wiki, projects, stacks, posts and Solo Factory skills. ' +
+      'Full-text search across the wiki, projects, stacks and Solo Factory skills. ' +
       'Returns titles, descriptions, excerpts and the URL of each match.',
-    tags: ['search', 'wiki', 'projects', 'posts', 'skills'],
+    tags: ['search', 'wiki', 'projects', 'skills'],
     examples: ['agent harness sensors', 'Air Signal air quality app', 'Claude Code skills for shipping an iOS app'],
     inputModes: ['application/json'],
     outputModes: ['application/json'],
@@ -132,7 +132,7 @@ const MCP_SKILLS = [
     name: 'Read a page as markdown',
     description: 'Fetch a whole page as markdown, by a URL from search or a bare path such as /wiki/some-slug.',
     tags: ['read', 'markdown'],
-    examples: ['/projects/project-facealarm', `${base}/posts/harness-engineering`],
+    examples: ['/projects/project-facealarm', `${base}/wiki/harness-engineering`],
     inputModes: ['application/json'],
     outputModes: ['text/markdown'],
   },

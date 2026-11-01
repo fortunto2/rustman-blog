@@ -13,7 +13,6 @@ key_claims:
   - "Authentic ikigai = 8-9 small daily joys, not one grand mission"
   - "Optimizer syndrome: maximizers find better outcomes but are less happy"
 index_line: "STREAM Framework (0-principles/stream-framework.md). 6 layers + 5 steps + antifragile design"
-index_section: "summary"
 ---
 
 ## Key Takeaways

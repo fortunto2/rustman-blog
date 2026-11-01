@@ -7,7 +7,6 @@ tags: [agents, video, determinism, agent-authoring, open-source, skills, testing
 publish: true
 source_url: "https://github.com/heygen-com/hyperframes"
 index_line: "HyperFrames (heygen-com, Apache-2.0, 47,037 stars / 4,360 forks, created 2026-03-10 — verified via the GitHub API, not the README): renders video by seeking each frame in headless Chrome and encoding with FFmpeg. Composition is plain HTML with data-start / data-duration / data-track-index; no bundler, index.html previews in a browser as-is. Explicit contrast with Remotion — 'Remotion's bet is React components; HyperFrames' bet is plain HTML', because agents already write HTML. Deterministic frames make golden-file regression tests possible; ~240 MB of .mp4 fixtures in Git LFS. Ships 20 published skills with the library. Node 22+, FFmpeg, distributed rendering only on AWS Lambda"
-index_section: "concept"
 ---
 
 # Pick the format your generator already speaks

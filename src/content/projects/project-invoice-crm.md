@@ -6,11 +6,9 @@ created: 2026-03-01
 tags: [project, open-source, python, cli, invoicing, pdf, privacy-first]
 project_type: tool
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/invoice-crm"
 github: fortunto2/invoice-crm
 index_line: "Invoice CRM: free file-based PDF invoice generator"
-index_section: "project"
 ---
 
 # Invoice CRM

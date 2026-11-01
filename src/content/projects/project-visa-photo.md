@@ -1,16 +1,14 @@
 ---
-type: concept
+type: project
 description: "Free offline desktop app for biometric visa photos. AI background removal, country presets, ICAO guides, print layout. Rust + Dioxus."
 title: "Visa Photo — biometric photo tool"
 created: 2026-04-13
 tags: [project, open-source, rust, dioxus, desktop, ai, privacy]
 project_type: tool
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/visa-photo"
 github: fortunto2/visa-photo
 index_line: "Visa Photo: free offline biometric photo tool. Rust + Dioxus, AI background removal (Apple Vision/ONNX), country presets, ICAO guides, print layout"
-index_section: "project"
 ---
 
 # Visa Photo

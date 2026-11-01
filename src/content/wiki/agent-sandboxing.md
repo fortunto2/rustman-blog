@@ -10,7 +10,6 @@ course_order: 9
 publish: true
 source_path: "1-methodology/agent-sandboxing.md"
 index_line: "Safe LLM agent execution via lightweight VMs. Lima on macOS, project-scoped mounts"
-index_section: "concept"
 ---
 
 ## Key Takeaways

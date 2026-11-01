@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "Converts 36 currencies at once — every row editable, no picking a direction. Rates cached on the device, so it still works on a plane or at a border. No account, no ads, no tracking."
 title: "CurrencyPals — 36 currencies at once, offline"
 created: 2026-08-13
@@ -7,10 +7,8 @@ tags: [project, ios, swift, finance, offline, privacy, travel]
 project_type: app
 app_store_id: "6759005730"
 publish: true
-publish_as: project
 source_url: "https://apps.apple.com/app/apple-store/id6759005730"
 index_line: "CurrencyPals: 36 currencies converted at once, every row editable, works offline with cached rates. No account, no ads, no tracking"
-index_section: "project"
 ---
 
 # CurrencyPals

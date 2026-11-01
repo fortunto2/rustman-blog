@@ -7,7 +7,6 @@ tags: [apple, foundation-models, ios, on-device, sgr, swift, privacy, mlx]
 publish: true
 source_path: "1-methodology/apple-foundation-models.md"
 index_line: "Apple Foundation Models: zero-cost AI, @Generable = native SGR, privacy by design"
-index_section: "concept"
 ---
 
 ## Key Takeaways

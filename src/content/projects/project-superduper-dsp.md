@@ -1,5 +1,5 @@
 ---
-type: concept
+type: project
 description: "36 free, open-source audio plugins in Rust (CLAP/VST3/AU) for macOS and Windows: EQ, compressors, reverbs, vocal tools, a spatial panner and 7 instruments including a Bashkir jaw harp. Every parameter is reachable by an AI agent over MCP. One installer."
 title: "SuperDuper DSP — 36 free Rust audio plugins an AI agent can mix with"
 created: 2026-06-24
@@ -7,11 +7,9 @@ tags: [creative, project, open-source, rust, clap, vst3, au, audio, dsp, daw, re
 project_type: tool
 app_category: MultimediaApplication
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/superduper-dsp"
 github: fortunto2/superduper-dsp
 index_line: "SuperDuper DSP: 36 free open-source Rust audio plugins (CLAP/VST3/AU), one macOS installer. Every parameter on an MCP bus, so Claude/Cursor/Codex can measure and mix. Kubyz jaw harp, Space panner, MIT"
-index_section: "project"
 ---
 
 # SuperDuper DSP

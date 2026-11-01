@@ -1,12 +1,11 @@
 ---
 /**
- * Auto-discovers related content from other sections by shared tags.
+ * Auto-discovers related content by shared tags, grouped by section.
  * No hardcoding — matches at build time.
  *
  * Props:
  *   tags          — current page tags
  *   currentSlug   — current page slug (to exclude self)
- *   currentSection — current section (to exclude same-section items)
  *   maxPerSection — max items per section (default 5)
  */
 import { getCollection, type Section } from '../lib/content';
@@ -14,11 +13,11 @@ import { getCollection, type Section } from '../lib/content';
 interface Props {
   tags: string[];
   currentSlug: string;
-  currentSection: string;
+  currentSection?: string;
   maxPerSection?: number;
 }
 
-const { tags, currentSlug, currentSection, maxPerSection = 5 } = Astro.props;
+const { tags, currentSlug, maxPerSection = 5 } = Astro.props;
 
 const skipTags = new Set(['project', 'open-source', 'hub', 'skill', 'stack', 'template']);
 const matchTags = tags.filter(t => !skipTags.has(t));
@@ -26,16 +25,14 @@ const matchTags = tags.filter(t => !skipTags.has(t));
 if (matchTags.length === 0) return;
 
 const sections: { key: Section; label: string }[] = [
-  { key: 'creative', label: 'Creative' },
   { key: 'projects', label: 'Projects' },
-  { key: 'stacks', label: 'Stacks' },
   { key: 'wiki', label: 'Wiki' },
-  { key: 'posts', label: 'Posts' },
+  { key: 'stacks', label: 'Stacks' },
   { key: 'skills', label: 'Skills' },
 ];
 
+// Same-section pages count too: with posts folded into the wiki, excluding them hid every relative.
 const related = sections
-  .filter(s => s.key !== currentSection)
   .map(s => {
     const items = getCollection(s.key)
       .filter(e => e.slug !== currentSlug)

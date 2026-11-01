@@ -3,23 +3,38 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
 import { getCollection } from '../../lib/content';
 
+// Every article lives here. The groups are views over frontmatter, not separate kinds of page:
+// `feed: true` is a dated write-up, `audience: creative` is listed on /creative/ instead.
 const pages = getCollection('wiki');
-const hubs = pages.filter(p => p.frontmatter.type === 'hub');
-const concepts = pages.filter(p => p.frontmatter.type === 'concept');
-const summaries = pages.filter(p => p.frontmatter.type === 'summary');
-const other = pages.filter(p => !['hub', 'concept', 'summary'].includes(p.frontmatter.type));
+const creative = pages.filter(p => p.frontmatter.audience === 'creative');
+const rest = pages.filter(p => p.frontmatter.audience !== 'creative');
+const hubs = rest.filter(p => p.frontmatter.type === 'hub');
+const writing = rest.filter(p => p.frontmatter.feed === true && p.frontmatter.type !== 'hub');
+const summaries = rest.filter(p => p.frontmatter.type === 'summary' && p.frontmatter.feed !== true);
+const listed = new Set([...hubs, ...writing, ...summaries]);
+const concepts = rest.filter(p => !listed.has(p));
 ---
 
-<BaseLayout title="Wiki" description="Knowledge base — compiled principles, methodology, and patterns." section="wiki">
+<BaseLayout title="Wiki" description="Everything I write: dated write-ups from events and builds, and the knowledge base they feed." section="wiki">
   <div class="mb-8">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">Wiki</h1>
-    <p class="text-[var(--color-muted)]">Compiled knowledge base. Synthesized from raw sources, interlinked.</p>
+    <p class="text-[var(--color-muted)]">Everything I write, in one place. Write-ups from events and builds, and the compiled knowledge base they feed, interlinked.</p>
+    {creative.length > 0 && (
+      <p class="text-sm font-mono mt-2"><a href="/creative/" class="link-muted">Music &amp; video guides for artists ({creative.length}) &rarr;</a></p>
+    )}
   </div>
 
   {hubs.length > 0 && (
     <section class="mb-8">
       <h2 class="text-lg font-semibold mb-3 prompt">Topics</h2>
       <ContentList items={hubs} basePath="/wiki" showDate={false} />
+    </section>
+  )}
+
+  {writing.length > 0 && (
+    <section class="mb-8" id="writing">
+      <h2 class="text-lg font-semibold mb-3 prompt">Writing</h2>
+      <ContentList items={writing} basePath="/wiki" showDate={true} />
     </section>
   )}
 
@@ -34,13 +49,6 @@ const other = pages.filter(p => !['hub', 'concept', 'summary'].includes(p.frontm
     <section class="mb-8">
       <h2 class="text-lg font-semibold mb-3 prompt">Source Summaries</h2>
       <ContentList items={summaries} basePath="/wiki" showDate={true} />
-    </section>
-  )}
-
-  {other.length > 0 && (
-    <section class="mb-8">
-      <h2 class="text-lg font-semibold mb-3 prompt">Other</h2>
-      <ContentList items={other} basePath="/wiki" showDate={true} />
     </section>
   )}
 </BaseLayout>

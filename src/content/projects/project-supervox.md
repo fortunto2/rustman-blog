@@ -6,11 +6,9 @@ created: 2026-03-01
 tags: [project, open-source, rust, voice, tui, ai, stt]
 project_type: tool
 publish: true
-publish_as: project
 source_url: "https://github.com/fortunto2/supervox"
 github: fortunto2/supervox
 index_line: "SuperVox: voice-powered productivity TUI. Live call assistant, post-call analysis, agent chat. Rust + OpenAI Realtime STT"
-index_section: "project"
 ---
 
 # SuperVox

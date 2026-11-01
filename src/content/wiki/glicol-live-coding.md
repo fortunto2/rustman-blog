@@ -7,7 +7,6 @@ tags: [creative, rust, music, audio, wasm, live-coding, open-source]
 publish: true
 source_url: "https://github.com/chaosprint/glicol"
 index_line: "Glicol: live coding music in Rust + WASM. Graph-oriented synthesis, browser playground, VST plugins"
-index_section: "concept"
 ---
 
 # Glicol

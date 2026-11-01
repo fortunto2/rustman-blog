@@ -10,7 +10,6 @@ publish: true
 source_url: "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html"
 learned_from: "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html"
 index_line: "Naresh Jain (martinfowler.com, 13 Oct 2026; harness built on Specmatic, his colleagues' tool): Java BFF, 178 external acceptance tests, 10 runs/condition, low effort, Codex. GPT-6 Sol 10/10 either way, harness = 10.5x tokens, ~3x time, $2.679 vs $0.406. GPT-6 Luna 3/10 → 10/10, harnessed $0.273 = 33% under unharnessed Sol (REPORTED, API-equivalent, excludes writing the contracts). Unharnessed Luna passed 94.8% of checks: misses were attention lapses at seams (202 deferred flow, Kafka __TypeId__ header, null vs array, 415 vs 400, env var name). Rule: sensors always; cadence by model, continuous for cheap, one final gate for frontier"
-index_section: "concept"
 ---
 
 # When a behavioral harness pays

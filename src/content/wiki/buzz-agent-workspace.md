@@ -7,7 +7,6 @@ tags: [agents, architecture, nostr, event-log, rust, self-hosted, identity, audi
 publish: true
 source_url: "https://github.com/block/buzz"
 index_line: "Block's Buzz (Apache 2.0, Rust/Axum + Postgres/Redis/S3): humans and agents in one Nostr relay. Agent = keypair + channel membership + audit trail, not a bot token with scopes. Chat, NIP-34 patches, CI, approvals, canvases are all signed events in one log, so search and audit come free. buzz-cli (JSON in/out) + buzz-acp bridges Goose/Codex/Claude Code. Branch-as-room. Team-scale infra, but the substrate idea transfers to solo"
-index_section: "concept"
 ---
 
 # Buzz — Give the Agent a Keypair, Not a Permission Flag
