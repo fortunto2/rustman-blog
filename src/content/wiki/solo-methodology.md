@@ -3,7 +3,7 @@ type: hub
 description: "AI-driven solo development — how one person ships products using LLM agents, harness engineering, and automation."
 title: "Solo Methodology"
 created: 2026-04-07
-updated: 2026-04-08
+updated: 2026-11-01
 tags: [hub, methodology, ai-driven, solo]
 publish: true
 index_line: "AI-driven solo dev: harness engineering, TDD, pipeline, codegraph"
@@ -42,7 +42,7 @@ AI-driven solo development — how one person ships products using LLM agents, h
 ### Knowledge Graphs & Memory
 - [[context-graphs-summary]] — Context graphs: agent decision trajectories as compounding asset
 - [[decision-traces-compound]] — Each agent action improves future ones via precedent retrieval
-- [[codegraph-guide]] — CodeGraph: code intelligence across projects via FalkorDB + tree-sitter
+- [[codegraph-guide]] — CodeGraph: symbol and package index across projects, tree-sitter + SQLite FTS5
 
 ### Development Patterns
 - [[dev-principles-summary]] — 993-line reference: SOLID, TDD, DDD, Clean Arch, i18n, infra, code quality
@@ -55,6 +55,18 @@ AI-driven solo development — how one person ships products using LLM agents, h
 - [[infra-two-tools]] — Cloudflare by default (28 wrangler configs, 0 SST/Pulumi), three named exceptions
 - [[background-jobs-ladder]] — Cron → CF Workers → Prefect → Temporal
 - [[rag-patterns]] — 7 RAG approaches from vector to agentic
+
+### Why and where from
+- [[origin-story]] — Life2Film in 2014: the idea that never left
+- [[inspiration-sources]] — ~60 channels and communities across 7 platforms
+
+### Other hubs
+- [[agent-harness]] — running coding agents: harness, context, memory, delegation, evals
+- [[agent-landscape]] — other people's agent tools, grouped by the problem they answer
+- [[on-device-ai]] — models on the phone and the Mac, and the Apple platform around them
+- [[tools-and-infrastructure]] — Rust tooling, compute, model providers, the terminal
+- [[talks-and-events]] — panels, keynotes and festivals outside the hackathons
+- [[hackathons]] — every hackathon and competition, with write-ups
 
 ## Open Questions
 

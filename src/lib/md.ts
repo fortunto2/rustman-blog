@@ -149,12 +149,13 @@ export function parseFrontmatter(raw: string): { frontmatter: Frontmatter; conte
 }
 
 // A wikilink names a page, not a section: collect-content sends `type: project` to /projects/,
-// so look up where it actually landed. Unknown slugs keep the /wiki/ guess.
+// so look up where it actually landed. A page that is not published has no URL: the link
+// becomes its text, instead of a /wiki/ guess that 404s (a held draft linked from a live post).
 const LINK_SECTIONS = ['wiki', 'projects'];
 
-function sectionOf(slug: string): string {
+function sectionOf(slug: string): string | undefined {
   const dir = join(process.cwd(), 'src', 'content');
-  return LINK_SECTIONS.find(s => existsSync(join(dir, s, `${slug}.md`))) ?? 'wiki';
+  return LINK_SECTIONS.find(s => existsSync(join(dir, s, `${slug}.md`)));
 }
 
 export const WIKILINK = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
@@ -179,7 +180,9 @@ export function processWikilinks(content: string): string {
   return mapOutsideCode(content, text => text.replace(WIKILINK, (_, slug, label) => {
     const display = label || slug;
     const s = slug.toLowerCase().replace(/\s+/g, '-');
-    return `[${display}](/${sectionOf(s)}/${s}/)`;
+    const section = sectionOf(s);
+    if (section) return `[${display}](/${section}/${s}/)`;
+    return label || slug.replace(/-/g, ' ');  // no URL yet: words, not a slug
   }));
 }
 

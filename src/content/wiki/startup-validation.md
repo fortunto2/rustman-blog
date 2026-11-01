@@ -24,6 +24,7 @@ How to validate startup ideas before investing time in building. From quick sign
 - [[portfolio-approach]] — Multiple small bets: 7/10 fail is the plan, kill discipline required
 - [[hackathons]]: a jury and other teams test an idea in one evening; 13 events and the lessons that repeat
 - [[solopreneur-patterns-summary]] — Revenue benchmarks, $10K MRR in 12mo, scaling milestones
+- [[validated-apps-2026]] — Five underserved intersections scored 8.1/10: privacy-first, offline, on-device AI
 
 ## Open Questions
 
