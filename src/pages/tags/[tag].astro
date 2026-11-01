@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
-import { getAllTags } from '../../lib/content';
+import { getTagPages } from '../../lib/content';
 
 export function getStaticPaths() {
-  const tags = getAllTags();
+  const tags = getTagPages();
   return [...tags.entries()].map(([tag, entries]) => ({
     params: { tag },
     props: { tag, entries },

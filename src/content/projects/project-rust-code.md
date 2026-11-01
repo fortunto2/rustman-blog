@@ -3,7 +3,7 @@ type: project
 description: "TUI coding agent with structured agent loop, fuzzy search, tmux background tasks, skills, MCP support. Alternative to Claude Code in Rust."
 title: "rust-code — AI terminal coding agent in Rust"
 created: 2026-03-15
-tags: [project, open-source, rust, agent, tui, mcp]
+tags: [project, open-source, rust, agents, tui, mcp]
 project_type: library
 course_module: 7
 course_order: 6

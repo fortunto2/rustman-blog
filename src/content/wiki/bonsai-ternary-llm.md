@@ -1,5 +1,5 @@
 ---
-type: note
+type: concept
 title: "Bonsai — ternary-weight 500M LLM running in browser via WebGPU"
 description: "Bonsai (deepgrove): 500M ternary-weight LLM (-1/0/+1), trained on <5B tokens, competitive with Qwen 2.5 0.5B and MobileLLM 600M. Runs in browser through transformers.js + WebGPU. Zero server cost, zero data leakage."
 created: 2026-04-20

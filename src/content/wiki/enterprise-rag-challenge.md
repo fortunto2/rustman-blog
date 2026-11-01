@@ -3,7 +3,7 @@ type: concept
 description: "Enterprise RAG Challenge results: structured outputs beat vector search, top agents use router+SO+CoT patterns, no embeddings needed for top-3."
 title: "Enterprise RAG Challenge — what actually wins in production RAG"
 created: 2026-04-08
-tags: [rag, agents, structured-outputs, sgr, competition, patterns]
+tags: [rag, agents, structured-output, sgr, competition, patterns]
 course_module: 6
 course_order: 3
 publish: true

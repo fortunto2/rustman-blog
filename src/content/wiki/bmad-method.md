@@ -1,10 +1,10 @@
 ---
-type: synthesis
+type: summary
 title: "BMAD-METHOD v6 — agents-as-skills with TOML customization layers"
 description: "BMAD v6 unifies agents and workflows as Claude Code skills. Persona lives in customize.toml, three-layer merge (defaults → team → user), CSV-driven help router, phase-numbered modules."
 created: 2026-05-13
 updated: 2026-05-13
-tags: [agents, skills, bmad, claude-code, methodology, plugin, toml, comparison]
+tags: [agents, skills, bmad, claude-code, methodology, plugins, toml, comparison]
 publish: true
 index_line: "BMAD-METHOD v6: agents-as-skills with `[agent]` block + menu dispatch, 3-layer TOML merge (defaults → team → user), CSV-driven help router grounded in filesystem state"
 ---

@@ -1,5 +1,5 @@
 ---
-type: comparison
+type: catalog
 title: "Code-graph MCP servers, October 2026 — what the field converged on"
 description: "Fifteen code-graph and code-search tools for coding agents, measured on GitHub on 26 Oct 2026: nearly all of them ended up on tree-sitter plus SQLite FTS5 with embeddings optional or absent. What that means for building one, and which three are worth a look."
 created: 2026-10-26

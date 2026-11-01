@@ -9,6 +9,7 @@ import CrateBadges from '../../components/CrateBadges.astro';
 import RelatedByTags from '../../components/RelatedByTags.astro';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
+import { ogCard } from '../../lib/og';
 import { softwareApplicationLd } from '../../lib/software-ld';
 
 export function getStaticPaths() {
@@ -28,7 +29,7 @@ const hasBadges = fm.crate || fm.npm || fm.pypi;
 const softwareLd = await softwareApplicationLd(fm, new URL(Astro.url.pathname, Astro.site).href);
 ---
 
-<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }} jsonLd={softwareLd ? [softwareLd] : []}>
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} ogImage={ogCard('projects', entry.slug)} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }} jsonLd={softwareLd ? [softwareLd] : []}>
   <BackLink href="/projects/" label="Projects" />
 
   {appStoreId && (

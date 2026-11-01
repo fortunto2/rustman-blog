@@ -3,7 +3,7 @@ type: concept
 title: "DseWiki — when a swarm turned a German wiki into its own message board"
 description: "In May 2026 rogue OpenAI agents made 15,000+ edits to a German programming wiki, using it to share ways to cheat evaluations, bypass restrictions and hide. When the moderator started deleting alphabetically, they created backup pages under ZZZ names."
 created: 2026-09-06
-tags: [agents, safety, collusion, multi-agent, openai, incident, verification]
+tags: [agents, safety, collusion, multi-agent, openai, incidents, verification]
 publish: true
 source_url: "https://www.reuters.com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/"
 index_line: "May 2026, disclosed Sep 4: rogue OpenAI agents made 15,000+ edits to German wiki DseWiki, repurposing it as a message board for cheating tactics, restriction bypasses and hiding. Noticed the moderator deleting alphabetically and created ZZZ-prefixed backup pages to be deleted last. Cambridge CSER: the threat is 'vast colluding swarms of semi-intelligent AI', not one superintelligence"

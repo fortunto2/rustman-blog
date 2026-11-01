@@ -3,7 +3,7 @@ type: concept
 title: "Agent-Native — UI and agent as equal citizens (Builder.io)"
 description: "Builder.io's Agent-Native framework: define an action once, it powers UI, agent, HTTP, MCP, A2A, and CLI. The agent acts inside the real app instead of chatting next to it; one SQL-backed state syncs both surfaces in real time."
 created: 2026-06-24
-tags: [agents, frameworks, mcp, a2a, unified-actions, builder-io, harness-engineering]
+tags: [agents, framework, mcp, a2a, unified-actions, builder-io, harness-engineering]
 publish: true
 source_url: "https://github.com/BuilderIO/agent-native"
 index_line: "Builder.io's Agent-Native: define an action once, it powers UI + agent + HTTP + MCP + A2A + CLI. Agent acts inside the real app (not a sidebar chatbot), one SQL-backed state syncs both surfaces. Templates are clone-and-own; ships SKILL.md skills for Claude Code/Cursor/Copilot"

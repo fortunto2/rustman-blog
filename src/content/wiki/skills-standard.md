@@ -4,7 +4,7 @@ title: "SKILL.md standard — model-invoked capabilities for AI agents"
 description: "Open standard for packaging reusable agent capabilities. Anthropic shipped Dec 2025, OpenAI Codex CLI adopted it, and 20+ agents now consume the same SKILL.md format. Explains model-invoked vs slash commands, frontmatter, install paths, and the skills.sh marketplace (91K+ skills, top one at 1.5M installs)."
 created: 2026-05-13
 updated: 2026-05-13
-tags: [skills, claude-code, codex, standard, anthropic, openai, marketplace, agents]
+tags: [skills, claude-code, codex, standards, anthropic, openai, marketplace, agents]
 course_module: 5
 course_order: 6
 publish: true

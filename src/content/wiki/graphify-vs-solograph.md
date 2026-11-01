@@ -1,5 +1,5 @@
 ---
-type: comparison
+type: catalog
 title: "Graphify vs Solograph — deterministic code graphs, and what to steal"
 description: "Graphify (Apache-2.0/MIT) bets on tree-sitter graphs with no embeddings, explained edges, git merge drivers, and PreToolUse hooks that block raw file reads. Compared against our own Solograph codegraph: what overlaps, what to steal, when to switch."
 created: 2026-07-29

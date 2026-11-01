@@ -6,3 +6,6 @@ dist
 
 # macOS
 .DS_Store
+
+# social cards, drawn by scripts/og-images.ts
+public/og/

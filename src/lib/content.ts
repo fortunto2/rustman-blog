@@ -60,3 +60,15 @@ export function getAllTags(): Map<string, (ContentEntry & { section: Section })[
   }
   return tags;
 }
+
+/**
+ * Tags that earn a page. 329 of 487 tags were on one page each, so most /tags/x pages listed a
+ * single item, the one the reader came from. Below the threshold a tag stays on the page as
+ * plain text and gets no URL.
+ */
+export const TAG_MIN = 3;
+let tagPages: Map<string, (ContentEntry & { section: Section })[]> | undefined;
+export function getTagPages() {
+  tagPages ??= new Map([...getAllTags()].filter(([, entries]) => entries.length >= TAG_MIN));
+  return tagPages;
+}

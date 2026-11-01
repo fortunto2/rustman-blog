@@ -10,6 +10,7 @@ import ToolCards from '../../components/ToolCards.astro';
 import { toolsFor } from '../../lib/tools';
 import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
+import { ogCard } from '../../lib/og';
 
 export function getStaticPaths() {
   return getCollection('wiki').map(entry => ({
@@ -23,7 +24,7 @@ const post = renderMarkdown(entry.raw);
 const creative = post.frontmatter.audience === 'creative';
 ---
 
-<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }}>
+<BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} ogImage={ogCard('wiki', entry.slug)} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }}>
   <BackLink href={creative ? '/creative/' : '/wiki/'} label={creative ? 'Creative' : 'Wiki'} />
 
   {post.frontmatter.source_url && post.frontmatter.source_url.includes('youtu') && (

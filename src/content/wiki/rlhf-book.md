@@ -1,5 +1,5 @@
 ---
-type: note
+type: concept
 title: RLHF Book (Nathan Lambert)
 created: 2026-04-18
 publish: true

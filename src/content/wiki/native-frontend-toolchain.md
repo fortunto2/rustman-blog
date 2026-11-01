@@ -1,5 +1,5 @@
 ---
-type: note
+type: concept
 title: Native Frontend Toolchain (Rust/Go rewrites)
 created: 2026-07-02
 tags: [frontend, tooling, rust, dx, performance, nextjs, codegen]

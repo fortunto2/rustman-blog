@@ -8,7 +8,7 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "deploy": "pnpm build && wrangler pages deploy dist --project-name rustman-blog",
-    "collect": "tsx scripts/collect-content.ts && tsx scripts/collect-skills.ts",
+    "collect": "tsx scripts/collect-content.ts && tsx scripts/collect-skills.ts && tsx scripts/og-images.ts",
     "links": "tsx scripts/check-links.ts"
   },
   "keywords": [
@@ -38,8 +38,10 @@
   },
   "devDependencies": {
     "@pagefind/default-ui": "^1.5.0",
+    "@resvg/resvg-js": "2.6.2",
     "@types/markdown-it": "^14.1.2",
     "pagefind": "1.5.2",
+    "satori": "0.12.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
   }

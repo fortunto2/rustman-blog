@@ -3,12 +3,16 @@ import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
 import { SITE, HERO_CARDS, PROJECT_PRIORITY } from '../lib/config';
-import { getCollection, getAllContent, getFeed } from '../lib/content';
+import { getCollection, getFeed } from '../lib/content';
 import { listDate, modifiedDate } from '../lib/md';
 
 const posts = getFeed();
 const projects = getCollection('projects');
-const recent = getAllContent().slice(0, 30);
+// Writing already lists the dated write-ups and the cards list projects; what is left is the
+// knowledge base, which otherwise never reaches the homepage.
+const recent = getCollection('wiki')
+  .filter(e => e.frontmatter.feed !== true && e.frontmatter.audience !== 'creative')
+  .slice(0, 10);
 
 const openSource = projects.filter(p => p.frontmatter.tags?.includes('open-source'));
 const products = projects.filter(p => !p.frontmatter.tags?.includes('open-source'));
@@ -93,8 +97,9 @@ const blogLd = {
   )}
 
   <section>
-    <h2 class="text-xl font-semibold mb-4 prompt">Recent</h2>
-    <ContentList items={recent} showSection={true} showDate={true} />
+    <h2 class="text-xl font-semibold mb-4 prompt">New in the wiki</h2>
+    <ContentList items={recent} basePath="/wiki" showDate={true} />
+    <p class="text-sm font-mono mt-3"><a href="/wiki/" class="link-muted">All {getCollection('wiki').length} pages &rarr;</a></p>
   </section>
 
   {recent.length === 0 && (

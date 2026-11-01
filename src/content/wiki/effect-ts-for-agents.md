@@ -1,5 +1,5 @@
 ---
-type: note
+type: concept
 title: "Effect for AI agents: when it beats plain TypeScript and Vercel AI SDK"
 description: "Effect is a typed effect system for TypeScript. For short LLM calls it is overhead; for long, parallel, cancellable agent pipelines like video editing it replaces a pile of hand-written retries, queues and cleanup."
 created: 2026-09-30

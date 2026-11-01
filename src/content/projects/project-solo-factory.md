@@ -3,7 +3,7 @@ type: project
 description: "Claude Code plugin with 57 skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
-tags: [project, open-source, claude-code, plugin, skills, agents]
+tags: [project, open-source, claude-code, plugins, skills, agents]
 project_type: tool
 course_module: 4
 course_order: 10

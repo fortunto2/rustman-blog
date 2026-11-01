@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentList from '../../components/ContentList.astro';
-import { getCollection } from '../../lib/content';
+import { getCollection, getTagPages } from '../../lib/content';
 
 // Every article lives here. The groups are views over frontmatter, not separate kinds of page:
 // `feed: true` is a dated write-up, `audience: creative` is listed on /creative/ instead.
@@ -13,6 +13,13 @@ const writing = rest.filter(p => p.frontmatter.feed === true && p.frontmatter.ty
 const summaries = rest.filter(p => p.frontmatter.type === 'summary' && p.frontmatter.feed !== true);
 const listed = new Set([...hubs, ...writing, ...summaries]);
 const concepts = rest.filter(p => !listed.has(p));
+// The five hubs reach 48 of 170 pages; the busiest tags reach most of the rest.
+const META_TAGS = new Set(['project', 'hub', 'open-source', 'creative', 'skill', 'stack', 'template']);
+// Counted over wiki pages only: skills carry phase tags (utility, solo-factory) that say nothing here.
+const topTags = [...getTagPages()]
+  .map(([t, entries]) => [t, entries.filter(e => e.section === 'wiki')] as const)
+  .filter(([t, entries]) => !META_TAGS.has(t) && entries.length >= 3)
+  .sort((a, b) => b[1].length - a[1].length).slice(0, 24);
 ---
 
 <BaseLayout title="Wiki" description="Everything I write: dated write-ups from events and builds, and the knowledge base they feed." section="wiki">
@@ -28,6 +35,14 @@ const concepts = rest.filter(p => !listed.has(p));
     <section class="mb-8">
       <h2 class="text-lg font-semibold mb-3 prompt">Topics</h2>
       <ContentList items={hubs} basePath="/wiki" showDate={false} />
+      {topTags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs">
+          {topTags.map(([tag, entries]) => (
+            <a href={`/tags/${tag}/`} class="bg-[var(--color-border)] dark:bg-[var(--color-border-dark)] px-2 py-0.5 hover:text-[var(--color-accent)] dark:hover:text-[var(--color-accent-dark)] transition-colors">{tag} <span class="text-[var(--color-muted)]">{entries.length}</span></a>
+          ))}
+          <a href="/tags/" class="link-muted px-2 py-0.5">all tags &rarr;</a>
+        </div>
+      )}
     </section>
   )}
 
