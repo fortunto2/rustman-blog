@@ -100,6 +100,7 @@ Started in 2014 as a website. The first version, a website, passed 1M registrati
 - [[project-superduperai]] — the studio rebuilding the dream
 - [[privacy-as-architecture]] — on-device video processing, your memories stay yours
 - [[filmcraft-agent-built-editor]] — an open Premiere-class editor written by agents in a month; why breadth is no longer the moat and judgment is
+- [[weviscut-script-to-video-agent]] — Tencent's open 9B editing agent: one tool call per step over a shared state, and training data recovered from finished videos
 - [[claude-subscription-boundary]] — why the in-app LLM key has to be BYOK on an API key, not a Claude subscription login
 - [[neu-wave-ai-film-festival-2026]]: at the Neu Wave AI Film Festival (Santa Monica, Oct 2026) the shortage the stage named was directors, not generators, which is the layer Life2Film works on
 - [[la-tech-week-video-agents-live-worlds-2026]]: two LA Tech Week evenings on 15 Oct 2026, agents that assemble a finished ad and live models that generate a world, with story and editing still the bottleneck
