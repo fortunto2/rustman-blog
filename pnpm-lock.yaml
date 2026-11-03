@@ -31,7 +31,7 @@ importers:
         version: 14.1.1
       superduper-site-kit:
         specifier: git+file:///Users/rustam/startups/shared/superduper-site-kit
-        version: git+file:///Users/rustam/startups/shared/superduper-site-kit#198aeb932911c2f7a55495cf9bb18fc409daa458(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2))
+        version: git+file:///Users/rustam/startups/shared/superduper-site-kit#6caa4716eb55f0a4200eb546cb666200b8090f4a(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2))
       tailwindcss:
         specifier: ^4.2.2
         version: 4.2.2
@@ -1906,8 +1906,8 @@ packages:
   stringify-entities@4.0.4:
     resolution: {integrity: sha512-IwfBptatlO+QCJUo19AqvrPNqlVMpW9YEL2LIVY+Rpv2qsjCGxaDLNRgeGsQWJhfItebuJhsGSLjaBbNSQ+ieg==}
 
-  superduper-site-kit@git+file:///Users/rustam/startups/shared/superduper-site-kit#198aeb932911c2f7a55495cf9bb18fc409daa458:
-    resolution: {commit: 198aeb932911c2f7a55495cf9bb18fc409daa458, repo: file:///Users/rustam/startups/shared/superduper-site-kit, type: git}
+  superduper-site-kit@git+file:///Users/rustam/startups/shared/superduper-site-kit#6caa4716eb55f0a4200eb546cb666200b8090f4a:
+    resolution: {commit: 6caa4716eb55f0a4200eb546cb666200b8090f4a, repo: file:///Users/rustam/startups/shared/superduper-site-kit, type: git}
     version: 0.1.0
     peerDependencies:
       astro: '>=5.0.0'
@@ -4219,7 +4219,7 @@ snapshots:
       character-entities-html4: 2.1.0
       character-entities-legacy: 3.0.0
 
-  superduper-site-kit@git+file:///Users/rustam/startups/shared/superduper-site-kit#198aeb932911c2f7a55495cf9bb18fc409daa458(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)):
+  superduper-site-kit@git+file:///Users/rustam/startups/shared/superduper-site-kit#6caa4716eb55f0a4200eb546cb666200b8090f4a(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)):
     optionalDependencies:
       astro: 6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)
 

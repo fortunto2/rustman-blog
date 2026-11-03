@@ -6,7 +6,7 @@ created: 2025-06-01
 tags: [project, ios, android, facealarm, on-device-ai, health]
 project_type: app
 publish: true
-source_url: "https://www.face-alarm.com"
+source_url: "https://superduperai.co/products/face-alarm/"
 app_store_id: "6758454962"
 app_store_screenshots: [/images/projects/facealarm/facealarm-1.webp, /images/projects/facealarm/facealarm-2.webp, /images/projects/facealarm/facealarm-3.webp, /images/projects/facealarm/facealarm-4.webp, /images/projects/facealarm/facealarm-5.webp, /images/projects/facealarm/facealarm-6.webp]
 play_store_url: "https://play.google.com/store/apps/details?id=com.facealarm.app"
@@ -45,7 +45,7 @@ Wife runs a face massage coaching business. Her clients needed a daily reminder 
 
 ## Links
 
-- [Website](https://www.face-alarm.com)
+- [Page, privacy and support](https://superduperai.co/products/face-alarm/)
 - [App Store](https://apps.apple.com/app/facealarm-face-yoga-tracker/id6758454962)
 - [Google Play](https://play.google.com/store/apps/details?id=com.facealarm.app)
 - [SuperDuperAI product page](https://superduperai.co/product/face-alarm)
