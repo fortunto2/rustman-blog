@@ -61,6 +61,9 @@ const isArticle = !!article;
       "@type": "Person",
       "name": SITE.author.name,
       "url": SITE.social.github,
+      "sameAs": ["https://rustman.org"],
+      // The company that publishes the products described here (its site names him as founder).
+      "worksFor": { "@type": "Organization", "@id": "https://superduperai.co/#org", "name": "SuperDuperAI", "url": "https://superduperai.co" },
       // How to reach him, for an agent asked to set up a call: a booking page and an address.
       "contactPoint": {
         "@type": "ContactPoint",

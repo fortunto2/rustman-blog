@@ -11,6 +11,8 @@ import { getCollection } from '../../lib/content';
 import { renderMarkdown } from '../../lib/md';
 import { ogCard } from '../../lib/og';
 import { softwareApplicationLd } from '../../lib/software-ld';
+import ProductFacts from '../../components/ProductFacts.astro';
+import { productFor, projectLd } from '../../lib/registry';
 
 export function getStaticPaths() {
   return getCollection('projects').map(entry => ({
@@ -26,11 +28,16 @@ const appStoreId = fm.app_store_id;
 const appStoreScreenshots = fm.app_store_screenshots;
 const playStoreUrl = fm.play_store_url;
 const hasBadges = fm.crate || fm.npm || fm.pypi;
-const softwareLd = await softwareApplicationLd(fm, new URL(Astro.url.pathname, Astro.site).href);
+const product = productFor(fm);
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+// A SuperDuperAI product's SoftwareApplication lives on its home; here the page only refers to it.
+const softwareLd = product ? projectLd(product, pageUrl, String(fm.title)) : await softwareApplicationLd(fm, pageUrl);
 ---
 
 <BaseLayout title={post.frontmatter.title} description={post.frontmatter.description} ogImage={ogCard('projects', entry.slug)} article={{ date: post.frontmatter.created || post.frontmatter.date, updated: post.frontmatter.updated, tags: post.frontmatter.tags as string[] }} jsonLd={softwareLd ? [softwareLd] : []}>
   <BackLink href="/projects/" label="Projects" />
+
+  {product && <ProductFacts product={product} />}
 
   {appStoreId && (
     <AppStoreCard
