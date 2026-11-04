@@ -1,17 +1,19 @@
 ---
 type: guide
-title: "Claude Code from zero: the cheat sheet from a kitchen-table demo"
+title: "Claude Code from zero: a starter cheat sheet"
 description: "A one-page starter guide to Claude Code for people who do not use agents yet: first half hour, CLAUDE.md versus skills, reports as skills, data and safety rules, and how to keep up with what the agent did."
 created: 2026-10-31
 tags: [guide, claude-code, beginners, skills, claude-md, harness, safety, data, teams]
 publish: true
-learned_from: "A live demo of Claude Code and supervox to two friends on 31 Oct 2026 (a public-health researcher and someone working on data, ads and sales in a product company); their questions shaped every section. Session b4b37903-f2f1-4dd2-96bf-ed719180be5c"
-index_line: "Starter guide to Claude Code for non-users, written from a living-room demo on 31 Oct 2026. First 30 min (cd into the project, `claude`, `/init`, one skill, plan mode Shift+Tab); terminal in five commands; CLAUDE.md = always (≤~500 lines, 9-of-10 test) vs skill = sometimes (a folder, triggered by `description`); reports as one analyst skill + a folder per client, scheduled via `/schedule` or cron + `claude -p`; data = DB + logs joined into a third set, prod read-only, no events = no metric; ads/sales read-only APIs, human approves spend, call transcripts local; research data local (Whisper, Ollama); how not to drown (start from what you know, ask a level lower, decision log + 5-line summary, first answer is a draft, agent misnames methods confidently); team (one inbox for Slack/Teams, visibility, come with a priced proposal, adoption psychology, one champion); code (gh PRs, push/merge with consent, /simplify → /code-review); safety (no keys in context, secrets manager, masking hook, skip-permissions only in a sandbox with a guard hook, trojaned extension 29 Oct 2026, prompt injection, own your files not the account); glossary."
+learned_from: "Live demos of Claude Code to people new to agents, 31 Oct 2026; the questions asked in the first hour shaped every section. Session b4b37903-f2f1-4dd2-96bf-ed719180be5c"
+course_module: 4
+course_order: 1
+index_line: "Course module 4, lesson 1: starter guide to Claude Code for non-users, from live demos (31 Oct 2026). First 30 min (cd into the project, `claude`, `/init`, one skill, plan mode Shift+Tab); terminal in five commands; CLAUDE.md = always (≤~500 lines, 9-of-10 test) vs skill = sometimes (a folder, triggered by `description`); reports as one analyst skill + a folder per client, scheduled via `/schedule` or cron + `claude -p`; data = DB + logs joined into a third set, prod read-only, no events = no metric; ads/sales read-only APIs, human approves spend, call transcripts local; research data local (Whisper, Ollama); how not to drown (start from what you know, ask a level lower, decision log + 5-line summary, first answer is a draft, agent misnames methods confidently); team (one inbox for Slack/Teams, visibility, come with a priced proposal, adoption psychology, one champion); code (gh PRs, push/merge with consent, /simplify → /code-review); safety (no keys in context, secrets manager, masking hook, skip-permissions only in a sandbox with a guard hook, trojaned extension 29 Oct 2026, prompt injection, own your files not the account); glossary."
 ---
 
 # Claude Code from zero
 
-One evening I showed Claude Code to two friends who do not use agents yet: a public-health researcher and someone who works on data, ads and sales in a product company. [Supervox](https://github.com/fortunto2/supervox) transcribed the room on the laptop while an agent kept the notes. This page is what came out of it, cleaned of everything personal, so they have it at hand. If you are where they were, it is for you too.
+This is the page I send to people who have not worked with a coding agent yet. It grew out of live demos: the questions people ask in the first hour shaped every section, and the answers are the ones that landed. It is the first lesson of module 4 in the [course](/course/), and the rest of the module goes deeper on each part.
 
 ## Short version
 
@@ -35,7 +37,7 @@ flowchart LR
 
 ## The first half hour
 
-1. Install Claude Code. Always start it from the project folder: `cd ~/research/cohort-study`, then `claude`. The agent works inside that folder and reads its CLAUDE.md. Use a personal account for personal projects and the work account for work; an organisation admin can switch off features such as Remote Control or connectors.
+1. Install Claude Code. Always start it from the project folder: `cd ~/projects/my-app`, then `claude`. The agent works inside that folder and reads its CLAUDE.md. Use a personal account for personal projects and the work account for work; an organisation admin can switch off features such as Remote Control or connectors.
 2. Write `~/.claude/CLAUDE.md`: language, style, hard rules. In a project without one, type `/init` and the agent drafts it for you.
 3. Turn one task you repeat into a skill (below).
 4. For anything non-trivial, press **Shift+Tab** into plan mode first: the agent explores (it launches subagents for that), writes a checklist plan and changes nothing until you approve it.
@@ -88,22 +90,22 @@ After that one sentence is enough: "acme report for October". A weekly report go
 - Through the Google Ads and Meta APIs the agent can read campaigns and metrics, find where leads drop off, and propose bids and ad copy. Start read-only; every cent of spend is approved by a human.
 - Sales calls: the agent transcribes recordings, pulls out objections and what worked, and prepares hints for the next call. Transcribe customer calls locally, and record only with consent and within company policy.
 
-## Research data
+## Sensitive data
 
 - Interviews and focus groups: transcribe on the laptop (Whisper, speaker labels), so audio and text never leave it. For sensitive material make the summary locally too (a model through Ollama), not with a cloud model.
-- If your institution runs Databricks, Claude models are available inside the platform, so the data does not have to leave it.
+- If your company runs Databricks, Claude models are available inside the platform, so the data does not have to leave it.
 - A personal literature base: a markdown wiki in [Karpathy's LLM-wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) style, where sources go in raw and the agent compiles them into linked pages. Any agent searches it before the web.
 
 ## How not to drown
 
 The real difficulty is not getting the agent to do things, it is understanding what it did. You hit the edge of your own knowledge fast and get tired just as fast.
 
-- **Start from what you know**: "I'm an epidemiologist, I know statistics and R, explain this through that." The agent builds a bridge instead of dumping everything.
+- **Start from what you know**: "I'm an analyst, I know SQL and spreadsheets, explain this through that." The agent builds a bridge instead of dumping everything.
 - If the explanation is also unclear, ask one level lower ("as for a school student", "on one example from my field", "draw a diagram") instead of rereading.
 - Ask for a **decision log** in a file (what it did, what it chose, why) and a five-line summary at the end.
 - **The first answer is a draft.** Ask it to find mistakes in its own work, then give it to a second agent with a clean context.
 - **The agent misnames things with confidence.** In one pipeline it called a block "a regression" when it was a different statistical method. Only your expertise catches that, so ask it to show the line of code it relies on.
-- It works: a stranger's five-script pipeline took a few hours to understand instead of days.
+- It pays off: a pipeline of five unfamiliar scripts takes a few hours to understand instead of days.
 - A weak model loops at a barrier. If the agent does the same thing a fifth time, switch to a stronger one.
 - Experience still decides: a senior with an agent is several times faster, a junior collects mistakes several times faster.
 
