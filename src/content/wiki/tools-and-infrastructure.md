@@ -27,6 +27,7 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 
 - [[cheap-compute-cpu-gpu]]: measured prices for burst CPU, a small CUDA job and single-GPU training
 - [[llm-providers-credits]]: free tiers, startup credits and open models
+- [[cartesia]]: speech synthesis, transcription and voice agents; the 12-month startup grant and where it goes
 - [[codex-oauth-proxy]]: LLM calls through a ChatGPT subscription, no API key
 - [[rlhf-book]]: the free textbook on RLHF, from preference data to DPO and RLVR
 
