@@ -33,6 +33,7 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 ## Search for agents
 
 - [[own-searxng-for-agents]]: your own SearXNG with a Tavily-shaped API as web search for Claude Code, and the engine lessons with numbers
+- [[zero-trust-private-network]]: a private network on Cloudflare Zero Trust instead of a VPN: tunnels, Access logins for people and agents, SSH without keys, WARP private IPs
 
 ## The terminal
 

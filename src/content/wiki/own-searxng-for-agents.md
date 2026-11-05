@@ -187,7 +187,7 @@ If another person or machine should use your search, do not open a port on your 
 
 The adapter protects the home connection itself. Traffic that arrives through the tunnel counts against `TUNNEL_RPM` (30 requests a minute by default; `0` turns it off), while calls from the same machine are never limited. One person's runaway loop then costs 30 searches a minute, not your IP's reputation.
 
-Egress still leaves from your home IP. The tunnel only brings requests in.
+Egress still leaves from your home IP. The tunnel only brings requests in. The tunnel, Access, SSH and WARP pieces are explained on their own in [[zero-trust-private-network]].
 
 ### Logging in instead of handing out tokens
 
