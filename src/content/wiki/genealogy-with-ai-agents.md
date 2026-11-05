@@ -7,7 +7,7 @@ tags: [genealogy, research, archives, agents, privacy, open-data]
 publish: true
 feed: true
 github: fortunto2/shezhere
-index_line: "Write-up 2026-11-04: genealogy with Claude Code agents. tree.yaml as truth + validator; a source tag on every fact, rejected versions kept; 8 parallel subagents + 4 fact-checkers (tree 145→220, 9 errors caught); Pamyat Naroda `birth_place` vs `place_birth` silent-ignore trap; publishing rule born<1900 or died>75y, enforced by shezhere-public.py; 22-generation paternal line, last 4 folded; plugin fortunto2/shezhere; datasets DOI 22747578, 23503840"
+index_line: "Write-up 2026-11-04: genealogy with Claude Code agents. Source table for a 22-generation line (Shakhmanov 2007 on kitaptar 100/635, Asfandiyarov 662, MIB IV-2 p.45 via ufagen, Yakty-Kul wiki); tree.yaml as truth + validator; a source tag on every fact, rejected versions kept; 8 parallel subagents + 4 fact-checkers (tree 145→220, 9 errors caught); Pamyat Naroda `birth_place` vs `place_birth` silent-ignore trap; publishing rule born<1900 or died>75y, enforced by shezhere-public.py; 22-generation paternal line, last 4 folded; plugin fortunto2/shezhere; datasets DOI 22747578, 23503840"
 ---
 
 # Genealogy with AI agents: 22 generations, and what stays closed
@@ -165,6 +165,24 @@ Tamyan-bey is the eponym of the Tamyan tribe. Badretdin was killed in the Civil 
 1918–1919, on his way home through the forest; he was hard of hearing and may not have heard the
 call to stop `[told by my father, 2026-09-09]`.
 
+Where each stretch of the line comes from, and where we found it:
+
+| Stretch | Source | Found on |
+|---|---|---|
+| Taman-bey to Bädretdin, son of Salauat | Т. Ғ. Шаһманов, *Шәғәле Шаһман нәҫеле* (Kumertau, 2007): appendix 5, the shezhere table of the villages Yanauyl and Smak, rows 1 to 123. The top generations follow the shezhere of Yumaguzino written down in 1929 by U. Äbübäkerov | kitaptar: [book 100](https://kitaptar.bashkort.org/book/100) (Shakhmanov) and [book 635](https://kitaptar.bashkort.org/book/635) (an upload by Säüiä Bikmökhämätova) |
+| Mukas founds Bolshemukachevo in the 1740s | the same book, and А. З. Асфандияров, *История сёл и деревень Башкортостана и сопредельных территорий* (Ufa, 2009) | kitaptar, [book 662](https://kitaptar.bashkort.org/book/662) |
+| Mukas's son Kaskyn is a grown, literate mullah by 1763 | a petition of 25 June 1763 against the factories burning Bashkir forests, signed «Сие писал я, мулла Качкын Мукачев, и руку приложил»: *Материалы по истории Башкирской АССР*, vol. IV, part 2 (Moscow, 1956), p. 45 | full-text search of the whole series on ufagen.ru |
+| Bädretdin is our Badretdin | my great-grandfather's draft record ("son of Badretdin"), a 2016 Bashkir-language newspaper article about my grandfather, and my father's word on 09.09.2026 | pamyat-naroda.ru, the family archive |
+| the village line, told by the village | the Wikipedia article [Якты-Куль](https://ru.wikipedia.org/wiki/Якты-Куль_(Мелеузовский_район)), about the village where my father grew up: eight founding families by name and a genealogy from Shagali Shakhman, written by villagers | ru.wikipedia.org |
+
+The Yakty-Kul article is independent of the book and agrees with it, but it has no footnotes, so it
+corroborates rather than proves. We added the sourced dating there (Asfandiyarov: Yakty-Kul,
+Yangi-Aul and Aytugan appeared after 1920) and wrote the missing article
+[Большемукачево](https://ru.wikipedia.org/wiki/Большемукачево) from Asfandiyarov, the 1912–1913
+household census and the 1763 petition. Still unread: R. G. Kuzeev's *Башкирские шежере* (Ufa,
+1960, [kitaptar 433](https://kitaptar.bashkort.org/book/433)) prints a shezhere of the villages
+Sytyrman and Mokas, and the scan has no text layer yet.
+
 The last box is four generations, me among them, and my children are not shown at all. They are
 closed by the rule, not by mood: my great-grandfather's war record is public on Pamyat Naroda, and
 he is still closed here, because his grandchildren are alive.
@@ -214,11 +232,24 @@ order the document by:
 | [orsk-uezd-ww1](https://github.com/fortunto2/orsk-uezd-ww1) | 20,473 natives of Orsk uyezd in First World War records, with RGVIA references, normalised volosts and a gazetteer. The sweep and reconciliation scripts are in `scripts/`. DOI [10.5281/zenodo.23503840](https://doi.org/10.5281/zenodo.23503840) |
 | [bashkir-genealogy-data](https://github.com/fortunto2/bashkir-genealogy-data) | the index of all datasets, plus scripts: `obd.py` (OBD Memorial search and scans), `gwar-sweep.py` (First World War), `fs-places-export.py` (FamilySearch place catalogue), `dresden.py` (the Dresden database of Soviet prisoners of war) |
 
-**Sources that answer without a script:** [kitaptar.bashkort.org](https://kitaptar.bashkort.org)
-(Bashkir books, including the volumes of «История башкирских родов» and many printed shezhere),
-ufagen.ru (the full text of «Материалы по истории Башкирской АССР», 17th–18th century documents),
-yandex.ru/archive (OCR search over digitised files of the Orenburg archive), pamyat-naroda.ru and
-obd-memorial.ru (the Second World War), ru.openlist.wiki (the repressed).
+**Bashkir sources that answer without a script:**
+
+- [kitaptar.bashkort.org](https://kitaptar.bashkort.org): about 1,900 Bashkir books. For a family
+  search the core is the series «История башкирских родов», one volume per clan (Еней is
+  [book 1358](https://kitaptar.bashkort.org/book/1358), Унлар [1362](https://kitaptar.bashkort.org/book/1362),
+  Юрми and Байлар are volumes 21 and 22), Asfandiyarov's village histories
+  ([662](https://kitaptar.bashkort.org/book/662)), Kuzeev's *Башкирские шежере*
+  ([433](https://kitaptar.bashkort.org/book/433)) and printed clan shezhere such as
+  *Шәғәле Шаһман нәҫеле* ([100](https://kitaptar.bashkort.org/book/100)). Download the PDF and grep
+  it rather than read it: `pdftotext -layout` keeps the shezhere tables in one piece.
+- ufagen.ru: the full text of «Материалы по истории Башкирской АССР» (vols. I–VI, documents of the
+  17th–18th centuries) in one search box, plus village histories by district.
+- basharchive.ru: the National Archive of Bashkortostan, with scans of the 1917 census of Ufa province
+  and of the revision lists (fond И-138), and full inventories of both.
+- yandex.ru/archive: OCR search over digitised files of the Orenburg archive (ОГАОО), the place to
+  look for villages that were in Orenburg province.
+- pamyat-naroda.ru and obd-memorial.ru (the Second World War), gwar.mil.ru (the First),
+  ru.openlist.wiki (the repressed).
 
 ## If you are starting
 
