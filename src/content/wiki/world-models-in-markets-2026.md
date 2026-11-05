@@ -6,14 +6,14 @@ created: 2026-11-05
 tags: [world-models, trading, forecasting, agents, evals, backtest, prediction-markets, research]
 publish: true
 feed: true
-source_url: "https://arliwork.com/blog/"
-learned_from: "Dmitry (ARLI Research, https://arliwork.com/blog/), 'World Models in Markets: Where Prediction is Already Sold, and Where It Remains Research', Deep Dive, November 2026, received as world-models-trading-2026-11-EN.html on 5 Nov 2026; my own numbers from active/metaculus-bot runs of 29 Oct 2026"
+source_url: "https://arliwork.com/"
+learned_from: "Dmitry (ARLI Research, https://arliwork.com/), 'World Models in Markets: Where Prediction is Already Sold, and Where It Remains Research', Deep Dive, November 2026, received as world-models-trading-2026-11-EN.html on 5 Nov 2026; my own numbers from active/metaculus-bot runs of 29 Oct 2026"
 index_line: "Post: my take on Dmitry's (ARLI Research) survey of world models in markets. Three levels: environment (order-book generators MarS 32B tokens, TradeFM 524M params 9,000 stocks, LOB-Bench) is open and works; signal has no public proof (Griffin: genAI gives productivity, not alpha; StockBench best +2.5% in 4 months vs +0.4% hold; LiveTradeBench GPT-4.1 +6.25% stocks, -33.7% Polymarket); physical world is the only paid layer (Jua weather, $27M raised). Three walls: alpha decay (36 bp first month, 0 at 12), backtest overfitting, costs. Live fleet of 14,596 trades: 60% of variance is the operational layer, 72.99% of decisions had an audit gap. My data: metaculus-bot 60 questions, Claude without search Brier 0.425 vs naive 0.250 vs market 0.139, 746 leak flags, best shrink 0.40. Attributes all survey figures to Dmitry; links arliwork.com."
 ---
 
 # World models in markets: what is sold today, what is still research
 
-Based on [World Models in Markets: Where Prediction is Already Sold, and Where It Remains Research](https://arliwork.com/blog/) by Dmitry ([ARLI Research](https://arliwork.com/blog/)). We met over dinner in the Bay Area in October, and he sends me good links. His survey is long and well sourced, and every figure below that is not mine comes from it. The blog index is the only public address I have for it, so the link goes there. Read the original for the primary sources, I only use it as a frame for what I measured myself.
+Based on [World Models in Markets: Where Prediction is Already Sold, and Where It Remains Research](https://arliwork.com/) by Dmitry ([ARLI Research](https://arliwork.com/)). We met over dinner in the Bay Area in October, and he sends me good links. His survey is long and well sourced, and every figure below that is not mine comes from it. The blog index is the only public address I have for it, so the link goes there. Read the original for the primary sources, I only use it as a frame for what I measured myself.
 
 ## The short version
 
@@ -24,6 +24,8 @@ Based on [World Models in Markets: Where Prediction is Already Sold, and Where I
 - **A model of the physical world.** Weather, energy. The only layer where people pay, because the physics holds still while the market does not.
 
 His one-line summary, which I agree with: as a stand and a risk tool the idea works, as a source of profit it does not, and the gap between those two is the main fact of the field.
+
+Outside markets the same words mean a fourth thing: a model that generates a world you steer while it plays. I watched one live at Google Cloud × Visko in Venice during LA Tech Week, 15 October; the [full panel](https://youtu.be/bY9wXcn-mZM) and my notes are in [[la-tech-week-video-agents-live-worlds-2026]]. There the claim is about $10 an hour of generated world, and the open question is the same one as here: who pays, and for what.
 
 ```mermaid
 flowchart LR
@@ -117,7 +119,7 @@ Two places I would add to his picture:
 
 ## Source and credit
 
-All survey figures here come from Dmitry's [World Models in Markets](https://arliwork.com/blog/) at [ARLI Research](https://arliwork.com/blog/); the numbers marked as mine come from `metaculus-bot` runs on 29 October 2026. His blog is just starting and many of his reviews are not public yet.
+All survey figures here come from Dmitry's [World Models in Markets](https://arliwork.com/) at [ARLI Research](https://arliwork.com/); the numbers marked as mine come from `metaculus-bot` runs on 29 October 2026. His blog is just starting and many of his reviews are not public yet.
 
 
-Related: [[running-production-with-agents-2026]] (the earlier piece of his I built on), [[agent-benchmarks]], [[agent-landscape]].
+Related: [[la-tech-week-video-agents-live-worlds-2026]] (world models as live generated video, Google × Visko), [[running-production-with-agents-2026]] (the earlier piece of his I built on), [[agent-benchmarks]], [[agent-landscape]].
