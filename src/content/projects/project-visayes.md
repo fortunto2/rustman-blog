@@ -3,7 +3,7 @@ type: project
 description: "Check whether a passport or visa photo meets a country's published specification, and crop one that does. Rust core, WebAssembly in the browser — the photo never leaves the device. 1000+ pages across 9 languages."
 title: "VisaYes — does your visa photo meet the spec?"
 created: 2026-08-05
-updated: 2026-10-30
+updated: 2026-11-05
 tags: [project, visayes, rust, wasm, onnx, privacy, seo, geo, astro, agents, leads]
 project_type: app
 price: 0
@@ -76,6 +76,23 @@ with a US tourist visa, and every click came from people entering the lottery; n
 Now three ways of asking rotate per visitor (a fast answer, a free look at the case, the fear of
 a refusal) and the funnel is counted per variant, from the hook appearing on screen to a
 request. As of 30 October there are no requests yet, which is itself the measurement.
+
+## Then a court took the traffic away
+
+On 29 October a federal appeals court paused the opening of the DV-2027 lottery, and with it
+the reason to make a lottery photo. Traffic fell fourfold in three days: 124 people on 29
+October, 24 to 35 a day from 1 November. The drop is all on the DV pages, from about 97 people a
+day to 4–11; every other page held at its usual 15–35.
+
+The chat got its first five-day reading in the same week: 111 people saw the offer, 5 opened it,
+nobody wrote. At thirty visitors a day that does not show there is no demand. It shows this
+traffic is too thin to measure it.
+
+The people still landing on the DV pages have nothing to do but wait. So the pause notice there
+now takes an e-mail address and promises one message, when the State Department announces the
+dates, after which the address is deleted. It is not a lead and is not passed to consultants. The
+late-October rush will come back on the day the dates are out, and the people who left an address
+will hear first.
 
 ## Readable by agents
 
