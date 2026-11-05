@@ -16,6 +16,7 @@
  * Product node as a merchandise listing and asks for review, aggregateRating, shippingDetails and
  * hasMerchantReturnPolicy, none of which software has or may invent (Nov 2026 warnings).
  */
+import { PERSON_ID } from 'superduper-site-kit/company';
 import { SITE } from './config';
 import { appStoreLookup, githubIsPublic, registryLookup, type Registry } from './stores';
 
@@ -158,7 +159,7 @@ export async function softwareApplicationLd(fm: Fm, pageUrl: string): Promise<Re
     ...(os.length ? { operatingSystem: os.join(', ') } : {}),
     ...(version ? { softwareVersion: version } : {}),
     ...(sameAs.length ? { sameAs: [...new Set(sameAs)] } : {}),
-    author: { '@type': 'Person', name: SITE.author.name, url: SITE.social.github },
+    author: { '@id': PERSON_ID },
     ...(rating ? { aggregateRating: rating } : {}),
     ...(offers.length === 1 ? { offers: offers[0] } : offers.length > 1 ? { offers } : {}),
     ...(free ? { isAccessibleForFree: true } : {}),

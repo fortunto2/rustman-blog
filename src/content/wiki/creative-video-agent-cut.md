@@ -13,6 +13,8 @@ audience: creative
 
 # How the Chicago films were actually cut
 
+> Plain-language version with step-by-step setup for Claude Code, ChatGPT and Codex, in seven languages: [Edit video with an AI assistant on life2film.com](https://life2film.com/guides/edit-video-with-ai-agents/).
+
 The [[creative-video-with-claude]] guide shows the desktop app. That is the door for other people.
 For my own month in the US I barely opened it: I ran the analysis core and ffmpeg from the terminal,
 and Claude was the editor. Every day I dropped a folder and said one line, «new day, trailer for

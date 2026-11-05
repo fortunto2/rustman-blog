@@ -1,5 +1,7 @@
 ---
 import { SITE } from '../lib/config';
+import { articleLd, orgLd, personLd } from 'superduper-site-kit/seo';
+import { PERSON_ID } from 'superduper-site-kit/company';
 import Search from '../components/Search.astro';
 import '../styles/global.css';
 
@@ -50,52 +52,49 @@ const isArticle = !!article;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
 
-  <!-- JSON-LD: WebSite (all pages) -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <!-- JSON-LD (all pages): the site, its owner (shared PERSON_ID) and the company (shared ORG_ID), one graph.
+       Person and Organization come from the kit so every site in the ecosystem names the same entities. -->
+  <script type="application/ld+json" set:html={ld({
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": SITE.name,
-    "url": `https://${SITE.domain}`,
-    "description": SITE.description,
-    "author": {
-      "@type": "Person",
-      "name": SITE.author.name,
-      "url": SITE.social.github,
-      "sameAs": ["https://rustman.org"],
-      // The company that publishes the products described here (its site names him as founder).
-      "worksFor": { "@type": "Organization", "@id": "https://superduperai.co/#org", "name": "SuperDuperAI", "url": "https://superduperai.co" },
-      // How to reach him, for an agent asked to set up a call: a booking page and an address.
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "meetings",
-        "email": SITE.contact.email,
-        "url": SITE.contact.calendar,
-        "availableLanguage": ["English", "Russian"],
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `https://${SITE.domain}/#website`,
+        "name": SITE.name,
+        "url": `https://${SITE.domain}`,
+        "description": SITE.description,
+        "author": { "@id": PERSON_ID },
+        "publisher": { "@id": PERSON_ID },
       },
-    },
+      {
+        ...personLd({
+          // How to reach him, for an agent asked to set up a call: a booking page and an address.
+          contactPoint: {
+            "@type": "ContactPoint",
+            "contactType": "meetings",
+            "email": SITE.contact.email,
+            "url": SITE.contact.calendar,
+            "availableLanguage": ["English", "Russian"],
+          },
+        }),
+        "@context": undefined,
+      },
+      { ...orgLd(), "@context": undefined },
+    ],
   })} />
 
-  <!-- JSON-LD: Article (wiki/project pages) -->
+  <!-- JSON-LD: Article (wiki/project pages): author and publisher by id -->
   {isArticle && (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": title,
-      "description": pageDescription,
-      "url": canonicalUrl,
-      "datePublished": article.date,
-      ...(article.updated || article.date ? { "dateModified": article.updated || article.date } : {}),
-      "author": {
-        "@type": "Person",
-        "name": SITE.author.name,
-        "url": SITE.social.github,
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": SITE.name,
-      },
-      ...(article.tags ? { "keywords": article.tags.join(", ") } : {}),
-    })} />
+    <script type="application/ld+json" set:html={ld(articleLd({
+      url: canonicalUrl.href,
+      title: title ?? SITE.title,
+      description: pageDescription,
+      date: article.date,
+      modified: article.updated,
+      image: ogImage,
+      lang: SITE.lang,
+      keywords: article.tags,
+    }))} />
   )}
 
   {jsonLd.map(node => <script type="application/ld+json" set:html={ld(node)} />)}

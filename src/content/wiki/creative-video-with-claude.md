@@ -13,6 +13,8 @@ audience: creative
 
 # Edit video with an AI assistant
 
+> Plain-language version with step-by-step setup for Claude Code, ChatGPT and Codex, in seven languages: [Edit video with an AI assistant on life2film.com](https://life2film.com/guides/edit-video-with-ai-agents/).
+
 In September I spent nine days in Chicago with a DJI Osmo and two iPhones, 40 to 70 clips a day.
 Each day became a 2 to 5 minute trailer and a 10 to 20 minute episode, and at the end a 55-minute
 film of the whole trip, cut by theme. The assistant did the editing from my words. I watched,

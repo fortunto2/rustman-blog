@@ -1,4 +1,5 @@
 ---
+import { PERSON_ID } from 'superduper-site-kit/company';
 import EmailLink from '../components/EmailLink.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentList from '../components/ContentList.astro';
@@ -33,7 +34,7 @@ const blogLd = {
   '@type': 'Blog',
   name: SITE.name,
   url: `${base}/`,
-  author: { '@type': 'Person', name: SITE.author.name, url: SITE.social.github },
+  author: { '@id': PERSON_ID },
   blogPost: [...posts]
     .sort((a, b) => listDate(b.frontmatter).localeCompare(listDate(a.frontmatter)))
     .slice(0, 12)

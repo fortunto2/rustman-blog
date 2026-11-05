@@ -8,6 +8,7 @@
  * product's own site. The product's home carries its SoftwareApplication JSON-LD; a project page
  * here only refers to it by @id (superduperai-site docs/ecosystem.md, step 6).
  */
+import { PERSON_ID } from 'superduper-site-kit/company';
 import { getProducts, homeUrl, privacyUrl, supportUrl, type Product } from 'superduper-site-kit/registry';
 
 export type { Product };
@@ -34,6 +35,6 @@ export function projectLd(p: Product, pageUrl: string, title: string) {
     url: pageUrl,
     name: title,
     about: { '@id': `${home}#app`, name: p.name, url: home },
-    author: { '@type': 'Person', name: 'Rustam Salavatov', url: 'https://rustman.org' },
+    author: { '@id': PERSON_ID },
   };
 }

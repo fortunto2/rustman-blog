@@ -1,4 +1,5 @@
 ---
+import RelatedElsewhere from 'superduper-site-kit/astro/RelatedElsewhere.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackLink from '../../components/BackLink.astro';
 import ArticleMeta from '../../components/ArticleMeta.astro';
@@ -20,6 +21,7 @@ export function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const SITE_URL = 'https://rustman.org';
 const post = renderMarkdown(entry.raw);
 const creative = post.frontmatter.audience === 'creative';
 ---
@@ -38,6 +40,7 @@ const creative = post.frontmatter.audience === 'creative';
     <ArticleMeta date={post.frontmatter.created || post.frontmatter.date} eventDate={post.frontmatter.event_date} type={post.frontmatter.type} tags={post.frontmatter.tags as string[]} />
     <PostLinks github={post.frontmatter.github} demo={post.frontmatter.demo_url} video={post.frontmatter.video_url} devpost={post.frontmatter.devpost_url} />
     <Fragment set:html={post.html} />
+    <RelatedElsewhere url={`${SITE_URL}/wiki/${entry.slug}/`} site={SITE_URL} />
   </article>
 
   {creative && <ToolCards tools={toolsFor(post.frontmatter.tools)} />}
