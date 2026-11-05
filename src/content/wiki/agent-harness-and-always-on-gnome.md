@@ -154,7 +154,7 @@ ssh ubuntu@<ip> "sudo PUBKEY='$PUBKEY' bash -s" < harness/box/bootstrap.sh
 Logging into Claude and enrolling WARP stay interactive, on purpose: no secret ever sits in the script. The rules for the box:
 
 - **Backups leave the provider.** The VPS comes with a daily backup, stored in the same datacenter. A datacenter fire is not hypothetical at this provider, so state goes to git or to the home Mac.
-- **No scraping from a datacenter IP.** Google, Bing and many Cloudflare-fronted sites answer datacenter ranges with captchas. Search goes through my home Mac over the WARP private network.
+- **No scraping from a datacenter IP.** Google, Bing and many Cloudflare-fronted sites answer datacenter ranges with captchas. Search goes through my home Mac over the WARP private network. How to run that search yourself: [[own-searxng-for-agents]].
 - **One host, one queue.** My subscription has one rate-limit pool. A crawler that burns it at 3 a.m. silently kills the bot that should answer at 9. A single host is the only place that contention becomes visible ([[claude-subscription-boundary]]).
 - **Several agents on one box are containers, not VMs.** A VPS has no nested virtualization; Incus system containers give each agent its own `systemd`, cron and secrets.
 
@@ -257,4 +257,4 @@ The Gnome takes over the 13 jobs once the box is up: the inbox sweep, the standu
 - **Hook**: a script Claude Code runs on an event (before a tool call, at the end of a turn); the agent cannot skip it.
 - **Agentic engineering**: directing agents and owning the result. "Vibe coding", Karpathy's 2025 term, names the careless version of the same thing.
 
-Related: [[harness-engineering-summary]], [[agent-mistake-fix-harness]], [[claude-subscription-boundary]], [[cheap-compute-cpu-gpu]], [[cloudflare-computer-agent-runtime]], [[solograph-rebuilt-one-binary]].
+Related: [[own-searxng-for-agents]], [[harness-engineering-summary]], [[agent-mistake-fix-harness]], [[claude-subscription-boundary]], [[cheap-compute-cpu-gpu]], [[cloudflare-computer-agent-runtime]], [[solograph-rebuilt-one-binary]].

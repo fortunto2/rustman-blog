@@ -30,6 +30,10 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 - [[codex-oauth-proxy]]: LLM calls through a ChatGPT subscription, no API key
 - [[rlhf-book]]: the free textbook on RLHF, from preference data to DPO and RLVR
 
+## Search for agents
+
+- [[own-searxng-for-agents]]: your own SearXNG with a Tavily-shaped API as web search for Claude Code, and the engine lessons with numbers
+
 ## The terminal
 
 - [[tv-terminal-search]]: a fuzzy finder over this wiki, docs and stacks
