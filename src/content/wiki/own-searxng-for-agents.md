@@ -3,11 +3,12 @@ type: concept
 title: "Your own SearXNG as web search for AI agents: a free Tavily-shaped API on a home connection"
 description: "How to run SearXNG with a Tavily-compatible adapter in Docker, plug it into Claude Code as an MCP server, and what I measured about engines, captchas and bursts."
 created: 2026-11-04
+updated: 2026-11-05
 tags: [searxng, web-search, mcp, claude-code, docker, self-hosting, cloudflare, agents]
 publish: true
 feed: true
 github: fortunto2/searxng-docker-tavily-adapter
-index_line: "Post, 3 mermaid diagrams + glossary: self-hosted web search for agents. Stack SearXNG + tavily-adapter (/search, /extract, /transcript) + Valkey + optional MCP (stdio or MCP_TRANSPORT=http). Setup: clone, cp config.example.yaml, secret_key, docker compose up -d redis searxng tavily-adapter, adapter on :8013, SearXNG :8999. Claude Code: claude mcp add with uv run searxng-mcp. Numbers: residential IP, not datacenter (captchas on first queries); engine shares google cse 45/google 23/bing 23/brave 9 (12 Sep 2026); yahoo+yandex lifted doc queries 7/10 to 10/10 in top 3; 80-query burst got an engine suspended for hours; suspended_times 1-15 days cut to 2-10 min; bing needs HTTP/2 off (0.9s to 1.6s if global); duckduckgo dropped TCP after hammering; markdown negotiation 8.3k chars vs 51 KB html. Optional: Cloudflare Tunnel + Access + service tokens, TUNNEL_RPM=30, multi-machine cluster with guard.py (1.5s x3 checks)"
+index_line: "Post, 3 mermaid diagrams + glossary: self-hosted web search for agents. Stack SearXNG + tavily-adapter (/search, /extract, /transcript) + Valkey + optional MCP (stdio or MCP_TRANSPORT=http). Setup: clone, cp config.example.yaml, secret_key, docker compose up -d redis searxng tavily-adapter, adapter on :8013, SearXNG :8999. Claude Code: claude mcp add with uv run searxng-mcp. Numbers: residential IP, not datacenter (captchas on first queries); engine shares google cse 45/google 23/bing 23/brave 9 (12 Sep 2026); yahoo+yandex lifted doc queries 7/10 to 10/10 in top 3; 80-query burst got an engine suspended for hours; suspended_times 1-15 days cut to 2-10 min; bing needs HTTP/2 off (0.9s to 1.6s if global); duckduckgo dropped TCP after hammering; markdown negotiation 8.3k chars vs 51 KB html. Optional: Cloudflare Tunnel + Access + service tokens, TUNNEL_RPM=30, multi-machine cluster with guard.py (1.5s x3 checks); a node joins with git clone + token piped into node-up.sh (renders its own config, needs only Docker; ARM board ~313 MB RAM); Access managed OAuth lets claude mcp add + browser login replace service tokens (traps: WARP identity skips the OAuth return, Python-urllib UA gets error 1010)"
 ---
 
 # Your own SearXNG as web search for AI agents
@@ -188,6 +189,23 @@ The adapter protects the home connection itself. Traffic that arrives through th
 
 Egress still leaves from your home IP. The tunnel only brings requests in.
 
+### Logging in instead of handing out tokens
+
+Service tokens work, but each one is a secret you pass around and rotate. For people who use Claude Code there is a simpler route: turn on **Managed OAuth** on the Access application (Zero Trust → Access → Applications → the app → Advanced settings). Access then acts as a standard OAuth server for that hostname, and connecting is one command:
+
+```bash
+claude mcp add --transport http search https://search.example.com/mcp
+```
+
+Then `/mcp` → `search` → Authenticate. A browser opens, the person logs in with the email your policy allows, and the client keeps a refresh token. I set a 15-minute access token and a two-week grant (the values Cloudflare recommends for agents), allowed clients on `localhost` (that is where Claude Code listens for the callback) and added `https://claude.ai/api/mcp/auth_callback` for the Claude app's custom connectors. Measured on an MCP server behind my Access: a fresh client registers itself, the login returns a code, and `tools/list` and a tool call answer as my email. Service tokens keep working next to it, so scripts and bots without a browser change nothing.
+
+Two traps cost me an hour:
+
+- **A WARP device skipped the OAuth return.** With WARP enrolled, Access recognised the machine, logged it straight into the app page and never sent the browser back to the client with a code. Turning off "authenticate via WARP" for that one application fixed it; the same login then finished with WARP on.
+- **`error code: 1010` is not an auth failure.** My first test client was Python's `urllib` with its default `User-Agent`, and Cloudflare's Browser Integrity Check refused it with a 403 that looked exactly like a rejected token. Send any real `User-Agent` and it passes.
+
+One side effect: a request without credentials from a non-browser client now gets `401` with a `WWW-Authenticate` header instead of a redirect to the login page. That is what lets the client discover the login on its own.
+
 ## Growing it into a cluster (optional)
 
 Once you share it, one sleeping laptop means no search for everyone. The fix is to run the same compose file with the same tunnel token on a second machine on another home connection. Cloudflare treats them as replicas of one tunnel and sends each request to the closest one that is connected.
@@ -210,7 +228,18 @@ Two things the replicas do not do by themselves, and what the repo's `cluster/` 
 
 It earned its keep on the first evening: the laptop sat on hotel wifi with 1.6-second round trips, MCP calls took 4 to 20 seconds, and about a minute after the second machine joined, the guard took the laptop out of the pool. Searches went to the other home connection with nobody changing a URL.
 
-Captchas and suspensions are per machine, because each searches from its own IP. That is a feature: one bad IP does not take everything down. `cluster/README.md` in the repo has the node setup, `node-up.sh` and the thresholds.
+Captchas and suspensions are per machine, because each searches from its own IP. That is a feature: one bad IP does not take everything down.
+
+Joining a machine is two commands, and the only secret it needs is the tunnel token:
+
+```bash
+git clone https://github.com/fortunto2/searxng-docker-tavily-adapter && cd searxng-docker-tavily-adapter
+security find-generic-password -s search-tunnel -w | cluster/node-up.sh   # Linux: secret-tool lookup …
+```
+
+`node-up.sh` writes its own `config.yaml` from the example (a fresh secret, every engine that needs an API key switched off) using the Python inside the SearXNG image, so the machine needs Docker and nothing else. It binds every port to `127.0.0.1`, starts the five containers and waits until they are healthy. On an ARM single-board computer the whole stack took about 313 MB of RAM. Two things that bit me on the way, both handled by the script now: Debian trixie ships Docker as three packages (`docker.io`, `docker-cli`, `docker-compose`), and a config written under a strict `umask` was unreadable to the SearXNG container, so the script sets it to `644` on every run.
+
+Hand the tunnel token only to machines you trust: whoever holds it can add a node to the pool and answer your searches. `cluster/README.md` in the repo has the rest: the guard's thresholds, updating and removing a node.
 
 ## Glossary
 
@@ -225,6 +254,8 @@ Captchas and suspensions are per machine, because each searches from its own IP.
 - **Content negotiation**: the client says which format it prefers (`Accept: text/markdown`) and the site answers in it if it can.
 - **Cloudflare Tunnel**: an outbound connection from your machine to Cloudflare, so you can publish a service without opening a port.
 - **Cloudflare Access / service token**: a login wall in front of a hostname. A service token is a key pair a script presents instead of logging in.
+- **Managed OAuth (Access)**: Access acting as an OAuth server for your hostname, so an MCP client gets a token after a browser login instead of holding a shared secret.
+- **WARP**: Cloudflare's device client. An enrolled machine can be recognised by Access without a login page, which is exactly what skipped the OAuth return here.
 - **Replica (tunnel)**: another connector running the same tunnel. Cloudflare sends each request to the closest connected one; it does not balance load between them.
 
 Related: [[agent-harness-and-always-on-gnome]], [[infra-two-tools]], [[project-solograph]], [[tools-and-infrastructure]].

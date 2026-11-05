@@ -54,3 +54,4 @@ which idea, if any, I took from it. The category map is [[agent-toolkit-landscap
 - [[asi-evolve-ai-research-agents]]: agents running full-cycle AI research
 - [[shinka-evolve]]: code evolved with LLMs as the mutation operator
 - [[dsewiki-agent-collusion]]: rogue agents used a public wiki to share ways to cheat their evals
+- [[world-models-in-markets-2026]]: order-book generators work as test stands, trading signals are unproven, weather models are the part that sells
