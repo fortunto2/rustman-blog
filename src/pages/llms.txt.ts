@@ -1,24 +1,9 @@
 import type { APIRoute } from 'astro';
 import { SITE } from '../lib/config';
 import { getCollection } from '../lib/content';
+import { llmsTxt } from 'superduper-site-kit/agent';
 
-export const GET: APIRoute = () => {
-  const wiki = getCollection('wiki');
-  const projects = getCollection('projects');
-  const creative = wiki.filter(e => e.frontmatter.audience === 'creative');
-  const writing = wiki.filter(e => e.frontmatter.feed === true);
-  const reference = wiki.filter(e => e.frontmatter.audience !== 'creative' && e.frontmatter.feed !== true);
-  const stacks = getCollection('stacks');
-  const skills = getCollection('skills');
-
-  const format = (entries: typeof wiki, section: string) =>
-    entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}/): ${e.frontmatter.description || ''}`).join('\n');
-
-  const content = `# ${SITE.name}
-> ${SITE.description}
-
-## Live services
-
+const LIVE_SERVICES = `
 Things an agent can use directly, not just read about.
 
 - [agent-board](https://board.rustman.org): open tasks on open-source repositories.
@@ -41,27 +26,34 @@ Things an agent can use directly, not just read about.
 - **Talk to Rustam, the author.** Book a call, the person picks a free slot:
   ${SITE.contact.calendar}
   E-mail: ${SITE.contact.email}. Over MCP (https://${SITE.domain}/mcp) the \`contact\`
-  tool returns both with a ready mailto. Nothing is booked or sent for anyone.
+  tool returns both with a ready mailto. Nothing is booked or sent for anyone.`;
 
-## Wiki (Knowledge Base)
-${format(reference, 'wiki')}
+export const GET: APIRoute = () => {
+  const wiki = getCollection('wiki');
+  const projects = getCollection('projects');
+  const creative = wiki.filter(e => e.frontmatter.audience === 'creative');
+  const writing = wiki.filter(e => e.frontmatter.feed === true);
+  const reference = wiki.filter(e => e.frontmatter.audience !== 'creative' && e.frontmatter.feed !== true);
+  const stacks = getCollection('stacks');
+  const skills = getCollection('skills');
 
-## Writing (dated write-ups: events, retros, builds)
-${format(writing, 'wiki')}
+  const format = (entries: typeof wiki, section: string) =>
+    entries.map(e => `- [${e.frontmatter.title || e.slug}](/${section}/${e.slug}/): ${e.frontmatter.description || ''}`).join('\n');
 
-## Projects
-${format(projects, 'projects')}
-
-## Stacks (Templates)
-${format(stacks, 'stacks')}
-
-${creative.length > 0 ? `## Creative (music, video)\n${format(creative, 'wiki')}` : ''}
-
-${skills.length > 0 ? `## Skills (Solo Factory)\n${format(skills, 'skills')}` : ''}
-
-## About
-- [About](/about): Solo founder building products with AI
-`;
+  const content = llmsTxt({
+    name: SITE.name,
+    summary: SITE.description,
+    sections: [
+      { heading: 'Live services', body: LIVE_SERVICES },
+      { heading: 'Wiki (Knowledge Base)', body: format(reference, 'wiki') },
+      { heading: 'Writing (dated write-ups: events, retros, builds)', body: format(writing, 'wiki') },
+      { heading: 'Projects', body: format(projects, 'projects') },
+      { heading: 'Stacks (Templates)', body: format(stacks, 'stacks') },
+      { heading: 'Creative (music, video)', body: format(creative, 'wiki') },
+      { heading: 'Skills (Solo Factory)', body: format(skills, 'skills') },
+      { heading: 'About', body: '- [About](/about): Solo founder building products with AI' },
+    ],
+  });
 
   return new Response(content, {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
