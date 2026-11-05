@@ -12,8 +12,9 @@
  * description and no Offer, rather than a guess. A public repository does not make an app or a
  * hosted product free, so the GitHub rule is limited to tools and libraries.
  *
- * Where there is an Offer the node is also typed Product, which is what a shopping or buying
- * agent looks for; schema.org allows a node to carry several types.
+ * The node stays a plain SoftwareApplication, with no Product co-type: Search Console treats a
+ * Product node as a merchandise listing and asks for review, aggregateRating, shippingDetails and
+ * hasMerchantReturnPolicy, none of which software has or may invent (Nov 2026 warnings).
  */
 import { SITE } from './config';
 import { appStoreLookup, githubIsPublic, registryLookup, type Registry } from './stores';
@@ -145,7 +146,7 @@ export async function softwareApplicationLd(fm: Fm, pageUrl: string): Promise<Re
 
   return {
     '@context': 'https://schema.org',
-    '@type': offers.length > 0 ? [baseType, 'Product'] : baseType,
+    '@type': baseType,
     '@id': `${pageUrl}#software`,
     name,
     ...(alternateName ? { alternateName } : {}),
