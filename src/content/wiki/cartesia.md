@@ -1,13 +1,13 @@
 ---
 type: concept
 title: "Cartesia: the voice-AI company built on state space models, and what our grant buys"
-description: "What Cartesia sells (Sonic speech synthesis, Ink transcription, voice agents), where its speed claim comes from, how it prices against ElevenLabs and Deepgram, and which of my products get the 12-month startup grant first."
+description: "What Cartesia sells (Sonic speech synthesis, Ink transcription, voice agents), where its speed claim comes from, how it prices against ElevenLabs and Deepgram, where the 12-month startup grant goes, with voice samples."
 created: 2026-11-05
 tags: [voice, tts, stt, cartesia, grant, ssm, agents, credits]
 publish: true
 feed: true
 learned_from: "Cartesia Startups Grant welcome email to info@superduperai.co, 4 Nov 2026; Cartesia 'Voice AI' fireside in San Francisco, ~28 Oct 2026; https://cartesia.ai/pricing ; https://cartesia.ai/startups ; https://docs.cartesia.ai ; https://github.com/cartesia-ai ; https://techcrunch.com/2024/12/12/cartesia-claims-its-ai-is-efficient-enough-to-run-pretty-much-anywhere/ ; https://elevenlabs.io/pricing/api ; https://deepgram.com/pricing"
-index_line: "Cartesia (SF, 2023; Goel, Gu, Desai, Yang, Ré; Stanford SSM lineage S4/Mamba). Sonic-3.6 TTS 44 langs incl. ru/tr, no Tatar/Bashkir, ~90 ms to first byte (their claim); Ink-2 STT only en/fr/hi/ja/es; Managed Agents $0.03/min; MCP server; python/js SDKs. Scale $299 = 8M credits (~10,667 min TTS). Grant 4 Nov 2026: 12 months Scale, logo on site required. Our plan: audio posts first, Life2Film narration next; STT for ru stays local"
+index_line: "Cartesia (SF, 2023; Goel, Gu, Desai, Yang, Ré; Stanford SSM lineage S4/Mamba). Sonic-3.6 TTS 44 langs incl. ru/tr, no Tatar/Bashkir, ~90 ms to first byte (their claim); Ink-2 STT only en/fr/hi/ja/es; Managed Agents $0.03/min; MCP server; python/js SDKs. Scale $299 = 8M credits (~10,667 min TTS). Grant 4 Nov 2026: 12 months Scale, logo on site required. Plan: voice for SuperVox, agents through Meta glasses, voiceover for generated video, client projects; STT for ru stays local; 4 audio samples (ru x2, en, tr) in the post"
 ---
 
 # Cartesia
@@ -29,9 +29,9 @@ and where the grant goes in my products. Vendor numbers are marked as their clai
 - **The catch for us.** Sonic speaks 44 languages including Russian and Turkish, but not
   Tatar or Bashkir. Ink-2, the transcriber, lists only English, French, Hindi, Japanese
   and Spanish. So Russian speech-to-text cannot go to Cartesia; speech out can.
-- **First use (plan, nothing built yet).** Audio versions of rustman.org posts and the
-  Telegram channel, then narration in Life2Film. Anything that hears a person stays on
-  the device.
+- **Where it goes (plan, nothing built yet).** A voice for SuperVox, a voice line to my
+  agents through the Meta glasses, voiceover for generated video, and client projects.
+  Anything that hears a person stays on the device.
 
 ## Who is behind it
 
@@ -164,50 +164,34 @@ price is zero, so language coverage decides.
   trained once and reused.
 - **Localization.** Giving one voice an accent in another language (225 credits per accent).
 
-## Where the grant fits my products
+## Where the grant goes
 
-Nothing below is built. It is a plan from the wiki and the repos.
+Plans, nothing built yet. Four places:
 
-| Product | Voice need | Route | Why |
-|---|---|---|---|
-| rustman.org posts, @deeplearning_ru | Audio version of a post | Cartesia Sonic, Bytes endpoint, one script via the MCP | Pilot: no users at risk, tests Russian and English quality |
-| [[project-superduperai]] Life2Film | Narration over a montage, maybe a cloned voice | Cartesia Sonic, Bytes | The only product where speech out is a feature users would pay for |
-| VoiceJournal ([[project-superduperai]], [[apple-on-device-ai]]) | Transcribe a diary, maybe read answers back | STT on device; TTS optional, Apple's voices first | A diary is the most private audio I handle |
-| [[project-supervox]] and voxkit | Live call and room transcripts | Local Whisper stays; Ink-2 does not cover Russian anyway | Privacy and coverage |
-| Alliance and the Gnome box | Spoken alerts from cron jobs | Sonic over WebSocket, text only leaves the box | Text of an alert, not a person's voice |
-| Robots, after [[cal-hacks-13-2026]] | Spoken confirmation | Sonic with prefetch of likely phrases | BrainSync, Fermata and others at Cal Hacks paired Claude with Cartesia |
-| Bashkir material ([[genealogy-with-ai-agents]], KubizBeat) | Reading Bashkir text aloud | Not covered | Neither Bashkir nor Tatar is in Sonic's 44 languages |
+| Where | What Cartesia does there |
+|---|---|
+| [[project-supervox]] | Voice for the call assistant: it speaks its hints and the agent's answers instead of only showing them. Transcription stays as it is; Ink-2 has no Russian anyway. |
+| The Meta glasses I bought | A voice line to my agents: I talk through the glasses, the agent answers in a Sonic voice. |
+| Video generation | Voiceover for generated videos. |
+| Client projects | Voice agents and voiceover for clients, inside the same 8M characters a month. |
 
-```mermaid
-graph TD
-  P[Microphone / person] -->|audio never leaves| L[Local STT: Whisper, Apple]
-  L --> T[Text]
-  T --> LLM[LLM: on-device or Claude]
-  LLM --> R[Reply text]
-  R -->|text only| C[Cartesia Sonic API]
-  C --> A[Audio out]
-  R2[Post or alert text] --> C
-```
+The rule I keep from my privacy-first setup: people's audio stays local, only text I have decided to speak goes to Cartesia. Cartesia says it may use customer data to improve its models unless you opt out (TechCrunch, 2024, not rechecked), so that setting gets checked before anything personal goes through.
 
-The routing rule: audio of people stays local; only text I have already decided to speak goes
-to Cartesia. That keeps the stance (privacy-first, offline-first) and uses the grant where
-it is strongest, speech out. Cartesia says by default it uses customer data to improve its
-products unless you opt out (TechCrunch, 2024, not rechecked); check that setting before
-sending anything personal.
+## What it sounds like
 
-### Rough monthly budget (estimate)
+Four samples I generated on 5 Nov 2026 with `sonic-3` over plain `/tts/bytes`, stock voices, no tuning. First byte came back in 0.46 to 0.81 s.
 
-| Use | Assumption | Characters per month |
-|---|---|---|
-| Audio posts | 20 posts x 8,000 | 160K |
-| Telegram channel | 60 items x 1,000 | 60K |
-| Life2Film narration, pilot | 500 films x 600 | 300K |
-| Alert voices, tests, retries | | 100K |
-| Total | | about 620K, under 8% of 8M |
+Russian, Alexei:
+<audio controls preload="none" src="/images/posts/cartesia/ru-alexei.mp3"></audio>
 
-The quota is not the constraint. The constraint is that it is a free year: on month 13 the
-plan is $299 a month, or a downgrade to Startup ($49, 1.25M), which would still cover this
-budget twice.
+Russian, Tatiana:
+<audio controls preload="none" src="/images/posts/cartesia/ru-tatiana.mp3"></audio>
+
+English, Daniel:
+<audio controls preload="none" src="/images/posts/cartesia/en-daniel.mp3"></audio>
+
+Turkish, Leyla:
+<audio controls preload="none" src="/images/posts/cartesia/tr-leyla.mp3"></audio>
 
 ## Terms and to-do
 
