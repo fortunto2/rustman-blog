@@ -247,7 +247,8 @@ order the document by:
 - basharchive.ru: the National Archive of Bashkortostan, with scans of the 1917 census of Ufa province
   and of the revision lists (fond И-138), and full inventories of both.
 - yandex.ru/archive: OCR search over digitised files of the Orenburg archive (ОГАОО), the place to
-  look for villages that were in Orenburg province.
+  look for villages that were in Orenburg province. Since autumn 2026 it shows documents only to
+  signed-in Yandex users.
 - pamyat-naroda.ru and obd-memorial.ru (the Second World War), gwar.mil.ru (the First),
   ru.openlist.wiki (the repressed).
 
