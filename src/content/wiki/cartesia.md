@@ -177,6 +177,8 @@ Plans, nothing built yet. Four places:
 
 The rule I keep from my privacy-first setup: people's audio stays local, only text I have decided to speak goes to Cartesia. Cartesia says it may use customer data to improve its models unless you opt out (TechCrunch, 2024, not rechecked), so that setting gets checked before anything personal goes through.
 
+What the dashboard shows after activation (5 Nov 2026): plan Scale, 8,019,636 model credits (the grant's 8M plus what was left of the free tier), $300 for voice agents, renewal monthly. The meter: text-to-speech 1 credit per character, speech-to-text 3 credits per second, voice changer 15 credits per second; agent calls $0.03 a minute, telephony $0.014 a minute. Overages are off by default; if switched on they cost $38 per 1M credits.
+
 ## What it sounds like
 
 Four samples I generated on 5 Nov 2026 with `sonic-3` over plain `/tts/bytes`, stock voices, no tuning. First byte came back in 0.46 to 0.81 s.
