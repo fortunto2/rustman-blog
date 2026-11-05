@@ -20,7 +20,7 @@ It is for a solo builder or a very small team with a few machines at home and a 
 
 | Question | Answer |
 |---|---|
-| Cost | $0. The free plan is stated as up to 50 users; the paid plan is per seat. Check the [plans page](https://www.cloudflare.com/plans/zero-trust-services/) before you rely on the number. I am one user plus a few invited emails |
+| Cost | $0. The free plan covers up to 50 users ([plans page](https://www.cloudflare.com/plans/zero-trust-services/)); the paid plan is per seat. I am one user plus a few invited emails |
 | What you need | A Cloudflare account, a domain on it, `cloudflared` or Docker on each machine |
 | What it replaces | Open router ports, a self-hosted VPN, shared keys in `authorized_keys`, shared passwords |
 | What it does not give you | A full-mesh network for everyone. Most of what I share is HTTP, and for HTTP no device client is needed |
@@ -165,7 +165,7 @@ A machine's owner can cut access on their own box with `warp-cli registration de
 
 ## Glossary
 
-- **Cloudflare Zero Trust**: Cloudflare's suite for access control and private networking. The free plan is stated as up to 50 users.
+- **Cloudflare Zero Trust**: Cloudflare's suite for access control and private networking. The free plan covers up to 50 users.
 - **Tunnel (`cloudflared`)**: a daemon that opens outbound connections from your machine to Cloudflare so a hostname can reach a local service with no open port.
 - **Access**: the login wall in front of a hostname. It evaluates a policy before forwarding the request.
 - **Access application / policy / group**: the app binds a hostname, the policy says who is allowed, the group is a reusable list of identities.
