@@ -55,7 +55,7 @@ imperfect composition. Subtitles are burned in here and only here: the feed play
   neither could viewers.
 - A short Life2Film card at the end of every file, appended without re-encoding the film.
 - Upload private, watch on the phone, then publish. Related videos are linked by hand in Studio: the
-  API accepts that field and does not save it.
+  API accepts that field and does not save it. The upload script and its auth: [[youtube-channels-from-terminal]].
 - **Archive after the films are out, never during.** Sources and outputs of finished days moved to
   iCloud (4 TB free there, the laptop disk was running out). The analysis files travel with them,
   so a month-long film later needs no re-analysis.

@@ -41,7 +41,7 @@ brew install --cask fortunto2/tap/life2film-studio
 
 It analyses the footage (shots, picture quality, bad frames), transcribes speech on the Mac's GPU in
 any language, builds a montage cut on the beat, renders an mp4, and publishes to YouTube, private
-first.
+first (how the upload is wired: [[youtube-channels-from-terminal]]).
 
 Connect [Claude Code](https://claude.com/claude-code) to the open window:
 

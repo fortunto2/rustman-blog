@@ -86,7 +86,7 @@ Two practical rules follow. Shorten the chain where you can: a deterministic scr
 
 ### 2. The connectors break first, not the model
 
-"We thought the model was the hard part" is the line I would have said a year ago. In one travel day of running my own agents from a laptop, nothing failed in the model. What failed was the hands: three MCP servers timed out on connect (30 s each), a Gmail OAuth token expired mid-trip, the bridge to my real browser dropped and needed a human click to come back, an SMS relay was off at the phone, and mobile coverage disappeared in the mountains. None of these is interesting, and every one of them stops a run.
+"We thought the model was the hard part" is the line I would have said a year ago. In one travel day of running my own agents from a laptop, nothing failed in the model. What failed was the hands: three MCP servers timed out on connect (30 s each), a Gmail OAuth token expired mid-trip (the 7-day Testing-mode trap, fixed in [[gmail-cli-several-mailboxes-gws]]), the bridge to my real browser dropped and needed a human click to come back, an SMS relay was off at the phone, and mobile coverage disappeared in the mountains. None of these is interesting, and every one of them stops a run.
 
 The fix is the robotics one: fleet maintenance, not heroics. My inbox watcher prints `UNREACHABLE <mailbox>: <reason>` instead of an empty result, because "no new mail" and "could not read the mail" look identical otherwise; that is the panel's "~70% fixed remotely" in miniature, with a reason attached so the fix is one command. Health checks run on a cadence (`solo systems due`), and a check only counts as OK with two numbers in it.
 

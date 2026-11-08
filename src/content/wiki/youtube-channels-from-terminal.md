@@ -102,6 +102,12 @@ Personal use stays unverified: the consent screen shows "Google hasn't verified 
 - Testing token: 7 days. Production: no weekly expiry.
 - Unverified app: 100 users.
 
+## Related
+
+- [[creative-video-shipping]]: what to upload (HEVC master, 1440p, private first, then publish)
+- [[creative-video-with-claude]]: the editing pipeline that ends in this upload
+- [[gmail-cli-several-mailboxes-gws]]: the same OAuth project and the same 7-day trap, for mail
+
 ## Learned from
 
 Session 2026-11-07 (OAuth Testing to Production), plus months of running `yt_upload.py` on two channels.

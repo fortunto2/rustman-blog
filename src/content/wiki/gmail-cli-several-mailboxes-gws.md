@@ -134,6 +134,12 @@ Personal use stays unverified: the consent screen says "Google hasn't verified t
 - ~2.5 seconds per message read.
 - Unverified app: 100 users.
 
+## Related
+
+- [[life2film-v1-from-the-inbox]]: a real read-only dig through one mailbox with this setup
+- [[robot-deployment-panels-agents-2026]]: the Gmail token that died mid-trip was this Testing-mode expiry
+- [[youtube-channels-from-terminal]]: the same OAuth project, for YouTube
+
 ## Learned from
 
 Session 2026-11-07 (OAuth Testing to Production), and the earlier `gmail-dig` work across four mailboxes.
