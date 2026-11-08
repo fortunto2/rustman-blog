@@ -39,3 +39,8 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 ## The terminal
 
 - [[tv-terminal-search]]: a fuzzy finder over this wiki, docs and stacks
+
+## Google accounts for agents
+
+- [[gmail-cli-several-mailboxes-gws]]: several Gmail mailboxes for a coding agent with the gws CLI, read-only, and the 7-day OAuth Testing trap
+- [[youtube-channels-from-terminal]]: upload and manage YouTube channels with the Data API, quota math, one token per channel
