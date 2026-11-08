@@ -15,6 +15,20 @@ index_line: "How-to: upload/manage YouTube channels from terminal via Data API v
 
 A single Python script talking to the YouTube Data API v3 covers upload, subtitles, thumbnail, playlist, publish, privacy and stats. Auth is a Desktop OAuth client plus one token file per channel (`--account NAME`). Budget: 10,000 quota units a day, an upload costs about 1600, so 5 to 6 uploads a day. Uploads from an unaudited API project arrive **private**. Publish the OAuth app (Testing to In production) or the token dies every 7 days.
 
+## For a coding agent
+
+Give your agent this page, or install the skill that holds the same steps in agent form:
+
+```bash
+# any agent (Claude Code, Cursor, Codex, Gemini CLI, ...)
+npx skills add fortunto2/solo-factory --skill solo-youtube-channel -g
+# or Claude Code, the whole solo plugin
+claude plugin marketplace add https://github.com/fortunto2/solo-factory
+claude plugin install solo@solo --scope user
+```
+
+Skill source: https://github.com/fortunto2/solo-factory/tree/main/skills/youtube-channel. The skill carries the rules (gates before upload, quota, private-first, Shorts linking, analytics); the agent writes the upload script from it with `google-api-python-client`. Only the Console clicks and the channel chooser in the browser need your hands.
+
 ## Steps
 
 ### 1. OAuth client (browser, once)

@@ -15,6 +15,20 @@ index_line: "How-to: connect N Gmail/Workspace mailboxes to a coding agent via g
 
 `gws` is the Google Workspace CLI (npm `@googleworkspace/cli`, v0.22.5 here). It talks to the Gmail API with your own OAuth client, so an agent can run `gws gmail ...` like any shell command. To keep several mailboxes apart, give each one its own config directory and a three-line wrapper (`gws-personal`, `gws-work`). Log in with `--readonly`. Publish the OAuth app (Testing to In production) or the token dies every 7 days.
 
+## For a coding agent
+
+Give your agent this page, or install the skill that holds the same steps in agent form:
+
+```bash
+# any agent (Claude Code, Cursor, Codex, Gemini CLI, ...)
+npx skills add fortunto2/solo-factory --skill solo-gmail-cli -g
+# or Claude Code, the whole solo plugin
+claude plugin marketplace add https://github.com/fortunto2/solo-factory
+claude plugin install solo@solo --scope user
+```
+
+Skill source: https://github.com/fortunto2/solo-factory/tree/main/skills/gmail-cli. The agent installs `gws`, writes the per-mailbox wrappers and runs the reads. Only the Google Cloud Console clicks (project, Desktop OAuth client, Branding, Publish app) and the consent screen need your hands; it stops and says when.
+
 ## Definition
 
 One OAuth client (a `client_secret.json`), N config directories, N logins. The CLI picks the mailbox by the environment variable `GOOGLE_WORKSPACE_CLI_CONFIG_DIR`. There is no `--account` flag, and asking for another address through `userId` gives "Delegation denied". The directory is the only switch.
