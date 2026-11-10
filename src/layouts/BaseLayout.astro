@@ -142,50 +142,19 @@ const isArticle = !!article;
   </footer>
 
   <script>
-    // Copy button on all code blocks (skip mermaid) — wrapper div for sticky positioning
-    document.querySelectorAll('pre:not(.mermaid)').forEach(pre => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'code-wrapper';
-      pre.parentNode!.insertBefore(wrapper, pre);
-      wrapper.appendChild(pre);
-
-      const btn = document.createElement('button');
-      btn.textContent = 'Copy';
-      btn.className = 'copy-btn';
-      btn.addEventListener('click', () => {
-        const code = pre.querySelector('code')?.textContent || pre.textContent || '';
-        navigator.clipboard.writeText(code).then(() => {
-          btn.textContent = 'Copied!';
-          setTimeout(() => btn.textContent = 'Copy', 1500);
-        });
-      });
-      wrapper.appendChild(btn);
+    // Visible one-tap Copy on every code block (skip mermaid). The cascade (clipboard API, then
+    // execCommand, then select-and-long-press) works in X / Telegram / Instagram webviews.
+    import { attachCodeCopy } from 'superduper-tools/shell';
+    attachCodeCopy({
+      selector: 'pre:not(.mermaid)',
+      onCopied: () => (window as any).sda?.('code_copied', { path: location.pathname }),
     });
   </script>
   <style is:global>
-    .code-wrapper {
-      position: relative;
-    }
-    .copy-btn {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      padding: 0.2rem 0.5rem;
-      font-size: 0.7rem;
-      font-family: 'JetBrains Mono', monospace;
-      border-radius: 0;
-      border: 1px solid var(--color-border);
-      background: var(--color-bg);
-      color: var(--color-muted);
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.2s;
-      z-index: 10;
-    }
-    .code-wrapper:hover .copy-btn { opacity: 1; }
-    .copy-btn:hover { color: var(--color-accent); border-color: var(--color-accent); }
+    .sd-codecopy { --sd-copy-fg: var(--color-muted); --sd-copy-bg: var(--color-bg); --sd-copy-bd: var(--color-border); --sd-copy-accent: var(--color-accent); }
+    .sd-codecopy > .sd-copy-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; border-radius: 0; top: 0.4rem; right: 0.4rem; }
     @media (prefers-color-scheme: dark) {
-      .copy-btn { background: var(--color-bg-dark); border-color: var(--color-border-dark); }
+      .sd-codecopy { --sd-copy-bg: var(--color-bg-dark); --sd-copy-bd: var(--color-border-dark); }
     }
   </style>
 
