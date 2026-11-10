@@ -142,13 +142,9 @@ const isArticle = !!article;
   </footer>
 
   <script>
-    // Visible one-tap Copy on every code block (skip mermaid). The cascade (clipboard API, then
-    // execCommand, then select-and-long-press) works in X / Telegram / Instagram webviews.
-    import { attachCodeCopy } from 'superduper-tools/shell';
-    attachCodeCopy({
-      selector: 'pre:not(.mermaid)',
-      onCopied: () => (window as any).sda?.('code_copied', { path: location.pathname }),
-    });
+    // Visible one-tap Copy on every code block (skip mermaid), with the shared cascade and copy event.
+    import { initCopyButtons } from 'superduper-tools/shell';
+    initCopyButtons({ selector: 'pre:not(.mermaid)' });
   </script>
   <style is:global>
     .sd-codecopy { --sd-copy-fg: var(--color-muted); --sd-copy-bg: var(--color-bg); --sd-copy-bd: var(--color-border); --sd-copy-accent: var(--color-accent); }

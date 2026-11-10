@@ -34,7 +34,7 @@ importers:
         version: git+file:///Users/rustam/startups/shared/superduper-site-kit#6681d1d9208d78defee8cca12a579b8555f631d2(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2))
       superduper-tools:
         specifier: git+file:///Users/rustam/startups/shared/superduper-tools
-        version: git+file:///Users/rustam/startups/shared/superduper-tools#836dbf30c008f3f920ef47a569f35d78e12fec7a(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2))
+        version: git+file:///Users/rustam/startups/shared/superduper-tools#4abee32927f155a3da2f1c296ec39f50acd81275(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2))
       tailwindcss:
         specifier: ^4.2.2
         version: 4.2.2
@@ -1918,8 +1918,8 @@ packages:
       astro:
         optional: true
 
-  superduper-tools@git+file:///Users/rustam/startups/shared/superduper-tools#836dbf30c008f3f920ef47a569f35d78e12fec7a:
-    resolution: {commit: 836dbf30c008f3f920ef47a569f35d78e12fec7a, repo: file:///Users/rustam/startups/shared/superduper-tools, type: git}
+  superduper-tools@git+file:///Users/rustam/startups/shared/superduper-tools#4abee32927f155a3da2f1c296ec39f50acd81275:
+    resolution: {commit: 4abee32927f155a3da2f1c296ec39f50acd81275, repo: file:///Users/rustam/startups/shared/superduper-tools, type: git}
     version: 0.1.1
     peerDependencies:
       astro: '>=5.0.0'
@@ -4235,7 +4235,7 @@ snapshots:
     optionalDependencies:
       astro: 6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)
 
-  superduper-tools@git+file:///Users/rustam/startups/shared/superduper-tools#836dbf30c008f3f920ef47a569f35d78e12fec7a(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)):
+  superduper-tools@git+file:///Users/rustam/startups/shared/superduper-tools#4abee32927f155a3da2f1c296ec39f50acd81275(astro@6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)):
     optionalDependencies:
       astro: 6.1.4(@types/node@24.12.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@6.0.2)
 
