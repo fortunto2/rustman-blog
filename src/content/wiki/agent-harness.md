@@ -32,6 +32,7 @@ The method behind them is [[harness-engineering-summary]].
 - [[skills-standard]]: the SKILL.md format 20+ agents now share
 - [[agent-patterns-stream2]]: skills load lazily, MCPs eagerly, and four other patterns
 - [[claude-5-5-effort-and-cost]]: effort from xhigh to high, always-loaded rules from 37.7 KB to 16 KB
+- [[claude-model-choice-guide-nov-2026]]: Anthropic's 9 Nov 2026 model-choice guide read against a Claude Code setup: effort before model, Haiku 5.5 for subagents
 - [[token-efficient-web-requests]]: 80% fewer tokens per web page by asking for markdown
 - [[claude-subscription-boundary]]: where a Max plan stops being usable as infrastructure
 

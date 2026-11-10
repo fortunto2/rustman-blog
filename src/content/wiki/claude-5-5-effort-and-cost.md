@@ -50,6 +50,8 @@ Two details from the post made it in. A task list in a file survives compaction 
 
 Since Sonnet 4.5 I've overridden `ANTHROPIC_DEFAULT_HAIKU_MODEL` so that lookup subagents weren't too weak. [Sonnet 5.5](https://claude.dev/blog/building-with-claude-sonnet-5-5/) shipped on 28 September at the same per-token price as Sonnet 5 ($2/$10). It's about 30% faster and uses fewer tokens per task, so the override now points to `claude-sonnet-5-5`. Haiku 5.5 is announced for the coming weeks, and I'll recheck then.
 
+**Update, 10 Nov 2026.** Haiku 5.5 shipped ($0.10/$0.50 per million tokens against Sonnet 5.5's $2/$10), and Anthropic's model guide now puts search-and-read subagents on it. See [[claude-model-choice-guide-nov-2026]] before keeping this override.
+
 The cost post gives the boundary: small models for lookups (search, logs, "where is this defined"), never for writing code. A mechanical edit across many files stays on Opus at low effort. Agent teams cost about **7×** the tokens of a normal session, which is reason enough to keep them small and shut teammates down when their part is done.
 
 If you call the API directly, Sonnet 5.5 has breaking changes. `thinking: {type: "disabled"}` and `tool_choice: any/tool` now return 400. Use `thinking: {type: "between_tools"}` and `tool_choice: auto` with `strict: true` on the tool.
