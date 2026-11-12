@@ -89,3 +89,7 @@ The insight is the class, not the vendor: for routing, triage, moderation, scori
 - [[needle-tiny-tool-model]] — same design one size down: 45M params, grammar-constrained output + confidence head for escalate-or-act, fully on-device; Laya sits between Needle and hosted Jev
 - [[dell-nvidia-gb10-hackathon-2026]]: four days later, eight finalist teams arrived at the same split: the model reads, code decides, the sandbox enforces approval
 - [[hackathons]]: the OC Lightning Hackathon next to the other events of October 2026
+
+## Update 12 Nov 2026: Google ships the same primitive
+
+Google released the Gemini Decisions API with `gemini-decision-1`: the same `noul` / `choice` / `score` questions, calibrated probabilities, zero output tokens, hosted only, with audio, video and PDF as input and $0.10 per 1M input tokens. Details, differences from Jev and an eval plan: [[gemini-decisions-api]].
