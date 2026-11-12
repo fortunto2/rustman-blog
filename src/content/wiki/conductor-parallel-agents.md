@@ -57,7 +57,7 @@ Conductor wasn't first and isn't alone. Once "agent-per-worktree" landed as a pa
 | **[Emdash](https://emdash.sh/)** (YC W26) | MIT | macOS, Linux, Windows | 22+ agents | Desktop + SSH remote | Only one with native Windows/Linux and SSH remote; first-class Linear/Jira/GitHub issue integration |
 | **[Claude Squad](https://github.com/smtg-ai/claude-squad)** | Open-source | Cross-platform | Claude Code | Terminal (tmux + worktrees) | The keyboard-only lineage; `smtg-ai` |
 | **[Parallel Code](https://github.com/johannesjo/parallel-code)** | Open-source | Desktop | Claude Code, Codex, Gemini CLI | GUI | Side-by-side view of 3 agents tackling the same task — useful for A/B model comparison |
-| **[Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator)** (Composio) | Open-source | — | Multiple | Autonomous | Plans tasks, spawns agents, handles CI fixes and merge conflicts without a human in the loop |
+| **[Agent Orchestrator](https://github.com/OrchestratorInc/agent-orchestrator)** (Composio) | Open-source | — | Multiple | Autonomous | Plans tasks, spawns agents, handles CI fixes and merge conflicts without a human in the loop |
 | **[ccswarm](https://github.com/nwiizo/ccswarm)** | Open-source | Cross-platform | Claude Code | Terminal | Each agent is role-specialized (backend, frontend, review) |
 | **[Vibe Kanban](https://github.com/BloopAI/vibe-kanban)** | Open-source | Web/Desktop | Multiple | Kanban UI | Task cards → lanes → agents; the Trello metaphor for agent work |
 | **Google Antigravity Mission Control** | Closed | Browser | Google's agents | Cloud | The incumbent entry — Google's bet on the category |

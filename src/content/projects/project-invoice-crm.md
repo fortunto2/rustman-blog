@@ -6,7 +6,7 @@ created: 2026-03-01
 tags: [project, open-source, python, cli, invoicing, pdf, privacy-first]
 project_type: tool
 publish: true
-source_url: "https://github.com/fortunto2/invoice-crm"
+source_url: "https://github.com/fortunto2/invoice-pdf-crm"
 github: fortunto2/invoice-crm
 index_line: "Invoice CRM: free file-based PDF invoice generator"
 ---
@@ -84,6 +84,6 @@ Python 3.11+, Click, Pydantic, Jinja2, WeasyPrint, pyHanko, age encryption, uv.
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/invoice-crm)
+- [GitHub](https://github.com/fortunto2/invoice-pdf-crm)
 - [[privacy-as-architecture]] — the design philosophy behind this tool
 - [[cli-first-testing]] — CLI-first approach used here

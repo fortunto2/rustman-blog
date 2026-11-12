@@ -11,7 +11,7 @@ index_line: "fff.nvim + Kovalenko #82: file search as the retrieval layer. Spars
 
 # FFF + Kovalenko #82 — File Search as the Retrieval Layer for Coding Agents
 
-Two sources, one thesis: **agents spend their life searching files and emitting diffs; whoever builds the best retrieval layer for that narrow loop collects the tokens saved across millions of sessions.** The artifact is [fff.nvim](https://github.com/dmtrKovalenko/fff.nvim) — a fuzzy file picker with persistent memory exposed via MCP. The argument is Dmitry Kovalenko's [Hexlet podcast #82](https://www.youtube.com/watch?v=Jcx-JclhB18) with Kirill Mokevnin ("Как работают AI-агенты для программистов: поиск кода, индексы, эффективность", 97 min).
+Two sources, one thesis: **agents spend their life searching files and emitting diffs; whoever builds the best retrieval layer for that narrow loop collects the tokens saved across millions of sessions.** The artifact is [fff.nvim](https://github.com/dmtrKovalenko/fff) — a fuzzy file picker with persistent memory exposed via MCP. The argument is Dmitry Kovalenko's [Hexlet podcast #82](https://www.youtube.com/watch?v=Jcx-JclhB18) with Kirill Mokevnin ("Как работают AI-агенты для программистов: поиск кода, индексы, эффективность", 97 min).
 
 Kovalenko's own framing: *"всё, что делают агенты — это ищут файлы, генерят диффы, и запускают какие-то консольки. И вдруг получилось, что у меня был плагинчик для Neovim под названием FFF."* Toxic tweet → OpenCode CEO offered to hire him → he wrote the integration for free. The plugin grew into an SDK, then an MCP.
 

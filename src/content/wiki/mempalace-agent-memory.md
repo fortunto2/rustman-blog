@@ -5,7 +5,7 @@ description: "Open-source local-first memory system: 96.6% on LongMemEval, palac
 created: 2026-04-09
 tags: [memory, agents, tools, mcp, rag, open-source]
 publish: true
-source_url: "https://github.com/milla-jovovich/mempalace"
+source_url: "https://github.com/MemPalace/mempalace"
 index_line: "MemPalace: spatial memory for AI agents (wings/rooms/halls), 96.6% LongMemEval, ChromaDB + knowledge graph, 19 MCP tools"
 ---
 
@@ -83,7 +83,7 @@ Not a replacement — a complementary architecture. Our tools focus on code inte
 
 ## Links
 
-- [GitHub: milla-jovovich/mempalace](https://github.com/milla-jovovich/mempalace) — MIT, 27K+ stars
+- [GitHub: milla-jovovich/mempalace](https://github.com/MemPalace/mempalace) — MIT, 27K+ stars
 - [[context-graphs-summary]] — the theory behind agent trajectories
 - [[decision-traces-compound]] — why capturing decision rationale compounds
 - [[context-engineering]] — progressive disclosure and context budgeting

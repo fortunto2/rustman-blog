@@ -243,7 +243,7 @@ Persistent memory that survives between sessions. See [[agent-memory-architectur
 | [[graphify-vs-solograph\|Graphify]] | ~98K (unverified) | `graph.json` on disk | Deterministic tree-sitter graph, **no vector store**, every edge tagged EXTRACTED/INFERRED |
 | [OpenViking](https://github.com/volcengine/OpenViking) | 33K | `viking://` virtual FS | Unifies memory + RAG + skills; tiered L0/L1/L2 loading |
 | [QMD](https://github.com/tobi/qmd) | 20K | Local | BM25 + vector + LLM reranking search |
-| [Letta](https://github.com/cpacker/MemGPT) | — | — | MemGPT: core/archival/recall memory |
+| [Letta](https://github.com/letta-ai/letta) | — | — | MemGPT: core/archival/recall memory |
 | Claude Code auto-memory | — | Files | Built-in ~/.claude/ memory system |
 
 **When to use:** your agent needs to remember across sessions — decisions, preferences, code patterns, user context.

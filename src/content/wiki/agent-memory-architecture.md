@@ -259,12 +259,12 @@ The ultimate goal isn't remembering but compounding. Every [[context-graphs-summ
 
 ### Tools & Systems
 
-- [[mempalace-agent-memory|MemPalace]]: [GitHub](https://github.com/milla-jovovich/mempalace). Spatial memory, 96.6% LongMemEval, MIT (27K stars)
+- [[mempalace-agent-memory|MemPalace]]: [GitHub](https://github.com/MemPalace/mempalace). Spatial memory, 96.6% LongMemEval, MIT (27K stars)
 - [[project-solograph|Solograph]]: [GitHub](https://github.com/fortunto2/solograph). Portfolio, KB and session search, 5 MCP tools, SQLite FTS5, Rust server, no embeddings
 - [QMD](https://github.com/tobi/qmd). Mini CLI search engine for docs and knowledge bases (20K stars). BM25 + vector + LLM reranking, all local. Optional Moltis backend
 - [Moltis](https://github.com/moltis-org/moltis). Rust-based memory with hybrid search + LLM reranking
 - [OpenClaw](https://github.com/openclaw/openclaw). Markdown source-of-truth + derived index, Retain/Recall/Reflect
-- [Letta](https://github.com/cpacker/MemGPT). MemGPT implementation, core/archival/recall memory management
+- [Letta](https://github.com/letta-ai/letta). MemGPT implementation, core/archival/recall memory management
 - [LangGraph](https://github.com/langchain-ai/langgraph). Graph-based agent execution framework
 
 ### Knowledge Patterns
