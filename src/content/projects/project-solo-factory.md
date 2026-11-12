@@ -15,7 +15,7 @@ index_line: "solo-factory: Claude Code plugin, 50+ skills, 2 agents, startup pip
 
 # Solo Factory
 
-**From shower thought to deployed product** — <!--fact:solo_factory.skills-->61<!--/fact--> skills, <!--fact:solo_factory.agents-->2<!--/fact--> agents, and an MCP server that searches every project you've ever built.
+**From shower thought to deployed product** — 61 skills, 2 agents, and an MCP server that searches every project you've ever built.
 
 ```
 /research → /validate → /scaffold → /setup → /plan → /build → /deploy → /launch → /review
@@ -43,7 +43,7 @@ claude plugin install solo@solo --scope user
 
 ## Skills
 
-<!--fact:solo_factory.skills-->61<!--/fact--> executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
+61 executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
 
 **[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
@@ -107,7 +107,7 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, <!--fact:solo_factory.skills-->61<!--/fact--> skills, <!--fact:solo_factory.agents-->2<!--/fact--> agents
+- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 61 skills, 2 agents
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
 - [[project-solograph]] — MCP server for portfolio, KB and session search
 - [[agent-toolkit-landscape]] — where solo-factory fits in the ecosystem

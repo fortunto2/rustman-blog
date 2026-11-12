@@ -123,7 +123,10 @@ function main() {
   for (const dir of ['wiki', 'projects']) mkdirSync(join(CONTENT_DIR, dir), { recursive: true });
 
   for (const { file, from, raw, section } of pages) {
-    writeFileSync(join(CONTENT_DIR, section, file), raw);
+    // wiki/_facts.yaml markers keep a number tied to its source in the wiki; a reader
+    // of the site (HTML, markdown negotiation, llms-full.txt) gets the bare number
+    const clean = raw.replace(/<!--\/?fact(:[a-z0-9_.]+)?-->/g, '');
+    writeFileSync(join(CONTENT_DIR, section, file), clean);
     console.log(`  ${section}/${file}${from === 'wiki' ? '' : ` (from ${from}/)`}`);
   }
   console.log(`\nCollected: ${pages.length} | Skipped: ${skipped} | Total: ${total}`);
