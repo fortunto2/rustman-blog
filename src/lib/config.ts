@@ -45,7 +45,7 @@ export const HERO_CARDS = [
   },
   {
     title: 'Solo Factory',
-    description: '57 executable skills for Claude Code. Research → validate → build → deploy → launch',
+    description: '50+ executable skills for Claude Code. Research → validate → build → deploy → launch',
     href: '/projects/project-solo-factory/',
   },
   {
