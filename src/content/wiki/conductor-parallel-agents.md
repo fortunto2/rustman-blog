@@ -3,7 +3,7 @@ type: concept
 title: "Parallel coding-agent orchestrators — Conductor and the 2026 ecosystem"
 description: "Conductor, Superset, Emdash, Claude Squad, Parallel Code, ccswarm, Vibe Kanban, Agent Orchestrator: the category of tools that run many Claude Code / Codex / Gemini CLI agents in isolated git worktrees. Addy Osmani's 'conductors to orchestrators' frame: the shift from human dirigent to autonomous planner."
 created: 2026-04-22
-updated: 2026-04-22
+updated: 2026-11-12
 tags: [agents, orchestration, claude-code, codex, worktree, parallelism, melty-labs, superset, emdash]
 publish: true
 index_line: "Parallel coding-agent orchestrators: Conductor (Melty Labs YC S24), Superset (Apache-2.0, agent-agnostic), Emdash (MIT, YC W26, cross-platform + SSH), Claude Squad, Parallel Code, Composio Agent Orchestrator, ccswarm, Vibe Kanban. Addy Osmani's \"conductors to orchestrators\" frame: from human dirigent to autonomous planner"
@@ -16,6 +16,8 @@ index_line: "Parallel coding-agent orchestrators: Conductor (Melty Labs YC S24),
 Quote from a testimonial that sums up the bet: *"feels like going from typing with two fingers to having eight arms."* You become the conductor; the agents are the section.
 
 ## What it actually does
+
+> **Update, 12 Nov 2026:** conductor.build now leads with Conductor Cloud (agents in cloud sandboxes) and carries a "Conductor is joining Meta" banner. The bullets below describe the April 2026 Mac app; "local" and "no SaaS middleman" no longer describe the whole product.
 
 - **Git worktree per task.** Each agent gets an isolated workspace off the same repo. No branch-switch churn, no conflicts while an agent is mid-edit, and you review merges from the conductor UI.
 - **Multi-model in the same workflow.** Claude Code *and* Codex in the same session — pick whichever model fits the task, or run the same task with both and compare diffs. Uses your existing Claude Pro/Max or API key, nothing new to configure.
@@ -51,13 +53,13 @@ Conductor wasn't first and isn't alone. Once "agent-per-worktree" landed as a pa
 | Tool | License | Platform | Agents | Shape | Distinctive |
 |------|---------|----------|--------|-------|-------------|
 | **[Conductor](https://www.conductor.build/)** (Melty Labs, YC S24) | Closed, free | macOS (Apple Silicon) | Claude Code, Codex | GUI | Deep Claude Code integration, automated spec/plan review for logic errors, race conditions, null-pointer risks |
-| **[Superset](https://github.com/superset-sh/superset)** | Apache-2.0 | macOS, Linux, Windows | Any CLI agent (Claude Code, Codex, Aider, Cursor Agent, Gemini CLI, Copilot, OpenCode…) | Editor-style desktop | 3.2k★ in 3 days; "code editor for the AI agent era," zero telemetry, BYO agent |
+| **[Superset](https://github.com/ParadevAI/Paradev)** (repo renamed to ParadevAI/Paradev) | Apache-2.0 | macOS, Linux, Windows | Any CLI agent (Claude Code, Codex, Aider, Cursor Agent, Gemini CLI, Copilot, OpenCode…) | Editor-style desktop | 3.2k★ in its first 3 days (Apr 2026), 16k★ by Nov 2026; "code editor for the AI agent era," zero telemetry, BYO agent |
 | **[Emdash](https://emdash.sh/)** (YC W26) | MIT | macOS, Linux, Windows | 22+ agents | Desktop + SSH remote | Only one with native Windows/Linux and SSH remote; first-class Linear/Jira/GitHub issue integration |
 | **[Claude Squad](https://github.com/smtg-ai/claude-squad)** | Open-source | Cross-platform | Claude Code | Terminal (tmux + worktrees) | The keyboard-only lineage; `smtg-ai` |
 | **[Parallel Code](https://github.com/johannesjo/parallel-code)** | Open-source | Desktop | Claude Code, Codex, Gemini CLI | GUI | Side-by-side view of 3 agents tackling the same task — useful for A/B model comparison |
 | **[Agent Orchestrator](https://github.com/ComposioHQ/agent-orchestrator)** (Composio) | Open-source | — | Multiple | Autonomous | Plans tasks, spawns agents, handles CI fixes and merge conflicts without a human in the loop |
 | **[ccswarm](https://github.com/nwiizo/ccswarm)** | Open-source | Cross-platform | Claude Code | Terminal | Each agent is role-specialized (backend, frontend, review) |
-| **[Vibe Kanban](https://github.com/)** | Open-source | Web/Desktop | Multiple | Kanban UI | Task cards → lanes → agents; the Trello metaphor for agent work |
+| **[Vibe Kanban](https://github.com/BloopAI/vibe-kanban)** | Open-source | Web/Desktop | Multiple | Kanban UI | Task cards → lanes → agents; the Trello metaphor for agent work |
 | **Google Antigravity Mission Control** | Closed | Browser | Google's agents | Cloud | The incumbent entry — Google's bet on the category |
 | **[Workstream Labs](https://github.com/workstream-labs/workstreams)** | Open-source | Desktop | Multiple | IDE-style | "IDE for parallel AI coding agents" positioning |
 

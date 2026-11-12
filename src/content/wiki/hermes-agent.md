@@ -1,18 +1,18 @@
 ---
 type: concept
 title: "Hermes Agent -- self-improving AI agent by Nous Research"
-description: "163k-star agent with learning loop: creates skills from experience, cross-session memory, 7 deployment backends, 40+ tools, multi-platform (Telegram, Discord, Slack). MIT."
+description: "263k-star agent with learning loop: creates skills from experience, cross-session memory, 7 deployment backends, 40+ tools, multi-platform (Telegram, Discord, Slack). MIT."
 created: 2026-04-14
-updated: 2026-05-23
+updated: 2026-11-12
 tags: [agents, tools, memory, skills, open-source]
 publish: true
 source_url: "https://github.com/NousResearch/hermes-agent"
-index_line: "Hermes Agent (Nous Research): self-improving agent with learning loop, **163k stars (2x in 1mo)**. Auto-creates skills, cross-session memory, 7 backends (incl. Vercel Sandbox), multi-platform, native Windows beta"
+index_line: "Hermes Agent (Nous Research): self-improving agent with learning loop, **263k stars (Nov 2026; 163k in May, 76k in Apr)**. Auto-creates skills, cross-session memory, 7 backends (incl. Vercel Sandbox), multi-platform, native Windows beta"
 ---
 
 # Hermes Agent
 
-Self-improving AI agent from Nous Research. 163.1k stars, 26.7k forks, MIT (up from 76.6k stars in April 2026 -- 2x growth in one month, top-tier traction for an agent harness). The agent creates skills from experience, improves them during use, and maintains memory across sessions.
+Self-improving AI agent from Nous Research. 262.8k stars, 59.1k forks, MIT as of 12 Nov 2026 (163.1k / 26.7k on 23 May; 76.6k stars in April). The agent creates skills from experience, improves them during use, and maintains memory across sessions.
 
 Not a framework for building agents. This is a ready-to-run agent with learning built in.
 
@@ -70,11 +70,11 @@ The serverless backends (Daytona, Modal) are also interesting for [[infra-two-to
 
 ## Growth signal (2026-05-23)
 
-From 76.6k → 163.1k stars in 39 days (~85k new stars, ~2.2k/day). Forks crossed 26.7k. For comparison, [[ruflo-orchestration]] and [[bmad-method]] sit two orders of magnitude lower. This is the most-starred ready-to-run agent today and the strongest empirical signal that the **agentic harness** layer -- not the model layer -- is where developer attention concentrates. Matches the thesis in [[claude-code-anatomy]]: harness eats the model.
+Snapshot of 23 May 2026 (262.8k by 12 Nov). From 76.6k → 163.1k stars in 39 days (~85k new stars, ~2.2k/day). Forks crossed 26.7k. For comparison, [[ruflo-orchestration]] and [[bmad-method]] sit two orders of magnitude lower. This is the most-starred ready-to-run agent today and the strongest empirical signal that the **agentic harness** layer -- not the model layer -- is where developer attention concentrates. Matches the thesis in [[claude-code-anatomy]]: harness eats the model.
 
 ## Links
 
-- [GitHub](https://github.com/NousResearch/hermes-agent) -- 163.1k stars, MIT
+- [GitHub](https://github.com/NousResearch/hermes-agent) -- 262.8k stars (Nov 2026), MIT
 - [Docs](https://hermes-agent.nousresearch.com/docs)
 - [Skills Hub](https://agentskills.io)
 - [Discord](https://discord.gg/NousResearch)

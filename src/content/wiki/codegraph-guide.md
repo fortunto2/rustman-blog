@@ -3,7 +3,7 @@ type: summary
 description: "How solograph indexes a portfolio: every project's symbol definitions and packages in SQLite FTS5, searchable by their words across all repositories. Started as a FalkorDB code graph; the structural layer was dropped in Oct 2026 after agents asked it nothing structural in four months."
 title: "CodeGraph — symbol and package index across all projects"
 created: 2026-02-07
-updated: 2026-10-27
+updated: 2026-11-12
 tags: [codegraph, code-intelligence, fts5, tree-sitter, mcp, solograph]
 publish: true
 source_path: "1-methodology/codegraph-guide.md"
@@ -14,7 +14,7 @@ index_line: "CodeGraph: symbol + package index across all projects (tree-sitter 
 
 One index over every project in the registry: symbol definitions (functions, classes, protocols) from tree-sitter, packages from the manifests, files with language and size. SQLite with FTS5, no server. Symbol names are indexed by their words, so "montage profile" finds `resolve_montage_profile` in one repository and `MontageProfile` in the sibling repository where it is actually defined.
 
-**Architecture:** `registry.yaml` (77 projects) → `solograph-cli scan` → `portfolio.db` (projects, packages, files, symbols + FTS5). Every scan is incremental by mtime and size; the nightly job covers the whole portfolio in seconds. Search over sessions, KB and sources is the same SQLite FTS5.
+**Architecture:** `registry.yaml` → `solograph scan` → `portfolio.db` (projects, packages, files, symbols + FTS5). Every scan is incremental by mtime and size; the nightly job covers the whole portfolio in seconds. Search over sessions, KB and sources is the same SQLite FTS5.
 
 **Key MCP tools:**
 - `symbol_search` — where something is defined, across every project
@@ -24,7 +24,7 @@ One index over every project in the registry: symbol definitions (functions, cla
 
 **Code reuse detection:** shared packages, and the same concept implemented in several projects (search a phrase, see every repository that defines it). Directly supports the portfolio approach: shared infrastructure across products.
 
-**GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, Python, SQLite, FastMCP.
+**GitHub:** [solograph](https://github.com/fortunto2/solograph) — open source, one Rust binary, SQLite FTS5 (Python only for the scrapers).
 
 ## Connections
 

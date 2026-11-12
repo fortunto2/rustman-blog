@@ -3,7 +3,7 @@ type: catalog
 title: "Agent toolkit landscape — from prompt libraries to autonomous project managers"
 description: "Categorized comparison of AI agent toolkits: prompt libraries, executable skill systems, project managers, agent frameworks, memory systems, observability/evals, governance. Growing catalog."
 created: 2026-04-09
-updated: 2026-07-30
+updated: 2026-11-12
 tags: [agents, tools, comparison, solo-factory, skills, methodology, observability, evals, governance]
 publish: true
 index_line: "Prompt libraries (Agency Agents) vs executable skills (solo-factory, Superpowers 263K, gstack 125K, ECC 235K) vs **taste skills** (hallmark, impeccable, ponytail, /humanize) vs project managers (GSD-2, Orca) vs agent orgs (Paperclip, Pentagon) vs frameworks vs memory (Graphify, OpenViking) vs observability/evals (Langfuse, Laminar) vs governance (MS agent-governance-toolkit). 13 categories, comparison matrix, 8-layer stack, roles-vs-stages analysis"
@@ -29,7 +29,7 @@ A growing catalog of AI agent toolkits, organized by what they actually do. Not 
 | **Agent Frameworks** | "I need to build custom agents" | LangGraph, CrewAI |
 | **Isomorphic Action Frameworks** | "Define an action once, it works in UI + agent + API + MCP + CLI" | [[agent-native-builder]] (Builder.io) |
 | **Memory Systems** | "My agent forgets everything" | MemPalace, Solograph, OpenViking |
-| **Code Knowledge Graphs** | "My agent greps 40 files to answer one question" | Graphify, Solograph codegraph |
+| **Code Knowledge Graphs** | "My agent greps 40 files to answer one question" | Graphify (Solograph dropped its code graph on 27 Oct 2026: inside one repo, Grep) |
 | **Observability & Evals** | "I can't see what the agent did, or whether the answer was good" | Langfuse, MLflow, Laminar, DeepEval |
 | **Governance & Sandboxing** | "The agent has real system access and I have no control surface" | agent-governance-toolkit, Lima VMs |
 
@@ -78,7 +78,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 | Tool | Stars | Skills | Platform | Key Feature |
 |------|-------|--------|----------|-------------|
 | [Superpowers](https://github.com/obra/superpowers) | 263K | 15+ | Claude Code, Cursor, Copilot, Codex, Gemini CLI, OpenCode | Enforced 7-phase dev workflow, subagent-driven development |
-| [[project-solo-factory\|solo-factory]] | — | 30 | Claude Code | Full startup pipeline: research → ship |
+| [[project-solo-factory\|solo-factory]] | — | 57 | Claude Code | Full startup pipeline: research → ship |
 | [gstack](https://github.com/garrytan/gstack) | 125K | 23 cmds + 8 tools | Claude Code | Garry Tan's (YC CEO) setup as **roles**, not stages: CEO, eng manager, designer, reviewer, QA lead (real browser), security officer (OWASP + STRIDE), release engineer |
 | [ECC](https://github.com/affaan-m/ECC) | 235K | — | Claude Code, Codex, OpenCode, Cursor | "Harness operating system": skills + instincts + memory + security (`ecc-agentshield`), distributed as a GitHub App and npm packages |
 | [[bmad-method\|BMAD-METHOD v6]] | — | 40+ | Claude Code | Agents-as-skills with menu dispatch, 3-layer TOML customization, CSV-driven help router |
@@ -86,7 +86,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 | [Compound Engineering](https://github.com/EveryInc/compound-engineering-plugin) (Every) | — | 36 skills + 51 agents | Claude Code, Codex, Cursor, Copilot, Gemini CLI | Planning and review as first-class commands; `/ce-compound` files the lesson back |
 | [GitHub Spec Kit](https://github.com/github/spec-kit) | — | — | GitHub | Spec-driven development |
 
-**Superpowers** (143K stars) — enforced 7-phase development workflow: brainstorming → git worktrees → writing plans → subagent-driven execution → TDD → code review → finish branch. Key innovations:
+**Superpowers** (263K stars in July, 316K on 12 Nov 2026) — enforced 7-phase development workflow: brainstorming → git worktrees → writing plans → subagent-driven execution → TDD → code review → finish branch. Key innovations:
 - **Mandatory, not optional** — agent checks for relevant skills before any task
 - **Subagent-driven development** — fresh agent instance per task prevents context drift, two-stage review (spec compliance → code quality)
 - **Plans for a "junior engineer"** — 2-5 min tasks with exact file paths, complete code, no ambiguity
@@ -95,7 +95,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 
 **vs solo-factory:** Superpowers focuses on the development workflow (plan → code → test → review). solo-factory covers the full product lifecycle (research → validate → scaffold → build → deploy → launch → promote). Superpowers has better cross-platform support; solo-factory has business/marketing skills. Complementary — use Superpowers for code quality, solo-factory for product strategy.
 
-**solo-factory** — 30 executable skills in 4 phases:
+**solo-factory** — 57 executable skills (Nov 2026; the phase counts below are from the 30-skill version):
 - **Analysis** (5): `/research`, `/swarm`, `/validate`, `/stream`, `/you2idea-extract`
 - **Development** (6): `/scaffold`, `/setup`, `/plan`, `/build`, `/deploy`, `/review`
 - **Promotion** (11): `/launch`, `/landing-gen`, `/content-gen`, `/video-promo`, `/reddit`, `/seo-audit`...
@@ -140,7 +140,7 @@ Autonomous long-running execution systems. State machines, crash recovery, git i
 | [Symphony](https://github.com/openai/symphony) | 15K | Isolated implementation runs | Elixir, OpenAI | Manage work, not supervise agents |
 | [[conductor-parallel-agents\|Conductor / Superset / Emdash / …]] | mixed | Worktree-per-agent, multi-model | Mac app / cross-platform | Many Claude Code + Codex in parallel, unified review. See the 2026 orchestrator ecosystem |
 | [Orca](https://github.com/stablyai/orca) (Stably) | — | Fleet of parallel agents ("ADE") | Desktop + **mobile** + **VPS** | Any CLI agent on your own subscription; account switcher with rate-limit tracking |
-| [GSD-2](https://github.com/gsd-build/gsd-2) | 5K | Milestone → Slice → Task | Pi SDK (20+ providers) | Autonomous multi-session execution |
+| [GSD-2](https://github.com/gsd-build/gsd-2) (archived by Nov 2026) | 7.7K | Milestone → Slice → Task | Pi SDK (20+ providers) | Autonomous multi-session execution |
 
 **Symphony** (15K stars, OpenAI) — turns project work into isolated, autonomous implementation runs. Teams manage work instead of supervising agents. Elixir-based. Each run is isolated — no context leaking between tasks. OpenAI's answer to "how to let agents work on real projects."
 
@@ -341,7 +341,7 @@ These aren't competing — they're layers:
 
 1. **Memory & retrieval** — [[project-solograph|Solograph]] / [[graphify-vs-solograph|Graphify]] / [[mempalace-agent-memory|MemPalace]] for persistence
 2. **Skills** — [[project-solo-factory|solo-factory]] for methodology (what to build, in what order)
-3. **Execution** — GSD-2 for autonomous long-running tasks, Orca for a parallel fleet
+3. **Execution** — Orca for a parallel fleet (GSD-2, the earlier pick for long-running tasks, is archived)
 4. **Organization** — [[paperclip-agent-company|Paperclip]] when the fleet needs roles, budgets and approval gates rather than more tabs
 5. **Specialists** — Agency Agents for domain experts on demand
 6. **Guardrails** — [[agent-sandboxing|VM isolation]] + policy middleware where agents touch real systems

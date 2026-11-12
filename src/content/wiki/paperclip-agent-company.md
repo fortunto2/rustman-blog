@@ -1,17 +1,18 @@
 ---
 type: concept
 title: "Paperclip — the org chart as the missing layer above coding agents"
-description: "Paperclip (MIT, 75k stars, Mar 2026) wraps any agent runtime in a company: org chart with reporting lines, per-agent budgets that hard-stop, DB-backed heartbeats, atomic task checkout, immutable audit. 'If OpenClaw is an employee, Paperclip is the company.'"
+description: "Paperclip (MIT, 113k stars by Nov 2026, created Mar 2026) wraps any agent runtime in a company: org chart with reporting lines, per-agent budgets that hard-stop, DB-backed heartbeats, atomic task checkout, immutable audit. 'If OpenClaw is an employee, Paperclip is the company.'"
 created: 2026-07-30
+updated: 2026-11-12
 tags: [agents, orchestration, org-chart, budgets, heartbeats, governance, openclaw, claude-code, multi-agent]
 publish: true
 source_url: "https://github.com/paperclipai/paperclip"
-index_line: "Paperclip (MIT, TypeScript, 75k★ in 5 months): wraps Claude Code/Codex/Cursor/OpenClaw in a company — org chart with reporting lines, per-agent monthly budgets that hard-stop, DB-backed heartbeat queue, atomic task checkout, goal ancestry, immutable audit, multi-company isolation. Five mechanics to steal; 'zero-human' is marketing"
+index_line: "Paperclip (MIT, TypeScript, 113k★ in 8 months): wraps Claude Code/Codex/Cursor/OpenClaw in a company — org chart with reporting lines, per-agent monthly budgets that hard-stop, DB-backed heartbeat queue, atomic task checkout, goal ancestry, immutable audit, multi-company isolation. Five mechanics to steal; 'zero-human' is marketing"
 ---
 
 # Paperclip — the company around the agents
 
-[paperclipai/paperclip](https://github.com/paperclipai/paperclip) · MIT · TypeScript · **75 090★ / 13 977 forks** · created 2026-03-02, pushed daily since. Author: the pseudonymous **@dotta**; the repo now sits under Paperclip Labs with 100+ contributors. Docs at [docs.paperclip.ing](https://docs.paperclip.ing).
+[paperclipai/paperclip](https://github.com/paperclipai/paperclip) · MIT · TypeScript · **113k★ / 18.8k forks** (12 Nov 2026; 75k / 14k at ingest on 30 Jul) · created 2026-03-02, pushed daily since. Author: the pseudonymous **@dotta**; the repo now sits under Paperclip Labs with 100+ contributors. Docs at [docs.paperclip.ing](https://docs.paperclip.ing).
 
 Their one-liner is the whole thesis: **"If OpenClaw is an _employee_, Paperclip is the _company_."**
 

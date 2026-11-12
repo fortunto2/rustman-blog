@@ -3,7 +3,7 @@ type: summary
 title: "Ruflo (ex-Claude Flow) — multi-agent orchestration platform for Claude Code"
 description: "Ruflo bundles 32 Claude Code plugins, 100+ agents, MCP server, AgentDB vector memory, agent federation, and a GOAP A* goal planner into one self-learning swarm. Two install paths — lite (slash commands) and full (CLI + MCP + hooks + daemon)."
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-11-12
 tags: [agents, swarm, orchestration, claude-code, plugins, mcp, memory, federation, ruvnet]
 publish: true
 index_line: "Ruflo (ex-Claude Flow): 32 plugins, 100+ agents, AgentDB vector memory (HNSW 150-12500x), agent federation (zero-trust), GOAP A* goal planner. Two install paths — lite (slash commands) and full (MCP + hooks + daemon)"
@@ -70,7 +70,7 @@ Three named learning systems: **SONA neural patterns** (trajectory learning), **
 | Aspect | [[bmad-method]] | Ruflo | [[project-solo-factory]] |
 |---|---|---|---|
 | Scope | Agile-dev methodology | Full agent OS | Startup pipeline |
-| Skill count | ~40, organized in numbered phases | 30 skills + 60+ commands + 100 agents | 30 skills |
+| Skill count | ~40, organized in numbered phases | 30 skills + 60+ commands + 100 agents | 57 skills |
 | Persistence | Files only (artifacts as state) | AgentDB vector memory + RAG + Knowledge Graph | Solograph MCP + filesystem |
 | Customization | 3-layer TOML merge (defaults → team → user) | Per-plugin config + hooks + daemon | Single `SKILL.md` per skill |
 | Multi-machine | No | Federation (zero-trust) | No |
