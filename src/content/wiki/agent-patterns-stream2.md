@@ -21,7 +21,7 @@ index_line: "Skills lazy-load vs MCPs eager-load, dream mode (autonomous memory 
 
 MCPs are the opposite — all tool descriptions load into context upfront. 10 MCP servers = thousands of tokens eaten before you ask anything.
 
-**Implication for us:** this is why [[project-solo-factory|solo-factory]] (30 skills) doesn't bloat context but adding multiple MCP servers does. When designing new capabilities: prefer skills over MCP tools when possible. Use MCP only when you need live data access (search, graph queries).
+**Implication for us:** this is why [[project-solo-factory|solo-factory]] (50+ skills) doesn't bloat context but adding multiple MCP servers does. When designing new capabilities: prefer skills over MCP tools when possible. Use MCP only when you need live data access (search, graph queries).
 
 **Rule of thumb:** static knowledge → skill. Dynamic data → MCP tool.
 

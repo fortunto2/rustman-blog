@@ -70,7 +70,7 @@ Three named learning systems: **SONA neural patterns** (trajectory learning), **
 | Aspect | [[bmad-method]] | Ruflo | [[project-solo-factory]] |
 |---|---|---|---|
 | Scope | Agile-dev methodology | Full agent OS | Startup pipeline |
-| Skill count | ~40, organized in numbered phases | 30 skills + 60+ commands + 100 agents | 57 skills |
+| Skill count | ~40, organized in numbered phases | 30 skills + 60+ commands + 100 agents | 50+ skills |
 | Persistence | Files only (artifacts as state) | AgentDB vector memory + RAG + Knowledge Graph | Solograph MCP + filesystem |
 | Customization | 3-layer TOML merge (defaults → team → user) | Per-plugin config + hooks + daemon | Single `SKILL.md` per skill |
 | Multi-machine | No | Federation (zero-trust) | No |

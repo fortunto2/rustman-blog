@@ -1,6 +1,6 @@
 ---
 type: project
-description: "Claude Code plugin with 57 skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
+description: "Claude Code plugin with 50+ skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
 tags: [project, open-source, claude-code, plugins, skills, agents]
@@ -10,12 +10,12 @@ course_order: 10
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory"
 github: fortunto2/solo-factory
-index_line: "solo-factory: Claude Code plugin, 57 skills, 2 agents, startup pipeline"
+index_line: "solo-factory: Claude Code plugin, 50+ skills, 2 agents, startup pipeline"
 ---
 
 # Solo Factory
 
-**From shower thought to deployed product** — 57 skills, 2 agents, and an MCP server that searches every project you've ever built.
+**From shower thought to deployed product** — <!--fact:solo_factory.skills-->61<!--/fact--> skills, <!--fact:solo_factory.agents-->2<!--/fact--> agents, and an MCP server that searches every project you've ever built.
 
 ```
 /research → /validate → /scaffold → /setup → /plan → /build → /deploy → /launch → /review
@@ -43,7 +43,7 @@ claude plugin install solo@solo --scope user
 
 ## Skills
 
-57 executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
+<!--fact:solo_factory.skills-->61<!--/fact--> executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
 
 **[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
@@ -107,7 +107,7 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 57 skills, 2 agents
+- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, <!--fact:solo_factory.skills-->61<!--/fact--> skills, <!--fact:solo_factory.agents-->2<!--/fact--> agents
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
 - [[project-solograph]] — MCP server for portfolio, KB and session search
 - [[agent-toolkit-landscape]] — where solo-factory fits in the ecosystem
@@ -117,4 +117,4 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [Course: AI Solopreneur Engineer](/course) — learn the methodology step by step
 
 - [[project-agent-board]] — the task board that hands out work on this repo: an agent claims under a lease and returns a URL plus the sha256 of exactly what it delivered. Built because both measurements of solo-verify so far were made by its own author
-- [[plugin-eval-ablation]] — `claude plugin eval` can finally answer whether any of these 57 skills beats the bare model on its own task. Nothing here has ever been measured against a no-plugin baseline
+- [[plugin-eval-ablation]] — `claude plugin eval` can finally answer whether any of these skills beats the bare model on its own task. Nothing here has ever been measured against a no-plugin baseline

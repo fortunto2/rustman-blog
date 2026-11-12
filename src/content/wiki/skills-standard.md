@@ -118,7 +118,7 @@ Compare to MCP (which requires a server, schema, transport layer) or LangChain t
 
 Most modern agent toolkits use SKILL.md as their primitive:
 
-- [[project-solo-factory]] — 57 skills, full startup pipeline
+- [[project-solo-factory]] — 50+ skills, full startup pipeline
 - [[bmad-method]] — agents themselves are skills (`bmad-agent-dev`), workflows too (`bmad-dev-story`); 3-layer TOML overrides on top
 - [[ruflo-orchestration]] — 30 skills + 60+ commands + 100 agents, plus MCP server beneath
 - [[hermes-agent]] — auto-creates new skills at runtime from successful trajectories
@@ -129,7 +129,7 @@ The pattern: **skills are the cheapest way to extend an agent**. MCPs are heavie
 
 ## Authoring Tips (Hard-Won)
 
-From writing 57 skills in [[project-solo-factory]]:
+From writing 50+ skills in [[project-solo-factory]]:
 
 - **Description like a search query.** Lead with trigger phrases ("Use when the user says…", "When asked to…"). The model matches your description against the user's request — write for that match.
 - **One skill = one outcome.** Don't bundle "research and validate and scaffold" in one skill. Three skills, chained.
@@ -142,7 +142,7 @@ From writing 57 skills in [[project-solo-factory]]:
 - [[agent-toolkit-landscape]] — broader catalog; skills sit in the marketplace + executable-skills layers
 - [[bmad-method]] — most disciplined use of SKILL.md (agents-as-skills + TOML overrides)
 - [[ruflo-orchestration]] — skills + plugins + MCP combined into a swarm OS
-- [[project-solo-factory]] — concrete example of a 57-skill startup pipeline
+- [[project-solo-factory]] — concrete example of a 50+ skill startup pipeline
 - [[hermes-agent]] — skills as runtime artifacts (auto-generated, not just hand-written)
 - [[agent-patterns-stream2]] — skills lazy-load vs MCPs eager-load — why this matters for context budget
 - [[design-md-spec]] — sibling convention: DESIGN.md for visual identity, AGENTS.md for repo-local agent instructions

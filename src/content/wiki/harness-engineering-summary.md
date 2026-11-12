@@ -30,7 +30,7 @@ OpenAI numbers: 3→7 engineers, ~1M lines, ~1,500 PRs, 3.5 PR/engineer/day, 0 h
 
 Predictions: harness as new service templates, tech stack convergence toward AI-friendliness, topology convergence, two worlds (greenfield with harness vs retrofit on legacy).
 
-**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (57 skills and 2 agents as feedforward, plus the sensor layer), [solograph](https://github.com/fortunto2/solograph) (portfolio symbol search and session memory over SQLite FTS5), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent).
+**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (50+ skills and 2 agents as feedforward, plus the sensor layer), [solograph](https://github.com/fortunto2/solograph) (portfolio symbol search and session memory over SQLite FTS5), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent).
 
 ## Connections
 

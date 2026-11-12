@@ -36,7 +36,7 @@ See [[project-life2film]] for the flagship product.
 
 | Project | Description | Language | Links |
 |---------|-------------|----------|-------|
-| **solo-factory** | Claude Code plugin -- 27 skills, 3 agents for startup pipeline | Python | [GitHub](https://github.com/fortunto2/solo-factory) |
+| **solo-factory** | Claude Code plugin -- 50+ skills, 2 agents for startup pipeline | Python | [GitHub](https://github.com/fortunto2/solo-factory) |
 | **solograph** | Code intelligence MCP server -- graph DB, semantic search, 15 tools | Python | [GitHub](https://github.com/fortunto2/solograph) |
 | **openai-oxide** | Idiomatic OpenAI client -- Rust/Node/Python, WebSocket, WASM | Rust | [GitHub](https://github.com/fortunto2/openai-oxide) |
 | **rust-code** | AI terminal coding agent -- TUI, SGR loop, 22 tools, MCP | Rust | [GitHub](https://github.com/fortunto2/rust-code) |

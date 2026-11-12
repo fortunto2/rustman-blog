@@ -78,7 +78,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 | Tool | Stars | Skills | Platform | Key Feature |
 |------|-------|--------|----------|-------------|
 | [Superpowers](https://github.com/obra/superpowers) | 263K | 15+ | Claude Code, Cursor, Copilot, Codex, Gemini CLI, OpenCode | Enforced 7-phase dev workflow, subagent-driven development |
-| [[project-solo-factory\|solo-factory]] | — | 57 | Claude Code | Full startup pipeline: research → ship |
+| [[project-solo-factory\|solo-factory]] | — | 50+ | Claude Code | Full startup pipeline: research → ship |
 | [gstack](https://github.com/garrytan/gstack) | 125K | 23 cmds + 8 tools | Claude Code | Garry Tan's (YC CEO) setup as **roles**, not stages: CEO, eng manager, designer, reviewer, QA lead (real browser), security officer (OWASP + STRIDE), release engineer |
 | [ECC](https://github.com/affaan-m/ECC) | 235K | — | Claude Code, Codex, OpenCode, Cursor | "Harness operating system": skills + instincts + memory + security (`ecc-agentshield`), distributed as a GitHub App and npm packages |
 | [[bmad-method\|BMAD-METHOD v6]] | — | 40+ | Claude Code | Agents-as-skills with menu dispatch, 3-layer TOML customization, CSV-driven help router |
@@ -95,7 +95,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 
 **vs solo-factory:** Superpowers focuses on the development workflow (plan → code → test → review). solo-factory covers the full product lifecycle (research → validate → scaffold → build → deploy → launch → promote). Superpowers has better cross-platform support; solo-factory has business/marketing skills. Complementary — use Superpowers for code quality, solo-factory for product strategy.
 
-**solo-factory** — 57 executable skills (Nov 2026; the phase counts below are from the 30-skill version):
+**solo-factory** — 50+ executable skills (the phase counts below are from the 30-skill version):
 - **Analysis** (5): `/research`, `/swarm`, `/validate`, `/stream`, `/you2idea-extract`
 - **Development** (6): `/scaffold`, `/setup`, `/plan`, `/build`, `/deploy`, `/review`
 - **Promotion** (11): `/launch`, `/landing-gen`, `/content-gen`, `/video-promo`, `/reddit`, `/seo-audit`...
