@@ -115,6 +115,10 @@ This works in any host: the plugins talk to the agent directly, the DAW doesn't 
 
 The video skills that use them (scores for travel films, chords lifted from footage) are in [[creative-skills]].
 
+## In a video editor
+
+[Life2Film Studio](https://life2film.com/studio/), our agent-first video editor for Mac, hosts these plugins live: a chain on a lane, on one piece of sound or on the master is heard while the film plays, each plugin opens its own window, and an agent proposes a chain and measures the result in LUFS before you accept it. The `sdsp-chain` renderer ships inside the app.
+
 ## Principles
 
 - **Measured, not tuned by ear.** Every plugin passes the official `clap-validator`; each has checked-in quality snapshots (THD, aliasing, levels) that run on every release build; the mix tools are checked against 15 scenes with known answers before their output is trusted. When the validator found 34 real failures that an old report had printed as zero, they were fixed, not hidden.

@@ -52,7 +52,7 @@ AI watches your videos, finds the best moments, adds music, and creates a film. 
 
 **Platforms** (as of Oct 2026):
 1. **iOS** — live in the [App Store](https://apps.apple.com/app/id6761656888) since 13 Aug 2026 (1.15 on sale since 28 Oct); Android later
-2. **Mac** — the desktop app, Studio: analysis on the device, nothing uploaded
+2. **Mac** — [Life2Film Studio](https://life2film.com/studio/), the agent-first video editor (0.4, Nov 2026): a native timeline editor that plays a film from the original files, where Claude or another agent reads the film, looks at frames and proposes cuts you accept. Sound runs through live CLAP plugins ([[project-superduper-dsp]]). The earlier Studio (0.3, Dioxus) did the analysis and the montage on the Mac
 3. **Web** — an earlier WASM/web version existed and is retired; the `va-wasm` crate remains in the engine
 
 ## Vision
@@ -91,7 +91,7 @@ Started in 2014 as a website. The first version, a website, passed 1M registrati
 
 ## Links
 
-- **[Life2Film Studio](https://github.com/fortunto2/life2film-landing/releases/latest)** — the free desktop app for Apple Silicon: `brew install --cask fortunto2/tap/life2film-studio`
+- **[Life2Film Studio](https://life2film.com/studio/)** — the free agent-first editor for Apple Silicon: `brew install --cask fortunto2/tap/life2film-studio`. How to connect Claude or any MCP host: [life2film.com/studio/agent](https://life2film.com/studio/agent/)
 - [[creative-video-with-claude]] — how I cut nine days in Chicago with it and Claude, step by step
 - [life2film-engine on npm](https://www.npmjs.com/package/life2film-engine) — the analysis core (beats, shots, frame quality) as WebAssembly, to build into your own code
 - [life2film.com](https://life2film.com)

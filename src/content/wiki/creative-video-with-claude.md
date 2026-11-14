@@ -39,6 +39,13 @@ brew install --cask fortunto2/tap/life2film-studio
 
 (No Homebrew? Download the `.dmg` from the release page.)
 
+> **Update, November 2026.** This article was written with Studio 0.3. Studio 0.4 is a different app: an
+> agent-first timeline editor, where Claude reads the film, looks at frames and proposes cuts that you
+> accept in the window. It does not score footage or publish to YouTube, and it connects differently
+> (one command, no port): see [life2film.com/studio/agent](https://life2film.com/studio/agent/). The
+> steps below are the 0.3 workflow; 0.3.0 is still on the
+> [release page](https://github.com/fortunto2/life2film-landing/releases).
+
 It analyses the footage (shots, picture quality, bad frames), transcribes speech on the Mac's GPU in
 any language, builds a montage cut on the beat, renders an mp4, and publishes to YouTube, private
 first (how the upload is wired: [[youtube-channels-from-terminal]]).

@@ -112,6 +112,59 @@ If the strain survives all of it, that is an optometrist question rather than a 
 Uncorrected astigmatism and presbyopia produce exactly this picture, and they surface when
 the work shifts from writing to reading — which is precisely what happened.
 
+## Orca: theming a terminal app from outside
+
+Orca (a desktop app that hosts terminals and agents) takes palettes from plugins: a
+data-only plugin (`contributes.terminalThemes` and `themes` for the app chrome, JSON files,
+no approval needed) loads with `orca plugin dev load <dir>` and is hot-reloaded when its
+files change. What Orca does not expose is global settings: font, line height, cursor and
+*which* theme is selected sit in the app's own profile database, with no CLI or plugin
+call, and plugins may only write their own settings.
+
+The workable pattern for a light-sensor switcher: ship one extra theme, `live`, select it
+once in both the light and the dark slot, and let the switcher overwrite `live.json` with
+the current palette (write to a temp file, then `mv`). The switcher never has to touch the
+OS appearance or call the `orca` CLI, which would launch a closed app. Measured: each
+overwrite registered as a plugin change within seconds. Not measured: how the app chrome
+reacts when the theme's `base` flips between light and dark.
+
+## Orca rendering: measured
+
+An owner reported that text in Orca looked "rippled or not sharp" next to Apple Terminal.
+Setup: same text, JetBrains Mono 14, line height 1.2, same palette, a 3024x1964 @2x
+display. Lossless window captures at native pixels; metrics run on identical crops of 29
+repeated lines, checked first on a synthetic image (a sharp 2 px bar reads rise 0.8 px,
+the same bar blurred 1 px reads 1.6 px). All numbers measured unless marked.
+
+| Config | Row pitch (px) | Unique rows of 29 | Column pitch (px) | Edge rise 10-90% (px) | Ink vs Terminal | Shape match (NCC) |
+|---|---|---|---|---|---|---|
+| Apple Terminal, Regular | 48 | 1 | 16.00 | 0.81 | 100% | 1.000 |
+| Orca, GPU auto, weight 400 | 43 | 1 | 16.00 | 1.14 | 86% | 0.981 |
+| Orca, GPU auto, weight 500 | 43 | 1 | 16.00 | 0.81 | 93% | 0.988 |
+| Orca, GPU auto, weight 600 | 43 | 1 | 16.00 | 1.01 | 101% | 0.986 |
+| Orca, GPU off (DOM) | 43 | 1 | 16.80 | 1.36 | 81% | 0.30 |
+
+What the numbers say:
+
+- **No row ripple.** With a fractional line height (14 x 1.2) the WebGL renderer still
+  rounds the cell to whole device pixels, so every repeated line is bit-identical. The
+  fractional-pitch theory did not hold.
+- **GPU "off" is the worse path.** `terminalGpuAcceleration` is `auto | on | off`; `off`
+  switches xterm.js to its DOM renderer, which lays glyphs out at the font's 16.8 px
+  advance. Letters then sit at drifting sub-pixel phases and the edges soften. Keep `auto`
+  (WebGL on macOS).
+- **Thin, not rippled.** Orca at weight 400 draws 14% less ink than Terminal, whose
+  CoreText smoothing thickens stems (2.84 px against 2.53). Weight 500 closes most of the
+  gap with the same edge sharpness; 600 overshoots (stems 3.03 px, softer edges).
+- Antialiasing is grayscale in both apps (colour fringe measure 0.02-0.03, near zero).
+  Glyph size is identical: cap height 21 px in both.
+
+Motion was not measured in Orca itself: a window on an inactive Space is not painted by
+Chromium, so a screen recording of it is empty. A proxy (headless Chromium on the M5 GPU,
+the same xterm.js version, 10.9 MB of output) showed a 16.7 ms frame time and equal
+throughput for DOM and WebGL, so speed does not separate them; headless caps at 60 Hz, so
+nothing is claimed about 120 Hz.
+
 ## Sources
 
 - Buchner & Baumgartner (2007), *Text–background polarity affects performance irrespective
