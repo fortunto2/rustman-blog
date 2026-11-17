@@ -251,19 +251,23 @@ The order I am building it in, smallest first, with what shipped the same day:
    captures from agents, what moved). `capture` writes one new note into `3-inbox/`, append-only,
    signed with the client's name, found by `kb_search` at once and listed by the morning inbox. That
    is Rinat's "connect, orient yourself, contribute" with the agent's own shell as `run`, and no
-   document server. Still to do: serving it over HTTP behind Cloudflare Access for the phone and
-   other people's agents, which needs an OAuth-capable front, not just a tunnel.
+   document server. I built the HTTP entry behind Cloudflare Access the same day and switched it off
+   the same evening: nothing used it, and the phone path is reported to fail against Access's
+   OAuth. What it left behind is a rule: over HTTP the server is read-only unless writes are
+   switched on.
 2. **YC's overnight loop, on signals I already log.** Shipped as a step after the 07:00 digest.
    Searches almost always find something (99% over 14 days), so "found nothing" is a weak signal.
-   The better one is a question asked again, and here the first run corrected my own number: solograph
-   counts 58 of 360 searches as "asked again within two minutes" (it already skips parallel calls
-   sent within 3 seconds), but many of those are changes of subject. Counting only a later search in
-   the same tool that shares a word or translates the question into English leaves **34 real
-   re-asks (9%)**. (An earlier version of this paragraph blamed 19 parallel calls; solograph never
-   counted those. Retracted 17 Nov.) The loop lists those, the searches that found nothing and the
-   captures nobody has read, and writes one inbox note only on nights with something to decide.
-   Next: an LLM step that turns that note into `_pending` drafts (an alias, a page, a better
-   `index_line`), plus `/solo:dream` over the agent memory, as GBrain does nightly.
+   The better one is a question asked again, and here the first run corrected my own number twice.
+   solograph's `retried` said 59 of 366 searches were followed by another within two minutes, but
+   it counts any different later search, a change of subject included. The same question asked
+   again (the next search of that tool sharing a word stem, or a purely Russian question put in
+   English) is **28 (8%)**. My first count, in a Python copy of the metric, said 34 with crude
+   5-letter prefixes and blamed 19 parallel calls that solograph never counted; both retracted 17
+   Nov. The lesson was the duplicate itself: two implementations of one number disagreed, so the
+   definition now lives once, in `solograph usage --json`, and the loop only reads it. The loop
+   lists those, the searches that found nothing, stuck swarm tasks and the captures nobody has read,
+   writes one inbox note only on nights with something to decide, and turns Russian-then-English
+   pairs into an alias draft through one constrained model call that code checks.
 3. **Prune skills, then raise the listing budget**, and move project knowledge into doc trees. Of 64
    solo skills, 16 were invoked in the last 30 days. Claude Code's `skillOverrides` turned out not to
    reach a third-party plugin's skills (measured; I had claimed it would), so the listing budget went
@@ -272,6 +276,16 @@ The order I am building it in, smallest first, with what shipped the same day:
    from a virtual wallet) is a scored task with my ECOM1 fork already at 22/24 on the dev set; a
    brain workspace plus `swarm`'s test gate is the anti-regex constitution Rinat had to add after the
    fact.
+
+5. **One link instead of one database.** Swarm, the task registry and the brain kept their own
+   state and knew nothing of each other. The fix was not a shared database (that would turn the
+   boundary between client and personal work from separate files into a row filter) but a shared
+   key: a registry topic. A swarm task, a note and a commit each name it; swarm owns a task's
+   state, the registry keeps a read model of it, written by a hook on every transition and by an
+   hourly reconcile from swarm's own list, both idempotent: the Kubernetes controller pattern,
+   edge-triggered for speed, level-triggered for correctness. The first reconcile filled in five
+   tasks the old hook had only logged as text. The same code runs the client profile on its own
+   store.
 
 What I am not building: my own versioned file server (Rinat needed one at 30 agents and 100k
 versions; git holds two people fine), and my own agent harness.
@@ -288,10 +302,10 @@ versions; git holds two people fine), and my own agent harness.
 - BitGN platform, Sep-Nov 2026: 2.8M task runs, 121M tool calls; 1,138 engineers in 103 cities.
 - YC, reported in the talk: data on 7,000 companies and 20,000 founders; 3-4k hours of recorded office
   hours; a 500-page manual written over 15 years.
-- Mine, measured 17 Nov 2026 (`solograph usage --days 14`): 75 of 565 sessions searched (13%); 358
-  of 360 searches returned something; 21% led to opening a result. Asked again: 58 by solograph's
-  counter, **34 (9%) after removing changes of subject** (`harness/brain/nightly.py`;
-  an earlier draft of this page said 16%, retracted).
+- Mine, measured 17 Nov 2026 (`solograph usage --days 14`): 76 of 583 sessions searched (13%); 364
+  of 366 searches returned something; 21% led to opening a result. Followed by another search
+  within two minutes: 59; the same question asked again: **28 (8%)** (solograph 0.20.1
+  `asked_again`; earlier versions of this page said 16%, then 34 (9%), both retracted).
 - Skills, measured 17 Nov 2026 over 1,220 transcripts of 30 days: 16 of 64 solo skills invoked.
 
 ## Learned from
