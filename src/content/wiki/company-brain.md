@@ -256,10 +256,11 @@ The order I am building it in, smallest first, with what shipped the same day:
 2. **YC's overnight loop, on signals I already log.** Shipped as a step after the 07:00 digest.
    Searches almost always find something (99% over 14 days), so "found nothing" is a weak signal.
    The better one is a question asked again, and here the first run corrected my own number: solograph
-   counts 58 of 360 searches as "asked again within two minutes", but 19 of the same-tool pairs were
-   parallel calls sent in the same second, and most of the rest were changes of subject. Counting
-   only a later search in the same tool that shares a word or translates the question into English
-   leaves **34 real re-asks (9%)**. The loop lists those, the searches that found nothing and the
+   counts 58 of 360 searches as "asked again within two minutes" (it already skips parallel calls
+   sent within 3 seconds), but many of those are changes of subject. Counting only a later search in
+   the same tool that shares a word or translates the question into English leaves **34 real
+   re-asks (9%)**. (An earlier version of this paragraph blamed 19 parallel calls; solograph never
+   counted those. Retracted 17 Nov.) The loop lists those, the searches that found nothing and the
    captures nobody has read, and writes one inbox note only on nights with something to decide.
    Next: an LLM step that turns that note into `_pending` drafts (an alias, a page, a better
    `index_line`), plus `/solo:dream` over the agent memory, as GBrain does nightly.
@@ -289,7 +290,7 @@ versions; git holds two people fine), and my own agent harness.
   hours; a 500-page manual written over 15 years.
 - Mine, measured 17 Nov 2026 (`solograph usage --days 14`): 75 of 565 sessions searched (13%); 358
   of 360 searches returned something; 21% led to opening a result. Asked again: 58 by solograph's
-  counter, **34 (9%) after removing parallel calls and changes of subject** (`harness/brain/nightly.py`;
+  counter, **34 (9%) after removing changes of subject** (`harness/brain/nightly.py`;
   an earlier draft of this page said 16%, retracted).
 - Skills, measured 17 Nov 2026 over 1,220 transcripts of 30 days: 16 of 64 solo skills invoked.
 
