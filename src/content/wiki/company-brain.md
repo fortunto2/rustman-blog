@@ -264,8 +264,9 @@ The order I am building it in, smallest first, with what shipped the same day:
    Next: an LLM step that turns that note into `_pending` drafts (an alias, a page, a better
    `index_line`), plus `/solo:dream` over the agent memory, as GBrain does nightly.
 3. **Prune skills, then raise the listing budget**, and move project knowledge into doc trees. Of 64
-   solo skills, 16 were invoked in the last 30 days; Claude Code's `skillOverrides` setting can drop
-   the rest from the model's listing and keep their slash commands ([[skills-vs-doc-tree]]).
+   solo skills, 16 were invoked in the last 30 days. Claude Code's `skillOverrides` turned out not to
+   reach a third-party plugin's skills (measured; I had claimed it would), so the listing budget went
+   from 1% to 2% of the context instead ([[skills-vs-doc-tree]]).
 4. **A swarm on a real target.** BitGN's ECOM2 (November 2026, agents pay for their own inference
    from a virtual wallet) is a scored task with my ECOM1 fork already at 22/24 on the dev set; a
    brain workspace plus `swarm`'s test gate is the anti-regex constitution Rinat had to add after the

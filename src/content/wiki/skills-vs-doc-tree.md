@@ -6,7 +6,7 @@ created: 2026-11-17
 tags: [skills, progressive-disclosure, context-engineering, claude-code, codex, harness]
 publish: true
 learned_from: "session 20221b3e-9dc7-4338-a083-2e28e72e25e2 (17.11.2026); t.me/llm_under_hood/960, /982, /988"
-index_line: "Skills vs doc tree (progressive disclosure). Alexey S study, Oct 2026: `tree docs` beat skills on every project in Claude and Codex, gap grows with codebase, Claude +30% tokens on docs. Claude Code 2.1.326 source: skill listing budget = context × 4 chars × 0.01 (8,000 chars at 200k), per-description cap 1,536, knobs SLASH_COMMAND_TOOL_CHAR_BUDGET / skillListingBudgetFraction. Measured here 17.11: 95 of 156 skills listed by bare name, 47 of 67 solo:*. Rule: knowledge → doc tree; procedures with scripts → skills; route by hook. 16 of 64 solo skills invoked in 30 days; `skillOverrides` (on | name-only | user-invocable-only | off) hides the rest from the listing, keeps slash"
+index_line: "Skills vs doc tree (progressive disclosure). Alexey S study, Oct 2026: `tree docs` beat skills on every project in Claude and Codex, gap grows with codebase, Claude +30% tokens on docs. Claude Code 2.1.326 source: skill listing budget = context × 4 chars × 0.01 (8,000 chars at 200k), per-description cap 1,536, knobs SLASH_COMMAND_TOOL_CHAR_BUDGET / skillListingBudgetFraction. Measured here 17.11: 95 of 156 skills listed by bare name, 47 of 67 solo:*. Rule: knowledge → doc tree; procedures with scripts → skills; route by hook. 16 of 64 solo skills invoked in 30 days; `skillOverrides` (on | name-only | user-invocable-only | off) works for own skills only, NOT third-party plugin skills (measured 2.1.326; retracted claim); plugin lever = SKILL.md disable-model-invocation or skillListingBudgetFraction (set 0.02)"
 ---
 
 # Skills or a doc tree
@@ -36,10 +36,14 @@ He does not use skills at all, and organizes his company-brain workspaces the sa
   reach the model as a bare name. Route by prompt shape in a hook (here `harness/routing.json`
   injects "load `/solo:research`"), which works whether the description survived or not.
 - **When the skill count grows, prune first, then raise the budget.** Raising costs tokens in every
-  session; a skill nobody invoked in a month costs them for nothing. Pruning does not mean deleting:
-  Claude Code's `skillOverrides` setting takes `on`, `name-only`, `user-invocable-only` or `off` per
-  skill, and `user-invocable-only` drops a skill from the model's listing while its slash command
-  keeps working. Keep `on` every skill a routing hook tells the model to load.
+  session; a skill nobody invoked in a month costs them for nothing. Pruning does not mean deleting.
+  For your own skills (`~/.claude/skills/`, a project's `.claude/skills/`) Claude Code's
+  `skillOverrides` setting takes `on`, `name-only`, `user-invocable-only` or `off` per skill, and
+  `user-invocable-only` drops a skill from the model's listing while its slash command keeps
+  working. **It does not reach a third-party plugin's skills** (measured below), so for those the
+  lever is the plugin's own `SKILL.md` (`disable-model-invocation: true`), which changes it for
+  everyone who installs the plugin, or a bigger budget. Keep listed every skill a routing hook
+  tells the model to load.
 
 ## Exceptions
 
@@ -68,8 +72,14 @@ He does not use skills at all, and organizes his company-brain workspaces the sa
   choosing among them by name.
 - **What gets used, measured here** (1,220 transcripts of the last 30 days, 17 Nov 2026): 16 of 64
   solo skills were invoked at all, by the Skill tool or a slash command. `humanize` led with 16 calls;
-  42 skills were neither invoked nor named by the routing hook, which makes them the candidates for
-  `user-invocable-only`.
+  42 skills were neither invoked nor named by the routing hook.
+- **`skillOverrides` and plugin skills, measured here** (2.1.326, 17 Nov 2026, the `init` event of
+  `claude -p --output-format stream-json`): `"airq": "off"` removed a personal skill (144 → 143
+  listed); `"off"` under `solo:kindle`, `kindle`, `solo-kindle` and `solo:solo-kindle` left the
+  plugin skill listed every time. In the binary, plugin skills get override names only when the
+  plugin comes from Anthropic's own repository. **Retracted** the same day: an earlier version of
+  this page said `skillOverrides` could hide the 42 unused solo skills. What I did instead: raised
+  `skillListingBudgetFraction` to 0.02 (16,000 characters at 200k context).
 
 ## Learned from
 
