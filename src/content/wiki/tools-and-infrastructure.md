@@ -19,7 +19,7 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 - [[awesome-rust]]: the community catalog of Rust libraries
 - [[actix-actor-framework]]: typed actors with supervision, the base of actix-web
 - [[dano-media-checksums]]: checksums of the media streams, stable across renames and container swaps
-- [[build-your-own-auto-montage-rust]]: a 500-line Rust program from phone clips and a song to a film cut on the beat: own FFT, beat grid, knapsack, one ffmpeg command
+- [[auto-montage-principles]]: the five jobs of any auto-montage engine, six principles from building one, and how an agent calls Life2Film's engine through Studio's MCP door
 - [[deepwiki-rs]]: C4 architecture docs generated from a codebase
 - [[rustfs-object-storage]]: S3-compatible storage, 2.3x faster than MinIO on small objects
 - [[native-frontend-toolchain]]: the JS toolchain rewritten in Rust and Go, 10 to 100 times faster
