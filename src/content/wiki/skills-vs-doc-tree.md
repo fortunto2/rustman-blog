@@ -6,7 +6,7 @@ created: 2026-11-17
 tags: [skills, progressive-disclosure, context-engineering, claude-code, codex, harness]
 publish: true
 learned_from: "session 20221b3e-9dc7-4338-a083-2e28e72e25e2 (17.11.2026); t.me/llm_under_hood/960, /982, /988"
-index_line: "Skills vs doc tree (progressive disclosure). Alexey S study, Oct 2026: `tree docs` beat skills on every project in Claude and Codex, gap grows with codebase, Claude +30% tokens on docs. Claude Code 2.1.326 source: skill listing budget = context × 4 chars × 0.01 (8,000 chars at 200k), per-description cap 1,536, knobs SLASH_COMMAND_TOOL_CHAR_BUDGET / skillListingBudgetFraction. Measured here 17.11: 95 of 156 skills listed by bare name, 47 of 67 solo:*. Rule: knowledge → doc tree; procedures with scripts → skills; route by hook"
+index_line: "Skills vs doc tree (progressive disclosure). Alexey S study, Oct 2026: `tree docs` beat skills on every project in Claude and Codex, gap grows with codebase, Claude +30% tokens on docs. Claude Code 2.1.326 source: skill listing budget = context × 4 chars × 0.01 (8,000 chars at 200k), per-description cap 1,536, knobs SLASH_COMMAND_TOOL_CHAR_BUDGET / skillListingBudgetFraction. Measured here 17.11: 95 of 156 skills listed by bare name, 47 of 67 solo:*. Rule: knowledge → doc tree; procedures with scripts → skills; route by hook. 16 of 64 solo skills invoked in 30 days; `skillOverrides` (on | name-only | user-invocable-only | off) hides the rest from the listing, keeps slash"
 ---
 
 # Skills or a doc tree
@@ -36,7 +36,10 @@ He does not use skills at all, and organizes his company-brain workspaces the sa
   reach the model as a bare name. Route by prompt shape in a hook (here `harness/routing.json`
   injects "load `/solo:research`"), which works whether the description survived or not.
 - **When the skill count grows, prune first, then raise the budget.** Raising costs tokens in every
-  session; a skill nobody invoked in a month costs them for nothing.
+  session; a skill nobody invoked in a month costs them for nothing. Pruning does not mean deleting:
+  Claude Code's `skillOverrides` setting takes `on`, `name-only`, `user-invocable-only` or `off` per
+  skill, and `user-invocable-only` drops a skill from the model's listing while its slash command
+  keeps working. Keep `on` every skill a routing hook tells the model to load.
 
 ## Exceptions
 
@@ -63,6 +66,10 @@ He does not use skills at all, and organizes his company-brain workspaces the sa
   bare name** with no description, including 47 of 67 `solo:*` skills such as `validate`,
   `launch`, `grill` and `diagnose`, whose `SKILL.md` files do have descriptions. The model was
   choosing among them by name.
+- **What gets used, measured here** (1,220 transcripts of the last 30 days, 17 Nov 2026): 16 of 64
+  solo skills were invoked at all, by the Skill tool or a slash command. `humanize` led with 16 calls;
+  42 skills were neither invoked nor named by the routing hook, which makes them the candidates for
+  `user-invocable-only`.
 
 ## Learned from
 

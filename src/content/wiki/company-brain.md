@@ -9,7 +9,7 @@ feed: true
 source_url: "https://t.me/llm_under_hood/980"
 video_url: "https://www.youtube.com/watch?v=Z3JyAqh4ixg"
 learned_from: "session 20221b3e-9dc7-4338-a083-2e28e72e25e2 (17.11.2026): @llm_under_hood posts 934-992, YC Root Access talk Z3JyAqh4ixg, bitgn.com insights"
-index_line: "Company Brain, Nov 2026. Origin: Dorsey & Botha, From Hierarchy to Intelligence (Mar 2026): world model + capabilities + intelligence layer, people at the edge; YC RFS Company Brain; GBrain (nightly dream cycle), Hyper, Sylph (git). YC talk (Z3JyAqh4ixg): company = self-improving AI loops (signals → policy → tools → adversarial-LLM gate → learning), legible data (record every meeting, no DMs, every action leaves an artifact), IC + DRI, no middle management, humans at the edge. Rinat's BitGN Brain: versioned doc store (go+SQLite+CAS, rollback of any agent's change), ONE MCP with 2 tools (start → SDK, run → Python in server sandbox = code mode), progressive disclosure, 'rent the core, own memory+tools'. Swarm on ECOM1, GPT-OSS-120B only: 30 harnesses, 46.5 → 95.1 in 2 days, then regex reward-hacking, 45 GB / 100k versions filled the disk, Codex rewrite 40 GB → 500 MB. Ours: solograph + wiki + registry + Gnome; gaps: remote entry, one write path, overnight loop on usage signals (retried 16%, opened 21%)"
+index_line: "Company Brain, Nov 2026. Origin: Dorsey & Botha, From Hierarchy to Intelligence (Mar 2026): world model + capabilities + intelligence layer, people at the edge; YC RFS Company Brain; GBrain (nightly dream cycle), Hyper, Sylph (git). YC talk (Z3JyAqh4ixg): company = self-improving AI loops (signals → policy → tools → adversarial-LLM gate → learning), legible data (record every meeting, no DMs, every action leaves an artifact), IC + DRI, no middle management, humans at the edge. Rinat's BitGN Brain: versioned doc store (go+SQLite+CAS, rollback of any agent's change), ONE MCP with 2 tools (start → SDK, run → Python in server sandbox = code mode), progressive disclosure, 'rent the core, own memory+tools'. Swarm on ECOM1, GPT-OSS-120B only: 30 harnesses, 46.5 → 95.1 in 2 days, then regex reward-hacking, 45 GB / 100k versions filled the disk, Codex rewrite 40 GB → 500 MB. Ours: solograph + wiki + registry + Gnome; shipped 17.11 as solograph 0.18: brain_start (orient map + nightly state) + capture (append-only into 3-inbox, signed) + nightly loop after the digest; real re-asks 34 of 360 (9%), not the 58 the raw counter says; 16 of 64 skills used in 30 days; next: remote entry with OAuth, LLM drafting step"
 ---
 
 # Company Brain: one memory any agent can plug into
@@ -243,20 +243,29 @@ flowchart TB
   H["Me: decisions at the edge"] --> R
 ```
 
-The order I am building it in, smallest first:
+The order I am building it in, smallest first, with what shipped the same day:
 
-1. **An entry any agent can reach.** Serve solograph's MCP over HTTP behind Cloudflare Access (the
-   identity groups already exist for the alliance), add one orient page that says what is where, and
-   one append-only write tool that drops a capture into `3-inbox/` as a commit. That is Rinat's
-   "connect, orient yourself, contribute", without writing a document server.
-2. **YC's overnight loop, on signals I already log.** Searches almost always find something (99%
-   over the last 14 days), so "found nothing" is not the signal. The signals are the 16% of searches
-   asked again within two minutes and the 79% whose results were never opened. A nightly job reads
-   those, `make wiki-gaps` and the correction candidates, runs `/solo:dream` over the agent memory
-   (GBrain does the same consolidation nightly), and writes `_pending` drafts (an alias, a page, a
-   better `index_line`) that the morning standup shows for a yes or no. It can run on the laptop's
-   cron today and move to the Gnome when the box arrives.
-3. **Prune skills, then raise the listing budget**, and move project knowledge into doc trees.
+1. **An entry any agent can reach.** Shipped locally on 17 November as solograph 0.18: when a KB's
+   `.solograph.yaml` has a `brain:` section, the MCP server offers two more tools. `brain_start`
+   returns an orient file (the hand-written map plus a state block rebuilt nightly: open topics,
+   captures from agents, what moved). `capture` writes one new note into `3-inbox/`, append-only,
+   signed with the client's name, found by `kb_search` at once and listed by the morning inbox. That
+   is Rinat's "connect, orient yourself, contribute" with the agent's own shell as `run`, and no
+   document server. Still to do: serving it over HTTP behind Cloudflare Access for the phone and
+   other people's agents, which needs an OAuth-capable front, not just a tunnel.
+2. **YC's overnight loop, on signals I already log.** Shipped as a step after the 07:00 digest.
+   Searches almost always find something (99% over 14 days), so "found nothing" is a weak signal.
+   The better one is a question asked again, and here the first run corrected my own number: solograph
+   counts 58 of 360 searches as "asked again within two minutes", but 19 of the same-tool pairs were
+   parallel calls sent in the same second, and most of the rest were changes of subject. Counting
+   only a later search in the same tool that shares a word or translates the question into English
+   leaves **34 real re-asks (9%)**. The loop lists those, the searches that found nothing and the
+   captures nobody has read, and writes one inbox note only on nights with something to decide.
+   Next: an LLM step that turns that note into `_pending` drafts (an alias, a page, a better
+   `index_line`), plus `/solo:dream` over the agent memory, as GBrain does nightly.
+3. **Prune skills, then raise the listing budget**, and move project knowledge into doc trees. Of 64
+   solo skills, 16 were invoked in the last 30 days; Claude Code's `skillOverrides` setting can drop
+   the rest from the model's listing and keep their slash commands ([[skills-vs-doc-tree]]).
 4. **A swarm on a real target.** BitGN's ECOM2 (November 2026, agents pay for their own inference
    from a virtual wallet) is a scored task with my ECOM1 fork already at 22/24 on the dev set; a
    brain workspace plus `swarm`'s test gate is the anti-regex constitution Rinat had to add after the
@@ -278,8 +287,10 @@ versions; git holds two people fine), and my own agent harness.
 - YC, reported in the talk: data on 7,000 companies and 20,000 founders; 3-4k hours of recorded office
   hours; a 500-page manual written over 15 years.
 - Mine, measured 17 Nov 2026 (`solograph usage --days 14`): 75 of 565 sessions searched (13%); 358
-  of 360 searches returned something; 21% led to opening a result; 16% were asked again within two
-  minutes.
+  of 360 searches returned something; 21% led to opening a result. Asked again: 58 by solograph's
+  counter, **34 (9%) after removing parallel calls and changes of subject** (`harness/brain/nightly.py`;
+  an earlier draft of this page said 16%, retracted).
+- Skills, measured 17 Nov 2026 over 1,220 transcripts of 30 days: 16 of 64 solo skills invoked.
 
 ## Learned from
 
