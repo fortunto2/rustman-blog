@@ -35,9 +35,13 @@ By stack: Pydantic (Python), Zod (TypeScript), SwiftData @Model (iOS), data clas
 
 **Libraries:** [sgr-agent](https://github.com/fortunto2/rust-code) crate v0.6.1 (Rust core for SGR agents), [sgr-agent-core](https://github.com/vamplabAI/sgr-agent-core) (Python, 1K+ stars), [openai-oxide](https://github.com/fortunto2/openai-oxide) (typed Rust client).
 
-## What others found since (Oct 2026)
+## What others found since (Oct-Nov 2026)
 
 - **Turn strict mode on; don't assume it.** Armin Ronacher ([Better Models: Worse Tools](https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/), Jul 2026) saw Opus 4.8 and Sonnet 5 invent keys in nested tool arguments in about 20% of one session's edit calls, and `strict` tool mode removed them (reported). His reading: post-training inside a forgiving harness makes its flat schema shapes in-distribution and other shapes out of it. Keep schemas flat and enforce them.
+- **SGR's author says the product architecture has not changed** (Rinat Abdullin, [post 952](https://t.me/llm_under_hood/952), 30 Sep 2026): quality as a trajectory, evals, SGR, feedback loops, hallucination triggers and moving to cheaper models still carry LLM products. What changed is the economics: a general agent did the first research pass of an old case in 14 minutes.
+- **Put the contract in code** (Ilyas Salikhov's Exoskeleton on BitGN ECOM1, [insight](https://bitgn.com/insights/2026-06-15-ecom1-exoskeleton-insight), Jun 2026): gpt-5.4-mini only routes and judges; Python owns preflight security exits, an evidence ledger, a reference normalizer and a final formatter. 71.8 in the blind Speed round (TOP1), 74.7 Ultimate (#10), 97.4 on the live board later. The largest miss was still grounding references (15-17 zero-score tasks). This is SGR's "schema is the contract" pushed one step further: whatever a failure class makes predictable becomes code, not a prompt amendment.
+- **Same harness, open models** ([research](https://bitgn.com/insights/2026-06-22-ecom1-open-models-research-insight)): reference discipline (right answer, wrong refs) is the error class spread across the most model families; cheap tokens did not make cheap task runs. Our [[agent-bit-pac1]] fork for ECOM1 logs the same thing as its #1 fail mode.
+- **When the tool surface is wide, code mode instead of a tool union.** Rinat cut his memory server's MCP to two tools, `start` (session + SDK description) and `run` (Python in a server sandbox), and halved agent wandering; Cloudflare reports ~1000x fewer tokens for 2,549 tools the same way. A `Union[ToolA, ToolB]` dispatch stays right for a narrow, fixed surface. See [[company-brain]].
 
 
 ## Connections

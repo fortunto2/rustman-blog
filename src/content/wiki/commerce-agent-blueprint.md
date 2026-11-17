@@ -66,4 +66,5 @@ Evals invert the usual instinct: **evaluate snapshots, not conversations.** Cons
 
 ## What others found since (Oct 2026)
 
+- **Skills lose to a doc tree outside a product agent.** A small study shared by Rinat Abdullin (Oct 2026) found `tree docs` beat skills on every project in both Claude and Codex, and Claude Code budgets its skill listing at 1% of the context, so in a personal harness with 150 skills most reach the model as bare names. Anthropic's one-agent-plus-skills rule still holds where you control the listing; details in [[skills-vs-doc-tree]].
 - **For coding work the no-subagents rule bends.** In Cognition's 3,000 sessions ([Jul 2026](https://cognition.com/blog/making-fable-cheaper-than-opus)) a lead that delegated early with a spec-quality brief beat one that did the work itself on both cost and score; the handoff loss shrank once the brief carried constraints and a definition of done (reported). For a conversational flow, where the state is the product, the blueprint's rule stands. See [[lead-model-delegation-economics]].

@@ -84,6 +84,7 @@ Install is a single command (`npx paperclipai onboard --yes`, Node 20+, pnpm 9.1
 - [docs.paperclip.ing](https://docs.paperclip.ing) — docs
 - [[agent-toolkit-landscape]] — where it sits in the ecosystem
 - [[conductor-parallel-agents]] — the layer below: many agents in worktrees, no org
+- [[company-brain]] — the opposite bet: no org chart for agents, one shared memory in the middle and humans at the edge
 - [[project-solo-factory]] — our pipeline: skills as the unit, not roles
 - [[background-jobs-ladder]] — heartbeats vs the scheduling ladder
 - [[agent-self-discipline]] — limits and drift, the manual version of budget enforcement

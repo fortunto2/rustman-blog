@@ -38,6 +38,7 @@ Key references for going deep: vLLM source (tool parsers), model `tokenizer_conf
 
 ## What others found since (Oct 2026)
 
+- **Two tools for a whole memory server.** Rinat Abdullin ([Oct 2026](https://t.me/llm_under_hood/958)) packed versioned-document work into `start` (open a session, receive the current SDK description) and `run` (Python executed on the server in a sandbox). Agents spent half as long wandering, and new capabilities ship as SDK versions that the next session picks up, with no client redeploy. See [[company-brain]].
 - **Correction to Layer 3.** "Cannot produce broken tool calls" holds only when constrained decoding is switched on for that call. Armin Ronacher ([Jul 2026](https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/)) saw Opus 4.8 and Sonnet 5 add invented keys to nested tool arguments in about 20% of one session's edit calls under a harness that did not enforce the schema; `strict` mode eliminated it (reported).
 - **Composition moves into the harness.** Ronacher's [Codemode](https://lucumr.pocoo.org/2026/10/6/codemode/) in Pi 1.0 (Oct 2026) runs tool composition as QuickJS in WASM with no network, filesystem or timers, at most 4 concurrent tool calls, and reaches MCP tools only through tool search (reported).
 

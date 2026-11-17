@@ -30,6 +30,7 @@ The method behind them is [[harness-engineering-summary]].
 - [[claude-code-from-zero]]: one-page start for people who do not use agents yet
 - [[writing-claude-md]]: how to write instruction files, and what did not work
 - [[skills-standard]]: the SKILL.md format 20+ agents now share
+- [[skills-vs-doc-tree]]: a plain tree of well-named documents beat skills in a small study, and Claude Code lists most of my skills by bare name
 - [[agent-patterns-stream2]]: skills load lazily, MCPs eagerly, and four other patterns
 - [[claude-5-5-effort-and-cost]]: effort from xhigh to high, always-loaded rules from 37.7 KB to 16 KB
 - [[claude-model-choice-guide-nov-2026]]: Anthropic's 9 Nov 2026 model-choice guide read against a Claude Code setup: effort before model, Haiku 5.5 for subagents
@@ -41,6 +42,7 @@ The method behind them is [[harness-engineering-summary]].
 - [[agent-memory-architecture]]: 4 memory types, 3 loops, 5 systems compared
 - [[inline-agent-memory]]: notes inside the code with a prefix grep finds (AI-NOTE, AI-TODO, AI-ASK)
 - [[wiki-feedback-loop]]: corrections and unanswered questions flowing back into this wiki
+- [[company-brain]]: one shared memory any agent can plug into, with self-improving loops: Rinat Abdullin's BitGN Brain, YC's AI-native company, and how to build one on a wiki
 - [[solograph-rebuilt-one-binary]]: my memory server, from a graph database to one Rust binary over SQLite FTS5
 
 ## Delegation and cost
