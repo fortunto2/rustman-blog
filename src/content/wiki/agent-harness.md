@@ -23,6 +23,7 @@ The method behind them is [[harness-engineering-summary]].
 - [[project-swarm]]: many coding agents on my own subscriptions, one queue over a laptop and a box, and a test gate that decides what reaches main
 - [[harness-cost-by-model-tier]]: a behavioral harness took a small model from 3 to 10 accepted runs and made it cheaper than the big one unharnessed
 - [[tdd-inside-the-agent-loop]]: agent-run TDD cost 3 to 8 times the tokens with no better tests or design
+- [[control-bot]]: my private Telegram bot: cards instead of chat text, a queue in front of Claude Code, one send path with no model in it, and eight rules that each came from an incident
 - [[claude-code-channels]]: channels push outside events into an open session: my Telegram bot wired into the session that runs my day, a voice, a 40-line channel for your own product
 - [[claude-code-anatomy]]: Claude Code reverse-engineered: the seven-part loop, five layers of compaction, deny-first permissions
 - [[commerce-agent-blueprint]]: one agent with skills beats subagents; guardrails live in the harness, not the prompt
