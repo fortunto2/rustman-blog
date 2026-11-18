@@ -58,3 +58,10 @@ Rust 2024 edition. OpenAI Realtime API for STT. macOS system audio capture (`sys
 - [[project-rust-code]] — same TUI approach (ratatui + Rust)
 - [[schema-guided-reasoning]] — structured outputs for call analysis
 - [[privacy-as-architecture]] — audio stays local, `--local` for full offline
+
+## With Claude Code
+
+SuperVox's live stream was the ears of the first version of a voice conversation with Claude Code
+([[local-voice-agent-mac]]); an agent follows a meeting through a Monitor on
+`~/.supervox/live/current.jsonl`. The next step is SuperVox as a Claude Code channel, pushing each
+finished stretch of a meeting into the session on its own: [[claude-code-channels]].

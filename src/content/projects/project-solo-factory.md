@@ -15,7 +15,7 @@ index_line: "solo-factory: Claude Code plugin, 60+ skills, 2 agents, startup pip
 
 # Solo Factory
 
-**From shower thought to deployed product** — 64 skills, 2 agents, and an MCP server that searches every project you've ever built.
+**From shower thought to deployed product** — 66 skills, 2 agents, and an MCP server that searches every project you've ever built.
 
 ```
 /research → /validate → /scaffold → /setup → /plan → /build → /deploy → /launch → /review
@@ -43,7 +43,7 @@ claude plugin install solo@solo --scope user
 
 ## Skills
 
-64 executable skills in 5 groups: **Analysis** → **Development** → **Mobile & Apple** → **Promotion** → **Utility**.
+66 executable skills in 5 groups: **Analysis** → **Development** → **Mobile & Apple** → **Promotion** → **Utility**.
 
 **[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
@@ -95,7 +95,7 @@ Without MCP, skills fall back to Glob, Grep, Read, WebSearch — always works.
 The [[harness-engineering-summary|harness]] IS the product:
 
 ```
-skills/          — 64 SKILL.md files (instructions, not code)
+skills/          — 66 SKILL.md files (instructions, not code)
 agents/          — 2 agent definitions (model + role + tools)
 templates/stacks — 12 YAML stack templates
 rules/           — routing, skill locations, AI comments, debugging, sensors
@@ -107,7 +107,7 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 
 ## Links
 
-- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 64 skills, 2 agents
+- [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 66 skills, 2 agents
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
 - [[project-solograph]] — MCP server for portfolio, KB and session search
 - [[project-swarm]] — Go daemon that runs Claude Code / Codex workers in git worktrees behind a test gate (experimental, November 2026)

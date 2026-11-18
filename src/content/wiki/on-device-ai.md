@@ -22,6 +22,7 @@ These pages are what I measured getting real features to run that way, mostly in
 - [[on-device-beat-tracking-downbeats]]: a 20M-parameter net found downbeats where the DSP detector missed nine in ten
 - [[shot-detection-phone-footage-no-cuts]]: sixteen shot detectors on two days of phone footage
 - [[needle-tiny-tool-model]]: a 45M model in 14 MB that only picks tools and fills arguments
+- [[local-voice-agent-mac]]: voice cloning on the Mac (VoxCPM2, 25 s clip, 30 languages) and a voice conversation with Claude Code, 0.5 s from the end of a sentence to the session
 - [[bonsai-ternary-llm]]: a 500M ternary model running in the browser
 
 ## The platform around them

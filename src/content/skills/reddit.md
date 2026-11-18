@@ -54,7 +54,7 @@ If MCP tools not available, use WebSearch/WebFetch as fallback.
 
 ### Scripts (no MCP needed)
 - `scripts/check-karma.sh <username>` — check karma, account age, posting readiness
-- `scripts/search-posts.sh <subreddit> [query] [sort]` — find posts via Reddit JSON API
+- `scripts/search-posts.sh <subreddit> [query] [hours]` — recent posts, best first, via the Arctic Shift mirror (Reddit's own JSON refuses anonymous clients since 2026: 403, login redirect, RSS 429)
 - `scripts/check-post.sh <url>` — read post content + top comments
 
 Use scripts first (faster, no Playwright needed). Fall back to Playwright for posting.
