@@ -213,7 +213,7 @@ The mechanics both sources agree on, against what I already run:
 | Self-improving loop | overnight agent turns failures into PRs; GBrain's nightly dream cycle | [[wiki-feedback-loop]] logs gaps and corrections; `solograph usage` logs every search; `/solo:dream` checks memory notes against what happened, weekly | nothing reads those logs at night and proposes fixes |
 | Provenance, freshness, contradictions | sources, age and conflict flags on every fact | `learned_from`, `updated`, measured numbers in `_facts.yaml`, `status: disputed` | contradictions are flagged by hand only |
 | Legibility | record every meeting, no DMs | session index, [[project-supervox]] transcription, inbox sweep, CRM | meetings are transcribed on demand, not by default |
-| Agents coordinating | swarm, forum, board, votes | `swarm` with a test gate; [[project-agent-board]] | the two are not wired to the same memory |
+| Agents coordinating | swarm, forum, board, votes | [[project-swarm]] with a test gate; [[project-agent-board]] | swarm is wired to the registry by topic since 17.11 (item 5 below); the board is not |
 | DRI | one person per outcome | registry `ball` and `next` per topic | none |
 | Access by identity | capability-based authz | Cloudflare Access groups for a two-person alliance | not yet in front of the memory |
 | Always on | server-side | the Gnome: [[agent-harness-and-always-on-gnome]] | the box is still waiting on a hosting order |
@@ -277,7 +277,7 @@ The order I am building it in, smallest first, with what shipped the same day:
    brain workspace plus `swarm`'s test gate is the anti-regex constitution Rinat had to add after the
    fact.
 
-5. **One link instead of one database.** Swarm, the task registry and the brain kept their own
+5. **One link instead of one database.** Swarm ([[project-swarm]]), the task registry and the brain kept their own
    state and knew nothing of each other. The fix was not a shared database (that would turn the
    boundary between client and personal work from separate files into a row filter) but a shared
    key: a registry topic. A swarm task, a note and a commit each name it; swarm owns a task's
@@ -322,6 +322,7 @@ checking each mechanic against my own harness instead of the other way round.
 - [[paperclip-agent-company]] — the opposite bet: an org chart for agents
 - [[wiki-feedback-loop]] — the loop that already exists, waiting for a nightly reader
 - [[agent-harness-and-always-on-gnome]] — where the loops will run
+- [[project-swarm]] — the agent queue whose task state the registry reads
 - [[tool-calling-four-layers]] — code mode as the fourth layer of tool calling
 - [[agent-bit-pac1]] — the BitGN agent the ECOM fork grew from
 - [[agent-harness]] — hub

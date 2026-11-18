@@ -18,6 +18,7 @@ The method behind them is [[harness-engineering-summary]].
 ## The harness
 
 - [[agent-harness-and-always-on-gnome]]: how I run my work through Claude Code, the scheduled jobs, and why they need a box that never sleeps
+- [[project-swarm]]: many coding agents on my own subscriptions, one queue over a laptop and a box, and a test gate that decides what reaches main
 - [[harness-cost-by-model-tier]]: a behavioral harness took a small model from 3 to 10 accepted runs and made it cheaper than the big one unharnessed
 - [[tdd-inside-the-agent-loop]]: agent-run TDD cost 3 to 8 times the tokens with no better tests or design
 - [[claude-code-anatomy]]: Claude Code reverse-engineered: the seven-part loop, five layers of compaction, deny-first permissions
