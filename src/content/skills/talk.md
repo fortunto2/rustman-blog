@@ -83,6 +83,25 @@ lag=… asr_ms=…>text</channel>`; `why="hold"` means the person paused mid-tho
 
 Both through `onnx-asr`, CPU, ~250-290 ms per turn on an M5.
 
+## Mouth: local VoxCPM2 or Cartesia
+
+`--tts cartesia --cartesia-voice <id>` speaks through Cartesia Sonic 3.6 instead of the local
+model: only the agent's text leaves the Mac, the person's audio never does (ASR stays local).
+Same five lines, same cloned voice, M5 with a load average of 5-10:
+
+| | local VoxCPM2 4-bit (default) | Cartesia sonic-3.6 |
+|---|---|---|
+| `say` → first audio | 1.0-1.6 s idle; RTF 2.0-2.6 under this load | 0.66 s (first bytes 0.29-0.79 s) |
+| ready | 8 s warm, 18 s loaded | 6 s |
+| memory of the voice process | VoxCPM2 alone peaks at 5.9 GB | 1.9 GB in all |
+| read back by GigaAM / Parakeet, 4 lines | 2 verbatim: «Готово, открытых» dropped, «Done» → «Then» | 4 verbatim |
+| leaves the Mac | nothing | the agent's text |
+| cost | none | Cartesia credits |
+
+By ear (the same clips side by side) Cartesia also sounded cleaner, as if recorded at a higher
+quality. Cartesia wins every number; local is for offline work and replies that should not reach a
+third party. Check Cartesia's data-use setting before personal text goes through it.
+
 ## Measured (Apple M5, 32 GB, other jobs running)
 
 | | |

@@ -8,7 +8,7 @@ publish: true
 feed: true
 github: fortunto2/solo-factory
 learned_from: "Session b87c8035 of 15-18 Nov 2026: solo-factory tts 1.0-1.1.1 and talk 1.0-1.2.0, captures 3-inbox/2026-11-18-local-voice-cloning-*, -shtorm-voxcpm2-ru-*, -local-voice-conversation-*, -voice-loop-decision-*"
-index_line: "Post, 2 mermaid + glossary: two solo-factory skills on an M5 32 GB, mlx-audio 0.6.6. solo:tts: VoxCPM2 4-bit default (2.3 GB, peak 5.2-5.9 GB, RTF 0.56-0.75, 48 kHz, 30 langs, clean en/tr/ru from a 25-27 s clip), ZONOS3-Mini (RTF 0.17-0.29, copies reference pauses, garbles cross-language), Shtorm-VoxCPM2-RU (+ stress marks); hiss fix = 13-15 kHz low-pass + DeepFilterNet 3; ffmpeg anullsrc+concat made output 8-bit (-46 dB hiss); reference noise floor carries over (-52 dB in, -50 out). solo:talk: one process as a Claude Code channel: Silero VAD, 0.25 s pause, smart-turn v3.2 (8 MB, 11/12 labelled English), GigaAM v3 int8 (Russian; 10.4% vs Whisper large-v3 18% per Sber) or Parakeet v3, VoxCPM2 reply; 0.50-0.54 s end of speech to the session, first audio 1.0-1.6 s; half duplex or --barge-in; say capped at 120 chars after the first live run read paragraphs; attach mode via Monitor for an already open session. Speech-to-speech models (Haru-4B, Moshi) 10+ GB froze the laptop"
+index_line: "Post, 2 mermaid + glossary: two solo-factory skills on an M5 32 GB, mlx-audio 0.6.6. solo:tts: VoxCPM2 4-bit default (2.3 GB, peak 5.2-5.9 GB, RTF 0.56-0.75, 48 kHz, 30 langs, clean en/tr/ru from a 25-27 s clip), ZONOS3-Mini (RTF 0.17-0.29, copies reference pauses, garbles cross-language), Shtorm-VoxCPM2-RU (+ stress marks); hiss fix = 13-15 kHz low-pass + DeepFilterNet 3; ffmpeg anullsrc+concat made output 8-bit (-46 dB hiss); reference noise floor carries over (-52 dB in, -50 out). solo:talk: one process as a Claude Code channel: Silero VAD, 0.25 s pause, smart-turn v3.2 (8 MB, 11/12 labelled English), GigaAM v3 int8 (Russian; 10.4% vs Whisper large-v3 18% per Sber) or Parakeet v3, VoxCPM2 reply; 0.50-0.54 s end of speech to the session, first audio 1.0-1.6 s; half duplex or --barge-in; say capped at 120 chars after the first live run read paragraphs; attach mode via Monitor for an already open session. Cartesia sonic-3.6 as an optional mouth (only text leaves): first audio 0.66 s vs RTF 2.0-2.6 local under load, 1.9 GB process, 4/4 read-backs vs 2/4, cleaner by ear. Speech-to-speech models (Haru-4B, Moshi) 10+ GB froze the laptop"
 ---
 
 # A local voice for the agent: voice cloning on a Mac, and talking to Claude Code with nothing uploaded
@@ -31,7 +31,7 @@ or recording leaving the machine:
 | Clone quality | clean in en, tr, ru from a 25 s phone clip and a 27 s mic test (read back by Whisper almost word for word) |
 | Speed of the default model | 0.56-0.75 s of compute per second of speech, peak 5.9 GB |
 | End of your sentence → text in the session | **0.50-0.54 s** |
-| Agent's `say` → first sound | 1.0-1.6 s |
+| Agent's `say` → first sound | 1.0-1.6 s local; 0.66 s with Cartesia as the mouth |
 | What it costs | nothing per call; models are Apache-2.0 / MIT |
 
 Install: `claude plugin marketplace add https://github.com/fortunto2/solo-factory` and
@@ -157,6 +157,29 @@ the session how much it cut, so the details go into the text on screen.
   local HTTP service and listens through the Monitor tool. Channels cannot be added to an open
   session, and this needs no restart. Ready in 18 seconds on a busy machine, 0.75 s lag on a
   finished turn.
+
+## Local or Cartesia for the mouth
+
+The mouth is swappable: `--tts cartesia --cartesia-voice <id>` speaks through Cartesia Sonic 3.6
+instead of the local model. Only the agent's text leaves the Mac; my voice is still transcribed
+locally. Same five lines, the same cloned voice (cloned in Cartesia from the same consenting
+clip), on the M5 with a load average of 5 to 10 from other agents:
+
+| | local VoxCPM2 4-bit | Cartesia sonic-3.6 |
+|---|---|---|
+| `say` → first audio | 1.0-1.6 s idle; RTF 2.0-2.6 under this load | 0.66 s (first bytes 0.29-0.79 s) |
+| ready | 8 s warm, 18 s loaded | 6 s |
+| memory of the voice process | the model alone peaks at 5.9 GB | 1.9 GB in all |
+| read back by GigaAM / Parakeet, 4 lines | 2 verbatim: «Готово, открытых» dropped, "Done" heard as "Then" | 4 verbatim |
+| leaves the Mac | nothing | the agent's text |
+| cost | none | API credits |
+
+By ear the Cartesia clips also sounded cleaner, as if recorded at a higher quality. The local
+model is not bad in principle: on an idle machine it ran at RTF 0.56-0.75 and read back clean. But
+a laptop running a dozen agents is rarely idle, and the API does not care. So Cartesia is the mouth
+while the [[cartesia|startup-grant credits]] last, and local stays for offline work and for replies
+that should not reach a third party. One thing to check before personal text goes through any
+voice API: its data-use setting.
 
 ## What did not work
 
