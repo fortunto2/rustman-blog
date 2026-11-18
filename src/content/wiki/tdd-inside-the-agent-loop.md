@@ -4,8 +4,8 @@ title: "TDD inside the agent loop: a red test the agent saw proves only that it 
 description: "Birgitta Böckeler's August 2026 eval found that telling a coding agent to run its own TDD loop cost 3 to 8 times the tokens and produced no better design, tests or mutation scores, so the test needs an owner other than the implementing agent and the suite needs mutation testing."
 created: 2026-10-27
 tags: [tdd, testing, agents, harness, sensors, mutation-testing, methodology]
-course_module: 3
-course_order: 5
+course_module: 6
+course_order: 4
 publish: true
 source_url: "https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html"
 learned_from: "https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html"

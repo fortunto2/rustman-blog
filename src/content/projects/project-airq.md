@@ -5,8 +5,6 @@ title: "airq — CLI air quality checker"
 created: 2026-03-16
 tags: [project, open-source, rust, air-quality, cli, wasm]
 project_type: tool
-course_module: 7
-course_order: 4
 publish: true
 source_url: "https://github.com/fortunto2/airq"
 crate: airq

@@ -5,6 +5,8 @@ title: "Edit video with an AI assistant: a day of footage to a film"
 description: "How I cut nine days in Chicago into films by talking to Claude: the app analyses every clip and finds the beat, the assistant builds the cut, I keep the creative calls. Free desktop app, setup for non-programmers."
 created: 2026-10-18
 tags: [creative, video, montage, guide]
+course_module: 7
+course_order: 5
 publish: true
 tools: [life2film-studio, life2film-engine, solo-video-edit, solo-transcribe]
 index_line: "Edit video with Claude: Life2Film Studio + MCP, nine Chicago days to films, beat-cut montage, subtitles, rules learned on bad cuts. Guide for non-programmers"

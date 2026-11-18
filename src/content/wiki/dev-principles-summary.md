@@ -1,11 +1,11 @@
 ---
 type: summary
-description: "993-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS,..."
+description: "1,012-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS,..."
 title: "Universal Development Principles — every project, any stack"
 created: 2026-04-07
 updated: 2026-10-27
 tags: [dev-principles, tdd, ddd, solid, clean-arch, sgr, agents, methodology]
-course_module: 3
+course_module: 6
 course_order: 1
 publish: true
 source_path: "1-methodology/dev-principles.md"
@@ -14,15 +14,15 @@ index_line: "Dev Principles (1-methodology/dev-principles.md). SOLID, TDD, DDD, 
 
 ## Key Takeaways
 
-993-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS, TDD (when/when not), DDD (bounded contexts, aggregates, ubiquitous language), Clean Architecture (deps point inward).
+1,012-line reference document applied to every project regardless of stack. Injected into PRDs during generation. Covers: SOLID, DRY (but Rule of Three), KISS, TDD (when/when not), DDD (bounded contexts, aggregates, ubiquitous language), Clean Architecture (deps point inward).
 
 **CLI-first testing:** every project has CLI mirroring core logic. CLI uses same modules as UI (DRY). Must work without LLM/network. `make integration` — mandatory Makefile target. If logic works through CLI, it doesn't depend on UI framework.
 
 **SGR (Schema-Guided Reasoning):** schemas → logic → UI, never the reverse. Agent must read `Models/schemas/types/` before any work. SGR is the technical implementation of DDD: bounded context = separate schemas, aggregate = root schema, ubiquitous language = field names and enums.
 
-**Agent self-discipline:** drift detector (task queue mode, report mode, permission mode, amnesia, scope creep), complexity thresholds (function >150 lines → split, module >1000 → split, CLAUDE.md >40k chars → trim, plan >15 tasks → split tracks). Evolution = commit: iteration without commit = not an iteration.
+**Agent self-discipline:** drift detector (task queue mode, report mode, permission mode, amnesia, scope creep), complexity thresholds (function >150 lines → split, module >1000 → split, CLAUDE.md over ~200 lines → trim, plan >15 tasks → split tracks). Evolution = commit: iteration without commit = not an iteration.
 
-**Memory hierarchy:** user → rules → auto-memory → project chain. 40k char budget. CLAUDE.md is a map, not an encyclopedia. Conditional rules with `paths:` for domain content.
+**Memory hierarchy:** user → rules → auto-memory → project chain. Keep CLAUDE.md under ~200 lines: a map, not an encyclopedia. The author cut always-loaded rules from 37.7 KB to 16 KB ([[claude-5-5-effort-and-cost]]). Conditional rules with `paths:` for domain content.
 
 **Shared infra:** Supabase Auth (all platforms), Stripe/StoreKit/Play Billing, Resend + React Email, Zod/Pydantic validation at boundaries.
 
@@ -30,7 +30,7 @@ index_line: "Dev Principles (1-methodology/dev-principles.md). SOLID, TDD, DDD, 
 
 **Agent-readable content:** markdown for agents (Cloudflare), `/llms.txt` discovery file, `Content-Signal` header.
 
-**Claude prompting** (rules written for Opus 4.6): no ALL-CAPS pressure, explain WHY not just WHAT, positive framing over prohibitions, no anti-patterns in examples, tone table for calibration.
+**Claude prompting** (first written for Opus 4.6; see [[claude-5-5-effort-and-cost]] for the Claude 5 models): no ALL-CAPS pressure, explain WHY not just WHAT, positive framing over prohibitions, no anti-patterns in examples, tone table for calibration.
 
 ## What others found since (Oct 2026)
 

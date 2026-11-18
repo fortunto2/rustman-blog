@@ -9,8 +9,8 @@ project_type: app
 price: 0
 price_currency: USD
 offer_url: "https://visayes.app"
-course_module: 7
-course_order: 8
+course_module: 8
+course_order: 4
 publish: true
 source_url: "https://visayes.app"
 github: fortunto2/visa-photo

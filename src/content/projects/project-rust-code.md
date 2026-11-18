@@ -5,8 +5,8 @@ title: "rust-code — AI terminal coding agent in Rust"
 created: 2026-03-15
 tags: [project, open-source, rust, agents, tui, mcp]
 project_type: library
-course_module: 7
-course_order: 6
+course_module: 8
+course_order: 7
 publish: true
 source_url: "https://github.com/fortunto2/rust-code"
 crate: sgr-agent
@@ -37,7 +37,7 @@ An alternative to Claude Code, built for my workflow:
 
 > "With agents, the more typed and strict the language, the better. Python is for humans — but IDEs aren't needed anymore."
 
-Also contains **sgr-agent** crate (v0.6.1) — the core library for building any Rust SGR agent. Structured output, function calling, agent loop, 3 agent variants.
+Also contains **sgr-agent** crate (v0.7) — the core library for building any Rust SGR agent. Structured output, function calling, agent loop, 3 agent variants.
 
 ## Usage
 

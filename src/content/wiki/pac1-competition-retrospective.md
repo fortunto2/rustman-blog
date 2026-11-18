@@ -5,6 +5,8 @@ description: "Personal retrospective on BitGN PAC1 challenge: scoring 17/104 liv
 created: 2026-04-13
 github: fortunto2/agent-bit
 tags: [agents, competition, rust, retrospective, sgr, benchmarks]
+course_module: 4
+course_order: 4
 publish: true
 index_line: "PAC1 retrospective: $250 spent, 17→74/104, architecture deep dive, Mermaid diagrams"
 feed: true

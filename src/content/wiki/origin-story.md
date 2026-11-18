@@ -1,6 +1,6 @@
 ---
 type: concept
-description: "Started Life2Film in 2014: help people turn everyday moments into meaningful stories. Not just videos — a way to reflect on life. Technology wasn't ready, pe..."
+description: "Started Life2Film in 2014 to help people turn everyday moments into stories; closed the first version in 2021 because the technology was not ready, and rebuilt it in 2026 on AI that finally is. The personal why behind the method."
 title: "Origin story — Life2Film to SuperDuperAI, second mountain"
 created: 2026-04-07
 source_path: "0-principles/manifest-my.md"
@@ -11,9 +11,9 @@ publish: true
 index_line: "Life2Film → SuperDuperAI, second mountain, products from life. `personal`"
 ---
 
-Started Life2Film in 2014: help people turn everyday moments into meaningful stories. Not just videos — a way to reflect on life. Technology wasn't ready, people weren't ready, I wasn't ready. Closed in 2021.
+Started Life2Film in 2014: help people turn everyday moments into meaningful stories. Not just videos — a way to reflect on life. Technology wasn't ready, people weren't ready, I wasn't ready. The first version closed in 2021.
 
-A decade later, AI matured. SuperDuperAI isn't a new beginning — it's the second chapter. Every product is a step toward the original vision: **tools that help people reflect, create, and own their narrative.**
+A decade later, AI matured. SuperDuperAI isn't a new beginning — it's the second chapter. Every product is a step toward the original vision: **tools that help people reflect, create, and own their narrative.** And in 2026 the vision came back home: Life2Film itself is rebuilt, the iPhone app is live, and since November it is the one product I work on ([[project-life2film]]).
 
 David Brooks' "second mountain": first mountain is success, achievement, money. Second mountain is meaning, contribution, legacy. I see the second one now.
 

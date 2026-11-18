@@ -4,8 +4,8 @@ title: "Writing effective CLAUDE.md files"
 description: "Patterns for writing agent instruction files. Karpathy's 4 principles (197k stars, #24 all-time), our hierarchical approach, what works, what doesn't. Quality Gate, progressive disclosure, refs over inline."
 created: 2026-04-14
 tags: [agents, context-engineering, methodology, claude-code]
-course_module: 4
-course_order: 3
+course_module: 2
+course_order: 4
 publish: true
 index_line: "How to write effective CLAUDE.md: Karpathy 4 principles (197k stars, #24 all-time on GitHub), hierarchical approach, Quality Gate, drift detection, what works and what doesn't"
 ---
@@ -33,10 +33,12 @@ These are good defaults. But they're generic. A project-specific CLAUDE.md needs
 We use a 3-level hierarchy that Claude Code loads automatically:
 
 ```
-~/.claude/CLAUDE.md              (56 lines)  — who I am, stack, coding style
-~/startups/CLAUDE.md             (61 lines)  — workspace navigation
-~/startups/solopreneur/CLAUDE.md (287 lines) — KB commands, wiki, CRM, search
+~/.claude/CLAUDE.md              (129 lines) — who I am, stack, coding style
+~/startups/CLAUDE.md             (63 lines)  — workspace navigation
+~/startups/solopreneur/CLAUDE.md (408 lines) — KB commands, wiki, CRM, search
 ```
+
+The project file is far over the ~100-line rule below (it has grown with the KB); the detail should move into linked files.
 
 Each level adds context. Global is terse (language, stack, methodology). Workspace is routing ("each subdirectory has its own CLAUDE.md"). Project is detailed (every make command, search tools, conventions).
 
@@ -65,7 +67,7 @@ Ref: `~/startups/solopreneur/solo-factory/templates/principles/dev-principles.md
 ```markdown
 ## Essential Commands
 make idea T="Your idea"    # Capture idea
-make search Q="query"      # Semantic search
+make wiki-search Q="query" # BM25 over the wiki
 make wiki-lint             # Health check
 ```
 

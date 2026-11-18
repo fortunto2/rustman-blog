@@ -4,13 +4,14 @@ import { SITE } from '../lib/config';
 import { getAllContent } from '../lib/content';
 
 const MODULE_META: Record<number, { title: string; description: string; outcome: string }> = {
-  1: { title: 'Mindset & Decisions', description: 'Why build solo, how to bet on many small products, and how to decide without agonising.', outcome: 'Personal manifesto written. One real decision run through STREAM. Kill/iterate/scale thresholds set.' },
-  2: { title: 'Validation & Launch', description: 'From niche to a live product with traffic in days. A hackathon is the cheapest jury there is.', outcome: 'One niche scored via S.E.E.D. Fake-door test run. Go/kill decision made.' },
-  3: { title: 'Engineering Foundations', description: 'Schemas first, a CLI mirror for every project, privacy by design, one cookieless counter, one deploy target.', outcome: 'Project scaffolded from a stack template, tested through its CLI, measured and deployed.' },
-  4: { title: 'Harness Engineering', description: 'The core of the course: the environment the agent works in. CLAUDE.md, context, rules, sensors that check its work, cost.', outcome: 'Harness tuned on a real repo: CLAUDE.md trimmed, a stop gate that blocks on red, one agent mistake turned into a rule.' },
-  5: { title: 'Memory, Skills & Tools', description: 'What the agent remembers, which capabilities it loads, how it calls tools, and when a cheaper model can do the reading.', outcome: 'Memory chosen by the queries you actually run. One custom skill written and used on a real task.' },
-  6: { title: 'Measuring Agents', description: 'Benchmarks, evals with a baseline arm, and what competitions showed about the agents that win.', outcome: 'One eval run with and without your plugin, and a number for what the plugin adds.' },
-  7: { title: 'Case Studies', description: 'Real projects built with the method. Each one: problem, approach, result, lessons.', outcome: 'Your own project shipped end-to-end using the methodology.' },
+  1: { title: 'Mindset & Decisions', description: 'Why build solo, and why a portfolio of small bets instead of one big one.', outcome: 'Your own reason written down, and a barbell: what pays the bills, what is the bet.' },
+  2: { title: 'Harness Engineering', description: 'Set up the environment the agent works in, step by step: Claude Code from zero, CLAUDE.md, sensors and a stop gate that blocks on red, sandboxing, what it costs.', outcome: 'A harness on a real repo: CLAUDE.md under 200 lines, a turn that cannot end red, one agent mistake turned into a rule.' },
+  3: { title: 'Memory, Skills & Tools', description: 'Working with agents day to day: what they remember across sessions, which skills they load, how they search, and when a cheaper model can do the reading.', outcome: 'Memory chosen by the questions you actually ask. One skill of your own used on a real task.' },
+  4: { title: 'Measuring Agents', description: 'Benchmarks, evals with a baseline arm, and what competitions showed, including the gap between a dev set and the real run.', outcome: 'One eval run with and without your change, and a number for what it adds.' },
+  5: { title: 'What to Build: Validation & Launch', description: 'Which projects are worth building: score a niche, one pain and one feature, a launch test before the code, weekly kill / iterate / scale. A hackathon is the cheapest jury there is.', outcome: 'One niche scored, one launch test run, a go or kill decision with a date.' },
+  6: { title: 'Engineering Foundations', description: 'How the projects get built: schemas first, a CLI mirror for every project, tests at agreed seams, privacy by design, one deploy target.', outcome: 'A project built and tested through its CLI, and deployed.' },
+  7: { title: 'Promotion', description: 'Getting the product seen and measured: search engines and AI agents reading your site, your own cookieless analytics, YouTube from the terminal, one video shipped to four channels, editing video with an AI assistant.', outcome: 'A site indexed and readable by agents, visitors counted without cookies, one video published everywhere.' },
+  8: { title: 'Case Studies', description: 'The company and its projects, the current focus first: Life2Film. What each one is, how it was made, what it taught, including the ones that did not work.', outcome: 'Your own project shipped end to end with the method.' },
 };
 
 // Build course from frontmatter course_module + course_order
@@ -40,7 +41,7 @@ const totalLessons = modules.reduce((acc, m) => acc + m.items.length, 0);
 <BaseLayout title="Course: AI Solopreneur Engineer" description={`From philosophy to production: ${modules.length} modules, ${totalLessons} lessons.`}>
   <div class="mb-10">
     <h1 class="text-2xl font-bold mb-2 font-mono prompt">AI Solopreneur Engineer</h1>
-    <p class="text-[var(--color-muted)] mb-4">{modules.length} modules, {totalLessons} lessons. Build AI products solo — principles, frameworks, tools, and real projects.</p>
+    <p class="text-[var(--color-muted)] mb-4">{modules.length} modules, {totalLessons} lessons. The path I took: a harness around coding agents, then working with them, then what to build, how to build it and how to promote it. Each lesson is a post; the course is the order to read them in.</p>
     <p class="text-sm text-[var(--color-muted)]">Powered by <a href="/projects/project-solo-factory/" class="link-muted hover:underline">solo-factory</a> — a Claude Code plugin that implements this methodology as executable skills.</p>
   </div>
 

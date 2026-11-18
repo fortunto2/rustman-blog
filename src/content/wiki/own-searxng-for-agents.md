@@ -5,6 +5,8 @@ description: "How to run SearXNG with a Tavily-compatible adapter in Docker, plu
 created: 2026-11-04
 updated: 2026-11-05
 tags: [searxng, web-search, mcp, claude-code, docker, self-hosting, cloudflare, agents]
+course_module: 3
+course_order: 8
 publish: true
 feed: true
 github: fortunto2/searxng-docker-tavily-adapter

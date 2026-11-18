@@ -1,22 +1,22 @@
 ---
 type: concept
 title: "Agent-Bit: building a PAC1 competition agent in Rust"
-description: "How we built a CRM agent scoring 93% on BitGN PAC1 benchmark using sgr-agent framework, ONNX classifiers, pipeline state machine, and 14 reusable tools. Architecture, lessons learned, tool design principles."
+description: "How we built a CRM agent scoring 93% on the BitGN PAC1 43-task dev set using sgr-agent framework, ONNX classifiers, pipeline state machine, and 14 reusable tools. Architecture, lessons learned, tool design principles."
 created: 2026-04-12
 github: fortunto2/agent-bit
 tags: [agents, competition, sgr, rust, tools, benchmarks, onnx, pipelines, crm]
-course_module: 6
-course_order: 5
 publish: true
-index_line: "Agent-Bit: PAC1 competition agent in Rust. SGR pipeline, 14 tools, FileBackend trait, 95.3% on Nemotron"
+index_line: "Agent-Bit: PAC1 competition agent in Rust. SGR pipeline, 14 tools, FileBackend trait, dev 41/43; prod 17/104 on the day, 74 after a rebuild, best 81/104 (Haiku 4.5)"
 feed: true
 ---
 
-# Agent-Bit: 93% on PAC1 with a Rust agent framework
+# Agent-Bit: 93% on the PAC1 dev set with a Rust agent framework
 
 We built a CRM agent for the [BitGN PAC1 Challenge](https://bitgn.com) — a benchmark where an AI agent manages a virtual workspace: reading emails, processing invoices, handling OTP verification, detecting social engineering attacks, and answering CRM queries. 43 tasks, scored automatically by a harness.
 
-**Result: 93% (40/43 tasks) on Nemotron 120B**, a free model via Cloudflare Workers AI.
+**Result on the 43-task dev set: 93% (40/43 tasks) on Nemotron 120B**, a free model via Cloudflare Workers AI.
+
+On the 104 production tasks of the real competition the agent scored 17 on the day and 74 two days later after a rebuild ([[pac1-competition-retrospective]]). Later best runs, per the repo README: Haiku 4.5 81/104, Nemotron and Gemma 67/104 for free.
 
 This post covers the architecture, the sgr-agent framework we built, and the lessons learned.
 
@@ -172,17 +172,18 @@ LLMs produce broken JSON: trailing commas, unquoted keys, missing brackets. `Wri
 
 ### 7. The model matters less than the architecture
 
-| Model | Score | Cost |
-|-------|-------|------|
-| Nemotron 120B (free) | 93% | $0 |
-| GPT-5.4 | 77% | $54/day |
-| MiniMax M2.5 | ~85% | $0.27/M |
+| Set | Model | Score | Cost |
+|-----|-------|-------|------|
+| Dev (43) | Nemotron 120B (free) | 41/43 | $0 |
+| Dev (43) | GPT-5.4 | 41/43 | expensive |
+| Prod (104) | Haiku 4.5 | 81/104 | ~$5 a run |
+| Prod (104) | Nemotron 120B, Gemma 4 26B (free) | 67/104 | $0 |
 
-The cheapest model scored highest because the architecture (pipeline, classifiers, skills, tools) handles 80% of the work. The LLM only needs to make the remaining 20% of decisions.
+On the dev set a free model matched the most expensive one. On production a ~$5 Haiku run beat the free models by 13-15 points, so the model does matter at the margin. Still, the architecture (pipeline, classifiers, skills, tools) does most of the work: the free models reach 65% on it alone.
 
 ## Code
 
-- **agent-bit**: [github.com/fortunto2/agent-bit](https://github.com/fortunto2) (private during competition)
+- **agent-bit**: [github.com/fortunto2/agent-bit](https://github.com/fortunto2/agent-bit) (public)
 - **sgr-agent**: [crates.io/crates/sgr-agent](https://crates.io/crates/sgr-agent) (MIT, public)
 - **sgr-agent-tools**: [crates.io/crates/sgr-agent-tools](https://crates.io/crates/sgr-agent-tools) (MIT, public)
 

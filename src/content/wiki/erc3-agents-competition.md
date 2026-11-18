@@ -4,8 +4,8 @@ title: "ERC3 — Enterprise RAG Challenge 3: AI Agents in Action"
 description: "Agent competition results: simple ReAct + composite tools beats multi-agent. 1st place 100% (Claude Opus, $600), 2nd 62% (GPT o3s-120B on Cerebras, $100). Evolution system, pre-execution validator, wiki rule extraction."
 created: 2026-04-10
 tags: [agents, competition, rag, sgr, structured-output, tools, benchmarks]
-course_module: 6
-course_order: 4
+course_module: 4
+course_order: 3
 publish: true
 source_url: "https://www.youtube.com/watch?v=vGR5m-PURCc"
 index_line: "ERC3 results: simple ReAct beats multi-agent, composite tools, evolution system 68→100%, pre-execution validator, wiki rule extraction"

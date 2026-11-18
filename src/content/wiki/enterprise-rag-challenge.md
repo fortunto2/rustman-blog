@@ -4,8 +4,6 @@ description: "Enterprise RAG Challenge results: structured outputs beat vector s
 title: "Enterprise RAG Challenge — what actually wins in production RAG"
 created: 2026-04-08
 tags: [rag, agents, structured-output, sgr, competition, patterns]
-course_module: 6
-course_order: 3
 publish: true
 source_url: "https://abdullin.com/erc/"
 index_line: "ERC results: structured outputs beat vector search, top-3 no embeddings, router+SO+CoT patterns win"

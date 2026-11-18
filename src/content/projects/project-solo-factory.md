@@ -1,16 +1,16 @@
 ---
 type: project
-description: "Claude Code plugin with 50+ skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
+description: "Claude Code plugin with 60+ skills, 2 agents, 12 stack templates, MCP portfolio search. Full pipeline: research → validate → scaffold → build → deploy → launch."
 title: "solo-factory — Claude Code plugin for solopreneurs"
 created: 2026-02-01
 tags: [project, open-source, claude-code, plugins, skills, agents]
 project_type: tool
-course_module: 4
-course_order: 10
+course_module: 2
+course_order: 9
 publish: true
 source_url: "https://github.com/fortunto2/solo-factory"
 github: fortunto2/solo-factory
-index_line: "solo-factory: Claude Code plugin, 50+ skills, 2 agents, startup pipeline"
+index_line: "solo-factory: Claude Code plugin, 60+ skills, 2 agents, startup pipeline"
 ---
 
 # Solo Factory
@@ -43,7 +43,7 @@ claude plugin install solo@solo --scope user
 
 ## Skills
 
-64 executable skills in 5 groups: **Analysis** (5) → **Development** (8) → **Mobile & Apple** (7) → **Promotion** (15) → **Utility** (22).
+64 executable skills in 5 groups: **Analysis** → **Development** → **Mobile & Apple** → **Promotion** → **Utility**.
 
 **[Browse all skills →](/skills)** — descriptions, install commands, full SKILL.md source for each.
 
@@ -95,7 +95,7 @@ Without MCP, skills fall back to Glob, Grep, Read, WebSearch — always works.
 The [[harness-engineering-summary|harness]] IS the product:
 
 ```
-skills/          — 57 SKILL.md files (instructions, not code)
+skills/          — 64 SKILL.md files (instructions, not code)
 agents/          — 2 agent definitions (model + role + tools)
 templates/stacks — 12 YAML stack templates
 rules/           — routing, skill locations, AI comments, debugging, sensors

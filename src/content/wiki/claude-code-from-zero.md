@@ -4,11 +4,11 @@ title: "Claude Code from zero: a starter cheat sheet"
 description: "A one-page starter guide to Claude Code for people who do not use agents yet: first half hour, CLAUDE.md versus skills, reports as skills, data and safety rules, and how to keep up with what the agent did."
 created: 2026-10-31
 tags: [guide, claude-code, beginners, skills, claude-md, harness, safety, data, teams]
+course_module: 2
+course_order: 1
 publish: true
 learned_from: "Live demos of Claude Code to people new to agents, 31 Oct 2026; the questions asked in the first hour shaped every section. Session b4b37903-f2f1-4dd2-96bf-ed719180be5c"
-course_module: 4
-course_order: 1
-index_line: "Course module 4, lesson 1: starter guide to Claude Code for non-users, from live demos (31 Oct 2026). First 30 min (cd into the project, `claude`, `/init`, one skill, plan mode Shift+Tab); terminal in five commands; CLAUDE.md = always (≤~500 lines, 9-of-10 test) vs skill = sometimes (a folder, triggered by `description`); reports as one analyst skill + a folder per client, scheduled via `/schedule` or cron + `claude -p`; data = DB + logs joined into a third set, prod read-only, no events = no metric; ads/sales read-only APIs, human approves spend, call transcripts local; research data local (Whisper, Ollama); how not to drown (start from what you know, ask a level lower, decision log + 5-line summary, first answer is a draft, agent misnames methods confidently); team (one inbox for Slack/Teams, visibility, come with a priced proposal, adoption psychology, one champion); code (gh PRs, push/merge with consent, /simplify → /code-review); safety (no keys in context, secrets manager, masking hook, skip-permissions only in a sandbox with a guard hook, trojaned extension 29 Oct 2026, prompt injection, own your files not the account); glossary."
+index_line: "Course module 4, lesson 1: starter guide to Claude Code for non-users, from live demos (31 Oct 2026). First 30 min (cd into the project, `claude`, `/init`, one skill, plan mode Shift+Tab); terminal in five commands; CLAUDE.md = always (under 200 lines, about 100 is better, 9-of-10 test) vs skill = sometimes (a folder, triggered by `description`); reports as one analyst skill + a folder per client, scheduled via `/schedule` or cron + `claude -p`; data = DB + logs joined into a third set, prod read-only, no events = no metric; ads/sales read-only APIs, human approves spend, call transcripts local; research data local (Whisper, Ollama); how not to drown (start from what you know, ask a level lower, decision log + 5-line summary, first answer is a draft, agent misnames methods confidently); team (one inbox for Slack/Teams, visibility, come with a priced proposal, adoption psychology, one champion); code (gh PRs, push/merge with consent, /simplify → /code-review); safety (no keys in context, secrets manager, masking hook, skip-permissions only in a sandbox with a guard hook, trojaned extension 29 Oct 2026, prompt injection, own your files not the account); glossary."
 ---
 
 # Claude Code from zero
@@ -58,7 +58,7 @@ Why the terminal and not the desktop app: you always see which folder and whose 
 
 ## CLAUDE.md and skills
 
-- **CLAUDE.md** is what the agent needs *always*: who you are, what the project is, hard rules ("talk to me in Russian, write code and docs in English", "never touch raw-data/"). It is read in every conversation, so keep it short, within ~500 lines.
+- **CLAUDE.md** is what the agent needs *always*: who you are, what the project is, hard rules ("talk to me in Russian, write code and docs in English", "never touch raw-data/"). It is read in every conversation, so keep it short: under 200 lines (Anthropic's guidance), and about 100 is better, a table of contents with the detail in linked files.
 - **A skill** is what it needs *sometimes*: a procedure for one kind of task, loaded only when that task comes up, so it can be detailed.
 - The files stack: `~/.claude/CLAUDE.md` for every project, one at the repository root, more in subfolders. `/memory` shows what is loaded right now. In a team, CLAUDE.md is code: it lives in git and gets reviewed.
 

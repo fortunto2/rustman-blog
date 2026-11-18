@@ -1,20 +1,22 @@
 ---
 type: project
-description: "AI platform that turns everyday moments into meaningful montages. Rust core (video-analyzer, 11 crates), mobile-first, WASM for web. The original dream since 2014; the first, web version had 1M+ registrations by 2021."
+description: "AI platform that turns everyday moments into meaningful montages. Rust core (video-analyzer, 18 crates), an iPhone app live since August 2026 and Life2Film Studio, an agent-first video editor for Mac. The original dream since 2014; the first, web version had 1M+ registrations by 2021."
 title: "Life2Film — turn everyday moments into meaningful montages"
 created: 2014-01-01
 tags: [creative, project, ios, life2film, video, ai, montage, flagship, rust, wasm]
 project_type: app
-course_module: 7
-course_order: 1
+course_module: 8
+course_order: 2
 publish: true
 source_url: "https://life2film.com"
-index_line: "Life2Film: the original dream (2014), video montage with on-device AI, rebuilding v2"
+index_line: "Life2Film: the original dream (2014), video montage with on-device AI; iOS live since 13 Aug 2026, Studio for Mac 0.4 (agent-first editor), the one product I work on since 14 Nov 2026; Rust core 18 crates"
 ---
 
 # Life2Film
 
 AI platform that automatically creates beautiful films from your everyday videos — selecting worthy moments, matching music, preserving memories and emotions.
+
+**Status, November 2026:** Life2Film is the one product I work on (since 14 November). The iPhone app is live, Life2Film Studio for Mac is the agent-first editor where Claude reads the film and proposes cuts, and my own travel films are cut with it: [[creative-video-with-claude]], [[creative-video-agent-cut]].
 
 > "Start collecting experiences, not money. You are the sum of your experiences... Only your memories and impressions don't lose their value"
 
@@ -34,7 +36,7 @@ AI watches your videos, finds the best moments, adds music, and creates a film. 
 
 ## Architecture
 
-**Core: video-analyzer** — Rust workspace with 11 crates. Frame-level video analysis engine:
+**Core: video-analyzer** — Rust workspace with 18 crates. Frame-level video analysis engine; the main ones:
 
 | Crate | What it does |
 |-------|-------------|
@@ -44,7 +46,9 @@ AI watches your videos, finds the best moments, adds music, and creates a film. 
 | `va-features` | Visual features, quality scoring |
 | `va-director` | AI montage decisions, story structure |
 | `va-project` | Project management, export |
-| `va-audio-library` | Music matching, mood detection |
+| `va-studio-ffi` | What the native Studio window reads from the core: a timeline in film time |
+| `va-clap-host` | Runs a CLAP audio plugin offline: a WAV in, a WAV out |
+| `va-afm` | Apple's on-device foundation model as an LLM client |
 | `va-stt` | Speech-to-text |
 | `va-otio` | OpenTimelineIO integration |
 | `va-wasm` | WebAssembly build for browser |
@@ -83,10 +87,10 @@ Started in 2014 as a website. The first version, a website, passed 1M registrati
 
 ## Stack
 
-- **Core:** Rust (video-analyzer workspace, 11 crates)
+- **Core:** Rust (video-analyzer workspace, 18 crates)
 - **Mobile:** Swift (iOS), Kotlin (Android planned)
-- **Web:** WASM (va-wasm) + Next.js
-- **Desktop:** Dioxus (Rust) or native Swift
+- **Mac:** Life2Film Studio, a native app over the Rust core (`va-studio-ffi`)
+- **Web:** the earlier WASM version is retired; `va-wasm` stays in the engine
 - **AI:** on-device where possible ([[apple-on-device-ai]])
 
 ## Links
@@ -97,7 +101,7 @@ Started in 2014 as a website. The first version, a website, passed 1M registrati
 - [life2film.com](https://life2film.com)
 - [About — full vision](https://life2film.com/about) — Life Calendar, ecosystem, Fractal Hypervideo
 - [[origin-story]] — the personal story behind Life2Film
-- [[project-superduperai]] — the studio rebuilding the dream
+- [[project-superduperai]] — the company behind it
 - [[privacy-as-architecture]] — on-device video processing, your memories stay yours
 - [[filmcraft-agent-built-editor]] — an open Premiere-class editor written by agents in a month; why breadth is no longer the moat and judgment is
 - [[weviscut-script-to-video-agent]] — Tencent's open 9B editing agent: one tool call per step over a shared state, and training data recovered from finished videos

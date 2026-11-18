@@ -5,7 +5,7 @@ title: "Agent mistake → fix the harness, not the prompt"
 created: 2026-04-07
 updated: 2026-10-27
 tags: [harness, agents, methodology, debugging]
-course_module: 4
+course_module: 2
 course_order: 5
 publish: true
 source_path: "1-methodology/harness-engineering.md"
@@ -14,11 +14,12 @@ index_line: "Core harness loop: agent mistake → fix CLAUDE.md/linter/test. Rat
 
 The single most important principle from harness engineering: when an AI agent makes a mistake, **don't fix the prompt or try a better model**. Fix the environment.
 
-Three mechanisms, escalating in robustness:
+Four mechanisms, escalating in robustness:
 
 1. **CLAUDE.md** — for simple problems (wrong commands, wrong APIs). One line per bad behavior. "Each line in that file is based on a bad agent behavior, and it almost completely resolved them all." — Hashimoto
 2. **Linters with remediation** — custom linters whose error messages contain instructions the agent can follow. Not just "error on line 5" but "fix by doing X."
 3. **Structural tests** — ArchUnit-style checks that validate dependency direction, file sizes, naming conventions. Automated guardrails, not manual review.
+4. **Sensors in hooks** — what the author actually runs. A syntax check on every edit (under a second) and an end-of-turn gate (lint, types, tests) that will not let the turn end while the receipt is red. Measured against planted defects, it caught 11 of 24, so a green receipt means "passed", not "correct". See [[harness-engineering-summary]].
 
 This creates a **ratchet**: mistakes can only happen once. Each failure permanently improves the harness. Over time, the repository becomes a progressively better environment for agents.
 

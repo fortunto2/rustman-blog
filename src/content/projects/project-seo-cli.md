@@ -7,7 +7,7 @@ tags: [project, open-source, python, cli, seo, analytics]
 project_type: tool
 updated: 2026-10-27
 course_module: 7
-course_order: 7
+course_order: 1
 publish: true
 source_url: "https://github.com/fortunto2/seo-cli"
 pypi: seo-cli

@@ -4,6 +4,8 @@ title: "YouTube channels from the terminal: upload and manage with the Data API"
 description: "How to upload to and manage several YouTube channels from a script with the YouTube Data API v3: Desktop OAuth client, one token per channel, the 10,000-unit daily quota, private-by-default uploads, and the 7-day token trap."
 created: 2026-11-07
 tags: [youtube, cli, oauth, api, video, agents]
+course_module: 7
+course_order: 3
 publish: true
 learned_from: "session 2026-11-07, OAuth Testing to Production; yt_upload.py and the youtube-publish skill"
 index_line: "How-to: upload/manage YouTube channels from terminal via Data API v3 (one Python script, OAuth Desktop client, --account NAME = token file per brand channel). Quota 10000 units/day, upload 1600 = 5-6 per day, reset midnight Pacific; unaudited API project uploads land private. Key trap: OAuth app in Testing = refresh token dies in 7 days; fix = Publish app after Branding"

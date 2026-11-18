@@ -6,8 +6,8 @@ description: "5D workflow (Discovery→Decision→Design→Delivery→Distributi
 created: 2026-02-11
 updated: 2026-02-11
 tags: [methodology, launch, validation, niche, metrics, playbook]
-course_module: 2
-course_order: 1
+course_module: 5
+course_order: 3
 publish: true
 source_path: "1-methodology/launch-playbook.md"
 related:

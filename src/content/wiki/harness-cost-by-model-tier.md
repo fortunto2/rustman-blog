@@ -4,7 +4,7 @@ title: "When a behavioral harness pays: continuously for a cheap model, once for
 description: "Naresh Jain built the same API service 10 times per condition: a behavioral harness lifted GPT-6 Luna from 3 to 10 accepted runs and made it 33% cheaper than unharnessed GPT-6 Sol, while for Sol it cost about 7 times more and changed nothing."
 created: 2026-10-27
 tags: [harness, sensors, verification, cost, cheap-models, delegation, contracts]
-course_module: 4
+course_module: 2
 course_order: 8
 publish: true
 source_url: "https://martinfowler.com/articles/are-harnesses-worth-the-cost.html"

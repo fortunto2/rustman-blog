@@ -6,8 +6,8 @@ index_line: "superduper-analytics, replaced PostHog 2026-10-26. One Worker inges
 created: 2026-10-27
 tags: [analytics, privacy, cloudflare, attribution, ios, android, web, metrics]
 learned_from: "https://github.com/fortunto2/superduper-analytics"
-course_module: 3
-course_order: 7
+course_module: 7
+course_order: 2
 publish: true
 ---
 

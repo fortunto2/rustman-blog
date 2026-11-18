@@ -5,8 +5,6 @@ title: "Context engineering — context as code"
 created: 2026-04-07
 updated: 2026-10-27
 tags: [context, agents, claude-md, progressive-disclosure, harness]
-course_module: 4
-course_order: 4
 publish: true
 source_path: "1-methodology/harness-engineering.md"
 index_line: "Context as code: CLAUDE.md as TOC (~100 lines), progressive disclosure, dynamic context via CDP"

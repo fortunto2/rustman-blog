@@ -5,8 +5,8 @@ title: "openai-oxide — idiomatic Rust client for OpenAI API"
 created: 2026-03-01
 tags: [project, open-source, rust, openai, api-client, crate]
 project_type: library
-course_module: 7
-course_order: 5
+course_module: 8
+course_order: 6
 publish: true
 source_url: "https://github.com/fortunto2/openai-oxide"
 crate: openai-oxide

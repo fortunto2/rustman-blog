@@ -95,7 +95,7 @@ Pipeline-oriented tools that chain multi-step workflows. Skills read previous ou
 
 **vs solo-factory:** Superpowers focuses on the development workflow (plan → code → test → review). solo-factory covers the full product lifecycle (research → validate → scaffold → build → deploy → launch → promote). Superpowers has better cross-platform support; solo-factory has business/marketing skills. Complementary — use Superpowers for code quality, solo-factory for product strategy.
 
-**solo-factory** — 50+ executable skills (the phase counts below are from the 30-skill version):
+**solo-factory** — 64 executable skills (the phase counts below are from the 30-skill version):
 - **Analysis** (5): `/research`, `/swarm`, `/validate`, `/stream`, `/you2idea-extract`
 - **Development** (6): `/scaffold`, `/setup`, `/plan`, `/build`, `/deploy`, `/review`
 - **Promotion** (11): `/launch`, `/landing-gen`, `/content-gen`, `/video-promo`, `/reddit`, `/seo-audit`...

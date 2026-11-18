@@ -4,8 +4,8 @@ description: "Every project should have a CLI utility that mirrors the core busi
 title: "CLI-first testing — every project gets a CLI mirror"
 created: 2026-04-07
 tags: [testing, cli, integration, tdd, methodology]
-course_module: 3
-course_order: 4
+course_module: 6
+course_order: 3
 publish: true
 source_path: "1-methodology/dev-principles.md"
 index_line: "Every project gets CLI mirror. `make integration` mandatory. If it works from CLI, it's decoupled"

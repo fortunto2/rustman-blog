@@ -5,8 +5,8 @@ description: "Jev (TypeSafe AI) is a non-autoregressive 'System One' model: unst
 created: 2026-09-20
 updated: 2026-10-27
 tags: [structured-output, classification, non-autoregressive, calibration, rlcd, open-weights, local-models, llm]
-course_module: 3
-course_order: 3
+course_module: 6
+course_order: 7
 publish: true
 index_line: "Jev (TypeSafe): non-autoregressive System One model — typed decisions (Choice/Score/Noul) with calibrated probabilities, one parallel pass, 70-500ms, $0.042/MTok in + output free, RLCD training. Closed weights. Downloadable reproduction: Laya (Apache 2.0, 322-421M). Measured on M5: 10/12 EN+RU smoke (RU weaker), Core ML GPU 13.7ms/question, ANE refuses; port in ~/startups/active/laya-ane. Six jobs from OC hackathon 21.10.2026: destructive-action gate, agent-output watchdog, scorer + LLM explainer, intent router, feed filter, image judgments; Mike benchmark: JSON-LLM 7/17 confidently wrong, decision models 0"
 ---

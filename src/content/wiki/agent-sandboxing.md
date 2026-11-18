@@ -5,8 +5,8 @@ title: "Agent sandboxing — safe LLM agent execution on Mac"
 created: 2026-02-11
 updated: 2026-10-27
 tags: [agents, security, sandbox, vm, macos, privacy, isolation]
-course_module: 4
-course_order: 9
+course_module: 2
+course_order: 6
 publish: true
 source_path: "1-methodology/agent-sandboxing.md"
 index_line: "Safe LLM agent execution via lightweight VMs. Lima on macOS, project-scoped mounts"
@@ -18,11 +18,11 @@ LLM agents (Claude Code, Codex, Gemini CLI) run with full filesystem access. San
 
 **Why:** `--yolo` without fear (agent can't harm host), privacy control (you decide what agent sees), isolation (agent installs/deletes freely), reproducibility (clean env per project).
 
-**Real case:** Codex reads files outside working directory even WITHOUT `--yolo`. VM is the only reliable way to prevent this.
+**Real case:** Codex reads files outside working directory even WITHOUT `--yolo`. A VM is the strongest isolation against this. Claude Code's native OS sandbox (Seatbelt on macOS, bubblewrap on Linux) is the lighter option; the author uses it for swarm workers in strict mode ([[project-swarm]]).
 
 **Approaches:** Lima/Colima VMs on macOS (Apple Silicon), Docker Desktop (heavier), nsjail (Linux only). Lima recommended: lightweight, mounts project directory read-write, rest of system invisible.
 
-**Pattern:** `lima start agent-sandbox.yaml` → mount project dir → run agent inside → changes sync back to host. Config specifies CPU/RAM limits, network policy, shared directories.
+**Pattern:** `limactl start agent-sandbox.yaml` → mount project dir → run agent inside → changes sync back to host. Config specifies CPU/RAM limits, network policy, shared directories.
 
 ## What others found since (Oct 2026)
 

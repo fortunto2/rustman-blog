@@ -5,8 +5,6 @@ title: "Tool calling internals — four layers from HTTP to parser"
 created: 2026-04-08
 updated: 2026-10-27
 tags: [tool-calling, llm, inference, constrained-decoding, vllm, chat-template, xgrammar]
-course_module: 5
-course_order: 8
 publish: true
 source_url: "https://t.me/neuraldeep/2047"
 index_line: "Tool calling internals: HTTP → Jinja2 chat template → xgrammar constrained decoding → Hermes parser"

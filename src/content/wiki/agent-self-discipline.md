@@ -5,8 +5,6 @@ title: "Agent self-discipline — drift detector and complexity thresholds"
 created: 2026-04-07
 updated: 2026-10-27
 tags: [agents, discipline, drift, complexity, harness, methodology]
-course_module: 4
-course_order: 6
 publish: true
 source_path: "1-methodology/dev-principles.md"
 index_line: "Drift detector (5 anti-patterns), complexity thresholds (150/1000/40k/15), evolution = commit"

@@ -4,8 +4,8 @@ title: "FilmCraft: a Premiere-class editor written by agents in four weeks, and 
 description: "FilmCraft is an open-source video editor in pure Rust with its own decoders, built mostly by Claude agents in under a month. What is real, what is still alpha, and the parts worth taking into an AI-first editor."
 created: 2026-10-26
 tags: [video, rust, agents, open-source, codecs, life2film, mcp]
-course_module: 7
-course_order: 2
+course_module: 8
+course_order: 3
 publish: true
 learned_from: "https://github.com/storytold/filmcraft (v0.13.0, README, ROADMAP.md, docs/agents.md, docs/gaps.md, docs/codec-parity.md, crates/hevc, crates/media), read 26 Oct 2026 after a Threads post"
 index_line: "FilmCraft (storytold, Apache/MIT): pure-Rust NLE, own H.264/HEVC Main10/ProRes/AV1 decoders bit-exact on conformance, 343k lines, 2,424 commits since 30 Sep 2026, ~61% co-authored by Claude, alpha (~56% ready per own roadmap). 650 low-level CLI/MCP commands vs Life2Film's judgment-level tools. Take: isobmff mux (one stsd per track, hev1 needed for camera seams), interchange OTIO to FCPXML/AAF, never-crash and honest-progress agent rules. Risks: Premiere trade dress, codec patents, no real-camera corpus"

@@ -5,7 +5,7 @@ description: "Anthropic's September 2026 commerce blueprint and its engineering 
 created: 2026-09-05
 updated: 2026-10-27
 tags: [agents, skills, subagents, harness, prompt-caching, memory, evals, guardrails, claude, commerce]
-course_module: 5
+course_module: 3
 course_order: 7
 publish: true
 source_url: "https://claude.com/blog/claude-for-commerce-agents"

@@ -4,8 +4,6 @@ title: "Token-efficient web requests — HTTP Accept header trick for agents"
 description: "Reduce agent web request tokens by 80% using content negotiation. Accept: text/markdown header, html2text fallback, truncation strategy."
 created: 2026-04-09
 tags: [agents, tokens, web, optimization, context-engineering, rust]
-course_module: 5
-course_order: 9
 publish: true
 source_url: "https://telegra.ph/Kak-snizit-rashod-tokenov-na-80-pri-veb-zaprosah-03-17"
 index_line: "Reduce agent web tokens 80%: HTTP Accept text/markdown header, html2text fallback, truncation strategy"

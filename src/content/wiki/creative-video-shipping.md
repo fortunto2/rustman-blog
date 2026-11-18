@@ -5,6 +5,8 @@ title: "One film, four doors: YouTube, Reels, Telegram, the archive"
 description: "What I learned getting a month of travel films out from the Mac: HEVC halves the upload, 1440p buys a better YouTube transcode, face-following vertical crops keep 31 of 37 faces, the hook and the cover are picked by eye."
 created: 2026-10-25
 tags: [creative, video, youtube, instagram, ffmpeg]
+course_module: 7
+course_order: 4
 publish: true
 tools: [solo-video-edit, solo-youtube-channel]
 index_line: "Shipping travel films: HEVC master 1.6 vs 3.2 GB, 1440p upload trick, Telegram stays h264, face-following 9:16 (31/37 faces vs 5/37), hand-picked hook, cover with geo badges, outro card, dates in descriptions, archive to iCloud after"

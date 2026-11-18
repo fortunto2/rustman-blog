@@ -30,7 +30,7 @@ OpenAI numbers: 3→7 engineers, ~1M lines, ~1,500 PRs, 3.5 PR/engineer/day, 0 h
 
 Predictions: harness as new service templates, tech stack convergence toward AI-friendliness, topology convergence, two worlds (greenfield with harness vs retrofit on legacy).
 
-**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (50+ skills and 2 agents as feedforward, plus the sensor layer), [solograph](https://github.com/fortunto2/solograph) (portfolio symbol search and session memory over SQLite FTS5), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent). Since 22 October 2026 a task registry ([[harness-registry]], whose move it is on each open topic), and since November two parts still being broken in: the brain ([[company-brain]], agents write back through `capture` and a nightly job reads the logs) and swarm ([[project-swarm]], many workers behind a test gate). Map: [[agent-stack]].
+**Our implementation:** [solo-factory](https://github.com/fortunto2/solo-factory) (64 skills and 2 agents as feedforward, plus the sensor layer), [solograph](https://github.com/fortunto2/solograph) (portfolio symbol search and session memory over SQLite FTS5), [rust-code](https://github.com/fortunto2/rust-code) (AI terminal agent). Since 22 October 2026 a task registry ([[harness-registry]], whose move it is on each open topic), and since November two parts still being broken in: the brain ([[company-brain]], agents write back through `capture` and a nightly job reads the logs) and swarm ([[project-swarm]], many workers behind a test gate). Map: [[agent-stack]].
 
 ## Connections
 

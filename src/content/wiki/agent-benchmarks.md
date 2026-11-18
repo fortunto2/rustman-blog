@@ -1,13 +1,13 @@
 ---
 type: catalog
 title: "Agent benchmarks — how to measure if your coding agent actually works"
-description: "Catalog of coding agent benchmarks: SWE-bench, PinchBench, PAC-1, LongMemEval. What they test, how scoring works, where we participate."
+description: "Catalog of coding agent benchmarks: SWE-bench, PinchBench, PAC-1, LongMemEval. What they test, how scoring works, where we took part."
 created: 2026-04-09
 tags: [agents, benchmarks, evaluation, methodology, tools]
-course_module: 6
+course_module: 4
 course_order: 1
 publish: true
-index_line: "Coding agent benchmarks: SWE-bench, PinchBench, PAC-1 (we participate), LongMemEval. What they test, what they miss"
+index_line: "Coding agent benchmarks: SWE-bench, PinchBench, PAC-1 (we took part, Apr 2026), LongMemEval. What they test, what they miss"
 ---
 
 # Agent Benchmarks
@@ -24,7 +24,7 @@ Benchmarks answer the question: "Does my agent actually work, or does it just lo
 | **SWE-bench ES3** | Extended real-world SWE tasks | Expanded set | % resolved | [swe-bench.github.io](https://swe-bench.github.io/) |
 | **Terminal-Bench 2.0** | Terminal agent tasks (kernel build, git servers, async debug, CTF) | 100 validated | Pass rate (k=5 trials) | [tbench.ai](https://www.tbench.ai/) |
 | **Aider Polyglot** | Code generation across 6 languages incl. Rust | 225 (Exercism) | % passing tests | [github.com/Aider-AI](https://github.com/Aider-AI/aider) |
-| **PAC-1** | Personal & trustworthy agents | 43 tasks | Score / 43 | [bitgn.com/l/pac1-dev](https://bitgn.com/l/pac1-dev) |
+| **PAC-1** | Personal & trustworthy agents | 43 dev / 104 production tasks | Score / 104 | [bitgn.com/l/pac1-dev](https://bitgn.com/l/pac1-dev) |
 | **PinchBench** | LLM as OpenClaw coding agent | 23 tasks, 8 categories | Averaged score | [pinchbench.com](https://pinchbench.com) |
 
 ### SWE-bench
@@ -33,7 +33,7 @@ The industry standard. Real GitHub issues from popular Python repos → agent mu
 
 **Why it matters:** closest to real engineering work. Not toy tasks — real bugs in Django, Flask, scikit-learn.
 
-**Current top agents:** consistently improving — from 4% (Jan 2024) to 70%+ (mid 2026).
+**Current top agents:** consistently improving — from 4% (Jan 2024) to near 100% on SWE-bench Verified by 2026, up from 60% a year earlier (Stanford AI Index 2026, see [[stanford-ai-index-2026]]).
 
 ### SWE-bench ES3
 
@@ -41,9 +41,9 @@ Extended version — broader range of tasks, more languages, harder edge cases. 
 
 ### PAC-1 (Personal & Trustworthy Agents)
 
-BitGN benchmark for personal AI agents. 43 tasks, max score 43.0. DEV leaderboard is active — top agents score perfect 43/43.
+BitGN benchmark for personal AI agents. The dev set has 43 tasks; the competition ran on 11 Apr 2026 with 104 production tasks. The dev leaderboard saw perfect 43/43 scores.
 
-**We participate here.** Focus: personal agent reliability, trustworthiness, real-world task completion.
+**We took part.** On the day the author scored 17/104, and 74/104 two days later after a rebuild ([[pac1-competition-retrospective]]). Focus: personal agent reliability, trustworthiness, real-world task completion.
 
 ### PinchBench
 
@@ -64,7 +64,7 @@ Evaluates LLM models as OpenClaw coding agents across 8 categories:
 
 ### Terminal-Bench 2.0
 
-The de-facto standard for terminal agent evaluation. 100 tasks validated by humans and LMs for solvability and realism. Tasks: kernel builds, git server setup, async debugging, COBOL modernization, security CTFs.
+A standard for terminal agent evaluation (the wiki now cites Terminal-Bench 3.0 for current model comparisons, see [[claude-model-choice-guide-nov-2026]]). 100 tasks validated by humans and LMs for solvability and realism. Tasks: kernel builds, git server setup, async debugging, COBOL modernization, security CTFs.
 
 **Harness:** [Harbor framework](https://github.com/harbor-framework/terminal-bench-2) — rewritten from scratch for reliability and parallelism. Built-in agents: Claude Code, Codex, Terminus-2, Aider, Oracle (ground truth).
 
@@ -115,7 +115,7 @@ These aren't public leaderboards — they're built-in evaluation in [[agent-tool
 
 ## Our Participation
 
-- **PAC-1** — active participation on DEV leaderboard
+- **PAC-1** — competed on 11 Apr 2026: 17/104 on the day, 74/104 two days later ([[pac1-competition-retrospective]])
 - **PinchBench** — relevant for OpenClaw/Moltis ecosystem evaluation
 - **SWE-bench** — reference benchmark for coding agents
 - **LongMemEval** — reference for [[agent-memory-architecture|memory systems]]

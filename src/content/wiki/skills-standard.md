@@ -5,7 +5,7 @@ description: "Open standard for packaging reusable agent capabilities. Anthropic
 created: 2026-05-13
 updated: 2026-11-12
 tags: [skills, claude-code, codex, standards, anthropic, openai, marketplace, agents]
-course_module: 5
+course_module: 3
 course_order: 6
 publish: true
 index_line: "SKILL.md cross-platform standard: model-invoked vs slash, frontmatter routing, install paths. skills.sh marketplace (91K+ skills, top is `find-skills` at 1.5M installs). Adopted by Claude Code, Codex, Cursor, Copilot, 20+ agents"
@@ -91,7 +91,7 @@ Notable that `find-skills` is the top — meta-skill that helps the agent find o
 Three pragmatic choices made adoption easy:
 
 1. **Markdown + YAML, nothing exotic.** No DSL, no proprietary runtime, no framework dependency. Any tool that can read a markdown file can host a skill.
-2. **Description does the routing.** No registry, no schema validation, no capability tags — the model itself decides via natural-language description matching. Zero infrastructure cost to add a new skill.
+2. **Description does the routing.** No registry, no schema validation, no capability tags — the model itself decides via natural-language description matching. Adding a skill costs no infrastructure, but the listing is budgeted (about 1% of context): with dozens of skills the descriptions get truncated and routing by description alone fails. The author routes with a UserPromptSubmit hook that injects the skill to load (see [[skills-vs-doc-tree]]).
 3. **Filesystem layout is the contract.** `~/.{tool}/skills/{name}/SKILL.md` is the install location. Tools agree on the path; nothing else needs to be standardized.
 
 Compare to MCP (which requires a server, schema, transport layer) or LangChain tools (require Python imports, type signatures). SKILL.md is closer to AGENTS.md or robots.txt — a convention, not a system.
@@ -118,23 +118,23 @@ Compare to MCP (which requires a server, schema, transport layer) or LangChain t
 
 Most modern agent toolkits use SKILL.md as their primitive:
 
-- [[project-solo-factory]] — 50+ skills, full startup pipeline
+- [[project-solo-factory]] — 64 skills, full startup pipeline
 - [[bmad-method]] — agents themselves are skills (`bmad-agent-dev`), workflows too (`bmad-dev-story`); 3-layer TOML overrides on top
 - [[ruflo-orchestration]] — 30 skills + 60+ commands + 100 agents, plus MCP server beneath
 - [[hermes-agent]] — auto-creates new skills at runtime from successful trajectories
 - [[project-rust-code]] — own Rust agent has a skills system that pulls from skills.sh registry
 - [[webwright-code-as-action]] — Microsoft's Webwright ships one `skills/webwright/` folder that loads identically into Claude Code, Codex, OpenClaw, and Hermes — the cross-host SKILL.md promise paying off in production
 
-The pattern: **skills are the cheapest way to extend an agent**. MCPs are heavier (server, transport, eager-load context — see [[agent-patterns-stream2]]). Plugins bundle skills + agents + slash commands but still rest on SKILL.md inside.
+The pattern: **skills are the cheapest way to extend an agent**. MCPs are heavier (server, transport; their tools are now deferred behind tool search by default, but each loaded schema still costs context — see [[agent-patterns-stream2]]). Plugins bundle skills + agents + slash commands but still rest on SKILL.md inside.
 
 ## Authoring Tips (Hard-Won)
 
-From writing 50+ skills in [[project-solo-factory]]:
+From writing 64 skills in [[project-solo-factory]]:
 
 - **Description like a search query.** Lead with trigger phrases ("Use when the user says…", "When asked to…"). The model matches your description against the user's request — write for that match.
 - **One skill = one outcome.** Don't bundle "research and validate and scaffold" in one skill. Three skills, chained.
 - **Steps in the body, references in siblings.** SKILL.md should be readable in one screen. Long checklists, code samples, schemas → separate files referenced by relative path.
-- **Test by invocation.** Run the skill from a clean session; if the agent doesn't pick it up from your description, the description is wrong, not the agent.
+- **Test by invocation.** Run the skill from a clean session; if the agent doesn't pick it up from your description, the description is wrong, not the agent. With many skills, also check that the description survives the listing budget, or add a routing hook.
 - **Version via git.** The standard doesn't help you here; commit your skills, tag releases, document breaking changes in the skill body.
 
 ## Related
@@ -142,7 +142,7 @@ From writing 50+ skills in [[project-solo-factory]]:
 - [[agent-toolkit-landscape]] — broader catalog; skills sit in the marketplace + executable-skills layers
 - [[bmad-method]] — most disciplined use of SKILL.md (agents-as-skills + TOML overrides)
 - [[ruflo-orchestration]] — skills + plugins + MCP combined into a swarm OS
-- [[project-solo-factory]] — concrete example of a 50+ skill startup pipeline
+- [[project-solo-factory]] — concrete example of a 64 skill startup pipeline
 - [[hermes-agent]] — skills as runtime artifacts (auto-generated, not just hand-written)
 - [[agent-patterns-stream2]] — skills lazy-load vs MCPs eager-load — why this matters for context budget
 - [[design-md-spec]] — sibling convention: DESIGN.md for visual identity, AGENTS.md for repo-local agent instructions

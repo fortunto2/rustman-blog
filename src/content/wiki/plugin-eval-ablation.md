@@ -5,7 +5,7 @@ description: "claude plugin eval runs every case twice, with the plugin and with
 created: 2026-09-12
 updated: 2026-10-27
 tags: [evals, claude-code, plugins, skills, harness, measurement, methodology]
-course_module: 6
+course_module: 4
 course_order: 2
 publish: true
 source_url: "https://code.claude.com/docs/en/plugin-evals"
@@ -30,7 +30,7 @@ Trust is not a formality here. The plugin's hooks and MCP servers execute as you
 
 ## What it changes here
 
-[[project-solo-factory]] has 50+ skills and zero evidence that any individual one beats the bare model on its own task. The [[agent-mistake-fix-harness]] loop assumes each written rule earned its place; nothing ever checked. The realistic expectation from a first sweep is that several skills come back at delta ≈ 0, and that result is worth more than the skill was, because a rule that changes nothing still costs context on every session that loads it.
+[[project-solo-factory]] has 64 skills and zero evidence that any individual one beats the bare model on its own task. The [[agent-mistake-fix-harness]] loop assumes each written rule earned its place; nothing ever checked. The realistic expectation from a first sweep is that several skills come back at delta ≈ 0, and that result is worth more than the skill was, because a rule that changes nothing still costs context on every session that loads it.
 
 Category note: [[deepeval-llm-testing]] scores the *output* of a pipeline as a pytest assertion, and [[agent-benchmarks]] scores the *model* against a fixed task set. Neither answers "is my addition to the harness pulling its weight", which is the question a skill author actually has. [[commerce-agent-blueprint]] arrived at the same place from Anthropic's side: snapshot evals, 50-100 cases per flow, a negative case for every positive one.
 

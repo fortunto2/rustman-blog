@@ -4,7 +4,7 @@ title: "Inline agent memory — grep-friendly comments as a 5th memory layer"
 description: "AI agents heavily use grep, so persist notes inside the code itself with a discoverable prefix (AI-NOTE / AI-TODO / AI-ASK). A 5th memory location alongside CLAUDE.md, docs/, knowledge graphs, and session logs."
 created: 2026-05-06
 tags: [agents, memory, context-engineering, harness, code-comments, methodology]
-course_module: 5
+course_module: 3
 course_order: 2
 publish: true
 source_url: "https://t.me/llm_under_hood/590"
@@ -28,7 +28,7 @@ The minimum viable set: NOTE / TODO / ASK. Our convention adds PATTERN.
 | `AI-ASK:` | Open question for the human. After the human answers, agent rewrites it as `AI-NOTE:` capturing the answer | Promoted to NOTE, never just deleted |
 | `AI-PATTERN:` | Reusable shape worth remembering across this codebase | Permanent reference |
 
-The harness rule that makes it work: **before modifying a file, search `grep -r "# AI-" <file>`**. One line, easy to enforce.
+The harness rule that makes it work: **before modifying a file, search `grep -rnE "AI-(NOTE|TODO|ASK|PATTERN):" <file>`**. One line, easy to enforce.
 
 ```js
 // AI-NOTE: Complex OSC sequence parsing — core login overlay logic
@@ -69,7 +69,7 @@ We already enforce this convention via `solo-factory/rules/ai-comments.md`:
 - AI-TODO:    task for later implementation
 - AI-ASK:     question needing human answer
 - AI-PATTERN: common pattern worth documenting
-Before modifying a file, search: grep -r "# AI-" <file>
+Before modifying a file, search: grep -rnE "AI-(NOTE|TODO|ASK|PATTERN):" <file>
 Keep concise (one line). Remove AI-TODO after completing,
 convert AI-ASK to AI-NOTE after answered.
 ```

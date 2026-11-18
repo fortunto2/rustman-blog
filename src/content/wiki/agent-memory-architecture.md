@@ -5,7 +5,7 @@ description: "4 memory types, 3 operational loops, 5 systems compared. From dict
 created: 2026-04-09
 updated: 2026-10-27
 tags: [agents, memory, architecture, methodology, rag, context-engineering]
-course_module: 5
+course_module: 3
 course_order: 1
 publish: true
 source_path: "1-methodology/agent-memory-architecture.md"
@@ -160,12 +160,14 @@ For these, **lexical search (BM25/FTS5) outperforms embeddings**:
 - "Find something conceptually similar": embeddings win
 - "What does X relate to?": graph queries win
 
-Practical stack, ordered by reliability:
+Practical stack as systems commonly layer it, ordered by reliability (the author's own measured choice is only the first layer, see below):
 
 1. **Lexical first** (BM25 / FTS5): exact names, identifiers, operational queries
-2. **Graph queries** (Cypher / FalkorDB): relationships, dependencies, cross-references
-3. **Vector search** (embeddings): conceptual similarity, fuzzy matching
+2. **Graph queries** (Cypher / FalkorDB; others use it, the author dropped it): relationships, dependencies, cross-references
+3. **Vector search** (embeddings; others use it, the author dropped it): conceptual similarity, fuzzy matching
 4. **LLM reranking**: optional final pass for relevance scoring
+
+The author's own [[project-solograph|Solograph]] dropped its graph (Oct 2026) and its vectors (26 Oct 2026; measured: 0/39 session recall, 14 s cold) for SQLite FTS5 plus files. For this use, lexical search is the measured choice.
 
 Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vector + optional LLM reranking), [[mempalace-agent-memory|MemPalace]] found structural filtering beats raw embeddings by 34%, and most [[code-graph-mcp-landscape|code-graph MCP servers]] now run on SQLite FTS5, embeddings optional.
 
@@ -176,7 +178,7 @@ Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vect
 - **Vectors.** The vector index found 0 of 39 known sessions in its top 5; FTS5 found 32. Claude Code deletes transcripts after 30 days and nothing re-read the disk, so the index and the disk shared no session. Cold KB search: 14 s against 66 ms.
 - **The graph.** 781k call edges, five queries in four months, every one "list the projects" or stats. On a 1,100-file repo, a dedicated code-graph MCP and plain Grep/Read gave the same accuracy in all 8 runs.
 
-Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 77 repositories, the knowledge base, the session archive.
+Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 68 repositories, the knowledge base, the session archive.
 
 **Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries, and measure each layer you add against it. A stale index fails silently.
 
@@ -227,8 +229,8 @@ If you're building your first agent, start with dict-based memory in the system 
 ### Adding Persistence (Moltis/OpenClaw approach)
 When you need cross-session recall: Markdown files as source of truth + SQLite/FTS5 derived index. Rebuild index from Markdown anytime. Add vector search when FTS5 isn't enough. Keep the `## Retain` discipline for extracting structured facts. [[privacy-as-architecture|Local-first, offline-first]].
 
-### Scaling Up ([[mempalace-agent-memory|MemPalace]]/[[project-solograph|Solograph]] approach)
-For multi-agent systems with rich history: ChromaDB with a spatial hierarchy, or FTS5 across every store. Knowledge graph for entity relationships. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]]: try one memory type first, add others incrementally.
+### Scaling Up ([[mempalace-agent-memory|MemPalace]] approach; [[project-solograph|Solograph]] stays lexical)
+For multi-agent systems with rich history: ChromaDB with a spatial hierarchy (MemPalace), or FTS5 across every store (what Solograph does). A knowledge graph for entity relationships is an option others use, not one the author kept. Session search for full audit trail. Progressive [[context-engineering|context loading]] (L0-L3). Active forgetting with temporal validity. [[portfolio-approach|Small bets]]: try one memory type first, add others incrementally.
 
 ### The [[decision-traces-compound|Compound Learning]] Goal
 The ultimate goal isn't remembering but compounding. Every [[context-graphs-summary|decision trace]] should make the next decision better. This requires:

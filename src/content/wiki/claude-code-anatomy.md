@@ -5,7 +5,7 @@ description: "Reverse-engineering of Claude Code v2.1.88 (Liu et al., 2026). Sev
 created: 2026-04-20
 updated: 2026-10-27
 tags: [agents, harness, claude-code, context-compaction, permissions, architecture, research]
-course_module: 4
+course_module: 2
 course_order: 2
 publish: true
 source_url: "https://arxiv.org/abs/2604.14228"
@@ -78,9 +78,9 @@ The paper maps four extension tiers by their default context footprint — match
 - **Hooks** — zero default context (fire on event, bring nothing into the prompt)
 - **Skills** — minimal instruction sets (lazy-load on trigger)
 - **Plugins** — medium-cost packaging
-- **MCP servers** — high token budget due to complex schemas (eager-load on connect)
+- **MCP servers** — tool schemas are deferred behind tool search by default: the agent sees tool names and server instructions until it loads a tool (a server can mark tools `anthropic/alwaysLoad` to skip that)
 
-Implication: 150 skills is fine. 10 MCPs and the context is already half-full before the agent does any work.
+Implication: the skills listing is budgeted (about 1% of context), so with many skills most reach the model as bare names and routing by description weakens (see [[skills-vs-doc-tree]]). MCP servers are cheap to connect now, but each loaded tool schema still costs context.
 
 ## Architectural contrast
 

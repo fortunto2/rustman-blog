@@ -4,8 +4,8 @@ title: "Delegation economics: the lead model's habits cost more than its price p
 description: "Cognition ran 3,000 coding sessions in which Fable 5 with a cheap sidekick cost less than Opus 4.8 with the same sidekick while scoring higher, because Fable delegated early with spec-quality briefs; Factory adds that switching models mid-session throws away the prompt cache, so routing has to live in the harness."
 created: 2026-10-27
 tags: [agents, delegation, subagents, cost, routing, prompt-caching, cheap-models]
-course_module: 5
-course_order: 11
+course_module: 3
+course_order: 9
 publish: true
 source_url: "https://cognition.com/blog/making-fable-cheaper-than-opus"
 learned_from: "https://cognition.com/blog/making-fable-cheaper-than-opus ; https://factory.com/news/model-routing-belongs-in-the-harness"

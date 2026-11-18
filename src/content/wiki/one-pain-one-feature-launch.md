@@ -5,8 +5,8 @@ title: "One pain → one feature → launch"
 created: 2026-02-11
 updated: 2026-10-27
 tags: [manifesto, shipping, lean, focus]
-course_module: 2
-course_order: 3
+course_module: 5
+course_order: 2
 publish: true
 source_path: "0-principles/manifest.md"
 index_line: "One pain → one feature → ship in days. Not platforms, not roadmaps"
