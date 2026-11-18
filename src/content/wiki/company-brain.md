@@ -9,10 +9,12 @@ feed: true
 source_url: "https://t.me/llm_under_hood/980"
 video_url: "https://www.youtube.com/watch?v=Z3JyAqh4ixg"
 learned_from: "session 20221b3e-9dc7-4338-a083-2e28e72e25e2 (17.11.2026): @llm_under_hood posts 934-992, YC Root Access talk Z3JyAqh4ixg, bitgn.com insights"
-index_line: "Company Brain, Nov 2026. Origin: Dorsey & Botha, From Hierarchy to Intelligence (Mar 2026): world model + capabilities + intelligence layer, people at the edge; YC RFS Company Brain; GBrain (nightly dream cycle), Hyper, Sylph (git). YC talk (Z3JyAqh4ixg): company = self-improving AI loops (signals → policy → tools → adversarial-LLM gate → learning), legible data (record every meeting, no DMs, every action leaves an artifact), IC + DRI, no middle management, humans at the edge. Rinat's BitGN Brain: versioned doc store (go+SQLite+CAS, rollback of any agent's change), ONE MCP with 2 tools (start → SDK, run → Python in server sandbox = code mode), progressive disclosure, 'rent the core, own memory+tools'. Swarm on ECOM1, GPT-OSS-120B only: 30 harnesses, 46.5 → 95.1 in 2 days, then regex reward-hacking, 45 GB / 100k versions filled the disk, Codex rewrite 40 GB → 500 MB. Ours: solograph + wiki + registry + Gnome; shipped 17.11 as solograph 0.18: brain_start (orient map + nightly state) + capture (append-only into 3-inbox, signed) + nightly loop after the digest; real re-asks 34 of 360 (9%), not the 58 the raw counter says; 16 of 64 skills used in 30 days; next: remote entry with OAuth, LLM drafting step"
+index_line: "Company Brain, Nov 2026. Origin: Dorsey & Botha, From Hierarchy to Intelligence (Mar 2026): world model + capabilities + intelligence layer, people at the edge; YC RFS Company Brain; GBrain (nightly dream cycle), Hyper, Sylph (git). YC talk (Z3JyAqh4ixg): company = self-improving AI loops (signals → policy → tools → adversarial-LLM gate → learning), legible data (record every meeting, no DMs, every action leaves an artifact), IC + DRI, no middle management, humans at the edge. Rinat's BitGN Brain: versioned doc store (go+SQLite+CAS, rollback of any agent's change), ONE MCP with 2 tools (start → SDK, run → Python in server sandbox = code mode), progressive disclosure, 'rent the core, own memory+tools'. Swarm on ECOM1, GPT-OSS-120B only: 30 harnesses, 46.5 → 95.1 in 2 days, then regex reward-hacking, 45 GB / 100k versions filled the disk, Codex rewrite 40 GB → 500 MB. Ours: solograph + wiki + registry + Gnome; shipped 17.11 as solograph 0.18: brain_start (orient map + nightly state) + capture (append-only into 3-inbox, signed) + nightly loop after the digest; real re-asks 28 of 366 (8%, solograph usage asked_again; an earlier 34 retracted), not the 59 the raw counter says; 16 of 64 skills used in 30 days; drafting step (--draft, one claude -p) shipped; remote HTTP entry built and switched off the same day (read-only by default since 0.21); swarm, registry and brain linked by a topic id, no shared DB"
 ---
 
 # Company Brain: one memory any agent can plug into
+
+*Part 6 of 7 in the series [[agent-stack|How my agent stack fits together]]. Previous: [[wiki-feedback-loop|the wiki that learns]]. Next: [[project-swarm|many agents behind a gate]].*
 
 ## The short version
 
@@ -31,7 +33,7 @@ break are the most useful part, and they map almost one to one onto pieces I alr
 |---|---|---|
 | YC talk | legible company data + self-improving AI loops that talk to each other; humans at the edge | an overnight agent that reads yesterday's failures and files fixes |
 | Rinat / BitGN Brain | a versioned document store any agent connects to through one MCP with two tools | rent the agent, own the memory; code mode instead of a tool zoo |
-| My setup | wiki + session index + task registry + always-on box, reached by one local MCP | already 70% there; missing a remote entry, a write path and the overnight loop |
+| My setup | wiki + session index + task registry + swarm, reached by one local MCP; agents write back with `capture`; a nightly loop reads the logs | built on 17 November from what already ran; no remote entry (built, then switched off), the always-on box not up yet |
 
 ## Glossary
 
@@ -207,34 +209,33 @@ The mechanics both sources agree on, against what I already run:
 
 | Mechanic | Rinat / YC | Mine today | Gap |
 |---|---|---|---|
-| Shared memory, versioned, any change revertible | versioned doc server | wiki, KB, 6-crm, registry in git | none at my scale; git is enough for 1-2 people |
-| One entry for any agent | one MCP, `start` + `run` | [[project-solograph]]: one MCP, 5 read tools, local stdio | no remote entry (phone, Codex in the cloud, a partner's agents); no write path |
+| Shared memory, versioned, any change revertible | versioned doc server | wiki, KB, 6-crm in git; the registry as local JSON files, outside git | none at my scale; git is enough for 1-2 people |
+| One entry for any agent | one MCP, `start` + `run` | [[project-solograph]]: one MCP, 5 read tools, plus `brain_start` and `capture` since 17.11, local stdio | no remote entry: built, then switched off (phone, cloud agents, a partner's agents) |
 | Progressive disclosure | doc tree, SDK disclosed on `start` | generated `index.md`, hubs, `CLAUDE.md` per project | skills listing truncated, see [[skills-vs-doc-tree]] |
-| Self-improving loop | overnight agent turns failures into PRs; GBrain's nightly dream cycle | [[wiki-feedback-loop]] logs gaps and corrections; `solograph usage` logs every search; `/solo:dream` checks memory notes against what happened, weekly | nothing reads those logs at night and proposes fixes |
+| Self-improving loop | overnight agent turns failures into PRs; GBrain's nightly dream cycle | [[wiki-feedback-loop]] logs gaps and corrections; `solograph usage` logs every search; `solo brain nightly` reads them after the 07:00 digest; `/solo:dream` checks memory notes weekly | the loop proposes and a person decides; so far it drafts alias groups only |
 | Provenance, freshness, contradictions | sources, age and conflict flags on every fact | `learned_from`, `updated`, measured numbers in `_facts.yaml`, `status: disputed` | contradictions are flagged by hand only |
 | Legibility | record every meeting, no DMs | session index, [[project-supervox]] transcription, inbox sweep, CRM | meetings are transcribed on demand, not by default |
 | Agents coordinating | swarm, forum, board, votes | [[project-swarm]] with a test gate; [[project-agent-board]] | swarm is wired to the registry by topic since 17.11 (item 5 below); the board is not |
 | DRI | one person per outcome | registry `ball` and `next` per topic | none |
 | Access by identity | capability-based authz | Cloudflare Access groups for a two-person alliance | not yet in front of the memory |
-| Always on | server-side | the Gnome: [[agent-harness-and-always-on-gnome]] | the box is still waiting on a hosting order |
+| Always on | server-side | the Gnome: [[agent-harness-and-always-on-gnome]] | my own box is still waiting on a hosting order; a client profile's runs on the same pattern |
 
 ```mermaid
 flowchart TB
   subgraph Cores["Any agent"]
     A1[Claude Code, laptop]
-    A2[Claude on the phone]
     A3[Codex]
-    A4[A partner's agent]
+    A4[swarm workers]
   end
-  E["Entry: solograph MCP over HTTP<br/>behind Cloudflare Access<br/>+ an orient page"]
+  E["Entry: solograph MCP, local<br/>brain_start: the orient page<br/>capture: one note into 3-inbox"]
   subgraph Mem["Memory, in git"]
     W[wiki + KB]
     SI[session index]
     R["registry: ball, next"]
     CR[6-crm]
   end
-  subgraph Loops["Loops on the Gnome"]
-    N["nightly: usage signals + gaps<br/>+ corrections → reviewed drafts"]
+  subgraph Loops["Loops (laptop today, the box later)"]
+    N["brain nightly: re-asks, misses,<br/>stale topics, stuck tasks → a report"]
     SD[digest, standup]
     SW[swarm behind a test gate]
   end
@@ -320,9 +321,10 @@ checking each mechanic against my own harness instead of the other way round.
 - [[schema-guided-reasoning]] — Rinat's earlier method; still how he builds LLM products
 - [[skills-vs-doc-tree]] — progressive disclosure inside one project
 - [[paperclip-agent-company]] — the opposite bet: an org chart for agents
-- [[wiki-feedback-loop]] — the loop that already exists, waiting for a nightly reader
-- [[agent-harness-and-always-on-gnome]] — where the loops will run
+- [[wiki-feedback-loop]] — the loop that already existed; the nightly reader now reads its logs
+- [[agent-harness-and-always-on-gnome]] — the always-on box the loops move to
 - [[project-swarm]] — the agent queue whose task state the registry reads
+- [[agent-stack]] — the map of the whole system and the series this post is part of
 - [[tool-calling-four-layers]] — code mode as the fourth layer of tool calling
 - [[agent-bit-pac1]] — the BitGN agent the ECOM fork grew from
 - [[agent-harness]] — hub

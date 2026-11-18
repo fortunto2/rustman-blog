@@ -13,6 +13,8 @@ feed: true
 
 # My agent harness, and a Gnome that never sleeps
 
+*Part 2 of 7 in the series [[agent-stack|How my agent stack fits together]]. Previous: [[agent-stack|the map]]. Next: [[harness-registry|the registry]].*
+
 ## The short version
 
 I run most of my work through Claude Code agents: code, research, mail, grant applications, posts like this one. Two things make that workable.
@@ -44,7 +46,7 @@ A coding agent is a model plus everything around it. The word is literal: a harn
 
 The receipt has rules of its own. "ok" alone is forbidden: every run prints what ran, what was skipped and what was left unchecked. Zero files in scope is never a pass. A missing tool turns the verdict into PARTIAL, never into green. I measured what this buys: the sensors caught 11 of 24 defects I planted on purpose. So green means "syntax, lint, types and tests passed", not "the change is correct".
 
-On top of that sits a small **registry**: one JSON file per open topic, with whose move it is and the next action in one line. A `solo standup` command reads the registry, the to-do lists of my business repo and last night's digest of commits across all projects, and a session hook puts a two-line brief into every new Claude session.
+On top of that sits a small **registry**: one JSON file per open topic, with whose move it is and the next action in one line. A `solo standup` command reads the registry, the to-do lists of my business repo and last night's digest of commits across all projects, and a session hook puts a two-line brief into every new Claude session. How the registry works, and how one core serves two profiles: [[harness-registry]].
 
 ```mermaid
 flowchart LR
@@ -141,6 +143,8 @@ flowchart TD
 ```
 
 I took OVH VPS-1 for a year, $54.48. The first lesson came within minutes: after the payment the order went into a manual ID check, a photo of a passport, of the card and of me holding the passport, and the team that reviews it works weekdays, US Eastern business hours. I paid on a Friday afternoon. The box arrives on Monday. If you need a server for the weekend, order it on Wednesday.
+
+**Update, 18 November 2026:** it did not arrive. Support validated the account a week later, but by then the bank had declined the original charge, and OVH cannot retry one, so the order has to be placed again. My jobs still run on the laptop. The same pattern already runs on a client's always-on server, where it came first; since November that server is also the coordinator of [[project-swarm]] for my client profile.
 
 ## Bringing the box up
 
@@ -240,7 +244,7 @@ I showed this setup to a researcher friend who is new to agents, and most of the
 
 ## What's next
 
-The Gnome takes over the 13 jobs once the box is up: the inbox sweep, the standup, the channel post, the nightly indexes. The repo-only jobs, like answering new GitHub issues or a weekly link check of this wiki, move to cloud scheduled tasks triggered by GitHub events and the clock. The laptop goes back to being a laptop.
+The Gnome takes over the 13 jobs once the box is up: the inbox sweep, the standup, the channel post, the nightly indexes. Two more have joined the list since this post: the brain's nightly loop ([[company-brain]]) and a swarm coordinator for my own profile ([[project-swarm]]). The repo-only jobs, like answering new GitHub issues or a weekly link check of this wiki, move to cloud scheduled tasks triggered by GitHub events and the clock. The laptop goes back to being a laptop.
 
 ## Glossary
 

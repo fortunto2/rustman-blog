@@ -24,6 +24,8 @@ This creates a **ratchet**: mistakes can only happen once. Each failure permanen
 
 The anti-pattern: manually cleaning up "AI slop." OpenAI found that 20% of time (Fridays) went to cleanup — doesn't scale. Automation or bust.
 
+The many-agents version of this is the gate in [[project-swarm]]: the worker never declares a task done, a script checks the diff and the repo's tests and the gate decides (experimental, November 2026).
+
 ## What others found since (Oct 2026)
 
 - **At 30,000 merges a day, the job is saying no.** Anthropic's source-control team ([Oct 2026](https://www.anthropic.com/research/redesigning-source-control)) went from about 2,500 merges a day in May to 30,000+ in September. Engineers often spent their time telling Claude no, because agents break core constraints to fit a familiar pattern, and reviewers moved to reading the intent of a change rather than every line (reported). A "no" that repeats is a harness rule not yet written.

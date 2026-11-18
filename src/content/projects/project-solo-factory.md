@@ -110,6 +110,8 @@ Skills are prompts, not programs. [[agent-mistake-fix-harness|Agent mistake → 
 - [GitHub](https://github.com/fortunto2/solo-factory) — MIT, 64 skills, 2 agents
 - [skills.sh](https://skills.sh/) — `npx skills add fortunto2/solo-factory`
 - [[project-solograph]] — MCP server for portfolio, KB and session search
+- [[project-swarm]] — Go daemon that runs Claude Code / Codex workers in git worktrees behind a test gate (experimental, November 2026)
+- [[company-brain]] — agents write decisions back through solograph `capture`, a nightly job reads the logs (experimental, November 2026)
 - [[agent-toolkit-landscape]] — where solo-factory fits in the ecosystem
 - [[bmad-method]] — sibling executable skill system; differs by unifying agents and skills under one TOML primitive with 3-layer overrides
 - [[harness-engineering-summary]] — the methodology behind the design

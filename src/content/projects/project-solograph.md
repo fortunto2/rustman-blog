@@ -3,8 +3,8 @@ type: project
 description: "MCP server for a portfolio of projects: symbol search across every repository, full-text search over Claude Code sessions, a knowledge base and external sources. 5 tools, all SQLite FTS5: no graph database, no embeddings."
 title: "solograph — portfolio index and agent memory over SQLite"
 created: 2026-02-07
-updated: 2026-10-28
-tags: [project, open-source, mcp, fts5, sqlite, tree-sitter, python, agent-memory]
+updated: 2026-11-18
+tags: [project, open-source, mcp, fts5, sqlite, tree-sitter, rust, agent-memory, company-brain]
 project_type: tool
 course_module: 5
 course_order: 5
@@ -12,7 +12,7 @@ publish: true
 source_url: "https://github.com/fortunto2/solograph"
 pypi: solograph
 github: fortunto2/solograph
-index_line: "solograph: one Rust binary — symbol search across 77 projects + FTS5 over sessions/KB/sources, 5 MCP tools (12 until 0.17), the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5"
+index_line: "solograph: one Rust binary — symbol search across 68 projects (77 in Oct) + FTS5 over sessions/KB/sources, 5 MCP tools (12 until 0.17), the same reads as CLI commands, HTTP for sources. Vectors out in 0.7 (0/40 recall, 14 s cold); structural graph out in 0.8 (0 structural questions in 4 months); the Python duplicate out in 0.9; KB search, link graph and prompt hint on one index (Oct 2026), Russian→English via an alias table: 0→21/22 in top 5; 0.18-0.21: brain_start + capture (kind, topic) when the KB has a brain: section, alwaysLoad, usage --json asked_again (28 of 366, 8%), mcp-http read-only unless SOLOGRAPH_MCP_WRITE=1"
 ---
 
 # Solograph
@@ -40,9 +40,30 @@ claude mcp add -s user solograph -- ~/.solo/bin/solograph
 
 Web search lives in a separate searxng MCP server, so a broken import in one cannot take the other down.
 
+## Two more when the knowledge base is a brain (0.18-0.21)
+
+When a KB's `.solograph.yaml` has a `brain:` section, the server offers two more tools, the
+entry and the write path of a [[company-brain]]:
+
+| Tool | What it does |
+|------|-----------------|
+| `brain_start` | Returns the orient file: the map of what lives where, how to read it, how to write back, and tonight's state (open topics, captures from agents, what moved). Called once before work |
+| `capture` | Writes one new note into the capture folder, signed with the client's name: `kind` note, decision, finding, handoff or idea; optional `topic`, a registry topic the note then shows under. Append-only, nothing existing is edited |
+
+Both load with the session (`anthropic/alwaysLoad`, 0.19), as `session_search` and `kb_search` do,
+because an agent does not go looking for a tool it does not know it has. `solograph mcp-http`
+(0.19) serves the same tools over HTTP for agents that cannot start a process; since 0.21 it is
+read-only unless `SOLOGRAPH_MCP_WRITE=1`. I built that remote entry and switched it off the same
+day: nothing used it.
+
+`solograph usage --json` (0.20) lists the searches asked again (`asked_again`: the next search of
+the same tool on the same question) and the agent searches that found nothing. That is the signal
+the brain's nightly loop reads: over 14 days to 17 November, 366 agent searches, 99% found
+something, 28 (8%) were the same question asked again.
+
 ## How it works
 
-- **Portfolio:** tree-sitter reads function, class and protocol definitions from 15 languages; manifests give the packages. Symbol names are indexed by their words (camelCase and snake_case split), so a phrase finds every spelling, and a definition in a sibling repository shows up next to the one in front of you. A scan re-reads a file only when its mtime or size changed: all 77 projects from scratch in 38 seconds, an untouched portfolio in about 7.
+- **Portfolio:** tree-sitter reads function, class and protocol definitions from 15 languages; manifests give the packages. Symbol names are indexed by their words (camelCase and snake_case split), so a phrase finds every spelling, and a definition in a sibling repository shows up next to the one in front of you. A scan re-reads a file only when its mtime or size changed: all 77 projects of October from scratch in 38 seconds, an untouched portfolio in about 7 (68 projects, 85,900 symbols on 18 November).
 - **Search:** SQLite FTS5, BM25, Snowball stems for Russian and English sent as prefix terms. Every index stats its source files before answering, so there is no reindex step.
 
 ## What was cut, and the numbers behind it
@@ -123,7 +144,8 @@ As a [[agent-memory-architecture|memory system]]: episodic memory (session_searc
 ## Links
 
 - [[solograph-rebuilt-one-binary]] — the write-up: what was cut, what was borrowed from which repositories, how to set up your own
-- [GitHub](https://github.com/fortunto2/solograph) — MIT, Python, PyPI
+- [GitHub](https://github.com/fortunto2/solograph) — MIT, one Rust binary; the scrapers stay a Python CLI
+- [[agent-stack]] — where solograph sits in the whole system, and the series
 - [[codegraph-guide]] — usage guide
 - [[code-graph-mcp-landscape]] — the tools solograph sits among, October 2026
 - [[graphify-vs-solograph]] — the closest competitor and what to take from it

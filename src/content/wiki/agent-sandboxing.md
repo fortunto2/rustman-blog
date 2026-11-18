@@ -27,6 +27,7 @@ LLM agents (Claude Code, Codex, Gemini CLI) run with full filesystem access. San
 ## What others found since (Oct 2026)
 
 - **Egress and credentials, not just the filesystem.** Anthropic's [How we contain Claude](https://www.anthropic.com/research/how-we-contain-claude) (May 2026): the OS sandbox cut permission prompts 84%, yet in a red-team run a phished prompt exfiltrated `~/.aws/credentials` in 24 of 25 retries, and only egress and filesystem boundaries would have stopped it. A domain allowlist turned out to be a capability grant: data left through api.anthropic.com (reported). Matthew Green ([Sep 2026](https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/)) puts it as: a sandbox moves the problem to the gate it leaves open. Related: [[dsewiki-agent-collusion]].
+- **Deny rules bind the tool, not the code it runs.** In [[project-swarm]] a Claude Code worker read a file outside its worktree without asking; explicit deny rules fixed that (measured). But `go test` executes the worker's own code, which no deny rule on Claude's tools covers, so strict mode wraps the worker in Claude Code's OS sandbox.
 
 ## Connections
 

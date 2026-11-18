@@ -71,6 +71,8 @@ asking the *source* for less rather than compressing what came back. Content
 negotiation has no summariser in the loop, so it has neither the latency floor nor the
 lost-line-numbers problem. Where both apply, it is the cheaper one.
 
+[[project-swarm]] draws the same boundary from the failure side: a tier-B task that failed twice is rerun at tier A (early, November 2026).
+
 ## What others found since (Oct 2026)
 
 - **The boundary is the summary, not the edit.** Cognition ([Jul 2026](https://cognition.com/blog/making-fable-cheaper-than-opus)) let a cheap sidekick read and edit files itself while the lead reviewed the diff: Fable 5 with a sidekick scored 60.7 at $1.86 a run, Opus 4.8 with the same sidekick 54.6 at $2.04 (reported). See [[lead-model-delegation-economics]].

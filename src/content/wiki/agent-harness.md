@@ -17,7 +17,9 @@ The method behind them is [[harness-engineering-summary]].
 
 ## The harness
 
+- [[agent-stack]]: the map of the whole system (harness, registry, solograph, brain, swarm, the box) and the reading order of the series. Start here
 - [[agent-harness-and-always-on-gnome]]: how I run my work through Claude Code, the scheduled jobs, and why they need a box that never sleeps
+- [[harness-registry]]: one file per open topic with whose move it is and the next step, a standup that orders them, one core for two profiles
 - [[project-swarm]]: many coding agents on my own subscriptions, one queue over a laptop and a box, and a test gate that decides what reaches main
 - [[harness-cost-by-model-tier]]: a behavioral harness took a small model from 3 to 10 accepted runs and made it cheaper than the big one unharnessed
 - [[tdd-inside-the-agent-loop]]: agent-run TDD cost 3 to 8 times the tokens with no better tests or design

@@ -84,7 +84,7 @@ Five layers, from what the agent reads before it acts to the one step that stays
 <text x="20" y="98">wiki first: my measured notes before the web</text>
 <text x="20" y="150" font-size="13" font-weight="700">2 · The agent acts, with context tools</text>
 <text x="20" y="170">Claude Code, subagents for side work</text>
-<text x="20" y="186">MCP solograph: KB, code graph, past sessions</text>
+<text x="20" y="186">MCP solograph: KB, sessions, symbols, sources</text>
 <text x="20" y="202">MCP searxng (search, extract), xcodebuild</text>
 <text x="20" y="218">long runs keep the task list in a file</text>
 <text x="20" y="270" font-size="13" font-weight="700">3 · Sensors: observe after it acts</text>

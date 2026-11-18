@@ -15,6 +15,8 @@ index_line: "swarm (fortunto2/swarm, MIT, Go, built 15-17 Nov 2026: 92 commits, 
 
 # swarm: coding agents on my own subscriptions, and a gate that decides what is done
 
+*Part 7 of 7 in the series [[agent-stack|How my agent stack fits together]]. Previous: [[company-brain|the brain]].*
+
 ## The short version
 
 `swarm` is a daemon that takes a queue of coding tasks, gives each one its own git worktree
@@ -22,7 +24,7 @@ and a Claude Code or Codex worker, and merges the result into `main` only after 
 own tests pass. The worker never decides it is done. A gate does: the files it touched must
 be the ones the task claimed, no test may be deleted or skipped, the test command must pass,
 and optionally another account reviews the diff. Several machines share one queue: the
-coordinator lives on an always-on box, and my laptop joins over ssh.
+coordinator lives on an always-on server, and my laptop joins it over ssh.
 
 I wrote it in three days, 15-17 November 2026, with Claude Code doing most of the typing:
 92 commits, about 16,500 lines of Go with tests included, 171 test functions. It is public
@@ -35,6 +37,7 @@ and MIT: [github.com/fortunto2/swarm](https://github.com/fortunto2/swarm).
 | What it never does | push to a remote, put a model in the dispatch loop, wrap a subscription's login in a proxy |
 | Where it runs | one coordinator (SQLite) on an always-on box; laptops dial in as nodes |
 | First numbers | 14 tasks on two profiles, 12 merged, 8 of them within two attempts |
+| Status | four days old, in use on two profiles, still being broken in |
 | When it pays | a batch of independent tasks a test can check. Not one-off work: it spends the same quota |
 
 ## Why I built it
@@ -156,8 +159,10 @@ flowchart LR
 ```
 
 The original plan said "move to Postgres when workers move to a server". I built the
-opposite. The database stays one SQLite file with one writer, the coordinator, on the box
-that never sleeps (the same box as the Gnome in [[agent-harness-and-always-on-gnome]]).
+opposite. The database stays one SQLite file with one writer, the coordinator, on a box
+that never sleeps. For my client profile that is the client's own always-on server, built on
+the pattern in [[agent-harness-and-always-on-gnome]], with my laptop as a node. My personal
+profile's coordinator still runs on the laptop: my own box is not up yet.
 Other machines join as nodes: they call out over ssh, so a laptop behind NAT works, and ssh
 already authenticates the link. A node runs the workers of the accounts logged in on it, and
 gates can run there too. When the laptop sleeps, its tasks lose time, not work. A shared

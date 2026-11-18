@@ -103,6 +103,8 @@ Stanford's Generative Agents introduced the three-layer cognitive architecture:
 
 This is the most research-validated loop. The paper showed it produces believable long-term agent behavior across 25 interacting agents.
 
+Our own write path is new and still being broken in (November 2026): agents write decisions, findings and handoffs back through solograph's `capture` tool, one append-only inbox note each, and a nightly job reads the usage logs for repeated and empty searches. See [[company-brain]].
+
 ---
 
 ## Forgetting: The Half-Life Problem
@@ -209,11 +211,11 @@ This is [[context-engineering|context engineering]] in practice: treating the co
 | **Moltis** | SQLite + FTS5 | Hybrid (vector + keyword) + LLM reranking | Local GGUF / OpenAI / Ollama | <5K chunks |
 | **OpenClaw** | Markdown + SQLite index | FTS5 + optional embeddings | Optional | <10K facts |
 | **[[mempalace-agent-memory\|MemPalace]]** | ChromaDB + SQLite KG | Spatial filtering + vector | Local | 22K+ memories |
-| **[[project-solograph\|Solograph]]** | SQLite FTS5 + markdown files | BM25 over KB, sessions, symbols | None (removed Oct 2026) | 77 repos, 63K symbols |
+| **[[project-solograph\|Solograph]]** | SQLite FTS5 + markdown files | BM25 over KB, sessions, symbols | None (removed Oct 2026) | 68 projects, ~85,900 symbols (18 Nov 2026) |
 
 ### [[project-solograph|Solograph]] as a Full Memory System
 
-Solograph covers all four types above with SQLite files and no embeddings, over git-backed markdown the index can rebuild from anytime ([[privacy-as-architecture|local-first]]). What separates it from [[rag-patterns|standard RAG patterns]] is freshness, not structure: every index checks its source files before answering, so there is no reindex step to forget. 12 MCP tools provide the interface.
+Solograph covers all four types above with SQLite files and no embeddings, over git-backed markdown the index can rebuild from anytime ([[privacy-as-architecture|local-first]]). What separates it from [[rag-patterns|standard RAG patterns]] is freshness, not structure: every index checks its source files before answering, so there is no reindex step to forget. Five read tools provide the interface, plus `brain_start` and `capture` when the KB is run as a brain.
 
 ---
 

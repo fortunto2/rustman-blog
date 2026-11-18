@@ -13,6 +13,8 @@ feed: true
 
 # Solograph, rebuilt: one Rust binary over SQLite instead of a graph database and vectors
 
+*Part 4 of 7 in the series [[agent-stack|How my agent stack fits together]]. Previous: [[harness-registry|the registry]]. Next: [[wiki-feedback-loop|the wiki that learns]].*
+
 ## The short version
 
 [[project-solograph]] is the memory my coding agents share: where something is defined across 77 of my repositories, what was said in about a thousand past Claude Code sessions, what my wiki already knows. Until this October it was a FalkorDB code graph with vector search on top, served by Python. It looked impressive and did not work: session search had failed on every call for seven weeks, the nightly scan had indexed zero projects for 70 nights while logging "done", and knowledge-base search took 14 seconds cold.
@@ -232,6 +234,16 @@ It stays silent unless a prompt names something your wiki is specifically about,
 - **Graphify's other ideas are still untaken:** marking which links were written and which were inferred, and short and long versions of a project summary so an agent can stop early.
 
 Neither failure was visible from the outside. The vector index answered every query, and the graph held 781,000 edges. Both came out the day I wrote down the right answers to 39 session questions and 75 wiki queries and ran them.
+
+## Since then
+
+- **0.17:** twelve MCP tools cut to five.
+- **0.18:** `brain_start` and `capture`, the write path described in [[company-brain]].
+- **0.19:** the brain tools load with the session; `mcp-http` added.
+- **0.20:** `usage --json` with `asked_again`, which is the grading of real queries listed above as still to do.
+- **0.21:** `mcp-http` is read-only unless `SOLOGRAPH_MCP_WRITE=1`.
+
+Current state is on [[project-solograph]].
 
 ## How this was measured
 

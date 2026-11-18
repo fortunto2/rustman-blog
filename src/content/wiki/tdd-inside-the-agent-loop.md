@@ -90,6 +90,8 @@ it was: `make integration` is a sensor with a human-owned expectation. And
 [[agent-mistake-fix-harness]] applies: a procedure that drifts across model releases
 belongs in the harness, not the prompt.
 
+The cheap part of TDD that survives at scale: [[project-swarm]]'s gate refuses any commit that deletes, skips or focuses a test.
+
 ## Learned from
 
 Birgitta Böckeler, "TDD inside the agent loop: theater or actual value?", Exploring Gen

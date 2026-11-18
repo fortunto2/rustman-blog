@@ -42,6 +42,8 @@ So the architecture splits, and the "one or many?" question resolves differently
 
 Cost discipline follows from the shared pool: cheap prefilters before expensive calls. A regex or embedding pass drops 95% of Telegram messages; the model sees the remainder. Tool calling comes free with `claude -p` — plus MCP servers and skills — so there's nothing to rebuild versus raw function calling.
 
+[[project-swarm]] workers spend this same quota, so a swarm does not make capacity appear; it only pays for a batch of independent tasks a test can check.
+
 ## For products, BYOK on API keys
 
 For anything with users — [[project-life2film]] being the live case — the shape is: each user pastes their own Anthropic API key from the Console, stored in the device Keychain, calls going straight to the API and never through your server. Legal, no ambiguity, and the cost sits with the user. The honest downside is conversion: ordinary people don't create Console keys. The alternative is your own key on your own backend with usage priced into the product, which is a normal commercial arrangement and the thing the Commercial Terms actually contemplate.

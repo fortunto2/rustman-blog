@@ -87,6 +87,8 @@ make wiki-lint             # Health check
 - One fix becomes refactor → stop
 ```
 
+Codex reads CLAUDE.md too when `project_doc_fallback_filenames = ["CLAUDE.md"]` is set in `~/.codex/config.toml`, so one file serves both agents.
+
 ## What doesn't work
 
 **Walls of text.** Agent skims like a human. 500 lines of rules = none of them followed consistently.

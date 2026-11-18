@@ -13,6 +13,8 @@ publish: true
 
 # Wiki Feedback Loop
 
+*Part 5 of 7 in the series [[agent-stack|How my agent stack fits together]]. Previous: [[solograph-rebuilt-one-binary|the memory engine]]. Next: [[company-brain|the brain]].*
+
 ## Definition
 
 The wiki learned only when someone sat down to ingest a source or write a note. Two
@@ -54,6 +56,10 @@ is a report, not a guess. See [[agent-memory-architecture]] and [[decision-trace
   (task notifications, scheduled prompts), messages over 800 characters, pasted content.
 - A bare "always"/"всегда" in the rule regex matched travel questions and cron
   prompts; the rule list is now explicit phrasings only.
+
+## The nightly reader
+
+The reader this page used to lack now exists, still experimental (November 2026): `solo brain nightly` runs after the 07:00 digest, reads re-asked pairs and empty searches from `solograph usage --json`, and drafts Russian-to-English alias groups into `wiki/_pending-*` for review. Agents also write back through `capture` into the inbox, and a PreCompact hook reminds them to do it before the context is compacted. See [[company-brain]].
 
 ## Learned from
 

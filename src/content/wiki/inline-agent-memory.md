@@ -44,6 +44,8 @@ After the human answers the ASK, the agent itself converts it:
 // AI-NOTE: Sequences may split across WS messages; buffer accumulates until both markers present
 ```
 
+Inline notes cover what a file needs; what another session needs to know (a decision with its reason, a handoff) goes through `capture` as an inbox note instead, see [[company-brain]].
+
 ## Why grep beats embeddings here
 
 For a coding agent, "what do I need to know about this file" is an **exact, operational** query, not a conceptual one. Lexical scan of the file (or a directory) lands directly on the relevant prose. No index to maintain, no embedding store, no MCP server, no staleness — the comment moves with the code under refactor and is destroyed alongside the code it described. Same logic as [[agent-memory-architecture|lexical-first retrieval]]: don't reach for semantic magic when grep already answers the question.
