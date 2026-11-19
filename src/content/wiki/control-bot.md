@@ -8,7 +8,7 @@ publish: true
 github: fortunto2/pult
 feed: true
 learned_from: "control-bot repo (CLAUDE.md, skill references, plans of 12-18 Nov 2026) and the sessions that built it, 23 Oct to 18 Nov 2026"
-index_line: "Post, 4 mermaid + glossary: my private Telegram control bot, built 23 Oct-18 Nov 2026. Worker (Cloudflare + D1) holds items and an event queue (P0 my text, P1 buttons, P2 jobs, P3 family; lease 90 s, heartbeat 20 s, 3 tries, 24 h expiry, limit pause capped 6 h); Mac runs claude -p on the subscription, no API key anywhere; jobs write cards not chat text; chat is a remote for sessions (reply = continue, /new, /stop, voice via whisper large-v3, files up to 20 MB); button jobs are read-and-draft; one send path: Gmail draft, two taps, hash check, no model, 10/day; 8 hard rules (one wrangler process, live switches in D1, no in-place edits of running scripts, work-content wall, contract tests, reply_markup on edits, family box off by default) each from an incident; live-session channel 18 Nov (see claude-code-channels)"
+index_line: "Post, 4 mermaid + glossary: my private Telegram control bot, built 23 Oct-18 Nov 2026; core open source as fortunto2/pult 19 Nov; reply button (tap to draft 56 s live) and streamed drafts with Stop (20 s). Worker (Cloudflare + D1) holds items and an event queue (P0 my text, P1 buttons, P2 jobs, P3 family; lease 90 s, heartbeat 20 s, 3 tries, 24 h expiry, limit pause capped 6 h); Mac runs claude -p on the subscription, no API key anywhere; jobs write cards not chat text; chat is a remote for sessions (reply = continue, /new, /stop, voice via whisper large-v3, files up to 20 MB); button jobs are read-and-draft; one send path: Gmail draft, two taps, hash check, no model, 10/day; 8 hard rules (one wrangler process, live switches in D1, no in-place edits of running scripts, work-content wall, contract tests, reply_markup on edits, family box off by default) each from an incident; live-session channel 18 Nov (see claude-code-channels)"
 ---
 
 # My Telegram control bot
@@ -159,6 +159,14 @@ flowchart LR
 ```
 
 The second tap carries 12 hex characters of a hash over recipients, subject, body and attachment names, the version the card showed me. If the draft changed in between, the send is refused and the card is re-attached with the new text. A draft is consumed by sending, so the same id cannot mail twice. A crash after the send leaves a `sending` row, and the retry looks in Sent rather than resending. The cap is 10 a day. A queued send the Mac never took is failed by the hourly sweep after 30 minutes. No model sees the mail between the tap and the send.
+
+## Since 19 Nov: a reply button and an answer you can stop
+
+Two things changed the day the core went open source, both measured on the live bot.
+
+**«✍️ Ответить» on every inbox card.** A tap queues the same read-and-draft job: the agent reads the thread and writes the answer in my voice and in the thread's language. The card turns into the draft with «Отправить · Поправить · Не нужно» and rings once. On the live bot (19 Nov, a mail from OVHcloud) the tap to the ready draft took 56 seconds, on the first try. «Отправить» asks once more, naming the recipient, and only then the plain script with no model in it sends the reply from the right mailbox. For Telegram and LinkedIn there is no send path, so the card gets the text and a copy button.
+
+**The answer types itself, with a Stop button.** Telegram's `sendMessageDraft` (Bot API 9.3, open to all bots since 9.5) shows the reply growing in place instead of a «working…» line edited every 5 seconds, and `can_stop` puts a Stop button on it. Pressed during a long command, the bot said it was stopping within a second and the turn was dead 20 seconds later, one heartbeat. The old line stays behind a switch in D1, in case a client does not show drafts.
 
 ## Deploy discipline
 
