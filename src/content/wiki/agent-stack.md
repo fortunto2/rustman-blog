@@ -47,7 +47,7 @@ flowchart TB
 |---|---|---|---|---|
 | Harness | steers the agent before it acts, checks it after | rules, skills, hooks | shell + Python | [[agent-harness-and-always-on-gnome]] |
 | Registry | one file per open topic: why it exists, whose move, the next step | intent | Python (harness-core) | [[harness-registry]] |
-| solograph | one index any agent searches: wiki, notes, every past session, symbols in 68 projects | the index (derived, rebuildable) | Rust | [[solograph-rebuilt-one-binary]] |
+| solograph | one index any agent searches: wiki, notes, every past session, symbols in 69 projects | the index (derived, rebuildable) | Rust | [[solograph-rebuilt-one-binary]] |
 | Brain | agents write decisions and findings back; a nightly loop reads what went wrong | knowledge | wiki + Python | [[company-brain]] |
 | swarm | many coding agents in parallel; only tested code reaches `main` | task state | Go | [[project-swarm]] |
 | Always-on box | runs what must not stop when the laptop sleeps: today the client profile's swarm coordinator; my personal box is ordered, not up | uptime | Linux server | [[agent-harness-and-always-on-gnome]] |

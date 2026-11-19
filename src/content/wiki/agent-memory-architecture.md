@@ -178,7 +178,7 @@ Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vect
 - **Vectors.** The vector index found 0 of 39 known sessions in its top 5; FTS5 found 32. Claude Code deletes transcripts after 30 days and nothing re-read the disk, so the index and the disk shared no session. Cold KB search: 14 s against 66 ms.
 - **The graph.** 781k call edges, five queries in four months, every one "list the projects" or stats. On a 1,100-file repo, a dedicated code-graph MCP and plain Grep/Read gave the same accuracy in all 8 runs.
 
-Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 68 repositories, the knowledge base, the session archive.
+Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 69 repositories, the knowledge base, the session archive.
 
 **Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries, and measure each layer you add against it. A stale index fails silently.
 
