@@ -3,7 +3,7 @@ type: concept
 title: "Jev / System One — decision models that never generate text, and the open-weight Laya"
 description: "Jev (TypeSafe AI) is a non-autoregressive 'System One' model: unstructured text in, typed decisions with calibrated probabilities out, in one parallel pass. Closed weights, API-only — but Laya (Apache 2.0, 322-421M params, ~650-800MB) reproduces it with downloadable weights and runs locally."
 created: 2026-09-20
-updated: 2026-10-27
+updated: 2026-11-19
 tags: [structured-output, classification, non-autoregressive, calibration, rlcd, open-weights, local-models, llm]
 course_module: 6
 course_order: 7
@@ -82,6 +82,26 @@ The insight is the class, not the vendor: for routing, triage, moderation, scori
 ## What others found since (Oct 2026)
 
 - **Tune the threshold, then check calibration.** Hamel Husain and Antaripa Saha ([decision models for evals](https://hamel.dev/blog/posts/decision-model-evals/), Oct 2026) compared six decision models as eval judges on 98 traces. The default 0.50 cutoff left accuracy on the table; OpenAI Decisions reached F1 0.87 at 3.72¢ per 100 runs; in one Clef Flash group the predicted failure rate was about 8% against 60% observed (reported). A confident probability is a claim until it has been checked against labels, which is what the Laya smoke set above does.
+
+## System 1 agents: tool calling with no generated text (arXiv 2611.21053, Nov 2026)
+
+[Tzanis and Klontzas, "System 1 agents: a method for local, reliable and fast agentic AI"](https://arxiv.org/abs/2611.21053) (submitted 16 Nov 2026) take the decision-model idea and apply it to tool calling. Same idea, different team: the authors are at the University of Crete and the Karolinska Institute (radiology), not TypeSafe and not Laya's authors. They use published decision models (OpenJev, Clef, two pplx-decider, two decider) and fine-tune none of them.
+
+The method has three parts. The agent runs the workflow: one question over the whole tool catalogue plus "none of these", then a check that the tool can do the job (decline below p=0.5). A deterministic compiler turns the chosen tool's JSON schema and the request into multiple-choice questions: enums over their values, booleans over on/off/not mentioned, free values over candidates extracted from the request, plus "not specified". The decision model answers each question in one pass. A required value the request does not give is never filled: the agent shows a template prompt and waits. This is the [[schema-guided-reasoning]] idea taken to the end: the schema stops being a prompt for a generator and becomes the list of allowed answers.
+
+Numbers (all from the paper, benchmark of 1,952 requests to 157 tools on 18 MCP servers, 1,829 custom plus 123 taken from published studies; models run locally via llama.cpp on one 48 GB GPU):
+
+- **Right tool or correct decline:** best System 1 agent (pplx-decider-27b) 97.0%, OpenJev 96.1%; best of 18 local LLM-agent settings (Qwen3.5-27B, reasoning off) 95.1% (abstract rounds it to 95.2%).
+- **Fully correct requests (tool and all values):** pplx-decider-27b 93.9%, OpenJev 92.9%, best LLM 91.3%. Pairwise over 108 pairs with Holm correction: System 1 ahead in 73, LLM ahead in 11 (all over the two weakest System 1 agents), 24 ties.
+- **Argument filling (6,056 stated values):** System 1 best 97.0%, best LLM 97.2%, so no gain here; five LLM agents were statistically tied with the best System 1 agent.
+- **Invented content:** 0 ungrounded values in 33,945 System 1 argument values (10,888 calls); 5.5-19.7% of LLM calls contained at least one invented value, mostly hyperparameters, paths and options the user never stated.
+- **Underspecified requests (174):** System 1 handled them right (right tool, stated values filled, missing one reported) in 86.2-93.7%; LLM agents in at most 5.7%, and the most accurate LLM invented the missing value in 27.6%.
+- **Latency and energy:** System 1 took 1.2-10.1 s per request and 0.072-0.407 Wh per fully correct request; LLM agents with reasoning 2.6-26.1 s and 0.198-2.481 Wh. Head to head: OpenJev agent 2.6 s and 0.228 Wh against 4.5 s and 0.413 Wh for the best LLM setting. About 12 questions per request, zero tokens generated, against 123-340 generated tokens (417-952 with reasoning).
+- **Model size:** 4 to 35 billion parameters for the six decision models; peak GPU memory 7.4-35 GB (7,368-35,057 MiB) for System 1, 12-45.5 GB for the LLM agents. These are not laptop-class models like Laya's 322-421M.
+
+Failure cases, as the paper reports them: System 1 still picks wrong among grounded options, so wrong tool, or a written value in the wrong argument. In 22 of 10,888 calls grounded text went in a form the schema rejects (an identifier pattern); the authors say pre-checking options against the schema would remove that. In 2-6 cases per agent a missing required value was filled with another value from the request. Declined 87.0-94.5% of 307 out-of-scope requests, and 1.0-3.3% of complete requests got no call. The hardest case for every agent: a tool that does the task but not on the given input. LLM agents did better on identifier-heavy databases (ClinicalTrials.gov, ChEMBL); System 1 led on imaging tools with many technical values (nnU-Net). The decider-35b-a3b agent lost to its own base model with reasoning on. The benchmark is mostly the authors' own prompts and the paper is a preprint, so read the margins (97.0 vs 95.1%) as modest and the zero-invention result as the real claim.
+
+Idea, not a plan: a compiler like this could give the Mac or an iPhone local tool calling with no generative model, with Laya-sized weights as the decision model. Whether a 300-400M model holds 97% on a tool catalogue is unmeasured; the paper's smallest model is 4B.
 
 ## Links
 

@@ -27,6 +27,7 @@ The method behind them is [[harness-engineering-summary]].
 - [[claude-code-channels]]: channels push outside events into an open session: my Telegram bot wired into the session that runs my day, a voice, a 40-line channel for your own product
 - [[claude-code-anatomy]]: Claude Code reverse-engineered: the seven-part loop, five layers of compaction, deny-first permissions
 - [[claude-code-code-mode]]: Code Mode, where the model writes JavaScript that makes the tool calls: measured on one task, half the model calls, a quarter fewer tokens, 2.4x slower; hooks still see every call
+- [[self-improving-harness]]: a Nov 2026 paper says harnesses should diagnose, patch, validate and deploy their own code; mapped onto my sensors, case log and nightly loops, with the gaps: no deploy gate, a checker the agent can edit, no early-stop rule
 - [[commerce-agent-blueprint]]: one agent with skills beats subagents; guardrails live in the harness, not the prompt
 - [[design-md-spec]]: design tokens plus their rationale in one file the agent can lint against
 - [[reading-agent-output]]: the terminal as a reading instrument once the work is reviewing an agent's stream

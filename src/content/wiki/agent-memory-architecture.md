@@ -3,7 +3,7 @@ type: methodology
 title: "Agent Memory Architecture: From Working Memory to Compound Learning"
 description: "4 memory types, 3 operational loops, 5 systems compared. From dict-based v1 to spatial palaces and knowledge graphs."
 created: 2026-04-09
-updated: 2026-10-27
+updated: 2026-11-19
 tags: [agents, memory, architecture, methodology, rag, context-engineering]
 course_module: 3
 course_order: 1
@@ -181,6 +181,20 @@ Multiple systems converge on this independently: Moltis uses hybrid (FTS5 + vect
 Both went, and the install shrank from 862 MB to 89 MB. What stayed is what Grep cannot do: symbol and package search across 69 repositories, the knowledge base, the session archive.
 
 **Key insight:** don't start with "semantic magic." Start with the simplest retrieval that handles your actual queries, and measure each layer you add against it. A stale index fails silently.
+
+---
+
+## Minimal memory holds up (Nov 2026)
+
+Three November 2026 sources point the same way: the simple layer carries most of the load. Each one has a limit, and the limits matter as much as the headlines.
+
+- **BRIDGE** ([arXiv 2611.22179](https://arxiv.org/abs/2611.22179), 17 Nov 2026) is a deliberately plain RAG memory: one observation note per block, chained to the previous notes, hybrid BM25 plus cosine retrieval, results shown in chronological order. By the abstract, it matches the prior best system within bootstrap confidence intervals on LongMemEval-S and BEAM, and beats the best memory baseline on EverMemBench by 5.7-6.3 points at the same reader. It sends about 5-7K tokens to the reader per query, with one LLM call per ingestion and one per query. The authors read the parity as a flaw of the benchmarks, which score what memory retrieves, not what it lets the agent do. On their five probes (a rule said once in passing, a pattern never stated) no design wins everywhere: the fact extractor LangMem wins rule application, BRIDGE wins pattern induction. BRIDGE retrieved the rule but the reader did not act on it, and showing the rule more prominently closed most of that gap. I read the abstract and the introduction; the per-probe tables did not survive the HTML extraction, so I quote no probe scores.
+- **LEDGER** ([arXiv 2611.20927](https://arxiv.org/abs/2611.20927), 16 Nov 2026) takes the opposite route: a model proposes facts, and fixed rules decide which value is current, which source wins and what a deletion erases. Each fact keeps its source and the period it held. On a synthetic coding-agent workload the authors wrote themselves, it answers 94.3% of questions on the five seeds they developed on and 91.1% on five held-out seeds, against 82.1% and 83.3% for replaying the whole history. Full replay's evidence was clean in only 21.9% of probes, so the model hides the mess until the history grows. On LongMemEval it ties full replay at 74.8% with 1,087 tokens against 108,447, but the paired interval still allows a difference of several points either way. Mem0 as configured there kept a deleted value in 18 probes.
+- **OmniMem** ([omnimem.org](https://omnimem.org), vendor page) reports 26% fewer tokens for Claude Code with its memory: median 833k to 616k per run, fewer in 8 of 10 pairs. It is Haiku 4.5, one scenario, 10 pairs, p = 0.05 by a sign test, and the vendor itself calls it "promising rather than proven". The firmer number is that 0 of 10 runs walked into the planted dead end, against 8 of 10 without it. This one is not minimal: it uses local ONNX embeddings and a lifecycle with four states.
+
+**MIRIX-2.0** ([arXiv 2611.12068](https://arxiv.org/abs/2611.12068), 9 Nov 2026) is the counterweight: six typed memory agents, a provenance hypergraph and a background consolidation pass. Its abstract claims the top score on four of five QA benchmarks, 91.4% on LoCoMo and 72.6% on LongMemEval-S, 14.3 points above the strongest baseline. BRIDGE's argument is that benchmarks like these cannot tell such designs apart, so I read that lead as unproven for agent work.
+
+**Where we sit.** The brain is files plus SQLite FTS5 BM25 (see [[company-brain]] and [[project-solograph]]), with no extraction layer. It is not BRIDGE: BRIDGE adds cosine, which we removed on measurement, and writes a note per block with an LLM, which we do not. What carries over is the argument that retrieval is not the bottleneck, and BRIDGE's finding that a retrieved rule goes unused unless it is put in front of the reader. That is why `brain_start` and the session-start hint put the map in context instead of waiting for a search. LEDGER is the comparison for our weak spot, notes going stale. We keep the source of each note and check notes against reality weekly with `/solo:dream`, but a person applies the fix. LEDGER does that mechanically: source and validity period are stored, and a rule picks the current value. We have no such rule, and its own 4 stale answers all came from updates the extractor missed, which is the same failure we would have.
 
 ---
 
