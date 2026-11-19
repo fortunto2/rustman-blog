@@ -5,6 +5,7 @@ description: "How my personal Telegram bot is built (a Cloudflare worker with a 
 created: 2026-11-18
 tags: [telegram, claude-code, cloudflare-workers, agents, harness, queue, safety, ops]
 publish: true
+github: fortunto2/pult
 feed: true
 learned_from: "control-bot repo (CLAUDE.md, skill references, plans of 12-18 Nov 2026) and the sessions that built it, 23 Oct to 18 Nov 2026"
 index_line: "Post, 4 mermaid + glossary: my private Telegram control bot, built 23 Oct-18 Nov 2026. Worker (Cloudflare + D1) holds items and an event queue (P0 my text, P1 buttons, P2 jobs, P3 family; lease 90 s, heartbeat 20 s, 3 tries, 24 h expiry, limit pause capped 6 h); Mac runs claude -p on the subscription, no API key anywhere; jobs write cards not chat text; chat is a remote for sessions (reply = continue, /new, /stop, voice via whisper large-v3, files up to 20 MB); button jobs are read-and-draft; one send path: Gmail draft, two taps, hash check, no model, 10/day; 8 hard rules (one wrangler process, live switches in D1, no in-place edits of running scripts, work-content wall, contract tests, reply_markup on edits, family box off by default) each from an incident; live-session channel 18 Nov (see claude-code-channels)"
@@ -25,6 +26,8 @@ It is about four weeks old. The first jobs ran from `launchd` on 23 Oct 2026, th
 | Box at home | a small always-on device that answers family members when the Mac sleeps | restores itself, checked every 5 min |
 | Mini App | a read-mostly dashboard inside Telegram | data pushed from the Mac, never pulled by the worker |
 | Rules | hard rules in `CLAUDE.md`, each one an incident or a review finding | 8 |
+
+The core is open source as [pult](https://github.com/fortunto2/pult) (MIT, 19 Nov 2026): the worker, the queue, cards, sessions, the live channel and a Mini App, with an extension API. My own bot runs it as a git submodule, and everything personal (family, mail, scheduled jobs, the send path) plugs in as extensions, so there is one codebase, not a public copy and a private fork.
 
 The design has one idea behind it. **Everything that can go wrong goes wrong in a place I can undo.** Jobs write cards, not chat text, so a bad run leaves a card I can drop. Button jobs may read and draft, never send. The single thing that sends mail in my name is a plain script with no model in it. The rest of this page is how that plays out.
 
