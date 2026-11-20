@@ -35,6 +35,7 @@ in [[infra-two-tools]]; my own open-source tools are on [/projects/](/projects/)
 ## Search for agents
 
 - [[own-searxng-for-agents]]: your own SearXNG with a Tavily-shaped API as web search for Claude Code, and the engine lessons with numbers
+- [[dns-320l-openwrt-without-uart]]: an old D-Link DNS-320L NAS moved to OpenWrt 25.12 with no serial cable, by un-marking one read-only partition in Alt-F's device tree
 - [[zero-trust-private-network]]: a private network on Cloudflare Zero Trust instead of a VPN: tunnels, Access logins for people and agents, SSH without keys, WARP private IPs
 
 ## The terminal

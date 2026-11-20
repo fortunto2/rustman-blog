@@ -36,7 +36,7 @@ The surprise of the week was the last row. I went looking for a server because m
 
 A coding agent is a model plus everything around it. The word is literal: a harness is horse tack. The model is a strong horse, and the bridle, saddle and stirrups decide whether it goes where you need. The model I cannot change; everything around it is mine. It is also the third step most people climb: first prompt engineering (magic words), then context (what the model sees), then the harness and the loop it runs in. I split the harness into two halves.
 
-**Feedforward** steers the agent before it acts: `CLAUDE.md` files per project, rules that load in every session (routing, privacy, where skills live), and 66 skills for recurring work, from scaffolding an app to publishing a post. When the agent makes a mistake, I fix the harness, not the prompt: a line in `CLAUDE.md`, a linter rule, a test. The same mistake should happen once ([[agent-mistake-fix-harness]]).
+**Feedforward** steers the agent before it acts: `CLAUDE.md` files per project, rules that load in every session (routing, privacy, where skills live), and 70 skills for recurring work, from scaffolding an app to publishing a post. When the agent makes a mistake, I fix the harness, not the prompt: a line in `CLAUDE.md`, a linter rule, a test. The same mistake should happen once ([[agent-mistake-fix-harness]]).
 
 **Sensors** check the agent after it acts, at three points:
 

@@ -51,7 +51,7 @@ journal, was rejected in review in October 2026. The full list: [projects](/proj
 
 | Project | Description | Language | Links |
 |---------|-------------|----------|-------|
-| **solo-factory** | Claude Code plugin -- 66 skills, 2 agents for the startup pipeline | Markdown + Python | [GitHub](https://github.com/fortunto2/solo-factory) |
+| **solo-factory** | Claude Code plugin -- 70 skills, 2 agents for the startup pipeline | Markdown + Python | [GitHub](https://github.com/fortunto2/solo-factory) |
 | **solograph** | Portfolio index and agent memory over MCP -- one binary, SQLite full-text search, 5 tools | Rust | [GitHub](https://github.com/fortunto2/solograph) |
 | **swarm** | Coding agents in parallel, each task behind a test gate (early, Nov 2026) | Go | [GitHub](https://github.com/fortunto2/swarm) |
 | **openai-oxide** | Idiomatic OpenAI client -- Rust/Node/Python, WebSocket, WASM | Rust | [GitHub](https://github.com/fortunto2/openai-oxide) |
