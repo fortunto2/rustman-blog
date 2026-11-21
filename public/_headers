@@ -31,3 +31,10 @@
   Signature: binding=:G3i41Z1gSk3Ez4mR9UMx3t6UYDu82+NcflN/R+dYtpo+4vTl/JUyQCfXMzSfXgbUVUQroOTAYzwLKXYe5jslCQ==:
   Cache-Control: max-age=86400
 # web-bot-auth: end
+
+# The whole corpus in one file competes with every page it copies: Google had llms.txt in its
+# results (67 impressions) while wiki pages sat "crawled, not indexed". Agents still read it.
+/llms.txt
+  X-Robots-Tag: noindex
+/llms-full.txt
+  X-Robots-Tag: noindex
