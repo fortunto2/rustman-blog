@@ -78,6 +78,41 @@ Verdict: VoxCPM2 stays the default and KittenTTS 2 is not added. The weights are
 running process peaks at 9 GB, so the "fits anywhere" promise does not hold for the cloning model.
 The tiny Pico/Nano/Mini models are a different question (an iOS app bundle), not tested here.
 
+Listen for yourself: both engines cloned the same 27-second English mic test of my voice, and read
+lines they had never heard. VoxCPM2 output went through the skill's default clean-up (low-pass +
+DeepFilterNet); KittenTTS 2 is raw.
+
+Russian: «Всем привет, с возвращением на канал. Сегодня покажу, как я монтирую фильм о путешествии
+за один вечер…»
+
+VoxCPM2 4-bit:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/voxcpm2-ru1.mp3"></audio>
+
+KittenTTS 2:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/kitten-ru1.mp3"></audio>
+
+English: "Hi everyone, welcome back to the channel. Today I will show you how I cut a travel film in
+one evening…"
+
+VoxCPM2 4-bit:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/voxcpm2-en1.mp3"></audio>
+
+KittenTTS 2:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/kitten-en1.mp3"></audio>
+
+Turkish: "Herkese merhaba, kanala tekrar hoş geldiniz…"
+
+VoxCPM2 4-bit:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/voxcpm2-tr1.mp3"></audio>
+
+KittenTTS 2:
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/kitten-tr1.mp3"></audio>
+
+KittenTTS 2 extras, no cloning: the built-in voice `Bruno`, and a line with an `[excited]` tag (whether
+the emotion is audible is yours to judge):
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/kitten-builtin-Bruno-en2.mp3"></audio>
+<audio controls preload="none" src="/images/posts/local-voice-agent-mac/kitten-emotion-en.mp3"></audio>
+
 KittenTTS 2 on the same Rustam clip and five lines (ru x2, en x2, tr x1): all five read back
 verbatim or near (GigaAM, Parakeet, Whisper for Turkish), the same as VoxCPM2, so there is no quality
 gap to measure. It loses on cost: 8.3-9.1 GB peak against 4.6-5.9 GB, 24 kHz against 48 kHz, a 1 GB
