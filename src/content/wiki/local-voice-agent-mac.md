@@ -60,6 +60,24 @@ Three models earned a place, out of the forty that mlx-audio ships, and a fourth
 | Shtorm-VoxCPM2-RU (converted once to MLX 4-bit) | 5.5 GB | as VoxCPM2 | Russian where stress changes the word: `зам+ок` / `з+амок` |
 | KittenTTS 2 (1.7B ternary, `kittenml[mlx]`, 21.11.2026) | 8.3-9.1 GB | 0.83-1.1 (busy machine) | not adopted: 20 languages, 100+ built-in voices, `[emotion]` tags; 24 kHz |
 
+### KittenTTS 2 against VoxCPM2 (21.11.2026)
+
+KittenTTS 2 came out with a headline of "4 MB TTS". That is the Pico model, eight languages and no
+cloning; the one that clones a voice is the 1.7B ternary model, and that is the one measured here.
+
+| | KittenTTS 2 (MLX) | VoxCPM2 4-bit |
+|---|---|---|
+| Peak memory | 8.3-9.1 GB | 4.6-5.9 GB |
+| Sample rate | 24 kHz | 48 kHz |
+| Load, warm (first) | 9.9 s (277 s, 1 GB download) | 1.5-3.7 s |
+| RTF, load average 24-38 | 0.83-1.1 | 0.94-1.39 |
+| Read back verbatim or near, 5 lines | 5/5 | 5/5 |
+| Speaking pace | 1.1-1.6x slower | baseline |
+
+Verdict: VoxCPM2 stays the default and KittenTTS 2 is not added. The weights are 0.5 GB but the
+running process peaks at 9 GB, so the "fits anywhere" promise does not hold for the cloning model.
+The tiny Pico/Nano/Mini models are a different question (an iOS app bundle), not tested here.
+
 KittenTTS 2 on the same Rustam clip and five lines (ru x2, en x2, tr x1): all five read back
 verbatim or near (GigaAM, Parakeet, Whisper for Turkish), the same as VoxCPM2, so there is no quality
 gap to measure. It loses on cost: 8.3-9.1 GB peak against 4.6-5.9 GB, 24 kHz against 48 kHz, a 1 GB
