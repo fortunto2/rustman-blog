@@ -51,13 +51,22 @@ flowchart LR
   D --> O[48 kHz wav or mp3]
 ```
 
-Three models earned a place, out of the forty that mlx-audio ships:
+Three models earned a place, out of the forty that mlx-audio ships, and a fourth was tested and not adopted:
 
 | Model | Peak RAM | Speed (RTF) | Use it for |
 |---|---|---|---|
 | VoxCPM2 4-bit (default) | 5.2-5.9 GB | 0.56-0.75 | the best clones; 30 languages; 48 kHz |
 | ZONOS3-Mini | 2.6-3.8 GB | 0.17-0.29 | fast drafts, only with a same-language reference |
 | Shtorm-VoxCPM2-RU (converted once to MLX 4-bit) | 5.5 GB | as VoxCPM2 | Russian where stress changes the word: `зам+ок` / `з+амок` |
+| KittenTTS 2 (1.7B ternary, `kittenml[mlx]`, 21.11.2026) | 8.3-9.1 GB | 0.83-1.1 (busy machine) | not adopted: 20 languages, 100+ built-in voices, `[emotion]` tags; 24 kHz |
+
+KittenTTS 2 on the same Rustam clip and five lines (ru x2, en x2, tr x1): all five read back
+verbatim or near (GigaAM, Parakeet, Whisper for Turkish), the same as VoxCPM2, so there is no quality
+gap to measure. It loses on cost: 8.3-9.1 GB peak against 4.6-5.9 GB, 24 kHz against 48 kHz, a 1 GB
+download (277 s the first time), a 9.9 s load against 1.5-3.7 s, and it speaks 1.1-1.6x slower
+because it copies the reference's pace. RTF was taken with the laptop at load average 24-38, so it
+says "similar", not "faster". It needs its own dependencies (torch, transformers). Where it may win,
+untested by ear: a built-in voice with no reference, and expression tags (`[excited]` is accepted).
 
 RTF is seconds of compute per second of speech, on an idle machine. With other ML jobs running it
 rose to 1.2-1.9, and once to 6 when the laptop swapped, so the skill stops itself below 15% free
