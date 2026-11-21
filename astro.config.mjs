@@ -28,6 +28,8 @@ export default defineConfig({
   output: 'static',
   integrations: [
     sitemap({
+      // Tag pages are lists of links: 118 thin pages that spent the crawl the wiki needs.
+      filter: (page) => !page.includes('/tags/'),
       serialize(item) {
         const date = modified.get(item.url);
         return date ? { ...item, lastmod: date } : item;
